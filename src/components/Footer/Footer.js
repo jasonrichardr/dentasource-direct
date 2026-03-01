@@ -25,14 +25,17 @@ export default function Footer() {
             <div className={`container-wide ${styles.grid}`}>
                 {/* Brand Column */}
                 <div className={styles.brand}>
-                    <img
-                        src="/images/brand/logo-stacked.png"
-                        alt="DentaSource Direct"
-                        className={styles.logo}
-                    />
-                    <p className={styles.tagline}>
-                        Your Growth Partner in Dentistry. Premium dental equipment with white-glove service, hands-on training, and the personalized support your practice deserves.
-                    </p>
+                    <div className={styles.tagline}>
+                        <Link href="/" className={styles.taglineLink}><strong>Your Growth Partner in Dentistry</strong></Link>
+                        <br />
+                        <Link href="/" className={styles.taglineLink}><strong>Dental equipments with Research & Development</strong></Link>
+                        <br />
+                        <Link href="/" className={styles.taglineLink}><strong>White-glove service</strong></Link>
+                        <br />
+                        <Link href="/" className={styles.taglineLink}><strong>Hands-on training</strong></Link>
+                        <br />
+                        <Link href="/" className={styles.taglineLink}><strong>Personalized support</strong></Link>
+                    </div>
                     <div className={styles.badges}>
                         <div className={styles.trustBadge}>
                             <span className={styles.trustIcon}>🛡️</span>

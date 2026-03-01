@@ -255,7 +255,7 @@ export default function AboutPage() {
                                 <li><strong>Direct:</strong> +63 962 579 3024</li>
                             </ul>
                             <Link href="/contact" className={styles.btnAction}>
-                                Book Your Private Tour
+                                Visit our 140 sqm showroom located at pasig
                             </Link>
                         </motion.div>
 
@@ -271,7 +271,7 @@ export default function AboutPage() {
                                     <div style={{ margin: '1rem 0 3rem 0', position: 'relative', width: '280px', height: '60px' }}>
                                         <Image src="/images/brand/roson-logo-final.png" alt="ROSON Dental" fill style={{ objectFit: 'contain', objectPosition: 'left center' }} />
                                     </div>
-                                    <p style={{ fontSize: '1.05rem', lineHeight: '1.6', maxWidth: '90%' }}>
+                                    <p className={styles.partnerText}>
                                         Built on 20 years of engineering and a relentless pursuit of quality, refined through continuous innovation, and already trusted by dentists in Germany, Dubai, Russia, Mexico, Brazil, Australia, and 100+ countries worldwide. A giant in Dental Chair industry.
                                         <br /><br />
                                         And now, through DentaSource Direct, that same world-class dental chair is finally within reach of Filipino dentists.
@@ -291,7 +291,7 @@ export default function AboutPage() {
                                     <div style={{ margin: '1rem 0 3rem 0', position: 'relative', width: '220px', height: '110px' }}>
                                         <Image src="/images/brand/denjoy-logo-final.png" alt="DENJOY Endo" fill style={{ objectFit: 'contain', objectPosition: 'left center' }} />
                                     </div>
-                                    <p style={{ fontSize: '1.05rem', lineHeight: '1.6', maxWidth: '90%' }}>
+                                    <p className={styles.partnerText}>
                                         Italy and Russia have some of the strictest medical device standards in Europe. That same endodontic technology trusted by European clinics is now here in the Philippines, backed by DentaSource Direct's hands-on support, local training, and a commitment to keeping your clinic ahead of the curve through continuous research and development.
                                     </p>
                                 </div>

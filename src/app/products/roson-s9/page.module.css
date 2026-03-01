@@ -1,0 +1,433 @@
+.premiumPage {
+    background-color: #ffffff;
+    color: #333333;
+    min-height: 100vh;
+    padding-top: var(--nav-height);
+    font-family: var(--font-body);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    padding: var(--space-md) 0;
+    background: #f8f9fa;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.breadLink {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadLink:hover {
+    color: #0b5ab0;
+}
+
+.breadSep {
+    margin: 0 var(--space-sm);
+    color: #999;
+}
+
+.breadCurrent {
+    color: #1a1a1a;
+    font-weight: 500;
+}
+
+/* Hero Section */
+.heroSection {
+    position: relative;
+    padding: var(--space-3xl) 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.heroBgGradient {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(11, 90, 176, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.heroContent {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-3xl);
+    align-items: center;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: linear-gradient(135deg, #0b5ab0 0%, #003b7a 100%);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 20px;
+    margin-bottom: var(--space-md);
+    box-shadow: 0 4px 10px rgba(11, 90, 176, 0.2);
+}
+
+.title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    color: #1a1a1a;
+    line-height: 1.1;
+    margin-bottom: var(--space-sm);
+    letter-spacing: -1px;
+}
+
+.tagline {
+    font-size: 1.5rem;
+    color: #0b5ab0;
+    font-weight: 500;
+    margin-bottom: var(--space-md);
+}
+
+.shortDesc {
+    font-size: 1.15rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: var(--space-xl);
+    max-width: 90%;
+}
+
+.heroCtas {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.btnPrimary {
+    background: linear-gradient(135deg, #0b5ab0 0%, #003b7a 100%);
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(11, 90, 176, 0.2);
+}
+
+.btnPrimary:hover {
+    background: #003b7a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(11, 90, 176, 0.3);
+}
+
+.btnSecondary {
+    background: transparent;
+    color: #0b5ab0;
+    padding: 16px 32px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1px solid rgba(11, 90, 176, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btnSecondary:hover {
+    background: rgba(11, 90, 176, 0.05);
+    border-color: #0b5ab0;
+    box-shadow: 0 4px 10px rgba(11, 90, 176, 0.1);
+}
+
+.heroImageContainer {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.heroImg {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+}
+
+/* Angle Selector specific to S9 */
+.angleSelector {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: #f8f9fa;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.angleBtn {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.angleBtn:hover {
+    border-color: #0b5ab0;
+    color: #0b5ab0;
+}
+
+.angleBtnActive {
+    background: #0b5ab0;
+    border-color: #0b5ab0;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(11, 90, 176, 0.2);
+}
+
+.angleBtnActive:hover {
+    color: #fff;
+}
+
+/* Advanced Features Grid Section */
+.advancedFeaturesSection {
+    padding: var(--space-3xl) 0;
+    background: #fcfcfc;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.advancedFeaturesIntro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--space-3xl);
+}
+
+.sectionTitle {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #1a1a1a;
+    margin-bottom: var(--space-lg);
+    letter-spacing: -0.5px;
+}
+
+.sectionDesc {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.advancedGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-xl);
+}
+
+.advFeatureCard {
+    background: #fff;
+    border-radius: 16px;
+    padding: var(--space-xl);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    position: relative;
+    overflow: hidden;
+}
+
+.advFeatureCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+}
+
+.advFeatureNumber {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(11, 90, 176, 0.03);
+    line-height: 1;
+    z-index: 0;
+}
+
+.advFeatureTitle {
+    position: relative;
+    z-index: 1;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #222;
+    margin-bottom: var(--space-md);
+}
+
+.advFeatureTitle::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: #0b5ab0;
+    margin-top: var(--space-sm);
+}
+
+.advFeatureDesc {
+    position: relative;
+    z-index: 1;
+    font-size: 1.05rem;
+    color: #666;
+    line-height: 1.7;
+}
+
+/* Deep Dive Immersive Sections */
+.deepDiveSection {
+    padding: var(--space-3xl) 0;
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.deepDiveReverse {
+    background: #f8fafc;
+}
+
+.deepDiveSplit {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+}
+
+.splitText {
+    max-width: 500px;
+}
+
+.deepDiveSubtitle {
+    display: inline-block;
+    color: #0b5ab0;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.85rem;
+    margin-bottom: var(--space-sm);
+}
+
+.deepDiveTitle {
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: var(--space-xl);
+}
+
+.splitImage {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.immersiveImg {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 4/3;
+}
+
+/* Lists and Items */
+.deepDiveList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.deepDiveItemTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: var(--space-xs);
+}
+
+.deepDiveItemDesc {
+    color: #666;
+    line-height: 1.6;
+}
+
+.ergoList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.ergoItem {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+.ergoIcon {
+    color: #0b5ab0;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Warranty Section */
+.warrantySection {
+    padding: var(--space-3xl) 0;
+    background: #001f3f;
+    color: #fff;
+    text-align: center;
+}
+
+.warrantyBox {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.warrantyTitle {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: var(--space-md);
+}
+
+.warrantyText {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .deepDiveSplit {
+        grid-template-columns: 1fr;
+    }
+
+    .heroContent {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .heroSection {
+        padding: var(--space-xl) 0;
+        text-align: center;
+    }
+
+    .heroCtas {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .splitText {
+        max-width: 100%;
+    }
+}

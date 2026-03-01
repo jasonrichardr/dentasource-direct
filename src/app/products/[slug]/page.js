@@ -6,10 +6,21 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { getProductBySlug, getRelatedProducts } from '@/data/products';
 import ProductCard from '@/components/ProductCard/ProductCard';
+import PremiumProductLayout from '@/components/PremiumProductLayout/PremiumProductLayout';
 import styles from './page.module.css';
 
 export default function ProductPage() {
     const params = useParams();
+
+    // Redirect to dedicated S9 page if that's the slug
+    if (params.slug === 'roson-s9') {
+        if (typeof window !== 'undefined') {
+            window.location.href = '/products/roson-s9';
+        }
+        return null;
+    }
+
+
     const product = getProductBySlug(params.slug);
     const [selectedImage, setSelectedImage] = useState(0);
 
@@ -22,12 +33,18 @@ export default function ProductPage() {
         );
     }
 
-    const related = getRelatedProducts(params.slug, 3);
     const categoryLabel = product.category === 'chair' ? 'Dental Chairs' :
         product.category === 'imaging' ? 'Imaging' :
             product.category === 'endo' ? 'Endodontics' :
                 product.category === 'curing' ? 'Curing & Filling' :
                     product.category === 'sterilization' ? 'Sterilization' : 'Accessories';
+
+    // Conditionally render the premium layout for all dental chair products
+    if (product.category === 'chair') {
+        return <PremiumProductLayout product={product} categoryLabel={categoryLabel} />;
+    }
+
+    const related = getRelatedProducts(params.slug, 3);
 
     return (
         <div className={styles.page}>
@@ -99,7 +116,7 @@ export default function ProductPage() {
                                     {product.features.map((f, i) => (
                                         <li key={i} className={styles.featureItem}>
                                             <span className={styles.featureCheck}>✓</span>
-                                            {f}
+                                            <span>{f}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -113,14 +130,6 @@ export default function ProductPage() {
                                 >
                                     Request a Quote →
                                 </Link>
-                                {product.configuratorEnabled && (
-                                    <Link
-                                        href={`/products/${product.slug}/configure`}
-                                        className="btn btn-secondary btn-lg"
-                                    >
-                                        Configure This Chair
-                                    </Link>
-                                )}
                                 <a href="tel:+639625793024" className="btn btn-outline-dark">
                                     Call Us: +63 962 579 3024
                                 </a>

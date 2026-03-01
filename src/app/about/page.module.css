@@ -674,6 +674,14 @@
     margin-bottom: 3rem;
 }
 
+.partnerText {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 90%;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 3rem;
+}
+
 
 
 /* PARTNERS COLUMN */
@@ -803,7 +811,12 @@
     }
 
     .heroTitle {
-        font-size: 3rem;
+        font-size: 2.2rem;
+    }
+
+    .heroLabel {
+        letter-spacing: 2px;
+        font-size: 0.8rem;
     }
 
     .manifestoSection {
@@ -816,8 +829,12 @@
 
     .manifestoLeft h2 {
         position: static;
-        font-size: 2.8rem;
+        font-size: 2.2rem;
         margin-bottom: 2rem;
+    }
+
+    .manifestoRight p {
+        font-size: 1rem;
     }
 
     .manifestoHighlightCard {
@@ -826,8 +843,42 @@
         transform: none;
     }
 
+    .manifestoHighlightCard h3 {
+        font-size: 1.2rem;
+    }
+
+    .manifestoHighlightCard p {
+        font-size: 0.95rem;
+    }
+
     .manifestoHighlightCard:hover {
         transform: translateY(-5px);
+    }
+
+    .premiumTrainingSection {
+        padding: 60px 0;
+    }
+
+    .trainingHeader h2 {
+        font-size: 2rem;
+    }
+
+    .trainingHeader p {
+        font-size: 1rem;
+    }
+
+    .cardContent h3 {
+        font-size: 1.5rem;
+    }
+
+    .cardContent p {
+        font-size: 0.95rem;
+        padding-right: 0;
+    }
+
+    .btnTrainingCTA {
+        padding: 1rem 2rem;
+        font-size: 1rem;
     }
 
     .valuesSection {
@@ -843,7 +894,11 @@
     }
 
     .statsHeader h2 {
-        font-size: 2.2rem;
+        font-size: 2rem;
+    }
+
+    .statsHeader p {
+        font-size: 1rem;
     }
 
     .statCard {
@@ -851,7 +906,15 @@
     }
 
     .statNumber {
-        font-size: 3rem;
+        font-size: 2.5rem;
+    }
+
+    .statLabel {
+        font-size: 1.1rem;
+    }
+
+    .statSub {
+        font-size: 0.9rem;
     }
 
     .darkSection {
@@ -866,7 +929,20 @@
     }
 
     .showroomCard h2 {
-        font-size: 2.2rem;
+        font-size: 2rem;
+    }
+
+    .showroomCard p {
+        font-size: 1rem;
+    }
+
+    .contactList li {
+        font-size: 0.95rem;
+    }
+
+    .btnAction {
+        font-size: 1rem;
+        padding: 1rem 2rem;
     }
 
     .partnerRevealCard {
@@ -874,15 +950,18 @@
         border-radius: 20px;
         flex-direction: column;
         align-items: flex-start;
+        min-height: auto;
     }
 
     .partnerContent h3 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
-    .partnerContent p {
-        font-size: 1rem;
+    .partnerContent p,
+    .partnerText {
+        font-size: 0.95rem;
         margin-bottom: 2rem;
+        max-width: 100%;
     }
 
     .rosonLogoPlaceholder {
@@ -898,7 +977,11 @@
     }
 
     .newsHeader h2 {
-        font-size: 2.2rem;
+        font-size: 2rem;
+    }
+
+    .newsHeader p {
+        font-size: 1rem;
     }
 
     .newsImageWrapper {
@@ -907,5 +990,9 @@
 
     .newsContent {
         padding: 1.5rem;
+    }
+
+    .newsTitle {
+        font-size: 1.1rem;
     }
 }

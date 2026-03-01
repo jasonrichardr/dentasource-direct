@@ -169,9 +169,10 @@
     display: flex;
     align-items: flex-start;
     gap: var(--space-sm);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--dark-secondary);
-    line-height: 1.5;
+    line-height: 1.6;
+    margin-bottom: var(--space-xs);
 }
 
 .featureCheck {

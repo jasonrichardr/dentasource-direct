@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# scrapers and data
+venv_scraper/
+scraping_script.py
+copy_images.py
+rosons_chairs_data/
+*.log

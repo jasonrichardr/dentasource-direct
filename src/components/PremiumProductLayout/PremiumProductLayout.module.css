@@ -1,0 +1,502 @@
+.premiumPage {
+    background-color: #ffffff;
+    color: #333333;
+    min-height: 100vh;
+    padding-top: var(--nav-height);
+    font-family: var(--font-body);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    padding: var(--space-md) 0;
+    background: #f8f9fa;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.breadLink {
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.breadLink:hover {
+    color: #0b5ab0;
+}
+
+.breadSep {
+    margin: 0 var(--space-sm);
+    color: #ccc;
+}
+
+.breadCurrent {
+    color: #333;
+    font-weight: 500;
+}
+
+/* Hero Section */
+.heroSection {
+    position: relative;
+    padding: calc(var(--space-3xl) * 1.5) 0;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.heroBgGradient {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 70% 50%, rgba(240, 244, 248, 1) 0%, rgba(255, 255, 255, 1) 70%);
+    z-index: 0;
+}
+
+.heroContent {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-3xl);
+    align-items: center;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: linear-gradient(135deg, #0b5ab0 0%, #003b7a 100%);
+    /* Distinctive blue premium badge inspired by clinical cleanliness */
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    margin-bottom: var(--space-lg);
+    box-shadow: 0 4px 10px rgba(11, 90, 176, 0.2);
+}
+
+.title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: #1a1a1a;
+    margin-bottom: var(--space-sm);
+    letter-spacing: -1px;
+}
+
+.tagline {
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    font-weight: 400;
+    color: #555;
+    margin-bottom: var(--space-xl);
+    line-height: 1.4;
+}
+
+.shortDesc {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: var(--space-2xl);
+    max-width: 90%;
+}
+
+.heroCtas {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.btnPrimary {
+    background: #0b5ab0;
+    color: #ffffff;
+    padding: 16px 32px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(11, 90, 176, 0.2);
+}
+
+.btnPrimary:hover {
+    background: #003b7a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(11, 90, 176, 0.3);
+}
+
+.btnSecondary {
+    background: transparent;
+    color: #0b5ab0;
+    padding: 16px 32px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 1px solid rgba(11, 90, 176, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btnSecondary:hover {
+    background: rgba(11, 90, 176, 0.05);
+    border-color: #0b5ab0;
+}
+
+/* Hero Image */
+.heroImageContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.heroImg {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+    margin-bottom: var(--space-xl);
+}
+
+.galleryThumbs {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+}
+
+.thumbBtn {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+
+.thumbBtn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.thumbBtn:hover,
+.thumbActive {
+    border-color: #0b5ab0;
+    box-shadow: 0 4px 10px rgba(11, 90, 176, 0.1);
+}
+
+/* Advanced Features Grid Section */
+.advancedFeaturesSection {
+    padding: var(--space-3xl) 0;
+    background: #fcfcfc;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.advancedFeaturesIntro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--space-3xl);
+}
+
+.sectionTitle {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #1a1a1a;
+    margin-bottom: var(--space-lg);
+    letter-spacing: -0.5px;
+}
+
+.sectionDesc {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+.advancedGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-xl);
+}
+
+.advFeatureCard {
+    background: #ffffff;
+    padding: var(--space-2xl);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.advFeatureCard:hover {
+    transform: translateY(-5px);
+    border-color: rgba(11, 90, 176, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+}
+
+.advFeatureNumber {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    font-size: 6rem;
+    font-weight: 900;
+    color: rgba(11, 90, 176, 0.03);
+    line-height: 1;
+    z-index: 0;
+}
+
+.advFeatureTitle {
+    position: relative;
+    z-index: 1;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #222;
+    margin-bottom: var(--space-md);
+}
+
+.advFeatureTitle::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: #0b5ab0;
+    margin-top: var(--space-sm);
+}
+
+.advFeatureDesc {
+    position: relative;
+    z-index: 1;
+    font-size: 1.05rem;
+    color: #666;
+    line-height: 1.7;
+}
+
+/* Deep Dive Immersive Sections (Disinfection & Ergonomics) */
+.deepDiveSection {
+    padding: var(--space-3xl) 0;
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.deepDiveSection:nth-of-type(even) {
+    background: #f8f9fa;
+}
+
+.deepDiveSplit {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+}
+
+/* Modifier to swap image and text order on desktop */
+
+.splitText {
+    padding: var(--space-xl) 0;
+}
+
+.deepDiveSubtitle {
+    display: inline-block;
+    color: #0b5ab0;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin-bottom: var(--space-sm);
+}
+
+.deepDiveTitle {
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    font-weight: 300;
+    color: #1a1a1a;
+    margin-bottom: var(--space-2xl);
+    line-height: 1.2;
+}
+
+.splitImage {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.splitImage::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+.immersiveImg {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 4/3;
+    transition: transform 0.7s ease;
+}
+
+.splitImage:hover .immersiveImg {
+    transform: scale(1.03);
+}
+
+/* Deep Dive Inner Lists */
+.deepDiveList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.deepDiveItem {
+    border-left: 2px solid rgba(11, 90, 176, 0.2);
+    padding-left: var(--space-lg);
+}
+
+.deepDiveItemTitle {
+    color: #222;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.deepDiveItemDesc {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Ergonomic List SVG Icons */
+.ergoList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.ergoItem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    color: #444;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.ergoIcon {
+    color: #0b5ab0;
+    flex-shrink: 0;
+}
+
+/* Specs Section */
+.specsSection {
+    padding: var(--space-3xl) 0;
+    background: #fdfdfd;
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.specsTitle {
+    text-align: center;
+    font-size: 2rem;
+    color: #1a1a1a;
+    margin-bottom: var(--space-2xl);
+    font-weight: 300;
+}
+
+.specsGrid {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.specItem {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.specKey {
+    color: #666;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.specValue {
+    color: #222;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Warranty Block */
+.warrantySection {
+    padding: var(--space-3xl) 0;
+    background: #ffffff;
+}
+
+.warrantyBox {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border: 1px solid rgba(11, 90, 176, 0.15);
+    border-radius: 16px;
+    padding: var(--space-3xl);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.warrantyTitle {
+    font-size: 1.8rem;
+    color: #0b5ab0;
+    margin-bottom: var(--space-lg);
+    font-weight: 500;
+}
+
+.warrantyText {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+
+    .heroContent,
+    .splitGrid,
+    .featuresGrid,
+    .advancedGrid,
+    .deepDiveSplit {
+        grid-template-columns: 1fr;
+    }
+
+    .featuresIntro {
+        position: static;
+        margin-bottom: var(--space-xl);
+    }
+}
+
+@media (max-width: 768px) {
+    .heroSection {
+        padding: var(--space-xl) 0;
+        text-align: center;
+    }
+
+    .heroCtas {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .specItem {
+        grid-template-columns: 1fr;
+        gap: var(--space-xs);
+    }
+
+    .specValue {
+        color: #444;
+    }
+}
