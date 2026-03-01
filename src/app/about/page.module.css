@@ -1,0 +1,911 @@
+/* Premium dynamic styles for About */
+
+.page {
+    background: var(--offwhite);
+    overflow: hidden;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.containerWide {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* HERO */
+.heroSection {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(circle at 50% 120%, var(--green-light) 0%, var(--green-dark) 50%, #051408 100%);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+    padding-top: var(--nav-height);
+}
+
+.heroSection::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)"/></svg>');
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+.heroContent {
+    z-index: 2;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.heroLabel {
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 4px;
+}
+
+.heroTitle {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1.05;
+    font-family: var(--font-heading);
+    letter-spacing: -2px;
+}
+
+.heroTitleAccent {
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
+    font-style: italic;
+}
+
+.scrollIndicator {
+    position: absolute;
+    bottom: 40px;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+    z-index: 2;
+}
+
+/* MANIFESTO */
+.manifestoSection {
+    padding: 150px 0;
+    background: var(--offwhite);
+    z-index: 5;
+    position: relative;
+}
+
+.manifestoGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+}
+
+@media (min-width: 1024px) {
+    .manifestoGrid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8rem;
+    }
+}
+
+.manifestoLeft h2 {
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1.05;
+    color: var(--dark);
+    position: sticky;
+    top: 150px;
+    font-family: var(--font-heading);
+    letter-spacing: -1px;
+}
+
+.highlight {
+    color: var(--orange);
+    font-style: italic;
+}
+
+.manifestoRight p {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    line-height: 1.6;
+    color: var(--dark-secondary);
+    margin-bottom: 2rem;
+}
+
+.manifestoEmphasis {
+    color: var(--green-dark);
+    font-weight: 700;
+    font-style: italic;
+    background: linear-gradient(120deg, rgba(255, 111, 0, 0.2) 0%, rgba(255, 111, 0, 0) 100%);
+    padding: 0 4px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.manifestoHighlightCard {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 24px;
+    border-left: 6px solid var(--orange);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    margin-top: 4rem;
+    transform: rotate(-1deg);
+    transition: transform 0.4s ease;
+}
+
+.manifestoHighlightCard:hover {
+    transform: rotate(0deg) translateY(-10px);
+}
+
+.manifestoHighlightCard h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--green-dark);
+}
+
+.manifestoHighlightCard p {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* PREMIUM TRAINING CENTER SECTION */
+.premiumTrainingSection {
+    padding: 120px 0;
+    background: #050505;
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+    color: var(--white);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.premiumTrainingSection::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(46, 125, 50, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.trainingHeader {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 5rem;
+}
+
+.glowBadge {
+    display: inline-block;
+    background: rgba(46, 125, 50, 0.1);
+    color: #4ade80;
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.1);
+}
+
+.trainingHeader h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.trainingHeader p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+}
+
+.trainingGrid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.premiumProgramCard {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    min-height: 420px;
+}
+
+/* Mouse hover glow effect (needs JS to set mouse pos if you want active tracking, but static radial on hover works too) */
+.premiumProgramCard::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.premiumProgramCard:hover {
+    transform: translateY(-8px);
+    border-color: rgba(74, 222, 128, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(46, 125, 50, 0.1);
+}
+
+.premiumProgramCard:hover::before {
+    opacity: 1;
+}
+
+.cardBackground {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premiumProgramCard:hover .cardBackground {
+    transform: scale(1.05);
+}
+
+.cardOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(5, 5, 5, 0.1) 0%, rgba(5, 5, 5, 0.95) 100%);
+}
+
+.cardContent {
+    position: relative;
+    z-index: 3;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.cardContent h3 {
+    font-size: 2.2rem;
+    color: #fff;
+    margin-bottom: 0.8rem;
+    margin-top: auto;
+    font-family: var(--font-heading);
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+    letter-spacing: -0.5px;
+}
+
+.cardContent p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.8);
+    padding-right: 5%;
+}
+
+.programStatus {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.statusActive {
+    color: #4ade80;
+}
+
+.statusActive::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #4ade80;
+}
+
+.statusSoon {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.statusSoon::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+.btnTrainingCTA {
+    display: inline-block;
+    margin: 4rem auto 0;
+    background: linear-gradient(135deg, var(--green-light), var(--green-dark));
+    color: var(--white);
+    padding: 1.2rem 3rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(46, 125, 50, 0.3);
+    text-decoration: none;
+}
+
+.btnTrainingCTA:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(46, 125, 50, 0.5);
+    color: var(--white);
+}
+
+/* VALUES BENTO GRID */
+.valuesSection {
+    padding: 100px 0 150px;
+    background: var(--gray-bg);
+}
+
+.sectionTitleCenter {
+    text-align: center;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 4rem;
+    letter-spacing: -1px;
+}
+
+.bentoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    grid-auto-rows: minmax(280px, auto);
+}
+
+.bentoCard {
+    background: var(--white);
+    padding: 3rem 2rem;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.bentoCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(27, 94, 32, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.bentoCard:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+}
+
+.bentoCard:hover::before {
+    opacity: 1;
+}
+
+.bentoIcon {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.bentoCard h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.bentoCard p {
+    font-size: 1rem;
+    color: var(--gray);
+    position: relative;
+    z-index: 1;
+}
+
+/* STATS SECTION (ROSON SCALE) */
+.statsSection {
+    padding: 100px 0;
+    background: var(--offwhite);
+    position: relative;
+    z-index: 6;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.statsHeader {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 5rem;
+}
+
+.badgeGreen {
+    display: inline-block;
+    background: rgba(27, 94, 32, 0.1);
+    color: var(--green-primary);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+}
+
+.statsHeader h2 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    color: var(--dark);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-heading);
+}
+
+.statsHeader p {
+    font-size: 1.25rem;
+    color: var(--dark-secondary);
+    line-height: 1.6;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.statCard {
+    background: var(--white);
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.statCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(27, 94, 32, 0.08);
+}
+
+.statNumber {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 900;
+    font-family: var(--font-heading);
+    color: var(--green-primary);
+    line-height: 1;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--green-primary), var(--green-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.statLabel {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+}
+
+.statSub {
+    font-size: 0.95rem;
+    color: var(--gray);
+}
+
+/* DARK SECTION */
+.darkSection {
+    background: #0A0A0A;
+    color: var(--white);
+    padding: 150px 0;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    margin-top: -60px;
+    position: relative;
+    z-index: 10;
+}
+
+.darkGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+}
+
+@media (min-width: 1024px) {
+    .darkGrid {
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 6rem;
+    }
+}
+
+.badgeOrange {
+    display: inline-block;
+    background: rgba(255, 111, 0, 0.15);
+    color: var(--orange);
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+}
+
+.showroomCard h2 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    font-family: var(--font-heading);
+}
+
+.showroomCard p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 3rem;
+}
+
+.contactList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.contactList li {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.btnAction {
+    display: inline-block;
+    background: var(--white);
+    color: var(--dark);
+    padding: 1.2rem 3rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.btnAction:hover {
+    background: var(--orange);
+    color: var(--white);
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px var(--orange-glow);
+}
+
+.partnerRevealCard {
+    background-color: #111;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url('/images/about/roson-building.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 40px;
+    padding: 5rem 4rem;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+}
+
+.partnerRevealCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 0 100px rgba(0, 0, 0, 0.5);
+}
+
+.partnerContent {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+}
+
+.partnerContent h3 {
+    color: var(--white);
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    font-family: var(--font-heading);
+    letter-spacing: -0.5px;
+}
+
+.partnerContent p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+}
+
+
+
+/* PARTNERS COLUMN */
+.partnersColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.denjoyCard {
+    background-color: #111;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url('/images/about/denjoy-bg-new.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 500px;
+}
+
+/* NEWS SECTION */
+.newsSection {
+    padding: 100px 0;
+    background: var(--offwhite);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.newsHeader {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.newsHeader h2 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    color: var(--dark);
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+    letter-spacing: -1px;
+}
+
+.newsHeader p {
+    font-size: 1.2rem;
+    color: var(--dark-secondary);
+}
+
+.newsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.newsCard {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.newsCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.newsImageWrapper {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.newsImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.newsCard:hover .newsImage {
+    transform: scale(1.05);
+}
+
+.newsContent {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+}
+
+.newsDate {
+    font-size: 0.85rem;
+    color: var(--gray);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.newsTitle {
+    font-size: 1.25rem;
+    color: var(--dark);
+    line-height: 1.4;
+    margin: 0;
+    font-weight: 700;
+}
+
+.newsReadMore {
+    margin-top: auto;
+    font-size: 0.95rem;
+    color: var(--orange);
+    font-weight: 700;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.newsCard:hover .newsReadMore {
+    transform: translateX(5px);
+}
+
+/* RESPONSIVE SCALING FOR MOBILE */
+@media (max-width: 768px) {
+    .containerWide {
+        padding: 0 5%;
+    }
+
+    .heroTitle {
+        font-size: 3rem;
+    }
+
+    .manifestoSection {
+        padding: 60px 0;
+    }
+
+    .manifestoGrid {
+        gap: 2rem;
+    }
+
+    .manifestoLeft h2 {
+        position: static;
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .manifestoHighlightCard {
+        padding: 1.5rem;
+        margin-top: 2rem;
+        transform: none;
+    }
+
+    .manifestoHighlightCard:hover {
+        transform: translateY(-5px);
+    }
+
+    .valuesSection {
+        padding: 60px 0;
+    }
+
+    .statsSection {
+        padding: 60px 0;
+    }
+
+    .statsHeader {
+        margin-bottom: 3rem;
+    }
+
+    .statsHeader h2 {
+        font-size: 2.2rem;
+    }
+
+    .statCard {
+        padding: 2rem 1.5rem;
+    }
+
+    .statNumber {
+        font-size: 3rem;
+    }
+
+    .darkSection {
+        padding: 60px 0;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        margin-top: -30px;
+    }
+
+    .darkGrid {
+        gap: 3rem;
+    }
+
+    .showroomCard h2 {
+        font-size: 2.2rem;
+    }
+
+    .partnerRevealCard {
+        padding: 2rem;
+        border-radius: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .partnerContent h3 {
+        font-size: 1.6rem;
+    }
+
+    .partnerContent p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .rosonLogoPlaceholder {
+        font-size: 2rem;
+    }
+
+    .newsSection {
+        padding: 60px 0;
+    }
+
+    .newsHeader {
+        margin-bottom: 2.5rem;
+    }
+
+    .newsHeader h2 {
+        font-size: 2.2rem;
+    }
+
+    .newsImageWrapper {
+        height: 180px;
+    }
+
+    .newsContent {
+        padding: 1.5rem;
+    }
+}

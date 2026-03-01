@@ -1,0 +1,119 @@
+.footer {
+    background: var(--green-dark);
+    color: rgba(255, 255, 255, 0.8);
+    padding-top: var(--space-4xl);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: var(--space-3xl);
+}
+
+.brand {
+    max-width: 320px;
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+    margin-bottom: var(--space-lg);
+    filter: brightness(0) invert(1);
+}
+
+.tagline {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: var(--space-lg);
+}
+
+.badges {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.trustBadge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.trustIcon {
+    font-size: 1rem;
+}
+
+.colTitle {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--white);
+    margin-bottom: var(--space-lg);
+}
+
+.colList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.colLink {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.6);
+    transition: all var(--transition);
+}
+
+.colLink:hover {
+    color: var(--orange);
+    padding-left: 4px;
+}
+
+.contactItem {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+}
+
+.contactIcon {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.bottom {
+    margin-top: var(--space-3xl);
+    padding: var(--space-lg) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copy {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2xl);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    .brand {
+        max-width: 100%;
+    }
+}

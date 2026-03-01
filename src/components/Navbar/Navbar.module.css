@@ -1,0 +1,148 @@
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0 var(--space-lg);
+    background: var(--white);
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.06);
+    transition: all var(--transition);
+}
+
+.inner {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--nav-height);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.logoImg {
+    height: 64px;
+    width: auto;
+    mix-blend-mode: multiply;
+    transition: filter var(--transition), opacity var(--transition);
+    transform: translateY(2px);
+    /* Fix visual alignment */
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+.link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--dark);
+    position: relative;
+    padding: var(--space-xs) 0;
+    transition: color var(--transition);
+}
+
+.link:hover {
+    color: var(--green-primary);
+}
+
+.link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--orange);
+    border-radius: 1px;
+    transition: width var(--transition);
+}
+
+.link.active::after,
+.link:hover::after {
+    width: 100%;
+}
+
+.link.active {
+    color: var(--orange);
+    font-weight: 600;
+}
+
+.cta {
+    margin-left: var(--space-sm);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    z-index: 10;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--dark);
+    border-radius: 2px;
+    transition: all var(--transition);
+}
+
+.hamburgerOpen span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburgerOpen span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburgerOpen span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 991px) {
+    .nav {
+        padding: 0 var(--space-md);
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--space-xl);
+        background: var(--white);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--transition);
+    }
+
+    .links.open {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .links .link {
+        font-size: 1.3rem;
+        color: var(--dark) !important;
+    }
+
+    .hamburgerOpen span {
+        background: var(--dark) !important;
+    }
+}

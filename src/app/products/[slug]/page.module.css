@@ -1,0 +1,291 @@
+.page {
+    padding-top: var(--nav-height);
+}
+
+.notFound {
+    padding: 200px 0;
+    text-align: center;
+}
+
+.breadcrumb {
+    padding: var(--space-md) 0;
+    background: var(--gray-bg);
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+.breadcrumb a {
+    color: var(--gray);
+}
+
+.breadcrumb a:hover {
+    color: var(--green-primary);
+}
+
+.breadSep {
+    margin: 0 var(--space-sm);
+    color: var(--gray-light);
+}
+
+.breadCurrent {
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.productHero {
+    padding: var(--space-3xl) 0;
+}
+
+.heroGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+}
+
+.gallery {
+    position: sticky;
+    top: calc(var(--nav-height) + var(--space-lg));
+}
+
+.mainImage {
+    position: relative;
+    background: linear-gradient(145deg, #f0f4f8 0%, #e8ecf1 50%, #dfe5ec 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    margin-bottom: var(--space-md);
+    overflow: hidden;
+}
+
+.mainImage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center bottom, rgba(0, 0, 0, 0.06) 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.galleryBadge {
+    position: absolute;
+    top: var(--space-lg);
+    left: var(--space-lg);
+    z-index: 2;
+}
+
+.mainImg {
+    max-height: 360px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 0;
+    filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.12));
+}
+
+.thumbnails {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.thumb {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--gray-lighter);
+    overflow: hidden;
+    padding: 6px;
+    background: var(--white);
+    transition: all var(--transition);
+    cursor: pointer;
+}
+
+.thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.thumb:hover {
+    border-color: var(--green-light);
+}
+
+.thumbActive {
+    border-color: var(--green-primary);
+    box-shadow: 0 0 0 2px rgba(27, 94, 32, 0.2);
+}
+
+.infoCategory {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--green-primary);
+    display: block;
+    margin-bottom: var(--space-sm);
+}
+
+.infoName {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    margin-bottom: var(--space-sm);
+}
+
+.infoTagline {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--orange);
+    margin-bottom: var(--space-lg);
+}
+
+.infoDesc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--gray);
+    margin-bottom: var(--space-xl);
+}
+
+.features {
+    margin-bottom: var(--space-xl);
+}
+
+.featuresTitle {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+}
+
+.featureList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.featureItem {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.9rem;
+    color: var(--dark-secondary);
+    line-height: 1.5;
+}
+
+.featureCheck {
+    color: var(--green-primary);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+.specsSection {
+    background: var(--offwhite);
+}
+
+.specsTable {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.specRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--gray-lighter);
+}
+
+.specKey {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--dark);
+}
+
+.specValue {
+    font-size: 0.9rem;
+    color: var(--gray);
+    text-align: right;
+    max-width: 60%;
+}
+
+.warrantySection {
+    padding: var(--space-xl) 0;
+}
+
+.warrantyCard {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: center;
+    background: var(--green-muted);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.warrantyIcon {
+    font-size: 2.4rem;
+    flex-shrink: 0;
+}
+
+.warrantyTitle {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+}
+
+.warrantyDesc {
+    font-size: 0.88rem;
+    color: var(--gray);
+    line-height: 1.65;
+}
+
+.relatedSection {
+    background: var(--white);
+}
+
+.relatedGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+}
+
+@media (max-width: 1024px) {
+    .heroGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        position: static;
+    }
+
+    .relatedGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .relatedGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .mainImage {
+        min-height: 280px;
+        padding: var(--space-lg);
+    }
+
+    .warrantyCard {
+        flex-direction: column;
+        text-align: center;
+    }
+}

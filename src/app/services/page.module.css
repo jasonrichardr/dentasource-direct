@@ -1,0 +1,206 @@
+.page {
+    padding-top: var(--nav-height);
+}
+
+.header {
+    background: linear-gradient(135deg, var(--green-dark), var(--green-primary));
+    padding: var(--space-4xl) 0 var(--space-3xl);
+    text-align: center;
+}
+
+.title {
+    color: var(--white);
+    margin-bottom: var(--space-md);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.75;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+}
+
+.card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all var(--transition);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+}
+
+.icon {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+}
+
+.cardTitle {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+}
+
+.cardDesc {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.7;
+}
+
+.warrantySection {
+    background: var(--offwhite);
+}
+
+.warrantyTable {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--gray-lighter);
+}
+
+.warrantyHeader {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    background: var(--green-primary);
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.warrantyRow {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--gray-lighter);
+    font-size: 0.88rem;
+    color: var(--dark-secondary);
+    background: var(--white);
+}
+
+.warrantyRow:last-child {
+    border-bottom: none;
+}
+
+.wPeriod {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.cta {
+    background: linear-gradient(135deg, var(--green-dark), var(--green-primary));
+    padding: var(--space-4xl) 0;
+    text-align: center;
+}
+
+.ctaTitle {
+    color: var(--white);
+    margin-bottom: var(--space-md);
+}
+
+.ctaDesc {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.05rem;
+    margin-bottom: var(--space-xl);
+}
+
+.ctaButtons {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Premium Warranty Badges */
+.premiumWarranty {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: -3px;
+}
+
+.warrantyItem {
+    background: var(--offwhite, #f8fafc);
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--green-primary);
+}
+
+.badgeWrapper {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: var(--space-sm);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.badgeLabel {
+    background: var(--dark);
+    color: var(--white);
+    padding: 3px 8px;
+}
+
+.badgeBrand {
+    background: var(--green-primary);
+    color: var(--white);
+    padding: 3px 8px;
+}
+
+.warrantyDesc {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--dark-secondary);
+    margin: 0;
+}
+
+.warrantyDesc strong {
+    color: var(--dark);
+    display: block;
+    margin-bottom: 2px;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .warrantyHeader,
+    .warrantyRow {
+        grid-template-columns: 1fr;
+        gap: var(--space-xs);
+    }
+
+    .warrantyHeader span:first-child,
+    .warrantyRow span:first-child {
+        margin-bottom: var(--space-xs);
+    }
+}
