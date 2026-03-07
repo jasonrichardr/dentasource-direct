@@ -126,7 +126,7 @@ export default function TradeInPage() {
                             <span className={styles.sectionLabel}>The Hidden Value</span>
                             <h2 className={styles.sectionTitle}>More Than Just a New Chair</h2>
                             <p className={styles.sectionSubtitle} style={{ marginBottom: '2rem' }}>
-                                Trading in older equipment isn't just an aesthetics upgrade; it's a strategic business decision that pays dividends.
+                                Trading in older equipment isn&apos;t just an aesthetics upgrade; it&apos;s a strategic business decision that pays dividends.
                             </p>
 
                             <ul className={styles.roiList}>
@@ -179,7 +179,7 @@ export default function TradeInPage() {
                 <div className={styles.container}>
                     <div className={styles.sectionHeader} style={{ marginBottom: '2rem' }}>
                         <span className={styles.sectionLabel}>Start Your Upgrade</span>
-                        <h2 className={styles.sectionTitle}>Ready to Find Out What It's Worth?</h2>
+                        <h2 className={styles.sectionTitle}>Ready to Find Out What It&apos;s Worth?</h2>
                     </div>
 
                     <motion.div

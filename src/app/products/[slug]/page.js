@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -12,17 +12,23 @@ import styles from './page.module.css';
 export default function ProductPage() {
     const params = useParams();
 
+    const [selectedImage, setSelectedImage] = useState(0);
+
     // Redirect to dedicated S9 page if that's the slug
-    if (params.slug === 'roson-s9') {
-        if (typeof window !== 'undefined') {
-            window.location.href = '/products/roson-s9';
+    useEffect(() => {
+        if (params.slug === 'roson-s9') {
+            if (typeof window !== 'undefined') {
+                window.location.href = '/products/roson-s9';
+            }
         }
+    }, [params.slug]);
+
+    if (params.slug === 'roson-s9') {
         return null;
     }
 
 
     const product = getProductBySlug(params.slug);
-    const [selectedImage, setSelectedImage] = useState(0);
 
     if (!product) {
         return (

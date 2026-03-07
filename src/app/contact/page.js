@@ -28,14 +28,17 @@ function ContactContent() {
         const handpiece = searchParams.get('handpiece');
         const upholstery = searchParams.get('upholstery');
 
+        let newProduct = '';
+        let newMessage = '';
+
         if (product) {
             let msg = `Interested in: ${product}`;
             if (color) msg += `\nColor: ${color}`;
             if (handpiece) msg += `\nHandpiece: ${handpiece}`;
             if (upholstery) msg += `\nUpholstery: ${upholstery}`;
-            setFormData(prev => ({ ...prev, product, message: msg }));
-        }
-        if (type === 'trade-in') {
+            newProduct = product;
+            newMessage = msg;
+        } else if (type === 'trade-in') {
             const amount = searchParams.get('amount');
             const down = searchParams.get('down');
             const months = searchParams.get('months');
@@ -43,7 +46,13 @@ function ContactContent() {
             if (amount) msg += `\nEquipment cost: ₱${Number(amount).toLocaleString()}`;
             if (down) msg += `\nDown payment: ₱${Number(down).toLocaleString()}`;
             if (months) msg += `\nPreferred term: ${months} months`;
-            setFormData(prev => ({ ...prev, message: msg }));
+            newMessage = msg;
+        }
+
+        if (newMessage) {
+            setTimeout(() => {
+                setFormData(prev => ({ ...prev, product: newProduct || prev.product, message: newMessage }));
+            }, 0);
         }
     }, [searchParams]);
 

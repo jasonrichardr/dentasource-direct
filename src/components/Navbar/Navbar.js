@@ -19,7 +19,8 @@ export default function Navbar() {
     const pathname = usePathname();
 
     useEffect(() => {
-        setMobileOpen(false);
+        const timeout = setTimeout(() => setMobileOpen(false), 0);
+        return () => clearTimeout(timeout);
     }, [pathname]);
 
     useEffect(() => {

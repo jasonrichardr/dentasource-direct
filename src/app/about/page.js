@@ -292,7 +292,7 @@ export default function AboutPage() {
                                         <Image src="/images/brand/denjoy-logo-final.png" alt="DENJOY Endo" fill style={{ objectFit: 'contain', objectPosition: 'left center' }} />
                                     </div>
                                     <p className={styles.partnerText}>
-                                        Italy and Russia have some of the strictest medical device standards in Europe. That same endodontic technology trusted by European clinics is now here in the Philippines, backed by DentaSource Direct's hands-on support, local training, and a commitment to keeping your clinic ahead of the curve through continuous research and development.
+                                        Italy and Russia have some of the strictest medical device standards in Europe. That same endodontic technology trusted by European clinics is now here in the Philippines, backed by DentaSource Direct&apos;s hands-on support, local training, and a commitment to keeping your clinic ahead of the curve through continuous research and development.
                                     </p>
                                 </div>
                             </motion.div>
@@ -311,7 +311,7 @@ export default function AboutPage() {
                         className={styles.newsHeader}
                     >
                         <h2>Latest Global News</h2>
-                        <p>Stay updated with our manufacturing partners' latest breakthroughs and global events.</p>
+                        <p>Stay updated with our manufacturing partners&apos; latest breakthroughs and global events.</p>
                     </motion.div>
 
                     <div className={styles.newsGrid}>

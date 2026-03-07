@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function HeroVisual() {
     const trustItems = [
@@ -61,18 +62,18 @@ export default function HeroVisual() {
                     transition={{ duration: 0.8, delay: 0.7 }}
                     className="flex flex-col sm:flex-row gap-4 sm:gap-6"
                 >
-                    <a
+                    <Link
                         href="/contact"
                         className="px-8 py-4 bg-[#F26522] text-white rounded-full font-medium transition-all duration-300 hover:bg-[#d95517] hover:scale-105 shadow-[0_0_30px_rgba(242,101,34,0.3)]"
                     >
                         Book a Showroom Experience
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                         href="/products"
                         className="px-8 py-4 bg-transparent border border-white/20 text-white rounded-full font-medium transition-all duration-300 hover:bg-white/10"
                     >
                         Explore Products
-                    </a>
+                    </Link>
                 </motion.div>
             </div>
 

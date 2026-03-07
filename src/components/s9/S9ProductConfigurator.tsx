@@ -147,7 +147,7 @@ export default function S9ProductConfigurator() {
                                 >
                                     <div>
                                         <h3 className="text-2xl font-bold text-gray-900 mb-2">Select Unit Color</h3>
-                                        <p className="text-gray-500 text-sm mb-6">Match your clinic's aesthetic perfectly.</p>
+                                        <p className="text-gray-500 text-sm mb-6">Match your clinic&apos;s aesthetic perfectly.</p>
                                     </div>
                                     <div className="grid grid-cols-4 md:grid-cols-7 gap-3 sm:gap-4">
                                         {COLORS.map((color) => (

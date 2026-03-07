@@ -154,7 +154,7 @@ export default function N2PlusProductConfigurator() {
                                 >
                                     <div>
                                         <h3 className="text-2xl font-bold text-gray-900 mb-2">Select Unit Color</h3>
-                                        <p className="text-gray-500 text-sm mb-6">A vibrant spectrum to integrate fluidly with your practice's aesthetic.</p>
+                                        <p className="text-gray-500 text-sm mb-6">A vibrant spectrum to integrate fluidly with your practice&apos;s aesthetic.</p>
                                     </div>
                                     <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-3 lg:gap-4">
                                         {COLORS.map((color) => (

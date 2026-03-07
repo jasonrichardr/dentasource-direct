@@ -60,7 +60,7 @@ export default function N1WarrantyTable() {
                                 Post-Sale Support
                             </h4>
                             <p className="text-sm text-slate-600">
-                                Need assistance or a replacement part? We stock necessary components and can ship out technical replacements swiftly to minimize your clinic's downtime.
+                                Need assistance or a replacement part? We stock necessary components and can ship out technical replacements swiftly to minimize your clinic&apos;s downtime.
                             </p>
                         </div>
                     </motion.div>

@@ -136,7 +136,7 @@ export default function A3DentalChairExactMatchPage() {
                         <div className={styles.heroRight}>
                             <h1 className={styles.heroTitle}>Roson Flagship Model A3</h1>
                             <ul className={styles.heroFeatures}>
-                                <li>80000+ dentists' continuous choice</li>
+                                <li>80000+ dentists&apos; continuous choice</li>
                                 <li>Advancement Iteration Continuation</li>
                                 <li>Ergonomic Design</li>
                                 <li>Intelligent soft start/stop system</li>
