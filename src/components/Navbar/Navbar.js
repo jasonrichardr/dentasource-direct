@@ -6,7 +6,8 @@ import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
 
 const navLinks = [
-    { href: '/products', label: 'Products' },
+    { href: '/dentalchairs', label: 'Dental Chairs' },
+    { href: '/products', label: 'Other Products' },
     { href: '/services', label: 'Services' },
     { href: '/trade-in', label: 'Trade-in' },
     { href: '/about', label: 'About' },

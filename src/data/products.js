@@ -1,6 +1,5 @@
 export const categories = [
     { id: 'all', label: 'All Products' },
-    { id: 'chair', label: 'Dental Chairs' },
     { id: 'imaging', label: 'Imaging' },
     { id: 'endo', label: 'Endodontics' },
     { id: 'curing', label: 'Curing & Filling' },

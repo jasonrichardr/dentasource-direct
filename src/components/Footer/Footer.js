@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from './Footer.module.css';
 
 const productLinks = [
-    { href: '/products?c=chair', label: 'Dental Chairs' },
+    { href: '/dentalchairs', label: 'Dental Chairs' },
     { href: '/products?c=imaging', label: 'Imaging Equipment' },
     { href: '/products?c=endo', label: 'Endodontics' },
     { href: '/products?c=curing', label: 'Curing & Filling' },

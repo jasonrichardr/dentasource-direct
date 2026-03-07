@@ -21,7 +21,7 @@ function ProductsContent() {
     const [activeCategory, setActiveCategory] = useState(initialCategory);
 
     const filtered = activeCategory === 'all'
-        ? products
+        ? products.filter(p => p.category !== 'chair')
         : products.filter(p => p.category === activeCategory);
 
     return (

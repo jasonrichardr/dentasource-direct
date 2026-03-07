@@ -67,133 +67,137 @@ export default function Home() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────── */}
-      <section className={styles.hero}>
-        <div className={styles.heroInner}>
+      <section className="relative min-h-[85vh] flex flex-col items-center justify-center bg-[#1E3A2E] bg-gradient-to-b from-[#182e24] to-[#12241c] overflow-hidden pt-32 pb-24">
+        {/* Glow effect at the top */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[400px] bg-[#2E7D32]/20 blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="relative z-10 container mx-auto px-4 flex flex-col items-center">
           <motion.div
-            className={styles.heroContent}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
+            className="flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8"
           >
-            <div className={styles.heroBadge}>
-              <span className={styles.heroBadgeDot} />
-              Trusted Dental Equipment Partner in the Philippines
-            </div>
-
-            <p className={styles.heroLabel}>FLAGSHIP — ROSON DX-A3 SERIES</p>
-
-            <h1 className={styles.heroTitle}>
-              Your <span className={styles.heroAccent}>Growth Partner</span> in Dentistry
-            </h1>
-
-            <p className={styles.heroDesc}>
-              Premium dental chairs and equipment with white glove installation, hands-on training, and the personalized support your practice deserves.
-            </p>
-
-            <div className={styles.heroCtas}>
-              <Link href="/products" className="btn btn-primary btn-lg">
-                Explore Products →
-              </Link>
-              <Link href="/contact" className="btn btn-outline btn-lg">
-                Book Free Consultation
-              </Link>
-            </div>
-
-            <div className={styles.heroTrust}>
-              <div className={styles.trustItem}>
-                <span className={styles.trustIcon}>🕐</span>
-                <div>
-                  <strong>Mon — Sun, 9AM–8PM</strong>
-                  <span>Always open when you need us</span>
-                </div>
-              </div>
-              <div className={styles.trustItem}>
-                <span className={styles.trustIcon}>🛡️</span>
-                <div>
-                  <strong>2-Year Warranty</strong>
-                  <span>Full coverage, peace of mind</span>
-                </div>
-              </div>
-              <div className={styles.trustItem}>
-                <span className={styles.trustIcon}>💳</span>
-                <div>
-                  <strong>Low Down Payment</strong>
-                  <span>Flexible trade-in options</span>
-                </div>
-              </div>
-            </div>
+            <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
+            <span className="text-white/80 text-xs sm:text-sm font-medium tracking-wide">Trusted Dental Equipment Partner in the Philippines</span>
           </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-white text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[6rem] leading-[1.05] font-medium tracking-tight text-center max-w-5xl mb-8"
+            style={{ fontFamily: 'var(--font-heading)' }}
+          >
+            Your <span className="text-[#F26522] italic font-serif tracking-normal">Growth Partner</span><br />in Dentistry.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-white/75 text-lg sm:text-xl font-light text-center max-w-3xl mb-12 flex-1"
+            style={{ lineHeight: '1.7' }}
+          >
+            Premium dental chairs and equipment with white-glove installation, hands-on training, and the personalized support your practice deserves.
+          </motion.p>
 
           <motion.div
-            className={styles.heroImage}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
           >
-            <img
-              src="/images/hero/dxa3-hero.png"
-              alt="Roson DX-A3 Dental Chair"
-              className={styles.heroChair}
-            />
-            <div className={styles.heroFeatures}>
-              {['EOW Disinfection', 'LED Sensor Light', 'Touchscreen Panel', 'Silent & No Jerk Motion', 'Seamless', 'Ergonomic', 'Water Heating System', 'Auto Fill Cup'].map((f, i) => (
-                <motion.span
-                  key={f}
-                  className={styles.featureTag}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.8 + i * 0.08 }}
-                >
-                  ✓ {f}
-                </motion.span>
-              ))}
-            </div>
+            <Link href="/contact" className="w-full sm:w-auto text-center px-8 py-4 rounded-full bg-[#F26522] text-white font-medium hover:bg-[#d9581a] hover:scale-105 transition-all shadow-lg shadow-[#F26522]/30">
+              Book a Showroom Experience
+            </Link>
+            <Link href="/products" className="w-full sm:w-auto text-center px-8 py-4 rounded-full border border-white/20 text-white hover:bg-white/10 transition-all font-medium">
+              Explore Products
+            </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* ── TRUST STRIP ──────────────────────────── */}
-      <section className={styles.trustStrip}>
-        <div className="container-wide">
-          <div className={styles.trustGrid}>
-            {trustStats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                className={styles.trustStat}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-              >
-                <span className={styles.statValue}>{stat.value}</span>
-                <span className={styles.statLabel}>{stat.label}</span>
-              </motion.div>
-            ))}
-          </div>
+      {/* ── TRUST STRIP / MARQUEE ──────────────────────────── */}
+      <section className="bg-[#12241c] border-y border-white/5 py-5 overflow-hidden relative flex items-center">
+        <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#12241c] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#12241c] to-transparent z-10 pointer-events-none" />
+
+        <div className="flex whitespace-nowrap animate-marquee">
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="flex items-center gap-12 sm:gap-16 px-6 sm:px-8 text-white/50 text-sm font-medium tracking-wide">
+              <span className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9]"></span>Hands-On Training Included</span>
+              <span className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9]"></span>2-Year Warranty</span>
+              <span className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9]"></span>Free Ocular Visitation</span>
+              <span className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9]"></span>Zero Down Payment</span>
+              <span className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9]"></span>White-Glove Delivery</span>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ── FEATURED PRODUCTS ────────────────────── */}
-      <section className={`section ${styles.productSection}`}>
-        <div className="container-wide">
-          <div className="section-header">
-            <span className="section-label">Our Equipment</span>
-            <h2 className="section-title">Premium Dental Equipment</h2>
-            <p className="section-subtitle">
-              From flagship dental chairs to precision endodontic tools — every product backed by our 2-year warranty and white-glove service.
-            </p>
-          </div>
-
-          <div className={styles.productGrid}>
-            {featuredProducts.map((product, i) => (
-              <ProductCard key={product.slug} product={product} index={i} />
-            ))}
-          </div>
-
-          <div className={styles.viewAll}>
-            <Link href="/products" className="btn btn-outline-dark btn-lg">
-              View All Products →
+      {/* ── CATEGORY GRID (Apple-Inspired) ────────────────────── */}
+      <section className="bg-white pb-4 sm:pb-6">
+        {/* 1. Dental Chairs (Full) */}
+        <div className="pt-20 px-4 sm:px-8 text-center bg-[#fbfbfd] border-b border-black/5 overflow-hidden">
+          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight text-[#1d1d1f] mb-2" style={{ fontFamily: 'var(--font-body)' }}>Dental Chairs</h2>
+          <p className="text-lg sm:text-xl text-[#86868b] font-medium mb-6">The foundation of your practice.</p>
+          <div className="flex justify-center gap-4 mb-10">
+            <Link href="/dentalchairs" className="bg-[#0071e3] text-white px-5 py-2.5 rounded-full text-[15px] font-medium hover:bg-[#0077ED] transition-colors hover:shadow-lg">
+              Learn more
             </Link>
+          </div>
+          <div className="relative w-full max-w-5xl mx-auto h-[350px] sm:h-[500px] flex items-end justify-center">
+            {/* Using an existing product image */}
+            <img src="/images/products/s9/047_Model_S9_dental_chair_with_blue_seat__ergonomic_de.jpg" alt="Premium Dental Chairs" className="w-[80%] h-auto object-contain object-bottom" />
+          </div>
+        </div>
+
+        {/* 2-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-4 sm:gap-6 px-4 sm:px-6 max-w-[1600px] mx-auto">
+
+          {/* 2. X-Rays (Half) */}
+          <div className="bg-[#f5f5f7] flex flex-col items-center pt-14 px-8 pb-0 text-center relative overflow-hidden h-[500px] sm:h-[580px]">
+            <h3 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1d1d1f] mb-2" style={{ fontFamily: 'var(--font-body)' }}>X-Rays</h3>
+            <p className="text-lg text-[#86868b] font-medium mb-5">Precision diagnostics you can trust.</p>
+            <div className="flex justify-center gap-4 mb-8 relative z-10">
+              <Link href="/products?category=imaging" className="bg-[#0071e3] text-white px-5 py-2.5 rounded-full text-[15px] font-medium hover:bg-[#0077ED] transition-colors hover:shadow-lg">
+                Learn more
+              </Link>
+            </div>
+            <div className="flex-1 w-full relative flex items-end justify-center mt-auto">
+              {/* Existing Portable X-ray image */}
+              <img src="/images/products/mcray2/main.jpg" alt="X-Ray Equipment" className="w-[65%] h-auto object-contain object-bottom transform translate-y-8" />
+            </div>
+          </div>
+
+          {/* 3. Endodontics (Half) */}
+          <div className="bg-[#f5f5f7] flex flex-col items-center pt-14 px-8 pb-0 text-center relative overflow-hidden h-[500px] sm:h-[580px]">
+            <h3 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1d1d1f] mb-2" style={{ fontFamily: 'var(--font-body)' }}>Endodontics</h3>
+            <p className="text-lg text-[#86868b] font-medium mb-5">Advanced root canal therapy.</p>
+            <div className="flex justify-center gap-4 mb-8 relative z-10">
+              <Link href="/products?category=endo" className="bg-[#0071e3] text-white px-5 py-2.5 rounded-full text-[15px] font-medium hover:bg-[#0077ED] transition-colors hover:shadow-lg">
+                Learn more
+              </Link>
+            </div>
+            <div className="flex-1 w-full relative flex items-end justify-center mt-auto">
+              <img src="/images/products/endostars/main.jpg" alt="Endodontics" className="w-[75%] h-auto object-contain object-bottom transform translate-y-8" />
+            </div>
+          </div>
+        </div>
+
+        {/* 4. Microscopes (Full) */}
+        <div className="mt-4 sm:mt-6 pt-20 px-4 sm:px-8 text-center bg-black border-none overflow-hidden text-white w-full max-w-[1600px] mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight text-[#f5f5f7] mb-2" style={{ fontFamily: 'var(--font-body)' }}>Microscopes</h2>
+          <p className="text-lg sm:text-xl text-[#86868b] font-medium mb-6">See the unseen in exceptional detail.</p>
+          <div className="flex justify-center gap-4 mb-10">
+            <Link href="/products?category=microscopes" className="bg-[#0071e3] text-white px-5 py-2.5 rounded-full text-[15px] font-medium hover:bg-[#0077ED] transition-colors hover:shadow-lg">
+              Learn more
+            </Link>
+          </div>
+          <div className="relative w-full max-w-4xl mx-auto h-[350px] sm:h-[500px] flex items-end justify-center">
+            {/* Placeholder for Denjoy Microscope - will be downloaded next */}
+            <img src="/images/products/microscopes/denjoy-hero.png" alt="Dental Microscopes" className="w-[85%] h-auto object-contain object-bottom" />
           </div>
         </div>
       </section>
