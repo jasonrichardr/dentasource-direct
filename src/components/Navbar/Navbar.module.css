@@ -108,6 +108,11 @@
     transform: translateY(-7px) rotate(-45deg);
 }
 
+.open {
+    /* Ensures NextJS exports this class without triggering empty ruleset lint */
+    isolation: isolate;
+}
+
 @media (max-width: 991px) {
     .nav {
         padding: 0 var(--space-md);

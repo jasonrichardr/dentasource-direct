@@ -86,7 +86,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-white text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[6rem] leading-[1.05] font-medium tracking-tight text-center max-w-5xl mb-8"
+            className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-[6rem] leading-[1.05] font-medium tracking-tight text-center max-w-5xl mb-8"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             Your <span className="text-[#F26522] italic font-serif tracking-normal">Growth Partner</span><br />in Dentistry.
@@ -96,7 +96,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-white/75 text-lg sm:text-xl font-light text-center max-w-3xl mb-12 flex-1"
+            className="text-white/75 text-base sm:text-lg md:text-xl font-light text-center max-w-3xl mb-12 flex-1"
             style={{ lineHeight: '1.7' }}
           >
             Premium dental chairs and equipment with white-glove installation, hands-on training, and the personalized support your practice deserves.
