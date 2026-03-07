@@ -219,12 +219,15 @@
 /* ── WHY US ──────────────────────────── */
 .whySection {
   background: var(--white);
+  padding: 0;
+  /* padding handled by the wrapper now */
 }
 
 .whyGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-lg);
+  margin-top: var(--space-2xl);
 }
 
 .whyCard {
