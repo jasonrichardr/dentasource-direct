@@ -1,25 +1,29 @@
 import S3HeroVisual from "@/components/s3/S3HeroVisual";
 import S3FeatureGrid from "@/components/s3/S3FeatureGrid";
+import S3LightSection from "@/components/s3/S3LightSection";
+import S3ErgonomicsSection from "@/components/s3/S3ErgonomicsSection";
+import S3TechSpecs from "@/components/s3/S3TechSpecs";
 import S3ProductConfigurator from "@/components/s3/S3ProductConfigurator";
 import S3VisualTour from "@/components/s3/S3VisualTour";
+import S3WhatsInTheBox from "@/components/s3/S3WhatsInTheBox";
 import S3WarrantyTable from "@/components/s3/S3WarrantyTable";
+
+export const metadata = {
+    title: "Roson S3 Best-Selling Dental Chair",
+    description: "The Roson S3 Best Seller — brightest light at 35,000+ lux, autoclavable handle, detachable spittoon, and Whisper-Silent Motor.",
+};
 
 export default function S3Page() {
     return (
-        <main className="min-h-screen bg-zinc-950 text-white font-[family-name:var(--font-geist-sans)] selection:bg-sky-500/30 selection:text-sky-200 overflow-x-hidden w-full">
-            {/* 1. Hero Visualizer Area */}
+        <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
             <S3HeroVisual />
-
-            {/* 2. Interactive Product Configurator */}
-            <S3ProductConfigurator />
-
-            {/* 3. Parallax Feature Grid */}
             <S3FeatureGrid />
-
-            {/* 4. Full-screen Lightbox Visual Tour */}
+            <S3LightSection />
+            <S3ErgonomicsSection />
+            <S3TechSpecs />
+            <S3ProductConfigurator />
             <S3VisualTour />
-
-            {/* 5. Clean Specification/Warranty Tables */}
+            <S3WhatsInTheBox />
             <S3WarrantyTable />
         </main>
     );

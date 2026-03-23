@@ -1,203 +1,37 @@
-'use client';
+import ProductGallery from '@/components/product/ProductGallery';
+import ProductInfo from '@/components/product/ProductInfo';
+import prisma from '@/lib/prisma';
+import { notFound, redirect } from 'next/navigation';
 
-import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { getProductBySlug, getRelatedProducts } from '@/data/products';
-import ProductCard from '@/components/ProductCard/ProductCard';
-import PremiumProductLayout from '@/components/PremiumProductLayout/PremiumProductLayout';
-import styles from './page.module.css';
+export const revalidate = 0;
 
-export default function ProductPage() {
-    const params = useParams();
-
-    const [selectedImage, setSelectedImage] = useState(0);
-
-    // Redirect to dedicated S9 page if that's the slug
-    useEffect(() => {
-        if (params.slug === 'roson-s9') {
-            if (typeof window !== 'undefined') {
-                window.location.href = '/products/roson-s9';
-            }
-        }
-    }, [params.slug]);
-
-    if (params.slug === 'roson-s9') {
-        return null;
+export default async function ProductDetailPage({ params }) {
+  const product = await prisma.product.findUnique({
+    where: { slug: params.slug },
+    include: {
+      category: true,
+      features: true
     }
+  });
 
+  if (!product) {
+    notFound();
+  }
 
-    const product = getProductBySlug(params.slug);
-
-    if (!product) {
-        return (
-            <div className={styles.notFound}>
-                <h1>Product Not Found</h1>
-                <Link href="/products" className="btn btn-primary">Back to Products</Link>
-            </div>
-        );
-    }
-
-    const categoryLabel = product.category === 'chair' ? 'Dental Chairs' :
-        product.category === 'imaging' ? 'Imaging' :
-            product.category === 'endo' ? 'Endodontics' :
-                product.category === 'curing' ? 'Curing & Filling' :
-                    product.category === 'sterilization' ? 'Sterilization' : 'Accessories';
-
-    // Conditionally render the premium layout for all dental chair products
-    if (product.category === 'chair') {
-        return <PremiumProductLayout product={product} categoryLabel={categoryLabel} />;
-    }
-
-    const related = getRelatedProducts(params.slug, 3);
-
-    return (
-        <div className={styles.page}>
-            {/* Breadcrumb */}
-            <div className={styles.breadcrumb}>
-                <div className="container-wide">
-                    <Link href="/products">Products</Link>
-                    <span className={styles.breadSep}>›</span>
-                    <Link href={`/products?c=${product.category}`}>{categoryLabel}</Link>
-                    <span className={styles.breadSep}>›</span>
-                    <span className={styles.breadCurrent}>{product.name}</span>
-                </div>
-            </div>
-
-            {/* Product Hero */}
-            <section className={styles.productHero}>
-                <div className="container-wide">
-                    <div className={styles.heroGrid}>
-                        {/* Gallery */}
-                        <motion.div
-                            className={styles.gallery}
-                            initial={{ opacity: 0, x: -30 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <div className={styles.mainImage}>
-                                {product.badge && (
-                                    <span className={`badge ${product.badge === 'Flagship' || product.badge === 'Best Seller' ? 'badge-orange' : 'badge-green'} ${styles.galleryBadge}`}>
-                                        {product.badge}
-                                    </span>
-                                )}
-                                <img
-                                    src={product.images[selectedImage]}
-                                    alt={`${product.name} - view ${selectedImage + 1}`}
-                                    className={styles.mainImg}
-                                />
-                            </div>
-                            {product.images.length > 1 && (
-                                <div className={styles.thumbnails}>
-                                    {product.images.map((img, i) => (
-                                        <button
-                                            key={i}
-                                            className={`${styles.thumb} ${i === selectedImage ? styles.thumbActive : ''}`}
-                                            onClick={() => setSelectedImage(i)}
-                                        >
-                                            <img src={img} alt={`${product.name} thumbnail ${i + 1}`} />
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
-                        </motion.div>
-
-                        {/* Info */}
-                        <motion.div
-                            className={styles.info}
-                            initial={{ opacity: 0, x: 30 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                        >
-                            <span className={styles.infoCategory}>{categoryLabel}</span>
-                            <h1 className={styles.infoName}>{product.name}</h1>
-                            <p className={styles.infoTagline}>{product.tagline}</p>
-                            <p className={styles.infoDesc}>{product.description}</p>
-
-                            {/* Key Features */}
-                            <div className={styles.features}>
-                                <h3 className={styles.featuresTitle}>Key Features</h3>
-                                <ul className={styles.featureList}>
-                                    {product.features.map((f, i) => (
-                                        <li key={i} className={styles.featureItem}>
-                                            <span className={styles.featureCheck}>✓</span>
-                                            <span>{f}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            {/* CTAs */}
-                            <div className={styles.ctas}>
-                                <Link
-                                    href={`/contact?product=${encodeURIComponent(product.name)}`}
-                                    className="btn btn-primary btn-lg"
-                                >
-                                    Request a Quote →
-                                </Link>
-                                <a href="tel:+639625793024" className="btn btn-outline-dark">
-                                    Call Us: +63 962 579 3024
-                                </a>
-                            </div>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Specs Table */}
-            {product.specs && Object.keys(product.specs).length > 0 && (
-                <section className={`section ${styles.specsSection}`}>
-                    <div className="container">
-                        <div className="section-header">
-                            <span className="section-label">Technical Details</span>
-                            <h2 className="section-title">Specifications</h2>
-                        </div>
-                        <div className={styles.specsTable}>
-                            {Object.entries(product.specs).map(([key, value]) => (
-                                <div key={key} className={styles.specRow}>
-                                    <span className={styles.specKey}>{key}</span>
-                                    <span className={styles.specValue}>{value}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-
-            {/* Warranty */}
-            <section className={styles.warrantySection}>
-                <div className="container">
-                    <div className={styles.warrantyCard}>
-                        <div className={styles.warrantyIcon}>🛡️</div>
-                        <div>
-                            <h3 className={styles.warrantyTitle}>Covered by Our Warranty</h3>
-                            <p className={styles.warrantyDesc}>
-                                {product.category === 'chair'
-                                    ? '2-Year Warranty — 1st year includes free parts and service. 2nd year includes free service. Plus white-glove installation and training included with every purchase.'
-                                    : '1-Year Warranty — Includes free parts and service support. All equipment backed by our dedicated after-sales team.'}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Related Products */}
-            {related.length > 0 && (
-                <section className={`section ${styles.relatedSection}`}>
-                    <div className="container-wide">
-                        <div className="section-header">
-                            <span className="section-label">You Might Also Like</span>
-                            <h2 className="section-title">Related Products</h2>
-                        </div>
-                        <div className={styles.relatedGrid}>
-                            {related.map((p, i) => (
-                                <ProductCard key={p.slug} product={p} index={i} />
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
+  // The 'specs' column is a JSON object in our DB. 
+  // We can pass it straight to ProductInfo which expects an object to map over.
+  return (
+    <main className="w-full min-h-screen bg-white font-sans selection:bg-[#10b981] selection:text-white pt-24 pb-20">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <div className="w-full lg:sticky lg:top-32">
+            <ProductGallery image={product.image} alt={product.name} />
+          </div>
+          <div className="w-full">
+            <ProductInfo product={product} />
+          </div>
         </div>
-    );
+      </div>
+    </main>
+  );
 }

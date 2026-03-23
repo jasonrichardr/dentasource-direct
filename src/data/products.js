@@ -16,7 +16,7 @@ export const products = [
         badge: 'Flagship',
         tagline: 'Clinical Excellence, Perfected.',
         shortDesc: 'Experience the new standard in patient comfort and intelligent operatory design with EOW disinfection and an intuitive touchscreen panel.',
-        description: 'The Roson Flagship Model A3 (KLT-6220) is the crown jewel of DentaSource Direct. Designed for practices demanding uncompromising clinical standards, it integrates technology once exclusive to the highest-end European units. A built-in Electrolytic Oxidized Water (EOW) system actively neutralizes 99.9999% of waterline bacteria. Workflow is dramatically improved through an intuitive medical-grade color LCD, while dual infrared sensors auto-fill cups hands-free. Patients experience profound comfort on ultra-breathable, pressure-mapping seamless leather, driven by a whisper-quiet Timotion motor.',
+        description: 'The Roson Flagship Model A3 is the crown jewel of DentaSource Direct. Designed for practices demanding uncompromising clinical standards, it integrates technology once exclusive to the highest-end European units. A built-in Electrolytic Oxidized Water (EOW) system actively neutralizes 99.9999% of waterline bacteria. Workflow is dramatically improved through an intuitive medical-grade color LCD, while dual infrared sensors auto-fill cups hands-free. Patients experience profound comfort on ultra-breathable, pressure-mapping seamless leather, driven by a whisper-silent motor.',
         features: [
             'Worry-free waterline safety with EOW disinfection system (eliminates 99.9999% of bacteria)',
             'See every detail with the 8-bead Philips LED sensor light (adjustable color temp)',
@@ -25,7 +25,7 @@ export const products = [
             'Integrated thermostatic water heating system for patient comfort',
             'Anti-collision assistant arm prevents equipment damage or injury',
             'Three customizable memory positions and one-key smart drainage',
-            'Built to last: whisper-quiet Timotion motor and SMC polyether pipelines',
+            'Built to last: Whisper-Silent Motor and SMC polyether pipelines',
         ],
         advancedFeatures: [
             {
@@ -54,7 +54,7 @@ export const products = [
             },
             {
                 title: "Whisper-Quiet Drive",
-                description: "Timotion motor system provides buttery-smooth, near-silent adjustments that put anxious patients at ease."
+                description: "Whisper-Silent Motor provides buttery-smooth, near-silent adjustments that put anxious patients at ease."
             },
             {
                 title: "SMC Polyether Pipelines",
@@ -97,7 +97,7 @@ export const products = [
         },
         specs: {
             'Model': 'KLT-6220',
-            'Motor': 'Timotion (5-year warranty)',
+            'Motor': 'Whisper-Silent Motor (soft start/stop)',
             'Upholstery': 'Breathable seamless microfiber leather (5-year warranty)',
             'Light': 'RoLight 8-bead LED (3-year warranty)',
             'Display': 'Medical-grade color LCD',
@@ -107,8 +107,8 @@ export const products = [
             'Warranty': '2 years (1st year parts + service, 2nd year service)',
             'Origin': 'Foshan Roson Medical, China',
         },
-        images: ['/images/products/dxa3/main.jpg', '/images/products/dxa3/lcd.jpg', '/images/products/dxa3/cuspidor.jpg', '/images/products/dxa3/light.jpg', '/images/products/dxa3/panel.jpg'],
-        heroImage: '/images/products/dxa3/main.jpg',
+        images: ['/images/products/sunlit/chair_a3_blue_sunlight.png', '/images/products/dxa3/lcd.jpg', '/images/products/dxa3/cuspidor.jpg', '/images/products/dxa3/light.jpg', '/images/products/dxa3/panel.jpg'],
+        heroImage: '/images/products/sunlit/chair_a3_blue_sunlight.png',
         configuratorEnabled: true,
         configuratorOptions: {
             colors: [
@@ -135,7 +135,7 @@ export const products = [
         description: 'The Roson S9 Signature is more than a dental chair; it is an investment in your practice\'s growth and your patients\' peace of mind. Experience the perfect balance of premium comfort and unyielding reliability. Featuring our industry-leading EOW-TECH active water disinfection system, the S9 ensures absolute safety while its butter-smooth articulation keeps even the most anxious patients relaxed. Upgrade to the S9 and transform how your operatory looks, feels, and performs.',
         features: [
             'Active EOW-TECH water line disinfection for uncompromising safety',
-            'Jitter-free, ultra-quiet Timotion motor system ensures patient relaxation',
+            'Jitter-free, ultra-quiet Whisper-Silent Motor ensures patient relaxation',
             'Premium, easy-to-sanitize upholstery withstands heavy daily use',
             'Space-saving, highly efficient assistant module',
             'Intelligent anti-collision safety system protects your investment',
@@ -150,7 +150,7 @@ export const products = [
             },
             {
                 title: "Whisper-Smooth Articulation",
-                description: "Our soft-start/stop Timotion motor system guarantees butter-smooth transitions. Keep your patients completely relaxed and comfortable."
+                description: "Our Whisper-Silent Motor guarantees butter-smooth transitions with soft start/stop. Keep your patients completely relaxed and comfortable."
             },
             {
                 title: "Designed for Efficiency",
@@ -212,7 +212,7 @@ export const products = [
             ]
         },
         specs: {
-            'Motor': 'Timotion (5-year warranty)',
+            'Motor': 'Whisper-Silent Motor (soft start/stop)',
             'Upholstery': 'Breathable Seamless Microfiber Leather (5-year warranty)',
             'Light': 'RoLight Dental Light (3-year warranty)',
             'Display': 'Medical-grade color LCD',
@@ -221,7 +221,7 @@ export const products = [
             'Warranty': '2 years (1st year parts + service, 2nd year service)',
             'Origin': 'Foshan Roson Medical, China',
         },
-        images: ['/images/products/s9/main.jpg'],
+        images: ['/images/products/sunlit/chair_s9_sunlight_1774298426579.png'],
         heroImage: '/images/products/s9/main.jpg',
         configuratorEnabled: true,
         configuratorOptions: {
@@ -241,53 +241,62 @@ export const products = [
         name: 'Roson Fashion Model A3L',
         category: 'chair',
         badge: null,
-        tagline: 'Luxury Meets Functionality',
-        shortDesc: 'Luxury variant of the A3 series with premium upholstery and enhanced clinical features.',
-        description: 'The Fashion Model A3L brings the technology of the A3 platform into a luxury package. Premium PU upholstery, a refined aesthetic, and all the core features that make the A3 series legendary — just configured for clinics that want a premium look at a more accessible price point.',
+        tagline: 'Same A3 Power. Your Clinic\'s Style.',
+        shortDesc: 'Same A3 flagship platform with fashion-forward design customization — EOW-TECH disinfection, Whisper-Silent Motor, and LCD display included.',
+        description: 'The Fashion Model A3L delivers the exact same core technology as our flagship A3 — EOW-TECH electrolytic disinfection, Whisper-Silent Motor, medical-grade color LCD, and dual IR + gravity sensing water — but wrapped in a fashion-forward aesthetic that lets you customize the look and feel of your operatory. Same engineering, your style.',
         features: [
-            'A3-platform core technology',
-            'Premium PU upholstery',
-            'Self-balance position apparatus arm',
-            'Anti-collision assistant arm',
-            '8-bead LED dental light',
-            'Dynamic atmosphere lighting',
+            'German-engineered arm joints — 4x the wear life of standard arms, found only on high-end dental chairs',
+            'Whisper-Silent Motor with soft start/stop for buttery-smooth chair movement',
+            'Medical-grade color LCD with self-check diagnostics and 3 memory positions',
+            'Anti-collision assistant arm auto-pauses on obstacle detection',
+            'Dual IR & gravity sensing water system for touchless cup filling',
+            'One-Key Smart Drainage — single button triggers 5-minute auto-cleaning cycle',
+            'Fashion-forward design customization — choose your clinic\'s signature look',
+            'SMC polyether pipelines with 5-year warranty',
         ],
         advancedFeatures: [
             {
-                title: "Premium Patient Comfort",
-                description: "Experience the perfect balance of luxury and support with our premium PU upholstery, designed to keep patients relaxed during extended procedures."
+                title: "Fashion-Forward Customization",
+                description: "Same A3 platform, but with expanded aesthetic options — customize colors, upholstery, and design elements to match your clinic's brand identity."
             },
             {
-                title: "Shadowless LED Illumination",
-                description: "The 8-bead LED dental light delivers crisp, broad visibility across the entire oral cavity, reducing eye strain and enhancing precision."
+                title: "EOW-TECH Active Disinfection",
+                description: "Built-in electrolytic oxidized water system eliminates 99.9999% of bacteria. No chemicals, no residues — just safe, clean waterlines."
             },
             {
-                title: "A3-Platform Core",
-                description: "Built on the legendary A3 platform technology, delivering uncompromising reliability and butter-smooth articulation."
+                title: "Whisper-Silent Motor",
+                description: "5-year warranted motor with soft start/stop — patients describe it as 'sitting on a cloud.' Zero jarring movements."
             },
             {
-                title: "Active Collision Prevention",
-                description: "Smart sensors in the assistant arm instantly halt movement if an obstruction is detected, safeguarding your staff and equipment."
+                title: "Smart Command LCD",
+                description: "Medical-grade color touchscreen with power-on self-test, fault code display, 3 memory positions, and built-in clock/timer."
             }
         ],
         ergonomicsDeepDive: {
-            title: "Designed for Clinical Harmony",
-            subtitle: "Your Growth Partner in Dentistry",
+            title: "Engineered for Practitioner Longevity",
+            subtitle: "The RS06 Ergonomic Dentist Stool",
             features: [
-                "Self-balancing position apparatus arm for effortless maneuverability",
-                "Dynamic atmosphere lighting sets a calming mood for anxious patients",
-                "Streamlined assistant module maximizes your workspace efficiency",
-                "Built to support natural posture for both dentist and assistant"
+                "Eight-way dynamic adjustability supports diverse body types",
+                "Maintains natural spine curvature to prevent fatigue",
+                "5° forward tilt capability for optimal access posture",
+                "Prevents femoral artery blockage during long procedures",
+                "Ultra-breathable, non-deformable high-density cushioning",
+                "360° silent casters on a sturdy aluminum alloy base"
             ]
         },
         specs: {
-            'Motor': 'Timotion',
-            'Upholstery': 'PU leather',
-            'Light': '8-bead LED (RV008-1)',
-            'Warranty': '2 years',
+            'Model': 'KLT-6220 A3L',
+            'Motor': 'Whisper-Silent Motor (soft start/stop)',
+            'Upholstery': 'PU Leather standard (Microfiber upgrade available)',
+            'Light': 'RoLight 8-bead Philips LED (3-year warranty)',
+            'Display': 'Medical-grade color LCD',
+            'Disinfection': 'EOW-TECH electrolytic oxidized water (optional)',
+            'Water System': 'Dual IR & gravity sensing (optional)',
+            'Pipelines': 'Polyether tubing',
+            'Warranty': '2 years (1st year parts + service, 2nd year service)',
             'Origin': 'Foshan Roson Medical, China',
         },
-        images: ['/images/products/dxa3l/main.jpg', '/images/products/dxa3l/detail.jpg', '/images/products/dxa3l/equipment.jpg'],
+        images: ['/images/products/sunlit/chair_a3l_brown_sunlight.png', '/images/products/dxa3l/detail.jpg', '/images/products/dxa3l/equipment.jpg'],
         configuratorEnabled: false,
     },
     {
@@ -295,209 +304,257 @@ export const products = [
         name: 'Roson Smart Model A3S',
         category: 'chair',
         badge: null,
-        tagline: 'Smart Design for Compact Spaces',
-        shortDesc: 'Compact smart design optimized for smaller clinic spaces without compromising performance.',
-        description: 'Not every clinic has a sprawling operatory, and the Smart Model A3S was designed exactly for that reality. It packs A3-series performance into a compact footprint — perfect for startup clinics, condo-based practices, or multi-chair setups where every square meter counts. Zero compromises on clinical capability.',
+        tagline: '7 Colors. Smart Comfort. Seamless Leather.',
+        shortDesc: 'The most colorful chair in the lineup — 7+ color options, ambient breathing lamp, seamless microfiber leather standard, and soft start/stop comfort.',
+        description: 'The Smart Model A3S is built for clinics that want their operatory to make a statement. Choose from 7+ stunning colors — Tiffany Blue, Begonia Red, Olive Green, and more. The A3S comes standard with seamless microfiber leather (not an upgrade), a calming condition breathing lamp, and the same smooth soft start/stop motor system. Smart features, bold design, zero compromise.',
         features: [
-            'Space-optimized compact footprint',
-            'Full A3-series functionality',
-            'Smart integrated controls',
-            'Complete delivery system',
-            'Efficient workflow design',
+            'Seamless microfiber leather comes STANDARD — not an upgrade, not optional',
+            '7+ color options: Tiffany Blue, Begonia Red, Olive Green, Gray, Glaze Blue, and more',
+            'Condition breathing lamp — ambient light signals chair status, calms anxious patients',
+            'Rolight S dental light with Philips LEDs and infrared remote control',
+            'Soft start/stop motor system — smooth, silent chair movement',
+            '4-angle adjustable handpiece holder (30°–80° range)',
+            'Power-on self-test with fault code display for quick diagnostics',
+            'Full A3-series delivery systems: over-patient, swing, or cart-mounted',
         ],
         advancedFeatures: [
             {
-                title: "Intelligent Space Optimization",
-                description: "Engineered specifically for compact operatories, the A3S maximizes your available space without sacrificing a single clinical feature."
+                title: "Seamless Microfiber Standard",
+                description: "Unlike other models where seamless leather is an upgrade, the A3S includes it as standard — superior infection control with zero seam crevices for bacteria."
             },
             {
-                title: "A3-Series Performance",
-                description: "Enjoy the exact same robust performance and reliability found in our flagship models, perfectly scaled for your clinic's needs."
+                title: "Condition Breathing Lamp",
+                description: "A soothing ambient light on the chair signals operational status while creating a calming atmosphere that puts anxious patients at ease."
             },
             {
-                title: "Smart Command Integration",
-                description: "Manage your entire workflow effortlessly with intuitive smart controls that put essential functions right at your fingertips."
+                title: "7+ Color Palette",
+                description: "The widest color selection in the entire ROSON lineup — Tiffany Blue, Begonia Red, Olive Green, ROSON Blue, Mountain Blue, Gray, and Glaze Blue."
             },
             {
-                title: "Streamlined Delivery",
-                description: "A complete, highly efficient delivery system ensures every instrument is exactly where you need it, exactly when you need it."
+                title: "Smart Self-Diagnostics",
+                description: "Power-on self-test automatically checks all systems at startup. If something's off, the fault code display tells you exactly what to fix."
             }
         ],
         ergonomicsDeepDive: {
-            title: "Compact Without Compromise",
-            subtitle: "Your Growth Partner in Dentistry",
+            title: "Engineered for Practitioner Longevity",
+            subtitle: "The RS06 Ergonomic Dentist Stool",
             features: [
-                "Minimized footprint opens up movement pathways in smaller clinics",
-                "Carefully calibrated articulation provides full access without bumping walls",
-                "Ergonomic instrument positioning reduces repetitive strain",
-                "Ideal for multi-chair setups and high-efficiency hygiene bays"
+                "Eight-way dynamic adjustability supports diverse body types",
+                "Maintains natural spine curvature to prevent fatigue",
+                "5° forward tilt capability for optimal access posture",
+                "Prevents femoral artery blockage during long procedures",
+                "Ultra-breathable, non-deformable high-density cushioning",
+                "360° silent casters on a sturdy aluminum alloy base"
             ]
         },
         specs: {
-            'Motor': 'Timotion',
-            'Upholstery': 'PU leather',
-            'Warranty': '2 years',
+            'Model': 'KLT-6220 A3S',
+            'Motor': 'Soft start/stop electric motor',
+            'Upholstery': 'Seamless microfiber leather (standard)',
+            'Light': 'Rolight S with Philips LEDs',
+            'Handpiece Holder': '4-angle adjustable (30°–80°)',
+            'Colors': '7+ options (Tiffany Blue, Begonia Red, Olive Green, Gray, Glaze Blue, Mountain Blue, ROSON Blue)',
+            'Warranty': '2 years (1st year parts + service, 2nd year service)',
             'Origin': 'Foshan Roson Medical, China',
         },
-        images: ['/images/products/dxa3s/main.jpg'],
-        configuratorEnabled: false,
+        images: ['/images/products/sunlit/chair_a3s_teal_sunlight.png'],
+        configuratorEnabled: true,
+        configuratorOptions: {
+            colors: [
+                { name: 'Tiffany Blue', value: '#81D8D0', image: '/images/configurator/a3s-tiffany.jpg' },
+                { name: 'Begonia Red', value: '#C93756', image: '/images/configurator/a3s-red.jpg' },
+                { name: 'Olive Green', value: '#6B8E23', image: '/images/configurator/a3s-olive.jpg' },
+                { name: 'Gray', value: '#8C8C8C', image: '/images/configurator/a3s-gray.jpg' },
+                { name: 'Coloured Glaze Blue', value: '#6BA3D6', image: '/images/configurator/a3s-glaze-blue.jpg' },
+                { name: 'Mountain Blue', value: '#4682B4', image: '/images/configurator/a3s-mountain-blue.jpg' },
+                { name: 'ROSON Blue', value: '#2E5090', image: '/images/configurator/a3s-roson-blue.jpg' },
+            ],
+            handpiece: ['Over-the-Patient', 'Swing-Mounted', 'Cart-Mounted'],
+            upholstery: ['Seamless Microfiber Leather (Standard)', 'PU Leather', 'Sewn Microfiber Leather'],
+        },
     },
     {
         slug: 'roson-dxs3',
         name: 'Roson Hot-Selling Model S3',
         category: 'chair',
-        badge: 'Popular',
-        tagline: 'Dependable Everyday Performance',
-        shortDesc: 'Sturdy mid-range chair with reliable operation built for dependable everyday performance.',
-        description: 'The Hot-Selling Model S3 is built for clinics that value reliability above all else. Sturdy construction, smooth operation, and all the essential features you need — nothing you don\'t. It\'s the chair that shows up every day and just works, year after year.',
+        badge: 'Best Seller',
+        tagline: 'ROSON\'s Global Bestseller.',
+        shortDesc: 'The world\'s most popular ROSON chair — ≥35,000 lux LED light with autoclavable handle, detachable infection-control components, and a 6-way adjustable stool included.',
+        description: 'There\'s a reason the S3 is ROSON\'s global bestseller. It packs a ≥35,000 lux LED sensor light with an autoclavable handle (the brightest in the lineup), a detachable swiveling spittoon bowl, detachable suction filter for easy cleaning, 4-way hands-free foot control, and includes a 6-way adjustable dentist stool — all in a clean workflow design built for high-volume clinics that need reliability above everything else.',
         features: [
-            'Heavy-duty sturdy construction',
-            'Reliable motor operation',
-            'Complete delivery unit',
-            'Standard LED operating light',
-            'Easy maintenance design',
+            'Brightest light in the lineup: ≥35,000 lux LED sensor with touchless on/off',
+            'Autoclavable light handle — sterilize between patients for true infection control',
+            'Detachable swiveling spittoon bowl for easy cleaning',
+            'Detachable anti-bacteria suction filter — quick-clean, no tools needed',
+            '4-way hands-free foot control for chair positioning',
+            '6-way adjustable dentist stool included (not sold separately)',
+            'Wide elbow support cushion reduces dentist fatigue',
+            'Multi-articulated headrest adapts to any patient',
         ],
         advancedFeatures: [
             {
-                title: "Unshakable Reliability",
-                description: "Constructed with heavy-duty materials to withstand the rigorous demands of high-volume, every-day clinical use."
+                title: "≥35,000 Lux Illumination",
+                description: "The brightest operating light in the entire ROSON lineup. Touchless sensor activation — no physical contact needed between patients."
             },
             {
-                title: "Consistent Performance",
-                description: "Driven by a highly dependable motor system that ensures smooth, jitter-free operation appointment after appointment."
+                title: "Autoclavable Handle",
+                description: "The light handle can be removed and sterilized at 134°C in an autoclave — a real infection control advantage most chairs don't offer."
             },
             {
-                title: "Essential Delivery System",
-                description: "A streamlined, complete delivery unit that provides all the essential tools you need without unnecessary complexity."
+                title: "Detachable Infection Control",
+                description: "Both the spittoon bowl and suction filter detach without tools for thorough cleaning — designed for clinics that see 20+ patients daily."
             },
             {
-                title: "Clear Illumination",
-                description: "Standard LED operating light provides bright, focused illumination exactly where you need it for accurate diagnostics and treatment."
+                title: "6-Way Adjustable Stool",
+                description: "The S3 includes a fully adjustable 6-way dentist stool as standard — ready to use right out of the box."
             }
         ],
         ergonomicsDeepDive: {
             title: "Built for the Daily Grind",
             subtitle: "Your Growth Partner in Dentistry",
             features: [
-                "Straightforward, intuitive controls reduce training time for new staff",
-                "Easy-maintenance design minimizes downtime and keeps your clinic running",
-                "Sturdy patient support accommodates diverse body types comfortably",
-                "Practical layout keeps essential instruments within easy reach"
+                "Wide elbow support cushion reduces upper body fatigue during long procedures",
+                "4-way foot control keeps your hands free for clinical work",
+                "Multi-articulated headrest accommodates patients of all sizes",
+                "Clean workflow design minimizes cross-contamination touchpoints"
             ]
         },
         specs: {
-            'Motor': 'Timotion',
-            'Upholstery': 'PU leather',
-            'Warranty': '2 years',
+            'Model': 'S3',
+            'Motor': '24V DC silent electric motor',
+            'Light': 'LED sensor light ≥35,000 lux (autoclavable handle)',
+            'Upholstery': 'PU or Microfiber Leather',
+            'Foot Control': '4-way hands-free',
+            'Spittoon': 'Detachable swiveling bowl',
+            'Stool': '6-way adjustable (included)',
+            'Delivery Options': 'Over-the-Patient, Swing-Mounted, Cart-Mounted',
+            'Warranty': '2 years (1st year parts + service, 2nd year service)',
             'Origin': 'Foshan Roson Medical, China',
         },
-        images: ['/images/products/dxs3/main.jpg'],
+        images: ['/images/products/sunlit/chair_s3_sunlight_1774298390858.png'],
         configuratorEnabled: false,
     },
     {
         slug: 'roson-dxs6',
         name: 'Roson Professional Model S6',
         category: 'chair',
-        badge: null,
-        tagline: 'Where Style Meets Clinical Excellence',
-        shortDesc: 'Premium S-series with refined aesthetics, blending style and clinical excellence.',
-        description: 'The Professional Model S6 is for the dentist who believes their equipment should look as professional as their work. Refined aesthetics, premium build quality, and advanced positioning — it makes a statement the moment a patient walks into your operatory.',
+        badge: 'Accessibility',
+        tagline: 'The Chair That Goes Lower.',
+        shortDesc: 'The ONLY ROSON chair with a 380mm lowest position — perfect for elderly, pediatric, and wheelchair patients. Built with casting steel frame for structural durability.',
+        description: 'The Professional Model S6 has one feature no other ROSON chair can match: a 380mm lowest chair position — 20mm below the industry standard. For clinics serving elderly patients, children, or wheelchair users, this isn\'t a nice-to-have — it\'s essential. Built on a casting steel frame for maximum structural durability, with a Rolight S dental light (Philips LEDs, infrared control), compact workflow design, and 4-way hands-free foot control.',
         features: [
-            'Premium build quality',
-            'Advanced positioning system',
-            'Fully integrated systems',
-            'Refined modern aesthetics',
-            'Clinical-grade performance',
+            'Lowest chair position in the entire ROSON lineup: 380mm (20mm below standard)',
+            'Casting steel chair frame and backrest support — maximum structural durability',
+            'Rolight S dental light with Philips LEDs and infrared control',
+            '4-way hands-free foot control for chair positioning',
+            'Compact four-hand operation optimized assistant unit',
+            'Stable multi-joint headrest for diverse patient heights',
+            'PU or Microfiber Leather upholstery options',
+            'All 3 delivery systems: over-patient, swing-mounted, cart-mounted',
         ],
         advancedFeatures: [
             {
-                title: "Breathtaking Modern Aesthetics",
-                description: "Make an unforgettable statement with refined, stylish lines that elevate the perceived value of your entire practice."
+                title: "380mm Lowest Position",
+                description: "The S6 goes 20mm lower than any other ROSON chair. Elderly patients, children, and wheelchair users can transfer safely and comfortably — no other model can do this."
             },
             {
-                title: "Premium Construction",
-                description: "Built with meticulously selected materials that not only look spectacular but are engineered for lasting clinical-grade durability."
+                title: "Casting Steel Frame",
+                description: "While other chairs use standard steel, the S6 features a casting steel frame and backrest support — zero flex under patient weight, built to last 15+ years."
             },
             {
-                title: "Advanced Articulation",
-                description: "Experience fluid, precise patient positioning that allows for optimal access to the oral cavity from any angle."
+                title: "Rolight S with Philips LEDs",
+                description: "Professional-grade dental light with infrared on/off control — no physical contact needed between patients."
             },
             {
-                title: "Seamless Integration",
-                description: "Every system, from water delivery to suction, is seamlessly integrated to create a tidy, highly professional operatory environment."
+                title: "Four-Hand Operation Ready",
+                description: "Compact assistant unit designed specifically for four-handed dentistry — everything your assistant needs within arm's reach."
             }
         ],
         ergonomicsDeepDive: {
-            title: "Where Style Meets Comfort",
-            subtitle: "Your Growth Partner in Dentistry",
+            title: "Accessibility Without Compromise",
+            subtitle: "Designed for Every Patient",
             features: [
-                "Luxurious upholstery provides exceptional support during long restorative sessions",
-                "Optimized practitioner positioning prevents back and neck fatigue",
-                "Clean lines and hidden cabling reduce visual clutter and anxiety",
-                "Intuitive interface allows you to focus purely on your clinical work"
+                "380mm low position makes wheelchair transfers safe and dignified",
+                "Pediatric patients can climb on and off without adult lifting",
+                "Elderly patients with mobility issues sit down with confidence",
+                "Casting steel frame supports up to 150kg without any structural flex"
             ]
         },
         specs: {
-            'Motor': 'Timotion',
-            'Upholstery': 'Premium PU',
-            'Warranty': '2 years',
+            'Model': 'S6',
+            'Motor': '24V DC silent electric motor',
+            'Lowest Position': '380mm (below industry standard)',
+            'Frame': 'Casting steel (chair frame + backrest support)',
+            'Light': 'Rolight S with Philips LEDs (infrared control)',
+            'Upholstery': 'PU or Microfiber Leather',
+            'Foot Control': '4-way hands-free',
+            'Delivery Options': 'Over-the-Patient, Swing-Mounted, Cart-Mounted',
+            'Warranty': '2 years (1st year parts + service, 2nd year service)',
             'Origin': 'Foshan Roson Medical, China',
         },
-        images: ['/images/products/dxs6/main.jpg'],
+        images: ['/images/products/sunlit/chair_s6_sunlight_1774298410518.png'],
         configuratorEnabled: false,
     },
     {
         slug: 'roson-dxn2-pro',
         name: 'Roson Elite Model N2 PRO',
         category: 'chair',
-        badge: null,
-        tagline: 'The Ultimate Modern Operatory Chair',
-        shortDesc: 'Premium model with advanced ergonomics, integrated LED light, and full delivery system for modern practices.',
-        description: 'The Roson Elite Model N2 PRO represents the pinnacle of dental chair engineering. Designed for the modern practice that demands nothing less than excellence, it combines advanced ergonomic patient positioning with a comprehensive delivery system. Every detail — from the whisper-quiet motor to the memory-position controls — is built to let you focus entirely on your patient.',
+        badge: 'Proven',
+        tagline: 'Trusted by 80,000+ Dentists Worldwide.',
+        shortDesc: 'The premium N-series with the widest dentist table (650×315mm), 180° ceramic spittoon, independent disinfectant water, and 5-position handpiece holder with scaler/motor pre-positions.',
+        description: 'The N2 PRO is ROSON\'s most-proven dental chair — trusted by over 80,000 dentists worldwide. It features the widest dentist table in the N-series (650×315mm), a 180° rotatable ceramic spittoon, independent disinfectant water supply, intelligent soft start/stop, and a 5-position handpiece holder with dedicated scaler and motor pre-positions. Shield-shape inspired design that symbolizes patient protection.',
         features: [
-            'Ergonomic patient positioning with memory settings',
-            'Integrated LED sensor operating light',
-            'Multi-position memory for quick adjustments',
-            'Built-in assistant module with suction',
-            'Premium leather upholstery in multiple colors',
-            'Whisper-quiet Timotion motor system',
+            'Widest dentist table in the N-series: 650×315mm — more workspace, less clutter',
+            '5-position handpiece holder with pre-positions for scaler and micromotor',
+            '180° rotatable ceramic spittoon — easier to clean than plastic, lasts longer',
+            'Independent disinfectant water supply system for waterline safety',
+            'Intelligent soft start/stop — smooth, silent chair movement',
+            'Constant temperature warm water for patient comfort',
+            'Programmable cup filler and spittoon rinsing',
+            'Rolight S dental light with Philips LEDs and infrared control',
         ],
         advancedFeatures: [
             {
                 title: "80,000+ Dentists' Choice",
-                description: "Join a global community of practitioners who trust the N-series platform for its unparalleled daily reliability and performance."
+                description: "More dentists worldwide have chosen the N-series platform than any other ROSON line. The N2 PRO is the premium evolution of that trust."
             },
             {
-                title: "Intelligent Soft Start/Stop",
-                description: "The advanced motor system ensures the dental chair starts and stops smoothly without any jerkiness, keeping your patient relaxed."
+                title: "Widest Workspace",
+                description: "At 650×315mm, the N2 PRO's dentist table gives you 5% more surface area than the N2+ — enough to keep every instrument organized and accessible."
             },
             {
-                title: "Medical-Grade Color LCD",
-                description: "Manage your entire workflow effortlessly with the integrated, highly intuitive medical-grade color touchscreen display."
+                title: "Ceramic Spittoon",
+                description: "180° rotatable ceramic cuspidor — more hygienic, more durable, and more professional-looking than standard plastic bowls."
             },
             {
-                title: "Durable and Easy-to-Clean",
-                description: "Constructed with premium, stain-resistant materials designed to withstand the rigors of high-volume clinical sanitization."
+                title: "Independent Disinfection",
+                description: "Separate disinfectant water supply keeps your waterlines clean without mixing chemicals into the patient water circuit."
             }
         ],
         ergonomicsDeepDive: {
-            title: "Advanced Iteration Continuation",
+            title: "Designed for High-Volume Practices",
             subtitle: "Your Growth Partner in Dentistry",
             features: [
-                "Seamless integration of delivery and suction systems minimizes reaching",
-                "Exceptional patient lumbar support for extended restorative procedures",
-                "Fully customizable positioning accommodates your preferred working posture",
-                "Detachable suction filter and smart drainage simplify daily maintenance"
+                "5-position handpiece holder eliminates fumbling during procedures",
+                "Scaler and motor pre-positions save seconds per patient — adds up to hours per week",
+                "Detachable suction filter for quick between-patient cleaning",
+                "Programmable cup filler and rinsing reduce manual steps"
             ]
         },
         specs: {
-            'Motor': 'Timotion (5-year warranty)',
-            'Upholstery': 'Premium microfiber leather',
-            'Light': '8-bead LED with adjustable color temp',
-            'Warranty': '2 years (1st year parts + service)',
+            'Model': 'N2 PRO',
+            'Motor': 'Intelligent soft start/stop electric motor',
+            'Dentist Table': '650×315mm (widest in N-series)',
+            'Handpiece Holder': '5-position with scaler/motor pre-positions',
+            'Spittoon': '180° rotatable ceramic',
+            'Light': 'Rolight S with Philips LEDs (infrared control)',
+            'Water': 'Constant temp warm water + independent disinfectant supply',
+            'Upholstery': 'PU or Microfiber Leather',
+            'Delivery Options': 'Over-the-Patient, Cart-Mounted',
+            'Warranty': '2 years (1st year parts + service, 2nd year service)',
             'Origin': 'Foshan Roson Medical, China',
         },
-        images: ['/images/products/dxn2pro/main.jpg'],
+        images: ['/images/products/sunlit/chair_n2_blue_sunlight.png'],
         configuratorEnabled: false,
     },
     {
@@ -505,51 +562,62 @@ export const products = [
         name: 'Roson Classic Model N2 Plus',
         category: 'chair',
         badge: null,
-        tagline: 'Upgraded Classic Performance',
-        shortDesc: 'Upgraded iteration of our classic N2 series with enhanced ergonomic comfort and a highly reliable core.',
-        description: 'The Classic Model N2 Plus builds upon the legendary reliability of our classic N-series platform. It provides upgraded ergonomic patient comfort and features a refined delivery unit designed for high-volume practices that require both longevity and seamless workflow.',
+        tagline: 'Everything You Need. Nothing You Don\'t.',
+        shortDesc: 'The most complete standard configuration in the N-series — 8-Tooth Smile Philips LED light, ceramic spittoon, 5-position handpiece holder, 5-in-1 tissue box, LED X-ray viewer, and dual water bottles included.',
+        description: 'The N2+ is the most fully-loaded standard configuration in the N-series. Out of the box, you get: 8-Tooth Smile Oral Light with Philips LEDs, 180° rotatable ceramic spittoon, 5-position handpiece holder, 5-in-1 tissue box, LED X-ray viewer, dual pure water bottles, constant temperature warm water, and a doctor stool with integrated armrest and backrest. For startup clinics, this is the foundation that has everything — no upgrades needed.',
         features: [
-            'Upgraded ergonomic patient cushioning',
-            'Refined delivery unit workflow',
-            'Reliable core platform',
-            'Integrated operating light',
-            'Multiple memory configurations',
+            '8-Tooth Smile Oral Light with Philips LEDs (double mode, infrared on/off)',
+            '180° rotatable ceramic spittoon — premium hygiene standard',
+            '5-position handpiece holder for organized instrument access',
+            '5-in-1 multifunctional tissue box built in',
+            'LED X-ray viewer for instant diagnostic reference',
+            'Dual pure water bottles (2× 1L) — no mid-session refills',
+            'Constant temperature warm water for handpieces and syringe',
+            'Doctor stool with integrated armrest and backrest included',
         ],
         advancedFeatures: [
             {
-                title: "Enhanced Patient Comfort",
-                description: "Upgraded ergonomic cushioning contours to the patient's body, significantly reducing anxiety and restlessness during procedures."
+                title: "Most Complete Standard Config",
+                description: "13 components included as standard — tissue box, X-ray viewer, dual water bottles, doctor stool with backrest. Other chairs make these optional upgrades."
             },
             {
-                title: "Legendary N-Series Reliability",
-                description: "Built upon our proven classic platform, the N2 Plus delivers the unyielding reliability high-volume clinics depend on."
+                title: "8-Tooth Smile Oral Light",
+                description: "Philips LED array with double lighting mode and infrared on/off — wave your hand to switch modes without touching anything."
             },
             {
-                title: "Refined Workflow",
-                description: "An optimized delivery unit layout minimizes unnecessary reaching, keeping your instruments perfectly positioned for efficiency."
+                title: "Ceramic Spittoon",
+                description: "180° rotatable ceramic cuspidor with programmable cup filler and flush timing — more hygienic and durable than plastic."
             },
             {
-                title: "Rapid Memory Recall",
-                description: "Multiple programmable memory settings allow you to instantly transition the chair back to your preferred working positions."
+                title: "Dual Water Bottles",
+                description: "Two 1L pure water bottles mean fewer interruptions — enough capacity for a full morning of patients."
             }
         ],
         ergonomicsDeepDive: {
             title: "Classic Reliability, Upgraded",
             subtitle: "Your Growth Partner in Dentistry",
             features: [
-                "Generous cushioning provides superior lumbar support for patients",
-                "Smooth articulation ensures gentle transitions between supine and upright",
-                "Integrated operating light is effortlessly positioned with one hand",
-                "Highly resilient upholstery withstands aggressive daily sanitization"
+                "Doctor stool includes armrest AND backrest — proper support for long procedures",
+                "Wide dentist table (650×300mm) keeps instruments organized",
+                "All three delivery systems available: over-patient, swing, cart",
+                "Multi-articulated headrest adapts to any patient height"
             ]
         },
         specs: {
-            'Motor': 'Timotion',
-            'Upholstery': 'PU or Microfiber Leather options',
-            'Warranty': '2 years',
+            'Model': 'N2+',
+            'Motor': '24V DC silent electric motor',
+            'Dentist Table': '650×300mm',
+            'Handpiece Holder': '5-position',
+            'Spittoon': '180° rotatable ceramic',
+            'Light': '8-Tooth Smile Oral Light (Philips LEDs, infrared)',
+            'X-Ray': 'Built-in LED X-ray viewer',
+            'Water': 'Dual 1L bottles + constant temp warm water',
+            'Upholstery': 'PU, Sewn Microfiber, or Seamless Microfiber Leather',
+            'Delivery Options': 'Over-the-Patient, Swing-Mounted, Cart-Mounted',
+            'Warranty': '2 years (1st year parts + service, 2nd year service)',
             'Origin': 'Foshan Roson Medical, China',
         },
-        images: ['/images/products/dxn2plus/main.jpg'],
+        images: ['/images/products/sunlit/chair_n2plus_sunlight_1774298446120.png'],
         configuratorEnabled: false,
     },
     {
@@ -557,52 +625,62 @@ export const products = [
         name: 'Roson Classic Model N1',
         category: 'chair',
         badge: null,
-        tagline: 'Reliable Mid-Range Performance',
-        shortDesc: 'Versatile mid-range chair with hydraulic lift and complete delivery system for everyday clinical use.',
-        description: 'The Classic Model N1 is the workhorse of the Roson lineup. Built for clinics that need reliable, full-featured equipment without the flagship price tag. Its lift system provides smooth, stable positioning, while the complete delivery unit keeps every tool within reach. A smart choice for startup clinics and expanding practices alike.',
+        tagline: 'The Simplest Setup in the Lineup.',
+        shortDesc: 'Entry-level with a rotatable right arm for easy patient access and a "one starter" system for air, water, and electricity — the easiest chair to install and operate.',
+        description: 'The N1 is the entry point to the ROSON lineup — and it\'s not a compromise. You still get an 8-Tooth Smile Oral Light with Philips LEDs, 180° rotatable ceramic spittoon, 5-position handpiece holder, constant temperature warm water, and pure water supply. What makes it unique: a rotatable right arm that swings out of the way for easy patient entry/exit, and a "one starter" system that connects air, water, and electricity in a single step. The simplest chair to install, the simplest to operate.',
         features: [
-            'Smooth lifting system for patient positioning',
-            'Integrated delivery unit with handpieces',
-            'LED operating light',
-            'Comfortable patient cushioning',
-            'Easy maintenance design',
+            'Rotatable right arm — swings out for easy patient entry and exit',
+            '"One starter" system — connects air, water, and electricity in a single step',
+            '8-Tooth Smile Oral Light with Philips LEDs (double mode, infrared on/off)',
+            '180° rotatable ceramic spittoon for hygienic, easy cleaning',
+            '5-position handpiece holder for organized instrument access',
+            'Constant temperature warm water for patient comfort',
+            'Pure water supply system — clean water to every handpiece',
+            'Multi-articulated headrest + multifunction foot control',
         ],
         advancedFeatures: [
             {
-                title: "Rock-Solid Foundation",
-                description: "A robust hydraulic-style lifting system provides smooth, incredibly stable patient positioning without any shaking or jarring."
+                title: "Rotatable Right Arm",
+                description: "The armrest swings completely out of the way — elderly patients, children, and patients with limited mobility can sit down and stand up without obstruction."
             },
             {
-                title: "Comprehensive Delivery",
-                description: "Features a fully integrated delivery unit equipped with everything needed for everyday clinical diagnostics and treatment."
+                title: "One Starter Simplicity",
+                description: "A single connection point for air, water, and electricity. Installation is faster, troubleshooting is simpler, and your technician will thank you."
             },
             {
-                title: "Clear, Cool LED Light",
-                description: "The integrated LED operating light delivers a cool, focused beam that illuminates the oral cavity without overheating the patient."
+                title: "8-Tooth Smile Oral Light",
+                description: "Same Philips LED light as the N2+ — double mode, infrared on/off. No compromise on visibility just because it's the entry model."
             },
             {
-                title: "Accessible Maintenance",
-                description: "Engineered with simplicity in mind, allowing for quick, easy routine maintenance to keep your operatory running without interruption."
+                title: "Ceramic Spittoon Standard",
+                description: "180° rotatable ceramic cuspidor — the same hygienic, durable spittoon found across the entire N-series."
             }
         ],
         ergonomicsDeepDive: {
             title: "Simplicity and Stability",
-            subtitle: "Your Growth Partner in Dentistry",
+            subtitle: "The Smart Start for New Clinics",
             features: [
-                "Uncomplicated operation allows you to focus purely on dentistry",
-                "Stable base prevents any shifting during precise restorative work",
-                "Comfortable patient cushioning accommodates long appointments",
-                "Clean, accessible surfaces make between-patient teardown incredibly fast"
+                "Rotatable right arm makes patient transfers fast and dignified",
+                "One starter reduces installation time and complexity",
+                "Multifunction foot control with non-skid design and water rinsing button",
+                "Integral stool backrest provides basic but solid dentist support"
             ]
         },
         specs: {
-            'Motor': 'Timotion',
-            'Upholstery': 'PU leather',
-            'Light': 'LED operating light',
-            'Warranty': '2 years',
+            'Model': 'N1',
+            'Motor': '24V DC silent electric motor',
+            'Dentist Table': '650×300mm',
+            'Handpiece Holder': '5-position',
+            'Spittoon': '180° rotatable ceramic',
+            'Light': '8-Tooth Smile Oral Light (Philips LEDs, infrared)',
+            'Water': 'Pure water supply + constant temp warm water',
+            'Unique': 'Rotatable right arm + one starter system',
+            'Upholstery': 'PU, Sewn Microfiber, or Seamless Microfiber Leather',
+            'Delivery Options': 'Over-the-Patient, Swing-Mounted, Cart-Mounted',
+            'Warranty': '2 years (1st year parts + service, 2nd year service)',
             'Origin': 'Foshan Roson Medical, China',
         },
-        images: ['/images/products/dxn1/main.jpg'],
+        images: ['/images/products/sunlit/chair_n1_sunlight_1774298467454.png'],
         configuratorEnabled: false,
     },
 

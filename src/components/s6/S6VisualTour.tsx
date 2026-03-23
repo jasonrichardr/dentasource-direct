@@ -1,171 +1,98 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { X, ZoomIn, ChevronRight, ChevronLeft } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { X } from "lucide-react";
 
-// S6 Visual Tour Images
-const tourImages = [
-    {
-        id: 1,
-        src: "/images/products/s6/S6 Dental Chair/S6_1.jpg",
-        alt: "Roson S6 Dental Chair - Profile View",
-        caption: "S6 Profile View",
-    },
-    {
-        id: 2,
-        src: "/images/products/s6/S6 Dental Chair/S6_2.jpg",
-        alt: "Roson S6 Dental Chair - Front Angled View",
-        caption: "Front Angled View",
-    },
-    {
-        id: 3,
-        src: "/images/products/s6/S6 Dental Chair/S6_3.jpg",
-        alt: "Roson S6 Dental Chair - Detailed View",
-        caption: "Detailed Ergonomics",
-    },
-    {
-        id: 4,
-        src: "/images/products/s6/S6 Dental Chair/S6_4.jpg",
-        alt: "Roson S6 Dental Chair - Rear View",
-        caption: "Rear View",
-    },
-    {
-        id: 5,
-        src: "/images/products/s6/S6 Dental Chair/S6_5.jpg",
-        alt: "Roson S6 Dental Chair - Doctor Table Detail",
-        caption: "Primary Doctor's Table",
-    },
-    {
-        id: 6,
-        src: "/images/products/s6/S6 Dental Chair/S6_6.jpg",
-        alt: "Roson S6 Dental Chair - Assistant Side Detail",
-        caption: "Assistant's Console",
-    },
+const ANGLES = [
+    { src: "/images/products/s6/S6 Dental Chair/S6_1.jpg", title: "S6 Overview" },
+    { src: "/images/products/s6/S6 Dental Chair/S6_2.jpg", title: "Front Angled View" },
+    { src: "/images/products/s6/S6 Dental Chair/S6_3.jpg", title: "Detailed Ergonomics" },
+    { src: "/images/products/s6/S6 Dental Chair/S6_4.jpg", title: "Rear View" },
+    { src: "/images/products/s6/S6 Dental Chair/S6_5.jpg", title: "Doctor's Table" },
+    { src: "/images/products/s6/S6 Dental Chair/S6_6.jpg", title: "Assistant's Console" },
 ];
 
 export default function S6VisualTour() {
-    const [selectedImage, setSelectedImage] = useState<number | null>(null);
-
-    const handleNext = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        if (selectedImage !== null) {
-            const currentIndex = tourImages.findIndex((img) => img.id === selectedImage);
-            const nextIndex = (currentIndex + 1) % tourImages.length;
-            setSelectedImage(tourImages[nextIndex].id);
-        }
-    };
-
-    const handlePrev = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        if (selectedImage !== null) {
-            const currentIndex = tourImages.findIndex((img) => img.id === selectedImage);
-            const prevIndex = (currentIndex - 1 + tourImages.length) % tourImages.length;
-            setSelectedImage(tourImages[prevIndex].id);
-        }
-    };
+    const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
     return (
-        <section className="py-24 bg-zinc-950 relative">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-3xl sm:text-4xl font-bold text-white mb-4"
-                    >
+        <section className="py-16 lg:py-24 bg-[#0A0A0A]">
+            <div className="container mx-auto px-6 max-w-7xl">
+                <div className="text-center mb-12 lg:mb-16">
+                    <span className="text-blue-500 font-bold tracking-widest text-sm uppercase mb-3 block">
                         Visual Tour
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-zinc-400 max-w-2xl mx-auto"
-                    >
-                        Explore the S6 from every angle.
-                    </motion.p>
+                    </span>
+                    <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+                        Discover the S6
+                    </h2>
+                    <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                        Professional-grade engineering meets accessible design in every detail of the Model S6.
+                    </p>
                 </div>
 
-                <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-                    {tourImages.map((image, index) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {ANGLES.map((angle, index) => (
                         <motion.div
-                            key={image.id}
+                            key={index}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="relative group cursor-pointer break-inside-avoid rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800"
-                            onClick={() => setSelectedImage(image.id)}
+                            transition={{ delay: index * 0.1, duration: 0.6 }}
+                            onClick={() => setLightboxImage(angle.src)}
+                            className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer bg-zinc-800"
                         >
-                            <div className="relative w-full aspect-[4/3]">
-                                <Image
-                                    src={image.src}
-                                    alt={image.alt}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
-                                    <ZoomIn className="w-8 h-8 text-white mb-2" />
-                                    <span className="text-white font-medium">{image.caption}</span>
-                                </div>
+                            <Image
+                                src={angle.src}
+                                alt={angle.title}
+                                fill
+                                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
+                            {/* Gradient Overlay for Text */}
+                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+                            <div className="absolute bottom-6 left-6 right-6">
+                                <h3 className="text-xl font-bold text-white tracking-wide">
+                                    {angle.title}
+                                </h3>
                             </div>
                         </motion.div>
                     ))}
                 </div>
             </div>
 
-            {/* Lightbox Modal */}
+            {/* Lightbox */}
             <AnimatePresence>
-                {selectedImage && (
+                {lightboxImage && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm p-4"
-                        onClick={() => setSelectedImage(null)}
+                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 md:p-12 cursor-pointer"
+                        onClick={() => setLightboxImage(null)}
                     >
                         <button
-                            className="absolute top-6 right-6 p-2 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full transition-colors z-50"
-                            onClick={() => setSelectedImage(null)}
+                            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50"
+                            onClick={() => setLightboxImage(null)}
                         >
-                            <X className="w-6 h-6" />
+                            <X className="w-10 h-10" />
                         </button>
-
-                        <button
-                            className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full transition-colors z-50"
-                            onClick={handlePrev}
-                        >
-                            <ChevronLeft className="w-8 h-8" />
-                        </button>
-
-                        <button
-                            className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full transition-colors z-50"
-                            onClick={handleNext}
-                        >
-                            <ChevronRight className="w-8 h-8" />
-                        </button>
-
                         <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            className="relative w-full max-w-5xl aspect-video rounded-lg overflow-hidden"
+                            initial={{ scale: 0.95, y: 20 }}
+                            animate={{ scale: 1, y: 0 }}
+                            exit={{ scale: 0.95, opacity: 0 }}
                             onClick={(e) => e.stopPropagation()}
+                            className="relative w-full max-w-5xl h-[85vh] rounded-lg overflow-hidden flex items-center justify-center pointer-events-none"
                         >
                             <Image
-                                src={tourImages.find((img) => img.id === selectedImage)?.src || ""}
-                                alt={tourImages.find((img) => img.id === selectedImage)?.alt || ""}
+                                src={lightboxImage}
+                                alt="View angle"
                                 fill
                                 className="object-contain"
+                                quality={100}
+                                priority
                             />
-                            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md px-6 py-2 rounded-full border border-white/10">
-                                <span className="text-white font-medium">
-                                    {tourImages.find((img) => img.id === selectedImage)?.caption}
-                                </span>
-                            </div>
                         </motion.div>
                     </motion.div>
                 )}

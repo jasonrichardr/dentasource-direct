@@ -1,13 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 
 const features = [
     {
         title: "8-LED Shadowless Operating Light (RoLight)",
-        description: "Features 8 Philips LED modules calibrated for daylight-equivalent illumination (>90 CRI). Adjustable color temperature prevents premature composite curing, while shadowless optics reduce clinical eye strain.",
+        description: "8 Philips LED beads deliver daylight-quality light that shows true tooth color — no more guessing shades under yellow operatory lights. Infrared on/off means zero physical contact between patients.",
         image: "/images/products/a3/Advanced features and components/01_8Tooth_Oral_Light.jpg",
         bullets: [
             "Shadowless Illumination",
@@ -18,7 +17,7 @@ const features = [
     },
     {
         title: "Intuitive Clinical Interface",
-        description: "High-contrast LCD control center providing real-time system status. Built-in diagnostic firmware runs an automated initialization check and displays exact error codes to minimize downtime.",
+        description: "See everything at a glance — chair position, system status, error codes, timer. Three memory positions let you save your preferred setups for different procedures and recall them instantly.",
         image: "/images/products/a3/Advanced features and components/02_LCD_Screen.jpg",
         bullets: [
             "Intuitive Interface",
@@ -29,7 +28,7 @@ const features = [
     },
     {
         title: "Active Safety Stop System",
-        description: "Integrated sensors detect resistance during unit descent, automatically halting and slightly reversing movement to protect equipment and prevent crushing injuries.",
+        description: "If the chair touches a leg, hand, or obstacle while moving — it stops immediately and reverses. Protects your patients, your staff, and your investment. Works on both the assistant arm and the main chair.",
         image: "/images/products/a3/Advanced features and components/06_Anti-Collision.jpg",
         bullets: [
             "Smart Protection",
@@ -39,7 +38,7 @@ const features = [
     },
     {
         title: "Adjustable Ergonomic Handpiece Block",
-        description: "The delivery arm block adjusts from 30° to 80°, allowing customized instrument angle presentation to reduce wrist fatigue and support healthy ergonomic posturing.",
+        description: "Set your handpiece angle anywhere from 30° to 80° — find the exact position that reduces your wrist strain. Four adjustable holders mean every instrument sits exactly where you need it.",
         image: "/images/products/a3/Advanced features and components/03_Handpiece_Holder.jpg",
         bullets: [
             "Flexible Positioning",
@@ -48,7 +47,7 @@ const features = [
     },
     {
         title: "Sensory Cup Fill System",
-        description: "Infrared and gravity dual-sensors provide touchless, precise cup filling. Eliminates cross-contamination while preventing overflow and water waste.",
+        description: "Place a cup under the filler — it fills automatically via infrared and gravity sensors. No buttons to touch, no cross-contamination risk, no overflow. Standard on the A3 (optional on other models).",
         image: "/images/products/a3/Advanced features and components/05_Dual_IR_Water.jpg",
         bullets: [
             "Touch-Free Hygiene",
@@ -58,7 +57,7 @@ const features = [
     },
     {
         title: "Integrated Thermal Water System",
-        description: "Maintains consistent, gentle water temperature for syringes and handpieces to minimize dentinal hypersensitivity during treatments and cleanings.",
+        description: "Warm water (40°C ±5°C) flows to your handpieces and 3-way syringe — eliminates the cold-water shock that makes patients flinch. Especially important for sensitivity cases and pediatric patients.",
         image: "/images/products/a3/Advanced features and components/04_Water_Heating.jpg",
         bullets: [
             "Maximum Comfort",
@@ -67,7 +66,7 @@ const features = [
     },
     {
         title: "Ergonomic RS06 Provider Stool",
-        description: "Engineered to prevent musculoskeletal disorders. Features 8-way adjustability and a 5° forward-tilt mechanism that maintains neutral lumbar lordosis during lengthy procedures.",
+        description: "The #1 cause of disability in dentistry is back and neck problems. The RS06 stool fights this with 8-way adjustability, a 5° forward tilt that maintains your natural spine curve, and antibacterial foam that won't flatten after years of use.",
         image: "/images/products/a3/Advanced features and components/Dynamic_Comfort_Stool.jpg",
         bullets: [
             "Eight-way Adjustability",
@@ -77,7 +76,7 @@ const features = [
     },
     {
         title: "One-Key Smart Drainage System",
-        description: "Single-button activation automatically raises the chair and triggers a comprehensive 5-minute spittoon and tubing flushing cycle, streamlining post-operative room turnover.",
+        description: "Press one button. The chair rises to its highest position and runs a 5-minute automated flushing cycle through the spittoon and all tubing. End-of-day cleaning goes from 10 minutes to 1 button press.",
         image: "/images/products/a3/Advanced features and components/08_Smart_Drainage.jpg",
         bullets: [
             "One-Key Smart Drainage",
@@ -118,35 +117,31 @@ export default function A3FeatureGrid() {
     );
 }
 
-function FeatureRow({ feature, isReversed }: { feature: any, isReversed: boolean }) {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start 80%", "end 20%"]
-    });
+type Feature = {
+    title: string;
+    description: string;
+    image: string;
+    bullets: string[];
+};
 
-    const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-    const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-
+function FeatureRow({ feature, isReversed }: { feature: Feature, isReversed: boolean }) {
     return (
         <motion.div
-            ref={containerRef}
-            style={{ opacity }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-16 items-center`}
         >
-            {/* Image Container with Parallax */}
-            <div className="w-full lg:w-1/2 relative aspect-[4/3] sm:aspect-video md:aspect-auto md:h-[500px] rounded-3xl overflow-hidden shadow-2xl bg-[#EBEBEB] border border-gray-100">
-                <motion.div className="absolute inset-0 w-full h-[120%]" style={{ y }}>
-                    <Image
-                        src={feature.image}
-                        alt={feature.title}
-                        fill
-                        className="object-contain p-6 sm:p-10 scale-110"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                </motion.div>
-                {/* Subtle gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none" />
+            {/* Static image — no border, no background, no parallax */}
+            <div className="w-full lg:w-1/2 relative aspect-[4/3] md:aspect-auto md:h-[500px]">
+                <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                />
             </div>
 
             {/* Text Content */}
@@ -165,7 +160,7 @@ function FeatureRow({ feature, isReversed }: { feature: any, isReversed: boolean
                     </p>
 
                     <ul className="space-y-4">
-                        {feature.bullets.map((bullet: string, i: number) => (
+                        {feature.bullets.map((bullet, i) => (
                             <li key={i} className="flex items-center text-gray-700">
                                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mr-4">
                                     <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">

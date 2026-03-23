@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── INVENTORY ARCHITECTURE ───────────────────────────────────────
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique // e.g., "Dental Chairs", "Imaging", "Endodontics"
+  slug        String    @unique // e.g., "dental-chairs"
+  description String?
+  products    Product[]
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Product {
+  id          String    @id @default(cuid())
+  name        String    // e.g., "Roson DXA3"
+  slug        String    @unique // e.g., "roson-dxa3"
+  tagline     String    // e.g., "The Ultimate Workhorse."
+  description String    @db.Text
+  image       String    // URL to your cloud storage (e.g., AWS S3 or Vercel Blob)
+  isFeatured  Boolean   @default(false) // Toggle to push to the top of the grid
+  
+  // Relationships
+  categoryId  String
+  category    Category  @relation(fields: [categoryId], references: [id])
+  features    Feature[]
+  
+  // Flexible Specs
+  // Since a microscope has different specs than a dental chair, a JSON column 
+  // allows us to store arbitrary key-value pairs without breaking the schema.
+  specs       Json      // e.g., { "Power Supply": "220V", "Warranty": "2 Years" }
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Feature {
+  id          String    @id @default(cuid())
+  icon        String    // Emoji or SVG string (e.g., "💺" or "<svg>...")
+  title       String    // e.g., "Synchronized Movement"
+  desc        String    @db.Text
+  
+  // Tied directly to a specific product
+  productId   String
+  product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+// ─── CRM & LEAD CAPTURE ───────────────────────────────────────────
+
+model Lead {
+  id          String    @id @default(cuid())
+  firstName   String
+  lastName    String
+  email       String
+  phone       String
+  clinicName  String?   // Optional field from our form
+  interest    String    // What they selected in the dropdown
+  message     String    @db.Text
+  
+  status      LeadStatus @default(NEW)
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  DEMO_SCHEDULED
+  CLOSED_WON
+  CLOSED_LOST
+}

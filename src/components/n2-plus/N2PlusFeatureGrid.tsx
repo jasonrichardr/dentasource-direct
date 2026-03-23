@@ -1,105 +1,70 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 
 const features = [
     {
-        title: "Premium LED Oral Light",
-        description: "Features double mode control with digital illumination and color temperature adjustments. Includes infrared non-inductive control, premium Philips lamp beads, and a condition breathing lamp.",
+        title: "8-Tooth Smile Oral Light",
+        description: "Philips LED array with double lighting mode and infrared on/off. Wave your hand to switch modes — zero physical contact between patients.",
         image: "/images/products/n2-plus/Advanced features and components/01_Oral_Light.jpg",
-        bullets: [
-            "Digital Illumination",
-            "Infrared Non-inductive Control",
-            "Philips Lamp Beads",
-            "Condition Breathing Lamp"
-        ]
+        bullets: ["Philips LEDs", "Double Mode", "Infrared On/Off"],
     },
     {
-        title: "Wide-Surface Dentist Table",
-        description: "Expansive 650x300mm silicone-padded work surface. Features an integral handle and a swiveling 5-position instrument holder pre-positioned for scaler or electric motor integration.",
+        title: "Wide Dentist Table (650\u00d7300mm)",
+        description: "Five handpiece holder positions keep every instrument organized and within reach. The widest standard table in the classic N-series.",
         image: "/images/products/n2-plus/Advanced features and components/02_Dentist_Table.jpg",
-        bullets: [
-            "650x300mm Surface Area",
-            "Swiveling Instrument Holder",
-            "Cleanable Protective Pad",
-            "Integral Positioning Handle"
-        ]
+        bullets: ["650\u00d7300mm", "5-Position Holder"],
     },
     {
-        title: "180° Rotatable Ceramic Spittoon",
-        description: "Provides expanded workspace for the assistant. The highly durable ceramic bowl rotates 180 degrees for effortless cleaning and features programmable cup filling and bowl rinsing presets.",
+        title: "180\u00b0 Rotatable Ceramic Spittoon",
+        description: "Ceramic is more hygienic and durable than plastic. Rotates 180\u00b0 for easy patient access. Programmable cup filler and spittoon rinsing.",
         image: "/images/products/n2-plus/Advanced features and components/03_Spittoon.jpg",
-        bullets: [
-            "180° Rotation Capability",
-            "Programmable Rinsing",
-            "Warm Water Cup Fill",
-            "Integrated Pure Water Supply"
-        ]
+        bullets: ["Ceramic Bowl", "180\u00b0 Rotation", "Programmable"],
     },
     {
-        title: "Detachable Suction Filter",
-        description: "An intelligently redesigned suction filter stops bacterial accumulation via a specialized internal filter net. Designed for rapid removal and effortless daily maintenance.",
-        image: "/images/products/n2-plus/Advanced features and components/04_Suction_Filter.jpg",
-        bullets: [
-            "Prevents Bacterial Accumulation",
-            "High-Flow Filter Net",
-            "Effortless Maintenance",
-            "Detachable Design"
-        ]
-    },
-    {
-        title: "Multifunctional Tissue Box",
-        description: "A 5-in-1 integrated console with dual-layer storage for supreme organization. Features eco-friendly high-durability materials, impact-resistant edges, and an innovative slide-mouth dispensing design.",
+        title: "5-in-1 Multifunctional Tissue Box",
+        description: "Built-in dual-layer storage for enhanced organization. Exclusive to N2+ in the N-series standard config — other models don\u2019t include this.",
         image: "/images/products/n2-plus/Advanced features and components/05_Tissue_Box.jpg",
-        bullets: [
-            "Dual-Layer Storage",
-            "Eco-Friendly Construction",
-            "Impact-Resistant Edging",
-            "Innovative Slide-Mouth Dispenser"
-        ]
+        bullets: ["Dual-Layer", "N2+ Exclusive", "Built-In"],
     },
     {
-        title: "Independent Disinfectant Water Supply",
-        description: "Maintains optimal asepsis through an isolated, dedicated disinfectant water system, ensuring clean and safe operation throughout lengthy clinical procedures.",
+        title: "Dual Pure Water Bottles + Warm Water",
+        description: "Two 1L pure water bottles mean fewer mid-session interruptions. Constant temperature warm water (40\u00b0C \u00b15\u00b0C) for patient comfort.",
         image: "/images/products/n2-plus/Advanced features and components/06_Water_Supply.jpg",
-        bullets: [
-            "Dedicated Disinfectant Supply",
-            "Guaranteed Clean Operation",
-            "Simplified Refilling"
-        ]
+        bullets: ["2\u00d7 1L Bottles", "Warm Water", "40\u00b0C \u00b15\u00b0C"],
     },
     {
-        title: "Assistant Control Center",
-        description: "Features a wide side table and flexible articulation for convenient positioning. The comprehensive control panel oversees chair movements, includes a 3-way warm water syringe, and is pre-positioned for a curing light.",
+        title: "Built-in LED X-Ray Viewer",
+        description: "Instant diagnostic reference right on the dentist element. LED backlit for clear visibility — no separate viewer needed.",
+        image: "/images/products/n2-plus/Advanced features and components/04_Suction_Filter.jpg",
+        bullets: ["LED Backlit", "Built-In", "Instant Reference"],
+    },
+    {
+        title: "Complete Assistant Module",
+        description: "Control panel, 3-way warm water syringe, and curing light pre-position. Everything for true four-hand dentistry.",
         image: "/images/products/n2-plus/Advanced features and components/07_Assistant_Table.jpg",
-        bullets: [
-            "Comprehensive Chair Controls",
-            "3-Way Warm Water Syringe",
-            "Flexible Positional Articulation",
-            "Pre-Positioned Curing Light Mount"
-        ]
-    }
+        bullets: ["Control Panel", "Warm Syringe", "Curing Light Position"],
+    },
 ];
 
 export default function N2PlusFeatureGrid() {
     return (
-        <section className="bg-zinc-50 py-24 sm:py-32 overflow-hidden">
+        <section className="py-16 lg:py-24 bg-zinc-50 overflow-hidden">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center mb-16 lg:mb-20">
-                    <h2 className="text-base font-semibold leading-7 text-blue-600 uppercase tracking-widest">
-                        Classic Reliability
-                    </h2>
-                    <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-5xl">
+                <div className="mx-auto max-w-3xl text-center mb-16 lg:mb-24">
+                    <span className="text-blue-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
+                        Clinical Innovation
+                    </span>
+                    <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
                         Advanced Components.
-                    </p>
+                    </h2>
                     <p className="mt-6 text-base sm:text-lg leading-8 text-gray-600">
                         The N2+ integrates robust, high-performance hardware engineered for durability, maximizing clinical efficiency without compromising patient comfort.
                     </p>
                 </div>
 
-                <div className="space-y-16 lg:space-y-32">
+                <div className="space-y-24 lg:space-y-32">
                     {features.map((feature, index) => (
                         <FeatureRow
                             key={feature.title}
@@ -113,35 +78,31 @@ export default function N2PlusFeatureGrid() {
     );
 }
 
-function FeatureRow({ feature, isReversed }: { feature: any, isReversed: boolean }) {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start 80%", "end 20%"]
-    });
+type Feature = {
+    title: string;
+    description: string;
+    image: string;
+    bullets: string[];
+};
 
-    const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-    const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-
+function FeatureRow({ feature, isReversed }: { feature: Feature; isReversed: boolean }) {
     return (
         <motion.div
-            ref={containerRef}
-            style={{ opacity }}
-            className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-24 items-center`}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} gap-12 lg:gap-16 items-center`}
         >
-            {/* Image Container with Parallax */}
-            <div className="w-full lg:w-1/2 relative aspect-[4/3] sm:aspect-video md:aspect-auto md:h-[500px] rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl bg-[#EBEBEB] border border-gray-100">
-                <motion.div className="absolute inset-0 w-full h-[120%]" style={{ y }}>
-                    <Image
-                        src={feature.image}
-                        alt={feature.title}
-                        fill
-                        className="object-contain p-6 sm:p-10 scale-110"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                </motion.div>
-                {/* Subtle gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none" />
+            {/* Static image — no border, no background, no parallax */}
+            <div className="w-full lg:w-1/2 relative aspect-[4/3] md:aspect-auto md:h-[500px]">
+                <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                />
             </div>
 
             {/* Text Content */}
@@ -152,15 +113,15 @@ function FeatureRow({ feature, isReversed }: { feature: any, isReversed: boolean
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                 >
-                    <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 lg:mb-6 leading-tight">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 leading-tight">
                         {feature.title}
                     </h3>
-                    <p className="text-sm sm:text-lg text-gray-600 mb-6 lg:mb-8 leading-relaxed">
+                    <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
                         {feature.description}
                     </p>
 
                     <ul className="space-y-4">
-                        {feature.bullets.map((bullet: string, i: number) => (
+                        {feature.bullets.map((bullet, i) => (
                             <li key={i} className="flex items-center text-gray-700">
                                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mr-4">
                                     <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">

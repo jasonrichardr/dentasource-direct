@@ -1,112 +1,127 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+const stats = [
+    { value: "140", unit: "sqm", label: "Showroom" },
+    { value: "ISO 13485", unit: "", label: "Certified" },
+    { value: "5-Year", unit: "", label: "Motor Warranty" },
+    { value: "120+", unit: "", label: "Countries Trust ROSON" },
+];
+
 export default function HeroVisual() {
-    const trustItems = [
-        "White Glove Installation",
-        "Hands-On Training Included",
-        "2-Year Warranty",
-        "Free Ocular Visitation",
-        "Zero Down Payment Options",
-        "After-Sales Service",
-        "Open Mon–Sun 9AM–8PM",
-        "Philippine-Based Support",
-    ];
-
     return (
-        <section className="relative w-full overflow-hidden bg-[#1E3A2E] text-white selection:bg-white/20">
-            {/* Background Styling (Gradient mimicking premium green theme) */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#182e24] via-[#1E3A2E] to-[#12241c] z-0" />
+        <section className="relative w-full min-h-[100svh] overflow-hidden bg-zinc-950">
 
-            {/* Hero Content */}
-            <div className="relative z-10 pt-24 pb-16 md:pt-32 md:pb-24 max-w-7xl mx-auto px-6 flex flex-col items-center text-center">
+            {/* Background chair image — cinematic, full-bleed */}
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="/images/hero/dxa3-hero-original.jpg"
+                    alt="ROSON A3 Flagship Dental Chair in DentaSource Direct Showroom"
+                    fill
+                    className="object-cover object-[60%_center] sm:object-center opacity-40 sm:opacity-50 scale-105"
+                    priority
+                />
+                {/* Layered gradients for depth */}
+                <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-zinc-950/60" />
+                {/* Subtle green tint overlay for brand identity */}
+                <div className="absolute inset-0 bg-[#1E3A2E]/20 mix-blend-overlay" />
+            </div>
 
-                {/* Subtle top trust badge */}
+            {/* Main content */}
+            <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-28 sm:pt-32 md:pt-40 pb-16 sm:pb-20 md:pb-28 min-h-[100svh] flex flex-col justify-between">
+
+                {/* Top: Badge + Headline */}
+                <div className="max-w-3xl">
+
+                    {/* Showroom badge */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        className="mb-6 sm:mb-8"
+                    >
+                        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/[0.06] border border-white/10 text-[11px] sm:text-xs font-semibold tracking-widest uppercase text-white/80">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            The Philippines&apos; Largest Dental Equipment Showroom
+                        </span>
+                    </motion.div>
+
+                    {/* Main headline */}
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                        className="text-[2.75rem] leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-5 sm:mb-6"
+                    >
+                        Your Growth Partner{" "}
+                        <br className="hidden sm:block" />
+                        <span className="text-[#F26522]">in Dentistry.</span>
+                    </motion.h1>
+
+                    {/* Subtitle */}
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="text-base sm:text-lg md:text-xl text-white/60 max-w-xl leading-relaxed mb-8 sm:mb-10"
+                    >
+                        Premium dental chairs and equipment with white-glove installation, hands-on training, and the personalized support your practice deserves.
+                    </motion.p>
+
+                    {/* CTAs */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.6 }}
+                        className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+                    >
+                        <Link
+                            href="/contact"
+                            className="inline-flex items-center justify-center px-7 py-3.5 bg-[#F26522] text-white rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-[#d95517] hover:scale-[1.02] shadow-[0_0_40px_rgba(242,101,34,0.25)]"
+                        >
+                            Book a Showroom Visit
+                        </Link>
+                        <Link
+                            href="/dentalchairs"
+                            className="inline-flex items-center justify-center px-7 py-3.5 bg-white/[0.06] border border-white/15 text-white rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-white/10"
+                        >
+                            Explore Dental Chairs
+                        </Link>
+                    </motion.div>
+                </div>
+
+                {/* Bottom: Stats strip */}
                 <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="mb-8"
-                >
-                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-white/90">
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                        Trusted Dental Equipment Partner in the Philippines
-                    </span>
-                </motion.div>
-
-                {/* Main Typography */}
-                <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-5xl md:text-7xl lg:text-8xl font-serif tracking-tight mb-8"
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                    className="mt-12 sm:mt-0"
                 >
-                    Your <span className="text-[#F26522] italic pr-2">Growth Partner</span> <br className="hidden md:block" /> in Dentistry.
-                </motion.h1>
-
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 0.5 }}
-                    className="text-lg md:text-xl text-white/70 font-light max-w-2xl mb-12 leading-relaxed"
-                >
-                    Premium dental chairs and equipment with white glove installation, hands-on training, and the personalized support your practice deserves.
-                </motion.p>
-
-                {/* CTAs */}
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.7 }}
-                    className="flex flex-col sm:flex-row gap-4 sm:gap-6"
-                >
-                    <Link
-                        href="/contact"
-                        className="px-8 py-4 bg-[#F26522] text-white rounded-full font-medium transition-all duration-300 hover:bg-[#d95517] hover:scale-105 shadow-[0_0_30px_rgba(242,101,34,0.3)]"
-                    >
-                        Book a Showroom Experience
-                    </Link>
-                    <Link
-                        href="/products"
-                        className="px-8 py-4 bg-transparent border border-white/20 text-white rounded-full font-medium transition-all duration-300 hover:bg-white/10"
-                    >
-                        Explore Products
-                    </Link>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 sm:divide-x sm:divide-white/10 border-t border-white/10 pt-6 sm:pt-8">
+                        {stats.map((stat) => (
+                            <div key={stat.label} className="sm:px-6 first:sm:pl-0 last:sm:pr-0">
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+                                        {stat.value}
+                                    </span>
+                                    {stat.unit && (
+                                        <span className="text-sm sm:text-base font-medium text-white/40">
+                                            {stat.unit}
+                                        </span>
+                                    )}
+                                </div>
+                                <span className="text-[11px] sm:text-xs font-medium text-white/40 uppercase tracking-wider mt-1 block">
+                                    {stat.label}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
                 </motion.div>
             </div>
-
-            {/* Marquee Trust Bar */}
-            <div className="relative z-10 w-full bg-black/40 border-y border-white/10 py-4 overflow-hidden mt-8">
-                <div className="flex w-max animate-marquee items-center gap-12">
-                    {/* First set */}
-                    {trustItems.map((item, i) => (
-                        <div key={`trust-1-${i}`} className="flex items-center gap-3 text-white/60 text-sm font-medium whitespace-nowrap">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#00c2ff]/60" />
-                            {item}
-                        </div>
-                    ))}
-                    {/* Duplicate set for seamless infinite loop */}
-                    {trustItems.map((item, i) => (
-                        <div key={`trust-2-${i}`} className="flex items-center gap-3 text-white/60 text-sm font-medium whitespace-nowrap">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#00c2ff]/60" />
-                            {item}
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            <style dangerouslySetInnerHTML={{
-                __html: `
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marquee 40s linear infinite;
-        }
-      `}} />
         </section>
     );
 }

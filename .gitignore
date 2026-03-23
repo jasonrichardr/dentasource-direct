@@ -46,3 +46,5 @@ scraping_script.py
 copy_images.py
 rosons_chairs_data/
 *.log
+
+/src/generated/prisma

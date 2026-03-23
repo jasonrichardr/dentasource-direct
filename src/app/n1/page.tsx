@@ -1,25 +1,29 @@
-import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
+import N1HeroVisual from "@/components/n1/N1HeroVisual";
+import N1FeatureGrid from "@/components/n1/N1FeatureGrid";
+import N1SimplicitySection from "@/components/n1/N1SimplicitySection";
+import N1ErgonomicsSection from "@/components/n1/N1ErgonomicsSection";
+import N1TechSpecs from "@/components/n1/N1TechSpecs";
+import N1ProductConfigurator from "@/components/n1/N1ProductConfigurator";
+import N1VisualTour from "@/components/n1/N1VisualTour";
+import N1WhatsInTheBox from "@/components/n1/N1WhatsInTheBox";
+import N1WarrantyTable from "@/components/n1/N1WarrantyTable";
 
-// Dynamic imports for performance
-const N1HeroVisual = dynamic(() => import('@/components/n1/N1HeroVisual'));
-const N1FeatureGrid = dynamic(() => import('@/components/n1/N1FeatureGrid'));
-const N1ProductConfigurator = dynamic(() => import('@/components/n1/N1ProductConfigurator'));
-const N1VisualTour = dynamic(() => import('@/components/n1/N1VisualTour'));
-const N1WarrantyTable = dynamic(() => import('@/components/n1/N1WarrantyTable'));
-
-export const metadata: Metadata = {
-    title: 'Roson N1 Dental Chair | Classic Ergonomic Design',
-    description: 'Explore the Roson Classic Model N1 Dental Chair. Engineered for comfort, efficiency, and reliability with an array of ergonomic features and configurations.',
+export const metadata = {
+    title: "Roson Classic Model N1 | DentaSource Direct",
+    description: "The Roson Classic Model N1 — the simplest setup in the lineup. Proven N-series platform, one starter system, zero complexity.",
 };
 
 export default function N1Page() {
     return (
-        <main className="min-h-screen bg-zinc-950 text-white font-[family-name:var(--font-geist-sans)] selection:bg-sky-500/30 selection:text-sky-200 overflow-x-hidden w-full">
+        <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
             <N1HeroVisual />
-            <N1ProductConfigurator />
             <N1FeatureGrid />
+            <N1SimplicitySection />
+            <N1ErgonomicsSection />
+            <N1TechSpecs />
+            <N1ProductConfigurator />
             <N1VisualTour />
+            <N1WhatsInTheBox />
             <N1WarrantyTable />
         </main>
     );

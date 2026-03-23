@@ -1,98 +1,61 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { X } from "lucide-react";
 
-const IMAGES = [
-    { src: "/images/products/n1/N1 Dental Chair/N1_1.jpg", alt: "N1 Dental Chair View 1" },
-    { src: "/images/products/n1/N1 Dental Chair/N1_2.jpg", alt: "N1 Dental Chair View 2" },
-    { src: "/images/products/n1/N1 Dental Chair/N1_3.jpg", alt: "N1 Dental Chair View 3" },
-    { src: "/images/products/n1/N1 Dental Chair/N1_4.jpg", alt: "N1 Dental Chair View 4" },
-    { src: "/images/products/n1/N1 Dental Chair/N1_5.jpg", alt: "N1 Dental Chair View 5" },
-    { src: "/images/products/n1/N1 Dental Chair/N1_6.jpg", alt: "N1 Dental Chair View 6" },
+const ANGLES = [
+    { src: "/images/products/n1/N1 Dental Chair/N1_1.jpg", title: "N1 Overview" },
+    { src: "/images/products/n1/N1 Dental Chair/N1_2.jpg", title: "Front Profile" },
+    { src: "/images/products/n1/N1 Dental Chair/N1_3.jpg", title: "Side Perspective" },
+    { src: "/images/products/n1/N1 Dental Chair/N1_4.jpg", title: "Isometric View" },
+    { src: "/images/products/n1/N1 Dental Chair/N1_5.jpg", title: "Detail View" },
+    { src: "/images/products/n1/N1 Dental Chair/N1_6.jpg", title: "Rear Perspective" },
 ];
 
 export default function N1VisualTour() {
-    const [lightboxOpen, setLightboxOpen] = useState(false);
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    const openLightbox = (index: number) => {
-        setCurrentIndex(index);
-        setLightboxOpen(true);
-    };
-
-    const closeLightbox = () => {
-        setLightboxOpen(false);
-    };
-
-    useEffect(() => {
-        if (lightboxOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [lightboxOpen]);
-
-    const nextImage = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        setCurrentIndex((prev) => (prev + 1) % IMAGES.length);
-    };
-
-    const prevImage = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        setCurrentIndex((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
-    };
+    const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
     return (
-        <section className="py-24 bg-zinc-900 border-t border-zinc-800">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-3xl md:text-5xl font-bold text-white mb-6"
-                    >
-                        Visual Gallery
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-lg text-zinc-400"
-                    >
-                        Explore the structural design and aesthetic details of the Roson N1 from every angle.
-                    </motion.p>
+        <section className="py-16 lg:py-24 bg-[#0A0A0A]">
+            <div className="container mx-auto px-6 max-w-7xl">
+                <div className="text-center mb-12 lg:mb-16">
+                    <span className="text-blue-500 font-bold tracking-widest text-sm uppercase mb-3 block">
+                        Visual Tour
+                    </span>
+                    <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+                        Discover the N1
+                    </h2>
+                    <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                        Precision engineering meets elegant design in every detail of the Classic Model N1.
+                    </p>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
-                    {IMAGES.map((img, index) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {ANGLES.map((angle, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            onClick={() => openLightbox(index)}
-                            className="relative aspect-square sm:aspect-video rounded-2xl overflow-hidden group cursor-pointer border border-zinc-800"
+                            transition={{ delay: index * 0.1, duration: 0.6 }}
+                            onClick={() => setLightboxImage(angle.src)}
+                            className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer bg-zinc-800"
                         >
                             <Image
-                                src={img.src}
-                                alt={img.alt}
+                                src={angle.src}
+                                alt={angle.title}
                                 fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             />
-                            <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div className="bg-white/10 backdrop-blur-md p-3 rounded-full text-white">
-                                    <Maximize2 className="w-6 h-6" />
-                                </div>
+                            {/* Gradient Overlay for Text */}
+                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+                            <div className="absolute bottom-6 left-6 right-6">
+                                <h3 className="text-xl font-bold text-white tracking-wide">
+                                    {angle.title}
+                                </h3>
                             </div>
                         </motion.div>
                     ))}
@@ -101,58 +64,36 @@ export default function N1VisualTour() {
 
             {/* Lightbox */}
             <AnimatePresence>
-                {lightboxOpen && (
+                {lightboxImage && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
-                        onClick={closeLightbox}
+                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 md:p-12 cursor-pointer"
+                        onClick={() => setLightboxImage(null)}
                     >
                         <button
-                            className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors z-50 p-2"
-                            onClick={closeLightbox}
+                            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50"
+                            onClick={() => setLightboxImage(null)}
                         >
-                            <X className="w-8 h-8" />
+                            <X className="w-10 h-10" />
                         </button>
-
-                        <div className="relative w-full h-full flex items-center justify-center px-4 md:px-20">
-                            <button
-                                className="absolute left-4 md:left-8 text-white/50 hover:text-white transition-colors p-4 z-50 bg-black/50 hover:bg-black/80 rounded-full"
-                                onClick={prevImage}
-                            >
-                                <ChevronLeft className="w-8 h-8 md:w-12 md:h-12" />
-                            </button>
-
-                            <motion.div
-                                key={currentIndex}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                className="relative w-full max-w-6xl aspect-video md:aspect-[21/9] lg:aspect-video"
-                            >
-                                <Image
-                                    src={IMAGES[currentIndex].src}
-                                    alt={IMAGES[currentIndex].alt}
-                                    fill
-                                    className="object-contain"
-                                    priority
-                                />
-                            </motion.div>
-
-                            <button
-                                className="absolute right-4 md:right-8 text-white/50 hover:text-white transition-colors p-4 z-50 bg-black/50 hover:bg-black/80 rounded-full"
-                                onClick={nextImage}
-                            >
-                                <ChevronRight className="w-8 h-8 md:w-12 md:h-12" />
-                            </button>
-                        </div>
-
-                        {/* Status/Counter */}
-                        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 tracking-widest text-sm font-medium bg-black/50 px-4 py-2 rounded-full">
-                            {currentIndex + 1} / {IMAGES.length}
-                        </div>
+                        <motion.div
+                            initial={{ scale: 0.95, y: 20 }}
+                            animate={{ scale: 1, y: 0 }}
+                            exit={{ scale: 0.95, opacity: 0 }}
+                            onClick={(e) => e.stopPropagation()}
+                            className="relative w-full max-w-5xl h-[85vh] rounded-lg overflow-hidden flex items-center justify-center pointer-events-none"
+                        >
+                            <Image
+                                src={lightboxImage}
+                                alt="View angle"
+                                fill
+                                className="object-contain"
+                                quality={100}
+                                priority
+                            />
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>

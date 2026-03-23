@@ -6,11 +6,11 @@ export default function S9WarrantyTable() {
                     <span className="text-blue-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
                         Our Commitment
                     </span>
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+                    <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
                         Comprehensive Warranties
                     </h2>
                     <p className="text-base sm:text-lg text-gray-600">
-                        The Affordable Luxury Model S9 is backed by comprehensive warranties, ensuring long-term peace of mind and reliability.
+                        The Affordable Luxury Model S9 is backed by industry-leading warranties for your peace of mind.
                     </p>
                 </div>
 
@@ -28,10 +28,9 @@ export default function S9WarrantyTable() {
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {[
-                                { item: "Water & Air Pipelines", duration: "5-year Warranty" },
-                                { item: "Breathable Seamless Microfiber Leather", duration: "5-year Warranty" },
-                                { item: "TIMOTION Motor", duration: "5-year Warranty" },
-                                { item: "RoLight Dental Light", duration: "3-year Warranty" },
+                                { item: "Whisper-Silent Motor", duration: "5-year Warranty" },
+                                { item: "Service Warranty", duration: "2-year Coverage" },
+                                { item: "Parts Warranty", duration: "1-year Coverage" },
                             ].map((row, index) => (
                                 <tr key={index} className="hover:bg-zinc-50/50 transition-colors">
                                     <td className="py-4 px-4 sm:py-5 sm:px-8 text-sm sm:text-base font-medium text-gray-900">

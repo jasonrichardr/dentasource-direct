@@ -12,6 +12,20 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/a3-dental-chair',
+        destination: '/a3',
+        permanent: true,
+      },
+      {
+        source: '/products/roson-s9',
+        destination: '/s9',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

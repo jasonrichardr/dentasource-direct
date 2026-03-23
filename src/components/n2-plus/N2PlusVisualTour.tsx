@@ -6,9 +6,9 @@ import { useState } from "react";
 import { X } from "lucide-react";
 
 const ANGLES = [
-    { src: "/images/products/n2-plus/N2+ Dental Chair/N2_Angle.jpg", title: "N2+ Isometric Perspective" },
-    { src: "/images/products/n2-plus/N2+ Dental Chair/N2_Front.png", title: "Front Profile & Ergonomics" },
-    { src: "/images/products/n2-plus/N2+ Dental Chair/N2_Side.jpg", title: "Sleek Side Profile" },
+    { src: "/images/products/n2-plus/N2+ Dental Chair/N2_Front.png", title: "Front Profile" },
+    { src: "/images/products/n2-plus/N2+ Dental Chair/N2_Side.jpg", title: "Side Profile" },
+    { src: "/images/products/n2-plus/N2+ Dental Chair/N2_Angle.jpg", title: "Isometric Perspective" },
     { src: "/images/products/n2-plus/N2+ Dental Chair/assistanttable.jpg", title: "Assistant Control Center" },
     { src: "/images/products/n2-plus/N2+ Dental Chair/filter.jpg", title: "Integrated Suction Filter" },
 ];
@@ -27,7 +27,7 @@ export default function N2PlusVisualTour() {
                         Discover the N2+
                     </h2>
                     <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-                        A closer look at the robust engineering and refined design that makes the N2+ a staple in modern dental clinics.
+                        Precision engineering meets elegant design in every detail of the Classic Model N2+.
                     </p>
                 </div>
 

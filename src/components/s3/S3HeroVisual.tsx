@@ -6,21 +6,21 @@ import { motion } from "framer-motion";
 export default function S3HeroVisual() {
     return (
         <section className="relative w-full h-[90vh] md:h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-zinc-900">
-            {/* Background Image */}
+            {/* Full-bleed background image */}
             <div className="absolute inset-0 z-0">
                 <Image
                     src="/images/products/s3/S3 Dental Chair/S3_1.jpg"
-                    alt="Roson S3 Dental Chair"
+                    alt="Roson Hot-Selling Model S3"
                     fill
-                    className="object-cover object-center opacity-70"
+                    className="object-cover object-[70%_center] sm:object-center opacity-80"
                     priority
                 />
-                {/* Gradient Overlay for Text Readability */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent"></div>
-                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-zinc-900 to-transparent"></div>
+                {/* Gradient overlays for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-zinc-900 to-transparent" />
             </div>
 
-            {/* Content */}
+            {/* Content — left aligned */}
             <div className="container relative z-10 mx-auto px-6 md:px-12 flex flex-col items-start justify-center h-full">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -29,37 +29,19 @@ export default function S3HeroVisual() {
                     className="max-w-2xl"
                 >
                     <span className="text-white/80 font-semibold tracking-[0.2em] text-xs sm:text-sm md:text-base uppercase mb-3 block">
-                        Hot-Selling Model
+                        Best Seller
                     </span>
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4 lg:mb-6">
-                        ROSON Classic Model <br />
-                        <span className="text-blue-400">S3</span>
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+                        ROSON Hot-Selling <br />
+                        <span className="text-blue-400">Model S3</span>
                     </h1>
-                    <p className="text-sm sm:text-lg md:text-xl text-gray-100 mb-6 lg:mb-8 max-w-xl leading-relaxed font-medium">
-                        Premium Ergonomics. Medical-Grade Control. Exceptional Durability.
+                    <p className="text-base sm:text-lg md:text-xl text-gray-100 max-w-xl leading-relaxed font-medium">
+                        The Brightest Light. The Bestseller.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-2">
-                        <motion.a
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            href="#configure"
-                            className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 sm:py-4 rounded-full font-medium transition-colors text-center text-sm md:text-base shadow-[0_0_20px_rgba(59,130,246,0.3)]"
-                        >
-                            Configure S3
-                        </motion.a>
-                        <motion.a
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            href="#features"
-                            className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-8 py-4 sm:py-4 rounded-full font-medium transition-colors text-center text-sm md:text-base"
-                        >
-                            Explore Innovations
-                        </motion.a>
-                    </div>
                 </motion.div>
             </div>
 
-            {/* Scroll Indicator */}
+            {/* Scroll indicator */}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

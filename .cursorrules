@@ -1,0 +1,20 @@
+# System Rules & AI Directives: DentaSource Direct Website
+
+## 1. Mobile-First Optimization Target (CRITICAL)
+- **Primary Device**: iPhone 14 Pro
+- **Rule**: ALWAYS optimize all layouts, fonts, animations, spacing, and rendering specifically for mobile first, targeting the iPhone 14 Pro aspect ratio and rendering engine (iOS WebKit) as the highest priority user base for the target audience.
+- **Why**: The absolute vast majority of dentists, clinic owners, and medical professionals viewing the DentaSource Direct landing page will be checking it quickly on their iPhones. If an interface/UI/animation looks striking but it breaks, overlaps, or demands horizontal scrolling on an iPhone 14 Pro it is a FAILURE.
+
+## 2. iOS WebKit Rendering Quirks
+- Since the primary audience is on modern iPhones, always be wary of Safari/WebKit engine rendering bugs:
+  - Do not let iOS `"Smart Dark Theme"` invert colors (use `color-scheme: light;`).
+  - Use `transform-gpu` to shift complex animations off the main thread to prevent flickering or "black box" rendering glitches.
+  - Implement `overflow-x: hidden` and `max-w-[100vw]` strictly to prevent horizontal swiping.
+
+## 3. Product Image Generation / Rendering
+- **Authenticity Rule:** Whenever the AI is requested to generate product images (e.g. realistic clinical photos, high-end 3D graphics) for the website, the AI must *always* ask the user to provide a real source image of their actual physical hardware (Roson chairs, MC-Ray machines, etc.) to use as a seed image.
+- **Why:** The AI should not create completely disconnected/fake dental equipment. Our marketing graphics must be authentic iterations of the *actual* products sold by DentaSource Direct.
+
+## 4. Educational & Terminology Coaching (User Request)
+- **Objective:** The user actively wants to learn professional software engineering, UI/UX design, and web development terminology while we build.
+- **Rule:** Whenever the user describes a technical concept, layout, or feature informally (e.g., "the top thing", "the cards", "make it legit"), the AI must politely and naturally introduce the correct industry term (e.g., "Navbar", "Bento Grid Layout", "Trust Badges / Social Proof") in the response. Briefly and simply explain what the term means so the user builds their mental vocabulary. Act as an encouraging senior developer.

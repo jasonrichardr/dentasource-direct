@@ -6,12 +6,11 @@ import { useState } from "react";
 import { X } from "lucide-react";
 
 const ANGLES = [
-    { src: "/images/products/a3s/A3S Dental Chair/3-9.jpg", title: "A3S Overview" },
+    { src: "/images/products/a3s/A3S Dental Chair/1-8.jpg", title: "A3S Overview" },
     { src: "/images/products/a3s/A3S Dental Chair/2-6.jpg", title: "Patient Perspective" },
+    { src: "/images/products/a3s/A3S Dental Chair/3-9.jpg", title: "Left Isometric" },
     { src: "/images/products/a3s/A3S Dental Chair/4-9.jpg", title: "Operator Access" },
     { src: "/images/products/a3s/A3S Dental Chair/5-8.jpg", title: "Rear Articulation" },
-    { src: "/images/products/a3s/Advanced features and components/Dynamic-Comfort.jpg", title: "Dynamic Comfort" },
-    { src: "/images/products/a3s/Advanced features and components/az-img.jpg", title: "Technical Specifications" },
 ];
 
 export default function A3SVisualTour() {
@@ -28,7 +27,7 @@ export default function A3SVisualTour() {
                         Discover the A3S
                     </h2>
                     <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-                        Explore every detail of the Roson Smart Model KLT-6220 A3S.
+                        Smart engineering meets elegant design in every detail of the Smart Model A3S.
                     </p>
                 </div>
 
