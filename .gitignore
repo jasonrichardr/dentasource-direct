@@ -48,3 +48,6 @@ rosons_chairs_data/
 *.log
 
 /src/generated/prisma
+
+# Local Netlify folder
+.netlify

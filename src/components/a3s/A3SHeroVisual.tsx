@@ -9,7 +9,7 @@ export default function A3SHeroVisual() {
             {/* Full-bleed background image */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/images/products/a3s/A3S Dental Chair/1-8.jpg"
+                    src="/images/products/sunlit/chair_a3s_teal_sunlight.png"
                     alt="Roson Smart Model A3S"
                     fill
                     className="object-cover object-[70%_center] sm:object-center opacity-80"

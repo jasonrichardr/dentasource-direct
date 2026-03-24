@@ -221,7 +221,7 @@ export const products = [
             'Warranty': '2 years (1st year parts + service, 2nd year service)',
             'Origin': 'Foshan Roson Medical, China',
         },
-        images: ['/images/products/sunlit/chair_s9_sunlight_1774298426579.png'],
+        images: ['/images/products/sunlit/chair_s9_sunlight_no_plants_1774303865259.png'],
         heroImage: '/images/products/s9/main.jpg',
         configuratorEnabled: true,
         configuratorOptions: {
@@ -358,6 +358,7 @@ export const products = [
             'Origin': 'Foshan Roson Medical, China',
         },
         images: ['/images/products/sunlit/chair_a3s_teal_sunlight.png'],
+        heroImage: '/images/products/sunlit/chair_a3s_teal_sunlight.png',
         configuratorEnabled: true,
         configuratorOptions: {
             colors: [
