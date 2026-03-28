@@ -33,6 +33,26 @@ export async function submitLead(formData) {
       },
     });
 
+    // Send email notification to the team
+    try {
+      await fetch('https://formsubmit.co/ajax/dentasourcedirect@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `New Lead: ${firstName} ${lastName}${interest ? ` — ${interest}` : ''}`,
+          Name: `${firstName} ${lastName}`,
+          Email: email,
+          Phone: phone,
+          Clinic: clinicName || 'Not provided',
+          Interest: interest,
+          Message: message || 'No message',
+        }),
+      });
+    } catch (emailError) {
+      // Don't fail the submission if email fails — lead is already saved in DB
+      console.error('Email notification failed:', emailError);
+    }
+
     // Revalidate the admin dashboard path if you build one later
     revalidatePath('/admin/leads');
 

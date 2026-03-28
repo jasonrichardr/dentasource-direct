@@ -24,6 +24,11 @@ const nextConfig = {
         destination: '/s9',
         permanent: true,
       },
+      {
+        source: '/dental-chairs',
+        destination: '/dentalchairs',
+        permanent: true,
+      },
     ];
   },
 };
