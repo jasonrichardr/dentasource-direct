@@ -10,6 +10,18 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'www.fsroson.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.pehpot.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.lionheartv.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'pda.com.ph',
+      },
     ],
   },
   async redirects() {

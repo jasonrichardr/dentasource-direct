@@ -1,5 +1,71 @@
 export const newsData = [
     {
+        id: "pda-2026-dr-ninal",
+        slug: "pda-2026-dr-ninal-empowering-filipino-dentists",
+        title: "PDA Under Dr. Niñal: How the Association Is Empowering Filipino Dentists in 2026",
+        date: "March 31, 2026",
+        image: "https://www.pehpot.com/wp-content/uploads/2026/03/Photo1-1-scaled.jpeg",
+        hideHeroImage: false,
+        abstract: "Under President Dr. Lucilo G. Niñal Jr., the PDA is driving major initiatives in 2026 — from the Ngiting Tagumpay free dental campaign with Haleon to a year-long Colgate partnership with Kathryn Bernardo, plus the 117th Annual Convention at SMX Pasay in May.",
+        content: `## A Year of Action Under Dr. Niñal
+
+The Philippine Dental Association turns 118 this year, and under the leadership of **Dr. Lucilo G. Niñal Jr.**, the 2025–2026 term has been anything but ceremonial. From launching nationwide free dental check-up campaigns to forging partnerships with Colgate-Palmolive and Haleon, Dr. Niñal's presidency has focused on a single theme: **"Together in Pursuit of Excellence."**
+
+![Dr. Niñal Presidential Photo](https://pda.com.ph/wp-content/uploads/2025/06/Screenshot-2025-06-02-at-9.54.17%E2%80%AFAM.png)
+
+**"True progress is not achieved in isolation but through unity — driven by shared purpose, passion, and professionalism."** — Dr. Lucilo G. Niñal Jr., PDA President
+
+Under his watch, PDA has moved beyond internal association work into highly visible public advocacy — partnering with consumer brands to reach Filipinos who have never visited a dentist. Instead of waiting for patients to come to clinics, PDA under Dr. Niñal is meeting communities where they are.
+
+## The Philippine Oral Health Challenge
+
+The numbers tell the story of why PDA's 2026 initiatives matter:
+
+**6 out of 10** Filipinos experience tooth sensitivity. **9 out of 10** Filipino children suffer from tooth decay. The dentist-to-population ratio stands at a staggering **1:52,000** — far below the WHO's ideal of 1:7,500. And only **11%** of Filipinos who need dentures actually wear them.
+
+## Ngiting Tagumpay: The Nationwide Campaign
+
+![Ngiting Tagumpay Launch](https://www.pehpot.com/wp-content/uploads/2026/03/Photo1-1-scaled.jpeg)
+
+Launched on **March 13, 2026** — just ahead of World Oral Health Day — **Ngiting Tagumpay** is a joint advocacy of PDA, PARDTI, and Haleon (makers of Sensodyne and Polident). The campaign delivers free dental consultations in major cities, oral health education outreach, **1,500 free dentures** for beneficiaries, and awareness through digital creators including **Macoy Dubs** and **Tuesday Vargas**.
+
+**"Many Filipinos tend to delay seeking dental care until symptoms become more difficult to manage. Through programs like Ngiting Tagumpay, we can reach more communities with reliable information while connecting them to proper dental care."** — Dr. Niñal
+
+This builds on PDA and Haleon's previous **"Oplan Balik Ngiti"** program, which provided denture assistance to **5,600 individuals** in prior years.
+
+## Colgate-PDA: Year-Long Free Dental Check-Ups
+
+![Colgate PDA Launch](https://www.lionheartv.net/wp-content/uploads/2026/02/Colgate-PDA-Kick-Off-National-Dental-Health-Month-with-Year-Lo-4.jpg)
+
+In February 2026, Colgate-Palmolive Philippines and PDA launched a massive initiative: **free dental check-ups for every Filipino who buys Colgate Maximum Cavity Protection.** Simply purchase any Colgate Maximum Cavity Protection product, scan the QR code on the pack, and book a free check-up at an accredited PDA clinic.
+
+This is part of Colgate Philippines' **100th anniversary** celebration, with a commitment to deliver **100 million oral health kits to Filipino children by 2035**. The campaign launched with **Kathryn Bernardo** as brand ambassador.
+
+The campaign addresses a deeply rooted cultural barrier: the Filipino **"Kaya pa" mindset** — the natural resiliency that leads people to endure pain and treat dental health as secondary until it becomes an emergency.
+
+**For dental clinics:** PDA-accredited clinics are the referral destinations for this campaign. If your clinic is registered, you get walk-in patients driven by a national advertising campaign — for free.
+
+## 117th PDA Annual Convention
+
+The biggest event on the Philippine dental calendar is coming: the **117th PDA Annual Convention & Scientific Sessions**, happening **May 11–15, 2026** at SMX Convention Center, Pasay City, with the theme **"PDA : Empowered."**
+
+The convention features world-class lectures, interactive workshops, an exhibition hall with equipment suppliers, networking with 15,000+ members, and CPD units for PRC compliance. Government dentists get a flat rate of ₱6,000. Register at 117reg.pda.com.ph.
+
+## PDA 2025-2026 Leadership
+
+Dr. Niñal leads a geographically distributed team: Executive VP Dr. Jocelyn Malang-Manabat, President-Elect Dr. Mariusse Chars R. Esquillo, and regional VPs covering Luzon North, Luzon South, Visayas, and Mindanao — reflecting PDA's reach across all 95 chapters.
+
+## What This Means for Philippine Dentistry
+
+PDA's 2026 initiatives share a common thread: **making dental care accessible to more Filipinos while empowering the dentists who provide it.** A PDA that drives more Filipinos to dental clinics creates more demand for everything those clinics need — chairs, instruments, imaging, sterilization, and consumables.
+
+## How to Get Involved
+
+**Join PDA** through your nearest local chapter (95 chapters nationwide). **Register for the 117th Convention** at SMX Pasay. **Get Colgate-accredited** to receive patient referrals. **Volunteer for Ngiting Tagumpay** to provide free consultations. And **follow PDA** on Facebook for updates.
+
+**Mabuhay ang PDA! Mabuhay ang Dentistang Pilipino!**`
+    },
+    {
         id: "roson-2025-year-end-summary",
         slug: "roson-2025-year-end-summary",
         title: "ROSON Medical 2025 Year-End Summary & Awards Mobilization Conference Successfully Held!",
