@@ -69,6 +69,7 @@ export default function PDAArticlePage() {
           display: 'block',
         }}
         scrolling="no"
+        sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation allow-downloads"
         title="PDA Under Dr. Niñal: How the Association Is Empowering Filipino Dentists in 2026"
       />
       </div>

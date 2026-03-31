@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <base target="_blank">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PDA Under Dr. Niñal: How the Association Is Empowering Filipino Dentists in 2026 — DentaSource Direct</title>
@@ -892,7 +893,12 @@
     ];
     var ics = lines.join('\r\n');
     var uri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
-    window.open(uri, '_blank');
+    // Try parent window first (iframe context), fallback to current
+    try {
+      window.parent.open(uri, '_blank');
+    } catch(e) {
+      window.open(uri, '_blank');
+    }
     var btn = document.getElementById('cal-btn');
     btn.textContent = 'Calendar Event Saved!';
     btn.style.background = '#059669';
