@@ -1,3 +1,4 @@
+import { ClerkProvider } from '@clerk/nextjs';
 import { Inter, Playfair_Display, Geist } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar/Navbar';
@@ -39,6 +40,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }) {
   return (
+    <ClerkProvider>
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${geistSans.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         <script
@@ -50,5 +52,6 @@ export default function RootLayout({ children }) {
         <Footer />
       </body>
     </html>
+    </ClerkProvider>
   );
 }
