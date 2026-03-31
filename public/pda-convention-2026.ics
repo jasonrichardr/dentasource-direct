@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//DentaSource Direct//PDA Convention//EN
+BEGIN:VEVENT
+DTSTART:20260511T080000
+DTEND:20260515T180000
+SUMMARY:117th PDA Annual Convention
+LOCATION:SMX Convention Center Pasay City Philippines
+DESCRIPTION:Theme PDA Empowered. 5 days of lectures and workshops. Register at 117reg.pda.com.ph. Visit DentaSource Direct showroom for ROSON dental chairs. dentasourcedirect.com
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:PDA Convention in 1 week
+END:VALARM
+END:VEVENT
+END:VCALENDAR
