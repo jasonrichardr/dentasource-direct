@@ -12,9 +12,9 @@ export default function Footer() {
             <p className="text-white/60 text-lg leading-relaxed">Experience the largest showroom in the Philippines for dental chairs and equipment. Sit, test, and feel the difference before you invest.</p>
           </div>
           <div className="flex shrink-0">
-            <Link href="/contact" className="group relative overflow-hidden rounded-full bg-[#F26522] px-8 py-4 text-white font-medium transition-all hover:scale-105">
-              <span className="relative z-10 flex items-center gap-2">Schedule a Visit</span>
-            </Link>
+            <a href="https://www.google.com/maps/search/DentaSource+Direct+610+C.+Maybunga+Rd+Pasig+City" target="_blank" rel="noopener noreferrer" className="group relative overflow-hidden rounded-full bg-[#F26522] px-8 py-4 text-white font-medium transition-all hover:scale-105">
+              <span className="relative z-10 flex items-center gap-2">Visit Us</span>
+            </a>
           </div>
         </div>
         <div className="flex flex-col md:flex-row items-center justify-between pt-8 text-white/40 text-xs sm:text-sm font-medium">
