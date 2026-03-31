@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { SignInButton, UserButton, Show } from '@clerk/nextjs';
 
 const navLinks = [
   { name: 'Equipment', href: '/products' },
@@ -88,6 +89,24 @@ export default function Navbar() {
               >
                 Contact
               </Link>
+              <Show
+                when="signed-in"
+                fallback={
+                  <SignInButton mode="modal">
+                    <button className="text-xs font-semibold px-5 py-2 rounded-full border border-[#1a3c34] text-[#1a3c34] hover:bg-[#1a3c34] hover:text-white transition-colors tracking-wide">
+                      Sign In
+                    </button>
+                  </SignInButton>
+                }
+              >
+                <UserButton
+                  appearance={{
+                    elements: {
+                      avatarBox: { width: 32, height: 32 },
+                    },
+                  }}
+                />
+              </Show>
             </div>
 
             {/* Mobile hamburger */}
@@ -144,6 +163,29 @@ export default function Navbar() {
               >
                 Visit Our Showroom
               </Link>
+              <Show
+                when="signed-in"
+                fallback={
+                  <SignInButton mode="modal">
+                    <button
+                      onClick={() => setOpen(false)}
+                      className="block w-full text-center py-4 rounded-2xl border-2 border-[#1a3c34] text-[#1a3c34] font-semibold text-base mt-3"
+                    >
+                      Sign In
+                    </button>
+                  </SignInButton>
+                }
+              >
+                <div className="flex items-center justify-center mt-3">
+                  <UserButton
+                    appearance={{
+                      elements: {
+                        avatarBox: { width: 40, height: 40 },
+                      },
+                    }}
+                  />
+                </div>
+              </Show>
             </motion.div>
           </motion.div>
         )}
