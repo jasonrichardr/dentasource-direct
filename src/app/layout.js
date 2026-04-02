@@ -40,7 +40,22 @@ const jsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      localization={{
+        signIn: {
+          start: {
+            title: 'Sign in to DentaSource Direct',
+            subtitle: 'Welcome back! Please sign in to continue',
+          },
+        },
+        signUp: {
+          start: {
+            title: 'Create your DentaSource Direct account',
+            subtitle: 'Sign up to get started',
+          },
+        },
+      }}
+    >
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${geistSans.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         <script
