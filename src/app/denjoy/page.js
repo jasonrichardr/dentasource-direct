@@ -2,6 +2,7 @@ import DenjoyHero from '@/components/denjoy/DenjoyHero';
 import MeetEndoPanel from '@/components/denjoy/MeetEndoPanel';
 import ProductPanel from '@/components/denjoy/ProductPanel';
 import DenjoyCTA from '@/components/denjoy/DenjoyCTA';
+import MessengerButton from '@/components/denjoy/MessengerButton';
 import { getCoStars } from '@/data/denjoy';
 import styles from './page.module.css';
 
@@ -22,18 +23,26 @@ export default function DenjoyPage() {
   const coStars = getCoStars();
 
   return (
-    <main className={styles.scrollContainer}>
-      <DenjoyHero />
-      <MeetEndoPanel />
-      {coStars.map((product, i) => (
-        <ProductPanel
-          key={product.slug}
-          product={product}
-          imagePosition={i % 2 === 0 ? 'right' : 'left'}
-          accentColor={COSTAR_ACCENTS[product.slug] || '#7a2a4d'}
+    <>
+      <main className={styles.scrollContainer}>
+        <DenjoyHero />
+        <MeetEndoPanel />
+        {coStars.map((product, i) => (
+          <ProductPanel
+            key={product.slug}
+            product={product}
+            imagePosition={i % 2 === 0 ? 'right' : 'left'}
+            accentColor={COSTAR_ACCENTS[product.slug] || '#7a2a4d'}
+          />
+        ))}
+        <DenjoyCTA />
+      </main>
+      <div className={styles.mobileStickyBar}>
+        <MessengerButton
+          prefillText="Hi DSD, I'd like to chat about the Denjoy launch."
+          label="Chat about Denjoy"
         />
-      ))}
-      <DenjoyCTA />
-    </main>
+      </div>
+    </>
   );
 }
