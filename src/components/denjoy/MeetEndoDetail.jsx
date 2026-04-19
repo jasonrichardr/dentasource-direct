@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { getFlagship } from '@/data/denjoy';
 import MessengerButton from './MessengerButton';
+import VideoSection from './VideoSection';
 
 export default function MeetEndoDetail() {
   const product = getFlagship();
@@ -122,6 +123,8 @@ export default function MeetEndoDetail() {
             ))}
           </div>
         </section>
+
+        <VideoSection videos={product.videos} productName={product.name} />
 
         <section className="rounded-3xl bg-gradient-to-br from-[#7a2a4d] to-[#1a3c34] p-10 md:p-16 text-center">
           <h2 className="text-3xl md:text-5xl font-semibold mb-4">

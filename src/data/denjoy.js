@@ -26,6 +26,11 @@ export const denjoyProducts = [
       'Already installed at DSD Manila showroom for demo.',
     ],
     messengerText: "Hi DSD, I'd like to know more about the Denjoy Meet Endo.",
+    videos: [
+      { id: 'nlgMFP3HzJs', title: 'Meet Endo: The Ultimate Integrated Root Canal System', duration: '0:55' },
+      { id: 'k2ZrdMYsfRg', title: 'Meta Endo 4-in-1 Unboxing', duration: '4:37' },
+      { id: 'ney0zANs43E', title: '2024 Shanghai Dental Expo Highlight', duration: '0:33' },
+    ],
   },
   {
     slug: 'free-pex',
@@ -47,6 +52,11 @@ export const denjoyProducts = [
       'Built by Denjoy, endo specialists since 2004.',
     ],
     messengerText: "Hi DSD, I'd like to know more about the Denjoy FREE PEX.",
+    videos: [
+      { id: 'bjmTrWOAK1c', title: 'New 6th-Generation Multi-Frequency Chip', duration: '1:20' },
+      { id: '-GcLmwsAbPQ', title: 'Cost-Effective Accuracy Demonstration', duration: '2:40' },
+      { id: 'xprn-n8mIsg', title: 'High-Accuracy 6th-Gen Apex Locator', duration: '1:20' },
+    ],
   },
   {
     slug: 'i-pexo',
@@ -69,6 +79,10 @@ export const denjoyProducts = [
       'Wireless handpiece connection.',
     ],
     messengerText: "Hi DSD, I'd like to know more about the Denjoy i-Pexo.",
+    videos: [
+      { id: 'jmpYr-jqe0s', title: 'High-Precision Touchscreen Apex Locator', duration: '1:27' },
+      { id: 'b1zRZSZMnMw', title: 'How to Operate a High-Accuracy Apex Locator', duration: '1:20' },
+    ],
   },
   {
     slug: 'aike',
@@ -89,6 +103,10 @@ export const denjoyProducts = [
       'The category reference at Denjoy — no sub-model variants.',
     ],
     messengerText: "Hi DSD, I'd like to know more about the Denjoy AIKE.",
+    videos: [
+      { id: 'fdUnS7luNaA', title: 'Ultrasonic Endo Activator for Root Canal', duration: '0:45' },
+      { id: 'dqI_autD9Ko', title: 'Ultrasonic Activator for Effective Irrigation', duration: '1:02' },
+    ],
   },
   {
     slug: 'imate3',
@@ -111,6 +129,10 @@ export const denjoyProducts = [
       'Up to 200 cycles per charge — clinic-day endurance.',
     ],
     messengerText: "Hi DSD, I'd like to know more about the Denjoy imate3.",
+    videos: [
+      { id: 'Zpllcba9dog', title: 'imate3 Operation Instruction', duration: '2:16' },
+      { id: 'uf0atV2kN3Q', title: 'How to Install an iMate Cordless Endo Motor', duration: '1:49' },
+    ],
   },
 ];
 

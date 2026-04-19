@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import MessengerButton from './MessengerButton';
+import VideoSection from './VideoSection';
 
 export default function CoStarDetail({ product }) {
   return (
@@ -82,6 +83,8 @@ export default function CoStarDetail({ product }) {
             </div>
           </section>
         )}
+
+        <VideoSection videos={product.videos} productName={product.name} />
 
         <section className="rounded-2xl bg-gradient-to-br from-[#1a3c34] to-[#0f1419] p-8 md:p-12 text-center">
           <h2 className="text-2xl md:text-3xl font-semibold mb-3">
