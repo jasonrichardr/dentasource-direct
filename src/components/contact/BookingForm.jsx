@@ -52,8 +52,11 @@ function BookingFormContent() {
               exit={{ opacity: 0, y: -20 }}
             >
               <div className="mb-10">
-                <h2 className="text-3xl font-semibold text-[#1D1D1F] mb-3">Book Your Consultation</h2>
-                <p className="text-[#86868B]">Select a time to visit our San Juan showroom or request a direct quote.</p>
+                <h2 className="text-3xl font-semibold text-[#1D1D1F] mb-3">Have a question? We'll answer.</h2>
+                <p className="text-[#86868B]">
+                  Ask about pricing, trade-in, or a specific product — we usually reply the same day.
+                  Or just walk into our Pasig showroom any day, 9 AM – 8 PM.
+                </p>
               </div>
 
               <form action={handleAction} className="space-y-6">
@@ -114,9 +117,10 @@ function BookingFormContent() {
               <div className="w-20 h-20 bg-[#10b981]/10 rounded-full flex items-center justify-center mb-6">
                 <span className="text-4xl text-[#10b981]">✓</span>
               </div>
-              <h3 className="text-3xl font-semibold text-[#1D1D1F] mb-4">Request Received.</h3>
+              <h3 className="text-3xl font-semibold text-[#1D1D1F] mb-4">Message received.</h3>
               <p className="text-[#86868B] text-lg max-w-md mx-auto">
-                Thank you. A DentaSource Direct specialist will contact you shortly to confirm your showroom visit.
+                Thank you. A DentaSource Direct specialist will reply shortly.
+                Feel free to walk into our Pasig showroom any day — Monday through Sunday, 9 AM to 8 PM.
               </p>
             </motion.div>
           )}
