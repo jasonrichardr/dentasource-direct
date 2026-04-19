@@ -1,14 +1,18 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { getFlagship } from '@/data/denjoy';
 import MessengerButton from './MessengerButton';
 import VideoSection from './VideoSection';
+import Lightbox from './Lightbox';
 
 export default function MeetEndoDetail() {
   const product = getFlagship();
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const total = product.gallery?.length ?? 0;
 
   return (
     <article className="bg-gradient-to-b from-[#1a0f1a] via-[#0f1419] to-[#0a0a0f] text-white min-h-screen pb-20">
@@ -106,23 +110,49 @@ export default function MeetEndoDetail() {
         </section>
 
         <section className="mb-20">
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-center mb-12">
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-center mb-3">
             In our showroom
           </h2>
+          <p className="text-center text-white/50 text-sm mb-10">Tap any image to expand.</p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {product.gallery.map((src, i) => (
-              <div key={src} className="relative aspect-square rounded-xl overflow-hidden bg-black/40">
+              <button
+                key={src}
+                type="button"
+                onClick={() => setLightboxIndex(i)}
+                aria-label={`Expand Meet Endo image ${i + 1}`}
+                className="group relative aspect-square rounded-xl overflow-hidden bg-black/40 cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-[#f0c7db] focus:ring-offset-2 focus:ring-offset-[#0f1419]"
+              >
                 <Image
                   src={src}
                   alt={`Meet Endo view ${i + 1}`}
                   fill
                   sizes="(max-width: 768px) 50vw, 33vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-              </div>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100" aria-hidden="true">
+                  <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f1419" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="11" cy="11" r="8" />
+                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                      <line x1="11" y1="8" x2="11" y2="14" />
+                      <line x1="8" y1="11" x2="14" y2="11" />
+                    </svg>
+                  </div>
+                </div>
+              </button>
             ))}
           </div>
         </section>
+
+        <Lightbox
+          images={product.gallery}
+          index={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onPrev={() => setLightboxIndex((i) => (i - 1 + total) % total)}
+          onNext={() => setLightboxIndex((i) => (i + 1) % total)}
+          alt={product.fullName}
+        />
 
         <VideoSection videos={product.videos} productName={product.name} />
 
