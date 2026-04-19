@@ -8,6 +8,7 @@ import { SignInButton, UserButton, Show } from '@clerk/nextjs';
 const navLinks = [
   { name: 'Equipment', href: '/products' },
   { name: 'Dental Chairs', href: '/dentalchairs' },
+  { name: 'Denjoy', href: '/denjoy' },
   { name: 'News', href: '/news' },
   { name: 'Trade-In', href: '/trade-in' },
   { name: 'Showroom', href: '/contact' },
