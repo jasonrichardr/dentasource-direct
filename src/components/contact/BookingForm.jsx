@@ -52,7 +52,7 @@ function BookingFormContent() {
               exit={{ opacity: 0, y: -20 }}
             >
               <div className="mb-10">
-                <h2 className="text-3xl font-semibold text-[#1D1D1F] mb-3">Have a question? We'll answer.</h2>
+                <h2 className="text-3xl font-semibold text-[#1D1D1F] mb-3">Have a question? We&apos;ll answer.</h2>
                 <p className="text-[#86868B]">
                   Ask about pricing, trade-in, or a specific product — we usually reply the same day.
                   Or just walk into our Pasig showroom any day, 9 AM – 8 PM.
