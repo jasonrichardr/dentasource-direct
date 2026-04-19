@@ -20,7 +20,7 @@ export default function VideoSection({ videos, productName }) {
         Watch it in action
       </h2>
       <p className="text-center text-white/60 max-w-xl mx-auto mb-10">
-        Tutorials and demos from Denjoy's official YouTube channel.
+        Tutorials and demos from Denjoy&apos;s official YouTube channel.
       </p>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {videos.map((video, i) => (

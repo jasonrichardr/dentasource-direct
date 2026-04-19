@@ -59,7 +59,7 @@ export default function MeetEndoDetail() {
             Three modules. One system.
           </h2>
           <p className="text-center text-white/60 max-w-2xl mx-auto mb-12">
-            Meet Endo's touchscreen orchestrates three connected sub-modules — each powerful
+            Meet Endo&apos;s touchscreen orchestrates three connected sub-modules — each powerful
             standalone, profound when combined.
           </p>
 
