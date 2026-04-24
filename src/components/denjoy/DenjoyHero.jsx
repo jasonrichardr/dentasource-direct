@@ -27,17 +27,26 @@ export default function DenjoyHero() {
         className="relative z-10 max-w-4xl mx-auto px-6 text-center text-white"
       >
         <p className="text-xs md:text-sm font-semibold tracking-[0.3em] uppercase text-emerald-300 mb-4">
-          Exclusive in the Philippines
+          The Digital Endodontics Upgrade · Philippines
         </p>
         <h1
           id="denjoy-hero-title"
           className="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-tight mb-6"
         >
-          Denjoy Endodontics,<br />now in Philippine operatories.
+          The most digitally advanced<br />endo motor in the Philippines.
         </h1>
+        <p className="text-lg md:text-xl text-emerald-200/90 font-medium leading-snug max-w-3xl mx-auto mb-4">
+          Five wireless handpieces on one charging dock. Real-time data visualization on a single
+          touchscreen hub. Intelligent auto-pairing across every module. No one else in the Philippine
+          endodontic market has this.
+        </p>
         <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
-          Five world-class endodontic instruments, distributed exclusively by DentaSource Direct —
-          anchored by the Meet Endo All-in-One system.
+          Meet the Denjoy <strong className="text-white">Meet Endo All-in-One</strong> — anchor of a
+          five-instrument Philippines launch by <strong className="text-white">DentaSource Direct</strong>,
+          the official and exclusive distributor.
+        </p>
+        <p className="mt-6 text-sm md:text-base text-white/70">
+          Real-time data · Wireless pairing · Centralized charging · Local warranty
         </p>
       </motion.div>
 
