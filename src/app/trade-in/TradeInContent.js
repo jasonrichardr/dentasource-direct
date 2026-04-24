@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import FaqAccordion from './FaqAccordion';
 
@@ -187,10 +188,15 @@ export default function TradeInContent() {
               className="w-full lg:w-1/2"
             >
               <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-10 h-full flex flex-col justify-center relative overflow-hidden shadow-sm">
-                {/* Decorative recycle icon */}
-                <svg className="absolute top-4 right-4 md:top-8 md:right-8 w-20 h-20 md:w-28 md:h-28 opacity-[0.06]" viewBox="0 0 24 24" fill="#00c853" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6.20459 13.916C6.71186 13.916 7.15175 14.1687 7.42415 14.5457H8.64756L10.3601 11.5238H7.72911C6.72852 11.5238 5.86903 10.9577 5.43261 10.1264L2.80164 5.48281V13.916H6.20459ZM21.1984 5.48281L18.5674 10.1264C18.131 10.9577 17.2715 11.5238 16.2709 11.5238H13.6399L15.3524 14.5457H16.5759C16.8482 14.1687 17.2881 13.916 17.7954 13.916H21.1984V5.48281ZM16.2709 3.09062H7.72911C6.9142 3.09062 6.18247 3.48441 5.72758 4.10304L3.8996 7.33083L5.61214 10.3527L8.24311 5.70914H15.7569L18.3879 10.3527L20.1004 7.33083L18.2724 4.10304C17.8175 3.48441 17.0858 3.09062 16.2709 3.09062ZM14.4443 20.3551L12 16.0357L9.55569 20.3551C9.09802 21.1664 8.24647 21.6853 7.31952 21.6853C6.39257 21.6853 5.54101 21.1664 5.08334 20.3551L3.86877 18.2044L5.5813 15.1825L8.21227 19.8261C8.36199 20.0911 8.64805 20.2608 8.96162 20.2608C9.27519 20.2608 9.56125 20.0911 9.71097 19.8261L12 15.7797L14.289 19.8261C14.4388 20.0911 14.7248 20.2608 15.0384 20.2608C15.352 20.2608 15.638 20.0911 15.7877 19.8261L18.4187 15.1825L20.1312 18.2044L18.9167 20.3551C18.459 21.1664 17.6074 21.6853 16.6805 21.6853C15.7535 21.6853 14.902 21.1664 14.4443 20.3551Z" />
-                </svg>
+                {/* Branded trade-in recycle logo */}
+                <Image
+                  src="/images/brand/trade-in-recycle-logo.png"
+                  alt=""
+                  aria-hidden="true"
+                  width={224}
+                  height={224}
+                  className="absolute top-4 right-4 md:top-8 md:right-8 w-20 h-20 md:w-28 md:h-28 object-contain pointer-events-none select-none"
+                />
 
                 <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1D1D1F] tracking-tight leading-[0.95] mb-4 md:mb-5 relative z-10">
                   Good for<br />the planet.
