@@ -1,25 +1,60 @@
+import { products } from '@/data/products';
+import { newsData } from '@/data/news';
+import { denjoyProducts } from '@/data/denjoy';
+
+const BASE_URL = 'https://dentasourcedirect.com';
+
+const staticRoutes = [
+  { path: '', priority: 1.0, changeFrequency: 'weekly' },
+  { path: '/denjoy', priority: 0.95, changeFrequency: 'weekly' },
+  { path: '/dentalchairs', priority: 0.9, changeFrequency: 'weekly' },
+  { path: '/products', priority: 0.8, changeFrequency: 'weekly' },
+  { path: '/services', priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/trade-in', priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/about', priority: 0.6, changeFrequency: 'monthly' },
+  { path: '/contact', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/traceability', priority: 0.5, changeFrequency: 'monthly' },
+  { path: '/news', priority: 0.7, changeFrequency: 'weekly' },
+  { path: '/a3', priority: 0.85, changeFrequency: 'monthly' },
+  { path: '/a3s', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/s3', priority: 0.75, changeFrequency: 'monthly' },
+  { path: '/s6', priority: 0.75, changeFrequency: 'monthly' },
+  { path: '/s9', priority: 0.75, changeFrequency: 'monthly' },
+  { path: '/n1', priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/n2-pro', priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/n2-plus', priority: 0.7, changeFrequency: 'monthly' },
+];
+
 export default function sitemap() {
-  const baseUrl = 'https://dentasourcedirect.com';
+  const now = new Date();
 
-  const staticRoutes = [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
-    { url: `${baseUrl}/dentalchairs`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${baseUrl}/products`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/services`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/trade-in`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/traceability`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
-    // Chair model pages
-    { url: `${baseUrl}/a3`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/a3s`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/s3`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/s6`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/s9`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/n1`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/n2-pro`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/n2-plus`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-  ];
+  const staticEntries = staticRoutes.map(({ path, priority, changeFrequency }) => ({
+    url: `${BASE_URL}${path}`,
+    lastModified: now,
+    changeFrequency,
+    priority,
+  }));
 
-  return staticRoutes;
+  const productEntries = (products || []).map((product) => ({
+    url: `${BASE_URL}/products/${product.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: product.category === 'chair' ? 0.85 : 0.7,
+  }));
+
+  const denjoyEntries = (denjoyProducts || []).map((item) => ({
+    url: `${BASE_URL}/denjoy/${item.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: item.slug === 'meet-endo' ? 0.95 : 0.85,
+  }));
+
+  const newsEntries = (newsData || []).map((article) => ({
+    url: `${BASE_URL}/news/${article.slug}`,
+    lastModified: article.date ? new Date(article.date) : now,
+    changeFrequency: 'yearly',
+    priority: 0.6,
+  }));
+
+  return [...staticEntries, ...productEntries, ...denjoyEntries, ...newsEntries];
 }
