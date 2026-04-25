@@ -37,7 +37,7 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/products/:path*',
+        source: '/products/:path+',
         destination: '/dentalchairs',
         permanent: true,
       },
