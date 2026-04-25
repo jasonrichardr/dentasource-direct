@@ -23,6 +23,7 @@
 ## ROSON dental chairs (exclusive Philippine distribution)
 
 - https://dentasourcedirect.com/dentalchairs — Dental chairs hub (canonical chair landing)
+- https://dentasourcedirect.com/products — Equipment catalog (imaging, endo, curing, sterilization, accessories — non-chair)
 - https://dentasourcedirect.com/a3 — ROSON Flagship A3 (KLT-6220, EOW disinfection)
 - https://dentasourcedirect.com/a3l — ROSON A3L Fashion Model
 - https://dentasourcedirect.com/a3s — ROSON A3S
