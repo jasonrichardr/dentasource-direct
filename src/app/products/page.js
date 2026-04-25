@@ -1,30 +1,46 @@
 import CatalogHero from '@/components/products/CatalogHero';
 import ProductGrid from '@/components/products/ProductGrid';
-import { products as staticProducts, categories as staticCategories } from '@/data/products';
+import { products as staticProducts } from '@/data/products';
 
 export const metadata = {
-  title: 'Premium Dental Equipment Catalog',
-  description: 'Browse our full catalog of dental equipment — imaging, endodontics, curing lights, sterilization, and accessories from trusted global brands.',
+  title: 'Equipment Catalog',
+  description:
+    'Imaging, endodontics, curing, sterilization, and accessories from DentaSource Direct. For dental chairs, see /dentalchairs.',
+};
+
+const categoryLabels = {
+  imaging: 'Imaging',
+  endo: 'Endodontics',
+  microscopes: 'Microscopes',
+  curing: 'Curing & Filling',
+  sterilization: 'Sterilization',
+  accessories: 'Accessories',
 };
 
 export default function ProductsPage() {
-  // Map static data to match the shape ProductGrid expects (Prisma-like nested category)
-  const products = staticProducts.map((p, i) => ({
-    id: p.slug,
-    slug: p.slug,
-    name: p.name,
-    image: p.heroImage || (p.images && p.images[0]) || null,
-    category: { name: p.category },
-  }));
+  // Equipment catalog excludes dental chairs — those have their own
+  // canonical pages at /dentalchairs and /a3, /a3l, /a3s, /s3, /s6, /s9,
+  // /n1, /n2-plus, /n2-pro.
+  const equipment = staticProducts
+    .filter((p) => p.category !== 'chair')
+    .map((p) => ({
+      id: p.slug,
+      slug: p.slug,
+      name: p.name,
+      image: p.heroImage || (p.images && p.images[0]) || null,
+      categorySlug: p.category,
+      category: { name: categoryLabels[p.category] || p.category },
+    }));
 
-  // Build unique category list from product data
-  const categorySet = [...new Set(staticProducts.map(p => p.category))];
-  const categories = categorySet.sort().map(name => ({ id: name, name }));
+  const uniqueCategorySlugs = [...new Set(equipment.map((p) => p.categorySlug))];
+  const categories = uniqueCategorySlugs
+    .map((slug) => ({ id: slug, name: categoryLabels[slug] || slug }))
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <main className="w-full min-h-screen bg-white selection:bg-[#10b981] selection:text-white pb-24">
       <CatalogHero />
-      <ProductGrid initialProducts={products} categories={categories} />
+      <ProductGrid initialProducts={equipment} categories={categories} />
     </main>
   );
 }

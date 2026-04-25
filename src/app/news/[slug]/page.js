@@ -6,6 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { motion } from 'framer-motion';
+import JsonLd from '@/components/JsonLd';
+import { articleGraph } from '@/lib/schemas/article';
 import styles from './page.module.css';
 
 export default function NewsArticle(props) {
@@ -18,6 +20,7 @@ export default function NewsArticle(props) {
 
     return (
         <main className={styles.articlePage}>
+            <JsonLd id={`article-${article.slug}`} data={articleGraph(article)} />
             {/* Header / Hero Section */}
             <section className={styles.heroSection}>
                 <div className={styles.heroContent}>
