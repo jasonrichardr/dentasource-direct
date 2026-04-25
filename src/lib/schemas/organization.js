@@ -14,7 +14,6 @@ export const organizationGraph = {
         url: `${BASE_URL}/images/dsd-logo.png`,
       },
       foundingDate: '2024-10',
-      parentOrganization: { '@type': 'Organization', name: 'JF Empire' },
       description:
         'Exclusive Philippine distributor for ROSON dental chairs and Denjoy endodontics equipment. One of the largest dental equipment showrooms in the Philippines (140 sqm, Pasig City). Clinically backed by FFC Dental Clinic (5 branches, 30+ dentists).',
       sameAs: ['https://www.facebook.com/dentasource'],
