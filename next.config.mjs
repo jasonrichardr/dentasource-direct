@@ -32,12 +32,12 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/products/roson-s9',
-        destination: '/s9',
+        source: '/dental-chairs',
+        destination: '/dentalchairs',
         permanent: true,
       },
       {
-        source: '/dental-chairs',
+        source: '/products/:path+',
         destination: '/dentalchairs',
         permanent: true,
       },

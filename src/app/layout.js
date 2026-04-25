@@ -3,6 +3,8 @@ import { Inter, Playfair_Display, Geist } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
+import JsonLd from '@/components/JsonLd';
+import { organizationGraph } from '@/lib/schemas/organization';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });
@@ -13,28 +15,46 @@ export const metadata = {
     template: '%s | DentaSource Direct',
     default: 'DentaSource Direct — Premium Dental Equipment Philippines',
   },
-  description: 'Premium dental chairs, imaging equipment, and clinical tools with white-glove installation. The largest showroom in the Philippines.',
-};
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'DentaSource Direct',
-  description: 'Premium dental equipment distributor in the Philippines. Exclusive ROSON and DENJOY partner.',
-  url: 'https://dentasourcedirect.com',
-  telephone: '+639625793024',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '610 C. Maybunga Rd',
-    addressLocality: 'Pasig City',
-    addressRegion: 'Metro Manila',
-    addressCountry: 'PH',
+  description:
+    'Exclusive Philippine distributor for ROSON dental chairs and Denjoy endodontics. 140-sqm Pasig showroom, white-glove installation, hands-on training, 2-year warranty. Clinically backed by FFC Dental Clinic (5 branches).',
+  keywords: [
+    'dental equipment Philippines',
+    'dental chairs Philippines',
+    'ROSON Philippines',
+    'Denjoy Philippines',
+    'DentaSource Direct',
+    'dental imaging Philippines',
+    'dental supplies Manila',
+    'endodontics Philippines',
+    'endo motor Philippines',
+    'dental showroom Pasig',
+  ],
+  metadataBase: new URL('https://dentasourcedirect.com'),
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'DentaSource Direct — Premium Dental Equipment Philippines',
+    description:
+      'Exclusive Philippine distributor for ROSON and Denjoy. 140-sqm Pasig showroom. Clinically-owned by a practicing dentist.',
+    url: 'https://dentasourcedirect.com',
+    siteName: 'DentaSource Direct',
+    locale: 'en_PH',
+    type: 'website',
   },
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-    opens: '09:00',
-    closes: '20:00',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'DentaSource Direct — Premium Dental Equipment Philippines',
+    description:
+      'Exclusive Philippine distributor for ROSON and Denjoy. 140-sqm Pasig showroom. Clinically-owned.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -58,10 +78,7 @@ export default function RootLayout({ children }) {
     >
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${geistSans.variable}`} suppressHydrationWarning>
       <body className="antialiased">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd id="organization-graph" data={organizationGraph} />
         <Navbar />
         {children}
         <Footer />
