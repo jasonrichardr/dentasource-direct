@@ -37,8 +37,7 @@ export default function DenjoyHero() {
         </h1>
         <p className="text-lg md:text-xl text-emerald-200/90 font-medium leading-snug max-w-3xl mx-auto mb-4">
           Five wireless handpieces on one charging dock. Real-time data visualization on a single
-          touchscreen hub. Intelligent auto-pairing across every module. No one else in the Philippine
-          endodontic market has this.
+          touchscreen hub. Intelligent auto-pairing across every module.
         </p>
         <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
           Meet the Denjoy <strong className="text-white">Meet Endo All-in-One</strong> — anchor of a
