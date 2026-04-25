@@ -1,30 +1,31 @@
 import CatalogHero from '@/components/products/CatalogHero';
 import ProductGrid from '@/components/products/ProductGrid';
-import { products as staticProducts, categories as staticCategories } from '@/data/products';
+import { products as staticProducts } from '@/data/products';
 
 export const metadata = {
-  title: 'Premium Dental Equipment Catalog',
-  description: 'Browse our full catalog of dental equipment — imaging, endodontics, curing lights, sterilization, and accessories from trusted global brands.',
+  title: 'Premium Dental Chair Catalog',
+  description: 'Browse our full catalog of ROSON dental chairs — exclusive Philippine distributor. A3 Flagship, A3L Fashion, A3S, S-series, and N-series.',
 };
 
 export default function ProductsPage() {
-  // Map static data to match the shape ProductGrid expects (Prisma-like nested category)
-  const products = staticProducts.map((p, i) => ({
-    id: p.slug,
-    slug: p.slug,
-    name: p.name,
-    image: p.heroImage || (p.images && p.images[0]) || null,
-    category: { name: p.category },
-  }));
+  // Show ROSON dental chairs only. Other categories live on dedicated routes
+  // (e.g. /denjoy for endodontics, /dentalchairs for the chair landing).
+  const chairProducts = staticProducts
+    .filter((p) => p.category === 'chair')
+    .map((p) => ({
+      id: p.slug,
+      slug: p.slug,
+      name: p.name,
+      image: p.heroImage || (p.images && p.images[0]) || null,
+      category: { name: 'Dental Chair' },
+    }));
 
-  // Build unique category list from product data
-  const categorySet = [...new Set(staticProducts.map(p => p.category))];
-  const categories = categorySet.sort().map(name => ({ id: name, name }));
+  const categories = [{ id: 'chair', name: 'Dental Chair' }];
 
   return (
     <main className="w-full min-h-screen bg-white selection:bg-[#10b981] selection:text-white pb-24">
       <CatalogHero />
-      <ProductGrid initialProducts={products} categories={categories} />
+      <ProductGrid initialProducts={chairProducts} categories={categories} />
     </main>
   );
 }

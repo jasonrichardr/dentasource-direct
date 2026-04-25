@@ -1,4 +1,3 @@
-import { products } from '@/data/products';
 import { newsData } from '@/data/news';
 import { denjoyProducts } from '@/data/denjoy';
 
@@ -6,23 +5,25 @@ const BASE_URL = 'https://dentasourcedirect.com';
 
 const staticRoutes = [
   { path: '', priority: 1.0, changeFrequency: 'weekly' },
+  { path: '/dentalchairs', priority: 0.95, changeFrequency: 'weekly' },
   { path: '/denjoy', priority: 0.95, changeFrequency: 'weekly' },
-  { path: '/dentalchairs', priority: 0.9, changeFrequency: 'weekly' },
-  { path: '/products', priority: 0.8, changeFrequency: 'weekly' },
+  { path: '/products', priority: 0.85, changeFrequency: 'weekly' },
   { path: '/services', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/trade-in', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/about', priority: 0.6, changeFrequency: 'monthly' },
   { path: '/contact', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/traceability', priority: 0.5, changeFrequency: 'monthly' },
   { path: '/news', priority: 0.7, changeFrequency: 'weekly' },
-  { path: '/a3', priority: 0.85, changeFrequency: 'monthly' },
+  // Canonical ROSON chair landing pages
+  { path: '/a3', priority: 0.9, changeFrequency: 'monthly' },
+  { path: '/a3l', priority: 0.85, changeFrequency: 'monthly' },
   { path: '/a3s', priority: 0.8, changeFrequency: 'monthly' },
-  { path: '/s3', priority: 0.75, changeFrequency: 'monthly' },
-  { path: '/s6', priority: 0.75, changeFrequency: 'monthly' },
-  { path: '/s9', priority: 0.75, changeFrequency: 'monthly' },
-  { path: '/n1', priority: 0.7, changeFrequency: 'monthly' },
-  { path: '/n2-pro', priority: 0.7, changeFrequency: 'monthly' },
-  { path: '/n2-plus', priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/s3', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/s6', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/s9', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/n1', priority: 0.75, changeFrequency: 'monthly' },
+  { path: '/n2-plus', priority: 0.75, changeFrequency: 'monthly' },
+  { path: '/n2-pro', priority: 0.75, changeFrequency: 'monthly' },
 ];
 
 export default function sitemap() {
@@ -33,13 +34,6 @@ export default function sitemap() {
     lastModified: now,
     changeFrequency,
     priority,
-  }));
-
-  const productEntries = (products || []).map((product) => ({
-    url: `${BASE_URL}/products/${product.slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly',
-    priority: product.category === 'chair' ? 0.85 : 0.7,
   }));
 
   const denjoyEntries = (denjoyProducts || []).map((item) => ({
@@ -56,5 +50,5 @@ export default function sitemap() {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...productEntries, ...denjoyEntries, ...newsEntries];
+  return [...staticEntries, ...denjoyEntries, ...newsEntries];
 }

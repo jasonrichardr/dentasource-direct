@@ -14,16 +14,18 @@ export default function ProductGrid({ initialProducts = [], categories = [] }) {
     return p.category.name === activeCategory;
   });
 
-  // Pre-mapped custom landing pages
+  // Canonical chair landing pages — every chair must be in this map.
+  // Non-chair products are filtered out at the page level (only chairs show in catalog).
   const customRoutes = {
-    'roson-dxn2-pro': '/n2-pro',
-    'roson-s9': '/s9',
     'roson-dxa3': '/a3',
+    'roson-dxa3l': '/a3l',
     'roson-dxa3s': '/a3s',
     'roson-dxs3': '/s3',
     'roson-dxs6': '/s6',
-    'roson-dxn2plus': '/n2-plus',
+    'roson-s9': '/s9',
     'roson-dxn1': '/n1',
+    'roson-dxn2plus': '/n2-plus',
+    'roson-dxn2-pro': '/n2-pro',
   };
 
   return (

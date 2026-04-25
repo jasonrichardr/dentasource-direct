@@ -22,7 +22,10 @@
 
 ## ROSON dental chairs (exclusive Philippine distribution)
 
+- https://dentasourcedirect.com/dentalchairs — Dental chairs hub
+- https://dentasourcedirect.com/products — Dental chair catalog
 - https://dentasourcedirect.com/a3 — ROSON Flagship A3 (KLT-6220, EOW disinfection)
+- https://dentasourcedirect.com/a3l — ROSON A3L Fashion Model
 - https://dentasourcedirect.com/a3s — ROSON A3S
 - https://dentasourcedirect.com/s9 — ROSON S9
 - https://dentasourcedirect.com/s6 — ROSON S6
@@ -30,13 +33,6 @@
 - https://dentasourcedirect.com/n1 — ROSON N1
 - https://dentasourcedirect.com/n2-pro — ROSON N2 Pro
 - https://dentasourcedirect.com/n2-plus — ROSON N2 Plus
-- https://dentasourcedirect.com/products/roson-s9 — ROSON S9 detail page
-
-## Dynamic product pages
-
-- https://dentasourcedirect.com/products — Full product catalog
-- https://dentasourcedirect.com/products/[slug] — Individual product detail pages
-- https://dentasourcedirect.com/dentalchairs — Dental chairs category
 
 ## News and announcements
 
