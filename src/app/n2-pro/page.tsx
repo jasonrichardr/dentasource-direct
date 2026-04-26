@@ -1,32 +1,33 @@
-import ChairSchemas from "@/components/ChairSchemas";
-import N2ProHeroVisual from "@/components/n2-pro/N2ProHeroVisual";
-import N2ProFeatureGrid from "@/components/n2-pro/N2ProFeatureGrid";
-import N2ProTrustSection from "@/components/n2-pro/N2ProTrustSection";
-import N2ProErgonomicsSection from "@/components/n2-pro/N2ProErgonomicsSection";
-import N2ProTechSpecs from "@/components/n2-pro/N2ProTechSpecs";
-import N2ProProductConfigurator from "@/components/n2-pro/N2ProProductConfigurator";
-import N2ProVisualTour from "@/components/n2-pro/N2ProVisualTour";
-import N2ProWhatsInTheBox from "@/components/n2-pro/N2ProWhatsInTheBox";
-import N2ProWarrantyTable from "@/components/n2-pro/N2ProWarrantyTable";
+import N2ProLanding from "@/components/n2-pro-v2/N2ProLanding";
+import N2ProSchemas from "@/components/n2-pro-v2/N2ProSchemas";
 
 export const metadata = {
-    title: "ROSON Elite Model N2 PRO Dental Chair | DentaSource Direct",
-    description: "Trusted by 80,000+ dentists worldwide. The N2 PRO features the widest dentist table, 180° ceramic spittoon, and independent disinfectant water supply.",
+    title: "ROSON N2 Pro Dental Chair Philippines — DentaSource Direct",
+    description:
+        "Flagship N-series chair: 650×315mm dentist tray (widest in series), independent disinfectant water supply, 24V silent motor with soft start/stop, six microbiological certifications. CE marked. Exclusive in the Philippines through DentaSource Direct, Pasig showroom. 5-year motor warranty, local service.",
+    alternates: { canonical: "https://dentasourcedirect.com/n2-pro" },
+    openGraph: {
+        title: "ROSON N2 Pro Dental Chair — DentaSource Direct Philippines",
+        description:
+            "Widest dentist tray in the N-series. Independent disinfectant water. Five-year motor warranty, local Pasig service center.",
+        url: "https://dentasourcedirect.com/n2-pro",
+        type: "website",
+        images: [
+            {
+                url: "https://dentasourcedirect.com/images/products/n2-pro/N2%20Pro%20Dental%20Chair/1-1.jpg",
+                width: 1200,
+                height: 1200,
+                alt: "ROSON N2 Pro dental chair — flagship N-series unit",
+            },
+        ],
+    },
 };
 
 export default function N2ProPage() {
     return (
-        <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
-            <ChairSchemas route="/n2-pro" />
-            <N2ProHeroVisual />
-            <N2ProFeatureGrid />
-            <N2ProTrustSection />
-            <N2ProErgonomicsSection />
-            <N2ProTechSpecs />
-            <N2ProProductConfigurator />
-            <N2ProVisualTour />
-            <N2ProWhatsInTheBox />
-            <N2ProWarrantyTable />
+        <main className="min-h-screen bg-white">
+            <N2ProSchemas />
+            <N2ProLanding />
         </main>
     );
 }
