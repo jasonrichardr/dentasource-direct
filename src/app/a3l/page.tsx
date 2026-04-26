@@ -1,3 +1,4 @@
+import ChairSchemas from "@/components/ChairSchemas";
 import A3LHeroVisual from "@/components/a3l/A3LHeroVisual";
 import A3LFeatureGrid from "@/components/a3l/A3LFeatureGrid";
 import A3LFashionSection from "@/components/a3l/A3LFashionSection";
@@ -16,6 +17,7 @@ export const metadata = {
 export default function A3LPage() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
+            <ChairSchemas route="/a3l" />
             <A3LHeroVisual />
             <A3LFeatureGrid />
             <A3LFashionSection />

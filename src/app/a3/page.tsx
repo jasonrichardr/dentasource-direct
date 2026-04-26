@@ -1,3 +1,4 @@
+import ChairSchemas from "@/components/ChairSchemas";
 import A3HeroVisual from "@/components/a3/A3HeroVisual";
 import A3FeatureGrid from "@/components/a3/A3FeatureGrid";
 import A3DisinfectionSection from "@/components/a3/A3DisinfectionSection";
@@ -16,6 +17,7 @@ export const metadata = {
 export default function A3Page() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
+            <ChairSchemas route="/a3" />
             <A3HeroVisual />
             <A3FeatureGrid />
             <A3DisinfectionSection />

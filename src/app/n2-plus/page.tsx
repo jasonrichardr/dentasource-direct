@@ -1,3 +1,4 @@
+import ChairSchemas from "@/components/ChairSchemas";
 import N2PlusHeroVisual from "@/components/n2-plus/N2PlusHeroVisual";
 import N2PlusFeatureGrid from "@/components/n2-plus/N2PlusFeatureGrid";
 import N2PlusCompleteSection from "@/components/n2-plus/N2PlusCompleteSection";
@@ -16,6 +17,7 @@ export const metadata = {
 export default function N2PlusPage() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
+            <ChairSchemas route="/n2-plus" />
             <N2PlusHeroVisual />
             <N2PlusFeatureGrid />
             <N2PlusCompleteSection />

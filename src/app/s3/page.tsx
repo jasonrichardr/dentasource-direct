@@ -1,3 +1,4 @@
+import ChairSchemas from "@/components/ChairSchemas";
 import S3HeroVisual from "@/components/s3/S3HeroVisual";
 import S3FeatureGrid from "@/components/s3/S3FeatureGrid";
 import S3LightSection from "@/components/s3/S3LightSection";
@@ -16,6 +17,7 @@ export const metadata = {
 export default function S3Page() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
+            <ChairSchemas route="/s3" />
             <S3HeroVisual />
             <S3FeatureGrid />
             <S3LightSection />

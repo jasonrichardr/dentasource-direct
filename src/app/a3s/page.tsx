@@ -1,3 +1,4 @@
+import ChairSchemas from "@/components/ChairSchemas";
 import A3SHeroVisual from "@/components/a3s/A3SHeroVisual";
 import A3SFeatureGrid from "@/components/a3s/A3SFeatureGrid";
 import A3SColorSection from "@/components/a3s/A3SColorSection";
@@ -16,6 +17,7 @@ export const metadata = {
 export default function A3SPage() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
+            <ChairSchemas route="/a3s" />
             <A3SHeroVisual />
             <A3SFeatureGrid />
             <A3SColorSection />
