@@ -348,6 +348,20 @@ class PointerHandler {
     }
 }
 
+// Reusable standalone canvas — full-bleed by default. Drop into any
+// `relative` container; the canvas absolutely positions itself behind content.
+export const CinematicCanvas: React.FC<{ className?: string }> = ({ className = '' }) => {
+    const canvasRef = useShaderBackground();
+    return (
+        <canvas
+            ref={canvasRef}
+            aria-hidden
+            className={`absolute inset-0 w-full h-full object-cover touch-none pointer-events-none ${className}`}
+            style={{ background: 'black' }}
+        />
+    );
+};
+
 // Reusable Shader Background Hook
 const useShaderBackground = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);

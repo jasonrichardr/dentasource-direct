@@ -30,6 +30,8 @@ export default function ProductsPage() {
       image: p.heroImage || (p.images && p.images[0]) || null,
       categorySlug: p.category,
       category: { name: categoryLabels[p.category] || p.category },
+      detailPath: p.detailPath || null,
+      badge: p.badge || null,
     }));
 
   const uniqueCategorySlugs = [...new Set(equipment.map((p) => p.categorySlug))];

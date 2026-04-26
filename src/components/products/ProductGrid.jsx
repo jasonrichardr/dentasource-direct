@@ -50,6 +50,8 @@ export default function ProductGrid({ initialProducts = [], categories = [] }) {
             {filteredProducts.map((p) => {
               const interest = categoryToInterest[p.categorySlug] || 'general';
               const inquireHref = `/contact?interest=${encodeURIComponent(interest)}`;
+              const cardHref = p.detailPath || inquireHref;
+              const ctaLabel = p.detailPath ? 'Learn more' : 'Inquire';
               return (
                 <motion.div
                   key={p.id}
@@ -60,13 +62,18 @@ export default function ProductGrid({ initialProducts = [], categories = [] }) {
                   className="group flex flex-col h-full"
                 >
                   <Link
-                    href={inquireHref}
+                    href={cardHref}
                     className="block relative w-full pt-[100%] bg-[#F5F5F7] rounded-[2rem] overflow-hidden mb-6"
                   >
-                    <div className="absolute top-6 left-6 z-20">
+                    <div className="absolute top-6 left-6 z-20 flex items-center gap-2">
                       <span className="px-3 py-1 bg-white/80 backdrop-blur-md rounded-full text-xs font-semibold text-[#1D1D1F] shadow-sm">
                         {p.category.name}
                       </span>
+                      {p.badge && (
+                        <span className="px-3 py-1 bg-emerald-600 rounded-full text-xs font-semibold text-white shadow-sm">
+                          {p.badge}
+                        </span>
+                      )}
                     </div>
                     {p.image ? (
                       // eslint-disable-next-line @next/next/no-img-element
@@ -84,10 +91,10 @@ export default function ProductGrid({ initialProducts = [], categories = [] }) {
                   <div className="px-2 flex flex-col flex-1">
                     <h3 className="text-xl font-semibold text-[#1D1D1F] mb-2">{p.name}</h3>
                     <Link
-                      href={inquireHref}
+                      href={cardHref}
                       className="text-sm font-medium text-[#1D1D1F] hover:text-[#10b981] transition-colors inline-flex items-center gap-1 mt-auto"
                     >
-                      Inquire
+                      {ctaLabel}
                       <svg
                         className="w-4 h-4"
                         fill="none"
