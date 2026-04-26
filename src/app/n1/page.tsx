@@ -1,3 +1,4 @@
+import ChairSchemas from "@/components/ChairSchemas";
 import N1HeroVisual from "@/components/n1/N1HeroVisual";
 import N1FeatureGrid from "@/components/n1/N1FeatureGrid";
 import N1SimplicitySection from "@/components/n1/N1SimplicitySection";
@@ -16,6 +17,7 @@ export const metadata = {
 export default function N1Page() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
+            <ChairSchemas route="/n1" />
             <N1HeroVisual />
             <N1FeatureGrid />
             <N1SimplicitySection />

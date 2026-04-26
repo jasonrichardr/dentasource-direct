@@ -1,3 +1,4 @@
+import ChairSchemas from "@/components/ChairSchemas";
 import S9HeroVisual from "@/components/s9/S9HeroVisual";
 import S9FeatureGrid from "@/components/s9/S9FeatureGrid";
 import S9DisinfectionSection from "@/components/s9/S9DisinfectionSection";
@@ -16,6 +17,7 @@ export const metadata = {
 export default function S9Page() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
+            <ChairSchemas route="/s9" />
             <S9HeroVisual />
             <S9FeatureGrid />
             <S9DisinfectionSection />

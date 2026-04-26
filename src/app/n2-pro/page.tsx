@@ -1,3 +1,4 @@
+import ChairSchemas from "@/components/ChairSchemas";
 import N2ProHeroVisual from "@/components/n2-pro/N2ProHeroVisual";
 import N2ProFeatureGrid from "@/components/n2-pro/N2ProFeatureGrid";
 import N2ProTrustSection from "@/components/n2-pro/N2ProTrustSection";
@@ -16,6 +17,7 @@ export const metadata = {
 export default function N2ProPage() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
+            <ChairSchemas route="/n2-pro" />
             <N2ProHeroVisual />
             <N2ProFeatureGrid />
             <N2ProTrustSection />

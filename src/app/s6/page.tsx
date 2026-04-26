@@ -1,3 +1,4 @@
+import ChairSchemas from "@/components/ChairSchemas";
 import S6HeroVisual from "@/components/s6/S6HeroVisual";
 import S6FeatureGrid from "@/components/s6/S6FeatureGrid";
 import S6AccessibilitySection from "@/components/s6/S6AccessibilitySection";
@@ -16,6 +17,7 @@ export const metadata = {
 export default function S6Page() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
+            <ChairSchemas route="/s6" />
             <S6HeroVisual />
             <S6FeatureGrid />
             <S6AccessibilitySection />
