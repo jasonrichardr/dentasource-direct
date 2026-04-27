@@ -225,7 +225,7 @@ export const ocularInspection = {
     },
     {
       tag: 'Honest no',
-      body: 'If a feature is marketing fluff for your specific patient mix, we will tell you to skip it. We sell ROSON; we do not sell every accessory ROSON sells.',
+      body: 'If a feature is marketing fluff for your specific patient mix, we will tell you to skip it.',
     },
   ],
   cta: 'Schedule a free ocular',
