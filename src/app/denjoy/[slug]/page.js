@@ -2,6 +2,9 @@ import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { getDenjoyBySlug, getCoStars, getFlagship } from '@/data/denjoy';
 import CoStarDetail from '@/components/denjoy/CoStarDetail';
+import FreePexHero from '@/components/denjoy/FreePexHero';
+import FreePexLanding from '@/components/denjoy/FreePexLanding';
+import { freePexFaqs } from '@/components/denjoy/freePexContent';
 
 const SEO = {
   'free-pex': {
@@ -140,6 +143,32 @@ export default async function DenjoyProductPage({ params }) {
   }
 
   const schema = buildProductSchema(product, slug);
+
+  if (slug === 'free-pex') {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: freePexFaqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    };
+    return (
+      <>
+        <Script id={`denjoy-${slug}-schema`} type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify(schema)}
+        </Script>
+        <Script id={`denjoy-${slug}-faq-schema`} type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify(faqSchema)}
+        </Script>
+        <main>
+          <FreePexHero />
+          <FreePexLanding />
+        </main>
+      </>
+    );
+  }
 
   return (
     <>
