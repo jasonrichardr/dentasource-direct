@@ -47,7 +47,7 @@ export default function ConstellationNode({
             ? `0 0 22px ${chapterColor}, 0 0 44px ${chapterColor}80`
             : `0 0 8px ${chapterColor}AA`,
         }}
-        whileHover={{ scale: 1.25 }}
+        whileHover={isSelected ? {} : { scale: 1.25 }}
         animate={isSelected ? { scale: 1.15 } : { scale: 1 }}
         transition={{ duration: 0.2 }}
       />
@@ -70,7 +70,7 @@ export default function ConstellationNode({
       {!showLabel && (
         <span className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded bg-black/70 px-2 py-1 text-[10px] font-semibold text-white tracking-[0.08em] opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
           {product.name}
-          {product.isNew && <span className="ml-1 text-amber-200">✦</span>}
+          {product.isNew && <span className="ml-1 text-amber-200" aria-hidden="true">✦</span>}
         </span>
       )}
     </button>
