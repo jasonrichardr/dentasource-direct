@@ -24,22 +24,20 @@ export default function ChapterAnchor({ chapter, skuCount, position, onClick }) 
     >
       {/* Anchor dot */}
       <span
-        className="block rounded-full"
+        className="block rounded-full w-5 h-5 md:w-7 md:h-7"
         style={{
-          width: 28,
-          height: 28,
           background: `radial-gradient(circle, #fff 0%, ${chapter.color} 100%)`,
           boxShadow: `0 0 18px ${chapter.color}D9`,
         }}
         aria-hidden="true"
       />
       {/* Label — always visible */}
-      <span className="whitespace-nowrap rounded border border-white/20 bg-white/10 px-2 py-1 text-center text-[10px] font-bold uppercase leading-tight tracking-[0.2em] text-white backdrop-blur-sm">
-        <span className="mr-1 italic font-normal text-white/55 font-serif">
+      <span className="whitespace-nowrap rounded border border-white/20 bg-white/10 px-1 md:px-2 py-0.5 md:py-1 text-center text-[9px] md:text-[10px] font-bold uppercase leading-tight tracking-[0.15em] md:tracking-[0.2em] text-white backdrop-blur-sm">
+        <span className="mr-0.5 md:mr-1 italic font-normal text-white/55 font-serif">
           {chapter.roman}
         </span>
         {chapter.name}
-        <span className="block text-[9px] font-normal italic text-white/55 font-serif tracking-normal">
+        <span className="block text-[8px] md:text-[9px] font-normal italic text-white/55 font-serif tracking-normal">
           {skuCount} SKU{skuCount === 1 ? '' : 's'}
         </span>
       </span>

@@ -64,8 +64,8 @@ export default function Constellation() {
       </h2>
 
       <div className="mx-auto max-w-7xl px-4">
-        {/* Map (desktop only) */}
-        <div className="relative hidden md:block aspect-[16/10] w-full">
+        {/* Map — all viewports, scales via aspect-ratio */}
+        <div className="relative block aspect-square md:aspect-[16/10] w-full">
           {/* Connecting SVG lines from center to each anchor */}
           <svg
             className="absolute inset-0 h-full w-full pointer-events-none"
@@ -104,21 +104,19 @@ export default function Constellation() {
             aria-label={`${flagship.fullName} — flagship — open detail page`}
           >
             <span
-              className="block rounded-full"
+              className="block rounded-full w-14 h-14 md:w-20 md:h-20"
               style={{
-                width: 80,
-                height: 80,
                 background:
                   'radial-gradient(circle, #fff 0%, #cce4ff 60%, #6aa8ff 100%)',
                 boxShadow:
-                  '0 0 30px rgba(180,220,255,0.95), 0 0 60px rgba(120,180,255,0.6)',
+                  '0 0 22px rgba(180,220,255,0.85), 0 0 44px rgba(120,180,255,0.5)',
               }}
               aria-hidden="true"
             />
-            <span className="mt-2 font-serif italic text-white/70 text-[10px] tracking-widest">
+            <span className="mt-1 font-serif italic text-white/70 text-[9px] md:text-[10px] tracking-widest">
               ★ FLAGSHIP
             </span>
-            <span className="mt-1 whitespace-nowrap rounded border border-white/20 bg-black/40 px-2.5 py-1 text-[11px] font-bold tracking-[0.2em] text-white">
+            <span className="mt-0.5 whitespace-nowrap rounded border border-white/20 bg-black/40 px-1.5 md:px-2.5 py-0.5 md:py-1 text-[9px] md:text-[11px] font-bold tracking-[0.2em] text-white">
               MEET ENDO
             </span>
           </Link>
@@ -152,61 +150,6 @@ export default function Constellation() {
                     />
                   );
                 })}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Mobile fallback — vertical chapters list */}
-        <div className="md:hidden flex flex-col gap-4">
-          <Link
-            href={`/denjoy/${flagship.slug}`}
-            className="block rounded-lg border border-white/15 bg-gradient-to-br from-blue-900/40 to-indigo-900/40 p-6 text-center"
-          >
-            <div className="font-serif italic text-white/70 text-[10px] tracking-widest mb-2">
-              ★ FLAGSHIP
-            </div>
-            <div className="font-serif italic text-2xl text-white">
-              {flagship.name}
-            </div>
-            <div className="text-white/70 text-sm mt-1">
-              {flagship.tagline}
-            </div>
-          </Link>
-          {denjoyChapters.map((chapter) => {
-            const products = productsByChapter[chapter.id] ?? [];
-            if (products.length === 0) return null;
-            return (
-              <div
-                key={chapter.id}
-                className="rounded-lg border border-white/10 bg-white/5 p-4"
-              >
-                <div className="text-white/60 text-[10px] font-bold uppercase tracking-[0.2em] mb-2">
-                  <span className="font-serif italic font-normal mr-1 text-white/40">
-                    {chapter.roman}
-                  </span>
-                  {chapter.name}
-                </div>
-                <div className="flex flex-col gap-2">
-                  {products.map((p) => (
-                    <button
-                      key={p.slug}
-                      type="button"
-                      onClick={() => setSelectedSlug(p.slug)}
-                      className="flex items-center justify-between text-left text-white py-1 px-2 rounded transition-colors hover:bg-white/5 focus:outline-none focus-visible:bg-white/10"
-                    >
-                      <span className="font-medium text-sm">
-                        {p.name}
-                        {p.isNew && (
-                          <span className="ml-1 text-amber-200" aria-hidden="true">
-                            ✦
-                          </span>
-                        )}
-                      </span>
-                      <span className="text-white/40 text-xs">→</span>
-                    </button>
-                  ))}
-                </div>
               </div>
             );
           })}

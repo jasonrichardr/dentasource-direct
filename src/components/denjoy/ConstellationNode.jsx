@@ -25,7 +25,7 @@ export default function ConstellationNode({
     <button
       type="button"
       onClick={() => onSelect(product.slug)}
-      className="absolute group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 rounded-full"
+      className="absolute group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 rounded-full p-2 md:p-0"
       style={{
         left: position.left,
         top: position.top,
@@ -36,10 +36,12 @@ export default function ConstellationNode({
       aria-pressed={isSelected}
     >
       <motion.span
-        className="block rounded-full"
+        className={`block rounded-full ${
+          isSelected
+            ? 'w-4 h-4 md:w-[22px] md:h-[22px]'
+            : 'w-3 h-3 md:w-[14px] md:h-[14px]'
+        }`}
         style={{
-          width: isSelected ? 22 : 14,
-          height: isSelected ? 22 : 14,
           background: isSelected
             ? `radial-gradient(circle, #fff 0%, ${chapterColor} 100%)`
             : 'rgba(255,255,255,0.85)',
@@ -62,13 +64,13 @@ export default function ConstellationNode({
       )}
       {/* Label — always-visible variant */}
       {showLabel && (
-        <span className="absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap text-white/80 text-[10px] font-semibold tracking-[0.08em]">
+        <span className="absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap text-white/80 text-[9px] md:text-[10px] font-semibold tracking-[0.08em]">
           {product.name}
         </span>
       )}
-      {/* Tooltip — hover variant */}
+      {/* Tooltip — always visible on mobile (no hover), hover-revealed on md+ */}
       {!showLabel && (
-        <span className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded bg-black/70 px-2 py-1 text-[10px] font-semibold text-white tracking-[0.08em] opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+        <span className="pointer-events-none absolute left-1/2 top-full mt-1 md:mt-2 -translate-x-1/2 whitespace-nowrap rounded bg-black/70 px-1.5 md:px-2 py-0.5 md:py-1 text-[8px] md:text-[10px] font-semibold text-white tracking-[0.08em] opacity-100 md:opacity-0 transition-opacity md:group-hover:opacity-100 md:group-focus-visible:opacity-100">
           {product.name}
           {product.isNew && <span className="ml-1 text-amber-200" aria-hidden="true">✦</span>}
         </span>
