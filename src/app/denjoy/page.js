@@ -1,64 +1,58 @@
 import Script from 'next/script';
 import DenjoyHero from '@/components/denjoy/DenjoyHero';
-import MeetEndoPanel from '@/components/denjoy/MeetEndoPanel';
-import ProductPanel from '@/components/denjoy/ProductPanel';
-import DenjoyWhyPH from '@/components/denjoy/DenjoyWhyPH';
+import Constellation from '@/components/denjoy/Constellation';
+import ChaptersBand from '@/components/denjoy/ChaptersBand';
 import DenjoyFAQ from '@/components/denjoy/DenjoyFAQ';
 import DenjoyCTA from '@/components/denjoy/DenjoyCTA';
 import MessengerButton from '@/components/denjoy/MessengerButton';
-import { getCoStars } from '@/data/denjoy';
+import { denjoyProducts } from '@/data/denjoy';
+import { faqGraph } from '@/lib/schemas/faq';
 import styles from './page.module.css';
 
 export const metadata = {
-  title: 'Most Advanced Endo Motor Philippines — Real-Time & Wireless | Denjoy',
+  title:
+    'All of Denjoy in the Philippines — 12 Endo Instruments | DentaSource Direct',
   description:
-    'Philippines\u2019 most digitally advanced endodontic system. Five wireless handpieces, centralized 4,700 mAh dock, real-time data visualization. Denjoy Meet Endo — exclusive to DentaSource Direct.',
+    'The complete Denjoy endodontic line — Meet Endo, Meta Endo Pro I, Meta Endo, ix6/ix7 microscopes, FREE PEX, i-Pexo, i-Moto, iUe1, iCure, iPack, Meta Pack. Exclusive distribution by DentaSource Direct. Pasig showroom demos available.',
   keywords: [
-    'endo motor Philippines',
     'Denjoy Philippines',
+    'endo motor Philippines',
     'apex locator Philippines',
+    'dental microscope Philippines',
     'cordless endo motor Philippines',
-    'root canal machine price Philippines',
-    'endodontic motor with apex locator',
-    'dental equipment supplier Manila',
+    'ultrasonic activator Philippines',
+    'root canal equipment Philippines',
     'Denjoy Meet Endo',
-    'endodontic handpiece Philippines',
-    'ultrasonic scaler dental Philippines',
+    'Denjoy ix7 microscope',
+    'Denjoy ix6 microscope',
+    'Meta Endo Pro I',
+    'DentaSource Direct',
   ],
-  alternates: {
-    canonical: 'https://dentasourcedirect.com/denjoy',
-  },
+  alternates: { canonical: 'https://dentasourcedirect.com/denjoy' },
   openGraph: {
-    title: 'The Most Digitally Advanced Endo Motor in the Philippines — Denjoy Meet Endo',
+    title: 'The Denjoy line — finally, all of it. Locally.',
     description:
-      'Real-time data visualization. Five wireless handpieces on one 4,700 mAh dock. Intelligent auto-pairing. No other endodontic system sold in PH integrates the workflow this way. Exclusive by DentaSource Direct.',
+      'Twelve Denjoy instruments in one Philippines lineup. Meet Endo, Meta Endo Pro I, Meta Endo, ix6/ix7 microscopes, FREE PEX, i-Pexo, i-Moto, iUe1, iCure, iPack, Meta Pack. Exclusive distribution by DentaSource Direct.',
     url: 'https://dentasourcedirect.com/denjoy',
     siteName: 'DentaSource Direct',
     locale: 'en_PH',
     type: 'website',
     images: [
       {
-        url: 'https://dentasourcedirect.com/images/denjoy/ensemble-hero-2.jpg',
+        url: 'https://dentasourcedirect.com/videos/denjoy/meet-endo-poster.jpg',
         width: 1200,
         height: 630,
-        alt: 'Denjoy Meet Endo, FREE PEX, i-Pexo, AIKE and imate3 — exclusive Philippines distribution by DentaSource Direct',
+        alt: 'The Denjoy line in the Philippines — twelve instruments, exclusive distribution by DentaSource Direct',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Endo Motor Philippines by Denjoy | DentaSource Direct',
+    title: 'All of Denjoy in the Philippines | DentaSource Direct',
     description:
-      'Exclusive Denjoy endodontics in the Philippines. Meet Endo, FREE PEX, i-Pexo, AIKE, imate3.',
-    images: ['https://dentasourcedirect.com/images/denjoy/ensemble-hero-2.jpg'],
+      'Twelve Denjoy instruments in one Philippines lineup. Exclusive by DSD.',
+    images: ['https://dentasourcedirect.com/videos/denjoy/meet-endo-poster.jpg'],
   },
-};
-
-const COSTAR_ACCENTS = {
-  'free-pex': '#2a4d7a',
-  'i-pexo':   '#4a7aaf',
-  'aike':     '#6a9acf',
-  'imate3':   '#3a4855',
 };
 
 const productHubSchema = {
@@ -66,47 +60,74 @@ const productHubSchema = {
   '@type': 'ProductGroup',
   name: 'Denjoy Endodontic Equipment — Philippines',
   description:
-    'Five world-class endodontic instruments distributed exclusively in the Philippines by DentaSource Direct: Meet Endo All-in-One, FREE PEX, i-Pexo, AIKE, and imate3.',
-  brand: {
-    '@type': 'Brand',
-    name: 'Denjoy',
-  },
+    'Twelve Denjoy endodontic and microscopy products distributed exclusively in the Philippines by DentaSource Direct.',
+  brand: { '@type': 'Brand', name: 'Denjoy' },
   url: 'https://dentasourcedirect.com/denjoy',
-  image: 'https://dentasourcedirect.com/images/denjoy/ensemble-hero-2.jpg',
+  image:
+    'https://dentasourcedirect.com/videos/denjoy/meet-endo-poster.jpg',
   seller: {
     '@type': 'Organization',
     name: 'DentaSource Direct',
     url: 'https://dentasourcedirect.com',
     areaServed: 'Philippines',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '610 C. Maybunga Rd',
+      addressLocality: 'Pasig City',
+      postalCode: '1600',
+      addressCountry: 'PH',
+    },
   },
+  hasVariant: denjoyProducts.map((p) => ({
+    '@type': 'Product',
+    name: p.fullName,
+    url: `https://dentasourcedirect.com/denjoy/${p.slug}`,
+    brand: { '@type': 'Brand', name: 'Denjoy' },
+  })),
 };
 
-export default function DenjoyPage() {
-  const coStars = getCoStars();
+const faqSchema = faqGraph([
+  {
+    q: 'How many Denjoy products does DentaSource Direct distribute in the Philippines?',
+    a: 'Twelve, as of 2026. The full Denjoy line is exclusively distributed by DSD: 3 integrated systems (Meet Endo, Meta Endo Pro I, Meta Endo), 2 apex locators (FREE PEX, i-Pexo), 2 microscopes (ix6, ix7), 1 cordless motor (i-Moto), and 4 auxiliary products (iUe1, iCure, iPack, Meta Pack).',
+  },
+  {
+    q: 'Where can I see and demo a Denjoy unit before buying?',
+    a: 'At the DentaSource Direct Pasig showroom — 610 C. Maybunga Rd, Pasig City 1600. The Meet Endo flagship is already installed for live demos. Other units are demo-ready by appointment. Message us via the chat to schedule.',
+  },
+  {
+    q: 'Is DentaSource Direct an official Denjoy distributor?',
+    a: 'DSD is the exclusive Denjoy distributor in the Philippines. All units sold by DSD include local warranty, training, and direct support — not just import paperwork.',
+  },
+]);
 
+export default function DenjoyPage() {
   return (
     <>
-      <Script id="denjoy-product-schema" type="application/ld+json" strategy="afterInteractive">
+      <Script
+        id="denjoy-product-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+      >
         {JSON.stringify(productHubSchema)}
+      </Script>
+      <Script
+        id="denjoy-faq-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+      >
+        {JSON.stringify(faqSchema)}
       </Script>
       <main className={styles.scrollContainer}>
         <DenjoyHero />
-        <MeetEndoPanel />
-        {coStars.map((product, i) => (
-          <ProductPanel
-            key={product.slug}
-            product={product}
-            imagePosition={i % 2 === 0 ? 'right' : 'left'}
-            accentColor={COSTAR_ACCENTS[product.slug] || '#7a2a4d'}
-          />
-        ))}
-        <DenjoyWhyPH />
-        <DenjoyFAQ />
+        <Constellation />
+        <ChaptersBand />
         <DenjoyCTA />
+        <DenjoyFAQ />
       </main>
       <div className={styles.mobileStickyBar}>
         <MessengerButton
-          prefillText="Hi DSD, I'd like to chat about the Denjoy launch."
+          prefillText="Hi DSD, I'd like to chat about the Denjoy line."
           label="Chat about Denjoy"
         />
       </div>
