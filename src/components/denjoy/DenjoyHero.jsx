@@ -9,7 +9,7 @@ const MESSENGER_HREF =
 export default function DenjoyHero() {
   return (
     <section
-      className="relative h-screen min-h-[600px] w-full overflow-hidden bg-black flex items-center justify-center"
+      className="relative snap-start h-screen min-h-[600px] w-full overflow-hidden bg-black flex items-center justify-center"
       aria-labelledby="denjoy-hero-title"
     >
       {/* Brand film background */}
@@ -20,6 +20,7 @@ export default function DenjoyHero() {
         muted
         playsInline
         loop
+        preload="auto"
         className="absolute inset-0 h-full w-full object-cover opacity-90"
         aria-hidden="true"
       />
