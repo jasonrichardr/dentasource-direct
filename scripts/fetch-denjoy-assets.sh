@@ -84,8 +84,14 @@ for entry in "${PRODUCTS[@]}"; do
 import sys, re, urllib.parse
 html = sys.stdin.read()
 
-# 1. og:image meta tag — product-specific hero used for sharing
-og = re.findall(r'og:image[^>]*content=\"([^\"]+)\"', html, re.IGNORECASE)
+# 1. og:image meta tag — product-specific hero used for sharing.
+# Match both attribute orderings: property-first and content-first.
+og = re.findall(
+    r'<meta[^>]*property=["\']og:image["\'][^>]*content=["\']([^"\']+)["\']'
+    r'|<meta[^>]*content=["\']([^"\']+)["\'][^>]*property=["\']og:image["\']',
+    html, re.IGNORECASE,
+)
+og = [x for t in og for x in t if x]  # flatten tuple groups
 if og:
     print(og[0])
     sys.exit()
@@ -104,7 +110,7 @@ imgs = [u for u in imgs if 'no-pic' not in u and 'logo' not in u.lower() and 'qr
 imgs = ['https:' + u if u.startswith('//') else u for u in imgs]
 imgs = [u for u in imgs if u.startswith('http')]
 print(imgs[0] if imgs else '')
-")
+" || true)
 
   if [ -z "$img_url" ]; then
     echo "    [$slug] WARNING — no hero image found"
