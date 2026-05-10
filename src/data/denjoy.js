@@ -3,6 +3,17 @@
 // Source of truth for the /denjoy landing page and detail pages.
 // Chapters are first-class. Products carry a `chapter` foreign key.
 
+// SECURITY NOTE: every product's `denjoyUrl` field uses http://www.denjoy.cn/...
+// Denjoy's SSL certificate is expired (locked memory: reference_denjoy_ssl_expired).
+// These URLs are stored as back-pointers for content updates only — DO NOT render
+// them as clickable <a href> in user-facing UI without a "leaving secure site"
+// confirmation, or browsers will surface a mixed-content / NET::ERR_CERT_DATE_INVALID
+// warning. Use them only in admin contexts or in source comments.
+
+// ✦ NEW badge stays visible for 90 days from launchedAt, then auto-fades.
+// Eased from manual cleanup so launches don't require a follow-up commit.
+const NEW_BADGE_DAYS = 90;
+
 export const denjoyChapters = [
   { id: 'integrated',  roman: 'I',   name: 'Integrated Systems',
     color: '#ffd49a',  position: 'top'         },          // 0°
@@ -358,7 +369,9 @@ export const getDenjoyBySlug = (slug) =>
 
 export const getNewProducts = () =>
   denjoyProducts.filter(
-    (p) => p.isNew && (Date.now() - new Date(p.launchedAt) < 90 * 86400000)
+    (p) =>
+      p.isNew &&
+      Date.now() - new Date(p.launchedAt) < NEW_BADGE_DAYS * 24 * 60 * 60 * 1000
   );
 
 // Backwards-compatible helper used by /denjoy/[slug] and others.
