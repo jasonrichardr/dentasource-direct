@@ -28,8 +28,20 @@ if [ ! -f "$VIDEO_DIR/joining-forces.mp4" ]; then
          "https://youtu.be/171806KYnyk"
 fi
 
+# Denjoy HQ aerial (corporate credibility)
+if [ ! -f "$VIDEO_DIR/denjoy-hq.mp4" ]; then
+  curl -sL --max-time 60 -o "$VIDEO_DIR/denjoy-hq.mp4" \
+    "http://32091626.s21v.faiusr.com/58/ABUIABA6GAAgoNe-vgYo0vu4nQU.mp4"
+fi
+
+# Denjoy team event (corporate credibility)
+if [ ! -f "$VIDEO_DIR/denjoy-team.mp4" ]; then
+  curl -sL --max-time 60 -o "$VIDEO_DIR/denjoy-team.mp4" \
+    "http://32091626.s21v.faiusr.com/58/ABUIABA6GAAgoNy-vgYooe2hzQU.mp4"
+fi
+
 echo "==> Re-encoding 720p mobile variants..."
-for base in meet-endo joining-forces; do
+for base in meet-endo joining-forces denjoy-hq denjoy-team; do
   if [ ! -f "$VIDEO_DIR/${base}-720.mp4" ]; then
     ffmpeg -i "$VIDEO_DIR/${base}.mp4" \
            -vf scale=-2:720 \
@@ -41,7 +53,7 @@ for base in meet-endo joining-forces; do
 done
 
 echo "==> Extracting poster frames..."
-for base in meet-endo joining-forces; do
+for base in meet-endo joining-forces denjoy-hq denjoy-team; do
   if [ ! -f "$VIDEO_DIR/${base}-poster.jpg" ]; then
     ffmpeg -i "$VIDEO_DIR/${base}.mp4" -ss 1 -frames:v 1 -q:v 2 -update 1 \
            "$VIDEO_DIR/${base}-poster.jpg"

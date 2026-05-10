@@ -1,43 +1,67 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-const MESSENGER_HREF =
-  'https://m.me/dentasourcedirect?ref=denjoy_2026_landing';
+const MESSENGER_HREF = 'https://m.me/dentasourcedirect?ref=denjoy_2026_landing';
+
+const CLIPS = [
+  { src: '/videos/denjoy/denjoy-hq.mp4',   poster: '/videos/denjoy/denjoy-hq-poster.jpg' },
+  { src: '/videos/denjoy/denjoy-team.mp4', poster: '/videos/denjoy/denjoy-team-poster.jpg' },
+];
 
 export default function DenjoyHero() {
+  const [index, setIndex] = useState(0);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const onEnded = () => setIndex((i) => (i + 1) % CLIPS.length);
+    v.addEventListener('ended', onEnded);
+    return () => v.removeEventListener('ended', onEnded);
+  }, []);
+
+  // Force reload when src changes so play() fires
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.load();
+    const p = v.play();
+    if (p && typeof p.catch === 'function') p.catch(() => {});
+  }, [index]);
+
+  const clip = CLIPS[index];
+
   return (
     <section
       className="relative snap-start h-screen min-h-[600px] w-full overflow-hidden bg-black flex items-center justify-center"
       aria-labelledby="denjoy-hero-title"
     >
-      {/* Brand film background */}
       <video
-        src="/videos/denjoy/meet-endo.mp4"
-        poster="/videos/denjoy/meet-endo-poster.jpg"
+        key={clip.src}
+        ref={videoRef}
+        src={clip.src}
+        poster={clip.poster}
         autoPlay
         muted
         playsInline
-        loop
         preload="auto"
         className="absolute inset-0 h-full w-full object-cover opacity-90"
         aria-hidden="true"
       />
 
-      {/* Vignette */}
       <div
         className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/80"
         aria-hidden="true"
       />
 
-      {/* Eyebrow */}
       <div className="absolute top-6 left-6 right-6 z-10 flex items-center justify-between text-white text-[11px] font-bold uppercase tracking-[0.35em]">
         <span>DENJOY · PHILIPPINES</span>
         <span className="opacity-50">2026</span>
       </div>
 
-      {/* Tagline */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -50,13 +74,10 @@ export default function DenjoyHero() {
         >
           The Denjoy line —
           <br />
-          <strong className="font-semibold not-italic">
-            finally, all of it. Locally.
-          </strong>
+          <strong className="font-semibold not-italic">finally, all of it. Locally.</strong>
         </h1>
       </motion.div>
 
-      {/* CTA — Messenger */}
       <Link
         href={MESSENGER_HREF}
         target="_blank"
@@ -66,7 +87,6 @@ export default function DenjoyHero() {
         Chat about Denjoy →
       </Link>
 
-      {/* Scroll cue */}
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
