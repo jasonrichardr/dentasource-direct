@@ -52,6 +52,11 @@ for base in meet-endo joining-forces denjoy-hq denjoy-team; do
   fi
 done
 
+echo "==> Cleaning up 1080p source files (only 720p variants are served)..."
+for base in denjoy-hq denjoy-team; do
+  [ -f "$VIDEO_DIR/${base}.mp4" ] && rm "$VIDEO_DIR/${base}.mp4"
+done
+
 echo "==> Extracting poster frames..."
 for base in meet-endo joining-forces denjoy-hq denjoy-team; do
   if [ ! -f "$VIDEO_DIR/${base}-poster.jpg" ]; then

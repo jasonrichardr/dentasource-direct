@@ -7,8 +7,8 @@ import Link from 'next/link';
 const MESSENGER_HREF = 'https://m.me/dentasourcedirect?ref=denjoy_2026_landing';
 
 const CLIPS = [
-  { src: '/videos/denjoy/denjoy-hq.mp4',   poster: '/videos/denjoy/denjoy-hq-poster.jpg' },
-  { src: '/videos/denjoy/denjoy-team.mp4', poster: '/videos/denjoy/denjoy-team-poster.jpg' },
+  { src: '/videos/denjoy/denjoy-hq-720.mp4',   poster: '/videos/denjoy/denjoy-hq-poster.jpg' },
+  { src: '/videos/denjoy/denjoy-team-720.mp4', poster: '/videos/denjoy/denjoy-team-poster.jpg' },
 ];
 
 export default function DenjoyHero() {
