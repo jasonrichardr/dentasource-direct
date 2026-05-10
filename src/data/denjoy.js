@@ -1,11 +1,36 @@
+// src/data/denjoy.js
+//
+// Source of truth for the /denjoy landing page and detail pages.
+// Chapters are first-class. Products carry a `chapter` foreign key.
+
+export const denjoyChapters = [
+  { id: 'integrated',  roman: 'I',   name: 'Integrated Systems',
+    color: '#ffd49a',  position: 'top'         },          // 0°
+  { id: 'apex',        roman: 'II',  name: 'Apex Locators',
+    color: '#9ad4ff',  position: 'upper-right' },          // 72°
+  { id: 'microscopes', roman: 'III', name: 'Microscopes',
+    color: '#c4a4ff',  position: 'lower-right' },          // 144°
+  { id: 'motors',      roman: 'IV',  name: 'Motors & Tools',
+    color: '#ff9ad4',  position: 'lower-left'  },          // 216°
+  { id: 'auxiliary',   roman: 'V',   name: 'Auxiliary & Packs',
+    color: '#9affc4',  position: 'upper-left'  },          // 288°
+];
+
 export const denjoyProducts = [
+  // ============================================================
+  // Chapter I — Integrated Systems
+  // ============================================================
   {
     slug: 'meet-endo',
     name: 'Meet Endo',
     fullName: 'Meet Endo All-in-One Endodontic System',
     tagline: 'The integrated endodontic system, reimagined.',
+    chapter: 'integrated',
     isFlagship: true,
-    category: 'integrated-system',
+    isNew: false,
+    launchedAt: '2026-04-20',
+    denjoyId: 22,
+    denjoyUrl: 'http://www.denjoy.cn/sys-pd/22.html',
     heroImage: '/images/denjoy/meet-endo/meetendo-studio-ui-on.jpg',
     gallery: [
       '/images/denjoy/meet-endo/denjoy-meetendo-1.jpg',
@@ -27,18 +52,73 @@ export const denjoyProducts = [
     ],
     messengerText: "Hi DSD, I'd like to know more about the Denjoy Meet Endo.",
     videos: [
+      { id: 'O6odfHoymqw', title: 'Denjoy Meet-Endo brand film', duration: '0:43' },
       { id: 'nlgMFP3HzJs', title: 'Meet Endo: The Ultimate Integrated Root Canal System', duration: '0:55' },
       { id: 'k2ZrdMYsfRg', title: 'Meta Endo 4-in-1 Unboxing', duration: '4:37' },
       { id: 'ney0zANs43E', title: '2024 Shanghai Dental Expo Highlight', duration: '0:33' },
     ],
   },
   {
+    slug: 'meta-endo-pro-i',
+    name: 'Meta Endo Pro I',
+    fullName: 'Meta Endo Pro I Endodontic System',
+    tagline: 'Surf the canal with joy.',
+    chapter: 'integrated',
+    isFlagship: false,
+    isNew: true,
+    launchedAt: '2026-05-11',
+    denjoyId: 58,
+    denjoyUrl: 'http://www.denjoy.cn/sys-pd/58.html',
+    heroImage: '/images/denjoy/meta-endo-pro-i/hero.jpg',
+    gallery: [],
+    keyFeatures: [
+      'Pro evolution of the Meta Endo integrated platform.',
+      'Same trusted Denjoy 4-in-1 endo workflow with refinements.',
+      'Configurable per clinic operatory layout.',
+      'Coming to DSD Manila showroom for live demo.',
+    ],
+    messengerText: "Hi DSD, I'd like to know more about the Meta Endo Pro I.",
+    videos: [],
+  },
+  {
+    slug: 'meta-endo',
+    name: 'Meta Endo',
+    fullName: 'Meta Endo 4-in-1 Endodontic System',
+    tagline: 'Four-in-one endo, classic.',
+    chapter: 'integrated',
+    isFlagship: false,
+    isNew: true,
+    launchedAt: '2026-05-11',
+    denjoyId: 23,
+    denjoyUrl: 'http://www.denjoy.cn/sys-pd/23.html',
+    heroImage: '/images/denjoy/meta-endo/hero.jpg',
+    gallery: [],
+    keyFeatures: [
+      '4-in-1 integrated endo system — apex locator + motor + fill + activation in one base unit.',
+      'The reference platform the Meet Endo and Meta Endo Pro I evolved from.',
+      'Trusted Denjoy lineage since 2004.',
+      'Suitable for clinics scaling endo capacity without going full Meet Endo Pro I.',
+    ],
+    messengerText: "Hi DSD, I'd like to know more about the Meta Endo.",
+    videos: [
+      { id: 'k2ZrdMYsfRg', title: 'Meta Endo 4-in-1 Unboxing', duration: '4:37' },
+    ],
+  },
+
+  // ============================================================
+  // Chapter II — Apex Locators
+  // ============================================================
+  {
     slug: 'free-pex',
     name: 'FREE PEX',
     fullName: 'FREE PEX Benchtop Apex Locator',
     tagline: 'Benchtop apex locator, built to stay put.',
+    chapter: 'apex',
     isFlagship: false,
-    category: 'apex-locator',
+    isNew: false,
+    launchedAt: '2026-04-20',
+    denjoyId: 29,
+    denjoyUrl: 'http://www.denjoy.cn/sys-pd/29.html',
     heroImage: '/images/denjoy/free-pex/freepex-three-quarter.jpg',
     gallery: [
       '/images/denjoy/free-pex/denjoy-freepex-1.jpg',
@@ -63,8 +143,12 @@ export const denjoyProducts = [
     name: 'i-Pexo',
     fullName: 'i-Pexo Touchable Apex Locator',
     tagline: 'The apex locator that feels like a phone.',
+    chapter: 'apex',
     isFlagship: false,
-    category: 'apex-locator',
+    isNew: false,
+    launchedAt: '2026-04-20',
+    denjoyId: 31,
+    denjoyUrl: 'http://www.denjoy.cn/sys-pd/31.html',
     heroImage: '/images/denjoy/i-pexo/denjoy-ipexo-1.jpg',
     gallery: [
       '/images/denjoy/i-pexo/denjoy-ipexo-2.jpg',
@@ -84,63 +168,200 @@ export const denjoyProducts = [
       { id: 'b1zRZSZMnMw', title: 'How to Operate a High-Accuracy Apex Locator', duration: '1:20' },
     ],
   },
+
+  // ============================================================
+  // Chapter III — Microscopes
+  // ============================================================
   {
-    slug: 'aike',
-    name: 'AIKE',
-    fullName: 'AIKE Ultrasonic Activator',
-    tagline: 'Ultrasonic irrigation, evolved.',
+    slug: 'ix7',
+    name: 'ix7',
+    fullName: 'ix7 Dental Microscope',
+    tagline: 'See the canal, properly.',
+    chapter: 'microscopes',
     isFlagship: false,
-    category: 'ultrasonic',
-    heroImage: '/images/denjoy/aike/aike-on-stand.jpg',
-    gallery: [
-      '/images/denjoy/aike/aike-standalone.jpg',
-      '/images/denjoy/aike/denjoy-aike-1.jpg',
-    ],
+    isNew: true,
+    launchedAt: '2026-05-11',
+    denjoyId: 24,
+    denjoyUrl: 'http://www.denjoy.cn/sys-pd/24.html',
+    heroImage: '/images/denjoy/ix7/hero.jpg',
+    gallery: [],
     keyFeatures: [
-      'Ultrasonic activation that enhances irrigation penetration.',
-      'Ergonomic handpiece with multiple tip options.',
-      'Dedicated stand to keep the operatory tidy.',
-      'The category reference at Denjoy — no sub-model variants.',
+      'High-magnification dental microscope for endodontic precision.',
+      'The flagship microscope in Denjoy\'s ix family.',
+      'Pairs with the Meet Endo workflow for full-system endodontics.',
+      'Local install + training via DSD Manila showroom.',
     ],
-    messengerText: "Hi DSD, I'd like to know more about the Denjoy AIKE.",
+    messengerText: "Hi DSD, I'd like to know more about the Denjoy ix7 microscope.",
     videos: [
-      { id: 'fdUnS7luNaA', title: 'Ultrasonic Endo Activator for Root Canal', duration: '0:45' },
-      { id: 'dqI_autD9Ko', title: 'Ultrasonic Activator for Effective Irrigation', duration: '1:02' },
+      { id: 's-m0MTzbhe0', title: 'Microscope Unboxing & Installation', duration: '6:38' },
+      { id: 'BzjLwsg2q0s', title: 'Explore Denjoy Microscope (Part II)', duration: '6:58' },
+      { id: 'ofFaQAONEzM', title: 'Explore Denjoy Microscope (Part I)', duration: '7:50' },
     ],
   },
   {
-    slug: 'imate3',
-    name: 'imate3',
-    fullName: 'imate3 Cordless Endo Motor',
-    tagline: 'Cordless endo motor, pocket-sized precision.',
+    slug: 'ix6',
+    name: 'ix6',
+    fullName: 'ix6 Dental Microscope',
+    tagline: 'High-precision optics, made local.',
+    chapter: 'microscopes',
     isFlagship: false,
-    category: 'endo-motor',
-    heroImage: '/images/denjoy/imate3/imate3-front.jpg',
-    gallery: [
-      '/images/denjoy/imate3/denjoy-imate3-1.jpg',
-      '/images/denjoy/imate3/denjoy-imate3-2.jpg',
-      '/images/denjoy/imate3/denjoy-imate-ii-alt-1.jpg',
-      '/images/denjoy/imate3/denjoy-imate-ii-alt-2.jpg',
-    ],
+    isNew: true,
+    launchedAt: '2026-05-11',
+    denjoyId: 25,
+    denjoyUrl: 'http://www.denjoy.cn/sys-pd/25.html',
+    heroImage: '/images/denjoy/ix6/hero.jpg',
+    gallery: [],
     keyFeatures: [
-      '3-in-1 cordless operation — motor, apex locator integration, programmable profiles.',
-      'Compact form fits even the smallest glove.',
-      'Same motor lineage used inside the Meet Endo MeetMotor module.',
-      'Up to 200 cycles per charge — clinic-day endurance.',
+      'Mid-tier dental microscope in the ix family.',
+      'Same Denjoy optics quality, more accessible price point.',
+      'Suitable for clinics scaling into microscope-assisted endo.',
+      'Demos available at DSD Manila showroom.',
     ],
-    messengerText: "Hi DSD, I'd like to know more about the Denjoy imate3.",
+    messengerText: "Hi DSD, I'd like to know more about the Denjoy ix6 microscope.",
     videos: [
-      { id: 'Zpllcba9dog', title: 'imate3 Operation Instruction', duration: '2:16' },
-      { id: 'uf0atV2kN3Q', title: 'How to Install an iMate Cordless Endo Motor', duration: '1:49' },
+      { id: 's-m0MTzbhe0', title: 'Microscope Unboxing & Installation', duration: '6:38' },
     ],
+  },
+
+  // ============================================================
+  // Chapter IV — Motors & Tools
+  // ============================================================
+  {
+    slug: 'i-moto',
+    name: 'i-Moto',
+    fullName: "i-Moto Dentist's Dexterous Tool",
+    tagline: 'Cordless precision, dentist-grade.',
+    chapter: 'motors',
+    isFlagship: false,
+    isNew: true,
+    launchedAt: '2026-05-11',
+    denjoyId: 36,
+    denjoyUrl: 'http://www.denjoy.cn/sys-pd/36.html',
+    heroImage: '/images/denjoy/i-moto/hero.jpg',
+    gallery: [],
+    keyFeatures: [
+      'Cordless endo motor in the i-family lineage.',
+      'Programmable torque profiles for rotary file work.',
+      'Same motor engine inside the Meet Endo MeetMotor module.',
+      'Compact form fits any glove.',
+    ],
+    messengerText: "Hi DSD, I'd like to know more about the Denjoy i-Moto.",
+    videos: [],
+  },
+
+  // ============================================================
+  // Chapter V — Auxiliary & Packs
+  // ============================================================
+  {
+    slug: 'iue1',
+    name: 'iUe1',
+    fullName: 'iUe1 Ultrasonic Activator',
+    tagline: 'Ultrasonic irrigation, evolved.',
+    chapter: 'auxiliary',
+    isFlagship: false,
+    isNew: true,
+    launchedAt: '2026-05-11',
+    denjoyId: 41,
+    denjoyUrl: 'http://www.denjoy.cn/sys-pd/41.html',
+    heroImage: '/images/denjoy/iue1/hero.jpg',
+    gallery: [],
+    keyFeatures: [
+      'Ultrasonic activator for more effective root canal irrigation.',
+      "The successor to AIKE in Denjoy's ultrasonic line.",
+      'Ergonomic handpiece with multiple tip options.',
+      'Pairs with any apex-locator-driven endo workflow.',
+    ],
+    messengerText: "Hi DSD, I'd like to know more about the Denjoy iUe1.",
+    videos: [
+      { id: 'dqI_autD9Ko', title: 'Denjoy iUe1 ultrasonic activator', duration: '0:30' },
+    ],
+  },
+  {
+    slug: 'icure',
+    name: 'iCure',
+    fullName: 'iCure Cordless Obturation System',
+    tagline: 'Cordless GP obturation, simplified.',
+    chapter: 'auxiliary',
+    isFlagship: false,
+    isNew: true,
+    launchedAt: '2026-05-11',
+    denjoyId: 39,
+    denjoyUrl: 'http://www.denjoy.cn/sys-pd/39.html',
+    heroImage: '/images/denjoy/icure/hero.jpg',
+    gallery: [],
+    keyFeatures: [
+      'Cordless GP obturation system from the i-family.',
+      'Thermal delivery control for predictable canal sealing.',
+      'Pairs with FREE PEX, i-Pexo, or Meet Endo workflows.',
+      'Compact form for chairside operatory use.',
+    ],
+    messengerText: "Hi DSD, I'd like to know more about the Denjoy iCure.",
+    videos: [],
+  },
+  {
+    slug: 'ipack',
+    name: 'iPack',
+    fullName: 'iPack Endo Accessory Bundle',
+    tagline: 'Everything the i-family pairs with.',
+    chapter: 'auxiliary',
+    isFlagship: false,
+    isNew: true,
+    launchedAt: '2026-05-11',
+    denjoyId: 28,
+    denjoyUrl: 'http://www.denjoy.cn/sys-pd/28.html',
+    heroImage: '/images/denjoy/ipack/hero.jpg',
+    gallery: [],
+    keyFeatures: [
+      'Curated accessory bundle for the i-family endo line.',
+      'Standardized consumables and tip options across i-Pexo, i-Moto, iCure.',
+      'Reduces consumable SKU sprawl in the operatory.',
+      'Ask DSD for the current iPack contents.',
+    ],
+    messengerText: "Hi DSD, I'd like to know more about the Denjoy iPack.",
+    videos: [],
+  },
+  {
+    slug: 'meta-pack',
+    name: 'Meta Pack',
+    fullName: 'Meta Pack Integrated System Bundle',
+    tagline: 'Everything the Meta line pairs with.',
+    chapter: 'auxiliary',
+    isFlagship: false,
+    isNew: true,
+    launchedAt: '2026-05-11',
+    denjoyId: 26,
+    denjoyUrl: 'http://www.denjoy.cn/sys-pd/26.html',
+    heroImage: '/images/denjoy/meta-pack/hero.jpg',
+    gallery: [],
+    keyFeatures: [
+      'Curated accessory bundle for the Meta Endo line.',
+      'Consumables and tips matched to Meta Endo and Meta Endo Pro I workflows.',
+      'Sized for high-volume endo practices.',
+      'Ask DSD for the current Meta Pack contents.',
+    ],
+    messengerText: "Hi DSD, I'd like to know more about the Denjoy Meta Pack.",
+    videos: [],
   },
 ];
+
+// ----------------------------------------------------------------
+// Helpers
+// ----------------------------------------------------------------
+export const getProductsByChapter = (chapterId) =>
+  denjoyProducts.filter((p) => p.chapter === chapterId);
+
+export const getFlagship = () =>
+  denjoyProducts.find((p) => p.isFlagship);
 
 export const getDenjoyBySlug = (slug) =>
   denjoyProducts.find((p) => p.slug === slug);
 
+export const getNewProducts = () =>
+  denjoyProducts.filter(
+    (p) => p.isNew && (Date.now() - new Date(p.launchedAt) < 90 * 86400000)
+  );
+
+// Backwards-compatible helper used by /denjoy/[slug] and others.
+// Filters out the flagship from the co-stars list.
 export const getCoStars = () =>
   denjoyProducts.filter((p) => !p.isFlagship);
-
-export const getFlagship = () =>
-  denjoyProducts.find((p) => p.isFlagship);

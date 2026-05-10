@@ -30,7 +30,7 @@ export default function CoStarDetail({ product }) {
             transition={{ duration: 0.6 }}
           >
             <p className="text-xs font-bold tracking-[0.3em] uppercase text-[#f0c7db] mb-3">
-              {product.category.replace(/-/g, ' ')}
+              {product.chapter.replace(/-/g, ' ')}
             </p>
             <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight mb-5">
               {product.name}

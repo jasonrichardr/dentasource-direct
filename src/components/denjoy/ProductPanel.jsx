@@ -33,7 +33,7 @@ export default function ProductPanel({ product, imagePosition = 'right', accentC
             className="text-xs font-bold tracking-[0.3em] uppercase mb-4"
             style={{ color: accentColor === '#7a2a4d' ? '#f0c7db' : accentColor }}
           >
-            {product.category.replace(/-/g, ' ')}
+            {product.chapter.replace(/-/g, ' ')}
           </p>
           <h2
             id={`${product.slug}-title`}
