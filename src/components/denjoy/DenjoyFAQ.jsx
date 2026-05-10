@@ -38,7 +38,7 @@ export default function DenjoyFAQ() {
             const isOpen = openIndex === i;
             return (
               <div
-                key={i}
+                key={faq.q}
                 className="rounded-lg border border-zinc-200 bg-white overflow-hidden"
               >
                 <button
