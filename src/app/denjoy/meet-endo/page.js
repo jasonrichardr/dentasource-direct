@@ -1,5 +1,5 @@
 import Script from 'next/script';
-import { getFlagship } from '@/data/denjoy';
+import { getDenjoyBySlug } from '@/data/denjoy';
 import MeetEndoDetail from '@/components/denjoy/MeetEndoDetail';
 
 const TITLE = 'Meet Endo All-in-One — Cordless Endo Motor with Apex Locator Philippines | Denjoy by DSD';
@@ -8,7 +8,7 @@ const DESCRIPTION =
 const URL = 'https://dentasourcedirect.com/denjoy/meet-endo';
 
 export function generateMetadata() {
-  const product = getFlagship();
+  const product = getDenjoyBySlug('meet-endo');
   const image = product.heroImage
     ? `https://dentasourcedirect.com${product.heroImage}`
     : 'https://dentasourcedirect.com/images/denjoy/ensemble-hero-2.jpg';
@@ -46,7 +46,7 @@ export function generateMetadata() {
 }
 
 export default function MeetEndoPage() {
-  const product = getFlagship();
+  const product = getDenjoyBySlug('meet-endo');
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Product',

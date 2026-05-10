@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import {
   denjoyChapters,
@@ -117,7 +118,7 @@ export default function Constellation() {
               ★ FLAGSHIP
             </span>
             <span className="mt-0.5 whitespace-nowrap rounded border border-white/20 bg-black/40 px-1.5 md:px-2.5 py-0.5 md:py-1 text-[9px] md:text-[11px] font-bold tracking-[0.2em] text-white">
-              MEET ENDO
+              {flagship.name.toUpperCase()}
             </span>
           </Link>
 
@@ -154,6 +155,25 @@ export default function Constellation() {
             );
           })}
         </div>
+
+        {/* Manifesto — bridge between the system and the detail */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-30px' }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="mt-12 md:mt-16 px-4 text-center text-white"
+        >
+          <p className="font-serif italic text-xl md:text-3xl lg:text-4xl tracking-tight leading-[1.15]">
+            Centralized. Digital. Wireless.
+          </p>
+          <p className="mt-2 md:mt-3 font-serif text-xl md:text-3xl lg:text-4xl font-semibold tracking-tight leading-[1.15]">
+            Endodontics, made possible — by <em className="not-italic font-semibold">Denjoy</em>.
+          </p>
+          <p className="mt-4 text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-amber-200/80">
+            The 2026 line, exclusive to DentaSource Direct
+          </p>
+        </motion.div>
 
         {/* Inline detail card */}
         <InlineDetail
