@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
@@ -13,25 +13,6 @@ const CLIPS = [
 
 export default function DenjoyHero() {
   const [index, setIndex] = useState(0);
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    const onEnded = () => setIndex((i) => (i + 1) % CLIPS.length);
-    v.addEventListener('ended', onEnded);
-    return () => v.removeEventListener('ended', onEnded);
-  }, []);
-
-  // Force reload when src changes so play() fires
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.load();
-    const p = v.play();
-    if (p && typeof p.catch === 'function') p.catch(() => {});
-  }, [index]);
-
   const clip = CLIPS[index];
 
   return (
@@ -41,13 +22,13 @@ export default function DenjoyHero() {
     >
       <video
         key={clip.src}
-        ref={videoRef}
         src={clip.src}
         poster={clip.poster}
         autoPlay
         muted
         playsInline
         preload="auto"
+        onEnded={() => setIndex((i) => (i + 1) % CLIPS.length)}
         className="absolute inset-0 h-full w-full object-cover opacity-90"
         aria-hidden="true"
       />
