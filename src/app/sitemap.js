@@ -36,12 +36,14 @@ export default function sitemap() {
     priority,
   }));
 
-  const denjoyEntries = (denjoyProducts || []).map((item) => ({
-    url: `${BASE_URL}/denjoy/${item.slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly',
-    priority: item.slug === 'meet-endo' ? 0.95 : 0.85,
-  }));
+  const denjoyEntries = (denjoyProducts || [])
+    .filter((p) => !p.isFlagship)
+    .map((item) => ({
+      url: `${BASE_URL}/denjoy/${item.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: item.slug === 'meet-endo' ? 0.95 : 0.85,
+    }));
 
   const newsEntries = (newsData || []).map((article) => ({
     url: `${BASE_URL}/news/${article.slug}`,
