@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 
-const MESSENGER_HANDLE = 'dentasource';
+const MESSENGER_HANDLE = 'dentasourcedirect';
 
 function MessengerIcon({ className = 'w-5 h-5' }) {
   return (
