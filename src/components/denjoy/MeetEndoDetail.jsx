@@ -4,13 +4,13 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { getFlagship } from '@/data/denjoy';
+import { getDenjoyBySlug } from '@/data/denjoy';
 import MessengerButton from './MessengerButton';
 import VideoSection from './VideoSection';
 import Lightbox from './Lightbox';
 
 export default function MeetEndoDetail() {
-  const product = getFlagship();
+  const product = getDenjoyBySlug('meet-endo');
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const total = product.gallery?.length ?? 0;
 

@@ -1,54 +1,63 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import MessengerButton from './MessengerButton';
+
+const MESSENGER_HREF =
+  'https://m.me/dentasourcedirect?ref=denjoy_2026_landing';
 
 export default function DenjoyCTA() {
   return (
     <section
-      className="relative snap-start min-h-screen w-full bg-[#1a3c34] text-white overflow-hidden flex items-center justify-center"
-      aria-labelledby="denjoy-cta-title"
+      aria-labelledby="denjoy-cta-heading"
+      className="relative snap-start h-[70vh] min-h-[480px] w-full overflow-hidden bg-black flex items-center justify-center"
     >
-      <div className="absolute inset-0 pointer-events-none opacity-20" aria-hidden="true">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_50%,#10b981_0%,transparent_60%)]" />
+      {/* Joining Forces brand-bookend video */}
+      <video
+        src="/videos/denjoy/joining-forces.mp4"
+        poster="/videos/denjoy/joining-forces-poster.jpg"
+        autoPlay
+        muted
+        playsInline
+        loop
+        preload="auto"
+        className="absolute inset-0 h-full w-full object-cover opacity-70"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/80"
+        aria-hidden="true"
+      />
+
+      {/* Eyebrow */}
+      <div className="absolute top-6 left-6 right-6 z-10 flex items-center justify-between text-white text-[11px] font-bold uppercase tracking-[0.35em]">
+        <span>JOINING FORCES · DSD × DENJOY</span>
+        <span className="opacity-50">PASIG</span>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="relative z-10 max-w-3xl mx-auto px-6 text-center"
-      >
-        <p className="text-xs font-bold tracking-[0.3em] uppercase text-emerald-300 mb-5">
-          Ready when you are
-        </p>
+      <div className="relative z-10 mx-auto max-w-3xl px-6 text-center text-white">
         <h2
-          id="denjoy-cta-title"
-          className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight mb-6"
+          id="denjoy-cta-heading"
+          className="font-serif italic text-3xl md:text-5xl leading-[1.1] tracking-tight mb-4"
         >
-          See Meet Endo in person.
+          Demo any of these in our{' '}
+          <strong className="not-italic font-semibold">Pasig showroom.</strong>
         </h2>
-        <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-10 max-w-2xl mx-auto">
-          The Meet Endo demo unit is already installed at our Manila showroom.
-          Message us on Facebook, or come visit — chai, coffee, and a full walkthrough on us.
+        <p className="text-white/80 text-sm md:text-base mb-2">
+          DentaSource Direct · 610 C. Maybunga Rd, Pasig City 1600
+        </p>
+        <p className="text-white/55 text-[11px] uppercase tracking-[0.2em] mb-8">
+          Exclusive Denjoy Distributor · Philippines
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <MessengerButton
-            prefillText="Hi DSD, I'd like to chat about the Denjoy launch."
-            label="Message us on Messenger"
-          />
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#1a3c34] font-semibold hover:bg-white/90 transition-colors"
-          >
-            Visit our Manila showroom
-            <span aria-hidden="true">→</span>
-          </Link>
-        </div>
-      </motion.div>
+        <Link
+          href={MESSENGER_HREF}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block rounded bg-amber-200 px-6 py-3 text-[12px] font-semibold uppercase tracking-[0.2em] text-amber-900 transition-colors hover:bg-amber-100"
+        >
+          Chat about Denjoy →
+        </Link>
+      </div>
     </section>
   );
 }

@@ -41,6 +41,16 @@ const nextConfig = {
         destination: '/dentalchairs',
         permanent: true,
       },
+      {
+        source: '/denjoy/imate3',
+        destination: '/denjoy',
+        permanent: true,
+      },
+      {
+        source: '/denjoy/aike',
+        destination: '/denjoy',
+        permanent: true,
+      },
     ];
   },
 };
