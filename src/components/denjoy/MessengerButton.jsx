@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { trackContact } from '@/lib/analytics';
 
-const MESSENGER_HANDLE = 'dentasourcedirect';
+const MESSENGER_HANDLE = 'dentasource';
 
 function MessengerIcon({ className = 'w-5 h-5' }) {
   return (
@@ -39,6 +40,7 @@ export default function MessengerButton({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={ariaLabel}
+      onClick={() => trackContact({ channel: 'messenger', content_name: product || 'denjoy' })}
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.98 }}
       className={`${base} ${sizing} ${colors}`}

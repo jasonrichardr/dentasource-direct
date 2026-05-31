@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { submitLead } from '@/actions/lead';
+import { trackLead } from '@/lib/analytics';
 
 function BookingFormContent() {
   const searchParams = useSearchParams();
@@ -31,6 +32,7 @@ function BookingFormContent() {
       setErrorMessage(result.error);
       setIsSubmitting(false);
     } else {
+      trackLead({ content_name: interest || 'general' });
       setIsSuccess(true);
     }
   };
