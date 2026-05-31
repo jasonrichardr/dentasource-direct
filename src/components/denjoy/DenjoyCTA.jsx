@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 const MESSENGER_HREF =
-  'https://m.me/dentasourcedirect?ref=denjoy_2026_landing';
+  'https://m.me/dentasource?ref=denjoy_2026_landing';
 
 export default function DenjoyCTA() {
   return (

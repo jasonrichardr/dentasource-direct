@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-const MESSENGER_HREF = 'https://m.me/dentasourcedirect?ref=denjoy_2026_landing';
+const MESSENGER_HREF = 'https://m.me/dentasource?ref=denjoy_2026_landing';
 
 const CLIPS = [
   { src: '/videos/denjoy/denjoy-hq-720.mp4',   poster: '/videos/denjoy/denjoy-hq-poster.jpg' },
