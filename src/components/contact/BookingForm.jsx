@@ -94,18 +94,18 @@ function BookingFormContent() {
                   </div>
                 </div>
 
-                <textarea name="message" rows="3" required className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors resize-none" placeholder="How can we help you?"></textarea>
+                <textarea name="message" rows="3" required className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors resize-none" placeholder="Tell us about your clinic — size, specialty, and what you're looking for."></textarea>
 
                 {errorMessage && (
                   <p className="text-red-500 text-sm">{errorMessage}</p>
                 )}
 
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   disabled={isSubmitting}
-                  className="w-full mt-8 px-8 py-4 bg-[#1D1D1F] text-white rounded-full font-medium hover:bg-black transition-all disabled:bg-black/50 disabled:cursor-not-allowed"
+                  className="w-full mt-8 px-8 py-4 bg-[#1a3c34] text-white rounded-full font-medium hover:bg-[#234e44] transition-all disabled:bg-[#1a3c34]/50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? 'Securely Transmitting...' : 'Submit Request'}
+                  {isSubmitting ? 'Sending…' : 'Send My Inquiry'}
                 </button>
               </form>
             </motion.div>
