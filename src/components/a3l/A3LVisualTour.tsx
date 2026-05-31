@@ -37,7 +37,7 @@ export default function A3LVisualTour() {
                             key={index}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, amount: 0.1 }}
                             transition={{ delay: index * 0.1, duration: 0.6 }}
                             onClick={() => setLightboxImage(angle.src)}
                             className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer bg-zinc-800"

@@ -33,7 +33,7 @@ export default function ChaptersBand() {
                 id={`chapter-${chapter.id}`}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 className="rounded-lg border border-zinc-200 bg-zinc-50 p-4"
               >

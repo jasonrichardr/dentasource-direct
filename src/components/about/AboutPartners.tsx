@@ -31,7 +31,7 @@ export default function AboutPartners() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
           >
             <span className="text-emerald-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
@@ -50,7 +50,7 @@ export default function AboutPartners() {
               key={partner.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
               className="rounded-2xl bg-white border border-gray-100 shadow-sm p-8 flex flex-col items-center text-center"
             >

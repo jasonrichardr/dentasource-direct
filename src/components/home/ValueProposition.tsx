@@ -32,7 +32,7 @@ export default function ValueProposition() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.8 }}
                     className="mb-24 md:w-2/3"
                 >
@@ -51,7 +51,7 @@ export default function ValueProposition() {
                             key={idx}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
+                            viewport={{ once: true, amount: 0.1 }}
                             transition={{ duration: 0.6, delay: idx * 0.1 }}
                             className="group"
                         >

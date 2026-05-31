@@ -72,7 +72,7 @@ export default function S3TechSpecs() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.1 }}
                         transition={{ duration: 0.6 }}
                     >
                         <span className="text-blue-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
@@ -91,7 +91,7 @@ export default function S3TechSpecs() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.5 }}
                 >
                     <div className="flex flex-wrap gap-2 mb-8 justify-center" role="tablist" aria-label="Technical specification categories">

@@ -112,7 +112,7 @@ export default function DenjoyWhyPH() {
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-10 text-center text-sm text-white/50"
         >

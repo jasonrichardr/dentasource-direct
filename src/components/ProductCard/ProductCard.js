@@ -10,7 +10,7 @@ export default function ProductCard({ product, index = 0 }) {
             className={styles.card}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.5, delay: index * 0.08 }}
         >
             <Link href={`/products/${product.slug}`} className={styles.imageWrap}>

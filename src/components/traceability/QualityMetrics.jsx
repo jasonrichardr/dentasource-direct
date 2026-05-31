@@ -65,7 +65,7 @@ export default function QualityMetrics() {
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             className="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight"
           >
             What You Actually Get
@@ -73,7 +73,7 @@ export default function QualityMetrics() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ delay: 0.1 }}
             className="text-neutral-400 max-w-xl mx-auto text-sm sm:text-base"
           >
@@ -87,7 +87,7 @@ export default function QualityMetrics() {
               key={metric.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: i * 0.08 }}
               className="flex flex-col items-center p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.07] hover:border-white/[0.12] transition-all duration-300 group text-center"
             >

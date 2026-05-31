@@ -13,7 +13,7 @@ export default function AboutShowroom() {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
           >
             <span className="text-emerald-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
@@ -68,7 +68,7 @@ export default function AboutShowroom() {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative rounded-2xl overflow-hidden shadow-xl"
           >

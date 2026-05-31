@@ -14,7 +14,7 @@ export default function AboutNews() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
           >
             <span className="text-emerald-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
@@ -41,7 +41,7 @@ export default function AboutNews() {
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 className="rounded-2xl border border-gray-100 bg-zinc-50 overflow-hidden h-full transition-shadow duration-300 hover:shadow-lg"
               >

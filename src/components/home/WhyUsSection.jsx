@@ -136,7 +136,7 @@ function SparkDots({ color }) {
 
 function AnimatedCard({ item, index }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
     <motion.div
@@ -183,7 +183,7 @@ function AnimatedCard({ item, index }) {
               style={{ background: item.accent }}
               initial={{ width: 0 }}
               whileInView={{ width: '60%' }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, delay: 0.5 + index * 0.15 }}
             />
           </h3>
@@ -219,7 +219,7 @@ function AnimatedCard({ item, index }) {
 
 export default function WhyUsSection() {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
   return (
     <section ref={sectionRef} className="py-24 sm:py-32 bg-[#0A1410] relative overflow-hidden">
@@ -286,7 +286,7 @@ export default function WhyUsSection() {
           style={{ background: 'linear-gradient(90deg, transparent, rgba(196,153,60,0.3), rgba(54,144,120,0.3), transparent)' }}
           initial={{ width: 0 }}
           whileInView={{ width: '80%' }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 1.5, delay: 0.5 }}
         />
       </div>

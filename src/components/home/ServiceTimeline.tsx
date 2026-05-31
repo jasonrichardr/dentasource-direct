@@ -49,7 +49,7 @@ export default function ServiceTimeline() {
                         <motion.h2
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, amount: 0.1 }}
                             transition={{ duration: 0.6 }}
                             className="text-sm uppercase tracking-[0.2em] text-zinc-500 mb-6"
                         >
@@ -58,7 +58,7 @@ export default function ServiceTimeline() {
                         <motion.h3
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, amount: 0.1 }}
                             transition={{ duration: 0.6, delay: 0.1 }}
                             className="text-4xl md:text-5xl font-light leading-tight text-zinc-900 mb-10"
                         >
@@ -68,7 +68,7 @@ export default function ServiceTimeline() {
                         <motion.div
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, amount: 0.1 }}
                             transition={{ duration: 0.8, delay: 0.3 }}
                             className="hidden lg:block space-y-8 mt-16"
                         >

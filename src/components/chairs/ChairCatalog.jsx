@@ -112,7 +112,7 @@ export default function ChairCatalog({ initialChairs = [] }) {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.1 }}
                   className="w-full md:w-1/2 group"
                 >
                   <Link href={targetUrl} className="block cursor-pointer">
@@ -129,7 +129,7 @@ export default function ChairCatalog({ initialChairs = [] }) {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{ delay: 0.1 }}
                   className="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left"
                 >
@@ -185,7 +185,7 @@ export default function ChairCatalog({ initialChairs = [] }) {
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ delay: index * 0.08 }}
                     key={chair.id || index}
                     className="group flex flex-row sm:flex-col rounded-2xl sm:rounded-3xl overflow-hidden border border-black/[0.04] hover:border-black/10 hover:shadow-xl transition-all duration-300 bg-white"

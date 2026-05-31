@@ -127,7 +127,7 @@ function FeatureRow({ feature, isReversed }: { feature: Feature, isReversed: boo
         <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-16 items-center`}
         >
@@ -147,7 +147,7 @@ function FeatureRow({ feature, isReversed }: { feature: Feature, isReversed: boo
                 <motion.div
                     initial={{ opacity: 0, x: isReversed ? 20 : -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                 >
                     <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 leading-tight">

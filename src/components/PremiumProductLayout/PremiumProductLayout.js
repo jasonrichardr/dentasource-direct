@@ -92,7 +92,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                             className={styles.advancedFeaturesIntro}
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true, margin: "-100px" }}
+                            viewport={{ once: true, amount: 0.1 }}
                             variants={fadeInUp}
                         >
                             <h2 className={styles.sectionTitle}>Engineered for Clinical Excellence</h2>
@@ -103,7 +103,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                             className={styles.advancedGrid}
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true, margin: "-100px" }}
+                            viewport={{ once: true, amount: 0.1 }}
                             variants={staggerContainer}
                         >
                             {product.advancedFeatures.map((feat, i) => (
@@ -127,7 +127,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                                 className={styles.splitText}
                                 initial="hidden"
                                 whileInView="visible"
-                                viewport={{ once: true }}
+                                viewport={{ once: true, amount: 0.1 }}
                                 variants={fadeInUp}
                             >
                                 <span className={styles.deepDiveSubtitle}>{product.disinfectionDeepDive.subtitle}</span>
@@ -145,7 +145,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                                 className={styles.splitImage}
                                 initial={{ opacity: 0, x: 50 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 1 }}
                             >
                                 {/* Placeholder for specific disinfection image if we had one, falling back to a gallery image */}
@@ -165,7 +165,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                                 className={styles.splitImage}
                                 initial={{ opacity: 0, x: -50 }}
                                 whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 1 }}
                             >
                                 <img src={product.images[2] || product.images[0]} alt="Ergonomic Design" className={styles.immersiveImg} />
@@ -174,7 +174,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                                 className={styles.splitText}
                                 initial="hidden"
                                 whileInView="visible"
-                                viewport={{ once: true }}
+                                viewport={{ once: true, amount: 0.1 }}
                                 variants={fadeInUp}
                             >
                                 <span className={styles.deepDiveSubtitle}>{product.ergonomicsDeepDive.subtitle}</span>
@@ -202,7 +202,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                         <motion.div
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true }}
+                            viewport={{ once: true, amount: 0.1 }}
                             variants={fadeInUp}
                         >
                             <h2 className={styles.specsTitle}>Technical Specifications</h2>
@@ -226,7 +226,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                         className={styles.warrantyBox}
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.1 }}
                         variants={fadeInUp}
                     >
                         <h3 className={styles.warrantyTitle}>Uncompromising Support</h3>

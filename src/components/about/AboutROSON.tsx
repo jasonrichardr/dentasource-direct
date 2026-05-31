@@ -88,7 +88,7 @@ export default function AboutROSON() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
           >
             <span className="inline-flex items-center rounded-full bg-emerald-500/10 border border-emerald-500/20 px-4 py-1.5 text-sm font-semibold text-emerald-400 uppercase tracking-wider mb-6">
@@ -109,7 +109,7 @@ export default function AboutROSON() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6 }}
           className="relative rounded-2xl overflow-hidden mb-12"
         >
@@ -136,7 +136,7 @@ export default function AboutROSON() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-16 lg:mb-20"
         >
@@ -160,7 +160,7 @@ export default function AboutROSON() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
             className="mb-8"
           >
@@ -184,7 +184,7 @@ export default function AboutROSON() {
                 key={img.alt}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="relative rounded-xl overflow-hidden aspect-[4/3]"
               >
@@ -204,7 +204,7 @@ export default function AboutROSON() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
             className="mb-8"
           >
@@ -231,7 +231,7 @@ export default function AboutROSON() {
                 key={qc.step}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="relative group"
               >
@@ -276,7 +276,7 @@ export default function AboutROSON() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6 }}
           className="mb-16 lg:mb-20"
         >
@@ -309,7 +309,7 @@ export default function AboutROSON() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6 }}
           className="mb-16 lg:mb-20"
         >
@@ -329,7 +329,7 @@ export default function AboutROSON() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6 }}
           className="rounded-2xl border border-emerald-500/15 bg-emerald-950/20 p-8 lg:p-10"
         >

@@ -32,7 +32,7 @@ export default function A3SColorSection() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.1 }}
                         transition={{ duration: 0.6 }}
                     >
                         <span className="text-emerald-400 font-semibold tracking-widest text-sm uppercase mb-3 block">
@@ -54,7 +54,7 @@ export default function A3SColorSection() {
                             key={color}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, amount: 0.1 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             className="relative rounded-2xl border border-emerald-500/20 bg-emerald-950/30 p-8 backdrop-blur-sm"
                         >
@@ -80,7 +80,7 @@ export default function A3SColorSection() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="rounded-2xl border border-emerald-500/15 bg-emerald-950/20 p-8 lg:p-10"
                 >

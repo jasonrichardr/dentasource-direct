@@ -79,7 +79,7 @@ export default function N2ProWhatsInTheBox() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.1 }}
                         transition={{ duration: 0.6 }}
                     >
                         <span className="text-blue-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
@@ -101,7 +101,7 @@ export default function N2ProWhatsInTheBox() {
                             key={item.title}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, amount: 0.1 }}
                             transition={{
                                 duration: 0.4,
                                 delay: index * 0.05,
@@ -179,7 +179,7 @@ export default function N2ProWhatsInTheBox() {
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                     className="mt-10 text-center"
                 >
