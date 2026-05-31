@@ -33,11 +33,25 @@ export default function A3HeroVisual() {
                     </span>
                     <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
                         ROSON Flagship <br />
-                        <span className="text-blue-400">Model A3</span>
+                        <span className="text-emerald-400">Model A3</span>
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl text-gray-100 max-w-xl leading-relaxed font-medium">
                         Performance. Reliability. Excellence.
                     </p>
+                    <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                        <a
+                            href="#configurator"
+                            className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-8 py-4 text-base font-semibold text-zinc-900 transition-all hover:bg-emerald-400"
+                        >
+                            Build Your A3
+                        </a>
+                        <a
+                            href="/contact"
+                            className="inline-flex items-center justify-center rounded-full border border-white/30 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/10"
+                        >
+                            Talk to a Specialist
+                        </a>
+                    </div>
                 </motion.div>
             </div>
 

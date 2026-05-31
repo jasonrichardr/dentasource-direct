@@ -80,7 +80,7 @@ export default function A3WhatsInTheBox() {
                         viewport={{ once: true, amount: 0.1 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="text-blue-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
+                        <span className="text-emerald-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
                             Your Complete Setup
                         </span>
                         <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
@@ -106,7 +106,7 @@ export default function A3WhatsInTheBox() {
                             }}
                             className={`relative rounded-2xl border p-6 ${
                                 item.highlight
-                                    ? "bg-blue-600 border-blue-600 shadow-lg shadow-blue-600/20"
+                                    ? "bg-emerald-600 border-emerald-600 shadow-lg shadow-emerald-600/20"
                                     : "bg-white border-gray-100 shadow-sm"
                             }`}
                         >
@@ -122,14 +122,14 @@ export default function A3WhatsInTheBox() {
                                     className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${
                                         item.highlight
                                             ? "bg-white/20"
-                                            : "bg-blue-50"
+                                            : "bg-emerald-50"
                                     }`}
                                 >
                                     <item.icon
                                         className={`w-5 h-5 ${
                                             item.highlight
                                                 ? "text-white"
-                                                : "text-blue-600"
+                                                : "text-emerald-600"
                                         }`}
                                     />
                                 </div>
@@ -138,7 +138,7 @@ export default function A3WhatsInTheBox() {
                                         <span
                                             className={`text-xs font-bold ${
                                                 item.highlight
-                                                    ? "text-blue-200"
+                                                    ? "text-emerald-200"
                                                     : "text-gray-400"
                                             }`}
                                         >
@@ -157,7 +157,7 @@ export default function A3WhatsInTheBox() {
                                     <p
                                         className={`text-sm leading-relaxed ${
                                             item.highlight
-                                                ? "text-blue-100"
+                                                ? "text-emerald-100"
                                                 : "text-gray-600"
                                         }`}
                                     >

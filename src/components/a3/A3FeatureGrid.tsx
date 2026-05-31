@@ -92,7 +92,7 @@ export default function A3FeatureGrid() {
         <section className="py-16 lg:py-24 bg-zinc-50 overflow-hidden">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-3xl text-center mb-16 lg:mb-24">
-                    <span className="text-blue-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
+                    <span className="text-emerald-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
                         Clinical Innovation
                     </span>
                     <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
@@ -162,8 +162,8 @@ function FeatureRow({ feature, isReversed }: { feature: Feature, isReversed: boo
                     <ul className="space-y-4">
                         {feature.bullets.map((bullet, i) => (
                             <li key={i} className="flex items-center text-gray-700">
-                                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mr-4">
-                                    <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center mr-4">
+                                    <svg className="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                                     </svg>
                                 </div>
