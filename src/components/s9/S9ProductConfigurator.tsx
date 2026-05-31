@@ -80,7 +80,7 @@ export default function S9ProductConfigurator() {
         <section id="configurator" className="py-16 lg:py-24 bg-white border-t border-gray-100">
             <div className="mx-auto px-4 sm:px-6 max-w-7xl">
                 <div className="text-center mb-10 sm:mb-16">
-                    <span className="text-blue-600 font-semibold tracking-widest text-xs sm:text-sm uppercase mb-3 block">
+                    <span className="text-emerald-600 font-semibold tracking-widest text-xs sm:text-sm uppercase mb-3 block">
                         Your Dental Unit, Your Way
                     </span>
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
@@ -105,7 +105,7 @@ export default function S9ProductConfigurator() {
                                             onClick={() => setActiveTab(tab.id)}
                                             className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs font-semibold transition-all ${
                                                 activeTab === tab.id
-                                                    ? "bg-white text-blue-600 shadow-sm"
+                                                    ? "bg-white text-emerald-600 shadow-sm"
                                                     : "text-gray-500"
                                             }`}
                                         >
@@ -169,7 +169,7 @@ export default function S9ProductConfigurator() {
                                         onClick={() => setActiveTab(tab.id)}
                                         className={`flex items-center space-x-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                                             activeTab === tab.id
-                                                ? "bg-white text-blue-600 shadow-sm border border-gray-200/50"
+                                                ? "bg-white text-emerald-600 shadow-sm border border-gray-200/50"
                                                 : "text-gray-500 hover:text-gray-700"
                                         }`}
                                     >
@@ -199,7 +199,7 @@ export default function S9ProductConfigurator() {
                                             onClick={() => setActiveColor(color)}
                                             className={`group flex flex-col items-center gap-2 p-2 rounded-xl transition-all ${
                                                 activeColor.id === color.id
-                                                    ? "bg-white shadow-md ring-1 ring-blue-200 scale-105"
+                                                    ? "bg-white shadow-md ring-1 ring-emerald-200 scale-105"
                                                     : "hover:bg-gray-50"
                                             }`}
                                         >
@@ -217,7 +217,7 @@ export default function S9ProductConfigurator() {
                                 </div>
 
                                 {/* Selected color info */}
-                                <div className="p-4 sm:p-6 bg-blue-50 rounded-2xl border border-blue-100">
+                                <div className="p-4 sm:p-6 bg-emerald-50 rounded-2xl border border-emerald-100">
                                     <div className="flex items-center gap-3">
                                         <div className="w-8 h-8 rounded-lg shrink-0" style={{ backgroundColor: activeColor.hex }} />
                                         <div>
@@ -248,7 +248,7 @@ export default function S9ProductConfigurator() {
                                             onClick={() => setActiveHandpiece(hp)}
                                             className={`relative flex items-start text-left p-4 rounded-2xl border-2 transition-all ${
                                                 activeHandpiece.id === hp.id
-                                                    ? "border-blue-500 bg-blue-50/30"
+                                                    ? "border-emerald-500 bg-emerald-50/30"
                                                     : "border-gray-100 hover:border-gray-200"
                                             }`}
                                         >
@@ -257,9 +257,9 @@ export default function S9ProductConfigurator() {
                                                 <p className="text-sm text-gray-500 mt-1">{hp.description}</p>
                                             </div>
                                             <div className={`absolute top-4 right-4 w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                                                activeHandpiece.id === hp.id ? "border-blue-500" : "border-gray-300"
+                                                activeHandpiece.id === hp.id ? "border-emerald-500" : "border-gray-300"
                                             }`}>
-                                                {activeHandpiece.id === hp.id && <div className="w-2.5 h-2.5 bg-blue-500 rounded-full" />}
+                                                {activeHandpiece.id === hp.id && <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full" />}
                                             </div>
                                         </button>
                                     ))}
@@ -286,7 +286,7 @@ export default function S9ProductConfigurator() {
                                             onClick={() => setActiveUpholstery(mat)}
                                             className={`flex items-center p-3 rounded-xl border-2 transition-all ${
                                                 activeUpholstery.id === mat.id
-                                                    ? "border-blue-500 bg-blue-50/30"
+                                                    ? "border-emerald-500 bg-emerald-50/30"
                                                     : "border-gray-100 hover:border-gray-200"
                                             }`}
                                         >
@@ -298,9 +298,9 @@ export default function S9ProductConfigurator() {
                                                 <p className="text-xs text-gray-500 leading-snug mt-0.5">{mat.description}</p>
                                             </div>
                                             <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ml-2 ${
-                                                activeUpholstery.id === mat.id ? "border-blue-500" : "border-gray-300"
+                                                activeUpholstery.id === mat.id ? "border-emerald-500" : "border-gray-300"
                                             }`}>
-                                                {activeUpholstery.id === mat.id && <div className="w-2.5 h-2.5 bg-blue-500 rounded-full" />}
+                                                {activeUpholstery.id === mat.id && <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full" />}
                                             </div>
                                         </button>
                                     ))}

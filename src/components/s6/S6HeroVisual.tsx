@@ -33,7 +33,7 @@ export default function S6HeroVisual() {
                     </span>
                     <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
                         ROSON Professional <br />
-                        <span className="text-blue-400">Model S6</span>
+                        <span className="text-emerald-400">Model S6</span>
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl text-gray-100 max-w-xl leading-relaxed font-medium">
                         The Chair That Goes Lower. 380mm.

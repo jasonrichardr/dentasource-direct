@@ -42,7 +42,7 @@ export default function A3LErgonomicsSection() {
                         viewport={{ once: true, amount: 0.1 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="text-blue-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
+                        <span className="text-emerald-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
                             Practitioner Wellness
                         </span>
                         <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
@@ -74,7 +74,7 @@ export default function A3LErgonomicsSection() {
                             />
                         </div>
                         <div className="mt-6 text-center">
-                            <span className="inline-flex items-center rounded-full bg-blue-50 border border-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+                            <span className="inline-flex items-center rounded-full bg-emerald-50 border border-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-700">
                                 The RS06 Ergonomic Dentist Stool
                             </span>
                         </div>
@@ -96,9 +96,9 @@ export default function A3LErgonomicsSection() {
                                     className="rounded-2xl bg-white border border-gray-100 shadow-sm p-6"
                                 >
                                     <div className="flex items-start gap-4">
-                                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mt-0.5">
+                                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center mt-0.5">
                                             <svg
-                                                className="w-4 h-4 text-blue-600"
+                                                className="w-4 h-4 text-emerald-600"
                                                 fill="none"
                                                 viewBox="0 0 24 24"
                                                 stroke="currentColor"

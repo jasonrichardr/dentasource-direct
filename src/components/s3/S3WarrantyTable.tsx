@@ -3,7 +3,7 @@ export default function S3WarrantyTable() {
         <section className="py-16 lg:py-24 bg-white">
             <div className="mx-auto max-w-4xl px-6 lg:px-8">
                 <div className="text-center mb-12 lg:mb-16">
-                    <span className="text-blue-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
+                    <span className="text-emerald-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
                         Our Commitment
                     </span>
                     <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">

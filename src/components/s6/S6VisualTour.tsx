@@ -21,7 +21,7 @@ export default function S6VisualTour() {
         <section className="py-16 lg:py-24 bg-[#0A0A0A]">
             <div className="container mx-auto px-6 max-w-7xl">
                 <div className="text-center mb-12 lg:mb-16">
-                    <span className="text-blue-500 font-bold tracking-widest text-sm uppercase mb-3 block">
+                    <span className="text-emerald-500 font-bold tracking-widest text-sm uppercase mb-3 block">
                         Visual Tour
                     </span>
                     <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">

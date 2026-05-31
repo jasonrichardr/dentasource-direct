@@ -33,7 +33,7 @@ export default function A3LHeroVisual() {
                     </span>
                     <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
                         ROSON Fashion <br />
-                        <span className="text-blue-400">Model A3L</span>
+                        <span className="text-emerald-400">Model A3L</span>
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl text-gray-100 max-w-xl leading-relaxed font-medium">
                         Same A3 Power. Your Clinic&apos;s Style.

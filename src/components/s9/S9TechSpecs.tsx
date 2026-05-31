@@ -78,7 +78,7 @@ export default function S9TechSpecs() {
                         viewport={{ once: true, amount: 0.1 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="text-blue-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
+                        <span className="text-emerald-600 font-semibold tracking-widest text-sm uppercase mb-3 block">
                             Technical Reference
                         </span>
                         <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
@@ -107,7 +107,7 @@ export default function S9TechSpecs() {
                                 onClick={() => setActiveTab(index)}
                                 className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
                                     activeTab === index
-                                        ? "bg-blue-600 text-white shadow-lg shadow-blue-600/25"
+                                        ? "bg-emerald-600 text-white shadow-lg shadow-emerald-600/25"
                                         : "bg-zinc-100 text-gray-600 hover:bg-zinc-200"
                                 }`}
                             >

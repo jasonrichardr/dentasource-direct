@@ -33,7 +33,7 @@ export default function N2PlusHeroVisual() {
                     </span>
                     <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
                         ROSON Classic <br />
-                        <span className="text-blue-400">Model N2+</span>
+                        <span className="text-emerald-400">Model N2+</span>
                     </h1>
                     <p className="text-base sm:text-lg md:text-xl text-gray-100 max-w-xl leading-relaxed font-medium">
                         Everything You Need. Nothing You Don&apos;t.
