@@ -10,7 +10,7 @@ import S9WhatsInTheBox from "@/components/s9/S9WhatsInTheBox";
 import S9WarrantyTable from "@/components/s9/S9WarrantyTable";
 
 export const metadata = {
-    title: "Roson S9 Affordable Luxury Dental Chair | DentaSource Direct",
+    title: "Roson S9 Affordable Luxury Dental Chair",
     description: "The Roson S9 Affordable Luxury — EOW-TECH disinfection, whisper-quiet motor, 45-degree ergonomic panel, and premium features at a smart price.",
 };
 

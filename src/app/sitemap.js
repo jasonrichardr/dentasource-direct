@@ -24,6 +24,8 @@ const staticRoutes = [
   { path: '/n1', priority: 0.75, changeFrequency: 'monthly' },
   { path: '/n2-plus', priority: 0.75, changeFrequency: 'monthly' },
   { path: '/n2-pro', priority: 0.75, changeFrequency: 'monthly' },
+  { path: '/a1-pro', priority: 0.85, changeFrequency: 'monthly' },
+  { path: '/roray-xray', priority: 0.8, changeFrequency: 'monthly' },
 ];
 
 export default function sitemap() {

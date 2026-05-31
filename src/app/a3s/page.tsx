@@ -10,7 +10,7 @@ import A3SWhatsInTheBox from "@/components/a3s/A3SWhatsInTheBox";
 import A3SWarrantyTable from "@/components/a3s/A3SWarrantyTable";
 
 export const metadata = {
-    title: "Roson A3S Smart Dental Chair | DentaSource Direct",
+    title: "Roson A3S Smart Dental Chair",
     description: "The Roson A3S Smart Series — 7 colors, seamless microfiber leather as standard, Rolight S with breathing lamp, and whisper-quiet motor system.",
 };
 

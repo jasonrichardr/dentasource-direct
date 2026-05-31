@@ -1,7 +1,7 @@
 import TraceabilitySection from '@/components/traceability/TraceabilitySection';
 
 export const metadata = {
-  title: '100% Traceability System | DentaSource Direct',
+  title: '100% Traceability System',
   description: 'Full transparency in every product\'s journey. From raw materials to your clinic, we trace quality at every stage.',
 };
 

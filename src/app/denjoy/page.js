@@ -11,7 +11,7 @@ import styles from './page.module.css';
 
 export const metadata = {
   title:
-    'All of Denjoy in the Philippines — 12 Endo Instruments | DentaSource Direct',
+    'All of Denjoy in the Philippines — 12 Endo Instruments',
   description:
     'The complete Denjoy endodontic line — Meet Endo, Meta Endo Pro I, Meta Endo, ix6/ix7 microscopes, FREE PEX, i-Pexo, i-Moto, iUe1, iCure, iPack, Meta Pack. Exclusive distribution by DentaSource Direct. Pasig showroom demos available.',
   keywords: [

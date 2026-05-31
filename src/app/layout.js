@@ -31,7 +31,6 @@ export const metadata = {
     'dental showroom Pasig',
   ],
   metadataBase: new URL('https://dentasourcedirect.com'),
-  alternates: { canonical: '/' },
   openGraph: {
     title: 'DentaSource Direct — Premium Dental Equipment Philippines',
     description:
@@ -40,9 +39,11 @@ export const metadata = {
     siteName: 'DentaSource Direct',
     locale: 'en_PH',
     type: 'website',
+    images: ['/images/hero/dxa3-hero-original.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
+    images: ['/images/hero/dxa3-hero-original.jpg'],
     title: 'DentaSource Direct — Premium Dental Equipment Philippines',
     description:
       'Exclusive Philippine distributor for ROSON and Denjoy. 140-sqm Pasig showroom. Clinically-owned.',

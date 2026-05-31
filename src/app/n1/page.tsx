@@ -10,7 +10,7 @@ import N1WhatsInTheBox from "@/components/n1/N1WhatsInTheBox";
 import N1WarrantyTable from "@/components/n1/N1WarrantyTable";
 
 export const metadata = {
-    title: "Roson Classic Model N1 | DentaSource Direct",
+    title: "Roson Classic Model N1",
     description: "The Roson Classic Model N1 — the simplest setup in the lineup. Proven N-series platform, one starter system, zero complexity.",
 };
 
