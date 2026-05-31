@@ -84,6 +84,12 @@ export default function Navbar() {
                 </Link>
               ))}
               <Link
+                href="/admin/login"
+                className="text-xs font-semibold text-gray-500 hover:text-[#1a3c34] transition-colors tracking-[0.12em] uppercase"
+              >
+                Sign In
+              </Link>
+              <Link
                 href="/contact"
                 className="text-xs font-semibold px-5 py-2 rounded-full bg-[#1a3c34] text-white hover:bg-[#234e44] transition-colors tracking-wide"
               >
@@ -144,6 +150,13 @@ export default function Navbar() {
                 className="block w-full text-center py-4 rounded-2xl bg-[#1a3c34] text-white font-semibold text-base"
               >
                 Visit Our Showroom
+              </Link>
+              <Link
+                href="/admin/login"
+                onClick={() => setOpen(false)}
+                className="mt-3 block w-full text-center py-4 rounded-2xl border-2 border-[#1a3c34] text-[#1a3c34] font-semibold text-base"
+              >
+                Sign In
               </Link>
             </motion.div>
           </motion.div>
