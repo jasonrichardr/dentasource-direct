@@ -1,0 +1,18 @@
+name: keepalive
+
+# Pings the site's /api/health endpoint, which runs a trivial DB query, so the
+# free-tier Supabase project never idles into a pause. Runs every ~3 days
+# (Supabase pauses after ~7 days of inactivity).
+on:
+  schedule:
+    - cron: '17 3 */3 * *'
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Keep the database awake
+        run: |
+          echo "Pinging health endpoint..."
+          curl -fsS --max-time 30 https://dentasourcedirect.com/api/health
