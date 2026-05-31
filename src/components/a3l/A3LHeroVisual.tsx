@@ -38,6 +38,20 @@ export default function A3LHeroVisual() {
                     <p className="text-base sm:text-lg md:text-xl text-gray-100 max-w-xl leading-relaxed font-medium">
                         Same A3 Power. Your Clinic&apos;s Style.
                     </p>
+                    <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                        <a
+                            href="#configurator"
+                            className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-8 py-4 text-base font-semibold text-zinc-900 transition-all hover:bg-emerald-400"
+                        >
+                            Build Your A3L
+                        </a>
+                        <a
+                            href="/contact"
+                            className="inline-flex items-center justify-center rounded-full border border-white/30 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/10"
+                        >
+                            Talk to a Specialist
+                        </a>
+                    </div>
                 </motion.div>
             </div>
 
