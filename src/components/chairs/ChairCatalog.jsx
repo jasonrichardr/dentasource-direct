@@ -1,15 +1,16 @@
 'use client';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { Crown, Award, Users, Accessibility, Palette, TrendingUp } from 'lucide-react';
 
-// Social proof badges
+// Social proof badges — lucide icons (no emoji in production), unified brand green.
 const socialProof = {
-  'roson-dxa3': { label: 'Flagship', color: 'from-amber-500 to-amber-600', bg: 'bg-amber-500', icon: '👑' },
-  'roson-dxs3': { label: 'Best Seller', color: 'from-emerald-500 to-emerald-600', bg: 'bg-emerald-500', icon: '🏆' },
-  'roson-dxn2-pro': { label: '80K+ Dentists', color: 'from-blue-500 to-blue-600', bg: 'bg-blue-500', icon: '⭐' },
-  'roson-dxs6': { label: 'Accessibility', color: 'from-violet-500 to-violet-600', bg: 'bg-violet-500', icon: '♿' },
-  'roson-dxa3s': { label: '7+ Colors', color: 'from-rose-500 to-rose-600', bg: 'bg-rose-500', icon: '🎨' },
-  'roson-s9': { label: 'Best Value', color: 'from-orange-500 to-orange-600', bg: 'bg-orange-500', icon: '🔥' },
+  'roson-dxa3': { label: 'Flagship', icon: Crown },
+  'roson-dxs3': { label: 'Best Seller', icon: Award },
+  'roson-dxn2-pro': { label: '80K+ Dentists', icon: Users },
+  'roson-dxs6': { label: 'Accessibility', icon: Accessibility },
+  'roson-dxa3s': { label: '7+ Colors', icon: Palette },
+  'roson-s9': { label: 'Best Value', icon: TrendingUp },
 };
 
 // Custom landing page routes
@@ -28,9 +29,10 @@ const customRoutes = {
 function Badge({ slug }) {
   const badge = socialProof[slug];
   if (!badge) return null;
+  const Icon = badge.icon;
   return (
-    <span className={`inline-flex items-center gap-1.5 bg-gradient-to-r ${badge.color} text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg`}>
-      <span>{badge.icon}</span>
+    <span className="inline-flex items-center gap-1.5 bg-[#1a3c34] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg">
+      <Icon className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />
       {badge.label}
     </span>
   );
