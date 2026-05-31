@@ -82,3 +82,25 @@ enum LeadStatus {
   CLOSED_WON
   CLOSED_LOST
 }
+
+// ─── WARRANTY CARD (MVP) ──────────────────────────────────────────
+// Standalone per-unit warranty record with a public lookup code.
+// A customer opens /warranty/<code> (no login) to see their card + a Viber/
+// Messenger button. This is the cheap wedge that tests real demand for a full
+// customer portal before we build one.
+model Warranty {
+  id            String    @id @default(cuid())
+  code          String    @unique // public lookup slug, e.g. "a3-7k2m"
+  clinicName    String
+  contactName   String?
+  productName   String
+  serialNumber  String?
+  purchaseDate  DateTime?
+  warrantyStart DateTime
+  warrantyEnd   DateTime
+  coverage      String?   @db.Text
+  notes         String?   @db.Text
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
