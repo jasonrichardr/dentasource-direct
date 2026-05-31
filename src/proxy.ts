@@ -1,9 +1,9 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
-// Refreshes the Supabase auth session on every request and gates /admin/* to
-// signed-in users. Per-page allow-listing (src/lib/admin.js) then narrows
-// /admin/leads to owner emails.
+// Refreshes the Supabase session on every request and gates /admin/* and /portal/*
+// to signed-in users (redirecting to /login). Per-page checks then narrow further:
+// /admin pages require an owner email (src/lib/admin.js); /portal is any signed-in user.
 export default async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
 
@@ -26,16 +26,16 @@ export default async function proxy(request: NextRequest) {
     },
   );
 
-  // Do NOT run logic between createServerClient and getUser() — getUser()
-  // refreshes the auth token and writes the updated cookie onto `response`.
+  // Do NOT run logic between createServerClient and getUser() — it refreshes the token.
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
   const { pathname } = request.nextUrl;
-  if (pathname.startsWith('/admin') && pathname !== '/admin/login' && !user) {
+  const protectedRoute = pathname.startsWith('/admin') || pathname.startsWith('/portal');
+  if (protectedRoute && !user) {
     const url = request.nextUrl.clone();
-    url.pathname = '/admin/login';
+    url.pathname = '/login';
     url.searchParams.set('next', pathname);
     return NextResponse.redirect(url);
   }
@@ -45,9 +45,7 @@ export default async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files
     '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    // Always run for API routes
     '/(api|trpc)(.*)',
   ],
 };

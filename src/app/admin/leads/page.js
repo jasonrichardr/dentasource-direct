@@ -20,7 +20,7 @@ export default async function AdminLeadsPage() {
   } = await supabase.auth.getUser();
 
   // The proxy already redirects unauthenticated users; guard here too.
-  if (!user) redirect('/admin/login');
+  if (!user) redirect('/login');
 
   const email = user.email;
 

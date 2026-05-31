@@ -21,10 +21,10 @@ function LoginCard() {
   const params = useSearchParams();
   const errored = params.get('error');
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
+  const [status, setStatus] = useState('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
-  const next = params.get('next') || '/admin/leads';
+  const next = params.get('next') || '/portal';
 
   async function signInWithGoogle() {
     setStatus('sending');
@@ -63,8 +63,10 @@ function LoginCard() {
       <div className="w-full max-w-sm rounded-2xl bg-white p-8 ring-1 ring-black/[0.06]">
         <div className="text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">DentaSource Direct</p>
-          <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#1D1D1F]">Sign in</h1>
-          <p className="mt-2 text-[13px] text-[#86868B]">Access your DentaSource account — no password, no codes.</p>
+          <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#1D1D1F]">Sign in to your account</h1>
+          <p className="mt-2 text-[13px] text-[#86868B]">
+            Track your orders &amp; warranties and message our team — no password, no codes.
+          </p>
         </div>
 
         {status === 'sent' ? (
@@ -72,7 +74,7 @@ function LoginCard() {
             <p className="text-[15px] font-semibold text-emerald-800">Check your email</p>
             <p className="mt-1 text-[13px] leading-relaxed text-emerald-700">
               A login link is on its way to <span className="font-medium break-all">{email}</span>. Open it on this
-              device. (Check spam/Promotions if it&apos;s slow.)
+              device. (Peek in spam/Promotions if it&apos;s slow.)
             </p>
             <button onClick={() => setStatus('idle')} className="mt-4 text-[12px] text-emerald-700 underline">
               Use a different email
@@ -101,13 +103,13 @@ function LoginCard() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
+                placeholder="you@clinic.com"
                 className="w-full rounded-xl border border-black/10 px-4 py-3 text-sm outline-none transition focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
               />
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="w-full rounded-xl bg-[#1D1D1F] px-5 py-3 text-sm font-medium text-white transition hover:bg-black disabled:opacity-50"
+                className="w-full rounded-xl bg-[#1a3c34] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#234e44] disabled:opacity-50"
               >
                 {status === 'sending' ? 'Working…' : 'Email me a login link'}
               </button>
@@ -125,7 +127,7 @@ function LoginCard() {
   );
 }
 
-export default function AdminLoginPage() {
+export default function LoginPage() {
   return (
     <Suspense fallback={null}>
       <LoginCard />

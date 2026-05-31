@@ -5,5 +5,5 @@ import { createClient } from '@/lib/supabase/server';
 export async function POST(request) {
   const supabase = await createClient();
   await supabase.auth.signOut();
-  return NextResponse.redirect(new URL('/admin/login', request.url), { status: 302 });
+  return NextResponse.redirect(new URL('/login', request.url), { status: 302 });
 }

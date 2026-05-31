@@ -104,3 +104,34 @@ model Warranty {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
+
+// ─── CUSTOMER PORTAL — IN-APP MESSAGING (after-sales moat) ─────────
+// A logged-in customer (Supabase magic-link) opens a Thread with DSD and
+// messages back and forth. Keyed by the customer's verified email.
+model Thread {
+  id            String    @id @default(cuid())
+  customerEmail String                       // the signed-in customer's email
+  customerName  String?
+  subject       String    @default("Support request")
+  status        String    @default("OPEN")   // OPEN | ANSWERED | RESOLVED
+  lastMessageAt DateTime  @default(now())
+
+  messages      Message[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([customerEmail, lastMessageAt])
+  @@index([status, lastMessageAt])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  threadId  String
+  thread    Thread   @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  sender    String                          // CUSTOMER | DSD
+  body      String   @db.Text
+  createdAt DateTime @default(now())
+
+  @@index([threadId, createdAt])
+}

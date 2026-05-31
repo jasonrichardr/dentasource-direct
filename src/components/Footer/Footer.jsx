@@ -28,7 +28,7 @@ const columns = [
     title: 'Account',
     links: [
       ['Visit the Showroom', '/contact'],
-      ['Sign In', '/admin/login'],
+      ['Sign In', '/login'],
     ],
   },
 ];

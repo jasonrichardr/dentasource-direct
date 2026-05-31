@@ -38,7 +38,7 @@ export default async function AdminWarrantiesPage() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) redirect('/admin/login');
+  if (!user) redirect('/login');
   if (!isAdminEmail(user.email)) redirect('/admin/leads');
 
   const warranties = await prisma.warranty.findMany({ orderBy: { createdAt: 'desc' } });
