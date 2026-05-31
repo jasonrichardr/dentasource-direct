@@ -72,7 +72,7 @@ export default function MeetEndoDetail() {
               <motion.div
                 key={module.name}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.6, delay: i * 0.12 }}
                 className="rounded-2xl p-8 backdrop-blur-sm border border-white/10"

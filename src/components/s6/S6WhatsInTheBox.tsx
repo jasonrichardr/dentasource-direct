@@ -77,7 +77,7 @@ export default function S6WhatsInTheBox() {
                 <div className="mx-auto max-w-3xl text-center mb-16 lg:mb-20">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        animate={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.1 }}
                         transition={{ duration: 0.6 }}
                     >
@@ -99,7 +99,7 @@ export default function S6WhatsInTheBox() {
                         <motion.div
                             key={item.title}
                             initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            animate={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.1 }}
                             transition={{
                                 duration: 0.4,
@@ -180,7 +180,7 @@ export default function S6WhatsInTheBox() {
                 {/* Note */}
                 <motion.div
                     initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
+                    animate={{ opacity: 1 }}
                     viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                     className="mt-10 text-center"

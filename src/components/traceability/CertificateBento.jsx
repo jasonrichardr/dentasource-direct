@@ -49,7 +49,7 @@ export default function CertificateBento() {
         <div className="mb-16">
           <motion.h2 
             initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             className="text-3xl md:text-5xl font-light text-white mb-4"
           >
@@ -57,7 +57,7 @@ export default function CertificateBento() {
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ delay: 0.1 }}
             className="text-neutral-400 max-w-2xl text-lg"
@@ -71,7 +71,7 @@ export default function CertificateBento() {
             <motion.div
               key={cert.id}
               initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: cert.delay, duration: 0.5 }}
               className={`group relative overflow-hidden rounded-3xl bg-neutral-900 border border-white/10 hover:border-cyan-500/50 transition-colors duration-500 ${cert.colSpan} ${cert.rowSpan}`}

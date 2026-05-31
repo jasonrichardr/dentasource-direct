@@ -89,7 +89,7 @@ function FeatureRow({ feature, isReversed }: { feature: Feature; isReversed: boo
     return (
         <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} gap-12 lg:gap-16 items-center`}
@@ -109,7 +109,7 @@ function FeatureRow({ feature, isReversed }: { feature: Feature; isReversed: boo
             <div className="w-full lg:w-1/2 flex flex-col justify-center">
                 <motion.div
                     initial={{ opacity: 0, x: isReversed ? 20 : -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    animate={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                 >

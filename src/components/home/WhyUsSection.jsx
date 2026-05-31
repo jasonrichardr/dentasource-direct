@@ -169,7 +169,7 @@ function AnimatedCard({ item, index }) {
           <motion.span
             className="block text-6xl sm:text-7xl font-serif italic leading-none mb-6"
             style={{ color: item.accent, opacity: 0.25 }}
-            whileInView={{ opacity: [0, 0.25] }}
+            animate={{ opacity: [0, 0.25] }}
             transition={{ duration: 1.5, delay: index * 0.2 }}
           >
             {item.num}
@@ -182,7 +182,7 @@ function AnimatedCard({ item, index }) {
               className="absolute -bottom-1 left-0 h-[2px] rounded-full"
               style={{ background: item.accent }}
               initial={{ width: 0 }}
-              whileInView={{ width: '60%' }}
+              animate={{ width: '60%' }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, delay: 0.5 + index * 0.15 }}
             />
@@ -285,7 +285,7 @@ export default function WhyUsSection() {
           className="mt-16 sm:mt-20 mx-auto h-[1px] rounded-full"
           style={{ background: 'linear-gradient(90deg, transparent, rgba(196,153,60,0.3), rgba(54,144,120,0.3), transparent)' }}
           initial={{ width: 0 }}
-          whileInView={{ width: '80%' }}
+          animate={{ width: '80%' }}
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 1.5, delay: 0.5 }}
         />

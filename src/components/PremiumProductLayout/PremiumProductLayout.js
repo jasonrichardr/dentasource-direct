@@ -91,7 +91,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                         <motion.div
                             className={styles.advancedFeaturesIntro}
                             initial="hidden"
-                            whileInView="visible"
+                            animate="visible"
                             viewport={{ once: true, amount: 0.1 }}
                             variants={fadeInUp}
                         >
@@ -102,7 +102,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                         <motion.div
                             className={styles.advancedGrid}
                             initial="hidden"
-                            whileInView="visible"
+                            animate="visible"
                             viewport={{ once: true, amount: 0.1 }}
                             variants={staggerContainer}
                         >
@@ -126,7 +126,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                             <motion.div
                                 className={styles.splitText}
                                 initial="hidden"
-                                whileInView="visible"
+                                animate="visible"
                                 viewport={{ once: true, amount: 0.1 }}
                                 variants={fadeInUp}
                             >
@@ -144,7 +144,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                             <motion.div
                                 className={styles.splitImage}
                                 initial={{ opacity: 0, x: 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                                animate={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 1 }}
                             >
@@ -164,7 +164,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                             <motion.div
                                 className={styles.splitImage}
                                 initial={{ opacity: 0, x: -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                                animate={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 1 }}
                             >
@@ -173,7 +173,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                             <motion.div
                                 className={styles.splitText}
                                 initial="hidden"
-                                whileInView="visible"
+                                animate="visible"
                                 viewport={{ once: true, amount: 0.1 }}
                                 variants={fadeInUp}
                             >
@@ -201,7 +201,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                     <div className="container">
                         <motion.div
                             initial="hidden"
-                            whileInView="visible"
+                            animate="visible"
                             viewport={{ once: true, amount: 0.1 }}
                             variants={fadeInUp}
                         >
@@ -225,7 +225,7 @@ export default function PremiumProductLayout({ product, categoryLabel }) {
                     <motion.div
                         className={styles.warrantyBox}
                         initial="hidden"
-                        whileInView="visible"
+                        animate="visible"
                         viewport={{ once: true, amount: 0.1 }}
                         variants={fadeInUp}
                     >

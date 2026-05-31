@@ -36,7 +36,7 @@ export default function A3LVisualTour() {
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            animate={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.1 }}
                             transition={{ delay: index * 0.1, duration: 0.6 }}
                             onClick={() => setLightboxImage(angle.src)}

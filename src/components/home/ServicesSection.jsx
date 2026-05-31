@@ -49,7 +49,7 @@ export default function ServicesSection() {
         {/* Journey Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
           className="text-center mb-14"
         >
@@ -70,7 +70,7 @@ export default function ServicesSection() {
             <motion.div
               key={step.num}
               initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              animate={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
               className="relative pl-14 pb-10 last:pb-0"
@@ -103,7 +103,7 @@ export default function ServicesSection() {
           <div className="relative z-10">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               className="text-3xl sm:text-4xl font-bold text-white mb-4"
             >
@@ -111,7 +111,7 @@ export default function ServicesSection() {
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: 0.1 }}
               className="text-white/60 mb-8 max-w-lg mx-auto"
@@ -120,7 +120,7 @@ export default function ServicesSection() {
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: 0.2 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-3"

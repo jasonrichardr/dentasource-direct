@@ -31,7 +31,7 @@ export default function VideoSection({ videos, productName }) {
             rel="noopener noreferrer"
             aria-label={`Watch on YouTube: ${video.title} (${video.duration})`}
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
             whileHover={{ y: -4 }}

@@ -51,7 +51,7 @@ export default function AboutTrainingCenter() {
         <div className="mx-auto max-w-3xl text-center mb-16 lg:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6 }}
           >
@@ -75,7 +75,7 @@ export default function AboutTrainingCenter() {
             <motion.div
               key={program.title}
               initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
               className="relative rounded-2xl overflow-hidden group h-80"

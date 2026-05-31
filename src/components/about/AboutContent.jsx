@@ -30,7 +30,7 @@ export default function AboutContent() {
                 <div className={styles.containerWide}>
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        animate={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.1 }}
                         className={styles.trainingHeader}
                     >
@@ -51,7 +51,7 @@ export default function AboutContent() {
                             <motion.div
                                 key={program.title}
                                 initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
+                                animate={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true, amount: 0.1 }}
                                 transition={{ delay: (i + 1) * 0.1, duration: 0.5 }}
                                 className={styles.premiumProgramCard}
@@ -82,7 +82,7 @@ export default function AboutContent() {
                 <div className={styles.containerWide}>
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        animate={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.1 }}
                         className={styles.statsHeader}
                     >
@@ -101,7 +101,7 @@ export default function AboutContent() {
                             <motion.div
                                 key={i}
                                 initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
+                                animate={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true, amount: 0.1 }}
                                 transition={{ delay: i * 0.15, duration: 0.6, type: 'spring' }}
                                 className={styles.statCard}
@@ -121,7 +121,7 @@ export default function AboutContent() {
                     <div className={styles.darkGrid}>
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            animate={{ opacity: 1, x: 0 }}
                             viewport={{ once: true, amount: 0.1 }}
                             className={styles.showroomCard}
                         >
@@ -141,7 +141,7 @@ export default function AboutContent() {
                         <div className={styles.partnersColumn}>
                             <motion.div
                                 initial={{ opacity: 0, x: 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                                animate={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true, amount: 0.1 }}
                                 className={styles.partnerRevealCard}
                             >
@@ -160,7 +160,7 @@ export default function AboutContent() {
 
                             <motion.div
                                 initial={{ opacity: 0, x: 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                                animate={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true, amount: 0.1 }}
                                 transition={{ delay: 0.2 }}
                                 className={`${styles.partnerRevealCard} ${styles.denjoyCard}`}
@@ -185,7 +185,7 @@ export default function AboutContent() {
                 <div className={styles.containerWide}>
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        animate={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.1 }}
                         className={styles.newsHeader}
                     >
@@ -198,7 +198,7 @@ export default function AboutContent() {
                             <Link href={`/news/${news.slug}`} key={i} style={{ textDecoration: 'none' }}>
                                 <motion.div
                                     initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
+                                    animate={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, amount: 0.1 }}
                                     transition={{ delay: i * 0.1, duration: 0.5 }}
                                     className={styles.newsCard}

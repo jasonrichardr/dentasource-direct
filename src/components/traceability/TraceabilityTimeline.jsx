@@ -59,7 +59,7 @@ export default function TraceabilityTimeline() {
         <div className="text-center mb-16 sm:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             className="inline-flex items-center space-x-2 bg-emerald-900/30 px-4 py-2 rounded-full mb-6 border border-emerald-500/20"
           >
@@ -69,7 +69,7 @@ export default function TraceabilityTimeline() {
 
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 tracking-tight"
@@ -81,7 +81,7 @@ export default function TraceabilityTimeline() {
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ delay: 0.2 }}
             className="text-neutral-400 max-w-xl mx-auto text-sm sm:text-base mb-8"
@@ -92,7 +92,7 @@ export default function TraceabilityTimeline() {
           {/* Legitimacy Badges */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ delay: 0.3 }}
             className="flex flex-wrap justify-center gap-3"
@@ -150,7 +150,7 @@ export default function TraceabilityTimeline() {
 
                   <motion.div
                     initial={{ opacity: 0, x: isEven ? -40 : 40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    animate={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     className={`w-full md:w-5/12 ml-12 md:ml-0 ${isEven ? 'md:text-right md:pr-12' : 'md:text-left md:order-last md:pl-12'}`}
@@ -163,7 +163,7 @@ export default function TraceabilityTimeline() {
 
                   <motion.div
                     initial={{ opacity: 0, scale: 0.92 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.6, delay: 0.15 }}
                     className={`w-full md:w-[45%] rounded-2xl overflow-hidden aspect-[4/3] bg-neutral-900 ml-12 md:ml-0 ${isEven ? 'md:order-last' : ''}`}
