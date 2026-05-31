@@ -110,5 +110,5 @@ function chapterNameFor(id) {
 
 function messengerHref(prefill) {
   const text = encodeURIComponent(prefill);
-  return `https://m.me/dentasourcedirect?ref=denjoy_2026_landing&text=${text}`;
+  return `https://m.me/dentasource?ref=denjoy_2026_landing&text=${text}`;
 }
