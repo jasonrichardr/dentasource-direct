@@ -4,6 +4,8 @@ import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
 import JsonLd from '@/components/JsonLd';
 import { organizationGraph } from '@/lib/schemas/organization';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import MetaPixel from '@/components/analytics/MetaPixel';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });
@@ -61,10 +63,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${geistSans.variable}`} suppressHydrationWarning>
       <body className="antialiased">
+        <MetaPixel />
         <JsonLd id="organization-graph" data={organizationGraph} />
         <Navbar />
         {children}
         <Footer />
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
       </body>
     </html>
   );
