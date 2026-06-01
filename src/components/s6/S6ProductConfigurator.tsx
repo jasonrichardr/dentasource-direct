@@ -297,6 +297,15 @@ export default function S6ProductConfigurator() {
                     </div>
                 </div>
             </div>
+            <div className="mx-auto mt-10 max-w-2xl px-6 text-center">
+                <a
+                    href="/contact?interest=dental-chairs"
+                    className="inline-flex items-center justify-center rounded-full bg-[#1a3c34] px-8 py-4 text-base font-semibold text-white transition-all hover:bg-[#234e44]"
+                >
+                    Request a Quote for This Build
+                </a>
+                <p className="mt-3 text-sm text-gray-500">We&apos;ll reply the same day with pricing &amp; availability.</p>
+            </div>
         </section>
     );
 }
