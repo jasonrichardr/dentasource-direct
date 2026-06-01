@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Aperture, ShieldCheck, Smartphone, Snowflake, FlaskConical, Wind, AlertTriangle, X, ChevronLeft, ChevronRight, Film, Trees, LayoutGrid, Truck, Building2, Baby } from 'lucide-react';
 import { targetSegments, rorayFaqs } from './rorayContent';
 import RorayAutoplayHero from './RorayAutoplayHero';
+import SpecGate from '@/components/SpecGate';
 
 const fadeUp = {
   initial: { opacity: 0, y: 16 },
@@ -32,7 +33,7 @@ export default function RorayLanding() {
       <DoubleProtection />
       <CompleteKit />
       <FilipinoClinics />
-      <TechSpecs />
+      <SpecGate><TechSpecs /></SpecGate>
       <Gallery />
       <FaqSection />
       <FinalCta />

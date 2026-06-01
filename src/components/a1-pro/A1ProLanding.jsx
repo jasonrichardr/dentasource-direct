@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { a1proFaqs, dentistSegments, signatureColors } from './a1proContent';
 import A1ProAutoplayHero from './A1ProAutoplayHero';
+import SpecGate from '@/components/SpecGate';
 
 const fadeUp = {
   initial: { opacity: 0, y: 16 },
@@ -39,7 +40,7 @@ export default function A1ProLanding() {
       <RS07StoolDetail />
       <FourHandedSpace />
       <DentistProfiles />
-      <TechSpecs />
+      <SpecGate><TechSpecs /></SpecGate>
       <Gallery />
       <FaqSection />
       <FinalCta />
