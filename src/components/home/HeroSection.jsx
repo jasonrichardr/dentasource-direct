@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
@@ -148,26 +147,6 @@ export default function HeroSection() {
                         <br className="hidden sm:block" />
                         <span className="text-emerald-400">in Dentistry.</span>
                     </motion.h1>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.35 }}
-                        className="mt-8 flex flex-wrap items-center gap-3"
-                    >
-                        <Link
-                            href="/contact"
-                            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-emerald-500 text-[#0A1410] font-semibold text-sm hover:bg-emerald-400 transition-colors"
-                        >
-                            Visit the Showroom
-                        </Link>
-                        <Link
-                            href="/dentalchairs"
-                            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/30 text-white font-semibold text-sm hover:bg-white/10 transition-colors"
-                        >
-                            Explore Chairs
-                        </Link>
-                    </motion.div>
                 </div>
 
                 {/* Stats strip */}
