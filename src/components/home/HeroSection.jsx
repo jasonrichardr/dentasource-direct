@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 
 const stats = [
@@ -12,21 +12,97 @@ const stats = [
     { value: '120+', unit: '', label: 'Countries Trust ROSON' },
 ];
 
+const FULL_VOL = 1.0;
+const DUCK_VOL = 0.12; // volume while the tab/app is not focused
+
 export default function HeroSection() {
     const videoRef = useRef(null);
-    const [muted, setMuted] = useState(true);
+    const userMutedRef = useRef(false); // sticky: user chose silence
+    const fadeRaf = useRef(null);
+    const [muted, setMuted] = useState(true); // reflects video.muted for the button
+
+    // Smooth volume ramp (rides the display refresh for a buttery fade).
+    const fadeTo = useCallback((target, ms = 500) => {
+        const v = videoRef.current;
+        if (!v) return;
+        if (fadeRaf.current) cancelAnimationFrame(fadeRaf.current);
+        const from = v.volume;
+        const start = performance.now();
+        const tick = (now) => {
+            const t = Math.min(1, (now - start) / ms);
+            const e = 1 - (1 - t) * (1 - t); // easeOutQuad
+            v.volume = Math.max(0, Math.min(1, from + (target - from) * e));
+            if (t < 1) fadeRaf.current = requestAnimationFrame(tick);
+            else fadeRaf.current = null;
+        };
+        fadeRaf.current = requestAnimationFrame(tick);
+    }, []);
+
+    // Turn sound on (unless the user chose to keep it muted). Fades in from 0.
+    const enableSound = useCallback(() => {
+        const v = videoRef.current;
+        if (!v || userMutedRef.current || !v.muted) return;
+        v.muted = false;
+        v.volume = 0;
+        const p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+        fadeTo(document.hidden ? DUCK_VOL : FULL_VOL, 700);
+        setMuted(false);
+    }, [fadeTo]);
+
+    useEffect(() => {
+        const v = videoRef.current;
+        if (!v) return;
+        v.volume = 0; // start silent so the first unmute fades in cleanly
+
+        // Sound on the first interaction (autoplay-with-sound is blocked until a gesture).
+        const events = ['pointerdown', 'keydown', 'touchstart', 'wheel', 'scroll'];
+        const onFirst = () => {
+            enableSound();
+            events.forEach((ev) => window.removeEventListener(ev, onFirst));
+        };
+        events.forEach((ev) => window.addEventListener(ev, onFirst, { passive: true }));
+
+        // Duck the volume when they switch tabs/apps; bring it back when they return.
+        const duck = () => {
+            const vid = videoRef.current;
+            if (vid && !vid.muted && !userMutedRef.current) fadeTo(DUCK_VOL, 450);
+        };
+        const restore = () => {
+            const vid = videoRef.current;
+            if (vid && !vid.muted && !userMutedRef.current) fadeTo(FULL_VOL, 600);
+        };
+        const onVisibility = () => (document.hidden ? duck() : restore());
+        document.addEventListener('visibilitychange', onVisibility);
+        window.addEventListener('blur', duck);
+        window.addEventListener('focus', restore);
+
+        return () => {
+            events.forEach((ev) => window.removeEventListener(ev, onFirst));
+            document.removeEventListener('visibilitychange', onVisibility);
+            window.removeEventListener('blur', duck);
+            window.removeEventListener('focus', restore);
+            if (fadeRaf.current) cancelAnimationFrame(fadeRaf.current);
+        };
+    }, [enableSound, fadeTo]);
 
     function toggleSound() {
         const v = videoRef.current;
         if (!v) return;
-        const next = !muted;
-        v.muted = next;
-        if (!next) {
-            v.volume = 1;
+        if (v.muted) {
+            userMutedRef.current = false;
+            v.muted = false;
+            v.volume = 0;
             const p = v.play();
             if (p && typeof p.catch === 'function') p.catch(() => {});
+            fadeTo(document.hidden ? DUCK_VOL : FULL_VOL, 500);
+            setMuted(false);
+        } else {
+            userMutedRef.current = true; // sticky — stays muted through tab changes
+            if (fadeRaf.current) cancelAnimationFrame(fadeRaf.current);
+            v.muted = true;
+            setMuted(true);
         }
-        setMuted(next);
     }
 
     return (
@@ -50,7 +126,7 @@ export default function HeroSection() {
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0A1410] to-transparent" />
             </div>
 
-            {/* Subtle sound toggle (tap for sound) */}
+            {/* Subtle sound toggle */}
             <button
                 onClick={toggleSound}
                 aria-label={muted ? 'Unmute hero video' : 'Mute hero video'}
