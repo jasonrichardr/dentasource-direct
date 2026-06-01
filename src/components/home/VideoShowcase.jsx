@@ -6,12 +6,13 @@ const videos = [
   { src: '/videos/dsd-showcase.mp4', poster: '/videos/dsd-showcase-poster.jpg', label: 'On the convention floor' },
   { src: '/videos/dsd-showcase-2.mp4', poster: '/videos/dsd-showcase-2-poster.jpg', label: 'Inside our warehouse' },
   { src: '/videos/dsd-showcase-3.mp4', poster: '/videos/dsd-showcase-3-poster.jpg', label: 'Hands-on training' },
+  { src: '/videos/dsd-showcase-4.mp4', poster: '/videos/dsd-showcase-4-poster.jpg', label: 'Meet the team' },
 ];
 
 export default function VideoShowcase() {
   return (
     <section className="bg-[#F8F7F4] py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -25,12 +26,12 @@ export default function VideoShowcase() {
             The real DentaSource
           </h2>
           <p className="mt-4 text-base sm:text-lg leading-relaxed text-[#86868B] max-w-2xl mx-auto">
-            Conventions, our warehouse, hands-on training — real footage of the team and equipment behind the
+            Conventions, our warehouse, hands-on training, and the team behind it — real footage from the
             Philippines&apos; largest dental showroom. No stock photos.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {videos.map((v, i) => (
             <motion.div
               key={v.src}
@@ -39,7 +40,7 @@ export default function VideoShowcase() {
               transition={{ duration: 0.6, delay: 0.15 + i * 0.1 }}
               className="flex flex-col items-center"
             >
-              <div className="relative aspect-[9/16] w-full max-w-[300px] overflow-hidden rounded-3xl bg-black ring-1 ring-black/10 shadow-xl shadow-black/10">
+              <div className="relative aspect-[9/16] w-full max-w-[280px] overflow-hidden rounded-3xl bg-black ring-1 ring-black/10 shadow-xl shadow-black/10">
                 <video
                   className="h-full w-full object-cover"
                   controls
