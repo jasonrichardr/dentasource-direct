@@ -1,6 +1,7 @@
 import HeroSection from '@/components/home/HeroSection';
 import BentoShowcase from '@/components/home/BentoShowcase';
 import WhyUsSection from '@/components/home/WhyUsSection';
+import VideoShowcase from '@/components/home/VideoShowcase';
 import TraceabilitySection from '@/components/traceability/TraceabilitySection';
 import ServicesSection from '@/components/home/ServicesSection';
 
@@ -15,6 +16,7 @@ export default function Home() {
       <HeroSection />
       <BentoShowcase />
       <WhyUsSection />
+      <VideoShowcase />
       <TraceabilitySection />
       <ServicesSection />
     </main>
