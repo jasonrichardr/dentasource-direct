@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { Volume2, VolumeX } from 'lucide-react';
 
 const stats = [
     { value: '140', unit: 'sqm', label: 'Showroom' },
@@ -11,11 +13,28 @@ const stats = [
 ];
 
 export default function HeroSection() {
+    const videoRef = useRef(null);
+    const [muted, setMuted] = useState(true);
+
+    function toggleSound() {
+        const v = videoRef.current;
+        if (!v) return;
+        const next = !muted;
+        v.muted = next;
+        if (!next) {
+            v.volume = 1;
+            const p = v.play();
+            if (p && typeof p.catch === 'function') p.catch(() => {});
+        }
+        setMuted(next);
+    }
+
     return (
         <section className="relative w-full min-h-[100svh] overflow-hidden bg-[#0A1410]">
             {/* Autoplay video background */}
             <div className="absolute inset-0 z-0">
                 <video
+                    ref={videoRef}
                     className="h-full w-full object-cover"
                     autoPlay
                     muted
@@ -30,6 +49,16 @@ export default function HeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/25" />
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0A1410] to-transparent" />
             </div>
+
+            {/* Subtle sound toggle (tap for sound) */}
+            <button
+                onClick={toggleSound}
+                aria-label={muted ? 'Unmute hero video' : 'Mute hero video'}
+                title={muted ? 'Tap for sound' : 'Mute'}
+                className="absolute right-5 bottom-28 z-30 flex size-9 items-center justify-center rounded-full bg-black/30 text-white/70 ring-1 ring-white/15 backdrop-blur-sm transition hover:bg-black/55 hover:text-white"
+            >
+                {muted ? <VolumeX className="size-[17px]" strokeWidth={1.75} /> : <Volume2 className="size-[17px]" strokeWidth={1.75} />}
+            </button>
 
             <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-28 sm:pt-32 md:pt-36 pb-8 sm:pb-12 min-h-[100svh] flex flex-col">
                 <div className="flex-1 flex flex-col justify-center">
