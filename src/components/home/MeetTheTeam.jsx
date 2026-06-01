@@ -90,8 +90,7 @@ export default function MeetTheTeam() {
                 >
                     <blockquote className="text-[16px] leading-snug font-medium tracking-tight text-[#1a3c34] sm:text-xl md:text-[22px]">
                         &ldquo;This isn&rsquo;t a company I built around products — it&rsquo;s a team I built around
-                        people. What sets us apart isn&rsquo;t a catalog — it&rsquo;s a team that operates as one:
-                        aligned in standards, united in purpose, accountable to each other and to you.&rdquo;
+                        people. Aligned in standards, united in purpose, accountable to each other and to you.&rdquo;
                         <span className="mt-4 block font-[family-name:var(--font-playfair)] italic bg-gradient-to-r from-[#A87C28] via-[#E2C173] to-[#A87C28] bg-clip-text text-[26px] font-bold tracking-wide text-transparent sm:text-4xl md:text-[44px]">
                             We are One.
                         </span>
