@@ -1,7 +1,7 @@
 export const a1proFaqs = [
   {
-    q: 'What is the ROSON A1 Pro Fashionable dental chair?',
-    a: 'The A1 Pro Fashionable is ROSON\'s color-led treatment chair built for the new generation of dentists. It pairs a 12 mm carbon-structural-steel frame and 150 kg patient load capacity with sleep-grade soft start/stop motion, the Rolight S 8-LED dental light, an intelligent memory chair position, a 4-position adjustable handpiece holder, and the RS-07 Professional Dentist Stool — all included as standard. Choose from three signature colors (ROSON Blue, Ballet Pink, Mint Green) or customize from over thirty silicone and PU leather options.',
+    q: 'What is the ROSON A1 Pro dental chair?',
+    a: 'The A1 Pro is ROSON\'s color-led treatment chair built for the new generation of dentists. It pairs a 12 mm carbon-structural-steel frame and 150 kg patient load capacity with sleep-grade soft start/stop motion, the Rolight S 8-LED dental light, an intelligent memory chair position, a 4-position adjustable handpiece holder, and the RS-07 Professional Dentist Stool — all included as standard. Choose from three signature colors (ROSON Blue, Ballet Pink, Mint Green) or customize from over thirty silicone and PU leather options.',
   },
   {
     q: 'Why does the 12 mm carbon-steel frame matter?',
@@ -28,7 +28,7 @@ export const a1proFaqs = [
     a: 'Intelligent memory chair position lets the dentist save and recall preferred treatment angles with one touch. The smart clean button moves the chair to entry/exit position, auto-fills the cup, and triggers a 5-minute spittoon rinse cycle and pipeline flush — all from one press. Cup filling and rinsing are linked, so 8 seconds after fill the spittoon program starts. The patient can also self-help one-touch cup fill. Each detail trims a few seconds off the daily workflow; multiplied across hundreds of patients per week, the time saved is real.',
   },
   {
-    q: 'Where can I see and demo the A1 Pro Fashionable in the Philippines?',
+    q: 'Where can I see and demo the A1 Pro in the Philippines?',
     a: 'DentaSource Direct is the exclusive Philippine distributor for ROSON treatment chairs. Visit our Pasig showroom for a live demonstration — sit in every signature color, test the soft start/stop motion, feel the silicone leather, and see the complete RS-07 stool pairing. Service and parts support is provided locally.',
   },
 ];

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   Layers, Lightbulb, Armchair, Activity, Palette,
-  X, ChevronLeft, ChevronRight,
+  X, ChevronLeft, ChevronRight, Save, Droplets, Sparkles,
   GraduationCap, Heart, Baby, Gem, Building2, Pencil,
 } from 'lucide-react';
 import { a1proFaqs, dentistSegments, signatureColors } from './a1proContent';
@@ -76,7 +76,7 @@ function ProductIntro() {
       <div className="mx-auto max-w-3xl px-5 sm:px-6">
         <motion.div {...fadeUp}>
           <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-semibold tracking-tight leading-[1.1] text-[#1D1D1F]">
-            ROSON A1 Pro Fashionable
+            ROSON A1 Pro
           </h2>
           <p className="mt-4 text-[14px] sm:text-[15px] leading-relaxed text-[#52525B] max-w-xl">
             The first dental unit built for the new generation of dentists.
@@ -152,40 +152,6 @@ function Pillars() {
             </div>
           ))}
         </motion.div>
-
-        {/* Two isolated brochure pieces: stable core frame + sleep-grade motion */}
-        <motion.div {...fadeUp} className="mt-10 grid sm:grid-cols-2 gap-4">
-          <div className="rounded-2xl overflow-hidden border border-black/[0.06] bg-white">
-            <div className="aspect-[4/3] relative bg-[#F8F7F4]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/products/a1-pro/pieces/stable-core-frame-with-elephant.png"
-                alt="ROSON A1 Pro stable core treatment chair frame — 12 mm carbon structural steel, 150 kg load capacity demonstrated with elephant illustration"
-                className="absolute inset-0 w-full h-full object-contain p-3"
-                loading="lazy"
-              />
-            </div>
-            <div className="p-4">
-              <p className="text-[12px] font-semibold text-[#1D1D1F]">Stable Core Frame</p>
-              <p className="mt-1 text-[12px] leading-relaxed text-[#52525B]">12 mm premium carbon steel · 150 kg load.</p>
-            </div>
-          </div>
-          <div className="rounded-2xl overflow-hidden border border-black/[0.06] bg-white">
-            <div className="aspect-[4/3] relative bg-[#F8F7F4]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/products/a1-pro/pieces/sleep-grade-motion-arrows.png"
-                alt="ROSON A1 Pro sleep-grade moving system — soft start/stop motion arrows showing whisper-quiet chair adjustment"
-                className="absolute inset-0 w-full h-full object-contain p-3"
-                loading="lazy"
-              />
-            </div>
-            <div className="p-4">
-              <p className="text-[12px] font-semibold text-[#1D1D1F]">Sleep-Grade Motion</p>
-              <p className="mt-1 text-[12px] leading-relaxed text-[#52525B]">Soft start. Soft stop. Patient stays calm.</p>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
@@ -224,7 +190,7 @@ function ColorStory() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={`/images/products/a1-pro/pieces/chair-silhouette-${slug}.png`}
-                    alt={`ROSON A1 Pro Fashionable in ${c.name} (${c.code}) — full chair silhouette from brochure`}
+                    alt={`ROSON A1 Pro in ${c.name} (${c.code}) — full chair silhouette from brochure`}
                     className="absolute inset-0 w-full h-full object-contain p-5"
                     loading="lazy"
                   />
@@ -399,22 +365,19 @@ function SiliconeLeather() {
 function SmartDetails() {
   const iconCards = [
     {
+      Icon: Save,
       title: 'Intelligent Memory',
       body: 'Short press → enter/exit position. Press again → returns to last treatment position.',
-      img: '/images/products/a1-pro/pieces/icon-card-intelligent-memory.png',
-      alt: 'A1 Pro intelligent memory chair position icon card',
     },
     {
+      Icon: Droplets,
       title: 'Cup Fill & Rinse Linkage',
       body: 'Spittoon rinse auto-starts 8 seconds after cup filling. One workflow, two actions.',
-      img: '/images/products/a1-pro/pieces/icon-card-cup-filling-rinsing.png',
-      alt: 'A1 Pro cup filling and rinsing linkage icon card',
     },
     {
+      Icon: Sparkles,
       title: 'Smart Clean Button',
       body: 'One touch lifts the chair, triggers a 5-minute spittoon rinse and pipeline flush.',
-      img: '/images/products/a1-pro/pieces/icon-card-smart-clean-button.png',
-      alt: 'A1 Pro smart clean button icon card',
     },
   ];
 
@@ -487,23 +450,15 @@ function SmartDetails() {
           </div>
         </motion.div>
 
-        {/* Three icon cards from brochure */}
+        {/* Three native icon cards */}
         <motion.div {...fadeUp} className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
           {iconCards.map((c) => (
-            <div key={c.title} className="rounded-2xl bg-white border border-black/[0.06] overflow-hidden">
-              <div className="aspect-[5/4] relative bg-[#F8F7F4]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={c.img}
-                  alt={c.alt}
-                  className="absolute inset-0 w-full h-full object-contain p-3"
-                  loading="lazy"
-                />
+            <div key={c.title} className="rounded-2xl bg-white border border-black/[0.06] p-6">
+              <div className="flex size-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+                <c.Icon className="size-5" strokeWidth={1.75} />
               </div>
-              <div className="p-4">
-                <h3 className="text-[13.5px] font-semibold text-[#1D1D1F]">{c.title}</h3>
-                <p className="mt-1.5 text-[12.5px] leading-relaxed text-[#52525B]">{c.body}</p>
-              </div>
+              <h3 className="mt-4 text-[14px] font-semibold text-[#1D1D1F]">{c.title}</h3>
+              <p className="mt-1.5 text-[12.5px] leading-relaxed text-[#52525B]">{c.body}</p>
             </div>
           ))}
         </motion.div>
@@ -814,7 +769,7 @@ function TechSpecs() {
 /* ─── GALLERY (tap-to-zoom lightbox) ────────────────────────── */
 function Gallery() {
   const images = [
-    { src: '/images/products/a1-pro/hero.jpg', alt: 'A1 Pro Fashionable — full chair with light arm and assistant tray' },
+    { src: '/images/products/a1-pro/hero.jpg', alt: 'A1 Pro — full chair with light arm and assistant tray' },
     { src: '/images/products/a1-pro/view-2-headrest.jpg', alt: 'A1 Pro headrest detail — navy silicone leather upholstery' },
     { src: '/images/products/a1-pro/view-3-touchscreen.jpg', alt: 'A1 Pro touchscreen control panel — dental icons and chair memory' },
     { src: '/images/products/a1-pro/view-4-instrument-arm.jpg', alt: 'A1 Pro swing-mount instrument bridge with five handpieces' },

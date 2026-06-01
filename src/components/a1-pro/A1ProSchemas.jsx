@@ -10,7 +10,7 @@ export default function A1ProSchemas() {
   const enrichedProduct = {
     ...product,
     description:
-      'ROSON A1 Pro Fashionable dental chair. 12 mm carbon-structural-steel frame, 150 kg patient load, sleep-grade soft start/stop motion, Rolight S 8-LED tri-mode dental light, intelligent memory chair position, 4-position adjustable handpiece holder. Three signature colors (ROSON Blue, Ballet Pink, Mint Green) with 33+ silicone and PU leather customization options. RS-07 Professional Dentist Stool included standard. Exclusive Philippine distribution by DentaSource Direct.',
+      'ROSON A1 Pro dental chair. 12 mm carbon-structural-steel frame, 150 kg patient load, sleep-grade soft start/stop motion, Rolight S 8-LED tri-mode dental light, intelligent memory chair position, 4-position adjustable handpiece holder. Three signature colors (ROSON Blue, Ballet Pink, Mint Green) with 33+ silicone and PU leather customization options. RS-07 Professional Dentist Stool included standard. Exclusive Philippine distribution by DentaSource Direct.',
     images: [
       '/images/products/a1-pro/hero.jpg',
       '/images/products/a1-pro/view-2-headrest.jpg',

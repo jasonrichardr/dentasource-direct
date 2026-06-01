@@ -12,7 +12,7 @@ export default function A1ProAutoplayHero() {
         loop
         playsInline
         preload="auto"
-        aria-label="ROSON A1 Pro Fashionable dental chair — color hero reveal"
+        aria-label="ROSON A1 Pro dental chair — color hero reveal"
       />
 
       {/* Subtle bottom darkening for legibility */}
@@ -33,7 +33,7 @@ export default function A1ProAutoplayHero() {
           transition={{ duration: 1, delay: 0.3, ease: 'easeOut' }}
           className="text-4xl sm:text-6xl lg:text-[6rem] font-medium tracking-tight text-white leading-none whitespace-nowrap"
         >
-          A1 Fashionable
+          A1 Pro
         </motion.h1>
       </div>
     </section>

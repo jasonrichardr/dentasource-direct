@@ -686,12 +686,12 @@ export const products = [
     },
     {
         slug: 'roson-a1-pro-fashionable',
-        name: 'Roson A1 Pro Fashionable',
+        name: 'Roson A1 Pro',
         category: 'chair',
         badge: 'New',
         tagline: 'Color, Engineered.',
         shortDesc: 'The first dental unit built for the new generation of dentists. 12 mm carbon-steel frame, 150 kg load, sleep-grade soft start/stop, Rolight S 8-LED tri-mode light, intelligent chair memory, RS-07 stool included.',
-        description: 'The A1 Pro Fashionable is ROSON\'s color-led treatment chair tailor-made for the new generation of dentists. A 12 mm carbon-structural-steel frame and 150 kg patient load anchor the engineering; sleep-grade soft start/stop motion makes every adjustment whisper-quiet; the Rolight S 8-LED tri-mode dental light covers the full oral cavity with hands-free IR control. Three signature colors come pre-styled by ROSON\'s design team — ROSON Blue, Ballet Pink, Mint Green — with twelve silicone leather options and twenty-one PU leather options for full customization. Smart workflow built in: intelligent chair memory, Smart Clean button (5-min spittoon rinse + pipeline flush), 4-position adjustable handpiece holder, spittoon odor trap, and patient self-help cup filling. The RS-07 Professional Dentist Stool — with U-shaped ventilation, 90°-110° backrest, and 300-428 mm seat depth — is included as standard.',
+        description: 'The A1 Pro is ROSON\'s color-led treatment chair tailor-made for the new generation of dentists. A 12 mm carbon-structural-steel frame and 150 kg patient load anchor the engineering; sleep-grade soft start/stop motion makes every adjustment whisper-quiet; the Rolight S 8-LED tri-mode dental light covers the full oral cavity with hands-free IR control. Three signature colors come pre-styled by ROSON\'s design team — ROSON Blue, Ballet Pink, Mint Green — with twelve silicone leather options and twenty-one PU leather options for full customization. Smart workflow built in: intelligent chair memory, Smart Clean button (5-min spittoon rinse + pipeline flush), 4-position adjustable handpiece holder, spittoon odor trap, and patient self-help cup filling. The RS-07 Professional Dentist Stool — with U-shaped ventilation, 90°-110° backrest, and 300-428 mm seat depth — is included as standard.',
         features: [
             '12 mm premium carbon structural steel frame',
             '150 kg maximum patient load capacity',
