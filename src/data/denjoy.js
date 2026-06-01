@@ -108,7 +108,7 @@ export const denjoyProducts = [
       '4-in-1 integrated endo system — apex locator + motor + fill + activation in one base unit.',
       'The reference platform the Meet Endo and Meta Endo Pro I evolved from.',
       'Trusted Denjoy lineage since 2004.',
-      'Suitable for clinics scaling endo capacity without going full Meet Endo Pro I.',
+      'Suitable for clinics scaling endo capacity without going full Meta Endo Pro I.',
     ],
     messengerText: "Hi DSD, I'd like to know more about the Meta Endo.",
     videos: [

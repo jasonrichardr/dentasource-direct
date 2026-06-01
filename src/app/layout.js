@@ -6,6 +6,7 @@ import JsonLd from '@/components/JsonLd';
 import { organizationGraph } from '@/lib/schemas/organization';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import MetaPixel from '@/components/analytics/MetaPixel';
+import FloatingChat from '@/components/FloatingChat';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });
@@ -69,6 +70,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
+        <FloatingChat />
         {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
       </body>
     </html>

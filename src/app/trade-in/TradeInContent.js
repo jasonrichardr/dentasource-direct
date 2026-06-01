@@ -91,7 +91,7 @@ export default function TradeInContent() {
             </p>
             <Link
               href="#appraisal"
-              className="inline-flex items-center justify-center px-7 py-3.5 bg-[#F26522] text-white rounded-full font-medium text-sm md:text-base hover:bg-[#e05a1a] transition-colors shadow-lg shadow-[#F26522]/20"
+              className="inline-flex items-center justify-center px-7 py-3.5 bg-[#10b981] text-white rounded-full font-medium text-sm md:text-base hover:bg-emerald-400 transition-colors shadow-lg shadow-[#10b981]/20"
             >
               Get an Estimate
             </Link>
@@ -205,8 +205,8 @@ export default function TradeInContent() {
                   If your dental chair is in good shape, we&apos;ll help get it to a new owner. Or, if it&apos;s seen better days, we can recycle it for free.
                 </p>
                 <Link
-                  href="/contact?type=recycle"
-                  className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-[#0071E3] text-white rounded-full font-medium text-sm hover:bg-[#0077ED] transition-colors relative z-10"
+                  href="/contact?interest=trade-in"
+                  className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-[#10b981] text-white rounded-full font-medium text-sm hover:bg-emerald-400 transition-colors relative z-10"
                 >
                   Recycle your dental chair
                 </Link>
@@ -242,7 +242,7 @@ export default function TradeInContent() {
               Send us a few details and photos of your current equipment. Our team will evaluate it and provide a trade-in estimate within 24 hours.
             </p>
             <Link
-              href="/contact?type=trade-in"
+              href="/contact?interest=trade-in"
               className="group w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#F26522] text-white rounded-full font-medium text-sm md:text-base hover:bg-[#e05a1a] transition-colors shadow-lg shadow-[#F26522]/20"
             >
               <span>Request Free Appraisal</span>

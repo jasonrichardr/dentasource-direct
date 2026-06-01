@@ -34,7 +34,7 @@ const certificates = [
   {
     id: 'roson-iso',
     title: 'ROSON Quality Assurance',
-    desc: 'Guaranteed Tracability',
+    desc: 'Guaranteed Traceability',
     img: '/images/traceability/Roson-ISO_.jpg',
     colSpan: 'md:col-span-2',
     rowSpan: 'md:row-span-1',

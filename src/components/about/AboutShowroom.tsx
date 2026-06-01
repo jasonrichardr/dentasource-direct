@@ -35,7 +35,7 @@ export default function AboutShowroom() {
                 <div>
                   <div className="font-semibold text-gray-900">Address</div>
                   <div className="text-gray-600">
-                    610C Raymundo Street, Maybunga Road, Pasig City
+                    610 C. Maybunga Rd, Pasig City
                   </div>
                 </div>
               </div>

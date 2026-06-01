@@ -24,6 +24,7 @@ const customRoutes = {
   'roson-dxn2plus': '/n2-plus',
   'roson-dxn1': '/n1',
   'roson-dxa3l': '/a3l',
+  'roson-a1-pro-fashionable': '/a1-pro',
 };
 
 function Badge({ slug }) {

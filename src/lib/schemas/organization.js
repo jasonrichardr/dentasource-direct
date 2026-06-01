@@ -42,7 +42,7 @@ export const organizationGraph = {
         streetAddress: '610 C. Maybunga Road',
         addressLocality: 'Pasig City',
         addressRegion: 'Metro Manila',
-        postalCode: '1607',
+        postalCode: '1600',
         addressCountry: 'PH',
       },
       geo: {
