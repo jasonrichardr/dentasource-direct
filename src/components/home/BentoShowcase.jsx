@@ -45,18 +45,18 @@ export default function BentoShowcase() {
             </div>
           </motion.div>
           
-          <motion.div whileHover={{ scale: 0.99 }} className="rounded-[2rem] p-8 flex flex-col relative overflow-hidden shadow-sm hover:shadow-xl transition-all min-h-[350px] md:min-h-0 isolate group">
+          <motion.div whileHover={{ scale: 0.99 }} className="rounded-[2rem] p-8 flex flex-col relative overflow-hidden shadow-sm hover:shadow-xl transition-all min-h-[300px] md:min-h-0 isolate group bg-gradient-to-br from-[#EEF2F5] to-[#F5F5F7]">
             <Image src="/images/home/authentic-xray.png" alt="X-Ray Machine" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover -z-20 group-hover:scale-[1.03] transition-transform duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/20 to-transparent h-2/3 -z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/10 to-transparent h-1/2 -z-10"></div>
             <div className="relative z-10 flex flex-col h-full">
               <h3 className="text-2xl font-semibold text-[#1D1D1F] mb-2">X-Rays</h3>
               <Link href="/products?category=imaging" className="inline-flex items-center text-sm font-medium text-[#0071E3] hover:underline underline-offset-4 w-max">Learn more →</Link>
             </div>
           </motion.div>
 
-          <motion.div whileHover={{ scale: 0.99 }} className="rounded-[2rem] p-8 flex flex-col relative overflow-hidden shadow-sm hover:shadow-xl transition-all min-h-[350px] md:min-h-0 isolate group">
+          <motion.div whileHover={{ scale: 0.99 }} className="rounded-[2rem] p-8 flex flex-col relative overflow-hidden shadow-sm hover:shadow-xl transition-all min-h-[300px] md:min-h-0 isolate group bg-gradient-to-br from-[#EEF2F5] to-[#F5F5F7]">
             <Image src="/images/home/authentic-endo.png" alt="Endodontic Motor" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover -z-20 group-hover:scale-[1.03] transition-transform duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/40 to-transparent h-2/3 -z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-white/20 to-transparent h-1/2 -z-10"></div>
             <div className="relative z-10 flex flex-col h-full">
               <h3 className="text-2xl font-semibold text-[#1D1D1F] mb-2">Endodontics</h3>
               <Link href="/products?category=endo" className="inline-flex items-center text-sm font-medium text-[#0071E3] hover:underline underline-offset-4 w-max">Learn more →</Link>
