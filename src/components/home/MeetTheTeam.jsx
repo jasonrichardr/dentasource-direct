@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Stethoscope, HeartHandshake, Sparkles, Sprout } from 'lucide-react';
+import { Stethoscope, HeartHandshake, Sparkles, Sprout, Database, Handshake } from 'lucide-react';
 
 const pillars = [
     {
@@ -24,6 +24,16 @@ const pillars = [
         title: 'Built to Grow',
         body: 'Growth is the house rule here: every day we sharpen, study, and get a little better — because the people who serve you deserve a team that never stops learning.',
     },
+    {
+        Icon: Database,
+        title: 'Digitally Advanced',
+        body: 'We run lean, tech-driven operations — including an in-house database of our entire product line — so stock, specs, and answers are always a click away, never a guess.',
+    },
+    {
+        Icon: Handshake,
+        title: 'Relational, Never Transactional',
+        body: "We're not here for a one-time sale. We invest in long-term relationships with the practices we serve — because your growth, not the transaction, is the point.",
+    },
 ];
 
 export default function MeetTheTeam() {
@@ -43,20 +53,20 @@ export default function MeetTheTeam() {
                         The people I&rsquo;d build anything with.
                     </h2>
                     <p className="mt-4 text-[15px] leading-relaxed text-[#52525B] sm:text-base">
-                        Behind the country&rsquo;s largest dental showroom is a team I love with my whole heart —
-                        people who didn&rsquo;t learn this trade from a brochure. They learned it standing beside
-                        dentists, in real clinics, on real cases, for years. So when you talk to them, it doesn&rsquo;t
-                        feel like a pitch — it feels like someone who&rsquo;s been on your side of the chair.
+                        Behind the country&rsquo;s largest dental showroom is a team — people who didn&rsquo;t learn
+                        this trade from a brochure. They learned it standing beside dentists, in real clinics, on real
+                        cases, for years. So when you talk to them, it doesn&rsquo;t feel like a pitch — it feels like
+                        someone who&rsquo;s been on your side of the chair.
                     </p>
                 </motion.div>
 
-                <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5">
+                <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
                     {pillars.map((p, i) => (
                         <motion.div
                             key={p.title}
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
+                            transition={{ duration: 0.5, delay: 0.1 + i * 0.07 }}
                             className="rounded-2xl border border-black/[0.06] bg-white p-5 sm:p-6"
                         >
                             <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
@@ -78,11 +88,15 @@ export default function MeetTheTeam() {
                     transition={{ duration: 0.6, delay: 0.45 }}
                     className="mt-10 rounded-2xl border border-emerald-200 bg-emerald-50/60 p-6 sm:mt-12 sm:p-8"
                 >
-                    <blockquote className="text-[17px] leading-snug font-medium tracking-tight text-[#1a3c34] sm:text-xl md:text-2xl">
-                        &ldquo;This isn&rsquo;t a company I built around products — it&rsquo;s a family I built around
-                        people. And I&rsquo;d choose every one of them again.&rdquo;
+                    <blockquote className="text-[16px] leading-snug font-medium tracking-tight text-[#1a3c34] sm:text-xl md:text-[22px]">
+                        &ldquo;This isn&rsquo;t a company I built around products — it&rsquo;s a team I built around
+                        people. What sets us apart isn&rsquo;t a catalog — it&rsquo;s a team that operates as one:
+                        aligned in standards, united in purpose, accountable to each other and to you.&rdquo;
+                        <span className="mt-4 block bg-gradient-to-r from-[#C99A3C] to-[#E3B85A] bg-clip-text text-[22px] font-bold tracking-wide text-transparent sm:text-3xl md:text-4xl">
+                            We are One.
+                        </span>
                     </blockquote>
-                    <figcaption className="mt-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-emerald-700">
+                    <figcaption className="mt-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-emerald-700">
                         Jarich · Founder, DentaSource Direct
                     </figcaption>
                 </motion.figure>
