@@ -4,6 +4,7 @@ import S9FeatureGrid from "@/components/s9/S9FeatureGrid";
 import S9DisinfectionSection from "@/components/s9/S9DisinfectionSection";
 import S9ErgonomicsSection from "@/components/s9/S9ErgonomicsSection";
 import S9TechSpecs from "@/components/s9/S9TechSpecs";
+import SpecGate from "@/components/SpecGate";
 import S9ProductConfigurator from "@/components/s9/S9ProductConfigurator";
 import S9VisualTour from "@/components/s9/S9VisualTour";
 import S9WhatsInTheBox from "@/components/s9/S9WhatsInTheBox";
@@ -22,7 +23,7 @@ export default function S9Page() {
             <S9FeatureGrid />
             <S9DisinfectionSection />
             <S9ErgonomicsSection />
-            <S9TechSpecs />
+            <SpecGate><S9TechSpecs /></SpecGate>
             <S9ProductConfigurator />
             <S9VisualTour />
             <S9WhatsInTheBox />

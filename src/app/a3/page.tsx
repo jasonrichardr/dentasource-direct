@@ -4,6 +4,7 @@ import A3FeatureGrid from "@/components/a3/A3FeatureGrid";
 import A3DisinfectionSection from "@/components/a3/A3DisinfectionSection";
 import A3ErgonomicsSection from "@/components/a3/A3ErgonomicsSection";
 import A3TechSpecs from "@/components/a3/A3TechSpecs";
+import SpecGate from "@/components/SpecGate";
 import A3ProductConfigurator from "@/components/a3/A3ProductConfigurator";
 import A3VisualTour from "@/components/a3/A3VisualTour";
 import A3WhatsInTheBox from "@/components/a3/A3WhatsInTheBox";
@@ -22,7 +23,7 @@ export default function A3Page() {
             <A3FeatureGrid />
             <A3DisinfectionSection />
             <A3ErgonomicsSection />
-            <A3TechSpecs />
+            <SpecGate><A3TechSpecs /></SpecGate>
             <A3ProductConfigurator />
             <A3VisualTour />
             <A3WhatsInTheBox />

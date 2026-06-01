@@ -4,6 +4,7 @@ import N2PlusFeatureGrid from "@/components/n2-plus/N2PlusFeatureGrid";
 import N2PlusCompleteSection from "@/components/n2-plus/N2PlusCompleteSection";
 import N2PlusErgonomicsSection from "@/components/n2-plus/N2PlusErgonomicsSection";
 import N2PlusTechSpecs from "@/components/n2-plus/N2PlusTechSpecs";
+import SpecGate from "@/components/SpecGate";
 import N2PlusProductConfigurator from "@/components/n2-plus/N2PlusProductConfigurator";
 import N2PlusVisualTour from "@/components/n2-plus/N2PlusVisualTour";
 import N2PlusWhatsInTheBox from "@/components/n2-plus/N2PlusWhatsInTheBox";
@@ -22,7 +23,7 @@ export default function N2PlusPage() {
             <N2PlusFeatureGrid />
             <N2PlusCompleteSection />
             <N2PlusErgonomicsSection />
-            <N2PlusTechSpecs />
+            <SpecGate><N2PlusTechSpecs /></SpecGate>
             <N2PlusProductConfigurator />
             <N2PlusVisualTour />
             <N2PlusWhatsInTheBox />

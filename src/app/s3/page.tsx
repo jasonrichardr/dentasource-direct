@@ -4,6 +4,7 @@ import S3FeatureGrid from "@/components/s3/S3FeatureGrid";
 import S3LightSection from "@/components/s3/S3LightSection";
 import S3ErgonomicsSection from "@/components/s3/S3ErgonomicsSection";
 import S3TechSpecs from "@/components/s3/S3TechSpecs";
+import SpecGate from "@/components/SpecGate";
 import S3ProductConfigurator from "@/components/s3/S3ProductConfigurator";
 import S3VisualTour from "@/components/s3/S3VisualTour";
 import S3WhatsInTheBox from "@/components/s3/S3WhatsInTheBox";
@@ -22,7 +23,7 @@ export default function S3Page() {
             <S3FeatureGrid />
             <S3LightSection />
             <S3ErgonomicsSection />
-            <S3TechSpecs />
+            <SpecGate><S3TechSpecs /></SpecGate>
             <S3ProductConfigurator />
             <S3VisualTour />
             <S3WhatsInTheBox />

@@ -4,6 +4,7 @@ import A3SFeatureGrid from "@/components/a3s/A3SFeatureGrid";
 import A3SColorSection from "@/components/a3s/A3SColorSection";
 import A3SErgonomicsSection from "@/components/a3s/A3SErgonomicsSection";
 import A3STechSpecs from "@/components/a3s/A3STechSpecs";
+import SpecGate from "@/components/SpecGate";
 import A3SProductConfigurator from "@/components/a3s/A3SProductConfigurator";
 import A3SVisualTour from "@/components/a3s/A3SVisualTour";
 import A3SWhatsInTheBox from "@/components/a3s/A3SWhatsInTheBox";
@@ -22,7 +23,7 @@ export default function A3SPage() {
             <A3SFeatureGrid />
             <A3SColorSection />
             <A3SErgonomicsSection />
-            <A3STechSpecs />
+            <SpecGate><A3STechSpecs /></SpecGate>
             <A3SProductConfigurator />
             <A3SVisualTour />
             <A3SWhatsInTheBox />

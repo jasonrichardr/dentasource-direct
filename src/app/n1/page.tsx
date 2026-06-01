@@ -4,6 +4,7 @@ import N1FeatureGrid from "@/components/n1/N1FeatureGrid";
 import N1SimplicitySection from "@/components/n1/N1SimplicitySection";
 import N1ErgonomicsSection from "@/components/n1/N1ErgonomicsSection";
 import N1TechSpecs from "@/components/n1/N1TechSpecs";
+import SpecGate from "@/components/SpecGate";
 import N1ProductConfigurator from "@/components/n1/N1ProductConfigurator";
 import N1VisualTour from "@/components/n1/N1VisualTour";
 import N1WhatsInTheBox from "@/components/n1/N1WhatsInTheBox";
@@ -22,7 +23,7 @@ export default function N1Page() {
             <N1FeatureGrid />
             <N1SimplicitySection />
             <N1ErgonomicsSection />
-            <N1TechSpecs />
+            <SpecGate><N1TechSpecs /></SpecGate>
             <N1ProductConfigurator />
             <N1VisualTour />
             <N1WhatsInTheBox />

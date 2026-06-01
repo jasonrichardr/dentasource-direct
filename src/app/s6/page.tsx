@@ -4,6 +4,7 @@ import S6FeatureGrid from "@/components/s6/S6FeatureGrid";
 import S6AccessibilitySection from "@/components/s6/S6AccessibilitySection";
 import S6ErgonomicsSection from "@/components/s6/S6ErgonomicsSection";
 import S6TechSpecs from "@/components/s6/S6TechSpecs";
+import SpecGate from "@/components/SpecGate";
 import S6ProductConfigurator from "@/components/s6/S6ProductConfigurator";
 import S6VisualTour from "@/components/s6/S6VisualTour";
 import S6WhatsInTheBox from "@/components/s6/S6WhatsInTheBox";
@@ -22,7 +23,7 @@ export default function S6Page() {
             <S6FeatureGrid />
             <S6AccessibilitySection />
             <S6ErgonomicsSection />
-            <S6TechSpecs />
+            <SpecGate><S6TechSpecs /></SpecGate>
             <S6ProductConfigurator />
             <S6VisualTour />
             <S6WhatsInTheBox />

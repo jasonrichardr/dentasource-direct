@@ -4,6 +4,7 @@ import A3LFeatureGrid from "@/components/a3l/A3LFeatureGrid";
 import A3LFashionSection from "@/components/a3l/A3LFashionSection";
 import A3LErgonomicsSection from "@/components/a3l/A3LErgonomicsSection";
 import A3LTechSpecs from "@/components/a3l/A3LTechSpecs";
+import SpecGate from "@/components/SpecGate";
 import A3LProductConfigurator from "@/components/a3l/A3LProductConfigurator";
 import A3LVisualTour from "@/components/a3l/A3LVisualTour";
 import A3LWhatsInTheBox from "@/components/a3l/A3LWhatsInTheBox";
@@ -22,7 +23,7 @@ export default function A3LPage() {
             <A3LFeatureGrid />
             <A3LFashionSection />
             <A3LErgonomicsSection />
-            <A3LTechSpecs />
+            <SpecGate><A3LTechSpecs /></SpecGate>
             <A3LProductConfigurator />
             <A3LVisualTour />
             <A3LWhatsInTheBox />
