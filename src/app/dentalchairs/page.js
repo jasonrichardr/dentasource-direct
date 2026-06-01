@@ -5,6 +5,13 @@ import { products } from '@/data/products';
 export const metadata = {
   title: 'Dental Chairs — ROSON Collection',
   description: 'Explore the complete ROSON dental chair lineup. From the flagship A3 to the budget-friendly S9, find the perfect chair for your practice.',
+  openGraph: {
+    title: "Dental Chairs — ROSON Collection",
+    description: "Explore the complete ROSON dental chair lineup. From the flagship A3 to the budget-friendly S9, find the perfect chair for your practice.",
+    url: 'https://dentasourcedirect.com/dentalchairs',
+    type: 'website',
+    images: ['/images/hero/dxa3-hero-original.jpg'],
+  },
 };
 
 export default function DentalChairsPage() {

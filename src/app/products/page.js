@@ -6,6 +6,13 @@ export const metadata = {
   title: 'Equipment Catalog',
   description:
     'Imaging, endodontics, curing, sterilization, and accessories from DentaSource Direct. For dental chairs, see /dentalchairs.',
+  openGraph: {
+    title: "Equipment Catalog",
+    description: "Imaging, endodontics, curing, sterilization, and accessories from DentaSource Direct. For dental chairs, see /dentalchairs.",
+    url: 'https://dentasourcedirect.com/products',
+    type: 'website',
+    images: ['/images/hero/dxa3-hero-original.jpg'],
+  },
 };
 
 const categoryLabels = {

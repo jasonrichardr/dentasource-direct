@@ -13,6 +13,13 @@ import S3WarrantyTable from "@/components/s3/S3WarrantyTable";
 export const metadata = {
     title: "Roson S3 Best-Selling Dental Chair",
     description: "The Roson S3 Best Seller — brightest light at 35,000+ lux, autoclavable handle, detachable spittoon, and Whisper-Silent Motor.",
+  openGraph: {
+    title: "Roson S3 Best-Selling Dental Chair",
+    description: "The Roson S3 Best Seller — brightest light at 35,000+ lux, autoclavable handle, detachable spittoon, and Whisper-Silent Motor.",
+    url: 'https://dentasourcedirect.com/s3',
+    type: 'website',
+    images: ['/images/hero/dxa3-hero-original.jpg'],
+  },
 };
 
 export default function S3Page() {

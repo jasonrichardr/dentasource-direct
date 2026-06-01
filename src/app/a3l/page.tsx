@@ -13,6 +13,13 @@ import A3LWarrantyTable from "@/components/a3l/A3LWarrantyTable";
 export const metadata = {
     title: "ROSON Fashion Model A3L Dental Chair",
     description: "Same A3 flagship platform with fashion-forward design customization. Whisper-Silent Motor, medical-grade LCD, anti-collision safety, and EOW-TECH disinfection available.",
+  openGraph: {
+    title: "ROSON Fashion Model A3L Dental Chair",
+    description: "Same A3 flagship platform with fashion-forward design customization. Whisper-Silent Motor, medical-grade LCD, anti-collision safety, and EOW-TECH disinfection available.",
+    url: 'https://dentasourcedirect.com/a3l',
+    type: 'website',
+    images: ['/images/hero/dxa3-hero-original.jpg'],
+  },
 };
 
 export default function A3LPage() {

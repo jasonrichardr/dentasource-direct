@@ -13,6 +13,13 @@ import N2PlusWarrantyTable from "@/components/n2-plus/N2PlusWarrantyTable";
 export const metadata = {
     title: "Roson Classic Model N2+",
     description: "The Roson Classic Model N2+ — the most complete standard configuration in the N-series. Everything you need, nothing you don't.",
+  openGraph: {
+    title: "Roson Classic Model N2+",
+    description: "The Roson Classic Model N2+ — the most complete standard configuration in the N-series. Everything you need, nothing you don't.",
+    url: 'https://dentasourcedirect.com/n2-plus',
+    type: 'website',
+    images: ['/images/hero/dxa3-hero-original.jpg'],
+  },
 };
 
 export default function N2PlusPage() {

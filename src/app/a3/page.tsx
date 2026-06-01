@@ -13,6 +13,13 @@ import A3WarrantyTable from "@/components/a3/A3WarrantyTable";
 export const metadata = {
     title: "Roson A3 Flagship Dental Chair",
     description: "The Roson A3 flagship — medical-grade water disinfection, intelligent infrared sensors, and whisper-quiet TiMOTION lift system.",
+  openGraph: {
+    title: "Roson A3 Flagship Dental Chair",
+    description: "The Roson A3 flagship — medical-grade water disinfection, intelligent infrared sensors, and whisper-quiet TiMOTION lift system.",
+    url: 'https://dentasourcedirect.com/a3',
+    type: 'website',
+    images: ['/images/hero/dxa3-hero-original.jpg'],
+  },
 };
 
 export default function A3Page() {

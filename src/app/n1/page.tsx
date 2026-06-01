@@ -13,6 +13,13 @@ import N1WarrantyTable from "@/components/n1/N1WarrantyTable";
 export const metadata = {
     title: "Roson Classic Model N1",
     description: "The Roson Classic Model N1 — the simplest setup in the lineup. Proven N-series platform, one starter system, zero complexity.",
+  openGraph: {
+    title: "Roson Classic Model N1",
+    description: "The Roson Classic Model N1 — the simplest setup in the lineup. Proven N-series platform, one starter system, zero complexity.",
+    url: 'https://dentasourcedirect.com/n1',
+    type: 'website',
+    images: ['/images/hero/dxa3-hero-original.jpg'],
+  },
 };
 
 export default function N1Page() {

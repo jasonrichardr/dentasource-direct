@@ -13,6 +13,13 @@ import S6WarrantyTable from "@/components/s6/S6WarrantyTable";
 export const metadata = {
     title: "Roson S6 Professional Dental Chair",
     description: "The Roson S6 Professional — 380mm lowest position, casting steel frame, Philips LED lighting, and Whisper-Silent Motor.",
+  openGraph: {
+    title: "Roson S6 Professional Dental Chair",
+    description: "The Roson S6 Professional — 380mm lowest position, casting steel frame, Philips LED lighting, and Whisper-Silent Motor.",
+    url: 'https://dentasourcedirect.com/s6',
+    type: 'website',
+    images: ['/images/hero/dxa3-hero-original.jpg'],
+  },
 };
 
 export default function S6Page() {
