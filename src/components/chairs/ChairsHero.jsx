@@ -11,7 +11,7 @@ export default function ChairsHero() {
   return (
     <section className="relative w-full bg-[#0A1410] pt-[100px] sm:pt-[120px] md:pt-36 pb-16 sm:pb-20 md:pb-28 px-4 sm:px-6 md:px-8 overflow-hidden transform-gpu flex flex-col items-center">
       {/* Background gradients */}
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[400px] bg-[#0071E3]/20 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-[600px] h-[400px] bg-[#10b981]/20 blur-[150px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#10b981]/10 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center text-center">
@@ -45,6 +45,23 @@ export default function ChairsHero() {
                 <span className="block text-white/40 text-[10px] sm:text-xs uppercase tracking-wider mt-1">{stat.label}</span>
               </motion.div>
             ))}
+          </div>
+
+          <div className="mt-10 flex flex-col sm:flex-row items-center gap-3">
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-full bg-[#10b981] px-8 py-4 text-base font-semibold text-[#0A1410] transition-all hover:bg-emerald-400"
+            >
+              Talk to a Specialist
+            </a>
+            <a
+              href="https://m.me/dentasource"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full border border-white/25 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/10"
+            >
+              Message on Messenger
+            </a>
           </div>
         </motion.div>
       </div>
