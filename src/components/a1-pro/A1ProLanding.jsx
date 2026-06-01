@@ -814,14 +814,14 @@ function Gallery() {
               type="button"
               onClick={() => setOpenIdx(i)}
               aria-label={`Open ${img.alt} full-size`}
-              className="group relative aspect-square overflow-hidden rounded-xl bg-[#F8F7F4] border border-black/[0.04] cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+              className="group relative aspect-video overflow-hidden rounded-xl bg-white border border-black/[0.06] cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
             >
               <Image
                 src={img.src}
                 alt={img.alt}
                 fill
                 sizes="(min-width: 1024px) 320px, 50vw"
-                className="object-contain p-4 group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="object-contain group-hover:scale-105 transition-transform duration-700 ease-out"
               />
             </motion.button>
           ))}
