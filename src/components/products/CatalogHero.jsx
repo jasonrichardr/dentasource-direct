@@ -21,6 +21,12 @@ export default function CatalogHero() {
           transition={{ delay: 0.15 }}
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#10b981] text-white rounded-full font-semibold hover:bg-emerald-400 transition-colors"
+          >
+            Talk to a Specialist
+          </Link>
           <p className="text-[#86868B] text-base">Looking for dental chairs?</p>
           <Link
             href="/dentalchairs"
