@@ -6,10 +6,10 @@ import ChairInteractiveDial from './ChairInteractiveDial';
 
 export default function BentoShowcase() {
   return (
-    <section className="py-32 bg-[#F5F5F7] px-4 sm:px-6 lg:px-8">
+    <section className="py-20 sm:py-28 lg:py-32 bg-[#F5F5F7] px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16 md:mb-20 max-w-2xl">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-[#1D1D1F] mb-4">Precision instruments for <br/><span className="text-[#86868B]">the modern practice.</span></h2>
+        <div className="mb-10 sm:mb-16 md:mb-20 max-w-2xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[#1D1D1F] mb-4">Precision instruments for <br/><span className="text-[#86868B]">the modern practice.</span></h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 auto-rows-auto md:auto-rows-[400px]">
           <motion.div whileHover={{ scale: 0.99 }} className="md:col-span-2 md:row-span-2 rounded-[2rem] p-8 md:p-10 flex flex-col relative overflow-hidden shadow-[0_20px_40px_-20px_rgba(0,0,0,0.15)] transition-all min-h-[450px] md:min-h-0 isolate group">
