@@ -125,7 +125,7 @@ export default function NewsPage() {
         <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 24px' }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(280px, 100%), 1fr))',
             gap: 24,
           }}>
             {sortedNews.slice(1).map((article, index) => (

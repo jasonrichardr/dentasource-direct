@@ -53,7 +53,7 @@ export default function CertificateBento() {
             viewport={{ once: true, amount: 0.1 }}
             className="text-3xl md:text-5xl font-light text-white mb-4"
           >
-            Certified <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Excellence</span>
+            Certified <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-300">Excellence</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, x: -20 }}
@@ -74,7 +74,7 @@ export default function CertificateBento() {
               animate={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: cert.delay, duration: 0.5 }}
-              className={`group relative overflow-hidden rounded-3xl bg-neutral-900 border border-white/10 hover:border-cyan-500/50 transition-colors duration-500 ${cert.colSpan} ${cert.rowSpan}`}
+              className={`group relative overflow-hidden rounded-3xl bg-neutral-900 border border-white/10 hover:border-emerald-500/50 transition-colors duration-500 ${cert.colSpan} ${cert.rowSpan}`}
             >
               {/* Image Container with Hover Scale */}
               <div className="absolute inset-0 overflow-hidden">
@@ -91,7 +91,7 @@ export default function CertificateBento() {
               <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent z-20 pointer-events-none" />
               
               <div className="absolute bottom-0 left-0 p-6 z-30 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                <h3 className="text-xl md:text-2xl font-semibold text-white mb-1 group-hover:text-cyan-300 transition-colors">
+                <h3 className="text-xl md:text-2xl font-semibold text-white mb-1 group-hover:text-emerald-300 transition-colors">
                   {cert.title}
                 </h3>
                 <p className="text-sm text-neutral-300 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">

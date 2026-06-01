@@ -72,6 +72,7 @@ export default function GalleryGrid() {
                         onClick={() => setLightboxImage(null)}
                     >
                         <button
+                            aria-label="Close image"
                             className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
                             onClick={() => setLightboxImage(null)}
                         >

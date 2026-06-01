@@ -121,7 +121,7 @@ export default function A3LWhatsInTheBox() {
                             )}
                             {item.exclusive && (
                                 <div className="absolute -top-3 right-4">
-                                    <span className="inline-flex items-center rounded-full bg-orange-500 px-3 py-1 text-xs font-bold text-white uppercase tracking-wider">
+                                    <span className="inline-flex items-center rounded-full bg-emerald-500 px-3 py-1 text-xs font-bold text-white uppercase tracking-wider">
                                         DentaSource Exclusive
                                     </span>
                                 </div>

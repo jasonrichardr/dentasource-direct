@@ -63,15 +63,15 @@ function BookingFormContent() {
 
               <form action={handleAction} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <input type="text" name="firstName" required className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors" placeholder="First Name" />
-                  <input type="text" name="lastName" required className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors" placeholder="Last Name" />
+                  <input type="text" name="firstName" aria-label="First Name" required className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors" placeholder="First Name" />
+                  <input type="text" name="lastName" aria-label="Last Name" required className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors" placeholder="Last Name" />
                 </div>
 
-                <input type="text" name="clinicName" className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors" placeholder="Clinic Name (Optional)" />
+                <input type="text" name="clinicName" aria-label="Clinic Name" className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors" placeholder="Clinic Name (Optional)" />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <input type="email" name="email" required className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors" placeholder="Email Address" />
-                  <input type="tel" name="phone" required className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors" placeholder="Phone Number" />
+                  <input type="email" name="email" aria-label="Email Address" required className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors" placeholder="Email Address" />
+                  <input type="tel" name="phone" aria-label="Phone Number" required className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors" placeholder="Phone Number" />
                 </div>
 
                 <div className="relative group pt-2">
@@ -79,6 +79,7 @@ function BookingFormContent() {
                     value={interest}
                     onChange={(e) => setInterest(e.target.value)}
                     required
+                    aria-label="Primary Area of Interest"
                     className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors text-[#1D1D1F] appearance-none cursor-pointer"
                   >
                     <option value="" disabled>Primary Area of Interest</option>
@@ -94,7 +95,7 @@ function BookingFormContent() {
                   </div>
                 </div>
 
-                <textarea name="message" rows="3" required className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors resize-none" placeholder="Tell us about your clinic — size, specialty, and what you're looking for."></textarea>
+                <textarea name="message" aria-label="Tell us about your clinic" rows="3" required className="w-full px-0 py-3 bg-transparent border-b-2 border-black/10 focus:border-[#10b981] outline-none transition-colors resize-none" placeholder="Tell us about your clinic — size, specialty, and what you're looking for."></textarea>
 
                 {errorMessage && (
                   <p className="text-red-500 text-sm">{errorMessage}</p>
