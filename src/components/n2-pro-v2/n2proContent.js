@@ -190,7 +190,7 @@ export const microbiologicalCerts = [
 ];
 
 export const dsdWarranty = [
-  { term: '5 years', body: 'Motor warranty — the chair drive system is the highest-mileage component on a daily-use unit. Five years matches the realistic ownership horizon of a busy clinic.' },
+  { term: '3 years', body: 'Motor warranty — the chair drive system is the highest-mileage component on a daily-use unit. Three years matches the realistic ownership horizon of a busy clinic.' },
   { term: '2 years', body: 'Service free of charge — scheduled maintenance, parts adjustment, and field service visits at no cost.' },
   { term: '1 year', body: 'Parts + service free of charge — covered components replaced at zero parts cost on top of the free service window.' },
   { term: 'Parts on hand', body: 'All standard ROSON spare parts are stocked locally at our Pasig facility — no offshore RMA, no shipping wait, fixes happen the week you call.' },
@@ -244,7 +244,7 @@ const _installationLegacy = {
 export const faqs = [
   {
     q: 'What is the warranty on the ROSON N2 Pro in the Philippines?',
-    a: 'DentaSource Direct provides a five-year motor warranty, two years of service free of charge, and one year of parts plus service free of charge. An annual inspection by a ROSON-authorized engineer is required to maintain manufacturer warranty validity. All service is performed locally from the Pasig service center — no offshore parts wait.',
+    a: 'DentaSource Direct provides a three-year motor warranty, two years of service free of charge, and one year of parts plus service free of charge. An annual inspection by a ROSON-authorized engineer is required to maintain manufacturer warranty validity. All service is performed locally from the Pasig service center — no offshore parts wait.',
   },
   {
     q: 'What is the difference between the N2 Pro, N2+, and N1?',

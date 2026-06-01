@@ -59,7 +59,7 @@ const features = [
         description: "Premium upholstery that\u2019s easy to sanitize, ultra-breathable, and comes with a 5-year warranty. Seamless construction means zero crevices for bacteria.",
         image: "/images/products/s9/Advanced features and components/4-5.jpg",
         bullets: [
-            "5-Year Warranty",
+            "3-Year Warranty",
             "Seamless Construction",
             "Ultra-Breathable"
         ]

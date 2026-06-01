@@ -17,7 +17,7 @@ const navLinks = [
 const trustItems = [
   "White Glove Installation",
   "Hands-On Training Included",
-  "5-Year Motor Warranty",
+  "Up to 5-Year Motor Warranty",
   "Free Ocular Visit + Consultation",
   "After-Sales Support",
   "Open Mon–Sun 9AM–8PM",

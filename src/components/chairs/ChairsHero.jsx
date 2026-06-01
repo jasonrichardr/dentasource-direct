@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const stats = [
   { value: 'ISO 13485', label: 'Certified' },
-  { value: '5-Year', label: 'Motor Warranty' },
+  { value: 'Up to 5-Yr', label: 'Motor Warranty' },
   { value: '#1', label: 'Showroom in PH' },
 ];
 

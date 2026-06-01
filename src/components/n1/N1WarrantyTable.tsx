@@ -28,7 +28,7 @@ export default function N1WarrantyTable() {
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {[
-                                { item: "Whisper-Silent Motor", duration: "5-year Warranty" },
+                                { item: "Whisper-Silent Motor", duration: "3-year Warranty" },
                                 { item: "Service Warranty", duration: "2-year Coverage" },
                                 { item: "Parts Warranty", duration: "1-year Coverage" },
                             ].map((row, index) => (

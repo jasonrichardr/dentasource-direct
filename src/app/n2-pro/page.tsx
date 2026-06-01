@@ -9,7 +9,7 @@ export const metadata = {
     openGraph: {
         title: "ROSON N2 Pro Dental Chair — DentaSource Direct Philippines",
         description:
-            "Widest dentist tray in the N-series. Independent disinfectant water. Five-year motor warranty, local Pasig service center.",
+            "Widest dentist tray in the N-series. Independent disinfectant water. Three-year motor warranty, local Pasig service center.",
         url: "https://dentasourcedirect.com/n2-pro",
         type: "website",
         images: [

@@ -7,7 +7,7 @@ import Link from "next/link";
 const stats = [
     { value: "140", unit: "sqm", label: "Showroom" },
     { value: "ISO 13485", unit: "", label: "Certified" },
-    { value: "5-Year", unit: "", label: "Motor Warranty" },
+    { value: "Up to 5-Yr", unit: "", label: "Motor Warranty" },
     { value: "120+", unit: "", label: "Countries Trust ROSON" },
 ];
 

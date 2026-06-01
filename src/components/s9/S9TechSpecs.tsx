@@ -26,7 +26,7 @@ const specGroups: SpecGroup[] = [
             { name: "Backrest Range", value: "115\u00b0\u2013170\u00b0" },
             { name: "Max Patient Load", value: "150 kg (ISO 7494-1)" },
             { name: "Motor", value: "Whisper-Silent Motor with soft start/stop" },
-            { name: "Motor Warranty", value: "5-year warranty" },
+            { name: "Motor Warranty", value: "3-year warranty" },
             { name: "Motor Duty", value: "Max 2 min ON / Min 18 min OFF" },
         ],
     },
