@@ -30,8 +30,8 @@ export default function VideoShowcase() {
                         The real DentaSource.
                     </h2>
                     <p className="mx-auto mt-4 max-w-2xl text-[14px] leading-relaxed text-white/55 sm:text-base">
-                        True enthusiasts and professionals in their craft — from digital dentistry and endodontics to
-                        surgery, and more soon. Real footage from the country&rsquo;s largest dental showroom. No stock photos.
+                        True enthusiasts and professionals in their craft. The crew I get to build with every day —
+                        and they bring it. Real footage, no stock photos.
                     </p>
                 </motion.div>
 
