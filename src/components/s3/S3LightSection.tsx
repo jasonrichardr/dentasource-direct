@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { Sun, Shield, Eye, Sparkles } from "lucide-react";
 
 const features = [

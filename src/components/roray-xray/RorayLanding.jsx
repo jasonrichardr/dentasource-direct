@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Aperture, ShieldCheck, Smartphone, Snowflake, FlaskConical, Wind, AlertTriangle, X, ChevronLeft, ChevronRight, Film, Trees, LayoutGrid, Truck, Building2, Baby } from 'lucide-react';

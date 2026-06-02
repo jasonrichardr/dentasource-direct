@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { ShieldCheck, Truck, Wrench, GraduationCap, Phone } from 'lucide-react';
 
 const metrics = [

@@ -2,7 +2,7 @@
 
 import { newsData } from '@/data/news';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 
 export default function NewsContent() {
   const sortedNews = [...newsData].sort((a, b) => {

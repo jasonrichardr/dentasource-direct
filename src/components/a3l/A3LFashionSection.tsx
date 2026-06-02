@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { Palette, Sparkles, Wand2, Crown } from "lucide-react";
 
 const features = [

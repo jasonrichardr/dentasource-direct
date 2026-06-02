@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import Link from 'next/link';
 
 const MESSENGER_HREF = 'https://m.me/dentasource?ref=denjoy_2026_landing';

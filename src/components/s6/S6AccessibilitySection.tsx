@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { Accessibility, Heart, Baby, Armchair } from "lucide-react";
 
 const features = [

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { ShieldCheck, Droplets, FlaskConical, Microscope } from "lucide-react";
 
 const features = [

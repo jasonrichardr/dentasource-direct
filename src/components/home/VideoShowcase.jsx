@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 
 const videos = [
     { src: '/videos/dsd-showcase-4.mp4', poster: '/videos/dsd-showcase-4-poster.jpg', label: 'Meet the team — stay that way' },

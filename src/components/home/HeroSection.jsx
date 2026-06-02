@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 

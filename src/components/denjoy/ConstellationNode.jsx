@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 
 /**
  * One product dot on the constellation map.

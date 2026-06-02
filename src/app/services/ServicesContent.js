@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { Truck, Wrench, ClipboardList, Settings, Eye, Sparkles } from 'lucide-react';
 import styles from './page.module.css';
 

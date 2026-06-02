@@ -7,6 +7,7 @@ import { organizationGraph } from '@/lib/schemas/organization';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import MetaPixel from '@/components/analytics/MetaPixel';
 import FloatingChat from '@/components/FloatingChat';
+import MotionProvider from '@/components/MotionProvider';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });
@@ -65,6 +66,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${geistSans.variable}`} suppressHydrationWarning>
       <body className="antialiased">
+        <MotionProvider>
         <MetaPixel />
         <JsonLd id="organization-graph" data={organizationGraph} />
         <Navbar />
@@ -72,6 +74,7 @@ export default function RootLayout({ children }) {
         <Footer />
         <FloatingChat />
         {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
+        </MotionProvider>
       </body>
     </html>
   );

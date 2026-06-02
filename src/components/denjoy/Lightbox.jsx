@@ -2,7 +2,7 @@
 
 import { useEffect, useCallback } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 
 export default function Lightbox({ images, index, onClose, onPrev, onNext, alt }) {
   const open = index !== null && index !== undefined && index >= 0;

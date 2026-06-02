@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
 // Map product category to the contact-form `interest` dropdown value.

@@ -1,5 +1,5 @@
 'use client';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 
 const MAPS_SHARE_URL = 'https://share.google/X0K3OZYUqNradruP2';
 const MAPS_EMBED_URL = 'https://maps.google.com/maps?q=610%20C.%20Maybunga%20Rd%20Pasig%20City%20Metro%20Manila&output=embed';

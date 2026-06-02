@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 
 function PlayIcon({ className = 'w-12 h-12' }) {
   return (

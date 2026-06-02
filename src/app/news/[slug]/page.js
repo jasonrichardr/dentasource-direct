@@ -5,7 +5,7 @@ import { newsData } from '@/data/news';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import JsonLd from '@/components/JsonLd';
 import { articleGraph } from '@/lib/schemas/article';
 import styles from './page.module.css';
