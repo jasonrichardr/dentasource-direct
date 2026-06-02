@@ -3,7 +3,7 @@
 import { m as motion } from 'framer-motion';
 
 const videos = [
-    { src: '/videos/dsd-showcase-4.mp4', poster: '/videos/dsd-showcase-4-poster.jpg', label: 'Meet the team — stay that way' },
+    { src: '/videos/dsd-showcase-4.mp4', poster: '/videos/dsd-showcase-4-poster.jpg', label: 'Meet the team — Stay vibrant ✨' },
     { src: '/videos/dsd-showcase.mp4', poster: '/videos/dsd-showcase-poster.jpg', label: 'SMX Convention' },
     { src: '/videos/dsd-showcase-2.mp4', poster: '/videos/dsd-showcase-2-poster.jpg', label: 'Pre-inspection before delivery & install' },
     { src: '/videos/dsd-showcase-3.mp4', poster: '/videos/dsd-showcase-3-poster.jpg', label: 'Digital dentistry & surgery — updated skills every year' },
