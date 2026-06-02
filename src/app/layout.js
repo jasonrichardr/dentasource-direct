@@ -41,11 +41,12 @@ export const metadata = {
     siteName: 'DentaSource Direct',
     locale: 'en_PH',
     type: 'website',
-    images: ['/images/hero/dxa3-hero-original.jpg'],
+    images: [{ url: '/images/og/smx-booth-og.jpg', width: 1200, height: 630, alt: 'DentaSource Direct booth at the SMX dental convention' }],
+    videos: [{ url: 'https://dentasourcedirect.com/videos/dsd-showcase.mp4', secureUrl: 'https://dentasourcedirect.com/videos/dsd-showcase.mp4', type: 'video/mp4', width: 720, height: 1280 }],
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/images/hero/dxa3-hero-original.jpg'],
+    images: ['/images/og/smx-booth-og.jpg'],
     title: 'DentaSource Direct — Premium Dental Equipment Philippines',
     description:
       'Exclusive Philippine distributor for ROSON and Denjoy. 140-sqm Pasig showroom. Clinically-owned.',
