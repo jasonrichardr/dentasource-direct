@@ -8,6 +8,10 @@ const CORS = {
   'Access-Control-Allow-Methods': 'GET, OPTIONS',
   // Public catalog: cache at the edge for an hour, allow stale while revalidating.
   'Cache-Control': 'public, max-age=600, s-maxage=3600, stale-while-revalidate=86400',
+  // Netlify serves Next route handlers without query-keying the CDN cache by default,
+  // so ?category= would otherwise be served the path-cached full list. Force the
+  // category param into the cache key. (Netlify docs: caching → cache key variation.)
+  'Netlify-Vary': 'query=category',
 };
 
 export async function GET(request) {
