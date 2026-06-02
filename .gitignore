@@ -54,3 +54,6 @@ rosons_chairs_data/
 
 # Superpowers brainstorming sessions
 .superpowers/
+
+# AutoResearch isolated loop copies (large, never deploy)
+.autoresearch/

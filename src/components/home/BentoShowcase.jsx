@@ -45,22 +45,18 @@ export default function BentoShowcase() {
             </div>
           </motion.div>
           
-          <motion.div whileHover={{ scale: 0.99 }} className="rounded-[2rem] p-8 flex flex-col relative overflow-hidden shadow-sm hover:shadow-xl transition-all min-h-[300px] md:min-h-0 isolate group bg-gradient-to-br from-[#EEF2F5] to-[#F5F5F7]">
-            <Image src="/images/home/authentic-xray.png" alt="X-Ray Machine" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover -z-20 group-hover:scale-[1.03] transition-transform duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/10 to-transparent h-1/2 -z-10"></div>
-            <div className="relative z-10 flex flex-col h-full">
-              <h3 className="text-2xl font-semibold text-[#1D1D1F] mb-2">X-Rays</h3>
-              <Link href="/products?category=imaging" className="inline-flex items-center text-sm font-medium text-[#0071E3] hover:underline underline-offset-4 w-max">Learn more →</Link>
-            </div>
+          <motion.div whileHover={{ scale: 0.99 }} className="rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden shadow-sm hover:shadow-xl transition-all min-h-[300px] md:min-h-0 isolate group bg-gradient-to-br from-[#EDF1F4] to-[#DBE2E8]">
+            <Image src="/images/home/authentic-xray.png" alt="ROSON dental X-ray imaging" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover object-center -z-20 group-hover:scale-[1.04] transition-transform duration-700" />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/[0.04] via-transparent to-black/[0.10]"></div>
+            <h3 className="relative z-10 w-max text-lg font-semibold text-[#1D1D1F] bg-white/75 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-sm ring-1 ring-black/[0.04]">X-Rays</h3>
+            <Link href="/products?category=imaging" className="relative z-10 w-max inline-flex items-center gap-1 text-sm font-semibold text-emerald-700 bg-white/75 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-sm ring-1 ring-black/[0.04] hover:bg-white transition">Learn more →</Link>
           </motion.div>
 
-          <motion.div whileHover={{ scale: 0.99 }} className="rounded-[2rem] p-8 flex flex-col relative overflow-hidden shadow-sm hover:shadow-xl transition-all min-h-[300px] md:min-h-0 isolate group bg-gradient-to-br from-[#EEF2F5] to-[#F5F5F7]">
-            <Image src="/images/home/authentic-endo.png" alt="Endodontic Motor" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover -z-20 group-hover:scale-[1.03] transition-transform duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-white/20 to-transparent h-1/2 -z-10"></div>
-            <div className="relative z-10 flex flex-col h-full">
-              <h3 className="text-2xl font-semibold text-[#1D1D1F] mb-2">Endodontics</h3>
-              <Link href="/products?category=endo" className="inline-flex items-center text-sm font-medium text-[#0071E3] hover:underline underline-offset-4 w-max">Learn more →</Link>
-            </div>
+          <motion.div whileHover={{ scale: 0.99 }} className="rounded-[2rem] p-6 flex flex-col justify-between relative overflow-hidden shadow-sm hover:shadow-xl transition-all min-h-[300px] md:min-h-0 isolate group bg-gradient-to-br from-[#EDF1F4] to-[#DBE2E8]">
+            <Image src="/images/home/authentic-endo.png" alt="Denjoy endodontic cart and motor" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover object-center -z-20 group-hover:scale-[1.04] transition-transform duration-700" />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/[0.04] via-transparent to-black/[0.10]"></div>
+            <h3 className="relative z-10 w-max text-lg font-semibold text-[#1D1D1F] bg-white/75 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-sm ring-1 ring-black/[0.04]">Endodontics</h3>
+            <Link href="/products?category=endo" className="relative z-10 w-max inline-flex items-center gap-1 text-sm font-semibold text-emerald-700 bg-white/75 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-sm ring-1 ring-black/[0.04] hover:bg-white transition">Learn more →</Link>
           </motion.div>
 
           <motion.div whileHover={{ scale: 0.99 }} className="md:col-span-3 rounded-[2rem] p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center relative overflow-hidden shadow-sm hover:shadow-xl transition-all min-h-[400px] md:min-h-0 isolate group">
