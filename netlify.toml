@@ -1,0 +1,4 @@
+# Strip Range from social crawlers so og tags parse from a 200 (not a 206).
+[[edge_functions]]
+  path = "/"
+  function = "crawler-full"
