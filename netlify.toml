@@ -1,4 +1,15 @@
-# Strip Range from social crawlers so og tags parse from a 200 (not a 206).
+# Social/link-preview crawlers send a Range header → Netlify answers 206 (partial),
+# and crawlers won't parse a 206 (for HTML) or accept a partial image. The edge fn
+# strips Range for crawler UAs so they get clean 200s. Covers the HTML + the og:image
+# + the og:video. No effect on real visitors (videos keep Range/streaming for users).
 [[edge_functions]]
   path = "/"
+  function = "crawler-full"
+
+[[edge_functions]]
+  path = "/images/og/*"
+  function = "crawler-full"
+
+[[edge_functions]]
+  path = "/videos/dsd-share-grid.mp4"
   function = "crawler-full"
