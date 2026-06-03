@@ -16,7 +16,11 @@ export const organizationGraph = {
       foundingDate: '2024-10',
       description:
         'Exclusive Philippine distributor for ROSON dental chairs and Denjoy endodontics equipment. One of the largest dental equipment showrooms in the Philippines (140 sqm, Pasig City). Clinically backed by FFC Dental Clinic (5 branches, 30+ dentists).',
-      sameAs: ['https://www.facebook.com/dentasource', 'https://www.tiktok.com/@dentasourcedirect'],
+      sameAs: [
+        'https://www.facebook.com/dentasource',
+        'https://www.tiktok.com/@dentasourcedirect',
+        'https://www.google.com/maps?cid=6544193348824466616',
+      ],
       brand: [
         { '@type': 'Brand', name: 'ROSON' },
         { '@type': 'Brand', name: 'Denjoy' },
@@ -37,6 +41,8 @@ export const organizationGraph = {
       url: BASE_URL,
       telephone: '+63-962-579-3024',
       priceRange: '₱₱–₱₱₱',
+      sameAs: ['https://www.google.com/maps?cid=6544193348824466616'],
+      hasMap: 'https://www.google.com/maps?cid=6544193348824466616',
       address: {
         '@type': 'PostalAddress',
         streetAddress: '610 C. Maybunga Road',
