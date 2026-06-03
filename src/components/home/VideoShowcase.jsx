@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef, useEffect } from 'react';
 import { m as motion } from 'framer-motion';
 
 const videos = [
@@ -10,6 +11,33 @@ const videos = [
 ];
 
 export default function VideoShowcase() {
+    const videoRefs = useRef([]);
+
+    // Reels-style: autoplay (muted) the clip when it's centered in the viewport,
+    // pause it when it scrolls away. Muted is set on the element so the browser
+    // allows autoplay; the user can still unmute via the controls.
+    useEffect(() => {
+        const els = videoRefs.current.filter(Boolean);
+        if (!els.length || typeof IntersectionObserver === 'undefined') return;
+        const io = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const v = entry.target;
+                    if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+                        v.muted = true;
+                        const p = v.play();
+                        if (p && typeof p.catch === 'function') p.catch(() => {});
+                    } else if (!v.paused) {
+                        v.pause();
+                    }
+                });
+            },
+            { threshold: [0, 0.6, 1], rootMargin: '-12% 0px -12% 0px' }
+        );
+        els.forEach((el) => io.observe(el));
+        return () => io.disconnect();
+    }, []);
+
     return (
         <section className="relative overflow-hidden bg-[#0A1410] px-5 py-16 sm:px-6 sm:py-24 lg:px-8">
             {/* Ambient glows */}
@@ -46,8 +74,11 @@ export default function VideoShowcase() {
                         >
                             <div className="group relative aspect-[9/16] w-full max-w-[280px] overflow-hidden rounded-2xl bg-black ring-1 ring-white/10 shadow-2xl shadow-black/40 transition-transform duration-300 hover:-translate-y-1">
                                 <video
+                                    ref={(el) => { videoRefs.current[i] = el; }}
                                     className="h-full w-full object-cover"
                                     controls
+                                    muted
+                                    loop
                                     playsInline
                                     preload="metadata"
                                     poster={v.poster}
