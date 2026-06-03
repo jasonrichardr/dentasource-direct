@@ -42,7 +42,7 @@ export const metadata = {
     locale: 'en_PH',
     type: 'website',
     images: [{ url: '/images/og/smx-booth-og.jpg', width: 1200, height: 630, alt: 'DentaSource Direct booth at the SMX dental convention' }],
-    videos: [{ url: 'https://dentasourcedirect.com/videos/dsd-share-grid.mp4', secureUrl: 'https://dentasourcedirect.com/videos/dsd-share-grid.mp4', type: 'video/mp4', width: 1280, height: 720 }],
+    videos: [{ url: 'https://dentasourcedirect.com/videos/dsd-share-grid.mp4', secureUrl: 'https://dentasourcedirect.com/videos/dsd-share-grid.mp4', type: 'video/mp4', width: 1600, height: 1000 }],
   },
   twitter: {
     card: 'summary_large_image',
