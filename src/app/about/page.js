@@ -8,7 +8,7 @@ import AboutNews from '@/components/about/AboutNews';
 
 export const metadata = {
   title: 'About DentaSource Direct — Your Growth Partner in Dentistry',
-  description: 'The Philippines\' largest dental equipment showroom. Exclusive ROSON and DENJOY distributor. White-glove installation, training programs, and 7-day-a-week support in Pasig City.',
+  description: 'The Philippines\' largest dental equipment showroom. Exclusive ROSON, K-Clamps and DENJOY distributor. White-glove installation, training programs, and 7-day-a-week support in Pasig City.',
 };
 
 export default function AboutPage() {

@@ -19,11 +19,12 @@ export const metadata = {
     default: 'DentaSource Direct — Premium Dental Equipment Philippines',
   },
   description:
-    'Exclusive Philippine distributor for ROSON dental chairs and Denjoy endodontics. 140-sqm Pasig showroom, white-glove installation, hands-on training, 2-year warranty. Clinically backed by FFC Dental Clinic (5 branches).',
+    'Exclusive Philippine distributor for ROSON dental chairs, K-Clamps, and Denjoy endodontics. 140-sqm Pasig showroom, white-glove installation, hands-on training, 2-year warranty. Clinically backed by FFC Dental Clinic (5 branches).',
   keywords: [
     'dental equipment Philippines',
     'dental chairs Philippines',
     'ROSON Philippines',
+    'K-Clamps Philippines',
     'Denjoy Philippines',
     'DentaSource Direct',
     'dental imaging Philippines',
@@ -36,7 +37,7 @@ export const metadata = {
   openGraph: {
     title: 'DentaSource Direct. Your Growth Partner in Dentistry',
     description:
-      'Exclusive Philippine distributor for ROSON and Denjoy. 140-sqm Pasig showroom. Clinically-owned by a practicing dentist.',
+      'Exclusive Philippine distributor for ROSON, K-Clamps and Denjoy. Digitally Advanced Training Center. Philippines\' Largest Dental Showroom.',
     url: 'https://dentasourcedirect.com',
     siteName: 'DentaSource Direct',
     locale: 'en_PH',
@@ -48,7 +49,7 @@ export const metadata = {
     images: ['/images/og/dsd-real-dentasource-3.jpg'],
     title: 'DentaSource Direct. Your Growth Partner in Dentistry',
     description:
-      'Exclusive Philippine distributor for ROSON and Denjoy. 140-sqm Pasig showroom. Clinically-owned.',
+      'Exclusive Philippine distributor for ROSON, K-Clamps and Denjoy. Digitally Advanced Training Center. Philippines\' Largest Dental Showroom.',
   },
   robots: {
     index: true,
