@@ -34,20 +34,20 @@ export const metadata = {
   ],
   metadataBase: new URL('https://dentasourcedirect.com'),
   openGraph: {
-    title: 'DentaSource Direct — Premium Dental Equipment Philippines',
+    title: 'DentaSource Direct. Your Growth Partner in Dentistry',
     description:
       'Exclusive Philippine distributor for ROSON and Denjoy. 140-sqm Pasig showroom. Clinically-owned by a practicing dentist.',
     url: 'https://dentasourcedirect.com',
     siteName: 'DentaSource Direct',
     locale: 'en_PH',
     type: 'website',
-    images: [{ url: '/images/og/dsd-real-dentasource.jpg', width: 1200, height: 630, alt: 'The real DentaSource — real footage from the showroom floor, conventions, and installs' }],
+    images: [{ url: '/images/og/dsd-real-dentasource-2.jpg', width: 1200, height: 630, alt: 'The real DentaSource — real footage from the showroom floor, conventions, and installs' }],
     videos: [{ url: 'https://dentasourcedirect.com/videos/dsd-share-grid.mp4', secureUrl: 'https://dentasourcedirect.com/videos/dsd-share-grid.mp4', type: 'video/mp4', width: 1600, height: 1000 }],
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/images/og/dsd-real-dentasource.jpg'],
-    title: 'DentaSource Direct — Premium Dental Equipment Philippines',
+    images: ['/images/og/dsd-real-dentasource-2.jpg'],
+    title: 'DentaSource Direct. Your Growth Partner in Dentistry',
     description:
       'Exclusive Philippine distributor for ROSON and Denjoy. 140-sqm Pasig showroom. Clinically-owned.',
   },
