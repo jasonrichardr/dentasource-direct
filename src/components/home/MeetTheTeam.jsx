@@ -1,18 +1,13 @@
 'use client';
 
 import { m as motion } from 'framer-motion';
-import { Stethoscope, BadgeCheck, HeartHandshake, Sparkles, Sprout, Database, Handshake } from 'lucide-react';
+import { Stethoscope, HeartHandshake, Sparkles, Sprout, Database, Handshake } from 'lucide-react';
 
 const pillars = [
     {
         Icon: Stethoscope,
         title: 'Clinic-Raised',
         body: 'Each one spent five to seven years working professionally inside real dental clinics — across many practices and many dentists. They know a clinic from the inside, not the sales floor.',
-    },
-    {
-        Icon: BadgeCheck,
-        title: 'Owner-Operated',
-        body: "DentaSource is owned by dentists still active in their own clinics — FFC Dental Clinic, across five branches. When they recommend equipment, it's because they'd put it in their own operatory.",
     },
     {
         Icon: HeartHandshake,
