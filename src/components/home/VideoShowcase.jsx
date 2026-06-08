@@ -7,6 +7,7 @@ const videos = [
     { src: '/videos/dsd-showcase-4.mp4', poster: '/videos/dsd-showcase-4-poster.jpg', label: 'Meet the team — Stay vibrant ✨❤️' },
     { src: '/videos/dsd-showcase.mp4', poster: '/videos/dsd-showcase-poster.jpg', label: 'SMX Convention' },
     { src: '/videos/dsd-showcase-2.mp4', poster: '/videos/dsd-showcase-2-poster.jpg', label: 'Pre-inspection before delivery & install' },
+    { src: '/videos/dsd-showcase-5.mp4', poster: '/videos/dsd-showcase-5-poster.jpg', label: 'Denjoy — endo-focused, with research & development' },
     { src: '/videos/dsd-showcase-3.mp4', poster: '/videos/dsd-showcase-3-poster.jpg', label: 'Digital dentistry & surgery — updated skills every year' },
 ];
 
@@ -63,7 +64,7 @@ export default function VideoShowcase() {
                     </p>
                 </motion.div>
 
-                <div className="mt-10 grid grid-cols-1 gap-6 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="mt-10 grid grid-cols-1 gap-6 sm:mt-14 sm:grid-cols-2 lg:grid-cols-5">
                     {videos.map((v, i) => (
                         <motion.div
                             key={v.src}
