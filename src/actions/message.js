@@ -3,7 +3,15 @@
 import prisma from '@/lib/prisma';
 import { createClient } from '@/lib/supabase/server';
 import { isAdminEmail } from '@/lib/admin';
+import { getTeamMember } from '@/lib/team';
 import { revalidatePath } from 'next/cache';
+
+// Staff = owner (admin email) OR a signed-in team member (cookie session).
+// This only opens the shared inbox actions; owner-only /admin/* pages are untouched.
+async function isStaff(user) {
+  if (isAdminEmail(user?.email)) return true;
+  return (await getTeamMember()) !== null;
+}
 
 async function currentUser() {
   const supabase = await createClient();
@@ -75,7 +83,7 @@ export async function sendCustomerMessage(formData) {
 // DSD (owner) replies to a thread.
 export async function sendAdminReply(formData) {
   const user = await currentUser();
-  if (!user || !isAdminEmail(user.email)) return { error: 'Not authorized.' };
+  if (!(await isStaff(user))) return { error: 'Not authorized.' };
   const threadId = (formData.get('threadId') || '').toString();
   const body = (formData.get('body') || '').toString().trim();
   if (!threadId || !body) return { error: 'Missing message.' };
@@ -96,7 +104,7 @@ const THREAD_STATUSES = ['OPEN', 'ANSWERED', 'RESOLVED'];
 // DSD (owner) changes a thread's status from the inbox header.
 export async function setThreadStatus(threadId, status) {
   const user = await currentUser();
-  if (!user || !isAdminEmail(user.email)) return { error: 'Not authorized.' };
+  if (!(await isStaff(user))) return { error: 'Not authorized.' };
   if (!threadId || !THREAD_STATUSES.includes(status)) return { error: 'Invalid status.' };
 
   await prisma.thread.update({ where: { id: threadId }, data: { status } });

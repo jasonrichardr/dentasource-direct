@@ -121,6 +121,19 @@ function LoginCard() {
                 {errorMsg || "Sign-in didn't complete. Please try again."}
               </p>
             )}
+
+            <div className="my-5 flex items-center gap-3">
+              <span className="h-px flex-1 bg-black/10" />
+              <span className="text-[11px] uppercase tracking-wide text-[#86868B]">or</span>
+              <span className="h-px flex-1 bg-black/10" />
+            </div>
+
+            <a
+              href="/team/login"
+              className="block text-center text-[12px] text-[#86868B] underline transition hover:text-[#1D1D1F]"
+            >
+              DentaSource team? Sign in with your access code
+            </a>
           </>
         )}
       </div>
