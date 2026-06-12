@@ -125,6 +125,12 @@ function BookingFormContent() {
                 Thank you. A DentaSource Direct specialist will reply shortly.
                 Feel free to walk into our Pasig showroom any day — Monday through Sunday, 9 AM to 8 PM.
               </p>
+              <a
+                href="/login?next=/portal"
+                className="mt-6 text-sm font-medium text-[#10b981] hover:underline"
+              >
+                Sign in with this email to track your inquiry in your account
+              </a>
             </motion.div>
           )}
         </AnimatePresence>

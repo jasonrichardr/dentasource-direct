@@ -25,6 +25,30 @@ async function notifyDsd(email, body) {
   }
 }
 
+// Best-effort email to the customer when DSD replies. Inert without RESEND_API_KEY.
+async function notifyCustomerReply(customerEmail) {
+  if (!process.env.RESEND_API_KEY || !customerEmail) return;
+  try {
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: process.env.PORTAL_FROM_EMAIL || 'DentaSource Direct <onboarding@resend.dev>',
+        to: customerEmail,
+        subject: 'DentaSource replied to your message',
+        text:
+          'You have a new reply from DentaSource Direct.\n\n' +
+          'Open your account to read it: https://dentasourcedirect.com/portal',
+      }),
+    });
+  } catch {
+    // best-effort; the reply is already saved.
+  }
+}
+
 // A signed-in customer sends a message — finds or creates their single thread.
 export async function sendCustomerMessage(formData) {
   const user = await currentUser();
@@ -57,7 +81,11 @@ export async function sendAdminReply(formData) {
   if (!threadId || !body) return { error: 'Missing message.' };
 
   await prisma.message.create({ data: { threadId, sender: 'DSD', body } });
-  await prisma.thread.update({ where: { id: threadId }, data: { status: 'ANSWERED', lastMessageAt: new Date() } });
+  const thread = await prisma.thread.update({
+    where: { id: threadId },
+    data: { status: 'ANSWERED', lastMessageAt: new Date() },
+  });
+  await notifyCustomerReply(thread.customerEmail);
   revalidatePath('/admin/inbox');
   revalidatePath('/portal');
   return { success: true };
