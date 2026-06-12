@@ -32,6 +32,7 @@ export default async function PortalPage() {
       email={email}
       name={user.user_metadata?.full_name || user.user_metadata?.name || null}
       messages={messages}
+      status={thread?.status || null}
       isAdmin={isAdminEmail(email)}
     />
   );

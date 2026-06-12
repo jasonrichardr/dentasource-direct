@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { sendAdminReply } from '@/actions/message';
+import { useState, useEffect } from 'react';
+import { sendAdminReply, setThreadStatus } from '@/actions/message';
 
 function fmt(iso) {
   return new Date(iso).toLocaleString('en-PH', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
@@ -13,9 +13,54 @@ const STATUS_STYLE = {
   RESOLVED: 'bg-gray-100 text-gray-600 ring-gray-400/20',
 };
 
-export default function InboxTable({ threads }) {
-  const [openId, setOpenId] = useState(threads[0]?.id || null);
+// OPEN threads first, then most-recently-active.
+function sortThreads(list) {
+  return [...list].sort((a, b) => {
+    const ao = a.status === 'OPEN' ? 0 : 1;
+    const bo = b.status === 'OPEN' ? 0 : 1;
+    if (ao !== bo) return ao - bo;
+    return new Date(b.lastMessageAt) - new Date(a.lastMessageAt);
+  });
+}
+
+export default function InboxTable({ threads: initial }) {
+  const [threads, setThreads] = useState(() => sortThreads(initial));
+  const [openId, setOpenId] = useState(initial[0]?.id || null);
   const active = threads.find((t) => t.id === openId);
+
+  // Live updates: poll every 4s while the tab is visible; keep the open thread.
+  useEffect(() => {
+    let timer = null;
+    async function poll() {
+      if (document.visibilityState !== 'visible') return;
+      try {
+        const res = await fetch('/api/admin/threads', { cache: 'no-store' });
+        if (!res.ok) return;
+        const data = await res.json();
+        setThreads(sortThreads(data.threads || []));
+      } catch {
+        // transient; next tick retries
+      }
+    }
+    function start() {
+      if (timer) return;
+      poll();
+      timer = setInterval(poll, 4000);
+    }
+    function stop() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+    function onVisibility() {
+      if (document.visibilityState === 'visible') start();
+      else stop();
+    }
+    if (document.visibilityState === 'visible') start();
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => {
+      stop();
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, []);
 
   return (
     <main className="min-h-screen bg-[#F8F7F4] px-5 py-10 sm:px-8">
@@ -76,14 +121,23 @@ export default function InboxTable({ threads }) {
 function ThreadView({ thread }) {
   const [text, setText] = useState('');
   const [sending, setSending] = useState(false);
-  const [msgs, setMsgs] = useState(thread.messages);
+  const [pending, setPending] = useState([]);
+  const [statusBusy, setStatusBusy] = useState(false);
+
+  // Live server messages + still-pending optimistic replies. Derive (not sync via
+  // effect) which pending bubbles survive: drop any the server has echoed back.
+  const serverMsgs = thread.messages;
+  const stillPending = pending.filter(
+    (p) => !serverMsgs.some((s) => s.sender === p.sender && s.body === p.body)
+  );
+  const msgs = [...serverMsgs, ...stillPending];
 
   async function reply(e) {
     e.preventDefault();
     const body = text.trim();
     if (!body || sending) return;
     setSending(true);
-    setMsgs((m) => [...m, { id: 'tmp-' + Date.now(), sender: 'DSD', body, createdAt: new Date().toISOString() }]);
+    setPending((m) => [...m, { id: 'tmp-' + Date.now(), sender: 'DSD', body, createdAt: new Date().toISOString() }]);
     setText('');
     const fd = new FormData();
     fd.append('threadId', thread.id);
@@ -92,11 +146,39 @@ function ThreadView({ thread }) {
     setSending(false);
   }
 
+  async function changeStatus(status) {
+    if (statusBusy) return;
+    setStatusBusy(true);
+    await setThreadStatus(thread.id, status);
+    setStatusBusy(false);
+  }
+
   return (
     <div className="flex h-full flex-col">
-      <div className="border-b border-black/[0.06] px-5 py-3">
-        <p className="text-[14px] font-semibold text-[#1D1D1F]">{thread.customerName || thread.customerEmail}</p>
-        <p className="text-[12px] text-[#86868B]">{thread.customerEmail}</p>
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-black/[0.06] px-5 py-3">
+        <div>
+          <p className="text-[14px] font-semibold text-[#1D1D1F]">{thread.customerName || thread.customerEmail}</p>
+          <p className="text-[12px] text-[#86868B]">{thread.customerEmail}</p>
+        </div>
+        <div className="flex items-center gap-2">
+          {thread.status !== 'RESOLVED' ? (
+            <button
+              onClick={() => changeStatus('RESOLVED')}
+              disabled={statusBusy}
+              className="rounded-lg border border-black/10 bg-white px-3 py-1.5 text-[12px] font-medium text-[#52525B] transition hover:bg-[#F8F7F4] disabled:opacity-40"
+            >
+              Mark resolved
+            </button>
+          ) : (
+            <button
+              onClick={() => changeStatus('OPEN')}
+              disabled={statusBusy}
+              className="rounded-lg border border-black/10 bg-white px-3 py-1.5 text-[12px] font-medium text-[#52525B] transition hover:bg-[#F8F7F4] disabled:opacity-40"
+            >
+              Reopen
+            </button>
+          )}
+        </div>
       </div>
       <div className="max-h-[440px] flex-1 space-y-3 overflow-y-auto px-5 py-4">
         {msgs.map((m) => (

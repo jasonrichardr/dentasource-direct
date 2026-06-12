@@ -62,3 +62,17 @@ export async function sendAdminReply(formData) {
   revalidatePath('/portal');
   return { success: true };
 }
+
+const THREAD_STATUSES = ['OPEN', 'ANSWERED', 'RESOLVED'];
+
+// DSD (owner) changes a thread's status from the inbox header.
+export async function setThreadStatus(threadId, status) {
+  const user = await currentUser();
+  if (!user || !isAdminEmail(user.email)) return { error: 'Not authorized.' };
+  if (!threadId || !THREAD_STATUSES.includes(status)) return { error: 'Invalid status.' };
+
+  await prisma.thread.update({ where: { id: threadId }, data: { status } });
+  revalidatePath('/admin/inbox');
+  revalidatePath('/portal');
+  return { success: true };
+}
