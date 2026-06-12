@@ -41,6 +41,7 @@ export async function createWarranty(formData) {
         code,
         clinicName,
         contactName: formData.get('contactName')?.trim() || null,
+        customerEmail: formData.get('customerEmail')?.trim().toLowerCase() || null,
         productName,
         serialNumber: formData.get('serialNumber')?.trim() || null,
         purchaseDate: formData.get('purchaseDate') ? new Date(formData.get('purchaseDate')) : null,

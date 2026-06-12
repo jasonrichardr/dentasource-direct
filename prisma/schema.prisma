@@ -93,6 +93,7 @@ model Warranty {
   code          String    @unique // public lookup slug, e.g. "a3-7k2m"
   clinicName    String
   contactName   String?
+  customerEmail String?   // links this unit to a portal account (signed-in customer's email)
   productName   String
   serialNumber  String?
   purchaseDate  DateTime?
@@ -103,6 +104,8 @@ model Warranty {
 
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+
+  @@index([customerEmail])
 }
 
 // ─── CUSTOMER PORTAL — IN-APP MESSAGING (after-sales moat) ─────────
