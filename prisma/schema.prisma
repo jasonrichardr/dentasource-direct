@@ -138,3 +138,27 @@ model Message {
 
   @@index([threadId, createdAt])
 }
+
+// ─── TEAM ACCESS CODES — the DSD team console ─────────────────────
+// Seven staff each hold one access code. The code itself is never stored —
+// only its SHA-256 hex hash. Logging in mints a DB-backed session whose 32-byte
+// random token lives in an httpOnly cookie. Identity is always derived from that
+// cookie, never from anything submitted at read time.
+model TeamMember {
+  id         String        @id @default(cuid())
+  name       String
+  codeHash   String        @unique // sha256 hex of the access code; plaintext never stored
+  active     Boolean       @default(true)
+  lastUsedAt DateTime?
+  sessions   TeamSession[]
+  createdAt  DateTime      @default(now())
+}
+
+model TeamSession {
+  id           String     @id @default(cuid())
+  token        String     @unique
+  teamMemberId String
+  teamMember   TeamMember @relation(fields: [teamMemberId], references: [id], onDelete: Cascade)
+  expiresAt    DateTime
+  createdAt    DateTime   @default(now())
+}
