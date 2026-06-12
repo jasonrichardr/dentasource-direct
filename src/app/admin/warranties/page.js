@@ -61,6 +61,12 @@ export default async function AdminWarrantiesPage() {
         >
           <Field name="clinicName" label="Clinic name" required placeholder="Sunrise Dental Clinic" />
           <Field name="contactName" label="Contact name" placeholder="Dr. Reyes" />
+          <Field
+            name="customerEmail"
+            label="Customer email (links to their portal account)"
+            type="email"
+            placeholder="clinic@example.com"
+          />
           <Field name="productName" label="Product" required placeholder="Roson A3 Dental Chair" />
           <Field name="serialNumber" label="Serial number" placeholder="RA3-2026-0001" />
           <Field name="warrantyStart" label="Warranty start" type="date" required />
