@@ -67,13 +67,25 @@ The roadmap is ambitious and public: become the number one dental unit brand in 
 
 **"A product competes on price. A brand competes on meaning."** That line, quoted in the session from the European Brand Institute, captures the shared philosophy — and our mission is aligned with it: make ROSON the **number one dental chair brand in the Philippines**.
 
-## What's Coming Next for Philippine Clinics
+## What's Coming Next: Meet the A1
 
-The session also previewed what's arriving on our floor next — and it's exciting.
+The session also previewed what's arriving on our floor next — and it's exciting. The star was the upcoming **ROSON A1**, which the factory bills as **"the first dental unit for young generation dentists."**
 
-The star of the preview was the upcoming **A1 and A1 Pro** — a new-generation chair designed for the modern, young dentist. Think **customizable color options** to match your clinic's identity, a **seven-inch touchscreen control**, and a built-in **maintenance reminder system** that tells your team exactly when each component needs attention, right on the screen.
+![ROSON A1 — the first dental unit for young generation dentists](/images/news/roson-training-2026/a1-cover.jpg)
 
-ROSON is also moving to a **modular design philosophy** — meaning individual modules can be customized and combined across models, so your unit can be configured around how you actually practice. New units are already on the water and expected on our showroom floor ahead of the September trade exhibition season.
+The A1 breaks the oldest rule in dental equipment: that every clinic has to look the same. It launches with three signature colors — **ROSON Blue, Ballet Pink, and Mint Green** — with integrated color customization across the upholstery, water box, and instrument tray, so the whole unit matches your clinic's identity, not the other way around.
+
+![ROSON A1 in Mint Green and ROSON Blue colorways](/images/news/roson-training-2026/a1-colorways.jpg)
+
+And beyond the signature three, the palette goes much deeper — dozens of upholstery colors in soft silicone rubber leather and medical-grade PU, from Hermes Orange to Tiffany Blue to Bordeaux Red.
+
+![A1 color customization palette — dozens of upholstery options](/images/news/roson-training-2026/a1-color-palette.jpg)
+
+Beneath the color, it's a serious clinical machine. The frame is **12mm premium carbon structural steel rated to 150kg** of load with zero wobble. The lift uses what ROSON calls a **"sleep-grade moving system"** — soft start, soft stop, quiet enough not to startle an anxious patient. The **Rolight S dental light** switches between yellow, white, and mixed modes with infrared no-touch control and a removable handle for disinfection. Add intelligent memory chair positions, an error self-check program, a spittoon odor trap, and a one-touch smart clean button — and on the **A1 Pro**, a **seven-inch touchscreen** with built-in **maintenance reminders** that tell your team exactly when each component needs attention.
+
+It also comes in **top-mounted, implant, and trolley configurations**, with optional built-in scaler, micro motor, curing light, and intraoral camera — ROSON's modular design philosophy in action, so your unit is configured around how you actually practice.
+
+Want the full picture? [View the complete ROSON A1 brochure here](/docs/roson-a1-brochure.pdf) — every colorway, spec, and configuration. Units are already on the water and expected on our showroom floor ahead of the September trade exhibition season.
 
 ## Why a Manufacturer Trains Its Distributor This Hard
 
