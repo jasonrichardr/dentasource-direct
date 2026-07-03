@@ -6,10 +6,12 @@ export const newsData = [
         date: "July 3, 2026",
         image: "/images/news/roson-training-2026/hero-training-board.jpg",
         hideHeroImage: false,
-        abstract: "Our exclusive partner ROSON sent its factory team to our Pasig showroom for an intensive management, sales, and technical training session — from live demonstrations on a working dental unit board to hands-on chair servicing. Here's what happened, and why it means better support for every clinic we serve.",
+        abstract: "ROSON CEO George Chen flew to Manila with his top team for a week of training and strategy at our Pasig showroom — hands-on technical sessions on real hardware, plus a full collaborative planning session on elevating the ROSON brand in the Philippines. Here's what happened, and what it means for every clinic we serve.",
         content: `## Our Partner Came to Us — And Got Straight to Work
 
-This week, we welcomed a very special delegation to the DentaSource Direct showroom: the factory team from **ROSON Medical**, our exclusive manufacturing partner for dental chairs and treatment units in the Philippines — led personally by **ROSON CEO George Chen**. They didn't come for a photo opportunity. They came to teach.
+This week, we welcomed a very special delegation to the DentaSource Direct showroom: the factory team from **ROSON Medical**, our exclusive manufacturing partner for dental chairs and treatment units in the Philippines — led personally by **ROSON CEO George Chen**, together with **Jacky**, the director who leads ROSON's international business, and **Kenny**, the company's top product specialist. They didn't come for a photo opportunity. They came to teach — and to plan.
+
+**"We don't want to only place the order and finish the shipment,"** George told our team. **"We want to know how you work here, what support you need, and how we can help."** This year alone, ROSON's leadership has made the same trip to partners in the Middle East, Europe, Russia, and Egypt. Now it was the Philippines' turn.
 
 Over an intensive on-site session, ROSON's experts ran our entire team through **management, sales, and technical training** — the same knowledge transfer ROSON conducts with its distributors in its most demanding markets worldwide.
 
@@ -33,6 +35,46 @@ The management sessions covered how ROSON runs its own operations — the system
 
 ![ROSON trainer with the DentaSource team at the Pasig showroom](/images/news/roson-training-2026/showroom-session.jpg)
 
+## Inside the Strategy Session: Elevating ROSON in the Philippines
+
+On June 30, the visit went beyond training. George, Jacky, and Kenny sat down with the full DentaSource team for a collaborative strategy session on one topic: **how to elevate the ROSON brand in the Philippine market** — covering sales, marketing, and after-sales service in a single open conversation.
+
+Several commitments came out of that room that will directly benefit our clients:
+
+**A proactive after-care program.** Drawing on what works with ROSON's most successful partners worldwide, we're formalizing scheduled check-in calls after every installation — a few weeks in, then at three months, then every six months — so small issues get caught before they ever interrupt a clinic day. That's on top of our existing one-to-two-day service response.
+
+**Monthly factory sync meetings.** ROSON improves its products every single month. From now on, those updates flow to our team through a standing monthly meeting with the factory — new features, new materials, and new clinical case studies from Europe and beyond, localized for Filipino dentists.
+
+**Factory-direct marketing support.** ROSON's own marketing team will feed us their latest product content, laboratory footage, and international case studies so you see exactly what global markets see — straight from Foshan.
+
+## The Company Behind the Chairs
+
+The session also gave our team a deeper look at who ROSON really is — and the story is genuinely impressive.
+
+ROSON is headquartered in **Foshan, China — the dental manufacturing capital of the world**, home to roughly sixty of the country's dental unit manufacturers. Within that hub, ROSON holds a position of real authority: the company chairs the **Foshan Dental Association**, helping set the standards for the industry it leads.
+
+The heritage runs deep. The family's dental manufacturing legacy stretches back more than two decades — an earlier family factory was acquired by German dental giant **Sirona**, and several of ROSON's veteran engineers began their careers there. CEO **George Chen** took over the company in 2010 after fifteen years in Shanghai with global companies including **P&G and LEGO**, bringing world-class management thinking into a precision manufacturing business.
+
+And in an industry where most factories simply assemble, ROSON runs its own **in-house testing laboratory** — still a rarity among Chinese manufacturers — where every component is stress-tested against hard data before it ever reaches a clinic.
+
+## A Brand on the Rise, Worldwide
+
+What ROSON shared about its global trajectory made one thing clear: Philippine clinics are partnering with a brand on a steep climb.
+
+In May, ROSON exhibited in **Italy**, where European dentists are rapidly revising old assumptions about Chinese manufacturing. The company has just signed an **exclusive partnership in the United Kingdom**, dentists in **Belgium** are switching to ROSON from long-established European brands, and **US FDA registration is in its final stages** — expected around the turn of the year, opening the American market.
+
+The roadmap is ambitious and public: become the number one dental unit brand in Foshan in 2026, number one in China within two years, and a **world-renowned brand by 2030**.
+
+**"A product competes on price. A brand competes on meaning."** That line, quoted in the session from the European Brand Institute, captures the shared philosophy — and our mission is aligned with it: make ROSON the **number one dental chair brand in the Philippines**.
+
+## What's Coming Next for Philippine Clinics
+
+The session also previewed what's arriving on our floor next — and it's exciting.
+
+The star of the preview was the upcoming **A1 and A1 Pro** — a new-generation chair designed for the modern, young dentist. Think **customizable color options** to match your clinic's identity, a **seven-inch touchscreen control**, and a built-in **maintenance reminder system** that tells your team exactly when each component needs attention, right on the screen.
+
+ROSON is also moving to a **modular design philosophy** — meaning individual modules can be customized and combined across models, so your unit can be configured around how you actually practice. New units are already on the water and expected on our showroom floor ahead of the September trade exhibition season.
+
 ## Why a Manufacturer Trains Its Distributor This Hard
 
 When you buy a dental chair, you're not just buying steel and upholstery — you're buying **the support system behind it** for the next decade. That support is only as good as the people delivering it.
@@ -53,7 +95,7 @@ For the dentists and clinic owners we serve, this training translates into concr
 
 ## Stronger Together
 
-We extend our sincere appreciation to the ROSON team for investing in our people — and a special thank you to **CEO George Chen** for making the trip to Manila himself. Having the leader of the company sit with our team, share his experience, and connect with us personally was genuinely inspiring. It says everything about how ROSON treats its partners: not as customers, but as family.
+We extend our sincere appreciation to the ROSON team — **George, Jacky, and Kenny** — for investing in our people. And a special thank you to **CEO George Chen** for making the trip to Manila himself. Having the leader of the company sit with our team for hours, share his experience openly, and connect with us personally was genuinely inspiring. It says everything about how ROSON treats its partners: not as customers, but as family.
 
 Partnerships like this are the reason we can stand behind every unit we deliver.
 
