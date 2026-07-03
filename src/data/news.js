@@ -1,12 +1,12 @@
 export const newsData = [
     {
         id: "roson-masterclass-2026",
-        slug: "roson-product-masterclass-a3-n-edge-a1-pro",
-        title: "Inside the ROSON Masterclass: A3, N-Edge, and A1 Pro — Button by Button",
+        slug: "roson-product-masterclass-a3-n2-pro-a1-pro",
+        title: "Inside the ROSON Masterclass: A3, N2 Pro, and A1 Pro — Button by Button",
         date: "July 2, 2026",
         image: "/images/news/roson-masterclass-2026/masterclass-session.jpg",
         hideHeroImage: false,
-        abstract: "When ROSON's factory team trained us, they didn't use a projector in a meeting room — they opened up live units on our showroom floor and explained every valve, button, and line of code. Here's the full product masterclass on the A3, the N-Edge, and the new A1 Pro, exactly as our team learned it.",
+        abstract: "When ROSON's factory team trained us, they didn't use a projector in a meeting room — they opened up live units on our showroom floor and explained every valve, button, and line of code. Here's the full product masterclass on the A3, the N2 Pro, and the new A1 Pro, exactly as our team learned it.",
         content: `## A Masterclass on the Showroom Floor
 
 This is the companion story to [our main report on the ROSON visit](/news/roson-trains-dentasource-team-manila-2026) — and it's the part we're proudest of. For hours, ROSON's top product specialist **Kenny** and a senior factory engineer with over fifteen years in dental equipment walked our entire team through three chairs, feature by feature, on live units — with the tools out and the side panels open.
@@ -19,7 +19,9 @@ Not a sales pitch. An engineering transfer. Our sales team, our technicians, and
 
 The **ROSON A3** is our high-end flagship, and the training started there — because the A3 carries features that, according to ROSON, no other unit in the Philippine market has.
 
-The headline is the **self-balancing backrest**. Traditional chairs use an airlock mechanism; the A3 uses a soft-start, soft-stop balance system, so the backrest glides with zero impact. Patients feel a smooth, quiet recline instead of a jolt — a small detail that completely changes how premium a clinic feels.
+The headline is the **self-balancing arm**. Where traditional units hold the instrument arm in place with an airlock that depends on air pressure, the A3's arm uses a **European-built mechanical balance system** — engineered for heavy loads, holding its position perfectly, and operating **even without an air supply**. Position it once and it stays exactly where the dentist left it, every time. According to ROSON, the A3 is the only unit in the Philippine market with this system.
+
+And to be clear about something we're proud of across the range: whisper-quiet, soft-start soft-stop movement isn't an A3 exclusive — **every ROSON chair moves this way**. It's a brand signature, from the entry models to the flagship.
 
 Then there's water hygiene. The A3 carries ROSON's **UW disinfection technology**: a low-electric-field system inside the waterline that disinfects city water automatically, with a laboratory-verified **disinfection rate of up to 99%** — no disinfectant chemicals, no manual tube flushing routines. For clinics, that's one less daily chore and one more thing you can honestly tell patients about your infection control.
 
@@ -41,9 +43,9 @@ The training covered warranty terms in black and white, and they're worth repeat
 
 Those motors deserve a special note. ROSON has standardized the entire line on **TiMOTION motors imported from Taiwan** — a globally recognized motion-systems brand — replacing local alternatives at higher cost to the factory, because reliability wins in the long run. Every current unit we deliver carries them, with soft start and soft stop across the range.
 
-## N-Edge: The Workhorse, Evolved
+## N2 Pro: The Workhorse, Evolved
 
-The **N-Edge** is the evolution of the N2 Plus — one of ROSON's best-selling workhorses — rebuilt around clinic hygiene and durability.
+The **N2 Pro** is the evolution of the N2 Plus — the workhorse line that has long been one of ROSON's best sellers, and one of ours — rebuilt around clinic hygiene and durability.
 
 Its signature is the **dual-bottle water system**: one bottle for pure water, one for disinfectant solution, so clinics can run proper waterline disinfection on an economical unit. The armrests were upgraded to a tougher material after real client feedback, the spittoon was redesigned to the same modern style as the A3S, and the headrest uses the large, wide base our clients consistently praise. It's also available in the new **ROSON Blue** — the fresh colorway that's rolling out across the range.
 
@@ -97,7 +99,7 @@ That's what an exclusive partnership is supposed to look like.
 
 ![The DentaSource and ROSON teams after the masterclass](/images/news/roson-masterclass-2026/team-group-photo.jpg)
 
-Every chair in this story — the A3, the N-Edge, the S3 — is on our showroom floor in Pasig, the largest dental equipment showroom in the Philippines, and the A1 Pro arrives ahead of the September trade season. Walk in any day, 9 AM to 8 PM, and our team will demo any feature you just read about. Ask them anything. That's the point of training this hard.
+Every chair in this story — the A3, the N2 Pro, the S3 — is on our showroom floor in Pasig, the largest dental equipment showroom in the Philippines, and the A1 Pro arrives ahead of the September trade season. Walk in any day, 9 AM to 8 PM, and our team will demo any feature you just read about. Ask them anything. That's the point of training this hard.
 
 [Read the full story of the ROSON visit →](/news/roson-trains-dentasource-team-manila-2026)`
     },
@@ -129,9 +131,9 @@ Then it went from the board to the floor. The team worked directly on chair hard
 
 ![Hands-on chair servicing training with the ROSON team](/images/news/roson-training-2026/hands-on-service.jpg)
 
-How deep did it actually go? We published the full product masterclass — the A3, the N-Edge, and the new A1 Pro, button by button, with photos and video from inside the training.
+How deep did it actually go? We published the full product masterclass — the A3, the N2 Pro, and the new A1 Pro, button by button, with photos and video from inside the training.
 
-[Know more: inside the full ROSON masterclass →](/news/roson-product-masterclass-a3-n-edge-a1-pro)
+[Know more: inside the full ROSON masterclass →](/news/roson-product-masterclass-a3-n2-pro-a1-pro)
 
 ## More Than Technical: Management and Sales, Too
 
