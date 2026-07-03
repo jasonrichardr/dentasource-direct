@@ -149,6 +149,12 @@ The management sessions covered how ROSON runs its own operations — the system
 
 On June 30, the visit went beyond training. George, Jacky, and Kenny sat down with the full DentaSource team for a collaborative strategy session on one topic: **how to elevate the ROSON brand in the Philippine market** — covering sales, marketing, and after-sales service in a single open conversation.
 
+At the heart of it was a long exchange between our CEO **Jason Ramirez** and **ROSON CEO George Chen** about where dentistry is actually heading — what the economics of the market are saying, where patients and practices are moving, and where the future of the profession is being decided: **digitalization, smarter after-sales, and technology that makes every clinic more convenient and safer** for dentist and patient alike. Two companies, one question: where should each invest its development and research time next? The answer came easily, because the goal is identical — **serve the dental community with the best of all of it**.
+
+![DSD CEO Jason Ramirez and ROSON CEO George Chen sharing their vision during the strategy session](/images/news/roson-training-2026/two-ceos-vision.jpg)
+
+And here's what made it special: it never became a closed-door executive meeting. Two CEOs talked, but the **whole team sat at the same table** — sales, marketing, technicians, dental assistants — and **every voice was heard**. Questions were answered on the spot, suggestions were written down by the ROSON team as they came, and ideas from the floor shaped the commitments that follow.
+
 Several commitments came out of that room that will directly benefit our clients:
 
 **A proactive after-care program.** Drawing on what works with ROSON's most successful partners worldwide, we're formalizing scheduled check-in calls after every installation — a few weeks in, then at three months, then every six months — so small issues get caught before they ever interrupt a clinic day. That's on top of our existing one-to-two-day service response.
