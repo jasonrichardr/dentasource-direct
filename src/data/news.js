@@ -2,15 +2,15 @@ export const newsData = [
     {
         id: "roson-a1-guide-2026",
         slug: "roson-a1-a1-pro-complete-guide",
-        title: "ROSON A1 & A1 Pro: The Chair Built for the Young Generation Dentist",
+        title: "ROSON A1 & A1 Pro: The Chair Built for the New Generation Dentist",
         date: "July 1, 2026",
         image: "/images/news/roson-training-2026/a1-cover.jpg",
         ogImage: "/images/news/roson-a1-2026/og-a1-guide.jpg",
         hideHeroImage: false,
-        abstract: "ROSON calls it the first dental unit made for the young generation dentist — a chair that matches your clinic's identity instead of dictating it, with a serious clinical machine underneath. Here's the complete guide to the A1 and A1 Pro: every colorway, every feature, and how to choose between the two.",
+        abstract: "ROSON calls it the first dental unit made for the new generation dentist — a chair that matches your clinic's identity instead of dictating it, with a serious clinical machine underneath. Here's the complete guide to the A1 and A1 Pro: every colorway, every feature, and how to choose between the two.",
         content: `## A Dental Unit That Breaks the Oldest Rule
 
-Walk into almost any dental clinic in the world and the equipment looks the same. ROSON looked at the new generation of dentists — clinic owners who design their spaces, build their brands, and think about how every detail feels to a patient — and built the **A1** for them. Their own words: **"the first dental unit for young generation dentists."** Shaped by color. Defined by quality.
+Walk into almost any dental clinic in the world and the equipment looks the same. ROSON looked at the new generation of dentists — clinic owners who design their spaces, build their brands, and think about how every detail feels to a patient — and built the **A1** for them. Their own words: **"the first dental unit for new generation dentists."** Shaped by color. Defined by quality.
 
 This is the complete guide, drawn from the official product material and from the hands-on walkthrough ROSON's team gave us in our showroom. If you want the story of that visit, start with [our main report](/news/roson-trains-dentasource-team-manila-2026) — then come back for the chair itself.
 
@@ -286,9 +286,9 @@ And that learning happened right here, too. During this visit, the ROSON delegat
 
 ## What's Coming Next: Meet the A1
 
-The session also previewed what's arriving on our floor next — and it's exciting. The star was the upcoming **ROSON A1**, which ROSON bills as **"the first dental unit for young generation dentists."**
+The session also previewed what's arriving on our floor next — and it's exciting. The star was the upcoming **ROSON A1**, which ROSON bills as **"the first dental unit for new generation dentists."**
 
-![ROSON A1 — the first dental unit for young generation dentists](/images/news/roson-training-2026/a1-cover.jpg)
+![ROSON A1 — the first dental unit for new generation dentists](/images/news/roson-training-2026/a1-cover.jpg)
 
 The A1 breaks the oldest rule in dental equipment: that every clinic has to look the same. It launches with three signature colors — **ROSON Blue, Ballet Pink, and Mint Green** — with integrated color customization across the upholstery, water box, and instrument tray, so the whole unit matches your clinic's identity, not the other way around.
 
