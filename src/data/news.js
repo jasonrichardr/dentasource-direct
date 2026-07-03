@@ -5,6 +5,7 @@ export const newsData = [
         title: "Inside the ROSON Masterclass: A3, N2 Pro, and A1 Pro — Button by Button",
         date: "July 2, 2026",
         image: "/images/news/roson-masterclass-2026/masterclass-session.jpg",
+        ogImage: "/images/news/roson-masterclass-2026/og-masterclass.jpg",
         hideHeroImage: false,
         abstract: "When ROSON's expert team trained us, they didn't use a projector in a meeting room — they opened up live units on our showroom floor and explained every valve, button, and line of code. Here's the full product masterclass on the A3, the N2 Pro, and the new A1 Pro, exactly as our team learned it.",
         content: `## A Masterclass on the Showroom Floor
@@ -109,6 +110,7 @@ Every chair in this story — the A3, the N2 Pro, the S3 — is on our showroom 
         title: "ROSON Flies In: Top Experts Train the DentaSource Team in Manila",
         date: "July 3, 2026",
         image: "/images/news/roson-training-2026/hero-training-board.jpg",
+        ogImage: "/images/news/roson-training-2026/og-roson-visit.jpg",
         hideHeroImage: false,
         abstract: "ROSON CEO George Chen flew to Manila with his top team for a week of training and strategy at our Pasig showroom — hands-on technical sessions on real hardware, plus a full collaborative planning session on elevating the ROSON brand in the Philippines. Here's what happened, and what it means for every clinic we serve.",
         content: `## Our Partner Came to Us — And Got Straight to Work
@@ -174,6 +176,10 @@ In May, ROSON exhibited in **Italy**, where European dentists are rapidly revisi
 ![ROSON Arriva in Italia — Expodental Rimini 2026 campaign](/images/news/roson-training-2026/roson-italia-poster.jpg)
 
 But what struck our team most wasn't ambition — it was a habit. **ROSON never stops going to different countries to learn**: sitting with dentists and partners in Italy, Russia, Egypt, and now the Philippines, asking what designs they need, what would actually help, and what makes their daily practice easier. Those answers go straight back into the next generation of chairs. Leading a market is never the goal itself — **it's the side effect of listening better than anyone else**, year after year.
+
+And that learning happened right here, too. During this visit, the ROSON delegation went beyond our showroom and into a real Philippine practice — **FFC Dental Clinic** — meeting the dentists and staff, watching real patient flow, and hearing first-hand what Filipino clinics need from their equipment.
+
+![The ROSON delegation with the team at FFC Dental Clinic](/images/news/roson-training-2026/ffc-clinic-visit.jpg)
 
 **"A product competes on price. A brand competes on meaning."** That line, quoted in the session from the European Brand Institute, captures the shared philosophy — and it's ours too: listen to Filipino dentists the same way, serve their practice first, and let everything else follow.
 
