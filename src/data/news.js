@@ -171,7 +171,13 @@ ROSON is headquartered in **Foshan, China — the dental manufacturing capital o
 
 The heritage runs deep. The family's dental manufacturing legacy stretches back more than two decades — an earlier family manufacturing business was acquired by German dental giant **Sirona**, and several of ROSON's veteran engineers began their careers there. CEO **George Chen** took over the company in 2010 after fifteen years in Shanghai with global companies including **P&G and LEGO**, bringing world-class management thinking into a precision manufacturing business.
 
-And in an industry where most manufacturers simply assemble, ROSON runs its own **in-house testing laboratory** — still a rarity among Chinese manufacturers — where every component is stress-tested against hard data before it ever reaches a clinic.
+And in an industry where most manufacturers simply assemble, ROSON runs its own **in-house testing laboratory** — still a rarity among Chinese manufacturers — where every component is stress-tested against hard data before it ever reaches a clinic. Six dedicated test systems run continuously: a temperature and humidity chamber, a salt spray tester, an elastic arm tester, a foot pedal tester, a chair frame and motor performance rig, and a control system aging test — overseen by dedicated **IQC and OQC teams** and an R&D bench averaging over ten years of industry experience.
+
+![Inside ROSON's in-house testing laboratory — six dedicated test systems](/images/news/roson-training-2026/roson-qc-lab.jpg)
+
+The scale behind it is just as serious: a **10,000-square-meter production base** running end-to-end quality management and digital smart manufacturing, from parts warehouse to finished unit.
+
+![ROSON's 10,000-square-meter production base — end-to-end quality management and digital smart manufacturing](/images/news/roson-training-2026/roson-production-base.jpg)
 
 ## A Brand on the Rise, Worldwide
 
