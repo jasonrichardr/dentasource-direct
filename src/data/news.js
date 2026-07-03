@@ -173,9 +173,9 @@ In May, ROSON exhibited in **Italy**, where European dentists are rapidly revisi
 
 ![ROSON Arriva in Italia — Expodental Rimini 2026 campaign](/images/news/roson-training-2026/roson-italia-poster.jpg)
 
-The roadmap is ambitious and public: become the number one dental unit brand in Foshan in 2026, number one in China within two years, and a **world-renowned brand by 2030**.
+But what struck our team most wasn't ambition — it was a habit. **ROSON never stops going to different countries to learn**: sitting with dentists and partners in Italy, Russia, Egypt, and now the Philippines, asking what designs they need, what would actually help, and what makes their daily practice easier. Those answers go straight back into the next generation of chairs. Leading a market is never the goal itself — **it's the side effect of listening better than anyone else**, year after year.
 
-**"A product competes on price. A brand competes on meaning."** That line, quoted in the session from the European Brand Institute, captures the shared philosophy — and our mission is aligned with it: make ROSON the **number one dental chair brand in the Philippines**.
+**"A product competes on price. A brand competes on meaning."** That line, quoted in the session from the European Brand Institute, captures the shared philosophy — and it's ours too: listen to Filipino dentists the same way, serve their practice first, and let everything else follow.
 
 ## What's Coming Next: Meet the A1
 
