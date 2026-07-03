@@ -6,10 +6,10 @@ export const newsData = [
         date: "July 2, 2026",
         image: "/images/news/roson-masterclass-2026/masterclass-session.jpg",
         hideHeroImage: false,
-        abstract: "When ROSON's factory team trained us, they didn't use a projector in a meeting room — they opened up live units on our showroom floor and explained every valve, button, and line of code. Here's the full product masterclass on the A3, the N2 Pro, and the new A1 Pro, exactly as our team learned it.",
+        abstract: "When ROSON's expert team trained us, they didn't use a projector in a meeting room — they opened up live units on our showroom floor and explained every valve, button, and line of code. Here's the full product masterclass on the A3, the N2 Pro, and the new A1 Pro, exactly as our team learned it.",
         content: `## A Masterclass on the Showroom Floor
 
-This is the companion story to [our main report on the ROSON visit](/news/roson-trains-dentasource-team-manila-2026) — and it's the part we're proudest of. For hours, ROSON's top product specialist **Kenny** and a senior factory engineer with over fifteen years in dental equipment walked our entire team through three chairs, feature by feature, on live units — with the tools out and the side panels open.
+This is the companion story to [our main report on the ROSON visit](/news/roson-trains-dentasource-team-manila-2026) — and it's the part we're proudest of. For hours, ROSON's top product specialist **Kenny** and a senior engineer with over fifteen years in dental equipment walked our entire team through three chairs, feature by feature, on live units — with the tools out and the side panels open.
 
 Not a sales pitch. An engineering transfer. Our sales team, our technicians, and our dental assistants asked questions until there were none left. What follows is what your DentaSource team now knows by heart.
 
@@ -33,15 +33,15 @@ The rest of the A3's intelligence stack, as our team learned it:
 
 **One-key off-duty.** At closing time, one press lifts the chair to its hygiene position, flushes the spittoon and the entire drainage pipe for five minutes, and stops on its own.
 
-**Sensor-driven cup filling** with gravity detection, a **warm-water heater** with four adjustable angles, an **anti-suction siphon** that blocks odors from ever backing up into the clinic, and an **anti-collision system** that protects the dental assistant working at thirty degrees in four-handed dentistry.
+**Sensor-driven cup filling** with gravity detection, a built-in **warm-water supply** so patients never rinse cold, an **anti-suction siphon** that blocks odors from ever backing up into the clinic, and an **anti-collision system** that protects the dental assistant working close in four-handed dentistry.
 
 Up top sits the **eight-bulb Rolight** — ROSON's highest light configuration, with yellow, white, and mixed modes. And this year the A3's cushion, backrest, and headrest were upgraded to **silicone upholstery** — softer, tougher, and available in a seamless finish.
 
-## Warranties, Straight From the Factory
+## A Five-Year Motor Warranty — and the Motors That Earn It
 
-The training covered warranty terms in black and white, and they're worth repeating: **five years** on air and water tubing, **five years** on the silicone leather upholstery, **five years** on the motors, and **three years** on the dental light.
+The motor is the heart of a dental chair — it does the lifting, thousands of cycles a year — and it's exactly where we put our warranty confidence: **up to five years on the motor**.
 
-Those motors deserve a special note. ROSON has standardized the entire line on **TiMOTION motors imported from Taiwan** — a globally recognized motion-systems brand — replacing local alternatives at higher cost to the factory, because reliability wins in the long run. Every current unit we deliver carries them, with soft start and soft stop across the range.
+Those motors earn it. ROSON has standardized the entire line on **TiMOTION motors imported from Taiwan** — a globally recognized motion-systems brand — replacing local alternatives at higher cost to themselves, because reliability wins in the long run. Every current unit we deliver carries them, with soft start and soft stop across the range.
 
 ## N2 Pro: The Workhorse, Evolved
 
@@ -75,11 +75,11 @@ The screen itself is **high-precision, scratch-resistant glass that responds thr
 
 ![Digital precision control: ±1% parameter accuracy on the A1 Pro](/images/news/roson-masterclass-2026/precision-control-slide.jpg)
 
-And the touches that make daily life easier: a fifteen-second **cup-fill and spittoon flush linkage**, the one-key end-of-day flush inherited from the A3, a **lotus exit position** that sits patients up smoothly, **magnetic side panels that open with one finger** for servicing, and a CE-rated **150kg load capacity** that the frame comfortably exceeds in factory testing. The A1 Pro also ships with ROSON's new ergonomic dentist stool, in PU or silicone.
+And the touches that make daily life easier: a fifteen-second **cup-fill and spittoon flush linkage**, the one-key end-of-day flush inherited from the A3, a **lotus exit position** that sits patients up smoothly, **magnetic side panels that open with one finger** for servicing, and a CE-rated **150kg load capacity** that the frame comfortably exceeds in ROSON's own testing. The A1 Pro also ships with ROSON's new ergonomic dentist stool, in PU or silicone.
 
 ## Built for Real Philippine Clinics
 
-Some of the most valuable training wasn't glamorous at all — it was logistics, and it's where you see a factory that understands the field.
+Some of the most valuable training wasn't glamorous at all — it was logistics, and it's where you see a manufacturer that understands the field.
 
 ![DentaSource technicians inspecting units during the training](/images/news/roson-masterclass-2026/parts-inspection.jpg)
 
@@ -91,7 +91,7 @@ They also covered the **new external junction box** ROSON introduced in 2024 —
 
 ## The Service Loop Never Closes
 
-Maybe the best part: the training doesn't end when the trainers fly home. Our technical team now has a **direct line to ROSON's factory engineers**, with real-time translation support, for any service question — typically answered the same day. A **new foot pedal design is coming around September**, and DentaSource will receive test units first, before it ever ships to customers.
+Maybe the best part: the training doesn't end when the trainers fly home. Our technical team now has a **direct line to ROSON's senior engineers**, with real-time translation support, for any service question — **typically answered the same day**. A **new foot pedal design is coming around September**, and DentaSource will receive test units first, before it ever ships to customers.
 
 That's what an exclusive partnership is supposed to look like.
 
@@ -99,29 +99,29 @@ That's what an exclusive partnership is supposed to look like.
 
 ![The DentaSource and ROSON teams after the masterclass](/images/news/roson-masterclass-2026/team-group-photo.jpg)
 
-Every chair in this story — the A3, the N2 Pro, the S3 — is on our showroom floor in Pasig, the largest dental equipment showroom in the Philippines, and the A1 Pro arrives ahead of the September trade season. Walk in any day, 9 AM to 8 PM, and our team will demo any feature you just read about. Ask them anything. That's the point of training this hard.
+Every chair in this story — the A3, the N2 Pro, the S3 — is on our showroom floor in Pasig, **the largest dental equipment showroom in the Philippines**, and the A1 Pro arrives ahead of the September trade season. Walk in any day, 9 AM to 8 PM, and our team will demo any feature you just read about. Ask them anything. That's the point of training this hard.
 
 [Read the full story of the ROSON visit →](/news/roson-trains-dentasource-team-manila-2026)`
     },
     {
         id: "roson-training-dentasource-2026",
         slug: "roson-trains-dentasource-team-manila-2026",
-        title: "ROSON Flies In: Factory Experts Train the DentaSource Team in Manila",
+        title: "ROSON Flies In: Top Experts Train the DentaSource Team in Manila",
         date: "July 3, 2026",
         image: "/images/news/roson-training-2026/hero-training-board.jpg",
         hideHeroImage: false,
         abstract: "ROSON CEO George Chen flew to Manila with his top team for a week of training and strategy at our Pasig showroom — hands-on technical sessions on real hardware, plus a full collaborative planning session on elevating the ROSON brand in the Philippines. Here's what happened, and what it means for every clinic we serve.",
         content: `## Our Partner Came to Us — And Got Straight to Work
 
-This week, we welcomed a very special delegation to the DentaSource Direct showroom: the factory team from **ROSON Medical**, our exclusive manufacturing partner for dental chairs and treatment units in the Philippines — led personally by **ROSON CEO George Chen**, together with **Jacky**, the director who leads ROSON's international business, and **Kenny**, the company's top product specialist. They didn't come for a photo opportunity. They came to teach — and to plan.
+This week, we welcomed a very special delegation to the DentaSource Direct showroom: the expert team from **ROSON Medical**, our exclusive manufacturing partner for dental chairs and treatment units in the Philippines — led personally by **ROSON CEO George Chen**, together with **Jacky**, the director who leads ROSON's international business, and **Kenny**, the company's top product specialist. They didn't come for a photo opportunity. They came to teach — and to plan.
 
 **"We don't want to only place the order and finish the shipment,"** George told our team. **"We want to know how you work here, what support you need, and how we can help."** This year alone, ROSON's leadership has made the same trip to partners in the Middle East, Europe, Russia, and Egypt. Now it was the Philippines' turn.
 
-Over an intensive on-site session, ROSON's experts ran our entire team through **management, sales, and technical training** — the same knowledge transfer ROSON conducts with its distributors in its most demanding markets worldwide.
+Over several intensive days on site, ROSON's experts ran our entire team through **management, sales, and technical training** — the same knowledge transfer ROSON conducts with its distributors in its most demanding markets worldwide.
 
 ## Learning on Real Hardware, Not Slides
 
-The centerpiece of the technical track was something you rarely see outside a factory floor: a **live training board** — a full dental unit control system laid open on a pegboard, with every valve, tubing line, solenoid, and handpiece connection exposed and working.
+The centerpiece of the technical track was something you rarely see outside ROSON's own workshops: a **live training board** — a full dental unit control system laid open on a pegboard, with every valve, tubing line, solenoid, and handpiece connection exposed and working.
 
 ROSON's engineers walked our technical team through the system piece by piece: how water and air lines route through the unit, how each control block behaves, and how to diagnose and service each component quickly and correctly.
 
@@ -151,9 +151,9 @@ Several commitments came out of that room that will directly benefit our clients
 
 **A proactive after-care program.** Drawing on what works with ROSON's most successful partners worldwide, we're formalizing scheduled check-in calls after every installation — a few weeks in, then at three months, then every six months — so small issues get caught before they ever interrupt a clinic day. That's on top of our existing one-to-two-day service response.
 
-**Monthly factory sync meetings.** ROSON improves its products every single month. From now on, those updates flow to our team through a standing monthly meeting with the factory — new features, new materials, and new clinical case studies from Europe and beyond, localized for Filipino dentists.
+**Monthly sync meetings with ROSON.** ROSON improves its products every single month. From now on, those updates flow to our team through a standing monthly meeting with the people who build the chairs — new features, new materials, and new clinical case studies from Europe and beyond, localized for Filipino dentists.
 
-**Factory-direct marketing support.** ROSON's own marketing team will feed us their latest product content, laboratory footage, and international case studies so you see exactly what global markets see — straight from Foshan.
+**Marketing support straight from the source.** ROSON's own marketing team will feed us their latest product content, laboratory footage, and international case studies so you see exactly what global markets see — straight from Foshan.
 
 ## The Company Behind the Chairs
 
@@ -161,9 +161,9 @@ The session also gave our team a deeper look at who ROSON really is — and the 
 
 ROSON is headquartered in **Foshan, China — the dental manufacturing capital of the world**, home to roughly sixty of the country's dental unit manufacturers. Within that hub, ROSON holds a position of real authority: the company chairs the **Foshan Dental Association**, helping set the standards for the industry it leads.
 
-The heritage runs deep. The family's dental manufacturing legacy stretches back more than two decades — an earlier family factory was acquired by German dental giant **Sirona**, and several of ROSON's veteran engineers began their careers there. CEO **George Chen** took over the company in 2010 after fifteen years in Shanghai with global companies including **P&G and LEGO**, bringing world-class management thinking into a precision manufacturing business.
+The heritage runs deep. The family's dental manufacturing legacy stretches back more than two decades — an earlier family manufacturing business was acquired by German dental giant **Sirona**, and several of ROSON's veteran engineers began their careers there. CEO **George Chen** took over the company in 2010 after fifteen years in Shanghai with global companies including **P&G and LEGO**, bringing world-class management thinking into a precision manufacturing business.
 
-And in an industry where most factories simply assemble, ROSON runs its own **in-house testing laboratory** — still a rarity among Chinese manufacturers — where every component is stress-tested against hard data before it ever reaches a clinic.
+And in an industry where most manufacturers simply assemble, ROSON runs its own **in-house testing laboratory** — still a rarity among Chinese manufacturers — where every component is stress-tested against hard data before it ever reaches a clinic.
 
 ## A Brand on the Rise, Worldwide
 
@@ -179,7 +179,7 @@ The roadmap is ambitious and public: become the number one dental unit brand in 
 
 ## What's Coming Next: Meet the A1
 
-The session also previewed what's arriving on our floor next — and it's exciting. The star was the upcoming **ROSON A1**, which the factory bills as **"the first dental unit for young generation dentists."**
+The session also previewed what's arriving on our floor next — and it's exciting. The star was the upcoming **ROSON A1**, which ROSON bills as **"the first dental unit for young generation dentists."**
 
 ![ROSON A1 — the first dental unit for young generation dentists](/images/news/roson-training-2026/a1-cover.jpg)
 
@@ -201,15 +201,15 @@ Want the full picture? [View the complete ROSON A1 brochure here](/docs/roson-a1
 
 When you buy a dental chair, you're not just buying steel and upholstery — you're buying **the support system behind it** for the next decade. That support is only as good as the people delivering it.
 
-This is exactly why the ROSON–DentaSource partnership works the way it does. ROSON builds the equipment; we make sure it performs in Philippine clinics for years. Factory-direct training closes that loop: when our technician opens up your unit, they're applying procedures taught by the people who designed it.
+This is exactly why the ROSON–DentaSource partnership works the way it does. ROSON builds the equipment; we make sure it performs in Philippine clinics for years. Training straight from the source closes that loop: when our technician opens up your unit, they're applying procedures taught by the people who designed it.
 
-You can learn more about our partner's engineering, factory, and global footprint at the official ROSON Medical website: [fsroson.com](https://www.fsroson.com/).
+You can learn more about our partner's engineering, production base, and global footprint at the official ROSON Medical website: [fsroson.com](https://www.fsroson.com/).
 
 ## What This Means for Your Clinic
 
 For the dentists and clinic owners we serve, this training translates into concrete benefits.
 
-**Faster, more accurate service calls.** Technicians who have disassembled and reassembled these systems under factory supervision diagnose problems faster and fix them right the first time.
+**Faster, more accurate service calls.** Technicians who have disassembled and reassembled these systems under the guidance of ROSON's own engineers diagnose problems faster and fix them right the first time.
 
 **Honest, informed buying guidance.** A sales team trained by the manufacturer can tell you exactly which model fits your procedures, your patient volume, and your space — with real technical grounding behind every recommendation.
 
