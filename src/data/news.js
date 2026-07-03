@@ -1,5 +1,94 @@
 export const newsData = [
     {
+        id: "roson-a1-guide-2026",
+        slug: "roson-a1-a1-pro-complete-guide",
+        title: "ROSON A1 & A1 Pro: The Chair Built for the Young Generation Dentist",
+        date: "July 1, 2026",
+        image: "/images/news/roson-training-2026/a1-cover.jpg",
+        ogImage: "/images/news/roson-a1-2026/og-a1-guide.jpg",
+        hideHeroImage: false,
+        abstract: "ROSON calls it the first dental unit made for the young generation dentist — a chair that matches your clinic's identity instead of dictating it, with a serious clinical machine underneath. Here's the complete guide to the A1 and A1 Pro: every colorway, every feature, and how to choose between the two.",
+        content: `## A Dental Unit That Breaks the Oldest Rule
+
+Walk into almost any dental clinic in the world and the equipment looks the same. ROSON looked at the new generation of dentists — clinic owners who design their spaces, build their brands, and think about how every detail feels to a patient — and built the **A1** for them. Their own words: **"the first dental unit for young generation dentists."** Shaped by color. Defined by quality.
+
+This is the complete guide, drawn from the official product material and from the hands-on walkthrough ROSON's team gave us in our showroom. If you want the story of that visit, start with [our main report](/news/roson-trains-dentasource-team-manila-2026) — then come back for the chair itself.
+
+## Three Signatures. Endless Color.
+
+The A1 launches with three signature identities: **ROSON Blue**, inspired by sky and sea; **Ballet Pink**, soft and serene; and **Mint Green**, like mint leaves in a breeze.
+
+![The three A1 signature colors — ROSON Blue, Ballet Pink, Mint Green](/images/news/roson-a1-2026/a1-signature-colors.jpg)
+
+And color on the A1 is not just a cushion swatch. The **integrated color customization** carries your chosen identity across the upholstery, the water box, and the instrument tray — so the whole unit belongs to your clinic's look, not the other way around.
+
+![Integrated color customization — upholstery, water box, and instrument tray in matching colors](/images/news/roson-a1-2026/a1-tone-setter.jpg)
+
+Beyond the signature three, the palette runs deep: dozens of upholstery options across **soft silicone rubber leather** and **medical-grade PU** — from Hermes Orange to Tiffany Blue to Bordeaux Red — all abrasion-resistant, easy to clean, and gentle on skin.
+
+![The full upholstery palette — soft silicone rubber leather and medical-grade PU options](/images/news/roson-a1-2026/a1-upholstery-charts.jpg)
+
+## Beneath the Beauty: A Serious Clinical Machine
+
+ROSON's own line for it: beneath the stunning exterior lies a true performer.
+
+![ROSON A1 in Ballet Pink](/images/news/roson-a1-2026/a1-glamour.jpg)
+
+The chair frame is **premium carbon structural steel, 12mm thick**, built to handle **150kg** — rigid, strong, and uncompromising, with no wobble and no drift under load. The lift runs on ROSON's **sleep-grade moving system**: smooth start, smooth stop, quiet rise and fall — the same whisper-quiet movement that runs across the whole ROSON range, tuned here for patients who are already nervous enough.
+
+![Stable core chair frame — 12mm steel, 150kg load — and the sleep-grade moving system](/images/news/roson-a1-2026/a1-frame-system.jpg)
+
+## The Working Details Dentists Feel Every Day
+
+The instrument tray carries the **Pro Shortcut Combos**: an intelligent memory chair position, a cup-filling and rinsing linkage, and a one-touch smart clean button. Below it, the **4-position adjustable handpiece holder** lets every instrument sit at the exact angle you prefer — grasp, grip, or storage — so sleeves stop catching on burs.
+
+![Pro Shortcut Combos and the 4-position adjustable handpiece holder](/images/news/roson-a1-2026/a1-shortcuts.jpg)
+
+Above the patient, the **Rolight S dental light** puts a large, consistent light spot on the oral cavity with three modes — yellow, white, and mixed — switched by **infrared sensing** so you never touch it mid-procedure, with a **removable handle** for thorough disinfection. The spittoon carries an **odor trap** that blocks sewer smells at the source, and the **integrated handle** keeps hands away from the spittoon bowl entirely.
+
+![Rolight S dental light, spittoon odor trap, and integrated handle](/images/news/roson-a1-2026/a1-rolight.jpg)
+
+## Built Around the Patient, Too
+
+Patients press one button to fill their own cup and rinse — no awkward waiting. The upholstery under them is **soft silicone rubber leather**: stain-resistant, abrasion-certified for 20,000 cycles, UV-resistant, and hypoallergenic.
+
+![Patient self-help cup filling and the soft silicone rubber leather upholstery](/images/news/roson-a1-2026/a1-cup-upholstery.jpg)
+
+And the whole unit is laid out for real **four-handed dentistry** — instrument tray and chair positioned so dentist and assistant work close without collisions, in a treatment space that looks as considered as it works.
+
+![The A1 four-handed treatment space, seen from above](/images/news/roson-a1-2026/a1-four-handed.jpg)
+
+## A1 or A1 Pro: Which One Is Yours?
+
+Here's how ROSON's own team explained the split to us, standing next to the units.
+
+**The A1** is the essential expression: the same design language, the same colors, the same frame and movement — at a friendlier entry point for a young dentist opening a first clinic.
+
+**The A1 Pro** adds the intelligence layer: a **high-precision touchscreen in scratch-resistant glass that responds through dental gloves**. Behind that screen live **five user profiles with fifteen memory positions**, an on-screen **maintenance scheduler** that reminds your team what to service and when, a **smart spit button** that raises the patient and dims the light in one press, a countdown timer for curing, and **digital precision control of the built-in micro motor and scaler to within ±1%** — with modes for endo, prophylaxis, and restorative work.
+
+Both ship with ROSON's new **RS-07 professional dentist stool** — U-shaped ventilation design, sloped leg rest, 90–110° adaptive backrest, and adjustable seat depth — because the dentist's own back matters as much as the patient's comfort.
+
+![The RS-07 professional dentist stool](/images/news/roson-a1-2026/a1-stool.jpg)
+
+## Configurations for Every Clinic
+
+The A1 comes in **top-mounted, implant, and trolley** configurations, with optional built-ins — scaler, micro motor, curing light, and intraoral camera. Standard equipment already includes the soft start-stop system, patient self-help cup filler, detachable ceramic spittoon, intelligent memory positions, error self-check program, multifunction foot control, and the Rolight S — plus **up to five years of warranty on the motor**.
+
+![Top-mounted, implant, and trolley configurations](/images/news/roson-a1-2026/a1-configurations.jpg)
+
+![The full A1 product configuration list](/images/news/roson-a1-2026/a1-config-table.jpg)
+
+## When Can You See It?
+
+Units are on the water now and expected on our Pasig showroom floor — the largest dental equipment showroom in the Philippines — ahead of the September trade exhibition season. Our team has already been trained on it, hands-on, by ROSON's own specialists; read [the full masterclass here](/news/roson-product-masterclass-a3-n2-pro-a1-pro).
+
+Want every page of the official material in one place?
+
+[View the complete A1 brochure (PDF) →](/docs/roson-a1-brochure.pdf)
+
+Or message us — we'll tell you honestly whether the A1, the A1 Pro, or a different unit entirely is the right fit for your clinic. That's what we're trained for.`
+    },
+    {
         id: "roson-masterclass-2026",
         slug: "roson-product-masterclass-a3-n2-pro-a1-pro",
         title: "Inside the ROSON Masterclass: A3, N2 Pro, and A1 Pro — Button by Button",
@@ -213,7 +302,9 @@ Beneath the color, it's a serious clinical machine. The frame is **12mm premium 
 
 It also comes in **top-mounted, implant, and trolley configurations**, with optional built-in scaler, micro motor, curing light, and intraoral camera — ROSON's modular design philosophy in action, so your unit is configured around how you actually practice.
 
-Want the full picture? [View the complete ROSON A1 brochure here](/docs/roson-a1-brochure.pdf) — every colorway, spec, and configuration. Units are already on the water and expected on our showroom floor ahead of the September trade exhibition season.
+Units are already on the water and expected on our showroom floor ahead of the September trade exhibition season. We published a complete guide — every colorway, every feature, the full A1-versus-A1 Pro breakdown, and the official brochure.
+
+[Know more about the A1 & A1 Pro →](/news/roson-a1-a1-pro-complete-guide)
 
 ## Why a Manufacturer Trains Its Distributor This Hard
 
