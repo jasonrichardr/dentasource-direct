@@ -69,17 +69,49 @@ export default function NewsArticle(props) {
                         } else if (trimmed.startsWith('#')) {
                             return <h1 key={idx} className={styles.heading1}>{trimmed.replace('#', '').trim()}</h1>;
                         }
-                        // Handle images
+                        // Handle images and videos
                         if (trimmed.startsWith('![')) {
                             const match = trimmed.match(/!\[(.*?)\]\((.*?)\)/);
                             if (match) {
+                                if (match[2].endsWith('.mp4')) {
+                                    return (
+                                        <div key={idx} className={styles.inlineImageWrapper}>
+                                            <video
+                                                src={match[2]}
+                                                controls
+                                                muted
+                                                playsInline
+                                                preload="metadata"
+                                                className={styles.inlineImage}
+                                                aria-label={match[1]}
+                                            />
+                                        </div>
+                                    );
+                                }
                                 return (
                                     <div key={idx} className={styles.inlineImageWrapper}>
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img src={match[2]} alt={match[1]} className={styles.inlineImage} />
+                                        <img src={match[2]} alt={match[1]} className={styles.inlineImage} loading="lazy" />
                                     </div>
                                 );
                             }
+                        }
+                        // A paragraph that is exactly one link renders as a CTA button
+                        const ctaMatch = trimmed.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+                        if (ctaMatch) {
+                            const isExternal = ctaMatch[2].startsWith('http');
+                            return (
+                                <div key={idx} className={styles.ctaWrapper}>
+                                    <a
+                                        href={ctaMatch[2]}
+                                        className={styles.ctaButton}
+                                        target={isExternal ? '_blank' : undefined}
+                                        rel={isExternal ? 'noopener noreferrer' : undefined}
+                                    >
+                                        {ctaMatch[1]}
+                                    </a>
+                                </div>
+                            );
                         }
                         // Text paragraphs (with basic bold and link rendering)
                         if (trimmed.length > 0) {

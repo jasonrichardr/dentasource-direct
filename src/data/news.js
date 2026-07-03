@@ -1,5 +1,107 @@
 export const newsData = [
     {
+        id: "roson-masterclass-2026",
+        slug: "roson-product-masterclass-a3-n-edge-a1-pro",
+        title: "Inside the ROSON Masterclass: A3, N-Edge, and A1 Pro — Button by Button",
+        date: "July 2, 2026",
+        image: "/images/news/roson-masterclass-2026/masterclass-session.jpg",
+        hideHeroImage: false,
+        abstract: "When ROSON's factory team trained us, they didn't use a projector in a meeting room — they opened up live units on our showroom floor and explained every valve, button, and line of code. Here's the full product masterclass on the A3, the N-Edge, and the new A1 Pro, exactly as our team learned it.",
+        content: `## A Masterclass on the Showroom Floor
+
+This is the companion story to [our main report on the ROSON visit](/news/roson-trains-dentasource-team-manila-2026) — and it's the part we're proudest of. For hours, ROSON's top product specialist **Kenny** and a senior factory engineer with over fifteen years in dental equipment walked our entire team through three chairs, feature by feature, on live units — with the tools out and the side panels open.
+
+Not a sales pitch. An engineering transfer. Our sales team, our technicians, and our dental assistants asked questions until there were none left. What follows is what your DentaSource team now knows by heart.
+
+![Live demonstration during the ROSON product masterclass](/images/news/roson-masterclass-2026/masterclass-demo.mp4)
+
+## The A3: Our Flagship, Explained From the Inside
+
+The **ROSON A3** is our high-end flagship, and the training started there — because the A3 carries features that, according to ROSON, no other unit in the Philippine market has.
+
+The headline is the **self-balancing backrest**. Traditional chairs use an airlock mechanism; the A3 uses a soft-start, soft-stop balance system, so the backrest glides with zero impact. Patients feel a smooth, quiet recline instead of a jolt — a small detail that completely changes how premium a clinic feels.
+
+Then there's water hygiene. The A3 carries ROSON's **UW disinfection technology**: a low-electric-field system inside the waterline that disinfects city water automatically, with a laboratory-verified **disinfection rate of up to 99%** — no disinfectant chemicals, no manual tube flushing routines. For clinics, that's one less daily chore and one more thing you can honestly tell patients about your infection control.
+
+![Hands-on with the chair during training](/images/news/roson-masterclass-2026/chair-hands-on.jpg)
+
+The rest of the A3's intelligence stack, as our team learned it:
+
+**An LCD status screen with error codes.** If a component ever acts up, the chair tells you its error number — so when you call us, our technician already knows what to bring.
+
+**One-key off-duty.** At closing time, one press lifts the chair to its hygiene position, flushes the spittoon and the entire drainage pipe for five minutes, and stops on its own.
+
+**Sensor-driven cup filling** with gravity detection, a **warm-water heater** with four adjustable angles, an **anti-suction siphon** that blocks odors from ever backing up into the clinic, and an **anti-collision system** that protects the dental assistant working at thirty degrees in four-handed dentistry.
+
+Up top sits the **eight-bulb Rolight** — ROSON's highest light configuration, with yellow, white, and mixed modes. And this year the A3's cushion, backrest, and headrest were upgraded to **silicone upholstery** — softer, tougher, and available in a seamless finish.
+
+## Warranties, Straight From the Factory
+
+The training covered warranty terms in black and white, and they're worth repeating: **five years** on air and water tubing, **five years** on the silicone leather upholstery, **five years** on the motors, and **three years** on the dental light.
+
+Those motors deserve a special note. ROSON has standardized the entire line on **TiMOTION motors imported from Taiwan** — a globally recognized motion-systems brand — replacing local alternatives at higher cost to the factory, because reliability wins in the long run. Every current unit we deliver carries them, with soft start and soft stop across the range.
+
+## N-Edge: The Workhorse, Evolved
+
+The **N-Edge** is the evolution of the N2 Plus — one of ROSON's best-selling workhorses — rebuilt around clinic hygiene and durability.
+
+Its signature is the **dual-bottle water system**: one bottle for pure water, one for disinfectant solution, so clinics can run proper waterline disinfection on an economical unit. The armrests were upgraded to a tougher material after real client feedback, the spittoon was redesigned to the same modern style as the A3S, and the headrest uses the large, wide base our clients consistently praise. It's also available in the new **ROSON Blue** — the fresh colorway that's rolling out across the range.
+
+## Why Filipino Dentists Love the S Series
+
+The masterclass confirmed something our sales team sees every week: the **S3** earns its best-seller status on a few very practical grounds.
+
+The S series (S3, S6, and S9) has a **linkage seat system** — the seat and backrest move together, so patients never slide down during recline. The seamless cushion design means staff can scrub it down fast between patients. And the **metal base** gives heavier patients rock-solid stability. Add a slim profile that fits the compact operatories most Philippine clinics work with, and you understand why starting dentists keep choosing it. We do an ocular visit before every installation precisely to match the right unit to the actual space.
+
+## A1 Pro: The Digital Deep Dive
+
+Then the training turned to the star of ROSON's 2026 lineup — the **A1 Pro** — and our team got the full walkthrough of its intelligent touchscreen console.
+
+![Walking the team through the A1 Pro touchscreen interface](/images/news/roson-masterclass-2026/touchscreen-walkthrough.jpg)
+
+The screen itself is **high-precision, scratch-resistant glass that responds through dental gloves** — a detail every clinician immediately appreciates. Behind it:
+
+**Five user profiles, fifteen memory positions.** Each of five dentists sharing a chair gets three saved chair positions. Associates, part-timers, husband-and-wife practices — everyone works their own way at one press.
+
+**A smart spit button.** Press once: the chair rises to spitting position and the dental light switches off automatically. Press again: the patient returns to the exact treatment position and the light comes back on. Nobody touches anything twice.
+
+![The A1 Pro smart buttons explained during training](/images/news/roson-masterclass-2026/smart-buttons-slide.jpg)
+
+**A maintenance scheduler on screen.** Set it daily or weekly and the chair itself reminds your team what to maintain and when — the feature we highlighted in our main story, seen here in the flesh.
+
+**Digital precision control.** The built-in micro motor and scaler are digitally controlled with a **precision parameter of ±1%**, with dedicated modes for endo, prophylaxis, and restorative work, plus a countdown timer for curing.
+
+![Digital precision control: ±1% parameter accuracy on the A1 Pro](/images/news/roson-masterclass-2026/precision-control-slide.jpg)
+
+And the touches that make daily life easier: a fifteen-second **cup-fill and spittoon flush linkage**, the one-key end-of-day flush inherited from the A3, a **lotus exit position** that sits patients up smoothly, **magnetic side panels that open with one finger** for servicing, and a CE-rated **150kg load capacity** that the frame comfortably exceeds in factory testing. The A1 Pro also ships with ROSON's new ergonomic dentist stool, in PU or silicone.
+
+## Built for Real Philippine Clinics
+
+Some of the most valuable training wasn't glamorous at all — it was logistics, and it's where you see a factory that understands the field.
+
+![DentaSource technicians inspecting units during the training](/images/news/roson-masterclass-2026/parts-inspection.jpg)
+
+Philippine clinic doorways are narrow. So the engineer taught our team the official **three-step slim-down**: disconnect two motor wires, two air pipes, and the headrest group — and the armrest and side box come off cleanly, letting the unit pass through even very tight doors, then reassemble in minutes. Our technicians practiced it on the spot.
+
+![Inside the chair: the engineer walks our team through the base assembly](/images/news/roson-masterclass-2026/inside-the-chair.mp4)
+
+They also covered the **new external junction box** ROSON introduced in 2024 — three screws and it swaps in minutes, cutting what used to be a long service visit down to a coffee break — and drilled the golden installation rule: **connect the clinic's air line before powering the chair**, because the system interlocks air and electricity by design.
+
+## The Service Loop Never Closes
+
+Maybe the best part: the training doesn't end when the trainers fly home. Our technical team now has a **direct line to ROSON's factory engineers**, with real-time translation support, for any service question — typically answered the same day. A **new foot pedal design is coming around September**, and DentaSource will receive test units first, before it ever ships to customers.
+
+That's what an exclusive partnership is supposed to look like.
+
+## Come See What We Learned
+
+![The DentaSource and ROSON teams after the masterclass](/images/news/roson-masterclass-2026/team-group-photo.jpg)
+
+Every chair in this story — the A3, the N-Edge, the S3 — is on our showroom floor in Pasig, the largest dental equipment showroom in the Philippines, and the A1 Pro arrives ahead of the September trade season. Walk in any day, 9 AM to 8 PM, and our team will demo any feature you just read about. Ask them anything. That's the point of training this hard.
+
+[Read the full story of the ROSON visit →](/news/roson-trains-dentasource-team-manila-2026)`
+    },
+    {
         id: "roson-training-dentasource-2026",
         slug: "roson-trains-dentasource-team-manila-2026",
         title: "ROSON Flies In: Factory Experts Train the DentaSource Team in Manila",
@@ -26,6 +128,10 @@ ROSON's engineers walked our technical team through the system piece by piece: h
 Then it went from the board to the floor. The team worked directly on chair hardware — tracing suction lines, opening up the assembly, and practicing the exact service procedures our technicians perform in clinics across the country.
 
 ![Hands-on chair servicing training with the ROSON team](/images/news/roson-training-2026/hands-on-service.jpg)
+
+How deep did it actually go? We published the full product masterclass — the A3, the N-Edge, and the new A1 Pro, button by button, with photos and video from inside the training.
+
+[Know more: inside the full ROSON masterclass →](/news/roson-product-masterclass-a3-n-edge-a1-pro)
 
 ## More Than Technical: Management and Sales, Too
 
@@ -62,6 +168,8 @@ And in an industry where most factories simply assemble, ROSON runs its own **in
 What ROSON shared about its global trajectory made one thing clear: Philippine clinics are partnering with a brand on a steep climb.
 
 In May, ROSON exhibited in **Italy**, where European dentists are rapidly revising old assumptions about Chinese manufacturing. The company has just signed an **exclusive partnership in the United Kingdom**, dentists in **Belgium** are switching to ROSON from long-established European brands, and **US FDA registration is in its final stages** — expected around the turn of the year, opening the American market.
+
+![ROSON Arriva in Italia — Expodental Rimini 2026 campaign](/images/news/roson-training-2026/roson-italia-poster.jpg)
 
 The roadmap is ambitious and public: become the number one dental unit brand in Foshan in 2026, number one in China within two years, and a **world-renowned brand by 2030**.
 
