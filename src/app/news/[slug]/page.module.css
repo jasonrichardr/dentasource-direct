@@ -105,6 +105,106 @@
     color: #1a3c34;
 }
 
+.focusBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1.4rem auto 0;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid #dcd9d3;
+    border-radius: 100px;
+    background: rgba(120, 120, 120, 0.06);
+    width: fit-content;
+    max-width: 100%;
+}
+
+.readTime {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #8a8a8a;
+    white-space: nowrap;
+}
+
+.focusDivider {
+    color: #c2beb6;
+}
+
+.focusToggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid #c9c5bd;
+    background: transparent;
+    color: #6f6f6f;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.32rem 0.85rem;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s, border-color 0.25s;
+    white-space: nowrap;
+}
+
+.focusToggle:hover {
+    background: rgba(120, 120, 120, 0.1);
+}
+
+.focusToggleOn {
+    background: #6f6f6f;
+    border-color: #6f6f6f;
+    color: #ffffff;
+}
+
+.focusToggleOn:hover {
+    background: #5c5c5c;
+}
+
+.focusIcon {
+    width: 15px;
+    height: 15px;
+}
+
+.eq {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 12px;
+}
+
+.eq span {
+    width: 3px;
+    border-radius: 2px;
+    background: currentColor;
+    animation: eqBounce 1.1s ease-in-out infinite;
+}
+
+.eq span:nth-child(1) { height: 6px; animation-delay: 0s; }
+.eq span:nth-child(2) { height: 11px; animation-delay: 0.25s; }
+.eq span:nth-child(3) { height: 8px; animation-delay: 0.5s; }
+
+@keyframes eqBounce {
+    0%, 100% { transform: scaleY(0.5); }
+    50% { transform: scaleY(1); }
+}
+
+.focusHint {
+    flex-basis: 100%;
+    font-size: 0.74rem;
+    color: #a3a09a;
+    letter-spacing: 0.02em;
+    text-align: center;
+}
+
+@media (max-width: 640px) {
+    .focusBar {
+        border-radius: 18px;
+    }
+}
+
 .ctaWrapper {
     margin: 2.5rem 0;
     text-align: center;

@@ -5,9 +5,11 @@ import Link from 'next/link';
 import { m as motion } from 'framer-motion';
 import JsonLd from '@/components/JsonLd';
 import { articleGraph } from '@/lib/schemas/article';
+import FocusMusic from './FocusMusic';
 import styles from './page.module.css';
 
 export default function ArticleContent({ article }) {
+    const readMinutes = Math.max(1, Math.round(article.content.split(/\s+/).length / 200));
     return (
         <main className={styles.articlePage}>
             <JsonLd id={`article-${article.slug}`} data={articleGraph(article)} />
@@ -22,6 +24,7 @@ export default function ArticleContent({ article }) {
                         <span className={styles.date}>{article.date}</span>
                         <h1 className={styles.title}>{article.title}</h1>
                         <p className={styles.abstract}>{article.abstract}</p>
+                        <FocusMusic minutes={readMinutes} />
                     </motion.div>
                 </div>
                 {article.image && !article.hideHeroImage && (
