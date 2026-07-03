@@ -5,7 +5,7 @@ export const newsData = [
         title: "ROSON A1 & A1 Pro: The Chair Built for the New Generation Dentist",
         date: "July 1, 2026",
         image: "/images/news/roson-training-2026/a1-cover.jpg",
-        ogImage: "/images/news/roson-a1-2026/og-a1-guide.jpg",
+        ogImage: "/images/news/roson-a1-2026/og-a1-guide-v2.jpg",
         hideHeroImage: false,
         abstract: "ROSON calls it the first dental unit made for the new generation dentist — a chair that matches your clinic's identity instead of dictating it, with a serious clinical machine underneath. Here's the complete guide to the A1 and A1 Pro: every colorway, every feature, and how to choose between the two.",
         content: `## A Dental Unit That Breaks the Oldest Rule
