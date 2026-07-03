@@ -94,6 +94,17 @@
     margin-bottom: 2rem;
 }
 
+.paragraph a {
+    color: #2d6a5a;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.paragraph a:hover {
+    color: #1a3c34;
+}
+
 .backLinkWrapper {
     margin-top: 4rem;
     padding-top: 2rem;

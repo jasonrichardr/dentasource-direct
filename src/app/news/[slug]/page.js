@@ -81,15 +81,29 @@ export default function NewsArticle(props) {
                                 );
                             }
                         }
-                        // Text paragraphs (with basic bold rendering)
+                        // Text paragraphs (with basic bold and link rendering)
                         if (trimmed.length > 0) {
-                            // Split by ** for bold text rendering
-                            const parts = trimmed.split(/(\*\*.*?\*\*)/g);
+                            // Split by ** for bold text and [text](url) for links
+                            const parts = trimmed.split(/(\*\*.*?\*\*|\[[^\]]+\]\([^)]+\))/g);
                             return (
                                 <p key={idx} className={styles.paragraph}>
                                     {parts.map((part, i) => {
                                         if (part.startsWith('**') && part.endsWith('**')) {
                                             return <strong key={i}>{part.slice(2, -2)}</strong>;
+                                        }
+                                        const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+                                        if (linkMatch) {
+                                            const isExternal = linkMatch[2].startsWith('http');
+                                            return (
+                                                <a
+                                                    key={i}
+                                                    href={linkMatch[2]}
+                                                    target={isExternal ? '_blank' : undefined}
+                                                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                                                >
+                                                    {linkMatch[1]}
+                                                </a>
+                                            );
                                         }
                                         return part;
                                     })}

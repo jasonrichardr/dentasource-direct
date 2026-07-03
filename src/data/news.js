@@ -1,5 +1,65 @@
 export const newsData = [
     {
+        id: "roson-training-dentasource-2026",
+        slug: "roson-trains-dentasource-team-manila-2026",
+        title: "ROSON Flies In: Factory Experts Train the DentaSource Team in Manila",
+        date: "July 3, 2026",
+        image: "/images/news/roson-training-2026/hero-training-board.jpg",
+        hideHeroImage: false,
+        abstract: "Our exclusive partner ROSON sent its factory team to our Pasig showroom for an intensive management, sales, and technical training session — from live demonstrations on a working dental unit board to hands-on chair servicing. Here's what happened, and why it means better support for every clinic we serve.",
+        content: `## Our Partner Came to Us — And Got Straight to Work
+
+This week, we welcomed a very special delegation to the DentaSource Direct showroom: the factory team from **ROSON Medical**, our exclusive manufacturing partner for dental chairs and treatment units in the Philippines — led personally by **ROSON CEO George Chen**. They didn't come for a photo opportunity. They came to teach.
+
+Over an intensive on-site session, ROSON's experts ran our entire team through **management, sales, and technical training** — the same knowledge transfer ROSON conducts with its distributors in its most demanding markets worldwide.
+
+## Learning on Real Hardware, Not Slides
+
+The centerpiece of the technical track was something you rarely see outside a factory floor: a **live training board** — a full dental unit control system laid open on a pegboard, with every valve, tubing line, solenoid, and handpiece connection exposed and working.
+
+ROSON's engineers walked our technical team through the system piece by piece: how water and air lines route through the unit, how each control block behaves, and how to diagnose and service each component quickly and correctly.
+
+![DentaSource team in a workshop session with ROSON engineers](/images/news/roson-training-2026/team-workshop.jpg)
+
+Then it went from the board to the floor. The team worked directly on chair hardware — tracing suction lines, opening up the assembly, and practicing the exact service procedures our technicians perform in clinics across the country.
+
+![Hands-on chair servicing training with the ROSON team](/images/news/roson-training-2026/hands-on-service.jpg)
+
+## More Than Technical: Management and Sales, Too
+
+What made this visit different from a typical supplier drop-in is that ROSON invested in the **whole team**, not just the service technicians.
+
+The management sessions covered how ROSON runs its own operations — the systems behind a manufacturer that has been building dental equipment **since 2005**. The sales sessions went deep on product knowledge: what actually differentiates each chair model, which specifications matter for which clinical setups, and how to guide a dentist to the right unit for their practice instead of simply the most expensive one.
+
+![ROSON trainer with the DentaSource team at the Pasig showroom](/images/news/roson-training-2026/showroom-session.jpg)
+
+## Why a Manufacturer Trains Its Distributor This Hard
+
+When you buy a dental chair, you're not just buying steel and upholstery — you're buying **the support system behind it** for the next decade. That support is only as good as the people delivering it.
+
+This is exactly why the ROSON–DentaSource partnership works the way it does. ROSON builds the equipment; we make sure it performs in Philippine clinics for years. Factory-direct training closes that loop: when our technician opens up your unit, they're applying procedures taught by the people who designed it.
+
+You can learn more about our partner's engineering, factory, and global footprint at the official ROSON Medical website: [fsroson.com](https://www.fsroson.com/).
+
+## What This Means for Your Clinic
+
+For the dentists and clinic owners we serve, this training translates into concrete benefits.
+
+**Faster, more accurate service calls.** Technicians who have disassembled and reassembled these systems under factory supervision diagnose problems faster and fix them right the first time.
+
+**Honest, informed buying guidance.** A sales team trained by the manufacturer can tell you exactly which model fits your procedures, your patient volume, and your space — with real technical grounding behind every recommendation.
+
+**Confidence in the long term.** A manufacturer that flies its people to Manila to train its partner is a manufacturer committed to this market. Combined with our local warranty coverage and parts availability in Metro Manila, that's peace of mind you can plan a practice around.
+
+## Stronger Together
+
+We extend our sincere appreciation to the ROSON team for investing in our people — and a special thank you to **CEO George Chen** for making the trip to Manila himself. Having the leader of the company sit with our team, share his experience, and connect with us personally was genuinely inspiring. It says everything about how ROSON treats its partners: not as customers, but as family.
+
+Partnerships like this are the reason we can stand behind every unit we deliver.
+
+If you'd like to see the same equipment our team just trained on, visit our showroom in Pasig — the largest dental equipment showroom in the Philippines — and experience the chairs yourself, or explore the full ROSON range at [fsroson.com](https://www.fsroson.com/).`
+    },
+    {
         id: "pda-2026-dr-ninal",
         slug: "pda-2026-dr-ninal-empowering-filipino-dentists",
         title: "PDA Under Dr. Niñal: How the Association Is Empowering Filipino Dentists in 2026",
