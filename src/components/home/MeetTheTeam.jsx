@@ -39,7 +39,7 @@ const pillars = [
 
 export default function MeetTheTeam() {
     return (
-        <section className="bg-[#F8F7F4] px-5 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <section className="bg-transparent px-5 py-16 sm:px-6 sm:py-24 lg:px-8">
             <div className="mx-auto max-w-5xl">
                 <motion.div
                     initial={{ opacity: 0, y: 16 }}

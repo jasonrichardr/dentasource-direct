@@ -6,7 +6,7 @@ import ChairInteractiveDial from './ChairInteractiveDial';
 
 export default function BentoShowcase() {
   return (
-    <section className="py-20 sm:py-28 lg:py-32 bg-[#F5F5F7] px-4 sm:px-6 lg:px-8">
+    <section className="py-20 sm:py-28 lg:py-32 bg-transparent px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-10 sm:mb-16 md:mb-20 max-w-2xl">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-[#1D1D1F] mb-4">Precision instruments for <br/><span className="text-[#86868B]">the modern practice.</span></h2>

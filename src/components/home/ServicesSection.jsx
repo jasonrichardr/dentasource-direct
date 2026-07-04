@@ -43,7 +43,7 @@ const steps = [
 
 export default function ServicesSection() {
   return (
-    <section className="bg-white rounded-t-[3rem] -mt-8 relative z-20">
+    <section className="bg-white/75 backdrop-blur-[2px] rounded-t-[3rem] -mt-8 relative z-20">
       <div className="max-w-3xl mx-auto px-5 sm:px-6 py-20 sm:py-28">
 
         {/* Journey Header */}
