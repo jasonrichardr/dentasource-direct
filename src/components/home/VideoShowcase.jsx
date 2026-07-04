@@ -64,6 +64,9 @@ export default function VideoShowcase() {
                     if (!el.paused) el.pause();
                 }
             });
+            // Tell the lounge pill whether a reel is currently speaking, so it ducks.
+            const audible = !!(active && !active.muted);
+            window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on: audible } }));
         };
 
         const io = new IntersectionObserver(

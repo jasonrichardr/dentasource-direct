@@ -13,6 +13,7 @@
     "@prisma/client": "^5.21.0",
     "@supabase/ssr": "^0.10.3",
     "@supabase/supabase-js": "^2.101.1",
+    "cannon-es": "^0.20.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.34.3",
@@ -21,7 +22,8 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "tailwind-merge": "^3.5.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@types/node": "^25.3.2",

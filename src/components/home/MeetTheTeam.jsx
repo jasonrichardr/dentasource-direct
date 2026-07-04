@@ -1,14 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { m as motion } from 'framer-motion';
 import { Stethoscope, HeartHandshake, Sparkles, Sprout, Database, Handshake } from 'lucide-react';
-
-const cultureReels = [
-    '/videos/culture/dsd-vid-1.mp4',
-    '/videos/culture/dsd-vid-2.mp4',
-    '/videos/culture/dsd-vid-3.mp4',
-];
+import GlassMarbles from './GlassMarbles';
 
 const pillars = [
     {
@@ -44,31 +38,6 @@ const pillars = [
 ];
 
 export default function MeetTheTeam() {
-    const marbleRefs = useRef([]);
-
-    // Ambient marbles: play (muted) while on screen, rest when scrolled away.
-    useEffect(() => {
-        const els = marbleRefs.current.filter(Boolean);
-        if (!els.length || typeof IntersectionObserver === 'undefined') return;
-        const io = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    const v = entry.target;
-                    if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
-                        v.muted = true;
-                        const p = v.play();
-                        if (p && typeof p.catch === 'function') p.catch(() => {});
-                    } else if (!v.paused) {
-                        v.pause();
-                    }
-                });
-            },
-            { threshold: [0, 0.3] }
-        );
-        els.forEach((el) => io.observe(el));
-        return () => io.disconnect();
-    }, []);
-
     return (
         <section className="bg-[#F8F7F4] px-5 py-16 sm:px-6 sm:py-24 lg:px-8">
             <div className="mx-auto max-w-5xl">
@@ -114,7 +83,7 @@ export default function MeetTheTeam() {
                     ))}
                 </div>
 
-                {/* Culture, on camera — glass marbles */}
+                {/* Culture, on camera — the FFC glass marble cluster, 1:1 */}
                 <motion.div
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -124,29 +93,8 @@ export default function MeetTheTeam() {
                     <p className="text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
                         Culture, On Camera
                     </p>
-                    <div className="mt-6 flex flex-wrap items-center justify-center gap-6 sm:gap-10">
-                        {cultureReels.map((src, i) => (
-                            <div
-                                key={src}
-                                className={`relative shrink-0 overflow-hidden rounded-full shadow-[0_24px_64px_rgba(19,35,63,0.22),0_2px_12px_rgba(19,35,63,0.12)] ring-1 ring-white/70 transition-transform duration-300 hover:scale-[1.04] ${
-                                    i === 1 ? 'size-52 sm:size-72' : 'size-40 sm:size-56'
-                                }`}
-                            >
-                                <video
-                                    ref={(el) => { marbleRefs.current[i] = el; }}
-                                    className="h-full w-full object-cover"
-                                    muted
-                                    loop
-                                    playsInline
-                                    preload="metadata"
-                                >
-                                    <source src={src} type="video/mp4" />
-                                </video>
-                                {/* Glass shine */}
-                                <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_30%_22%,rgba(255,255,255,0.38),rgba(255,255,255,0.08)_38%,transparent_62%)]" />
-                                <div className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/35" />
-                            </div>
-                        ))}
+                    <div className="mt-6">
+                        <GlassMarbles />
                     </div>
                 </motion.div>
 

@@ -5,6 +5,7 @@ import BentoShowcase from '@/components/home/BentoShowcase';
 import WhyUsSection from '@/components/home/WhyUsSection';
 import TraceabilitySection from '@/components/traceability/TraceabilitySection';
 import ServicesSection from '@/components/home/ServicesSection';
+import FloatingLounge from '@/components/FloatingLounge';
 
 export const metadata = {
   title: 'DentaSource Direct — Premium Dental Equipment Philippines',
@@ -21,6 +22,7 @@ export default function Home() {
       <WhyUsSection />
       <TraceabilitySection />
       <ServicesSection />
+      <FloatingLounge />
     </main>
   );
 }
