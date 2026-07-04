@@ -57,9 +57,12 @@ export default function GlassMarbles() {
     }, []);
 
     return (
-        <div className="relative overflow-hidden rounded-3xl bg-[#06070c] ring-1 ring-white/10 shadow-2xl shadow-black/30">
-            <div ref={mountRef} className="h-[420px] w-full sm:h-[560px]" />
-            <p className="pointer-events-none absolute bottom-4 left-0 right-0 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">
+        <div className="relative w-screen left-1/2 -translate-x-1/2 bg-[#06070c]">
+            {/* Soft edges into the light section — no box, the stage just breathes in and out */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#F8F7F4] to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#F8F7F4] to-transparent" />
+            <div ref={mountRef} className="h-[480px] w-full sm:h-[640px]" />
+            <p className="pointer-events-none absolute bottom-6 left-0 right-0 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">
                 Press &amp; hold a marble to watch
             </p>
         </div>

@@ -39,7 +39,7 @@ export default function VideoShowcase() {
             let active = null;
             let best = Infinity;
             els.forEach((el) => {
-                if ((ratios.get(el) || 0) < 0.6) return;
+                if ((ratios.get(el) || 0) < 0.45) return;
                 const r = el.getBoundingClientRect();
                 const d = Math.abs(r.top + r.height / 2 - midY) + Math.abs(r.left + r.width / 2 - midX);
                 if (d < best) { best = d; active = el; }
@@ -74,21 +74,23 @@ export default function VideoShowcase() {
                 entries.forEach((entry) => ratios.set(entry.target, entry.intersectionRatio));
                 focusCenter();
             },
-            { threshold: [0, 0.3, 0.6, 0.85, 1], rootMargin: '-8% 0px -8% 0px' }
+            { threshold: [0, 0.25, 0.45, 0.7, 1] }
         );
         els.forEach((el) => io.observe(el));
 
-        // Re-evaluate the center while scrolling so focus hands off smoothly.
+        // Re-evaluate the center while scrolling/swiping so focus hands off instantly.
         let raf = null;
         const onScroll = () => {
             if (raf) return;
             raf = requestAnimationFrame(() => { raf = null; focusCenter(); });
         };
         window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('touchmove', onScroll, { passive: true });
 
         return () => {
             io.disconnect();
             window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('touchmove', onScroll);
             gestures.forEach((ev) => window.removeEventListener(ev, onGesture));
             if (raf) cancelAnimationFrame(raf);
         };
