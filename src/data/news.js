@@ -34,7 +34,11 @@ Spend a minute in George's office in the film and you notice the bookshelf: rows
 
 That line defined his challenge. **"When I joined in 2020, I could feel the foundation and depth of a company that had been running for fifteen years — and I could also see its settled side, the lack of breakthrough. How to let this mature company honor its inheritance while re-injecting the entrepreneurial spirit — that was the greatest challenge I faced."**
 
+![George Chen alone before the operations dashboard — "I could also see its complacency and lack of breakthroughs"](/images/news/george-chen-2026/data-wall-wide.jpg)
+
 His answer, over five years: reset the goals and vision, attract talent from beyond the dental industry, and set standards for how the work gets done.
+
+![Walking the workshop wall with his team — "we have reset our goals and vision"](/images/news/george-chen-2026/reset-goals.jpg)
 
 ![George Chen making his point](/images/news/george-chen-2026/gesture.jpg)
 
@@ -44,11 +48,17 @@ The story that best captures how George thinks is the company's digital transfor
 
 **"For a system investment of over a million per deployment, at first we hesitated,"** he admits. **"Digitalization wasn't something we strictly needed in the short term — and there was no successful precedent in our industry to reference or copy. That meant the difficulties would be many."**
 
+![The workshop management wall — team structure, live dashboards, and the goals the system is held to](/images/news/george-chen-2026/manage-goals-wall.jpg)
+
 ![George Chen reading the production data wall](/images/news/george-chen-2026/data-wall.jpg)
 
 **"But carrying the entrepreneurial spirit and our original intention — to serve our customers better and to lift our management — we resolved to begin."** A year and a half of iteration later: a paperless production floor, **production data driving decisions in real time**, and **every key component and process step traceable** — the "medical record" your ROSON chair carries from its build to your operatory.
 
+![A year and a half of repeated adjustment — every unit's paper trail scanned into the system](/images/news/george-chen-2026/traceability-clipboard.jpg)
+
 **"Quality control rose to a new height,"** he says simply. **"Exactly the goal we set."**
+
+![Paperless management on the production floor — the workshop runs from a handheld](/images/news/george-chen-2026/paperless-app.jpg)
 
 ![Inside ROSON's digitally managed warehouse](/images/news/george-chen-2026/warehouse.jpg)
 
