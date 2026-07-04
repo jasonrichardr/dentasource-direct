@@ -12,12 +12,39 @@ export default function FloatingLounge() {
     const audioRef = useRef(null);
     const fadeRef = useRef(null);
     const suppressedRef = useRef(false); // paused BY a reel — resume when it ends
+    const canFadeRef = useRef(null);     // iOS Safari ignores .volume writes — detect once
     const [playing, setPlaying] = useState(false);
+
+    const getAudio = () => {
+        if (!audioRef.current) {
+            const a = new Audio('/audio/reading-flow.m4a');
+            a.loop = true;
+            a.preload = 'auto';
+            audioRef.current = a;
+            // Feature-detect programmatic volume: iPhones pin media volume to the
+            // hardware buttons and silently ignore .volume writes. Without this check
+            // the fade loop waits forever for a volume that never moves — and pause()
+            // never fires (the "stuck lounge" on iOS).
+            try {
+                a.volume = 0.5;
+                canFadeRef.current = Math.abs(a.volume - 0.5) < 0.01;
+                a.volume = 1;
+            } catch {
+                canFadeRef.current = false;
+            }
+        }
+        return audioRef.current;
+    };
 
     const fadeTo = (target, done) => {
         const a = audioRef.current;
         if (!a) return;
         clearInterval(fadeRef.current);
+        if (!canFadeRef.current) {
+            // No volume control (iOS) — act instantly instead of fading.
+            if (done) done();
+            return;
+        }
         fadeRef.current = setInterval(() => {
             const delta = target - a.volume;
             if (Math.abs(delta) < 0.02) {
@@ -31,24 +58,22 @@ export default function FloatingLounge() {
     };
 
     const start = () => {
-        if (!audioRef.current) {
-            audioRef.current = new Audio('/audio/reading-flow.m4a');
-            audioRef.current.loop = true;
-            audioRef.current.preload = 'auto';
-        }
-        const a = audioRef.current;
-        a.volume = 0;
-        a.play().then(() => {
+        const a = getAudio();
+        if (canFadeRef.current) a.volume = 0;
+        setPlaying(true); // optimistic — the button responds instantly even on slow networks
+        const p = a.play();
+        if (p && typeof p.then === 'function') {
+            p.then(() => fadeTo(LOUNGE_VOL)).catch(() => setPlaying(false));
+        } else {
             fadeTo(LOUNGE_VOL);
-            setPlaying(true);
-        }).catch(() => {});
+        }
     };
 
     const stop = () => {
         const a = audioRef.current;
+        setPlaying(false);
         if (!a) return;
         fadeTo(0, () => a.pause());
-        setPlaying(false);
     };
 
     const toggle = () => {

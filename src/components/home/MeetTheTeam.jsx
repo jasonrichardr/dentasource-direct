@@ -102,14 +102,27 @@ export default function MeetTheTeam() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.45 }}
-                    className="mt-10 rounded-2xl border border-emerald-200 bg-emerald-50/60 p-6 sm:mt-12 sm:p-8"
+                    className="relative mt-10 overflow-hidden rounded-3xl border border-black/[0.05] bg-white p-7 shadow-[0_24px_70px_rgba(26,60,52,0.09)] sm:mt-12 sm:p-10"
                 >
-                    <blockquote className="text-[16px] leading-snug font-medium tracking-tight text-[#1a3c34] sm:text-xl md:text-[22px]">
-                        &ldquo;This isn&rsquo;t a company built around products, it&rsquo;s a team built around
-                        people. Aligned in standards, united in purpose, accountable to each other and to you.&rdquo;
+                    {/* Accent thread + oversized quote mark — quiet, modern */}
+                    <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-emerald-500/70 via-[#c4993c]/60 to-transparent" />
+                    <span aria-hidden="true" className="pointer-events-none absolute -top-4 right-6 select-none font-serif text-[120px] leading-none text-emerald-700/[0.07]">
+                        &rdquo;
+                    </span>
+                    <blockquote className="relative font-serif text-[17px] leading-[1.45] tracking-tight text-[#1D1D1F] sm:text-2xl md:text-[26px]">
+                        This isn&rsquo;t a company built around products, it&rsquo;s a team built around
+                        people. Aligned in standards, united in purpose, accountable to each other and to you.
                     </blockquote>
-                    <figcaption className="mt-4 text-[12px] font-semibold tracking-[0.06em] text-emerald-700">
-                        Jarich · Founder, DentaSource Direct
+                    <figcaption className="relative mt-7 flex items-center gap-3.5">
+                        <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-600 to-[#1a3c34] text-[12px] font-bold tracking-wide text-white shadow-md shadow-emerald-900/20">
+                            JR
+                        </span>
+                        <span className="flex flex-col gap-0.5">
+                            <span className="text-[13.5px] font-medium text-gray-400">Jason Ramirez</span>
+                            <span className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-gray-300">
+                                Founder · DentaSource Direct
+                            </span>
+                        </span>
                     </figcaption>
                 </motion.figure>
             </div>
