@@ -30,7 +30,7 @@ Then something changed. **"Walking the workshops with my father, listening to hi
 
 Spend a minute in George's office in the film and you notice the bookshelf: rows of worn volumes on management, incentive systems, organizational design. One book he quotes by name — ***The Founder's Mentality***: **"The founder's mentality isn't only what a young company needs to succeed. It matters just as much to a mature, steadily-running company."**
 
-![The bookshelf in George Chen's office](/images/news/george-chen-2026/bookshelf.jpg)
+![At his desk with the book that shaped his leadership — "The Founder's Mentality"](/images/news/george-chen-2026/desk-founders.jpg)
 
 That line defined his challenge. **"When I joined in 2020, I could feel the foundation and depth of a company that had been running for fifteen years — and I could also see its settled side, the lack of breakthrough. How to let this mature company honor its inheritance while re-injecting the entrepreneurial spirit — that was the greatest challenge I faced."**
 
@@ -38,7 +38,7 @@ That line defined his challenge. **"When I joined in 2020, I could feel the foun
 
 His answer, over five years: reset the goals and vision, attract talent from beyond the dental industry, and set standards for how the work gets done.
 
-![Walking the workshop wall with his team — "we have reset our goals and vision"](/images/news/george-chen-2026/reset-goals.jpg)
+![Walking the workshop wall with his team — "we attracted more cross-industry talents"](/images/news/george-chen-2026/reset-goals.jpg)
 
 ![George Chen making his point](/images/news/george-chen-2026/gesture.jpg)
 
@@ -68,7 +68,7 @@ Ask George where all this is going and he doesn't talk about rankings. He talks 
 
 **"These five years, we've let ROSON inherit its striving spirit while arming it with modern management methods,"** he says. **"We are ready for the sprint into the next stage."** And true to habit, that readiness looks like listening: this year alone he has sat with partners in Russia, Egypt, Europe — and with us in Manila — asking what dentists need, and carrying the answers back into the next generation of chairs.
 
-![George Chen](/images/news/george-chen-2026/closing.jpg)
+![George Chen — "and equipped it with advanced management methods"](/images/news/george-chen-2026/closing.jpg)
 
 ## Watch: His Story, In His Own Words
 
@@ -76,7 +76,7 @@ The segment below is from ROSON's twentieth-anniversary film — George's chapte
 
 ![George Chen — his story from ROSON's anniversary film](/videos/george-chen-story.mp4)
 
-![The culture he built — inside the ROSON production team](/images/news/george-chen-2026/assembly.jpg)
+![The culture he built — the product team summarizing experience and lessons after a setback](/images/news/george-chen-2026/team-lessons.jpg)
 
 ## Why This Matters to Your Clinic
 
