@@ -1,5 +1,80 @@
 export const newsData = [
     {
+        id: "george-chen-profile-2026",
+        slug: "meet-roson-ceo-george-chen",
+        title: "Meet George Chen: The Mind Leading ROSON's Second Twenty Years",
+        date: "July 2, 2026",
+        image: "/images/news/george-chen-2026/data-wall.jpg",
+        ogImage: "/images/news/george-chen-2026/og-george.jpg",
+        hideHeroImage: false,
+        abstract: "He sat with our whole team in Manila and listened for hours. But who is the man leading ROSON? In his own words — his father's exhibition catalogs, The Founder's Mentality, and a million-yuan leap of faith — this is the story of CEO George Chen.",
+        content: `## The Man Who Flew In to Listen
+
+When ROSON's delegation visited our Pasig showroom, one thing struck everyone in the room: the CEO himself sat at the table for hours, asked questions, and wrote down our answers. **"We don't want to only place the order and finish the shipment,"** George Chen told us. **"We want to know how you work here, what support you need, and how we can help."**
+
+That sentence is not a slogan. It's how he runs the company. This is the story behind it — drawn from [our week with him in Manila](/news/roson-trains-dentasource-team-manila-2026) and from his own words in ROSON's anniversary film, which you can watch below.
+
+![George Chen walking past ROSON's mission wall — "helping dentists excel"](/images/news/george-chen-2026/slogan-wall.jpg)
+
+## A Son, and His Father's Notebooks
+
+George came to ROSON from the corporate world — fifteen years in Shanghai with global companies including **P&G and LEGO** — before joining the family company in **2020**, fifteen years after its founding.
+
+He is honest about how it began. **"When I first took over,"** he says, **"what carried me was a sense of responsibility to the family business."** Duty, not passion.
+
+Then something changed. **"Walking the workshops with my father, listening to him tell of handing out catalogs one by one at exhibitions more than a decade ago — and seeing the notebook on his desk, dense with meeting notes — I gradually touched the deeper meaning of this work: a love that comes from deep in the heart, and a vision of the rise of China's dental industry. They were never far from me."**
+
+![George Chen at the ROSON campus](/images/news/george-chen-2026/campus-walk.jpg)
+
+## A Student Before a CEO
+
+Spend a minute in George's office in the film and you notice the bookshelf: rows of worn volumes on management, incentive systems, organizational design. One book he quotes by name — ***The Founder's Mentality***: **"The founder's mentality isn't only what a young company needs to succeed. It matters just as much to a mature, steadily-running company."**
+
+![The bookshelf in George Chen's office](/images/news/george-chen-2026/bookshelf.jpg)
+
+That line defined his challenge. **"When I joined in 2020, I could feel the foundation and depth of a company that had been running for fifteen years — and I could also see its settled side, the lack of breakthrough. How to let this mature company honor its inheritance while re-injecting the entrepreneurial spirit — that was the greatest challenge I faced."**
+
+His answer, over five years: reset the goals and vision, attract talent from beyond the dental industry, and set standards for how the work gets done.
+
+![George Chen making his point](/images/news/george-chen-2026/gesture.jpg)
+
+## The Million-Yuan Leap of Faith
+
+The story that best captures how George thinks is the company's digital transformation — the same system behind the **traceability** every DentaSource client benefits from today.
+
+**"For a system investment of over a million per deployment, at first we hesitated,"** he admits. **"Digitalization wasn't something we strictly needed in the short term — and there was no successful precedent in our industry to reference or copy. That meant the difficulties would be many."**
+
+![George Chen reading the production data wall](/images/news/george-chen-2026/data-wall.jpg)
+
+**"But carrying the entrepreneurial spirit and our original intention — to serve our customers better and to lift our management — we resolved to begin."** A year and a half of iteration later: a paperless production floor, **production data driving decisions in real time**, and **every key component and process step traceable** — the "medical record" your ROSON chair carries from its build to your operatory.
+
+**"Quality control rose to a new height,"** he says simply. **"Exactly the goal we set."**
+
+![Inside ROSON's digitally managed warehouse](/images/news/george-chen-2026/warehouse.jpg)
+
+## The Second Twenty Years
+
+Ask George where all this is going and he doesn't talk about rankings. He talks about a vision with two sentences in it: **"Clinics all over the world using high-value ROSON equipment — and ROSON's promise, helping dentists excel, taking root in people's hearts."**
+
+**"These five years, we've let ROSON inherit its striving spirit while arming it with modern management methods,"** he says. **"We are ready for the sprint into the next stage."** And true to habit, that readiness looks like listening: this year alone he has sat with partners in Russia, Egypt, Europe — and with us in Manila — asking what dentists need, and carrying the answers back into the next generation of chairs.
+
+![George Chen](/images/news/george-chen-2026/closing.jpg)
+
+## Watch: His Story, In His Own Words
+
+The segment below is from ROSON's twentieth-anniversary film — George's chapter first, followed by one of the product-team leaders he mentored, whose story of a failed first product and starting again says everything about the **culture of self-renewal** George built. (Mandarin with English subtitles.)
+
+![George Chen — his story from ROSON's anniversary film](/videos/george-chen-story.mp4)
+
+![The culture he built — inside the ROSON production team](/images/news/george-chen-2026/assembly.jpg)
+
+## Why This Matters to Your Clinic
+
+When you buy a chair, you're trusting the judgment of the people who made it — for the next decade. We work with ROSON exclusively because its leader reads the books, walks the production floor, bets on quality before it's convenient, and flies across the sea to listen to the clinics his equipment serves.
+
+[Read the full story of the ROSON visit →](/news/roson-trains-dentasource-team-manila-2026)`
+    },
+    {
         id: "roson-a1-guide-2026",
         slug: "roson-a1-a1-pro-complete-guide",
         title: "ROSON A1 & A1 Pro: The Chair Built for the New Generation Dentist",
@@ -244,6 +319,10 @@ At the heart of it was a long exchange between our CEO **Jason Ramirez** and **R
 
 And here's what made it special: it never became a closed-door executive meeting. Two CEOs talked, but the **whole team sat at the same table** — sales, marketing, technicians, dental assistants — and **every voice was heard**. Questions were answered on the spot, suggestions were written down by the ROSON team as they came, and ideas from the floor shaped the commitments that follow.
 
+We wrote a full profile of the man across the table — his father's notebooks, the books he leads by, and the million-yuan bet that gave your chair its traceability.
+
+[Know more about CEO George Chen →](/news/meet-roson-ceo-george-chen)
+
 Several commitments came out of that room that will directly benefit our clients:
 
 **A proactive after-care program.** Drawing on what works with ROSON's most successful partners worldwide, we're formalizing scheduled check-in calls after every installation — a few weeks in, then at three months, then every six months — so small issues get caught before they ever interrupt a clinic day. That's on top of our existing one-to-two-day service response.
@@ -258,7 +337,7 @@ The session also gave our team a deeper look at who ROSON really is — and the 
 
 ROSON is headquartered in **Foshan, China — the dental manufacturing capital of the world**, home to roughly sixty of the country's dental unit manufacturers. Within that hub, ROSON holds a position of real authority: the company chairs the **Foshan Dental Association**, helping set the standards for the industry it leads.
 
-The heritage runs deep. The family's dental manufacturing legacy stretches back more than two decades — an earlier family manufacturing business was acquired by German dental giant **Sirona**, and several of ROSON's veteran engineers began their careers there. CEO **George Chen** took over the company in 2010 after fifteen years in Shanghai with global companies including **P&G and LEGO**, bringing world-class management thinking into a precision manufacturing business.
+The heritage runs deep. The family's dental manufacturing legacy stretches back more than two decades — an earlier family manufacturing business was acquired by German dental giant **Sirona**, and several of ROSON's veteran engineers began their careers there. CEO **George Chen** joined the company's leadership in 2020 after fifteen years in Shanghai with global companies including **P&G and LEGO**, bringing world-class management thinking into a precision manufacturing business.
 
 And in an industry where most manufacturers simply assemble, ROSON runs its own **in-house testing laboratory** — still a rarity among Chinese manufacturers — where every component is stress-tested against hard data before it ever reaches a clinic. Six dedicated test systems run continuously: a temperature and humidity chamber, a salt spray tester, an elastic arm tester, a foot pedal tester, a chair frame and motor performance rig, and a control system aging test — overseen by dedicated **IQC and OQC teams** and an R&D bench averaging over ten years of industry experience.
 
