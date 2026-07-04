@@ -8,12 +8,29 @@ const TARGET_VOLUME = 0.35;
 export default function FocusMusic({ minutes }) {
     const audioRef = useRef(null);
     const fadeRef = useRef(null);
+    const canFadeRef = useRef(null); // iPhones ignore .volume writes — detect once
     const [playing, setPlaying] = useState(false);
+
+    const detectFade = (audio) => {
+        if (canFadeRef.current !== null) return;
+        try {
+            audio.volume = 0.5;
+            canFadeRef.current = Math.abs(audio.volume - 0.5) < 0.01;
+            audio.volume = 1;
+        } catch {
+            canFadeRef.current = false;
+        }
+    };
 
     const fadeTo = (target, done) => {
         const audio = audioRef.current;
         if (!audio) return;
         clearInterval(fadeRef.current);
+        if (!canFadeRef.current) {
+            // No programmatic volume on this device (iOS) — act instantly, no fade.
+            if (done) done();
+            return;
+        }
         fadeRef.current = setInterval(() => {
             const delta = target - audio.volume;
             if (Math.abs(delta) < 0.03) {
@@ -29,15 +46,19 @@ export default function FocusMusic({ minutes }) {
     const toggle = () => {
         const audio = audioRef.current;
         if (!audio) return;
+        detectFade(audio);
         if (playing) {
-            fadeTo(0, () => audio.pause());
             setPlaying(false);
+            fadeTo(0, () => audio.pause());
         } else {
-            audio.volume = 0;
-            audio.play().then(() => {
+            if (canFadeRef.current) audio.volume = 0;
+            setPlaying(true); // optimistic — the pill responds on the tap itself
+            const p = audio.play();
+            if (p && typeof p.then === 'function') {
+                p.then(() => fadeTo(TARGET_VOLUME)).catch(() => setPlaying(false));
+            } else {
                 fadeTo(TARGET_VOLUME);
-                setPlaying(true);
-            }).catch(() => {});
+            }
         }
     };
 
