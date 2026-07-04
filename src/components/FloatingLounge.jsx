@@ -13,6 +13,8 @@ export default function FloatingLounge() {
     const fadeRef = useRef(null);
     const suppressedRef = useRef(false); // paused BY a reel — resume when it ends
     const canFadeRef = useRef(null);     // iOS Safari ignores .volume writes — detect once
+    const reelOnRef = useRef(false);     // a reel is currently speaking
+    const userStoppedRef = useRef(false);// the visitor chose silence — never auto-start again
     const [playing, setPlaying] = useState(false);
 
     const getAudio = () => {
@@ -78,14 +80,22 @@ export default function FloatingLounge() {
 
     const toggle = () => {
         suppressedRef.current = false; // a manual toggle always wins over auto-resume
-        if (playing) stop();
-        else start();
+        if (playing) {
+            userStoppedRef.current = true;
+            stop();
+        } else {
+            userStoppedRef.current = false;
+            start();
+        }
     };
 
     // A reel with audio started → pause the lounge; it ended → resume if WE paused it.
+    // Plus: the lounge greets visitors on ENTRY — instant autoplay where the browser
+    // allows it, otherwise on the very first gesture anywhere on the page.
     useEffect(() => {
         const onVideoAudio = (e) => {
             const reelSpeaking = !!e.detail?.on;
+            reelOnRef.current = reelSpeaking;
             const a = audioRef.current;
             if (reelSpeaking) {
                 if (a && !a.paused) {
@@ -98,8 +108,40 @@ export default function FloatingLounge() {
             }
         };
         window.addEventListener('dsd:videoaudio', onVideoAudio);
+
+        const gestures = ['pointerdown', 'keydown', 'touchstart'];
+        const onFirstGesture = (e) => {
+            gestures.forEach((ev) => window.removeEventListener(ev, onFirstGesture));
+            // Let the lounge button's own click handle it; skip if the visitor already
+            // chose silence, music is on, or a reel is speaking right now.
+            if (e.target && e.target.closest && e.target.closest('.dsd-lounge')) return;
+            const a = audioRef.current;
+            if (userStoppedRef.current || (a && !a.paused) || reelOnRef.current) return;
+            start();
+        };
+
+        // Arm the first-gesture fallback IMMEDIATELY (not after the entry attempt
+        // settles) — a cold load can leave the entry promise pending long enough to
+        // miss the visitor's actual first tap. The handler no-ops if music is already
+        // on, so arming early is always safe.
+        gestures.forEach((ev) => window.addEventListener(ev, onFirstGesture, { passive: true }));
+
+        // Entry autoplay: works immediately for browsers that already trust the site
+        // (e.g. returning Chrome visitors); everyone else gets it on first touch.
+        const a = getAudio();
+        if (canFadeRef.current) a.volume = 0;
+        const p = a.play();
+        if (p && typeof p.then === 'function') {
+            p.then(() => {
+                gestures.forEach((ev) => window.removeEventListener(ev, onFirstGesture));
+                setPlaying(true);
+                fadeTo(LOUNGE_VOL);
+            }).catch(() => {});
+        }
+
         return () => {
             window.removeEventListener('dsd:videoaudio', onVideoAudio);
+            gestures.forEach((ev) => window.removeEventListener(ev, onFirstGesture));
             clearInterval(fadeRef.current);
             if (audioRef.current) audioRef.current.pause();
         };
