@@ -33,17 +33,28 @@ export default function VideoShowcase() {
 
         const ratios = new Map();
 
+        const tellLounge = (on) =>
+            window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on } }));
+
         const focusCenter = () => {
             const midY = window.innerHeight / 2;
             const midX = window.innerWidth / 2;
             let active = null;
             let best = Infinity;
             els.forEach((el) => {
-                if ((ratios.get(el) || 0) < 0.45) return;
+                // A reel qualifies as soon as it's meaningfully on screen (25%) — audio
+                // starts the moment it autoplays, not only once it reaches dead center.
+                if ((ratios.get(el) || 0) < 0.25) return;
                 const r = el.getBoundingClientRect();
                 const d = Math.abs(r.top + r.height / 2 - midY) + Math.abs(r.left + r.width / 2 - midX);
                 if (d < best) { best = d; active = el; }
             });
+
+            // Hand the stage over BEFORE the reel speaks: the lounge starts fading out
+            // first, so the two audio sources never fight — no overlap, no race.
+            if (active && gestureSeen) tellLounge(true);
+            else if (!active) tellLounge(false);
+
             els.forEach((el) => {
                 if (el === active) {
                     if (gestureSeen && el.muted) {
@@ -53,10 +64,12 @@ export default function VideoShowcase() {
                     const p = el.play();
                     if (p && typeof p.catch === 'function') {
                         p.catch(() => {
-                            // Audio blocked — fall back to muted autoplay.
+                            // Audio blocked — fall back to muted autoplay and give the
+                            // stage back to the lounge, since no reel is speaking.
                             el.muted = true;
                             const m = el.play();
                             if (m && typeof m.catch === 'function') m.catch(() => {});
+                            tellLounge(false);
                         });
                     }
                 } else {
@@ -64,9 +77,6 @@ export default function VideoShowcase() {
                     if (!el.paused) el.pause();
                 }
             });
-            // Tell the lounge pill whether a reel is currently speaking, so it ducks.
-            const audible = !!(active && !active.muted);
-            window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on: audible } }));
         };
 
         const io = new IntersectionObserver(
