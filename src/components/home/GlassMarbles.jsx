@@ -59,9 +59,10 @@ export default function GlassMarbles() {
     return (
         <div className="relative w-screen left-1/2 -translate-x-1/2 bg-[#06070c]">
             {/* Soft edges into the light section — no box, the stage just breathes in and out */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#FBF8F1] to-transparent" />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#FBF8F1] to-transparent" />
-            <div ref={mountRef} className="h-[480px] w-full sm:h-[640px]" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#F8F7F4] to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#F8F7F4] to-transparent" />
+            {/* Full-screen stage on mobile (like the FFC original); generous window on desktop */}
+            <div ref={mountRef} className="h-[100svh] w-full sm:h-[720px]" />
             <p className="pointer-events-none absolute bottom-6 left-0 right-0 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">
                 Press &amp; hold a marble to watch
             </p>

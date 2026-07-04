@@ -6,7 +6,6 @@ import WhyUsSection from '@/components/home/WhyUsSection';
 import TraceabilitySection from '@/components/traceability/TraceabilitySection';
 import ServicesSection from '@/components/home/ServicesSection';
 import FloatingLounge from '@/components/FloatingLounge';
-import ParticleFilm from '@/components/home/film/ParticleFilm';
 
 export const metadata = {
   title: 'DentaSource Direct — Premium Dental Equipment Philippines',
@@ -15,17 +14,14 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="w-full font-sans bg-[#FBF8F1] selection:bg-[#10b981] selection:text-white">
-      <ParticleFilm />
-      <div className="relative z-10">
-        <HeroSection />
-        <MeetTheTeam />
-        <VideoShowcase />
-        <BentoShowcase />
-        <WhyUsSection />
-        <TraceabilitySection />
-        <ServicesSection />
-      </div>
+    <main className="w-full font-sans bg-white selection:bg-[#10b981] selection:text-white">
+      <HeroSection />
+      <MeetTheTeam />
+      <VideoShowcase />
+      <BentoShowcase />
+      <WhyUsSection />
+      <TraceabilitySection />
+      <ServicesSection />
       <FloatingLounge />
     </main>
   );
