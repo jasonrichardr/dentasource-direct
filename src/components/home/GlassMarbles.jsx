@@ -50,8 +50,24 @@ export default function GlassMarbles() {
         );
         io.observe(mount);
 
+        // The press-and-hold theater plays a reel WITH audio. Watch for it opening and
+        // closing (it mounts/unmounts a .cp-theater overlay) and tell the lounge, so the
+        // music pauses for the reel and continues right after — without forking the
+        // verbatim marbleCluster source.
+        let theaterOpen = false;
+        const mo = new MutationObserver(() => {
+            const open = !!document.querySelector('.cp-theater');
+            if (open !== theaterOpen) {
+                theaterOpen = open;
+                window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on: open } }));
+            }
+        });
+        mo.observe(document.body, { childList: true });
+
         return () => {
             io.disconnect();
+            mo.disconnect();
+            if (theaterOpen) window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on: false } }));
             cluster.dispose();
         };
     }, []);

@@ -3,17 +3,16 @@
 import { useEffect, useRef, useState } from 'react';
 
 const LOUNGE_VOL = 0.32;
-const DUCK_VOL = 0.05; // while a showcase reel is speaking
 
-// The lounge — a floating glassmorphism music pill. Idle, it breathes softly and
-// invites a click; playing, it shows a tiny equalizer and fills the room with the
-// flow track. It politely ducks whenever a showcase video is playing with audio.
+// The lounge — a compact floating glass button. Idle, it breathes softly; playing,
+// a tiny equalizer dances. When any reel speaks (scroll-focused showcase video or a
+// marble opened in the theater), the lounge PAUSES completely and resumes by itself
+// once the reel goes quiet — two audio sources never overlap.
 export default function FloatingLounge() {
     const audioRef = useRef(null);
     const fadeRef = useRef(null);
-    const duckedRef = useRef(false);
+    const suppressedRef = useRef(false); // paused BY a reel — resume when it ends
     const [playing, setPlaying] = useState(false);
-    const [touched, setTouched] = useState(false); // collapses the invite label after first use
 
     const fadeTo = (target, done) => {
         const a = audioRef.current;
@@ -27,36 +26,51 @@ export default function FloatingLounge() {
                 if (done) done();
                 return;
             }
-            a.volume = Math.min(1, Math.max(0, a.volume + delta * 0.18));
-        }, 70);
+            a.volume = Math.min(1, Math.max(0, a.volume + delta * 0.2));
+        }, 60);
     };
 
-    const toggle = () => {
-        setTouched(true);
+    const start = () => {
         if (!audioRef.current) {
             audioRef.current = new Audio('/audio/reading-flow.m4a');
             audioRef.current.loop = true;
             audioRef.current.preload = 'auto';
         }
         const a = audioRef.current;
-        if (playing) {
-            fadeTo(0, () => a.pause());
-            setPlaying(false);
-        } else {
-            a.volume = 0;
-            a.play().then(() => {
-                fadeTo(duckedRef.current ? DUCK_VOL : LOUNGE_VOL);
-                setPlaying(true);
-            }).catch(() => {});
-        }
+        a.volume = 0;
+        a.play().then(() => {
+            fadeTo(LOUNGE_VOL);
+            setPlaying(true);
+        }).catch(() => {});
     };
 
-    // Duck under showcase reels that are playing with audio.
+    const stop = () => {
+        const a = audioRef.current;
+        if (!a) return;
+        fadeTo(0, () => a.pause());
+        setPlaying(false);
+    };
+
+    const toggle = () => {
+        suppressedRef.current = false; // a manual toggle always wins over auto-resume
+        if (playing) stop();
+        else start();
+    };
+
+    // A reel with audio started → pause the lounge; it ended → resume if WE paused it.
     useEffect(() => {
         const onVideoAudio = (e) => {
-            duckedRef.current = !!e.detail?.on;
+            const reelSpeaking = !!e.detail?.on;
             const a = audioRef.current;
-            if (a && !a.paused) fadeTo(duckedRef.current ? DUCK_VOL : LOUNGE_VOL);
+            if (reelSpeaking) {
+                if (a && !a.paused) {
+                    suppressedRef.current = true;
+                    stop();
+                }
+            } else if (suppressedRef.current) {
+                suppressedRef.current = false;
+                start();
+            }
         };
         window.addEventListener('dsd:videoaudio', onVideoAudio);
         return () => {
@@ -64,61 +78,62 @@ export default function FloatingLounge() {
             clearInterval(fadeRef.current);
             if (audioRef.current) audioRef.current.pause();
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <>
             <style>{`
                 @keyframes dsdLoungeBreath {
-                    0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.35), 0 8px 32px rgba(0,0,0,0.25); }
-                    50% { box-shadow: 0 0 0 12px rgba(52, 211, 153, 0), 0 8px 32px rgba(0,0,0,0.25); }
-                }
-                @keyframes dsdLoungePop {
-                    0% { transform: scale(1); }
-                    35% { transform: scale(0.86); }
-                    70% { transform: scale(1.08); }
-                    100% { transform: scale(1); }
+                    0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.28), 0 6px 24px rgba(0,0,0,0.22); }
+                    50% { box-shadow: 0 0 0 9px rgba(52, 211, 153, 0), 0 6px 24px rgba(0,0,0,0.22); }
                 }
                 @keyframes dsdLoungeEq {
-                    0%, 100% { transform: scaleY(0.45); }
+                    0%, 100% { transform: scaleY(0.4); }
                     50% { transform: scaleY(1); }
                 }
-                .dsd-lounge-idle { animation: dsdLoungeBreath 3.2s ease-in-out infinite; }
-                .dsd-lounge-pop { animation: dsdLoungePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+                .dsd-lounge-idle { animation: dsdLoungeBreath 3.4s ease-in-out infinite; }
                 .dsd-lounge-eq span {
-                    display: inline-block; width: 3px; border-radius: 2px;
+                    display: inline-block; width: 2.5px; border-radius: 2px;
                     background: currentColor; transform-origin: bottom;
                     animation: dsdLoungeEq 1.1s ease-in-out infinite;
                 }
-                .dsd-lounge-eq span:nth-child(1) { height: 8px; animation-delay: 0s; }
-                .dsd-lounge-eq span:nth-child(2) { height: 14px; animation-delay: 0.22s; }
-                .dsd-lounge-eq span:nth-child(3) { height: 10px; animation-delay: 0.44s; }
+                .dsd-lounge-eq span:nth-child(1) { height: 7px; animation-delay: 0s; }
+                .dsd-lounge-eq span:nth-child(2) { height: 12px; animation-delay: 0.22s; }
+                .dsd-lounge-eq span:nth-child(3) { height: 9px; animation-delay: 0.44s; }
+                .dsd-lounge-label {
+                    max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap;
+                    transition: max-width .35s ease, opacity .3s ease, margin .35s ease;
+                    margin-left: 0;
+                }
+                .dsd-lounge:hover .dsd-lounge-label {
+                    max-width: 110px; opacity: 1; margin-left: 8px;
+                }
             `}</style>
             <button
                 type="button"
                 onClick={toggle}
                 aria-pressed={playing}
                 aria-label={playing ? 'Pause lounge music' : 'Play lounge flow music'}
-                className={`fixed bottom-5 left-5 z-40 flex items-center gap-3 rounded-full border border-white/30 bg-white/15 py-2.5 pl-3 pr-4 text-white backdrop-blur-xl transition-all duration-300 hover:bg-white/25 ${
-                    playing ? 'dsd-lounge-pop' : 'dsd-lounge-idle'
+                title={playing ? 'Pause lounge music' : 'Lounge · flow music'}
+                className={`dsd-lounge fixed bottom-5 left-5 z-40 flex h-11 items-center rounded-full border border-white/25 bg-black/25 px-[13px] text-emerald-50 backdrop-blur-xl transition-colors duration-300 hover:bg-black/40 ${
+                    playing ? '' : 'dsd-lounge-idle'
                 }`}
-                style={{ WebkitBackdropFilter: 'blur(24px)' }}
+                style={{ WebkitBackdropFilter: 'blur(20px)' }}
             >
-                <span className="flex size-8 items-center justify-center rounded-full bg-emerald-400/25 text-emerald-100 ring-1 ring-emerald-200/40">
-                    {playing ? (
-                        <span className="dsd-lounge-eq flex items-end gap-[2.5px]" aria-hidden="true">
-                            <span /><span /><span />
-                        </span>
-                    ) : (
-                        <svg viewBox="0 0 24 24" fill="none" className="size-4" aria-hidden="true">
-                            <path d="M9 18V6l10-2v12" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-                            <circle cx="6.5" cy="18" r="2.5" stroke="currentColor" strokeWidth="1.7" />
-                            <circle cx="16.5" cy="16" r="2.5" stroke="currentColor" strokeWidth="1.7" />
-                        </svg>
-                    )}
-                </span>
-                <span className="text-[12px] font-semibold tracking-[0.08em] drop-shadow-sm">
-                    {playing ? 'Lounge · playing' : touched ? 'Lounge' : 'Lounge · flow music'}
+                {playing ? (
+                    <span className="dsd-lounge-eq flex items-end gap-[2px]" aria-hidden="true">
+                        <span /><span /><span />
+                    </span>
+                ) : (
+                    <svg viewBox="0 0 24 24" fill="none" className="size-[15px]" aria-hidden="true">
+                        <path d="M9 18V6l10-2v12" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                        <circle cx="6.5" cy="18" r="2.5" stroke="currentColor" strokeWidth="1.7" />
+                        <circle cx="16.5" cy="16" r="2.5" stroke="currentColor" strokeWidth="1.7" />
+                    </svg>
+                )}
+                <span className="dsd-lounge-label text-[11px] font-semibold tracking-[0.06em]">
+                    {playing ? 'Lounge · on' : 'Lounge music'}
                 </span>
             </button>
         </>
