@@ -257,6 +257,51 @@
     background: #5c5c5c;
 }
 
+.focusToast {
+    display: inline-flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(120, 116, 108, 0.35);
+    background: rgba(255, 255, 255, 0.85);
+    color: #6f6f6f;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    max-width: 62vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 8px 28px rgba(26, 60, 52, 0.16);
+    transform-origin: right center;
+    animation: focusToastIn 0.3s ease both;
+}
+
+.focusToastOut {
+    animation: focusToastOut 0.35s ease forwards;
+}
+
+@keyframes focusToastIn {
+    from {
+        opacity: 0;
+        transform: translateX(10px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes focusToastOut {
+    to {
+        opacity: 0;
+        transform: translateX(10px) scale(0.8);
+    }
+}
+
 .ctaWrapper {
     margin: 2.5rem 0;
     text-align: center;
