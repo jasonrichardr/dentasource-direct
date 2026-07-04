@@ -1,7 +1,7 @@
 export const a1proFaqs = [
   {
     q: 'What is the ROSON A1 Pro dental chair?',
-    a: 'The A1 Pro is ROSON\'s color-led treatment chair built for the new generation of dentists. It pairs a 12 mm carbon-structural-steel frame and 150 kg patient load capacity with sleep-grade soft start/stop motion, the Rolight S 8-LED dental light, an intelligent memory chair position, a 4-position adjustable handpiece holder, and the RS-07 Professional Dentist Stool — all included as standard. Choose from three signature colors (ROSON Blue, Ballet Pink, Mint Green) or customize from over thirty silicone and PU leather options.',
+    a: 'The A1 Pro is ROSON\'s color-led treatment chair built for the new generation of dentists. It pairs a 12 mm carbon-structural-steel frame and 150 kg patient load capacity with sleep-grade soft start/stop motion, the Rolight S 8-LED dental light, an intelligent memory chair position, a 4-position adjustable handpiece holder, and the RS-07 Professional Dentist Stool — all included as standard. Choose from three signature colors (ROSON Blue, Ballet Pink, Mint Green) or customize from over forty silicone and PU leather colorways.',
   },
   {
     q: 'Why does the 12 mm carbon-steel frame matter?',
@@ -13,7 +13,7 @@ export const a1proFaqs = [
   },
   {
     q: 'How many color options are available?',
-    a: 'Three signature colors come pre-styled by ROSON\'s design team: ROSON Blue (sky-and-sea inspired teal), Ballet Pink (soft healing pink), and Mint Green (fresh natural green). Beyond that, you can customize from twelve soft silicone rubber leather options and twenty-one medical-grade PU leather options — over thirty combinations total. Integrated color customization extends to the water box, upholstery, and instrument tray for a unified look.',
+    a: 'Three signature colors come pre-styled by ROSON\'s design team: ROSON Blue (sky-and-sea inspired teal), Ballet Pink (soft healing pink), and Mint Green (fresh natural green). Beyond that, you can customize from the full FS silicone and PU leather ranges — forty-four colorways in total. Integrated color customization extends to the water box, upholstery, and instrument tray for a unified look.',
   },
   {
     q: 'Is the RS-07 dentist stool included?',

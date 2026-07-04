@@ -1,4 +1,4 @@
-import { Inter, Playfair_Display, Geist } from 'next/font/google';
+import { Inter, Playfair_Display, Geist, Instrument_Sans, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
@@ -12,6 +12,9 @@ import MotionProvider from '@/components/MotionProvider';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
+// SKU product-page template voice (rideradian DNA): grotesk display + mono labels.
+const instrument = Instrument_Sans({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-instrument', display: 'swap' });
+const plexMono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-plex-mono', display: 'swap' });
 
 export const metadata = {
   title: {
@@ -65,7 +68,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${geistSans.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${geistSans.variable} ${instrument.variable} ${plexMono.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         <MotionProvider>
         <MetaPixel />
