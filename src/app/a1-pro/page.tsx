@@ -1,25 +1,33 @@
-import A1ProLanding from '@/components/a1-pro/A1ProLanding';
+import A1RadianLanding from '@/components/a1-radian/A1RadianLanding';
 import A1ProSchemas from '@/components/a1-pro/A1ProSchemas';
 
 export const metadata = {
   title: { absolute: 'ROSON A1 Pro Dental Chair | DentaSource Direct Philippines' },
   description:
-    'Color-led dental chair for the new generation of dentists. 12 mm carbon-steel frame, 150 kg load, sleep-grade soft start/stop, Rolight S 8-LED tri-mode light, intelligent chair memory. Three signature colors (ROSON Blue, Ballet Pink, Mint Green) plus 33+ customization options. RS-07 stool included. Pasig showroom demos available.',
+    'Color-led dental chair for the new generation of dentists. 12 mm carbon-steel frame, 150 kg load, sleep-grade soft start/stop, Rolight S 8-LED tri-mode light, intelligent chair memory. Three signature colors (ROSON Blue, Ballet Pink, Mint Green) plus 44 total colorways. RS-07 stool included. Pasig showroom demos available.',
   alternates: { canonical: 'https://dentasourcedirect.com/a1-pro' },
   openGraph: {
     title: 'ROSON A1 Pro Dental Chair',
     description:
-      'The first dental unit built for the new generation of dentists. Premium engineering, color as a first-class design choice. Three signature colors, complete chair-stool-light kit, Pasig showroom demos.',
+      'A dental unit built for the new generation of dentists. Premium engineering, color as a first-class design choice. Three signature colors, complete chair-stool-light kit, Pasig showroom demos.',
     url: 'https://dentasourcedirect.com/a1-pro',
     type: 'website',
+    siteName: 'DentaSource Direct',
     images: [
       {
-        url: 'https://dentasourcedirect.com/images/products/a1-pro/og.jpg',
+        url: 'https://dentasourcedirect.com/images/products/a1-pro/og-a1-pro.jpg',
         width: 1200,
-        height: 1200,
-        alt: 'ROSON A1 Pro dental chair — full unit with light arm and assistant tray',
+        height: 630,
+        alt: 'ROSON A1 Pro dental chair — your clinic, your color',
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ROSON A1 Pro Dental Chair',
+    description:
+      'A dental unit built for the new generation of dentists. Color as a first-class design choice — three signature colors, 44 colorways, complete chair-stool-light kit. Pasig showroom demos.',
+    images: ['https://dentasourcedirect.com/images/products/a1-pro/og-a1-pro.jpg'],
   },
 };
 
@@ -27,7 +35,7 @@ export default function A1ProPage() {
   return (
     <main className="min-h-screen bg-white">
       <A1ProSchemas />
-      <A1ProLanding />
+      <A1RadianLanding />
     </main>
   );
 }

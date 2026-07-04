@@ -118,3 +118,51 @@ body[style*="overflow: hidden"]::-webkit-scrollbar {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-3px); }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   ROSON A1 Pro — rideradian-DNA SKU product-page template
+   Dark technical-instrument grammar. One signal color (emerald); the
+   product photography carries every other colour. Scoped to `.radian`
+   so it never leaks into the rest of dentasourcedirect.com.
+   Decision: decisions/2026-07-05-dsd-sku-pages-adopt-rideradian-dna.md
+   ══════════════════════════════════════════════════════════════════════ */
+.radian {
+  --ink: #0A1410;          /* dark canvas + text-on-light */
+  --ink-raised: #131c17;   /* cards / chips on dark */
+  --bone: #F5F5F7;         /* light canvas + text-on-dark */
+  --signal: #10b981;       /* THE accent — CTAs, ruler ticks, counter chips */
+  --signal-deep: #065f46;
+  --ember: #F26522;        /* rare secondary signal (hover / detail) */
+  --muted: #7c8a83;        /* ghosted inactive text on dark */
+  --muted-ink: #6b7280;    /* ghosted inactive text on light */
+  --line: rgba(245, 245, 247, 0.12);   /* hairline on dark */
+  --line-ink: rgba(10, 20, 16, 0.12);  /* hairline on light */
+  --ease: cubic-bezier(0.77, 0, 0.18, 1);
+  --ease-soft: cubic-bezier(0.625, 0.05, 0, 1);
+
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-instrument), var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.radian ::selection { background: var(--signal); color: #04110b; }
+
+/* headings — one family, weight 500, tight tracking + leading (the DNA) */
+.radian-h {
+  font-family: var(--font-instrument), sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+}
+/* mono micro-label — the signature "engineered" voice */
+.radian-mono {
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Motion safety — the perf law. Honour reduced-motion everywhere on the page. */
+@media (prefers-reduced-motion: reduce) {
+  .radian [data-scrub] { position: static !important; }
+  .radian * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

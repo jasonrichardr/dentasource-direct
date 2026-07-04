@@ -10,7 +10,7 @@ export default function A1ProSchemas() {
   const enrichedProduct = {
     ...product,
     description:
-      'ROSON A1 Pro dental chair. 12 mm carbon-structural-steel frame, 150 kg patient load, sleep-grade soft start/stop motion, Rolight S 8-LED tri-mode dental light, intelligent memory chair position, 4-position adjustable handpiece holder. Three signature colors (ROSON Blue, Ballet Pink, Mint Green) with 33+ silicone and PU leather customization options. RS-07 Professional Dentist Stool included standard. Exclusive Philippine distribution by DentaSource Direct.',
+      'ROSON A1 Pro dental chair. 12 mm carbon-structural-steel frame, 150 kg patient load, sleep-grade soft start/stop motion, Rolight S 8-LED tri-mode dental light, intelligent memory chair position, 4-position adjustable handpiece holder, built-in LED X-ray viewer. Three signature colors (ROSON Blue, Ballet Pink, Mint Green) with 44 silicone and PU leather colorways. RS-07 Professional Dentist Stool included standard. Exclusive Philippine distribution by DentaSource Direct.',
     images: [
       '/images/products/a1-pro/hero.jpg',
       '/images/products/a1-pro/view-2-headrest.jpg',
@@ -29,12 +29,13 @@ export default function A1ProSchemas() {
       'Smart workflow': 'Smart Clean button: 5-min spittoon rinse + pipeline flush',
       'Handpiece holder': '4-position adjustable (storage + 2 grip angles)',
       Spittoon: 'Detachable ceramic with rotary odor trap',
+      'Film viewer': 'Built-in LED X-ray viewer (standard)',
       Upholstery: 'Soft silicone rubber leather OR medical-grade PU leather',
       'Signature colors': 'ROSON Blue, Ballet Pink, Mint Green',
-      'Custom colors': '12 silicone + 21 PU leather options',
+      'Custom colors': '44 colorways (FS silicone + PU leather ranges)',
       'Dentist stool': 'RS-07 Professional (included standard)',
       Origin: 'Foshan Roson Medical, China',
-      Warranty: '2 years (1st year parts + service, 2nd year service)',
+      Warranty: 'Up to 5 years on the motor',
     },
   };
 

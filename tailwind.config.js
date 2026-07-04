@@ -19,6 +19,9 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-inter)', 'var(--font-geist-sans)', 'sans-serif'],
         serif: ['var(--font-playfair)', 'serif'],
+        // SKU product-page template (rideradian DNA)
+        display: ['var(--font-instrument)', 'var(--font-inter)', 'sans-serif'],
+        mono: ['var(--font-plex-mono)', 'ui-monospace', 'monospace'],
       },
       keyframes: {
         marquee: {
