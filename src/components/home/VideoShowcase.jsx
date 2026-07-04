@@ -15,29 +15,80 @@ const videos = [
 export default function VideoShowcase() {
     const videoRefs = useRef([]);
 
-    // Reels-style: autoplay (muted) the clip when it's centered in the viewport,
-    // pause it when it scrolls away. Muted is set on the element so the browser
-    // allows autoplay; the user can still unmute via the controls.
+    // Reels-style focus: as the user scrolls, the clip nearest the viewport
+    // center autoplays immediately — with audio once the browser allows it
+    // (after the first tap/click/keypress anywhere) — while every other clip
+    // pauses and mutes, so attention stays on one video at a time.
     useEffect(() => {
         const els = videoRefs.current.filter(Boolean);
         if (!els.length || typeof IntersectionObserver === 'undefined') return;
+
+        let gestureSeen = false;
+        const gestures = ['pointerdown', 'keydown', 'touchstart'];
+        const onGesture = () => {
+            gestureSeen = true;
+            gestures.forEach((ev) => window.removeEventListener(ev, onGesture));
+        };
+        gestures.forEach((ev) => window.addEventListener(ev, onGesture, { passive: true }));
+
+        const ratios = new Map();
+
+        const focusCenter = () => {
+            const midY = window.innerHeight / 2;
+            const midX = window.innerWidth / 2;
+            let active = null;
+            let best = Infinity;
+            els.forEach((el) => {
+                if ((ratios.get(el) || 0) < 0.6) return;
+                const r = el.getBoundingClientRect();
+                const d = Math.abs(r.top + r.height / 2 - midY) + Math.abs(r.left + r.width / 2 - midX);
+                if (d < best) { best = d; active = el; }
+            });
+            els.forEach((el) => {
+                if (el === active) {
+                    if (gestureSeen && el.muted) {
+                        el.muted = false;
+                        el.volume = 1;
+                    }
+                    const p = el.play();
+                    if (p && typeof p.catch === 'function') {
+                        p.catch(() => {
+                            // Audio blocked — fall back to muted autoplay.
+                            el.muted = true;
+                            const m = el.play();
+                            if (m && typeof m.catch === 'function') m.catch(() => {});
+                        });
+                    }
+                } else {
+                    el.muted = true;
+                    if (!el.paused) el.pause();
+                }
+            });
+        };
+
         const io = new IntersectionObserver(
             (entries) => {
-                entries.forEach((entry) => {
-                    const v = entry.target;
-                    if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
-                        v.muted = true;
-                        const p = v.play();
-                        if (p && typeof p.catch === 'function') p.catch(() => {});
-                    } else if (!v.paused) {
-                        v.pause();
-                    }
-                });
+                entries.forEach((entry) => ratios.set(entry.target, entry.intersectionRatio));
+                focusCenter();
             },
-            { threshold: [0, 0.6, 1], rootMargin: '-12% 0px -12% 0px' }
+            { threshold: [0, 0.3, 0.6, 0.85, 1], rootMargin: '-8% 0px -8% 0px' }
         );
         els.forEach((el) => io.observe(el));
-        return () => io.disconnect();
+
+        // Re-evaluate the center while scrolling so focus hands off smoothly.
+        let raf = null;
+        const onScroll = () => {
+            if (raf) return;
+            raf = requestAnimationFrame(() => { raf = null; focusCenter(); });
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        return () => {
+            io.disconnect();
+            window.removeEventListener('scroll', onScroll);
+            gestures.forEach((ev) => window.removeEventListener(ev, onGesture));
+            if (raf) cancelAnimationFrame(raf);
+        };
     }, []);
 
     return (

@@ -76,11 +76,40 @@ export default function HeroSection() {
         window.addEventListener('blur', duck);
         window.addEventListener('focus', restore);
 
+        // Auto-mute when the hero scrolls out of view; bring the sound back when
+        // it returns (unless the user muted it themselves).
+        let autoMuted = false;
+        let io;
+        if (typeof IntersectionObserver !== 'undefined') {
+            io = new IntersectionObserver(
+                ([entry]) => {
+                    const vid = videoRef.current;
+                    if (!vid) return;
+                    if (entry.intersectionRatio < 0.25 && !vid.muted) {
+                        vid.muted = true;
+                        autoMuted = true;
+                        setMuted(true);
+                    } else if (entry.intersectionRatio >= 0.5 && autoMuted && !userMutedRef.current) {
+                        autoMuted = false;
+                        vid.muted = false;
+                        vid.volume = 0;
+                        const p = vid.play();
+                        if (p && typeof p.catch === 'function') p.catch(() => {});
+                        fadeTo(document.hidden ? DUCK_VOL : FULL_VOL, 500);
+                        setMuted(false);
+                    }
+                },
+                { threshold: [0, 0.25, 0.5] }
+            );
+            io.observe(v);
+        }
+
         return () => {
             events.forEach((ev) => window.removeEventListener(ev, onFirst));
             document.removeEventListener('visibilitychange', onVisibility);
             window.removeEventListener('blur', duck);
             window.removeEventListener('focus', restore);
+            if (io) io.disconnect();
             if (fadeRaf.current) cancelAnimationFrame(fadeRaf.current);
         };
     }, [enableSound, fadeTo]);

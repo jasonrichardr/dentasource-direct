@@ -10,6 +10,10 @@ export default function FloatingChat() {
     // Prevent double-loading in React strict mode
     if (document.getElementById('tawk-script')) return;
 
+    // Mobile-only: on desktop the bubble overlaps content and its container
+    // intercepts clicks near the bottom-right of every page.
+    if (window.matchMedia('(min-width: 1024px)').matches) return;
+
     window.Tawk_API = window.Tawk_API || {};
     window.Tawk_LoadStart = new Date();
 
