@@ -216,6 +216,47 @@
     }
 }
 
+.focusFloat {
+    position: fixed;
+    right: 18px;
+    bottom: 20px;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.focusFloatBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid rgba(120, 116, 108, 0.35);
+    background: rgba(255, 255, 255, 0.72);
+    color: #6f6f6f;
+    cursor: pointer;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 8px 28px rgba(26, 60, 52, 0.16);
+    transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.focusFloatBtn:hover {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.focusFloatBtnOn {
+    background: #6f6f6f;
+    border-color: #6f6f6f;
+    color: #ffffff;
+}
+
+.focusFloatBtnOn:hover {
+    background: #5c5c5c;
+}
+
 .ctaWrapper {
     margin: 2.5rem 0;
     text-align: center;

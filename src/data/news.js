@@ -133,7 +133,7 @@ Then something changed. **"Walking the workshops with my father, listening to hi
 
 ## A Student Before a CEO
 
-Spend a minute in George's office in the film and you notice the bookshelf: rows of worn volumes on management, incentive systems, organizational design. One book he quotes by name — ***The Founder's Mentality***: **"The founder's mentality isn't only what a young company needs to succeed. It matters just as much to a mature, steadily-running company."**
+Spend a minute in George's office in the film and you notice the bookshelf: rows of worn volumes on management, incentive systems, organizational design. One book he quotes by name — **The Founder's Mentality**: **"The founder's mentality isn't only what a young company needs to succeed. It matters just as much to a mature, steadily-running company."**
 
 ![At his desk with the book that shaped his leadership — "The Founder's Mentality"](/images/news/george-chen-2026/desk-founders.jpg)
 
