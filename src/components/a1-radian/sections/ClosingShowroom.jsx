@@ -12,22 +12,27 @@
 
 import { useRef } from 'react';
 import { m, useScroll, useTransform, useReducedMotion } from 'framer-motion';
-import Image from 'next/image';
 import { SectionWrap, Pill, MonoLabel } from '../primitives';
 import { closing } from '../content';
 
 /* Full-bleed background, over-sized so the parallax translate never
-   reveals an edge (wrapper runs 10% past each side of the section). */
+   reveals an edge (wrapper runs 10% past each side of the section).
+   The old A1 Pro hero loop plays here as a living backdrop — muted +
+   playsInline so it autoplays on mobile; the still frame is the poster
+   so the first paint is clean before the film streams in. */
 function ParallaxBg({ y }) {
   return (
     <m.div className="absolute inset-x-0 will-change-transform" style={{ top: '-10%', bottom: '-10%', y }}>
-      <Image
-        src={closing.bg}
-        alt="Four-handed treatment on the ROSON A1 Pro dental unit, top-down view in Ballet Pink"
-        fill
-        loading="lazy"
-        sizes="100vw"
-        className="object-cover object-center"
+      <video
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        src={closing.video}
+        poster={closing.bg}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-label="ROSON A1 Pro dental chair — color-reveal loop"
       />
     </m.div>
   );

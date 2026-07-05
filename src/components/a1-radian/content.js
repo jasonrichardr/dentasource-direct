@@ -157,6 +157,8 @@ export const closing = {
   secondary: { label: 'Request a quote', href: '/contact?interest=dental-chairs' },
   disclaimer: 'Configuration may vary. Specifications confirmed at showroom demo and quote.',
   bg: `${P}/four-handed-top-down-pink-clean.png`,
+  // old A1 Pro hero loop — color-reveal film, now the living backdrop of the showroom finale
+  video: '/videos/a1-pro-hero-loop.mp4',
 };
 
 /* Tech specs — the full mono definition list (superset of the JSON-LD schema;
