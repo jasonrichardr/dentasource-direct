@@ -6,6 +6,7 @@ import { m as motion } from 'framer-motion';
 import JsonLd from '@/components/JsonLd';
 import { articleGraph } from '@/lib/schemas/article';
 import FocusMusic from './FocusMusic';
+import ArticleMarbles from './ArticleMarbles';
 import styles from './page.module.css';
 
 export default function ArticleContent({ article }) {
@@ -61,6 +62,10 @@ export default function ArticleContent({ article }) {
                             return <h2 key={idx} className={styles.heading2}>{trimmed.replace('##', '').trim()}</h2>;
                         } else if (trimmed.startsWith('#')) {
                             return <h1 key={idx} className={styles.heading1}>{trimmed.replace('#', '').trim()}</h1>;
+                        }
+                        // The interactive glass-marble cluster — a paragraph that is exactly [marbles]
+                        if (trimmed === '[marbles]') {
+                            return <ArticleMarbles key={idx} />;
                         }
                         // Handle images and videos
                         if (trimmed.startsWith('![')) {

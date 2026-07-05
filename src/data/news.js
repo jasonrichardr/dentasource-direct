@@ -96,6 +96,12 @@ The dentist stool is unboxed and assembled, the operatory is cleaned of every sc
 
 ![Step 13 — assembling the dentist stool](/images/news/install-2026/step-13.jpg)
 
+## Watch the Team at Work
+
+Words describe the checklist — these show the sweat. Real footage of our crew doing exactly this work: the pre-delivery inspection, the stairs we carry units up by hand, the ferry rides to provincial clinics, the on-site builds. **Press and hold any marble to watch its story with sound.**
+
+[marbles]
+
 ## The Part You Don't See
 
 Behind these steps is everything else we've written about: technicians who trained [hands-on with ROSON's own engineers](/news/roson-product-masterclass-a3-n2-pro-a1-pro), units whose components are [traceable back to their build](/news/meet-roson-ceo-george-chen), and a one-to-two-day service response if anything ever needs attention after install day.

@@ -73,6 +73,7 @@ export default function FocusMusic({ minutes }) {
     const trackRef = useRef(0);
     const barRef = useRef(null);
     const toastTimers = useRef([]);
+    const resumeRef = useRef(false); // theater paused us → resume when it closes
     const [playing, setPlaying] = useState(false);
     const [floating, setFloating] = useState(false); // hero bar scrolled away → show mini player
     const [toast, setToast] = useState(null);        // track name, shown ~2s on play/shuffle
@@ -137,6 +138,7 @@ export default function FocusMusic({ minutes }) {
     // STOP IS INSTANT — no fade, no waiting, no device quirks. One tap, silence.
     const stop = () => {
         clearInterval(fadeRef.current);
+        resumeRef.current = false; // a deliberate stop wins over any pending theater-resume
         setPlaying(false);
         const a = audioRef.current;
         if (a) a.pause();
@@ -160,6 +162,29 @@ export default function FocusMusic({ minutes }) {
         if (p && typeof p.then === 'function') p.then(fadeIn).catch(() => setPlaying(false));
         else fadeIn();
     };
+
+    // Marble theater etiquette: when a reel plays WITH audio (dsd:videoaudio {on:true}),
+    // pause the focus music; resume when the theater closes. One audio source at a time.
+    useEffect(() => {
+        const onVideoAudio = (e) => {
+            const a = audioRef.current;
+            if (e.detail?.on) {
+                if (a && !a.paused) {
+                    resumeRef.current = true;
+                    clearInterval(fadeRef.current);
+                    a.pause();
+                }
+            } else if (resumeRef.current) {
+                resumeRef.current = false;
+                if (a) {
+                    const p = a.play();
+                    if (p && typeof p.catch === 'function') p.catch(() => setPlaying(false));
+                }
+            }
+        };
+        window.addEventListener('dsd:videoaudio', onVideoAudio);
+        return () => window.removeEventListener('dsd:videoaudio', onVideoAudio);
+    }, []);
 
     // The floating mini player appears when the hero bar scrolls out of view.
     useEffect(() => {

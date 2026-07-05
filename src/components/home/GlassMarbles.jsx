@@ -11,35 +11,45 @@ const A = (p) => CDN + p;
 
 // FFC-hosted reels get the CDN prefix; /reels/ex-* live in THIS repo (24s muted loops for
 // the beads; full clips with audio at /reels/hd/ex-* for the press-and-hold theater).
-const VIDEOS = [
+// EVERY marble is NAMED (Jarich 2026-07-05) — grep a name to find its video fast.
+const MARBLES = [
     // ORDER MAPS TO SIZE (see marbleCluster.js sizing): bead 0 = big HERO marble, LAST = small one.
-    A('/reels/fb/fb-11.mp4'),       // [0] HERO (biggest)
-    A('/reels/dsd-showcase-4.mp4'), // Meet the team — Stay vibrant
-    A('/reels/dsd-showcase.mp4'),   // SMX Convention
-    A('/reels/dsd-showcase-2.mp4'), // Pre-inspection before delivery & install
-    A('/reels/dsd-showcase-5.mp4'), // Denjoy — endo-focused, R&D
-    A('/reels/dsd-showcase-3.mp4'), // Digital dentistry & surgery
-    A('/reels/dsd-hero-loop.mp4'),  // DSD hero loop
-    A('/reels/fb/fb-01.mp4'), A('/reels/fb/fb-02.mp4'), A('/reels/fb/fb-04.mp4'), A('/reels/fb/fb-05.mp4'), A('/reels/fb/fb-06.mp4'),
-    A('/reels/fb/fb-07.mp4'), A('/reels/fb/fb-08.mp4'), A('/reels/fb/fb-09.mp4'), A('/reels/fb/fb-10.mp4'),
-    A('/reels/fb/fb-12.mp4'), A('/reels/fb/fb-16.mp4'),
-    A('/reels/fb/fb-27.mp4'),
-    A('/reels/fb/fb-17.mp4'),
-    A('/reels/fb/fb-24.mp4'),
-    A('/reels/fb/fb-28.mp4'),       // DSD team/showroom + FFC storefront reel
+    { src: A('/reels/fb/fb-11.mp4'), name: 'HERO — chairside team mid-procedure (Jarich reel, FB 1A3qs2Fyiw)' },
+    { src: A('/reels/dsd-showcase-4.mp4'), name: 'Meet the team — Stay vibrant' },
+    { src: A('/reels/dsd-showcase.mp4'), name: 'SMX Convention showcase' },
+    { src: A('/reels/dsd-showcase-2.mp4'), name: 'Pre-inspection before delivery & install' },
+    { src: A('/reels/dsd-showcase-5.mp4'), name: 'Denjoy — endo-focused R&D' },
+    { src: A('/reels/dsd-showcase-3.mp4'), name: 'Digital dentistry & surgery' },
+    { src: A('/reels/dsd-hero-loop.mp4'), name: 'DSD hero loop — showroom sweep' },
+    { src: A('/reels/fb/fb-01.mp4'), name: 'Showroom chair session — hands on a live unit' },
+    { src: A('/reels/fb/fb-02.mp4'), name: 'Studio shoot behind the scenes — DentaSource wall' },
+    { src: A('/reels/fb/fb-04.mp4'), name: 'FFC dentist intro — white coat at the chair' },
+    { src: A('/reels/fb/fb-05.mp4'), name: 'Clinic prep — assistant with the clipboard' },
+    { src: A('/reels/fb/fb-06.mp4'), name: 'Chairside treatment — the M&M jacket patient' },
+    { src: A('/reels/fb/fb-07.mp4'), name: 'FFC clinic hallway walkthrough' },
+    { src: A('/reels/fb/fb-08.mp4'), name: 'FFC dentist greeting — white coat wave' },
+    { src: A('/reels/fb/fb-09.mp4'), name: 'Patient testimonial — young man' },
+    { src: A('/reels/fb/fb-10.mp4'), name: 'Intraoral close-up — treatment detail' },
+    { src: A('/reels/fb/fb-12.mp4'), name: 'Showroom event — host on the mic at the chairs' },
+    { src: A('/reels/fb/fb-16.mp4'), name: 'Chairside dentistry — working on a patient' },
+    { src: A('/reels/fb/fb-27.mp4'), name: 'Digital scan on the laptop — FFC digital dentistry' },
+    { src: A('/reels/fb/fb-17.mp4'), name: 'Two doctors walking the clinic' },
+    { src: A('/reels/fb/fb-24.mp4'), name: 'DentaSource × ROSON operatory at the expo' },
+    { src: A('/reels/fb/fb-28.mp4'), name: 'DSD team over the equipment + FFC storefront' },
     // Exhibit-loop harvest (2026-07-04) — cut from the 22-min booth master:
-    '/reels/ex-01.mp4',             // founder intro talk
-    '/reels/ex-03.mp4',             // blue chair install story
-    '/reels/ex-07.mp4',             // big install/service montage
-    '/reels/ex-08.mp4',             // ferry — provincial delivery
-    '/reels/ex-11.mp4',             // training center promo
-    '/reels/ex-12.mp4',             // endo skit (the couple)
-    '/reels/ex-14.mp4',             // event night walk-in
-    '/reels/ex-18.mp4',             // expo booth
-    '/reels/ex-20.mp4',             // booth spokesperson
-    '/reels/ex-21.mp4',             // showroom finale
-    A('/reels/fb/fb-03.mp4'),       // [last] SMALL
+    { src: '/reels/ex-01.mp4', name: 'Founder intro talk — sim-lab chairs' },
+    { src: '/reels/ex-03.mp4', name: 'Blue chair install road trip' },
+    { src: '/reels/ex-07.mp4', name: 'Delivery day — hauling units up the stairs by hand' },
+    { src: '/reels/ex-08.mp4', name: 'Provincial run — ferry crossing, then the on-site chair build' },
+    { src: '/reels/ex-11.mp4', name: 'Training center promo — phantom heads' },
+    { src: '/reels/ex-12.mp4', name: 'Endo skit — the couple' },
+    { src: '/reels/ex-14.mp4', name: 'Event night walk-in' },
+    { src: '/reels/ex-18.mp4', name: 'Expo booth — autoclave demo' },
+    { src: '/reels/ex-20.mp4', name: 'Booth spokesperson' },
+    { src: '/reels/ex-21.mp4', name: 'Showroom finale — price boards' },
+    { src: A('/reels/fb/fb-03.mp4'), name: 'SMALL — convention wave, two women' },
 ];
+const VIDEOS = MARBLES.map((m) => m.src);
 
 export default function GlassMarbles() {
     const mountRef = useRef(null);
