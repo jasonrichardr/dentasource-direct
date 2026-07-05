@@ -159,6 +159,8 @@ export const closing = {
   priceLine: 'Complete chair · stool · light · X-ray viewer — included as standard.',
   primary: { label: 'Book a showroom demo', href: '/contact?interest=dental-chairs' },
   secondary: { label: 'Request a quote', href: '/contact?interest=dental-chairs' },
+  // the install-guide article — white-glove delivery proof, step by step
+  tertiary: { label: 'See how we Deliver', href: '/news/how-we-install-your-dental-chair' },
   disclaimer: 'Configuration may vary. Specifications confirmed at showroom demo and quote.',
   bg: `${P}/four-handed-top-down-pink-clean.png`,
   // old A1 Pro hero loop — color-reveal film, now the living backdrop of the showroom finale
