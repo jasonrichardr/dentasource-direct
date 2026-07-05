@@ -12,6 +12,7 @@
    The `.radian` wrapper provides the scoped tokens + fonts. */
 
 import HeroColorMorph from './sections/HeroColorMorph';
+import FocusBand from './sections/FocusBand';
 import StatementInterlude from './sections/StatementInterlude';
 import FeatureStrip from './sections/FeatureStrip';
 import FeatureGallery from './sections/FeatureGallery';
@@ -24,6 +25,7 @@ export default function A1RadianLanding() {
   return (
     <div className="radian">
       <HeroColorMorph />
+      <FocusBand />
       <StatementInterlude />
       <FeatureStrip />
       <FeatureGallery />

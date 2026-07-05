@@ -5,7 +5,11 @@
    Reuses the existing curated copy in ../a1-pro/a1proContent.js.
    ───────────────────────────────────────────────────────────────────── */
 
-export { signatureColors, dentistSegments, a1proFaqs } from '../a1-pro/a1proContent';
+// Imported (not just re-exported) so the reading-time helper below can walk
+// signatureColors' copy — it renders on this page (the ColorStrip). The public
+// API is unchanged: all three are still exported from content.js.
+import { signatureColors, dentistSegments, a1proFaqs } from '../a1-pro/a1proContent';
+export { signatureColors, dentistSegments, a1proFaqs };
 
 const P = '/images/products/a1-pro/pieces';
 const HM = '/images/products/a1-pro/hero-morph';
@@ -183,3 +187,32 @@ export const techSpecs = [
   ['Origin', 'Foshan Roson Medical, China'],
   ['Warranty', 'Up to 5 years on the motor'],
 ];
+
+/* ── Reading time ────────────────────────────────────────────────────────
+   An honest "N min read" for the page, derived from the real copy — the same
+   formula the news articles use (ArticleContent.jsx: words / 200, floored at
+   1). We recurse every rendered content object's string values, skipping
+   asset paths and routes (strings that start with '/') so image/href paths
+   never inflate the count. Only copy that actually renders on this page is
+   counted (dentistSegments / a1proFaqs are re-exported but unused here, so
+   they're left out). */
+function countWords(value) {
+  if (typeof value === 'string') {
+    if (value.startsWith('/')) return 0; // asset path or route — not prose
+    return value.trim().split(/\s+/).filter(Boolean).length;
+  }
+  if (Array.isArray(value)) return value.reduce((n, v) => n + countWords(v), 0);
+  if (value && typeof value === 'object') {
+    return Object.values(value).reduce((n, v) => n + countWords(v), 0);
+  }
+  return 0;
+}
+
+const COPY_SOURCES = [
+  hero, manifesto, configurations, closing,
+  featurePanels, showcasePanels, colorPanels, heroFrames,
+  techSpecs, signatureColors,
+];
+
+export const readingWordCount = COPY_SOURCES.reduce((n, src) => n + countWords(src), 0);
+export const readingMinutes = Math.max(1, Math.round(readingWordCount / 200));

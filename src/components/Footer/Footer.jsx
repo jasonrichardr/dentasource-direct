@@ -9,9 +9,9 @@ const columns = [
   {
     title: 'Equipment',
     links: [
-      ['Dental Chairs', '/dentalchairs'],
+      ['Dental Chairs', '/dentalchairs', true],
       ['All Equipment', '/products'],
-      ['Denjoy Endodontics', '/denjoy'],
+      ['Denjoy Endodontics', '/denjoy', true],
       ['Trade-In Program', '/trade-in'],
     ],
   },
@@ -21,7 +21,7 @@ const columns = [
       ['White-Glove Service', '/services'],
       ['Authenticity', '/traceability'],
       ['About Us', '/about'],
-      ['News', '/news'],
+      ['News', '/news', true],
     ],
   },
   {
@@ -74,13 +74,30 @@ export default function Footer() {
             <div key={col.title}>
               <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-400 mb-4">{col.title}</h3>
               <ul className="space-y-2.5">
-                {col.links.map(([label, href]) => (
-                  <li key={label}>
-                    <Link href={href} className="text-sm text-white/60 hover:text-white transition-colors">
-                      {label}
-                    </Link>
-                  </li>
-                ))}
+                {col.links.map(([label, href, hot]) =>
+                  hot ? (
+                    <li key={label} className="my-0.5">
+                      <Link
+                        href={href}
+                        className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-white/20 bg-gradient-to-b from-white/[0.14] to-white/[0.06] px-2 py-1 text-white/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-px hover:border-white/30 hover:from-white/[0.18] hover:to-white/[0.09] sm:gap-2 sm:px-3.5 sm:py-1.5"
+                      >
+                        <span className="text-xs font-medium sm:text-sm">{label}</span>
+                        <span
+                          aria-hidden="true"
+                          className="rounded-full bg-[#F26522] px-1 py-0.5 text-[9px] font-bold uppercase leading-none tracking-wider text-white shadow-[0_0_12px_rgba(242,101,34,0.45)] motion-safe:animate-pulse sm:px-1.5 sm:text-[10px]"
+                        >
+                          Hot
+                        </span>
+                      </Link>
+                    </li>
+                  ) : (
+                    <li key={label}>
+                      <Link href={href} className="text-sm text-white/60 hover:text-white transition-colors">
+                        {label}
+                      </Link>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           ))}
