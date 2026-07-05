@@ -73,9 +73,17 @@ html, body {
   }
 
   html {
-    scroll-behavior: smooth;
     overflow-x: clip;
     color-scheme: light;
+  }
+  /* Smooth anchor scrolling on fine-pointer (mouse/trackpad) devices ONLY.
+     On iOS Safari, scroll-behavior: smooth on the root interferes with touch
+     momentum and makes ordinary scrolling jump/jolt (WebKit quirk). Touch
+     devices get native scrolling back — iOS animates anchor jumps natively. */
+  @media (hover: hover) and (pointer: fine) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
   body {
     @apply antialiased text-[#1D1D1F] bg-white w-full;
