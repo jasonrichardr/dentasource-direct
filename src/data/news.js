@@ -5,7 +5,7 @@ export const newsData = [
         title: "How We Install Your Dental Chair — Step by Step",
         date: "July 1, 2026",
         image: "/images/news/install-2026/hero-install.jpg",
-        ogImage: "/images/news/install-2026/og-install-marbles-v3.jpg",
+        ogImage: "/images/news/install-2026/og-install-marbles-v4-final.jpg",
         hideHeroImage: false,
         abstract: "From a wooden crate to a patient-ready operatory — this is exactly what happens on install day. Every step our ROSON-trained technicians follow, with photos and the full video, so you know precisely what you're getting when we say white-glove installation.",
         content: `## What "White-Glove Installation" Actually Means
