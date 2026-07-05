@@ -133,9 +133,10 @@ export default function ClosingShowroom() {
             {closing.priceLine}
           </p>
 
-          <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+          <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <Pill variant="primary" href={closing.primary.href}>{closing.primary.label}</Pill>
             <Pill variant="ghost" href={closing.secondary.href}>{closing.secondary.label}</Pill>
+            <Pill variant="ghost" href={closing.tertiary.href}>{closing.tertiary.label}</Pill>
           </div>
         </div>
       </div>
