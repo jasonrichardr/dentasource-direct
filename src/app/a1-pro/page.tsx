@@ -15,10 +15,10 @@ export const metadata = {
     siteName: 'DentaSource Direct',
     images: [
       {
-        url: 'https://dentasourcedirect.com/images/products/a1-pro/og-a1-pro-pastel.jpg',
+        url: 'https://dentasourcedirect.com/images/products/a1-pro/og-a1-pro-finest.jpg',
         width: 1200,
         height: 630,
-        alt: 'ROSON A1 Pro in Ballet Pink — Color, Pastel: 3 signature colors, 44-color range, digital workflow',
+        alt: 'The First. And the Finest in Color — ROSON A1 Pro signature colors: Roson Blue, Ballet Pink, Mint Green',
       },
     ],
   },
@@ -27,7 +27,7 @@ export const metadata = {
     title: 'ROSON A1 Pro Dental Chair',
     description:
       'A dental unit built for the new generation of dentists. Color as a first-class design choice — three signature colors, 44 colorways, complete chair-stool-light kit. Pasig showroom demos.',
-    images: ['https://dentasourcedirect.com/images/products/a1-pro/og-a1-pro-pastel.jpg'],
+    images: ['https://dentasourcedirect.com/images/products/a1-pro/og-a1-pro-finest.jpg'],
   },
 };
 
