@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
-import { getDenjoyBySlug, getCoStars, getFlagship } from '@/data/denjoy';
+import { getDenjoyBySlug, denjoyProducts } from '@/data/denjoy';
 import CoStarDetail from '@/components/denjoy/CoStarDetail';
 import FreePexHero from '@/components/denjoy/FreePexHero';
 import FreePexLanding from '@/components/denjoy/FreePexLanding';
@@ -63,7 +63,7 @@ const SEO = {
 };
 
 export async function generateStaticParams() {
-  return getCoStars().map((p) => ({ slug: p.slug }));
+  return denjoyProducts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }) {
@@ -72,7 +72,7 @@ export async function generateMetadata({ params }) {
   if (!product) return {};
 
   const seo = SEO[slug] || {};
-  const title = seo.title || `${product.fullName} — Denjoy | DentaSource Direct`;
+  const title = seo.title || `${product.fullName} — Denjoy`;
   const description = seo.description || product.tagline;
   const url = `https://dentasourcedirect.com/denjoy/${slug}`;
   const image = product.heroImage
@@ -132,13 +132,8 @@ function buildProductSchema(product, slug) {
 export default async function DenjoyProductPage({ params }) {
   const { slug } = await params;
 
-  const flagship = getFlagship();
-  if (slug === flagship.slug) {
-    notFound();
-  }
-
   const product = getDenjoyBySlug(slug);
-  if (!product || product.isFlagship) {
+  if (!product) {
     notFound();
   }
 
