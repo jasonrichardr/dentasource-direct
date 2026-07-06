@@ -1,5 +1,9 @@
 'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+// Routes with their own immersive chrome (design-DNA pages) — global footer stays out.
+const CHROME_FREE_ROUTES = ['/denjoy'];
 
 const PHONE = '+63 962 579 3024';
 const PHONE_HREF = 'tel:+639625793024';
@@ -34,6 +38,8 @@ const columns = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (CHROME_FREE_ROUTES.includes(pathname)) return null;
   return (
     <footer className="bg-[#0A1410] pt-24 pb-8 border-t border-white/10 relative overflow-hidden">
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#10b981]/5 blur-[120px] rounded-full pointer-events-none" />

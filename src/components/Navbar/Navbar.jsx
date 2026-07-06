@@ -2,7 +2,11 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { m as motion, AnimatePresence } from 'framer-motion';
+
+// Routes with their own immersive chrome (design-DNA pages) — global navbar stays out.
+const CHROME_FREE_ROUTES = ['/denjoy'];
 
 const navLinks = [
   { name: 'Equipment', href: '/products' },
@@ -31,10 +35,13 @@ const trustItems = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
   }, [open]);
+
+  if (CHROME_FREE_ROUTES.includes(pathname)) return null;
 
   return (
     <>

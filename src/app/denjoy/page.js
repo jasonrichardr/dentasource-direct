@@ -1,9 +1,5 @@
 import Script from 'next/script';
-import DenjoyHero from '@/components/denjoy/DenjoyHero';
-import Constellation from '@/components/denjoy/Constellation';
-import ChaptersBand from '@/components/denjoy/ChaptersBand';
-import DenjoyFAQ from '@/components/denjoy/DenjoyFAQ';
-import DenjoyCTA from '@/components/denjoy/DenjoyCTA';
+import DnaLanding from '@/components/denjoy/v2/DnaLanding';
 import MessengerButton from '@/components/denjoy/MessengerButton';
 import { denjoyProducts } from '@/data/denjoy';
 import { faqGraph } from '@/lib/schemas/faq';
@@ -118,12 +114,8 @@ export default function DenjoyPage() {
       >
         {JSON.stringify(faqSchema)}
       </Script>
-      <main className={styles.scrollContainer}>
-        <DenjoyHero />
-        <Constellation />
-        <ChaptersBand />
-        <DenjoyCTA />
-        <DenjoyFAQ />
+      <main>
+        <DnaLanding />
       </main>
       <div className={styles.mobileStickyBar}>
         <MessengerButton
