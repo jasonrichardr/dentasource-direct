@@ -27,3 +27,10 @@
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Cross-Origin-Resource-Policy = "cross-origin"
+
+# The Living Map's private door — unguessable path, never indexed, never cached stale
+[[headers]]
+  for = "/map/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+    Cache-Control = "no-cache"
