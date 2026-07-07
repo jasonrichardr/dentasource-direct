@@ -13,3 +13,17 @@
 [[edge_functions]]
   path = "/videos/dsd-share-grid.mp4"
   function = "crawler-full"
+
+# The Living Map (claude.ai artifact, COEP require-corp) streams the lounge + anthem from here.
+# These headers only ALLOW cross-origin embedding of media — zero effect on the site itself.
+[[headers]]
+  for = "/audio/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cross-Origin-Resource-Policy = "cross-origin"
+
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cross-Origin-Resource-Policy = "cross-origin"
