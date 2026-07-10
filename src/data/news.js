@@ -287,7 +287,7 @@ Or message us — we'll tell you honestly whether the A1, the A1 Pro, or a diffe
     {
         id: "roson-masterclass-2026",
         slug: "roson-product-masterclass-a3-n2-pro-a1-pro",
-        title: "Inside the ROSON Masterclass: A3, N2 Pro, and A1 Pro — Button by Button",
+        title: "Inside the ROSON Masterclass: A3, N2 Pro, and the New A1 Pro — Button by Button",
         date: "July 2, 2026",
         image: "/images/news/roson-masterclass-2026/masterclass-session.jpg",
         ogImage: "/images/news/roson-masterclass-2026/og-masterclass.jpg",
@@ -351,6 +351,8 @@ The screen itself is **high-precision, scratch-resistant glass that responds thr
 
 **Five user profiles, fifteen memory positions.** Each of five dentists sharing a chair gets three saved chair positions. Associates, part-timers, husband-and-wife practices — everyone works their own way at one press.
 
+![The DentaSource team gathered around ROSON's specialist for the user preference settings walkthrough](/images/news/roson-masterclass-2026/team-laptop-session.jpg)
+
 **A smart spit button.** Press once: the chair rises to spitting position and the dental light switches off automatically. Press again: the patient returns to the exact treatment position and the light comes back on. Nobody touches anything twice.
 
 ![The A1 Pro smart buttons explained during training](/images/news/roson-masterclass-2026/smart-buttons-slide.jpg)
@@ -361,7 +363,13 @@ The screen itself is **high-precision, scratch-resistant glass that responds thr
 
 ![Digital precision control: ±1% parameter accuracy on the A1 Pro](/images/news/roson-masterclass-2026/precision-control-slide.jpg)
 
+![ROSON's specialist walks the team through the digitally controlled micro motor and scaler modes](/images/news/roson-masterclass-2026/precision-parameter-training.jpg)
+
 And the touches that make daily life easier: a fifteen-second **cup-fill and spittoon flush linkage**, the one-key end-of-day flush inherited from the A3, a **lotus exit position** that sits patients up smoothly, **magnetic side panels that open with one finger** for servicing, and a CE-rated **150kg load capacity** that the frame comfortably exceeds in ROSON's own testing. The A1 Pro also ships with ROSON's new ergonomic dentist stool, in PU or silicone.
+
+It looks the part, too. The A1 Pro's **capsule-style side cabinet** borrows its structural logic from aerospace design, in a **Stellar Black × Deep Space White** colorway — with the golden ratio guiding the cabinet's form in what ROSON calls the Stellar Equator design.
+
+![The A1 Pro's capsule-style side cabinet, presented during the masterclass](/images/news/roson-masterclass-2026/capsule-cabinet-slide.jpg)
 
 ## Built for Real Philippine Clinics
 
