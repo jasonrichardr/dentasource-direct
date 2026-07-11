@@ -395,6 +395,8 @@ That's what an exclusive partnership is supposed to look like.
 
 Every chair in this story — the A3, the N2 Pro, the S3 — is on our showroom floor in Pasig, **the largest dental equipment showroom in the Philippines**, and the A1 Pro arrives ahead of the September trade season. Walk in any day, 9 AM to 8 PM, and our team will demo any feature you just read about. Ask them anything. That's the point of training this hard.
 
+![Forty seconds inside the ROSON week: showroom sessions, the live training board, and the teams together](/images/news/roson-masterclass-2026/roson-visit-recap.mp4)
+
 [Read the full story of the ROSON visit →](/news/roson-trains-dentasource-team-manila-2026)`
     },
     {
