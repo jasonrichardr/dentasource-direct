@@ -502,6 +502,8 @@ The session also previewed what's arriving on our floor next — and it's exciti
 
 The A1 breaks the oldest rule in dental equipment: that every clinic has to look the same. It launches with three signature colors — **ROSON Blue, Ballet Pink, and Mint Green** — with integrated color customization across the upholstery, water box, and instrument tray, so the whole unit matches your clinic's identity, not the other way around.
 
+![ROSON A1 in Ballet Pink — a soft, healing pink tone, elegant and serene](/images/news/roson-training-2026/a1-ballet-pink.jpg)
+
 ![ROSON A1 in Mint Green and ROSON Blue colorways](/images/news/roson-training-2026/a1-colorways.jpg)
 
 And beyond the signature three, the palette goes much deeper — dozens of upholstery colors in soft silicone rubber leather and medical-grade PU, from Hermes Orange to Tiffany Blue to Bordeaux Red.
