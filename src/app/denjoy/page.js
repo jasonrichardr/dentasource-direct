@@ -1,4 +1,4 @@
-import Script from 'next/script';
+import JsonLd from '@/components/JsonLd';
 import DnaLanding from '@/components/denjoy/v2/DnaLanding';
 import MessengerButton from '@/components/denjoy/MessengerButton';
 import { denjoyProducts } from '@/data/denjoy';
@@ -51,34 +51,22 @@ export const metadata = {
   },
 };
 
+// Catalog page of 12 distinct products → ItemList (Google's category-page markup).
+// ProductGroup is for variants of ONE product and demands offers/review/rating,
+// which we don't publish — it made the page invalid for rich results.
 const productHubSchema = {
   '@context': 'https://schema.org',
-  '@type': 'ProductGroup',
+  '@type': 'ItemList',
   name: 'Denjoy Endodontic Equipment — Philippines',
   description:
     'Twelve Denjoy endodontic and microscopy products distributed exclusively in the Philippines by DentaSource Direct.',
-  brand: { '@type': 'Brand', name: 'Denjoy' },
   url: 'https://dentasourcedirect.com/denjoy',
-  image:
-    'https://dentasourcedirect.com/videos/denjoy/meet-endo-poster.jpg',
-  seller: {
-    '@type': 'Organization',
-    name: 'DentaSource Direct',
-    url: 'https://dentasourcedirect.com',
-    areaServed: 'Philippines',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '610 C. Maybunga Rd',
-      addressLocality: 'Pasig City',
-      postalCode: '1600',
-      addressCountry: 'PH',
-    },
-  },
-  hasVariant: denjoyProducts.map((p) => ({
-    '@type': 'Product',
+  numberOfItems: denjoyProducts.length,
+  itemListElement: denjoyProducts.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
     name: p.fullName,
     url: `https://dentasourcedirect.com/denjoy/${p.slug}`,
-    brand: { '@type': 'Brand', name: 'Denjoy' },
   })),
 };
 
@@ -100,20 +88,8 @@ const faqSchema = faqGraph([
 export default function DenjoyPage() {
   return (
     <>
-      <Script
-        id="denjoy-product-schema"
-        type="application/ld+json"
-        strategy="afterInteractive"
-      >
-        {JSON.stringify(productHubSchema)}
-      </Script>
-      <Script
-        id="denjoy-faq-schema"
-        type="application/ld+json"
-        strategy="afterInteractive"
-      >
-        {JSON.stringify(faqSchema)}
-      </Script>
+      <JsonLd id="denjoy-product-schema" data={productHubSchema} />
+      <JsonLd id="denjoy-faq-schema" data={faqSchema} />
       <main>
         <DnaLanding />
       </main>
