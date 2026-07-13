@@ -43,7 +43,7 @@ export default function DenjoyCTA() {
           <strong className="not-italic font-semibold">Pasig showroom.</strong>
         </h2>
         <p className="text-white/80 text-sm md:text-base mb-2">
-          DentaSource Direct · 610 C. Raymundo Ave, Pasig City 1600
+          DentaSource Direct · 610 C. Maybunga Rd, Pasig City 1600
         </p>
         <p className="text-white/55 text-[11px] uppercase tracking-[0.2em] mb-8">
           Exclusive Denjoy Distributor · Philippines

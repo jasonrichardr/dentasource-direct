@@ -2,7 +2,7 @@
 import { m as motion } from 'framer-motion';
 
 const MAPS_SHARE_URL = 'https://share.google/X0K3OZYUqNradruP2';
-const MAPS_EMBED_URL = 'https://maps.google.com/maps?q=610%20C.%20Raymundo%20Ave%20Pasig%20City%20Metro%20Manila&output=embed';
+const MAPS_EMBED_URL = 'https://maps.google.com/maps?q=610%20C.%20Maybunga%20Rd%20Pasig%20City%20Metro%20Manila&output=embed';
 
 export default function ShowroomInfo() {
   return (
@@ -23,7 +23,7 @@ export default function ShowroomInfo() {
         <div>
           <h4 className="text-white font-medium mb-2 uppercase tracking-wider text-xs">Headquarters & Showroom</h4>
           <p className="text-white/70 leading-relaxed text-lg">
-            610 C. Raymundo Ave<br />
+            610 C. Maybunga Rd<br />
             Pasig City, Metro Manila<br />
             Philippines
           </p>
@@ -45,7 +45,7 @@ export default function ShowroomInfo() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="DentaSource Direct showroom on Google Maps"
-            aria-label="Map showing 610 C. Raymundo Ave, Pasig City"
+            aria-label="Map showing 610 C. Maybunga Rd, Pasig City"
           />
         </div>
 

@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     q: 'Where can I see and demo a Denjoy unit before buying?',
-    a: 'At the DentaSource Direct Pasig showroom — 610 C. Raymundo Ave, Pasig City 1600. The Meet Endo flagship is already installed for live demos. Other units are demo-ready by appointment. Message us via the chat to schedule.',
+    a: 'At the DentaSource Direct Pasig showroom — 610 C. Maybunga Rd, Pasig City 1600. The Meet Endo flagship is already installed for live demos. Other units are demo-ready by appointment. Message us via the chat to schedule.',
   },
   {
     q: 'Is DentaSource Direct an official Denjoy distributor?',
