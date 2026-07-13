@@ -1,7 +1,24 @@
 import { newsData } from '@/data/news';
 import { notFound } from 'next/navigation';
 import { BASE_URL } from '@/lib/schemas/organization';
+import JsonLd from '@/components/JsonLd';
 import ArticleContent from './ArticleContent';
+
+// NewsArticle schema already ships from ArticleContent via lib/schemas/article.js;
+// this adds only the breadcrumb trail Google reads for site hierarchy.
+function breadcrumbGraph(article) {
+    const url = `${BASE_URL}/news/${article.slug}`;
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        '@id': `${url}#breadcrumb`,
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+            { '@type': 'ListItem', position: 2, name: 'News', item: `${BASE_URL}/news` },
+            { '@type': 'ListItem', position: 3, name: article.title, item: url },
+        ],
+    };
+}
 
 export async function generateMetadata(props) {
     const params = await props.params;
@@ -44,5 +61,10 @@ export default async function NewsArticle(props) {
         notFound();
     }
 
-    return <ArticleContent article={article} />;
+    return (
+        <>
+            <JsonLd id={`breadcrumb-${article.slug}`} data={breadcrumbGraph(article)} />
+            <ArticleContent article={article} />
+        </>
+    );
 }

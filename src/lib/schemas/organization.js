@@ -80,6 +80,7 @@ export const organizationGraph = {
       '@id': `${BASE_URL}/#website`,
       url: BASE_URL,
       name: 'DentaSource Direct',
+      alternateName: ['DentaSource', 'DSD'],
       publisher: { '@id': `${BASE_URL}/#organization` },
       inLanguage: 'en-PH',
     },
