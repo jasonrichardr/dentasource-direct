@@ -24,7 +24,7 @@ export default function FeatureStrip() {
             <span className="block">built to be seen.</span>
           </h2>
           <p className="mt-5 max-w-[34rem] text-[15px] leading-snug text-[var(--muted)]">
-            Every panel of the A1 Pro, drifting past. Hover to pause — or read each one whole just below.
+            Every panel of the A1 Pro, drifting past. Swipe to hold one still — it picks back up on its own.
           </p>
         </FadeUp>
       </div>

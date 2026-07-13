@@ -10,6 +10,7 @@
    ───────────────────────────────────────────────────────────────────── */
 
 import { m } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -146,15 +147,22 @@ export function NativeImg({ src, alt, ratio, caption, priority = false, sizes = 
 
 /*
  * AutoStrip — the rideradian moving image strip (the one Jarich loves).
- * A horizontal row of finished cards that drifts on its own, seamlessly:
- * the set is duplicated and translated −50% (matches the `marquee` keyframe),
- * so the copy lands exactly on the original. Cards are FIXED-HEIGHT with the
- * image's native aspect-ratio → width derives, object-cover fills with zero
- * crop (whole card visible). Pauses on hover; reduced-motion → a plain
- * horizontally-scrollable row (no animation). `speed` sets seconds/loop —
- * slow it for text-bearing cards so they stay readable as they pass.
+ * A horizontal row of finished cards that drifts on its own, seamlessly: the
+ * set is duplicated, and scrollLeft wraps at the halfway mark so the copy lands
+ * exactly on the original. Cards are FIXED-HEIGHT with the image's native
+ * aspect-ratio → width derives, object-cover fills with zero crop.
+ *
+ * It drives native scrollLeft (not a CSS transform) so the user can SWIPE the
+ * strip to inspect a card at any time. Touching, dragging, or wheeling pauses
+ * the drift; it resumes on its own IDLE_MS after the last interaction. Desktop
+ * hover pauses too. Reduced-motion → a plain scrollable row, no drift.
+ *
+ * `speed` = seconds per full loop. Slow it for text-bearing cards.
  */
+const IDLE_MS = 1000; // resume the drift this long after the user stops
+
 export function AutoStrip({ items, speed = 60, height = 'clamp(300px,56vh,540px)', theme = 'dark', reduce = false }) {
+  const scrollerRef = useRef(null);
   const cardBg = theme === 'light' ? 'bg-white ring-1 ring-[var(--line-ink)]' : 'bg-[#0d1a14]';
   const cardCls = `relative mr-4 shrink-0 overflow-hidden rounded-[6px] md:mr-6 ${cardBg}`;
   const Card = ({ it, decorative }) => (
@@ -162,6 +170,79 @@ export function AutoStrip({ items, speed = 60, height = 'clamp(300px,56vh,540px)
       <Image src={it.src} alt={decorative ? '' : it.alt || ''} fill sizes="80vw" className="object-cover" />
     </div>
   );
+
+  useEffect(() => {
+    if (reduce) return;
+    const el = scrollerRef.current;
+    if (!el) return;
+
+    let raf = 0;
+    let last = 0;
+    let held = false;    // pointer/touch is down — drift stays off until release
+    let touched = 0;     // timestamp of the last interaction; drift waits IDLE_MS past it
+
+    const half = () => el.scrollWidth / 2;
+
+    // Timestamp-based rather than a timer, so the resume delay is exactly
+    // IDLE_MS after the LAST interaction regardless of event ordering.
+    const wake = () => { touched = performance.now(); };
+    const grab = () => { held = true; wake(); };
+    const release = () => { held = false; wake(); };
+
+    // scrollLeft rounds to whole pixels, so a sub-pixel per-frame delta would
+    // truncate to zero and never advance. Carry the position as a float here
+    // and assign it; resync from the DOM whenever the user is driving.
+    let pos = el.scrollLeft;
+    let written = el.scrollLeft; // the last value WE wrote
+
+    const tick = (t) => {
+      const dt = last ? Math.min((t - last) / 1000, 0.05) : 0; // clamp tab-switch jumps
+      last = t;
+      const h = half();
+      if (h > 0) {
+        // Chromium fires pointercancel and claims the gesture the moment a drag
+        // begins, so no release event arrives while the user is still panning.
+        // Instead: if scrollLeft moved somewhere WE didn't put it, the user (or
+        // touch momentum) is driving — keep the drift out of their way.
+        if (Math.abs(el.scrollLeft - written) > 2) {
+          wake();
+          pos = el.scrollLeft;
+        }
+
+        const resting = !held && performance.now() - touched >= IDLE_MS;
+        if (resting) {
+          pos += (h / speed) * dt;
+        } else {
+          pos = el.scrollLeft; // user is driving — follow them
+        }
+        if (pos >= h) pos -= h;        // seamless wrap onto the duplicate set
+        else if (pos < 0) pos += h;
+        el.scrollLeft = pos;
+        written = el.scrollLeft;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    const DOWN = ['pointerdown', 'mousedown', 'touchstart'];
+    const UP = ['pointerup', 'mouseup', 'pointercancel', 'touchend', 'touchcancel'];
+    const IDLE = ['wheel', 'mouseenter', 'mousemove'];
+    DOWN.forEach((e) => el.addEventListener(e, grab, { passive: true }));
+    UP.forEach((e) => el.addEventListener(e, release, { passive: true }));
+    IDLE.forEach((e) => el.addEventListener(e, wake, { passive: true }));
+    // a release can land outside the strip if the finger/cursor drifts off it
+    window.addEventListener('mouseup', release, { passive: true });
+    window.addEventListener('touchend', release, { passive: true });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      DOWN.forEach((e) => el.removeEventListener(e, grab));
+      UP.forEach((e) => el.removeEventListener(e, release));
+      IDLE.forEach((e) => el.removeEventListener(e, wake));
+      window.removeEventListener('mouseup', release);
+      window.removeEventListener('touchend', release);
+    };
+  }, [reduce, speed, items]);
 
   if (reduce) {
     return (
@@ -174,11 +255,12 @@ export function AutoStrip({ items, speed = 60, height = 'clamp(300px,56vh,540px)
   }
 
   return (
-    <div className="w-full overflow-hidden">
-      <div
-        className="flex w-max hover:[animation-play-state:paused]"
-        style={{ animation: `marquee ${speed}s linear infinite` }}
-      >
+    <div
+      ref={scrollerRef}
+      className="w-full overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      style={{ scrollBehavior: 'auto', touchAction: 'pan-x', overscrollBehaviorX: 'contain' }}
+    >
+      <div className="flex w-max">
         {items.map((it, i) => <Card key={i} it={it} />)}
         {items.map((it, i) => <Card key={`dup-${i}`} it={it} decorative />)}
       </div>
