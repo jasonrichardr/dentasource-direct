@@ -31,7 +31,7 @@ const COLUMNS = [
   {
     title: 'Visit',
     links: [
-      { label: '610 C. Maybunga Rd, Pasig', href: '/contact' },
+      { label: '610 C. Raymundo Ave, Pasig', href: '/contact' },
       { label: 'Open daily 9am – 8pm', href: '/contact' },
       { label: 'Trade-in program', href: '/trade-in' },
     ],

@@ -111,7 +111,7 @@ export default function Footer() {
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-400 mb-4">Visit / Call</h3>
             <ul className="space-y-2.5 text-sm text-white/60">
               <li>
-                610 C. Maybunga Rd,
+                610 C. Raymundo Ave,
                 <br />
                 Pasig City 1600
               </li>

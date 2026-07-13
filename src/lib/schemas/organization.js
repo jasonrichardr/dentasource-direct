@@ -46,7 +46,7 @@ export const organizationGraph = {
       hasMap: 'https://www.google.com/maps?cid=6544193348824466616',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: '610 C. Maybunga Road',
+        streetAddress: '610 C. Raymundo Ave',
         addressLocality: 'Pasig City',
         addressRegion: 'Metro Manila',
         postalCode: '1600',
