@@ -1,0 +1,344 @@
+{
+ "name": "FFC Soundtrack",
+ "version": 1,
+ "updated": "2026-07-31",
+ "albums": [
+  "Lofi & Chill",
+  "Focus Tones",
+  "Ragnarok OST"
+ ],
+ "tracks": [
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-01-summer-breeze.m4a",
+   "name": "Summer Breeze",
+   "artist": "Cat & Electric Fan",
+   "album": "Lofi & Chill",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-01-summer-breeze.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-02-smash-the-monday.m4a",
+   "name": "Smash The Monday",
+   "artist": "Office Rage Kitty",
+   "album": "Lofi & Chill",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-02-smash-the-monday.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-03-apple-tree-shade.m4a",
+   "name": "Apple Tree Shade",
+   "artist": "Chillhop Corner",
+   "album": "Lofi & Chill",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-03-apple-tree-shade.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-04-the-algorithm-playlist.m4a",
+   "name": "The Algorithm Playlist",
+   "artist": "Ksu4000",
+   "album": "Lofi & Chill",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-04-the-algorithm-playlist.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-05-saxophone-cat.m4a",
+   "name": "Saxophone Cat",
+   "artist": "Smooth Whiskers",
+   "album": "Lofi & Chill",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-05-saxophone-cat.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-06-floating-master.m4a",
+   "name": "Floating Master",
+   "artist": "Above The Clouds",
+   "album": "Lofi & Chill",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-06-floating-master.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-07-good-day.m4a",
+   "name": "GOOD DAY",
+   "artist": "Forrest Frank",
+   "album": "Lofi & Chill",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-07-good-day.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-08-cute-lofi-vol-11.m4a",
+   "name": "Cute Lofi, Vol. 11",
+   "artist": "Cat Of My Heart",
+   "album": "Lofi & Chill",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-08-cute-lofi-vol-11.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/reading-flow.m4a",
+   "name": "Flow State",
+   "artist": "Mnemosyne",
+   "album": "Focus Tones"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-01-theme-of-alberta.m4a",
+   "name": "Theme of Alberta",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-02-theme-of-geffen.m4a",
+   "name": "Theme of Geffen",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-03-theme-of-payon.m4a",
+   "name": "Theme of Payon",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-04-theme-of-prontera.m4a",
+   "name": "Theme of Prontera",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-05-theme-of-morroc.m4a",
+   "name": "Theme of Morroc",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-06-everlasting-wanderers-izlude.m4a",
+   "name": "Everlasting Wanderers (Izlude)",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-07-theme-of-al-de-baran.m4a",
+   "name": "Theme of Al de Baran",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-08-theme-of-lutie.m4a",
+   "name": "Theme of Lutie",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-09-welcome-my-lord.m4a",
+   "name": "Welcome My Lord",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-10-high-roller-coaster-comodo.m4a",
+   "name": "High Roller Coaster (Comodo)",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-11-theme-of-juno.m4a",
+   "name": "Theme of Juno",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-12-purity-of-your-smile-amatsu.m4a",
+   "name": "Purity of your Smile (Amatsu)",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-13-not-so-far-away-gonryun.m4a",
+   "name": "Not So Far Away (Gonryun)",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-14-jazzy-funky-sweety-umbala.m4a",
+   "name": "Jazzy Funky Sweety (Umbala)",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-15-latinova-hugel.m4a",
+   "name": "Latinova (Hugel)",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-16-christmas-in-the-13th-month-niflheim.m4a",
+   "name": "Christmas in the 13th Month (Niflheim)",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-17-the-great-luoyang.m4a",
+   "name": "The Great (Luoyang)",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-18-thai-orchid-ayothaya.m4a",
+   "name": "Thai Orchid (Ayothaya)",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-19-steel-me-einbroch.m4a",
+   "name": "Steel Me (Einbroch)",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-20-noblesse-oblige-lighthalzen.m4a",
+   "name": "Noblesse Oblige (Lighthalzen)",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-21-theme-of-rael-rachel.m4a",
+   "name": "Theme of Rael (Rachel)",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-22-theme-of-moscovia.m4a",
+   "name": "Theme of Moscovia",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/town-23-splendid-dreams.m4a",
+   "name": "Splendid Dreams",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-01-streamside.m4a",
+   "name": "Streamside",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-02-one-fine-day.m4a",
+   "name": "One Fine Day",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-03-wanna-be-free.m4a",
+   "name": "Wanna Be Free",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-04-plateau.m4a",
+   "name": "Plateau",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-05-peaceful-forest.m4a",
+   "name": "Peaceful Forest",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-06-tread-on-the-ground.m4a",
+   "name": "Tread On The Ground",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-07-yuna-song.m4a",
+   "name": "Yuna Song",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-08-desert.m4a",
+   "name": "Desert",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-09-brassy-road.m4a",
+   "name": "Brassy Road",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-10-tale-of-the-east.m4a",
+   "name": "Tale of The East",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-11-dream-of-a-whale.m4a",
+   "name": "Dream of a Whale",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-12-believe-in-myself.m4a",
+   "name": "Believe in Myself",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-13-great-honor.m4a",
+   "name": "Great Honor",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-14-silver-bell.m4a",
+   "name": "Silver Bell",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-15-white-christmas.m4a",
+   "name": "White Christmas",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-16-don-t-cry-baby.m4a",
+   "name": "Don't Cry Baby",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-17-antique-cowboy.m4a",
+   "name": "Antique Cowboy",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-18-i-miss-you.m4a",
+   "name": "I Miss You",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/field-19-one-step-closer.m4a",
+   "name": "One Step Closer",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-01-ancient-groover.m4a",
+   "name": "Ancient Groover",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-02-through-the-tower.m4a",
+   "name": "Through The Tower",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-03-can-t-go-home-again-baby.m4a",
+   "name": "Can't Go Home Again Baby",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-04-rag-all-night-long.m4a",
+   "name": "Rag All Night Long",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-05-jingle-bell-on-ragnarok.m4a",
+   "name": "Jingle Bell On Ragnarok",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-06-dancing-christmas-in-the-13th-month.m4a",
+   "name": "Dancing Christmas in the 13th Month",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-07-labyrinth.m4a",
+   "name": "Labyrinth",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-08-aeon.m4a",
+   "name": "Aeon",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-09-treasure-hunter.m4a",
+   "name": "Treasure Hunter",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-10-into-the-abyss.m4a",
+   "name": "Into The Abyss",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-11-wind-of-tragedy.m4a",
+   "name": "Wind of Tragedy",
+   "album": "Ragnarok OST"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-12-title.m4a",
+   "name": "Title",
+   "album": "Ragnarok OST"
+  }
+ ]
+}

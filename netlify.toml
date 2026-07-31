@@ -22,6 +22,16 @@
     Access-Control-Allow-Origin = "*"
     Cross-Origin-Resource-Policy = "cross-origin"
 
+# THE FFC SOUNDTRACK MANIFEST (2026-07-31) — the ONE song list the FFC front desk
+# and the DA inventory app both read at runtime. Short cache + revalidate so adding
+# a song here reaches both apps on their next load, with no app redeploy.
+# (/audio/* already opens CORS, which a fetch() needs and an <audio> tag does not.)
+[[headers]]
+  for = "/audio/soundtrack.json"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=60, must-revalidate"
+
 [[headers]]
   for = "/media/*"
   [headers.values]
