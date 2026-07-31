@@ -1,6 +1,6 @@
 {
  "name": "FFC Soundtrack",
- "version": 3,
+ "version": 4,
  "updated": "2026-07-31",
  "albums": [
   "Songs",
@@ -31,6 +31,46 @@
    "artist": "Ryan Ellis",
    "album": "Songs",
    "art": "https://dentasourcedirect.com/audio/lounge/song-03-without-jesus.jpg",
+   "kind": "song"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-04-hands.m4a",
+   "name": "Hands",
+   "artist": "Aaron Cole",
+   "album": "Songs",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-04-hands.jpg",
+   "kind": "song"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-05-the-king-is-alive.m4a",
+   "name": "The King Is Alive",
+   "artist": "Jordan Feliz",
+   "album": "Songs",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-05-the-king-is-alive.jpg",
+   "kind": "song"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-06-take-your-time.m4a",
+   "name": "Take Your Time",
+   "artist": "Joseph O'Brien",
+   "album": "Songs",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-06-take-your-time.jpg",
+   "kind": "song"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-07-praise-god-for-that.m4a",
+   "name": "Praise God For That",
+   "artist": "Jordan Feliz",
+   "album": "Songs",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-07-praise-god-for-that.jpg",
+   "kind": "song"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-08-cant-lose.m4a",
+   "name": "Can't Lose",
+   "artist": "Jordan Feliz",
+   "album": "Songs",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-08-cant-lose.jpg",
    "kind": "song"
   },
   {
@@ -103,6 +143,14 @@
    "artist": "numbb",
    "album": "Lofi & Chill",
    "art": "https://dentasourcedirect.com/audio/lounge/lofi-10-weightless.jpg",
+   "kind": "lofi"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-11-koi-pond.m4a",
+   "name": "Koi Pond",
+   "artist": "numbb",
+   "album": "Lofi & Chill",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-11-koi-pond.jpg",
    "kind": "lofi"
   },
   {
