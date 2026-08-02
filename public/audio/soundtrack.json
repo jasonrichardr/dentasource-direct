@@ -1,6 +1,6 @@
 {
  "name": "FFC Soundtrack",
- "version": 6,
+ "version": 11,
  "updated": "2026-08-02",
  "albums": [
   "Songs",
@@ -9,6 +9,14 @@
   "Ragnarok"
  ],
  "tracks": [
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-12-tatami-sunset.m4a",
+   "name": "Tatami Sunset",
+   "artist": "Melting Kitten",
+   "album": "Lofi & Chill",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-12-tatami-sunset.jpg"
+  },
   {
    "src": "https://dentasourcedirect.com/audio/lounge/lofi-07-good-day.m4a",
    "name": "GOOD DAY",
@@ -72,6 +80,38 @@
    "album": "Songs",
    "art": "https://dentasourcedirect.com/audio/lounge/song-08-cant-lose.jpg",
    "kind": "song"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-09-child-of-god.m4a",
+   "name": "ChILD Of GoD",
+   "artist": "Forrest Frank",
+   "album": "Songs",
+   "kind": "song",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-09-child-of-god.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-10-rapstar.m4a",
+   "name": "RAPSTAR",
+   "artist": "Flow G",
+   "album": "Songs",
+   "kind": "song",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-10-rapstar.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-11-hall-of-fame.m4a",
+   "name": "Hall of Fame",
+   "artist": "The Script",
+   "album": "Songs",
+   "kind": "song",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-11-hall-of-fame.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-12-speed-demon.m4a",
+   "name": "Speed Demon",
+   "artist": "Justin Bieber",
+   "album": "Songs",
+   "kind": "song",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-12-speed-demon.jpg"
   },
   {
    "src": "https://dentasourcedirect.com/audio/lounge/lofi-01-summer-breeze.m4a",

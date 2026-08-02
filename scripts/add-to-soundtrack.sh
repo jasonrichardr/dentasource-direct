@@ -16,6 +16,15 @@ set -euo pipefail
 [ $# -lt 4 ] && { echo "usage: $0 <slug> \"<Title>\" \"<Artist>\" <audio> [cover]"; exit 1; }
 SLUG="$1"; TITLE="$2"; ARTIST="$3"; AUDIO="$4"; COVER="${5:-}"
 ALBUM="${ALBUM:-Lofi & Chill}"
+# KIND drives the ALTERNATION (a song, then a mix, then a song — see each app's
+# lib/soundtrackOrder.ts). Unset it and the row reads as 'lofi', which is how a
+# three-minute song quietly becomes background music that never gets its turn.
+# Default from the album so the common case is right without thinking about it.
+case "$ALBUM" in
+  "Songs") KIND="${KIND:-song}" ;;
+  "Ragnarok") KIND="${KIND:-classic}" ;;
+  *) KIND="${KIND:-lofi}" ;;
+esac
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/public/audio/lounge"
 MANIFEST="$ROOT/public/audio/soundtrack.json"
@@ -34,7 +43,7 @@ if [ -n "$COVER" ] && [ -f "$COVER" ]; then
 fi
 
 echo "→ adding to the manifest…"
-SLUG="$SLUG" TITLE="$TITLE" ARTIST="$ARTIST" ALBUM="$ALBUM" MANIFEST="$MANIFEST" OUT="$OUT" \
+SLUG="$SLUG" TITLE="$TITLE" ARTIST="$ARTIST" ALBUM="$ALBUM" KIND="$KIND" MANIFEST="$MANIFEST" OUT="$OUT" \
 python3 - <<'PY'
 import json, os, pathlib
 slug, manifest = os.environ["SLUG"], pathlib.Path(os.environ["MANIFEST"])
@@ -42,7 +51,7 @@ base = "https://dentasourcedirect.com/audio/lounge/"
 doc = json.loads(manifest.read_text())
 src = f"{base}{slug}.m4a"
 doc["tracks"] = [t for t in doc["tracks"] if t.get("src") != src]  # idempotent re-add
-row = {"src": src, "name": os.environ["TITLE"], "artist": os.environ["ARTIST"], "album": os.environ["ALBUM"]}
+row = {"src": src, "name": os.environ["TITLE"], "artist": os.environ["ARTIST"], "album": os.environ["ALBUM"], "kind": os.environ["KIND"]}
 if (pathlib.Path(os.environ["OUT"]) / f"{slug}.jpg").exists():
     row["art"] = f"{base}{slug}.jpg"
 # New songs lead the list, like the rest of the Lofi drop.
@@ -52,7 +61,7 @@ if row["album"] not in doc.get("albums", []):
     doc.setdefault("albums", []).insert(0, row["album"])
 doc["version"] = int(doc.get("version", 1)) + 1
 manifest.write_text(json.dumps(doc, indent=1, ensure_ascii=False))
-print(f"   manifest v{doc['version']} — {len(doc['tracks'])} tracks")
+print(f"   manifest v{doc['version']} — {len(doc['tracks'])} tracks, kind={row['kind']}")
 PY
 
 echo
