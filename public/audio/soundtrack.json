@@ -1,6 +1,6 @@
 {
  "name": "FFC Soundtrack",
- "version": 11,
+ "version": 20,
  "updated": "2026-08-02",
  "albums": [
   "Songs",
@@ -9,6 +9,70 @@
   "Ragnarok"
  ],
  "tracks": [
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-13-tatami-sunset-pt2.m4a",
+   "name": "Tatami Sunset, Pt. 2",
+   "artist": "Melting Kitten",
+   "album": "Lofi & Chill",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-13-tatami-sunset-pt2.jpg",
+   "kind": "lofi"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-14-snow-day.m4a",
+   "name": "Snow Day",
+   "artist": "Bear On A Sled",
+   "album": "Lofi & Chill",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-14-snow-day.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-13-better-days.m4a",
+   "name": "Better Days",
+   "artist": "Ryan Ellis",
+   "album": "Songs",
+   "kind": "song",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-13-better-days.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-14-what-it-sounds-like.m4a",
+   "name": "What It Sounds Like",
+   "artist": "HUNTR/X",
+   "album": "Songs",
+   "kind": "song",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-14-what-it-sounds-like.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-15-soda-pop.m4a",
+   "name": "Soda Pop",
+   "artist": "Saja Boys",
+   "album": "Songs",
+   "kind": "song",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-15-soda-pop.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-16-golden.m4a",
+   "name": "Golden",
+   "artist": "HUNTR/X",
+   "album": "Songs",
+   "kind": "song",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-16-golden.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-17-circle-of-life.m4a",
+   "name": "Circle of Life",
+   "artist": "Lebo M.",
+   "album": "Songs",
+   "kind": "song",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-17-circle-of-life.jpg"
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/song-18-colors-of-the-wind.m4a",
+   "name": "Colors of the Wind",
+   "artist": "Vanessa Williams",
+   "album": "Songs",
+   "kind": "song",
+   "art": "https://dentasourcedirect.com/audio/lounge/song-18-colors-of-the-wind.jpg"
+  },
   {
    "src": "https://dentasourcedirect.com/audio/lounge/lofi-12-tatami-sunset.m4a",
    "name": "Tatami Sunset",
