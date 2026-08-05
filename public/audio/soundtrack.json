@@ -1,6 +1,6 @@
 {
  "name": "FFC Soundtrack",
- "version": 29,
+ "version": 30,
  "updated": "2026-08-02",
  "albums": [
   "Songs",
@@ -9,15 +9,6 @@
   "Ragnarok"
  ],
  "tracks": [
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/focus-02-quiet-time-with-god.m4a",
-   "name": "Quiet Time With God",
-   "artist": "Central Record",
-   "album": "Focus Tones",
-   "kind": "lofi",
-   "art": "https://dentasourcedirect.com/audio/lounge/focus-02-quiet-time-with-god.jpg",
-   "priority": true
-  },
   {
    "src": "https://dentasourcedirect.com/audio/lounge/focus-03-marble-gallery.m4a",
    "name": "Golden Hour in the Marble Gallery",
@@ -88,6 +79,15 @@
    "album": "Focus Tones",
    "kind": "lofi",
    "art": "https://dentasourcedirect.com/audio/lounge/focus-10-very-large-room.jpg",
+   "priority": true
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/focus-02-quiet-time-with-god.m4a",
+   "name": "Quiet Time With God",
+   "artist": "Central Record",
+   "album": "Focus Tones",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/focus-02-quiet-time-with-god.jpg",
    "priority": true
   },
   {
