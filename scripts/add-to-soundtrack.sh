@@ -25,6 +25,9 @@ case "$ALBUM" in
   "Ragnarok") KIND="${KIND:-classic}" ;;
   *) KIND="${KIND:-lofi}" ;;
 esac
+# PRIORITY=1 marks a track to play right after the opening song, before the
+# normal lofi↔song alternation resumes. Jarich, 2026-08-06: "make them top
+# priority to play next after the good day first song played."
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/public/audio/lounge"
 MANIFEST="$ROOT/public/audio/soundtrack.json"
@@ -36,6 +39,21 @@ echo "→ transcoding $SLUG (64k AAC + loudnorm)…"
 ffmpeg -nostdin -y -v error -i "$AUDIO" -vn -af loudnorm=I=-16:TP=-1.5:LRA=11 \
   -c:a aac -b:a 64k -ar 44100 -ac 2 -movflags +faststart "$OUT/$SLUG.m4a"
 
+# THE ENCODE MUST BE WHOLE. A killed or contended ffmpeg leaves a playable-looking
+# file that is simply short — 2026-08-06 left a 10MB stub of an 88-minute mix, and
+# nothing downstream would have noticed: the row goes in, the manifest validates,
+# and a DA just hears the music stop. Compare durations before trusting the output.
+SRC_DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$AUDIO" 2>/dev/null | cut -d. -f1)
+OUT_DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$OUT/$SLUG.m4a" 2>/dev/null | cut -d. -f1)
+if [ -z "$OUT_DUR" ]; then
+  echo "ABORT: $SLUG.m4a is unreadable — the encode did not finish."; rm -f "$OUT/$SLUG.m4a"; exit 1
+fi
+if [ "$((SRC_DUR - OUT_DUR))" -gt 5 ] || [ "$((OUT_DUR - SRC_DUR))" -gt 5 ]; then
+  echo "ABORT: $SLUG.m4a is ${OUT_DUR}s but the source is ${SRC_DUR}s — truncated encode."
+  rm -f "$OUT/$SLUG.m4a"; exit 1
+fi
+echo "   ✓ encode is whole (${OUT_DUR}s)"
+
 if [ -n "$COVER" ] && [ -f "$COVER" ]; then
   echo "→ squaring the cover…"
   ffmpeg -nostdin -y -v error -i "$COVER" \
@@ -43,7 +61,7 @@ if [ -n "$COVER" ] && [ -f "$COVER" ]; then
 fi
 
 echo "→ adding to the manifest…"
-SLUG="$SLUG" TITLE="$TITLE" ARTIST="$ARTIST" ALBUM="$ALBUM" KIND="$KIND" MANIFEST="$MANIFEST" OUT="$OUT" \
+SLUG="$SLUG" TITLE="$TITLE" ARTIST="$ARTIST" ALBUM="$ALBUM" KIND="$KIND" PRIORITY="${PRIORITY:-}" MANIFEST="$MANIFEST" OUT="$OUT" \
 python3 - <<'PY'
 import json, os, pathlib
 slug, manifest = os.environ["SLUG"], pathlib.Path(os.environ["MANIFEST"])
@@ -54,6 +72,12 @@ doc["tracks"] = [t for t in doc["tracks"] if t.get("src") != src]  # idempotent 
 row = {"src": src, "name": os.environ["TITLE"], "artist": os.environ["ARTIST"], "album": os.environ["ALBUM"], "kind": os.environ["KIND"]}
 if (pathlib.Path(os.environ["OUT"]) / f"{slug}.jpg").exists():
     row["art"] = f"{base}{slug}.jpg"
+else:
+    # A missing cover used to be silent — the row went in artless and the
+    # manifest was happy about it (Tatami Sunset Pt.2, 2026-08-03). Now it says so.
+    print(f"   ⚠️  NO COVER for {slug} — row added without art")
+if os.environ.get("PRIORITY"):
+    row["priority"] = True
 # New songs lead the list, like the rest of the Lofi drop.
 first_other = next((i for i, t in enumerate(doc["tracks"]) if t.get("album") != row["album"]), len(doc["tracks"]))
 doc["tracks"].insert(first_other, row)

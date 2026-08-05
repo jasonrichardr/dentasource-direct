@@ -1,6 +1,6 @@
 {
  "name": "FFC Soundtrack",
- "version": 20,
+ "version": 29,
  "updated": "2026-08-02",
  "albums": [
   "Songs",
@@ -9,6 +9,87 @@
   "Ragnarok"
  ],
  "tracks": [
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/focus-02-quiet-time-with-god.m4a",
+   "name": "Quiet Time With God",
+   "artist": "Central Record",
+   "album": "Focus Tones",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/focus-02-quiet-time-with-god.jpg",
+   "priority": true
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/focus-03-marble-gallery.m4a",
+   "name": "Golden Hour in the Marble Gallery",
+   "artist": "Study Sanctuary",
+   "album": "Focus Tones",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/focus-03-marble-gallery.jpg",
+   "priority": true
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/focus-04-rachmaninoff-adagios.m4a",
+   "name": "12 Adagios in Rachmaninoff Style",
+   "artist": "Academia Classics",
+   "album": "Focus Tones",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/focus-04-rachmaninoff-adagios.jpg",
+   "priority": true
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/focus-05-quiet-shelter.m4a",
+   "name": "A Quiet Shelter",
+   "artist": "Quiet Gallery",
+   "album": "Focus Tones",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/focus-05-quiet-shelter.jpg",
+   "priority": true
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/focus-06-before-the-music.m4a",
+   "name": "Before the Music Begins",
+   "artist": "Study Sanctuary",
+   "album": "Focus Tones",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/focus-06-before-the-music.jpg",
+   "priority": true
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/focus-07-overthinkers.m4a",
+   "name": "Music for Overthinkers",
+   "artist": "Study Sanctuary",
+   "album": "Focus Tones",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/focus-07-overthinkers.jpg",
+   "priority": true
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/focus-08-curious-mind.m4a",
+   "name": "Music for the Curious Mind",
+   "artist": "Study Sanctuary",
+   "album": "Focus Tones",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/focus-08-curious-mind.jpg",
+   "priority": true
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/focus-09-empty-basilica.m4a",
+   "name": "The Empty Basilica",
+   "artist": "Study Sanctuary",
+   "album": "Focus Tones",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/focus-09-empty-basilica.jpg",
+   "priority": true
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/focus-10-very-large-room.m4a",
+   "name": "Small in a Very Large Room",
+   "artist": "Study Sanctuary",
+   "album": "Focus Tones",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/focus-10-very-large-room.jpg",
+   "priority": true
+  },
   {
    "src": "https://dentasourcedirect.com/audio/lounge/lofi-13-tatami-sunset-pt2.m4a",
    "name": "Tatami Sunset, Pt. 2",
