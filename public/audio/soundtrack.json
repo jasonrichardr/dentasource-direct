@@ -1,6 +1,6 @@
 {
  "name": "FFC Soundtrack",
- "version": 30,
+ "version": 32,
  "updated": "2026-08-02",
  "albums": [
   "Songs",
@@ -9,6 +9,15 @@
   "Ragnarok"
  ],
  "tracks": [
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-15-summer-love-in-tokyo.m4a",
+   "name": "Summer Love in Tokyo",
+   "artist": "Vintage J-Pop Station",
+   "album": "Lofi & Chill",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-15-summer-love-in-tokyo.jpg",
+   "priority": true
+  },
   {
    "src": "https://dentasourcedirect.com/audio/lounge/focus-03-marble-gallery.m4a",
    "name": "Golden Hour in the Marble Gallery",
