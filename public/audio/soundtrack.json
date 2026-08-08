@@ -1,6 +1,6 @@
 {
  "name": "FFC Soundtrack",
- "version": 32,
+ "version": 35,
  "updated": "2026-08-02",
  "albums": [
   "Songs",
@@ -16,6 +16,24 @@
    "album": "Lofi & Chill",
    "kind": "lofi",
    "art": "https://dentasourcedirect.com/audio/lounge/lofi-15-summer-love-in-tokyo.jpg",
+   "priority": true
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-16-unimpressed.m4a",
+   "name": "Unimpressed",
+   "artist": "Cat With Eyebrows",
+   "album": "Lofi & Chill",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-16-unimpressed.jpg",
+   "priority": true
+  },
+  {
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-17-sermon-in-the-forum.m4a",
+   "name": "Sermon in the Forum",
+   "artist": "The Cat of Rome",
+   "album": "Lofi & Chill",
+   "kind": "lofi",
+   "art": "https://dentasourcedirect.com/audio/lounge/lofi-17-sermon-in-the-forum.jpg",
    "priority": true
   },
   {
