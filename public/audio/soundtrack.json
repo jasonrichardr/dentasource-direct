@@ -1,6 +1,6 @@
 {
  "name": "FFC Soundtrack",
- "version": 35,
+ "version": 36,
  "updated": "2026-08-02",
  "albums": [
   "Songs",
@@ -28,12 +28,14 @@
    "priority": true
   },
   {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-17-sermon-in-the-forum.m4a",
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-17-sermon-in-the-forum-hifi.m4a",
    "name": "Sermon in the Forum",
    "artist": "The Cat of Rome",
    "album": "Lofi & Chill",
-   "kind": "lofi",
    "art": "https://dentasourcedirect.com/audio/lounge/lofi-17-sermon-in-the-forum.jpg",
+   "kbps": 192,
+   "khz": 44.1,
+   "kind": "lofi",
    "priority": true
   },
   {
@@ -190,11 +192,13 @@
    "art": "https://dentasourcedirect.com/audio/lounge/lofi-12-tatami-sunset.jpg"
   },
   {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-07-good-day.m4a",
+   "src": "https://dentasourcedirect.com/audio/lounge/lofi-07-good-day-hifi.m4a",
    "name": "GOOD DAY",
    "artist": "Forrest Frank",
    "album": "Songs",
    "art": "https://dentasourcedirect.com/audio/lounge/lofi-07-good-day.jpg",
+   "kbps": 256,
+   "khz": 48,
    "kind": "song"
   },
   {
@@ -956,5 +960,5 @@
   "you have perfected the polite face for just checking the price po",
   "the autoclave finished. it is very proud. go and see"
  ],
- "lead": "https://dentasourcedirect.com/audio/lounge/lofi-07-good-day.m4a"
+ "lead": "https://dentasourcedirect.com/audio/lounge/lofi-07-good-day-hifi.m4a"
 }
