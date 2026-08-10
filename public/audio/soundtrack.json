@@ -1,964 +1,1018 @@
 {
- "name": "FFC Soundtrack",
- "version": 36,
- "updated": "2026-08-02",
- "albums": [
-  "Songs",
-  "Lofi & Chill",
-  "Focus Tones",
-  "Ragnarok"
- ],
- "tracks": [
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-15-summer-love-in-tokyo.m4a",
-   "name": "Summer Love in Tokyo",
-   "artist": "Vintage J-Pop Station",
-   "album": "Lofi & Chill",
-   "kind": "lofi",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-15-summer-love-in-tokyo.jpg",
-   "priority": true
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-16-unimpressed.m4a",
-   "name": "Unimpressed",
-   "artist": "Cat With Eyebrows",
-   "album": "Lofi & Chill",
-   "kind": "lofi",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-16-unimpressed.jpg",
-   "priority": true
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-17-sermon-in-the-forum-hifi.m4a",
-   "name": "Sermon in the Forum",
-   "artist": "The Cat of Rome",
-   "album": "Lofi & Chill",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-17-sermon-in-the-forum.jpg",
-   "kbps": 192,
-   "khz": 44.1,
-   "kind": "lofi",
-   "priority": true
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/focus-03-marble-gallery.m4a",
-   "name": "Golden Hour in the Marble Gallery",
-   "artist": "Study Sanctuary",
-   "album": "Focus Tones",
-   "kind": "lofi",
-   "art": "https://dentasourcedirect.com/audio/lounge/focus-03-marble-gallery.jpg",
-   "priority": true
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/focus-04-rachmaninoff-adagios.m4a",
-   "name": "12 Adagios in Rachmaninoff Style",
-   "artist": "Academia Classics",
-   "album": "Focus Tones",
-   "kind": "lofi",
-   "art": "https://dentasourcedirect.com/audio/lounge/focus-04-rachmaninoff-adagios.jpg",
-   "priority": true
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/focus-05-quiet-shelter.m4a",
-   "name": "A Quiet Shelter",
-   "artist": "Quiet Gallery",
-   "album": "Focus Tones",
-   "kind": "lofi",
-   "art": "https://dentasourcedirect.com/audio/lounge/focus-05-quiet-shelter.jpg",
-   "priority": true
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/focus-06-before-the-music.m4a",
-   "name": "Before the Music Begins",
-   "artist": "Study Sanctuary",
-   "album": "Focus Tones",
-   "kind": "lofi",
-   "art": "https://dentasourcedirect.com/audio/lounge/focus-06-before-the-music.jpg",
-   "priority": true
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/focus-07-overthinkers.m4a",
-   "name": "Music for Overthinkers",
-   "artist": "Study Sanctuary",
-   "album": "Focus Tones",
-   "kind": "lofi",
-   "art": "https://dentasourcedirect.com/audio/lounge/focus-07-overthinkers.jpg",
-   "priority": true
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/focus-08-curious-mind.m4a",
-   "name": "Music for the Curious Mind",
-   "artist": "Study Sanctuary",
-   "album": "Focus Tones",
-   "kind": "lofi",
-   "art": "https://dentasourcedirect.com/audio/lounge/focus-08-curious-mind.jpg",
-   "priority": true
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/focus-09-empty-basilica.m4a",
-   "name": "The Empty Basilica",
-   "artist": "Study Sanctuary",
-   "album": "Focus Tones",
-   "kind": "lofi",
-   "art": "https://dentasourcedirect.com/audio/lounge/focus-09-empty-basilica.jpg",
-   "priority": true
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/focus-10-very-large-room.m4a",
-   "name": "Small in a Very Large Room",
-   "artist": "Study Sanctuary",
-   "album": "Focus Tones",
-   "kind": "lofi",
-   "art": "https://dentasourcedirect.com/audio/lounge/focus-10-very-large-room.jpg",
-   "priority": true
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/focus-02-quiet-time-with-god.m4a",
-   "name": "Quiet Time With God",
-   "artist": "Central Record",
-   "album": "Focus Tones",
-   "kind": "lofi",
-   "art": "https://dentasourcedirect.com/audio/lounge/focus-02-quiet-time-with-god.jpg",
-   "priority": true
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-13-tatami-sunset-pt2.m4a",
-   "name": "Tatami Sunset, Pt. 2",
-   "artist": "Melting Kitten",
-   "album": "Lofi & Chill",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-13-tatami-sunset-pt2.jpg",
-   "kind": "lofi"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-14-snow-day.m4a",
-   "name": "Snow Day",
-   "artist": "Bear On A Sled",
-   "album": "Lofi & Chill",
-   "kind": "lofi",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-14-snow-day.jpg"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-13-better-days.m4a",
-   "name": "Better Days",
-   "artist": "Ryan Ellis",
-   "album": "Songs",
-   "kind": "song",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-13-better-days.jpg"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-14-what-it-sounds-like.m4a",
-   "name": "What It Sounds Like",
-   "artist": "HUNTR/X",
-   "album": "Songs",
-   "kind": "song",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-14-what-it-sounds-like.jpg"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-15-soda-pop.m4a",
-   "name": "Soda Pop",
-   "artist": "Saja Boys",
-   "album": "Songs",
-   "kind": "song",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-15-soda-pop.jpg"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-16-golden.m4a",
-   "name": "Golden",
-   "artist": "HUNTR/X",
-   "album": "Songs",
-   "kind": "song",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-16-golden.jpg"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-17-circle-of-life.m4a",
-   "name": "Circle of Life",
-   "artist": "Lebo M.",
-   "album": "Songs",
-   "kind": "song",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-17-circle-of-life.jpg"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-18-colors-of-the-wind.m4a",
-   "name": "Colors of the Wind",
-   "artist": "Vanessa Williams",
-   "album": "Songs",
-   "kind": "song",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-18-colors-of-the-wind.jpg"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-12-tatami-sunset.m4a",
-   "name": "Tatami Sunset",
-   "artist": "Melting Kitten",
-   "album": "Lofi & Chill",
-   "kind": "lofi",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-12-tatami-sunset.jpg"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-07-good-day-hifi.m4a",
-   "name": "GOOD DAY",
-   "artist": "Forrest Frank",
-   "album": "Songs",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-07-good-day.jpg",
-   "kbps": 256,
-   "khz": 48,
-   "kind": "song"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-02-heaven-on-my-mind.m4a",
-   "name": "Heaven On My Mind",
-   "artist": "TobyMac",
-   "album": "Songs",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-02-heaven-on-my-mind.jpg",
-   "kind": "song"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-03-without-jesus.m4a",
-   "name": "Without Jesus",
-   "artist": "Ryan Ellis",
-   "album": "Songs",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-03-without-jesus.jpg",
-   "kind": "song"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-04-hands.m4a",
-   "name": "Hands",
-   "artist": "Aaron Cole",
-   "album": "Songs",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-04-hands.jpg",
-   "kind": "song"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-05-the-king-is-alive.m4a",
-   "name": "The King Is Alive",
-   "artist": "Jordan Feliz",
-   "album": "Songs",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-05-the-king-is-alive.jpg",
-   "kind": "song"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-06-take-your-time.m4a",
-   "name": "Take Your Time",
-   "artist": "Joseph O'Brien",
-   "album": "Songs",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-06-take-your-time.jpg",
-   "kind": "song"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-07-praise-god-for-that.m4a",
-   "name": "Praise God For That",
-   "artist": "Jordan Feliz",
-   "album": "Songs",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-07-praise-god-for-that.jpg",
-   "kind": "song"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-08-cant-lose.m4a",
-   "name": "Can't Lose",
-   "artist": "Jordan Feliz",
-   "album": "Songs",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-08-cant-lose.jpg",
-   "kind": "song"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-09-child-of-god.m4a",
-   "name": "ChILD Of GoD",
-   "artist": "Forrest Frank",
-   "album": "Songs",
-   "kind": "song",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-09-child-of-god.jpg"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-10-rapstar.m4a",
-   "name": "RAPSTAR",
-   "artist": "Flow G",
-   "album": "Songs",
-   "kind": "song",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-10-rapstar.jpg"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-11-hall-of-fame.m4a",
-   "name": "Hall of Fame",
-   "artist": "The Script",
-   "album": "Songs",
-   "kind": "song",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-11-hall-of-fame.jpg"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/song-12-speed-demon.m4a",
-   "name": "Speed Demon",
-   "artist": "Justin Bieber",
-   "album": "Songs",
-   "kind": "song",
-   "art": "https://dentasourcedirect.com/audio/lounge/song-12-speed-demon.jpg"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-01-summer-breeze.m4a",
-   "name": "Summer Breeze",
-   "artist": "Cat & Electric Fan",
-   "album": "Lofi & Chill",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-01-summer-breeze.jpg",
-   "kind": "lofi"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-02-smash-the-monday.m4a",
-   "name": "Smash The Monday",
-   "artist": "Office Rage Kitty",
-   "album": "Lofi & Chill",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-02-smash-the-monday.jpg",
-   "kind": "lofi"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-03-apple-tree-shade.m4a",
-   "name": "Apple Tree Shade",
-   "artist": "Chillhop Corner",
-   "album": "Lofi & Chill",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-03-apple-tree-shade.jpg",
-   "kind": "lofi"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-04-the-algorithm-playlist.m4a",
-   "name": "The Algorithm Playlist",
-   "artist": "Ksu4000",
-   "album": "Lofi & Chill",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-04-the-algorithm-playlist.jpg",
-   "kind": "lofi"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-05-saxophone-cat.m4a",
-   "name": "Saxophone Cat",
-   "artist": "Smooth Whiskers",
-   "album": "Lofi & Chill",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-05-saxophone-cat.jpg",
-   "kind": "lofi"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-06-floating-master.m4a",
-   "name": "Floating Master",
-   "artist": "Above The Clouds",
-   "album": "Lofi & Chill",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-06-floating-master.jpg",
-   "kind": "lofi"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-08-cute-lofi-vol-11.m4a",
-   "name": "Cute Lofi, Vol. 11",
-   "artist": "Cat Of My Heart",
-   "album": "Lofi & Chill",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-08-cute-lofi-vol-11.jpg",
-   "kind": "lofi"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-09-do-whatever-you-want.m4a",
-   "name": "Do Whatever You Want",
-   "artist": "room waves",
-   "album": "Lofi & Chill",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-09-do-whatever-you-want.jpg",
-   "kind": "lofi"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-10-weightless.m4a",
-   "name": "Weightless",
-   "artist": "numbb",
-   "album": "Lofi & Chill",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-10-weightless.jpg",
-   "kind": "lofi"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/lounge/lofi-11-koi-pond.m4a",
-   "name": "Koi Pond",
-   "artist": "numbb",
-   "album": "Lofi & Chill",
-   "art": "https://dentasourcedirect.com/audio/lounge/lofi-11-koi-pond.jpg",
-   "kind": "lofi"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/reading-flow.m4a",
-   "name": "Flow State",
-   "artist": "Mnemosyne",
-   "album": "Focus Tones",
-   "kind": "lofi"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-01-theme-of-alberta.m4a",
-   "name": "Theme of Alberta",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-02-theme-of-geffen.m4a",
-   "name": "Theme of Geffen",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-03-theme-of-payon.m4a",
-   "name": "Theme of Payon",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-04-theme-of-prontera.m4a",
-   "name": "Theme of Prontera",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-05-theme-of-morroc.m4a",
-   "name": "Theme of Morroc",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-06-everlasting-wanderers-izlude.m4a",
-   "name": "Everlasting Wanderers (Izlude)",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-07-theme-of-al-de-baran.m4a",
-   "name": "Theme of Al de Baran",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-08-theme-of-lutie.m4a",
-   "name": "Theme of Lutie",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-09-welcome-my-lord.m4a",
-   "name": "Welcome My Lord",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-10-high-roller-coaster-comodo.m4a",
-   "name": "High Roller Coaster (Comodo)",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-11-theme-of-juno.m4a",
-   "name": "Theme of Juno",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-12-purity-of-your-smile-amatsu.m4a",
-   "name": "Purity of your Smile (Amatsu)",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-13-not-so-far-away-gonryun.m4a",
-   "name": "Not So Far Away (Gonryun)",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-14-jazzy-funky-sweety-umbala.m4a",
-   "name": "Jazzy Funky Sweety (Umbala)",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-15-latinova-hugel.m4a",
-   "name": "Latinova (Hugel)",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-16-christmas-in-the-13th-month-niflheim.m4a",
-   "name": "Christmas in the 13th Month (Niflheim)",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-17-the-great-luoyang.m4a",
-   "name": "The Great (Luoyang)",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-18-thai-orchid-ayothaya.m4a",
-   "name": "Thai Orchid (Ayothaya)",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-19-steel-me-einbroch.m4a",
-   "name": "Steel Me (Einbroch)",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-20-noblesse-oblige-lighthalzen.m4a",
-   "name": "Noblesse Oblige (Lighthalzen)",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-21-theme-of-rael-rachel.m4a",
-   "name": "Theme of Rael (Rachel)",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-22-theme-of-moscovia.m4a",
-   "name": "Theme of Moscovia",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/town-23-splendid-dreams.m4a",
-   "name": "Splendid Dreams",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-01-streamside.m4a",
-   "name": "Streamside",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-02-one-fine-day.m4a",
-   "name": "One Fine Day",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-03-wanna-be-free.m4a",
-   "name": "Wanna Be Free",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-04-plateau.m4a",
-   "name": "Plateau",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-05-peaceful-forest.m4a",
-   "name": "Peaceful Forest",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-06-tread-on-the-ground.m4a",
-   "name": "Tread On The Ground",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-07-yuna-song.m4a",
-   "name": "Yuna Song",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-08-desert.m4a",
-   "name": "Desert",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-09-brassy-road.m4a",
-   "name": "Brassy Road",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-10-tale-of-the-east.m4a",
-   "name": "Tale of The East",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-11-dream-of-a-whale.m4a",
-   "name": "Dream of a Whale",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-12-believe-in-myself.m4a",
-   "name": "Believe in Myself",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-13-great-honor.m4a",
-   "name": "Great Honor",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-14-silver-bell.m4a",
-   "name": "Silver Bell",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-15-white-christmas.m4a",
-   "name": "White Christmas",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-16-don-t-cry-baby.m4a",
-   "name": "Don't Cry Baby",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-17-antique-cowboy.m4a",
-   "name": "Antique Cowboy",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-18-i-miss-you.m4a",
-   "name": "I Miss You",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/field-19-one-step-closer.m4a",
-   "name": "One Step Closer",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-01-ancient-groover.m4a",
-   "name": "Ancient Groover",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-02-through-the-tower.m4a",
-   "name": "Through The Tower",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-03-can-t-go-home-again-baby.m4a",
-   "name": "Can't Go Home Again Baby",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-04-rag-all-night-long.m4a",
-   "name": "Rag All Night Long",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-05-jingle-bell-on-ragnarok.m4a",
-   "name": "Jingle Bell On Ragnarok",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-06-dancing-christmas-in-the-13th-month.m4a",
-   "name": "Dancing Christmas in the 13th Month",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-07-labyrinth.m4a",
-   "name": "Labyrinth",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-08-aeon.m4a",
-   "name": "Aeon",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-09-treasure-hunter.m4a",
-   "name": "Treasure Hunter",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-10-into-the-abyss.m4a",
-   "name": "Into The Abyss",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-11-wind-of-tragedy.m4a",
-   "name": "Wind of Tragedy",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  },
-  {
-   "src": "https://dentasourcedirect.com/audio/tracks/dungeon-12-title.m4a",
-   "name": "Title",
-   "album": "Ragnarok",
-   "kind": "classic",
-   "artist": "Ragnarok"
-  }
- ],
- "thoughts": [
-  "hi. you're doing better than you think",
-  "you made it to this exact minute. that counts",
-  "nobody told you today, so: you're doing great",
-  "someone smiled today because of you",
-  "you are somebody's favourite person to see",
-  "hello, human with the tired shoulders",
-  "put your shoulders down. yes, those ones",
-  "unclench your jaw. I'll wait",
-  "drink some water. this is your sign",
-  "you blinked and the day moved three minutes",
-  "the autoclave hums in B flat. I checked",
-  "the ceiling fan has seen things",
-  "the chair is still warm from someone's whole story",
-  "somewhere a tooth is quietly grateful for you",
-  "the gloves come in pairs. so does courage",
-  "the light in here at 3pm is the good kind",
-  "the plants are gossiping about us again",
-  "the mirror fogged and the philosophy began",
-  "this floor has held a thousand nervous feet",
-  "the door chimes like it's happy to see them",
-  "if a molar falls in a forest, does it need a crown",
-  "the wifi is fine. it's the universe buffering",
-  "you are 60% water and 40% good intentions",
-  "a capybara would admire your composure",
-  "somewhere a cat is also just vibing. solidarity",
-  "this song knows what you did last Tuesday",
-  "plot twist: the coffee got cold again",
-  "wait. is it already afternoon",
-  "the stapler has never once let you down",
-  "your pen has been missing for 20 minutes. it's fine",
-  "we don't talk about the third drawer",
-  "somebody's phone alarm is about to ruin this vibe",
-  "the printer is thinking. give it a moment",
-  "a duck somewhere is having a great day",
-  "this beat is 82 bpm. so is your calm",
-  "one day you'll miss this exact ordinary afternoon",
-  "your future self says thank you for today",
-  "the small careful things are the whole job",
-  "nobody sees the tidying. it still matters",
-  "you can be tired and still be good at this",
-  "rest is also part of the work",
-  "the hard part passed and you didn't notice",
-  "you have survived every difficult day so far",
-  "the day doesn't need to be perfect to be enough",
-  "slow is still forward",
-  "you don't have to earn a soft moment",
-  "some days you carry it. some days it carries you",
-  "kindness costs nothing and is still the best deal here",
-  "the person you were three years ago would be amazed",
-  "you're allowed to be proud of a normal day",
-  "everyone who walks in here is scared of something",
-  "they'll remember how you said it, not what",
-  "someone will go home and say the staff were kind",
-  "the nervous ones need two extra seconds. give them",
-  "a whole life walks in behind every appointment",
-  "somebody's first ever check-up is today",
-  "somebody's grandmother is telling her friends about you",
-  "you fixed something that will chew food for 40 years",
-  "the kid who cried last time didn't cry today",
-  "they came back. that's the review",
-  "imagine the sound of a very small triumphant trumpet",
-  "you deserve a snack of unreasonable size",
-  "hypothetically, a nap. hypothetically",
-  "somewhere it is raining and it is lovely",
-  "you'd look great in a tiny hat. just saying",
-  "the moon is doing its shift too",
-  "an otter is holding hands with another otter right now",
-  "there is a bakery somewhere thinking of you",
-  "in another timeline you're a jazz musician",
-  "the ocean is still there, being enormous, waiting",
-  "clouds have no idea how good they look",
-  "bread is just friendly flour",
-  "a bee visited 300 flowers today. take the day off",
-  "your name sounds nice when people say it",
-  "somewhere a dog just found its favourite stick",
-  "the queue will end. it always ends",
-  "closing time is a real place and you'll get there",
-  "whatever's left, tomorrow-you is strong enough",
-  "you can put it down when you leave",
-  "go home and be a person for a while",
-  "the last patient deserves the first-patient you",
-  "you'll sleep well tonight. you earned it",
-  "this part. right here. listen",
-  "let this one finish. it's going somewhere",
-  "the drums are just a heartbeat with ambition",
-  "whoever made this song was having a soft day",
-  "somebody wrote this at 2am for no one in particular",
-  "music is just math being emotional",
-  "hum along. nobody's counting",
-  "this is the song, isn't it",
-  "the printer is fine. the printer is always fine. do not look at the printer",
-  "somebody somewhere is flossing because of you. probably",
-  "the suction makes that noise on purpose. it is showing off",
-  "a patient once described the drill as \"spicy\". unbeatable review",
-  "no notes. well — several notes. but no notes",
-  "the swivel chair does not know its own power",
-  "you have said \"small bite\" more times than your own name",
-  "the sterilizer beeped. it always beeps. it lives for this",
-  "gloves: worn 40 times today, appreciated 0 times. until now",
-  "somewhere a dentist is also pretending the schedule is fine",
-  "the kettle remembers you",
-  "a small dog would be very impressed by your day",
-  "your pen has been loyal. say nothing, it knows",
-  "somebody smiled today because their teeth felt clean. that was you",
-  "the plant by the window is rooting for you. literally its whole thing",
-  "a kid somewhere is proud they did not cry. you helped",
-  "you are somebody’s favourite person at this clinic. statistically certain",
-  "the light at this hour is doing something quietly beautiful",
-  "you make people less afraid of a room they dread. that is not small",
-  "somebody rehearsed what to say to you in the jeepney. you made it easy",
-  "there is a kindness in how you say the price gently",
-  "the day will not remember itself. but they will remember you",
-  "you have been steady for hours. that is a kind of art",
-  "careful hands build careful clinics",
-  "nobody sees the errors you quietly prevented. they were still prevented",
-  "the standard you keep when nobody checks is the actual standard",
-  "you are building something that will outlast this shift",
-  "excellence is mostly just doing the boring part properly, again",
-  "one day this desk will run without you. because of how you ran it",
-  "small, correct, repeated. that is the whole secret",
-  "breathe out longer than you breathe in. that is the trick",
-  "the queue is finite. it has always been finite",
-  "roll your shoulders back. there. better",
-  "nothing here needs you to hurry to be done well",
-  "drink some water. the day is long and you are mostly ocean",
-  "you are allowed to take the next thirty seconds slowly",
-  "whatever went sideways earlier has already stopped mattering",
-  "the room is warm, the work is honest, the hour will pass",
-  "somewhere in this building a set of braces is about to come off",
-  "today somebody decides to finally fix the thing they have avoided for years",
-  "a first-time patient walks in today with no idea how gentle this will be",
-  "the good days start exactly like this one did",
-  "a smile is being finished this week. you are in that story",
-  "the schedule is a suggestion and we all agreed to pretend otherwise",
-  "\"just a cleaning\" has never once been just a cleaning",
-  "someone will ask if it will hurt. someone always asks. answer kindly anyway",
-  "the appointment book has seen empires rise and fall",
-  "there is no such thing as a quick adjustment and yet, here we are",
-  "drop your shoulders. yes, again. I'll wait",
-  "you are holding your breath a little. let it go",
-  "nothing is urgent for the next ten seconds. I checked",
-  "notice your feet on the floor. they have carried you all day",
-  "the moment you are in is the only one asking anything of you",
-  "put the weight down. it will still be there. so will you",
-  "you do not have to finish everything today. today is not the last day",
-  "wherever your mind went, bring it back gently. no scolding",
-  "the breath you just took was free. take another",
-  "you are not behind. there is no line",
-  "let the thought pass. you were never meant to hold every one",
-  "soften your face. it has been holding a lot today",
-  "this hour will not come again. that is not sad. it is just true",
-  "stillness counts as doing something",
-  "your only job this second is this second",
-  "if your hands are tense, open them once. slowly",
-  "you can be tired and still be good at this. both are true",
-  "the work will wait sixty seconds. it always has",
-  "unhunch. there it is. that is the one",
-  "the appointment book is a work of speculative fiction",
-  "somebody said they brush twice a day and we all nodded politely",
-  "the mirror has seen the truth. the mirror says nothing",
-  "you have opened that drawer forty times. the thing is still not there",
-  "\"i floss sometimes\" is doing heroic work in that sentence",
-  "the chair goes up. the chair goes down. the chair is content",
-  "the cotton rolls have unionised. they demand nothing. model workers",
-  "somebody will say wala akong takot sa dentista while gripping the chair",
-  "the clock in this room keeps its own hours and we have stopped arguing",
-  "you know two hundred people by their molars. incredible party trick",
-  "somewhere your future self is thanking you for labelling that properly",
-  "the stapler is missing again. it always comes home. do not chase it",
-  "you deserve the good chair on your break",
-  "if you were a patient here, you would be the favourite",
-  "you are allowed to be proud of an ordinary day",
-  "somebody's kid drew a dentist today. it looked a little like you",
-  "your name is said kindly in this building more than you know",
-  "you would tell a friend to rest. try being that friend to yourself",
-  "the version of you from a year ago would be so impressed right now",
-  "you are not too much. you are exactly a person",
-  "somewhere your favourite song is queued up, waiting for you",
-  "you brought your whole self to work today. that counts for something",
-  "be as gentle with you as you were with them",
-  "you are somebody's calm on the scariest day they have had in years",
-  "the small talk you made mattered to somebody today",
-  "your hands did careful work today. thank them",
-  "you are more than the numbers on any screen",
-  "if nobody has said it yet today: you are doing enough",
-  "the aircon has two settings: arctic, and rumour of aircon",
-  "somebody just said ang bilis pala after forty minutes. take the win",
-  "the tongue has opinions and shares them at the worst possible moment",
-  "you have developed a sixth sense for who is about to go pale",
-  "a parent just answered a question you asked the child. as is tradition",
-  "the wall clock is four minutes fast. everybody knows. nobody has fixed it",
-  "somebody brought pasalubong. it did not survive the morning",
-  "the last biscuit has sat there two days out of sheer politeness",
-  "a patient asked you not to tell them what you were doing. respected",
-  "the saliva ejector: humble, thankless, essential. like the front desk",
-  "you have said open po to your own reflection at least once. it happens",
-  "a phone alarm went off mid-procedure and it was a rooster",
-  "there is a pen behind your ear. there has been for an hour",
-  "the good stapler is hidden and only you know where",
-  "somebody will ask for a receipt from 2019 today. stay strong",
-  "the door says push. everyone pulls. every single time",
-  "you have perfected the polite face for just checking the price po",
-  "the autoclave finished. it is very proud. go and see"
- ],
- "lead": "https://dentasourcedirect.com/audio/lounge/lofi-07-good-day-hifi.m4a"
+  "name": "FFC Soundtrack",
+  "version": 37,
+  "updated": "2026-08-02",
+  "albums": [
+    "Songs",
+    "Lofi & Chill",
+    "Focus Tones",
+    "Ragnarok"
+  ],
+  "tracks": [
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-15-summer-love-in-tokyo.m4a",
+      "name": "Summer Love in Tokyo",
+      "artist": "Vintage J-Pop Station",
+      "album": "Lofi & Chill",
+      "kind": "lofi",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-15-summer-love-in-tokyo.jpg",
+      "priority": true
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-16-unimpressed.m4a",
+      "name": "Unimpressed",
+      "artist": "Cat With Eyebrows",
+      "album": "Lofi & Chill",
+      "kind": "lofi",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-16-unimpressed.jpg",
+      "priority": true
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-17-sermon-in-the-forum-hifi.m4a",
+      "name": "Sermon in the Forum",
+      "artist": "The Cat of Rome",
+      "album": "Lofi & Chill",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-17-sermon-in-the-forum.jpg",
+      "kbps": 192,
+      "khz": 44.1,
+      "kind": "lofi",
+      "priority": true
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/focus-03-marble-gallery.m4a",
+      "name": "Golden Hour in the Marble Gallery",
+      "artist": "Study Sanctuary",
+      "album": "Focus Tones",
+      "kind": "lofi",
+      "art": "https://dentasourcedirect.com/audio/lounge/focus-03-marble-gallery.jpg",
+      "priority": true
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/focus-04-rachmaninoff-adagios.m4a",
+      "name": "12 Adagios in Rachmaninoff Style",
+      "artist": "Academia Classics",
+      "album": "Focus Tones",
+      "kind": "lofi",
+      "art": "https://dentasourcedirect.com/audio/lounge/focus-04-rachmaninoff-adagios.jpg",
+      "priority": true
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/focus-05-quiet-shelter.m4a",
+      "name": "A Quiet Shelter",
+      "artist": "Quiet Gallery",
+      "album": "Focus Tones",
+      "kind": "lofi",
+      "art": "https://dentasourcedirect.com/audio/lounge/focus-05-quiet-shelter.jpg",
+      "priority": true
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/focus-06-before-the-music.m4a",
+      "name": "Before the Music Begins",
+      "artist": "Study Sanctuary",
+      "album": "Focus Tones",
+      "kind": "lofi",
+      "art": "https://dentasourcedirect.com/audio/lounge/focus-06-before-the-music.jpg",
+      "priority": true
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/focus-07-overthinkers.m4a",
+      "name": "Music for Overthinkers",
+      "artist": "Study Sanctuary",
+      "album": "Focus Tones",
+      "kind": "lofi",
+      "art": "https://dentasourcedirect.com/audio/lounge/focus-07-overthinkers.jpg",
+      "priority": true
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/focus-08-curious-mind.m4a",
+      "name": "Music for the Curious Mind",
+      "artist": "Study Sanctuary",
+      "album": "Focus Tones",
+      "kind": "lofi",
+      "art": "https://dentasourcedirect.com/audio/lounge/focus-08-curious-mind.jpg",
+      "priority": true
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/focus-09-empty-basilica.m4a",
+      "name": "The Empty Basilica",
+      "artist": "Study Sanctuary",
+      "album": "Focus Tones",
+      "kind": "lofi",
+      "art": "https://dentasourcedirect.com/audio/lounge/focus-09-empty-basilica.jpg",
+      "priority": true
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/focus-10-very-large-room.m4a",
+      "name": "Small in a Very Large Room",
+      "artist": "Study Sanctuary",
+      "album": "Focus Tones",
+      "kind": "lofi",
+      "art": "https://dentasourcedirect.com/audio/lounge/focus-10-very-large-room.jpg",
+      "priority": true
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/focus-02-quiet-time-with-god.m4a",
+      "name": "Quiet Time With God",
+      "artist": "Central Record",
+      "album": "Focus Tones",
+      "kind": "lofi",
+      "art": "https://dentasourcedirect.com/audio/lounge/focus-02-quiet-time-with-god.jpg",
+      "priority": true
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-13-tatami-sunset-pt2.m4a",
+      "name": "Tatami Sunset, Pt. 2",
+      "artist": "Melting Kitten",
+      "album": "Lofi & Chill",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-13-tatami-sunset-pt2.jpg",
+      "kind": "lofi"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-14-snow-day.m4a",
+      "name": "Snow Day",
+      "artist": "Bear On A Sled",
+      "album": "Lofi & Chill",
+      "kind": "lofi",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-14-snow-day.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-13-better-days.m4a",
+      "name": "Better Days",
+      "artist": "Ryan Ellis",
+      "album": "Songs",
+      "kind": "song",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-13-better-days.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-14-what-it-sounds-like.m4a",
+      "name": "What It Sounds Like",
+      "artist": "HUNTR/X",
+      "album": "Songs",
+      "kind": "song",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-14-what-it-sounds-like.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-15-soda-pop.m4a",
+      "name": "Soda Pop",
+      "artist": "Saja Boys",
+      "album": "Songs",
+      "kind": "song",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-15-soda-pop.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-16-golden.m4a",
+      "name": "Golden",
+      "artist": "HUNTR/X",
+      "album": "Songs",
+      "kind": "song",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-16-golden.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-17-circle-of-life.m4a",
+      "name": "Circle of Life",
+      "artist": "Lebo M.",
+      "album": "Songs",
+      "kind": "song",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-17-circle-of-life.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-18-colors-of-the-wind.m4a",
+      "name": "Colors of the Wind",
+      "artist": "Vanessa Williams",
+      "album": "Songs",
+      "kind": "song",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-18-colors-of-the-wind.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-12-tatami-sunset.m4a",
+      "name": "Tatami Sunset",
+      "artist": "Melting Kitten",
+      "album": "Lofi & Chill",
+      "kind": "lofi",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-12-tatami-sunset.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-07-good-day-hifi.m4a",
+      "name": "GOOD DAY",
+      "artist": "Forrest Frank",
+      "album": "Songs",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-07-good-day.jpg",
+      "kbps": 256,
+      "khz": 48,
+      "kind": "song"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-02-heaven-on-my-mind.m4a",
+      "name": "Heaven On My Mind",
+      "artist": "TobyMac",
+      "album": "Songs",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-02-heaven-on-my-mind.jpg",
+      "kind": "song"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-03-without-jesus.m4a",
+      "name": "Without Jesus",
+      "artist": "Ryan Ellis",
+      "album": "Songs",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-03-without-jesus.jpg",
+      "kind": "song"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-04-hands.m4a",
+      "name": "Hands",
+      "artist": "Aaron Cole",
+      "album": "Songs",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-04-hands.jpg",
+      "kind": "song"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-05-the-king-is-alive.m4a",
+      "name": "The King Is Alive",
+      "artist": "Jordan Feliz",
+      "album": "Songs",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-05-the-king-is-alive.jpg",
+      "kind": "song"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-06-take-your-time.m4a",
+      "name": "Take Your Time",
+      "artist": "Joseph O'Brien",
+      "album": "Songs",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-06-take-your-time.jpg",
+      "kind": "song"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-07-praise-god-for-that.m4a",
+      "name": "Praise God For That",
+      "artist": "Jordan Feliz",
+      "album": "Songs",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-07-praise-god-for-that.jpg",
+      "kind": "song"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-08-cant-lose.m4a",
+      "name": "Can't Lose",
+      "artist": "Jordan Feliz",
+      "album": "Songs",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-08-cant-lose.jpg",
+      "kind": "song"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-09-child-of-god.m4a",
+      "name": "ChILD Of GoD",
+      "artist": "Forrest Frank",
+      "album": "Songs",
+      "kind": "song",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-09-child-of-god.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-10-rapstar.m4a",
+      "name": "RAPSTAR",
+      "artist": "Flow G",
+      "album": "Songs",
+      "kind": "song",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-10-rapstar.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-11-hall-of-fame.m4a",
+      "name": "Hall of Fame",
+      "artist": "The Script",
+      "album": "Songs",
+      "kind": "song",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-11-hall-of-fame.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/song-12-speed-demon.m4a",
+      "name": "Speed Demon",
+      "artist": "Justin Bieber",
+      "album": "Songs",
+      "kind": "song",
+      "art": "https://dentasourcedirect.com/audio/lounge/song-12-speed-demon.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-01-summer-breeze.m4a",
+      "name": "Summer Breeze",
+      "artist": "Cat & Electric Fan",
+      "album": "Lofi & Chill",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-01-summer-breeze.jpg",
+      "kind": "lofi"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-02-smash-the-monday.m4a",
+      "name": "Smash The Monday",
+      "artist": "Office Rage Kitty",
+      "album": "Lofi & Chill",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-02-smash-the-monday.jpg",
+      "kind": "lofi"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-03-apple-tree-shade.m4a",
+      "name": "Apple Tree Shade",
+      "artist": "Chillhop Corner",
+      "album": "Lofi & Chill",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-03-apple-tree-shade.jpg",
+      "kind": "lofi"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-04-the-algorithm-playlist.m4a",
+      "name": "The Algorithm Playlist",
+      "artist": "Ksu4000",
+      "album": "Lofi & Chill",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-04-the-algorithm-playlist.jpg",
+      "kind": "lofi"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-05-saxophone-cat.m4a",
+      "name": "Saxophone Cat",
+      "artist": "Smooth Whiskers",
+      "album": "Lofi & Chill",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-05-saxophone-cat.jpg",
+      "kind": "lofi"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-06-floating-master.m4a",
+      "name": "Floating Master",
+      "artist": "Above The Clouds",
+      "album": "Lofi & Chill",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-06-floating-master.jpg",
+      "kind": "lofi"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-08-cute-lofi-vol-11.m4a",
+      "name": "Cute Lofi, Vol. 11",
+      "artist": "Cat Of My Heart",
+      "album": "Lofi & Chill",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-08-cute-lofi-vol-11.jpg",
+      "kind": "lofi"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-09-do-whatever-you-want.m4a",
+      "name": "Do Whatever You Want",
+      "artist": "room waves",
+      "album": "Lofi & Chill",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-09-do-whatever-you-want.jpg",
+      "kind": "lofi"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-10-weightless.m4a",
+      "name": "Weightless",
+      "artist": "numbb",
+      "album": "Lofi & Chill",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-10-weightless.jpg",
+      "kind": "lofi"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/lounge/lofi-11-koi-pond.m4a",
+      "name": "Koi Pond",
+      "artist": "numbb",
+      "album": "Lofi & Chill",
+      "art": "https://dentasourcedirect.com/audio/lounge/lofi-11-koi-pond.jpg",
+      "kind": "lofi"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/reading-flow.m4a",
+      "name": "Flow State",
+      "artist": "Mnemosyne",
+      "album": "Focus Tones",
+      "kind": "lofi"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-01-theme-of-alberta.m4a",
+      "name": "Theme of Alberta",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-02-theme-of-geffen.m4a",
+      "name": "Theme of Geffen",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-03-theme-of-payon.m4a",
+      "name": "Theme of Payon",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-04-theme-of-prontera.m4a",
+      "name": "Theme of Prontera",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-05-theme-of-morroc.m4a",
+      "name": "Theme of Morroc",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-06-everlasting-wanderers-izlude.m4a",
+      "name": "Everlasting Wanderers (Izlude)",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-07-theme-of-al-de-baran.m4a",
+      "name": "Theme of Al de Baran",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-08-theme-of-lutie.m4a",
+      "name": "Theme of Lutie",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-09-welcome-my-lord.m4a",
+      "name": "Welcome My Lord",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-10-high-roller-coaster-comodo.m4a",
+      "name": "High Roller Coaster (Comodo)",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-11-theme-of-juno.m4a",
+      "name": "Theme of Juno",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-12-purity-of-your-smile-amatsu.m4a",
+      "name": "Purity of your Smile (Amatsu)",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-13-not-so-far-away-gonryun.m4a",
+      "name": "Not So Far Away (Gonryun)",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-14-jazzy-funky-sweety-umbala.m4a",
+      "name": "Jazzy Funky Sweety (Umbala)",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-15-latinova-hugel.m4a",
+      "name": "Latinova (Hugel)",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-16-christmas-in-the-13th-month-niflheim.m4a",
+      "name": "Christmas in the 13th Month (Niflheim)",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-17-the-great-luoyang.m4a",
+      "name": "The Great (Luoyang)",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-18-thai-orchid-ayothaya.m4a",
+      "name": "Thai Orchid (Ayothaya)",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-19-steel-me-einbroch.m4a",
+      "name": "Steel Me (Einbroch)",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-20-noblesse-oblige-lighthalzen.m4a",
+      "name": "Noblesse Oblige (Lighthalzen)",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-21-theme-of-rael-rachel.m4a",
+      "name": "Theme of Rael (Rachel)",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-22-theme-of-moscovia.m4a",
+      "name": "Theme of Moscovia",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/town-23-splendid-dreams.m4a",
+      "name": "Splendid Dreams",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-01-streamside.m4a",
+      "name": "Streamside",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-02-one-fine-day.m4a",
+      "name": "One Fine Day",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-03-wanna-be-free.m4a",
+      "name": "Wanna Be Free",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-04-plateau.m4a",
+      "name": "Plateau",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-05-peaceful-forest.m4a",
+      "name": "Peaceful Forest",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-06-tread-on-the-ground.m4a",
+      "name": "Tread On The Ground",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-07-yuna-song.m4a",
+      "name": "Yuna Song",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-08-desert.m4a",
+      "name": "Desert",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-09-brassy-road.m4a",
+      "name": "Brassy Road",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-10-tale-of-the-east.m4a",
+      "name": "Tale of The East",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-11-dream-of-a-whale.m4a",
+      "name": "Dream of a Whale",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-12-believe-in-myself.m4a",
+      "name": "Believe in Myself",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-13-great-honor.m4a",
+      "name": "Great Honor",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-14-silver-bell.m4a",
+      "name": "Silver Bell",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-15-white-christmas.m4a",
+      "name": "White Christmas",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-16-don-t-cry-baby.m4a",
+      "name": "Don't Cry Baby",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-17-antique-cowboy.m4a",
+      "name": "Antique Cowboy",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-18-i-miss-you.m4a",
+      "name": "I Miss You",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/field-19-one-step-closer.m4a",
+      "name": "One Step Closer",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/dungeon-01-ancient-groover.m4a",
+      "name": "Ancient Groover",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/dungeon-02-through-the-tower.m4a",
+      "name": "Through The Tower",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/dungeon-03-can-t-go-home-again-baby.m4a",
+      "name": "Can't Go Home Again Baby",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/dungeon-04-rag-all-night-long.m4a",
+      "name": "Rag All Night Long",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/dungeon-05-jingle-bell-on-ragnarok.m4a",
+      "name": "Jingle Bell On Ragnarok",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/dungeon-06-dancing-christmas-in-the-13th-month.m4a",
+      "name": "Dancing Christmas in the 13th Month",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/dungeon-07-labyrinth.m4a",
+      "name": "Labyrinth",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/dungeon-08-aeon.m4a",
+      "name": "Aeon",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/dungeon-09-treasure-hunter.m4a",
+      "name": "Treasure Hunter",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/dungeon-10-into-the-abyss.m4a",
+      "name": "Into The Abyss",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/dungeon-11-wind-of-tragedy.m4a",
+      "name": "Wind of Tragedy",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    },
+    {
+      "src": "https://dentasourcedirect.com/audio/tracks/dungeon-12-title.m4a",
+      "name": "Title",
+      "album": "Ragnarok",
+      "kind": "classic",
+      "artist": "Ragnarok",
+      "art": "https://dentasourcedirect.com/audio/lounge/ragnarok.jpg"
+    }
+  ],
+  "thoughts": [
+    "hi. you're doing better than you think",
+    "you made it to this exact minute. that counts",
+    "nobody told you today, so: you're doing great",
+    "someone smiled today because of you",
+    "you are somebody's favourite person to see",
+    "hello, human with the tired shoulders",
+    "put your shoulders down. yes, those ones",
+    "unclench your jaw. I'll wait",
+    "drink some water. this is your sign",
+    "you blinked and the day moved three minutes",
+    "the autoclave hums in B flat. I checked",
+    "the ceiling fan has seen things",
+    "the chair is still warm from someone's whole story",
+    "somewhere a tooth is quietly grateful for you",
+    "the gloves come in pairs. so does courage",
+    "the light in here at 3pm is the good kind",
+    "the plants are gossiping about us again",
+    "the mirror fogged and the philosophy began",
+    "this floor has held a thousand nervous feet",
+    "the door chimes like it's happy to see them",
+    "if a molar falls in a forest, does it need a crown",
+    "the wifi is fine. it's the universe buffering",
+    "you are 60% water and 40% good intentions",
+    "a capybara would admire your composure",
+    "somewhere a cat is also just vibing. solidarity",
+    "this song knows what you did last Tuesday",
+    "plot twist: the coffee got cold again",
+    "wait. is it already afternoon",
+    "the stapler has never once let you down",
+    "your pen has been missing for 20 minutes. it's fine",
+    "we don't talk about the third drawer",
+    "somebody's phone alarm is about to ruin this vibe",
+    "the printer is thinking. give it a moment",
+    "a duck somewhere is having a great day",
+    "this beat is 82 bpm. so is your calm",
+    "one day you'll miss this exact ordinary afternoon",
+    "your future self says thank you for today",
+    "the small careful things are the whole job",
+    "nobody sees the tidying. it still matters",
+    "you can be tired and still be good at this",
+    "rest is also part of the work",
+    "the hard part passed and you didn't notice",
+    "you have survived every difficult day so far",
+    "the day doesn't need to be perfect to be enough",
+    "slow is still forward",
+    "you don't have to earn a soft moment",
+    "some days you carry it. some days it carries you",
+    "kindness costs nothing and is still the best deal here",
+    "the person you were three years ago would be amazed",
+    "you're allowed to be proud of a normal day",
+    "everyone who walks in here is scared of something",
+    "they'll remember how you said it, not what",
+    "someone will go home and say the staff were kind",
+    "the nervous ones need two extra seconds. give them",
+    "a whole life walks in behind every appointment",
+    "somebody's first ever check-up is today",
+    "somebody's grandmother is telling her friends about you",
+    "you fixed something that will chew food for 40 years",
+    "the kid who cried last time didn't cry today",
+    "they came back. that's the review",
+    "imagine the sound of a very small triumphant trumpet",
+    "you deserve a snack of unreasonable size",
+    "hypothetically, a nap. hypothetically",
+    "somewhere it is raining and it is lovely",
+    "you'd look great in a tiny hat. just saying",
+    "the moon is doing its shift too",
+    "an otter is holding hands with another otter right now",
+    "there is a bakery somewhere thinking of you",
+    "in another timeline you're a jazz musician",
+    "the ocean is still there, being enormous, waiting",
+    "clouds have no idea how good they look",
+    "bread is just friendly flour",
+    "a bee visited 300 flowers today. take the day off",
+    "your name sounds nice when people say it",
+    "somewhere a dog just found its favourite stick",
+    "the queue will end. it always ends",
+    "closing time is a real place and you'll get there",
+    "whatever's left, tomorrow-you is strong enough",
+    "you can put it down when you leave",
+    "go home and be a person for a while",
+    "the last patient deserves the first-patient you",
+    "you'll sleep well tonight. you earned it",
+    "this part. right here. listen",
+    "let this one finish. it's going somewhere",
+    "the drums are just a heartbeat with ambition",
+    "whoever made this song was having a soft day",
+    "somebody wrote this at 2am for no one in particular",
+    "music is just math being emotional",
+    "hum along. nobody's counting",
+    "this is the song, isn't it",
+    "the printer is fine. the printer is always fine. do not look at the printer",
+    "somebody somewhere is flossing because of you. probably",
+    "the suction makes that noise on purpose. it is showing off",
+    "a patient once described the drill as \"spicy\". unbeatable review",
+    "no notes. well — several notes. but no notes",
+    "the swivel chair does not know its own power",
+    "you have said \"small bite\" more times than your own name",
+    "the sterilizer beeped. it always beeps. it lives for this",
+    "gloves: worn 40 times today, appreciated 0 times. until now",
+    "somewhere a dentist is also pretending the schedule is fine",
+    "the kettle remembers you",
+    "a small dog would be very impressed by your day",
+    "your pen has been loyal. say nothing, it knows",
+    "somebody smiled today because their teeth felt clean. that was you",
+    "the plant by the window is rooting for you. literally its whole thing",
+    "a kid somewhere is proud they did not cry. you helped",
+    "you are somebody’s favourite person at this clinic. statistically certain",
+    "the light at this hour is doing something quietly beautiful",
+    "you make people less afraid of a room they dread. that is not small",
+    "somebody rehearsed what to say to you in the jeepney. you made it easy",
+    "there is a kindness in how you say the price gently",
+    "the day will not remember itself. but they will remember you",
+    "you have been steady for hours. that is a kind of art",
+    "careful hands build careful clinics",
+    "nobody sees the errors you quietly prevented. they were still prevented",
+    "the standard you keep when nobody checks is the actual standard",
+    "you are building something that will outlast this shift",
+    "excellence is mostly just doing the boring part properly, again",
+    "one day this desk will run without you. because of how you ran it",
+    "small, correct, repeated. that is the whole secret",
+    "breathe out longer than you breathe in. that is the trick",
+    "the queue is finite. it has always been finite",
+    "roll your shoulders back. there. better",
+    "nothing here needs you to hurry to be done well",
+    "drink some water. the day is long and you are mostly ocean",
+    "you are allowed to take the next thirty seconds slowly",
+    "whatever went sideways earlier has already stopped mattering",
+    "the room is warm, the work is honest, the hour will pass",
+    "somewhere in this building a set of braces is about to come off",
+    "today somebody decides to finally fix the thing they have avoided for years",
+    "a first-time patient walks in today with no idea how gentle this will be",
+    "the good days start exactly like this one did",
+    "a smile is being finished this week. you are in that story",
+    "the schedule is a suggestion and we all agreed to pretend otherwise",
+    "\"just a cleaning\" has never once been just a cleaning",
+    "someone will ask if it will hurt. someone always asks. answer kindly anyway",
+    "the appointment book has seen empires rise and fall",
+    "there is no such thing as a quick adjustment and yet, here we are",
+    "drop your shoulders. yes, again. I'll wait",
+    "you are holding your breath a little. let it go",
+    "nothing is urgent for the next ten seconds. I checked",
+    "notice your feet on the floor. they have carried you all day",
+    "the moment you are in is the only one asking anything of you",
+    "put the weight down. it will still be there. so will you",
+    "you do not have to finish everything today. today is not the last day",
+    "wherever your mind went, bring it back gently. no scolding",
+    "the breath you just took was free. take another",
+    "you are not behind. there is no line",
+    "let the thought pass. you were never meant to hold every one",
+    "soften your face. it has been holding a lot today",
+    "this hour will not come again. that is not sad. it is just true",
+    "stillness counts as doing something",
+    "your only job this second is this second",
+    "if your hands are tense, open them once. slowly",
+    "you can be tired and still be good at this. both are true",
+    "the work will wait sixty seconds. it always has",
+    "unhunch. there it is. that is the one",
+    "the appointment book is a work of speculative fiction",
+    "somebody said they brush twice a day and we all nodded politely",
+    "the mirror has seen the truth. the mirror says nothing",
+    "you have opened that drawer forty times. the thing is still not there",
+    "\"i floss sometimes\" is doing heroic work in that sentence",
+    "the chair goes up. the chair goes down. the chair is content",
+    "the cotton rolls have unionised. they demand nothing. model workers",
+    "somebody will say wala akong takot sa dentista while gripping the chair",
+    "the clock in this room keeps its own hours and we have stopped arguing",
+    "you know two hundred people by their molars. incredible party trick",
+    "somewhere your future self is thanking you for labelling that properly",
+    "the stapler is missing again. it always comes home. do not chase it",
+    "you deserve the good chair on your break",
+    "if you were a patient here, you would be the favourite",
+    "you are allowed to be proud of an ordinary day",
+    "somebody's kid drew a dentist today. it looked a little like you",
+    "your name is said kindly in this building more than you know",
+    "you would tell a friend to rest. try being that friend to yourself",
+    "the version of you from a year ago would be so impressed right now",
+    "you are not too much. you are exactly a person",
+    "somewhere your favourite song is queued up, waiting for you",
+    "you brought your whole self to work today. that counts for something",
+    "be as gentle with you as you were with them",
+    "you are somebody's calm on the scariest day they have had in years",
+    "the small talk you made mattered to somebody today",
+    "your hands did careful work today. thank them",
+    "you are more than the numbers on any screen",
+    "if nobody has said it yet today: you are doing enough",
+    "the aircon has two settings: arctic, and rumour of aircon",
+    "somebody just said ang bilis pala after forty minutes. take the win",
+    "the tongue has opinions and shares them at the worst possible moment",
+    "you have developed a sixth sense for who is about to go pale",
+    "a parent just answered a question you asked the child. as is tradition",
+    "the wall clock is four minutes fast. everybody knows. nobody has fixed it",
+    "somebody brought pasalubong. it did not survive the morning",
+    "the last biscuit has sat there two days out of sheer politeness",
+    "a patient asked you not to tell them what you were doing. respected",
+    "the saliva ejector: humble, thankless, essential. like the front desk",
+    "you have said open po to your own reflection at least once. it happens",
+    "a phone alarm went off mid-procedure and it was a rooster",
+    "there is a pen behind your ear. there has been for an hour",
+    "the good stapler is hidden and only you know where",
+    "somebody will ask for a receipt from 2019 today. stay strong",
+    "the door says push. everyone pulls. every single time",
+    "you have perfected the polite face for just checking the price po",
+    "the autoclave finished. it is very proud. go and see"
+  ],
+  "lead": "https://dentasourcedirect.com/audio/lounge/lofi-07-good-day-hifi.m4a"
 }
