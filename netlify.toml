@@ -46,24 +46,21 @@
     Cache-Control = "no-cache"
 
 # Growth Partner boards — barehands glass boards for partner dentists, proxied to the VPS.
-# The board server expects the /<slug> prefix stripped on its side (Caddy handle_path),
-# so /growthpartner/<slug>/<rest> forwards to https://srv1376990.hstgr.cloud/<slug>/<rest>.
-# Specific 301 (bare path → slash form) MUST come before the splat rule — first match wins.
-[[redirects]]
-  from = "/growthpartner/dremil"
-  to = "/growthpartner/dremil/"
-  status = 301
-
+# The board server expects the /<slug> prefix intact on its side (Caddy handle_path strips
+# it there), so /growthpartner/<slug>/<rest> forwards to
+# https://srv1376990.hstgr.cloud/<slug>/<rest>.
+#
+# NOTE — no bare-path -> trailing-slash 301 here, deliberately. Netlify's edge normalizes
+# URLs before matching redirects, so a rule `from = "/growthpartner/dremil"` ALSO matches
+# "/growthpartner/dremil/" and 301s it to itself: an infinite loop that makes the board
+# unreachable. Netlify documents this and says not to write slash-adding rules. The splat
+# rule below already serves both forms; the canonical link to hand out is the slash form,
+# which is what the board's own og:url declares.
 [[redirects]]
   from = "/growthpartner/dremil/*"
   to = "https://srv1376990.hstgr.cloud/dremil/:splat"
   status = 200
   force = true
-
-[[redirects]]
-  from = "/growthpartner/drfinn"
-  to = "/growthpartner/drfinn/"
-  status = 301
 
 [[redirects]]
   from = "/growthpartner/drfinn/*"
