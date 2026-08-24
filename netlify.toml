@@ -44,3 +44,29 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow, noarchive"
     Cache-Control = "no-cache"
+
+# Growth Partner boards — barehands glass boards for partner dentists, proxied to the VPS.
+# The board server expects the /<slug> prefix stripped on its side (Caddy handle_path),
+# so /growthpartner/<slug>/<rest> forwards to https://srv1376990.hstgr.cloud/<slug>/<rest>.
+# Specific 301 (bare path → slash form) MUST come before the splat rule — first match wins.
+[[redirects]]
+  from = "/growthpartner/dremil"
+  to = "/growthpartner/dremil/"
+  status = 301
+
+[[redirects]]
+  from = "/growthpartner/dremil/*"
+  to = "https://srv1376990.hstgr.cloud/dremil/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/growthpartner/drfinn"
+  to = "/growthpartner/drfinn/"
+  status = 301
+
+[[redirects]]
+  from = "/growthpartner/drfinn/*"
+  to = "https://srv1376990.hstgr.cloud/drfinn/:splat"
+  status = 200
+  force = true
