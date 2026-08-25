@@ -67,3 +67,9 @@
   to = "https://srv1376990.hstgr.cloud/drfinn/:splat"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/growthpartner/ffcdentalclinic/*"
+  to = "https://srv1376990.hstgr.cloud/ffcdentalclinic/:splat"
+  status = 200
+  force = true
