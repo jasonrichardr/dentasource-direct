@@ -737,5 +737,70 @@ With strong post-sale support, local warranties, and immediate parts availabilit
         image: "https://www.fsroson.com/wp-content/uploads/2025/12/image-1024x687.png",
         abstract: "Education and continuous improvement are at the heart of what we do at DentaSource Direct.",
         content: "Education and continuous improvement are at the heart of what we do at DentaSource Direct. This consortium appointment highlights our manufacturer's dedication to advancing dental technology—a dedication we pass on to you. We frequently host local symposiums and hands-on workshops in the Philippines to ensure you and your assistants are fully maximizing the potential of your dental units. With DentaSource, you aren't just buying equipment; you are investing in continuous professional growth.",
+    },
+    {
+        id: "pda-2026-2027-empowered-leadership",
+        slug: "pda-2026-2027-empowered-leadership-team",
+        title: "PDA Begins 2026–2027 Term Under \"Empowered\" Leadership Team",
+        date: "August 26, 2026",
+        image: "/images/news/pda-2026-2027/hero-banner.png",
+        ogImage: "/images/news/pda-2026-2027/hero-banner.png",
+        hideHeroImage: false,
+        abstract: "The Philippine Dental Association's \"Batch Hiraya\" 2026–2027 administrative year is underway under President Dr. Mariusse Chars R. Esquillo — meet the full slate of new national officers and what the term means for member clinics.",
+        content: `## A New Administrative Year, Fully Staffed
+
+The Philippine Dental Association's new administrative year is underway, running under the "PDA Batch Hiraya" banner with the theme "Empowered — Empowered to Lead, Empowered to Serve." The term began June 1, 2026, installing a full slate of new national officers and continuing a string of practical wins for members that started with 2025's business-permit exemption.
+
+**Dr. Mariusse Chars R. Esquillo** — former General Chairperson of the 117th PDA Annual Convention — is now PDA National President for 2026–2027. PDA remains the largest professional dental organization in the Philippines, representing **15,000+ members across 95 chapters** nationwide. Dentists also remain **exempt from business and mayor's permit fees**, per a DILG advisory PDA secured in 2025 — a policy win still in effect and worth confirming with local LGUs.
+
+## Meet the 2026–2027 National Officers
+
+![Dr. Mariusse Chars R. Esquillo, PDA National President 2026-2027](/images/news/pda-2026-2027/president-esquillo.png)
+
+The incoming national board brings representation from all three major island groups, continuing PDA's practice of rotating regional leadership through its vice presidency seats.
+
+**President:** Dr. Mariusse Chars R. Esquillo
+
+**Executive Vice President:** Dr. Ryan G. Tiongco
+
+**President-Elect:** Dr. Jocelyn Malang-Manabat
+
+**VP Luzon-North:** Dr. Ma. Auditha F. Dickson
+
+**VP Luzon-South:** Dr. Reynaldo D. Agcanas
+
+**VP Visayas:** Dr. Anna Rose N. Trocio
+
+**VP Mindanao:** Dr. Albert G. De Guzman
+
+**Treasurer:** Dr. Rosivini I. Sison
+
+**Auditor:** Dr. Mari Jennifer C. Yalung
+
+**Immediate Past President:** Dr. Lucilo G. Niñal Jr.
+
+The Board of Trustees rounds out the leadership team: for Luzon, Drs. Ricardo R. Gatbonton, Carlos C. Buendia, Ronaldo P. Nuñez, Allan L. Banta, Sheryl Anne Rose E. Lantican, Emmanuel T. Centeno, Marianne N. Palmos, and Jeanne Marie G. Ciño-Martinez; for Visayas, Drs. Gerald Jones P. Berondo and Maria Lourdes Malaluan-Pasag; and for Mindanao, Drs. Joel C. Edroso and Simonette J. Manlangit.
+
+## A Term Built on a Real Policy Win
+
+![PDA A.Y. 2026-2027 "Hiraya" theme graphic](/images/news/pda-2026-2027/hiraya-theme.png)
+
+The most concrete achievement heading into this administrative year is the business permit exemption. In 2025, PDA secured a DILG advisory confirming that dentists are exempt from paying business permits and mayor's permits — a recurring compliance cost that had been a point of friction for solo practitioners and small clinics for years. That exemption remains in effect into the current term, though PDA has continued reminding members that local government units don't always apply national advisories consistently.
+
+The new term follows directly on the 117th PDA Annual Convention & Scientific Sessions, held May 11–15, 2026 at the SMX Convention Center, Pasay City, under the theme "PDA: Empowered" — where Dr. Esquillo served as General Chairperson before taking office as President on June 1.
+
+## What This Means for Philippine Clinics
+
+For individual clinic owners, the practical relevance isn't the leadership transition itself — it's what a new administrative team typically prioritizes in its first year: continuing education programming, advocacy campaigns, and enforcement follow-through on wins like the permit exemption. If your clinic operates under an LGU that's still requiring business permits despite the DILG advisory, PDA's national office and your local chapter are the right escalation points.
+
+Clinics that haven't renewed 2026 membership should do so before local chapter elections and programming ramp up — most member benefits, including CE credit tracking and advocacy support, are chapter-administered.
+
+**DentaSource Recommendation:** DentaSource works with PDA chapters on equipment demos and CE-adjacent events throughout the year.
+
+## Conclusion
+
+A new PDA administrative term is mostly an internal transition, but the permit exemption it inherited is a real, ongoing benefit worth every member confirming with their own LGU. Watch for chapter-level program announcements as the "Empowered" theme translates into concrete 2026–2027 initiatives under Dr. Esquillo and the new national board.
+
+Sources: [Philippine Dental Association — Officers](https://pda.com.ph/about-us/officers/), [Philippine Dental Association](https://pda.com.ph/), [117th PDA Annual Convention & Scientific Sessions](https://117.pda.com.ph/).`,
     }
 ];
