@@ -76,6 +76,9 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
         {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
+        {/* Umami — the family's own watchtower on the VPS (2026-09-01). Live visitors,
+            per-page, city/device/referrer; IPs hashed. Sits beside GA/Pixel, replaces neither. */}
+        <script defer src="https://srv1376990.hstgr.cloud:8443/script.js" data-website-id="029a63ca-a8e9-4673-bd18-00b0a809b915"></script>
         </MotionProvider>
       </body>
     </html>
