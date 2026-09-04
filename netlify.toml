@@ -70,6 +70,12 @@
   force = true
 
 [[redirects]]
+  from = "/jarich/"
+  to = "https://jarich-hub.vercel.app/jarich"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/jarich/*"
   to = "https://jarich-hub.vercel.app/jarich/:splat"
   status = 200
