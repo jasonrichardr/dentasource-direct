@@ -62,6 +62,31 @@
   status = 200
   force = true
 
+# Jarich's hub (Quartz, Vercel project jarich-hub) — the team room's notes + tutorials
+[[redirects]]
+  from = "/jarich"
+  to = "https://jarich-hub.vercel.app/jarich"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/jarich/"
+  to = "https://jarich-hub.vercel.app/jarich"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/jarich/*"
+  to = "https://jarich-hub.vercel.app/jarich/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/growthpartner/jarich/*"
+  to = "https://srv1376990.hstgr.cloud/jarich/:splat"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/growthpartner/drfinn/*"
   to = "https://srv1376990.hstgr.cloud/drfinn/:splat"
