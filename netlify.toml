@@ -63,6 +63,12 @@
   force = true
 
 [[redirects]]
+  from = "/growthpartner/jarich/*"
+  to = "https://srv1376990.hstgr.cloud/jarich/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/growthpartner/drfinn/*"
   to = "https://srv1376990.hstgr.cloud/drfinn/:splat"
   status = 200
