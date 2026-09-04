@@ -59,7 +59,9 @@ export default function ArticleContent({ article }) {
                         const trimmed = paragraph.trim();
                         // Handle headings
                         if (trimmed.startsWith('##')) {
-                            return <h2 key={idx} className={styles.heading2}>{trimmed.replace('##', '').trim()}</h2>;
+                            const text = trimmed.replace('##', '').trim();
+                            const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+                            return <h2 key={idx} id={id} className={styles.heading2}>{text}</h2>;
                         } else if (trimmed.startsWith('#')) {
                             return <h1 key={idx} className={styles.heading1}>{trimmed.replace('#', '').trim()}</h1>;
                         }
@@ -67,23 +69,47 @@ export default function ArticleContent({ article }) {
                         if (trimmed === '[marbles]') {
                             return <ArticleMarbles key={idx} />;
                         }
-                        // A Facebook reel/post embed — a paragraph that is exactly [facebook](url)
+                        // A Facebook reel/post embed — a paragraph that is exactly [facebook](url).
+                        // Reels: Facebook refuses to embed reels that carry licensed audio, so a reel becomes a
+                        // poster card that opens the original. Photo posts: the post plugin, with a link under it.
                         const fbMatch = trimmed.match(/^\[facebook\]\((https:\/\/www\.facebook\.com\/[^)]+)\)$/);
                         if (fbMatch) {
                             const isReel = /\/reel\//.test(fbMatch[1]);
-                            const plugin = `https://www.facebook.com/plugins/${isReel ? 'video' : 'post'}.php?href=${encodeURIComponent(fbMatch[1])}&show_text=false&width=500`;
+                            if (isReel) {
+                                return (
+                                    <a
+                                        key={idx}
+                                        href={fbMatch[1]}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={styles.fbReelCard}
+                                        aria-label="Watch the original reel on Facebook"
+                                    >
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img src={article.ogImage || article.image} alt="" className={styles.fbReelPoster} loading="lazy" />
+                                        <span className={styles.fbReelPlay} aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 5v14l11-7z" fill="currentColor" /></svg>
+                                        </span>
+                                        <span className={styles.fbReelLabel}>
+                                            <span className={styles.fbReelKicker}>Facebook reel</span>
+                                            <span>Watch the original with sound</span>
+                                        </span>
+                                    </a>
+                                );
+                            }
+                            const plugin = `https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(fbMatch[1])}&show_text=true&width=500`;
                             return (
-                                <div key={idx} className={isReel ? styles.fbReelWrapper : styles.fbPostWrapper}>
+                                <div key={idx} className={styles.fbPostWrapper}>
                                     <iframe
                                         src={plugin}
                                         className={styles.fbFrame}
                                         loading="lazy"
-                                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                        allow="clipboard-write; encrypted-media; picture-in-picture; web-share"
                                         allowFullScreen
                                         title="Facebook post"
                                     />
                                     <a href={fbMatch[1]} target="_blank" rel="noopener noreferrer" className={styles.fbLink}>
-                                        Watch the original on Facebook
+                                        Open the original post on Facebook
                                     </a>
                                 </div>
                             );

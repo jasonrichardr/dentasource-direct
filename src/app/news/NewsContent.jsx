@@ -1,15 +1,20 @@
 'use client';
 
+import { useMemo, useState } from 'react';
 import { newsData } from '@/data/news';
 import Link from 'next/link';
 import { m as motion } from 'framer-motion';
+import NewsSearch, { buildIndex, search } from './NewsSearch';
 
 export default function NewsContent() {
-  const sortedNews = [...newsData].sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    return dateB - dateA;
-  });
+  const [query, setQuery] = useState('');
+  const sortedNews = useMemo(() => [...newsData].sort((a, b) => new Date(b.date) - new Date(a.date)), []);
+  const index = useMemo(() => buildIndex(sortedNews), [sortedNews]);
+  const result = useMemo(() => search(index, query), [index, query]);
+  const searching = result.terms.length > 0;
+  const visible = searching ? sortedNews.filter((a) => result.matchedSlugs.has(a.slug)) : sortedNews;
+  const featured = searching ? null : sortedNews[0];
+  const grid = searching ? visible : sortedNews.slice(1);
 
   return (
     <>
@@ -51,20 +56,21 @@ export default function NewsContent() {
             <p style={{
               fontSize: 17, color: '#7a7a7a', maxWidth: 560, lineHeight: 1.6,
             }}>
-              The latest from the Philippine dental industry — product launches, PDA updates, technology trends, and expert buying guides.
+              The latest from the Philippine dental industry: product launches, PDA updates, technology trends, and expert buying guides.
             </p>
+            <NewsSearch query={query} setQuery={setQuery} result={result} totalArticles={sortedNews.length} />
           </motion.div>
         </div>
 
         {/* Featured Article */}
-        {sortedNews.length > 0 && (
+        {featured && (
           <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 24px', marginBottom: 48 }}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <Link href={`/news/${sortedNews[0].slug}`} style={{ textDecoration: 'none', display: 'block' }}>
+              <Link href={`/news/${featured.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
                 <div style={{
                   position: 'relative',
                   borderRadius: 20,
@@ -73,13 +79,13 @@ export default function NewsContent() {
                   cursor: 'pointer',
                   transition: 'box-shadow 0.3s, transform 0.3s',
                 }}>
-                  {sortedNews[0].image && (
+                  {featured.image && (
                     <div style={{ position: 'relative', height: 'clamp(240px, 40vw, 400px)', width: '100%', overflow: 'hidden' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={sortedNews[0].image}
-                        alt={sortedNews[0].title}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        src={featured.image}
+                        alt={featured.title}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
                       />
                       <div style={{
                         position: 'absolute', inset: 0,
@@ -107,10 +113,10 @@ export default function NewsContent() {
                           lineHeight: 1.2,
                           marginBottom: 8,
                         }}>
-                          {sortedNews[0].title}
+                          {featured.title}
                         </h2>
                         <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>
-                          {sortedNews[0].date}
+                          {featured.date}
                         </p>
                       </div>
                     </div>
@@ -128,12 +134,12 @@ export default function NewsContent() {
             gridTemplateColumns: 'repeat(auto-fill, minmax(min(280px, 100%), 1fr))',
             gap: 24,
           }}>
-            {sortedNews.slice(1).map((article, index) => (
+            {grid.map((article, index) => (
               <motion.div
                 key={article.slug}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.08 }}
+                transition={{ duration: 0.5, delay: searching ? 0 : 0.3 + Math.min(index, 12) * 0.08 }}
               >
                 <Link href={`/news/${article.slug}`} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
                   <div style={{
@@ -162,7 +168,7 @@ export default function NewsContent() {
                         <img
                           src={article.image}
                           alt={article.title}
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
                           loading="lazy"
                         />
                       </div>
