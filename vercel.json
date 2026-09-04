@@ -3,35 +3,80 @@
     {
       "source": "/audio/(.*)",
       "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Cross-Origin-Resource-Policy", "value": "cross-origin" }
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Cross-Origin-Resource-Policy",
+          "value": "cross-origin"
+        }
       ]
     },
     {
       "source": "/audio/soundtrack.json",
       "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Cache-Control", "value": "public, max-age=60, must-revalidate" }
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60, must-revalidate"
+        }
       ]
     },
     {
       "source": "/media/(.*)",
       "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Cross-Origin-Resource-Policy", "value": "cross-origin" }
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Cross-Origin-Resource-Policy",
+          "value": "cross-origin"
+        }
       ]
     },
     {
       "source": "/map/(.*)",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
-        { "key": "Cache-Control", "value": "no-cache" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
       ]
     }
   ],
   "rewrites": [
-    { "source": "/growthpartner/dremil/:path*", "destination": "https://srv1376990.hstgr.cloud/dremil/:path*" },
-    { "source": "/growthpartner/drfinn/:path*", "destination": "https://srv1376990.hstgr.cloud/drfinn/:path*" },
-    { "source": "/growthpartner/ffcdentalclinic/:path*", "destination": "https://srv1376990.hstgr.cloud/ffcdentalclinic/:path*" }
+    {
+      "source": "/growthpartner/dremil/:path*",
+      "destination": "https://srv1376990.hstgr.cloud/dremil/:path*"
+    },
+    {
+      "source": "/growthpartner/drfinn/:path*",
+      "destination": "https://srv1376990.hstgr.cloud/drfinn/:path*"
+    },
+    {
+      "source": "/growthpartner/ffcdentalclinic/:path*",
+      "destination": "https://srv1376990.hstgr.cloud/ffcdentalclinic/:path*"
+    },
+    {
+      "source": "/growthpartner/jarich/:path*",
+      "destination": "https://srv1376990.hstgr.cloud/jarich/:path*"
+    },
+    {
+      "source": "/jarich",
+      "destination": "https://jarich-hub.vercel.app/jarich"
+    },
+    {
+      "source": "/jarich/:path*",
+      "destination": "https://jarich-hub.vercel.app/jarich/:path*"
+    }
   ]
 }
