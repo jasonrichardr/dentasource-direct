@@ -59,6 +59,7 @@
 
 .heroImage {
     object-fit: cover;
+    object-position: center top;
 }
 
 .contentSection {
@@ -100,9 +101,135 @@
 
 .inlineImage {
     display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 80vh;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 14px;
+}
+
+/* Portrait frame grids (reel stills) */
+.imageGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin: 2rem 0;
+}
+
+.imageGrid[data-count="2"],
+.imageGrid[data-count="4"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.gridImage {
+    display: block;
     width: 100%;
     height: auto;
     border-radius: 14px;
+    background: #f1f3f2;
+}
+
+/* Facebook embeds */
+.fbReelWrapper,
+.fbPostWrapper {
+    margin: 2rem auto;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.fbPostWrapper {
+    max-width: 500px;
+}
+
+.fbFrame {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    border: 0;
+    border-radius: 14px;
+    background: #111;
+}
+
+.fbPostWrapper .fbFrame {
+    aspect-ratio: 4 / 5;
+    background: #fff;
+}
+
+/* Reel poster card (reels with licensed audio cannot be embedded) */
+.fbReelCard {
+    position: relative;
+    display: block;
+    margin: 2rem auto;
+    max-width: 560px;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #111;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
+    text-decoration: none;
+    color: #fff;
+}
+
+.fbReelPoster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 0.82;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.fbReelCard:hover .fbReelPoster {
+    transform: scale(1.03);
+    opacity: 0.9;
+}
+
+.fbReelPlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 68px;
+    height: 68px;
+    margin: -34px 0 0 -34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.92);
+    color: #1a3c34;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.fbReelLabel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.72), transparent);
+    font-size: 0.95rem;
+}
+
+.fbReelKicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.heading2 {
+    scroll-margin-top: 110px;
+}
+
+.fbLink {
+    font-size: 0.9rem;
+    color: #2d6a5a;
+    text-align: center;
 }
 
 .paragraph a {
@@ -416,6 +543,13 @@
     }
 
     .inlineImageWrapper {
+        margin: 1.4rem 0;
+    }
+
+    .imageGrid,
+    .imageGrid[data-count="4"] {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.6rem;
         margin: 1.4rem 0;
     }
 

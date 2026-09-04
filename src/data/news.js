@@ -1,4 +1,6 @@
-export const newsData = [
+import { fbNews2026 } from './news-fb-2026';
+
+const baseNews = [
     {
         id: "chair-install-guide-2026",
         slug: "how-we-install-your-dental-chair",
@@ -403,7 +405,7 @@ Every chair in this story — the A3, the N2 Pro, the S3 — is on our showroom 
         id: "roson-training-dentasource-2026",
         slug: "roson-trains-dentasource-team-manila-2026",
         title: "ROSON Flies In: Top Experts Train the DentaSource Team in Manila",
-        date: "July 3, 2026",
+        date: "July 1, 2026",
         image: "/images/news/roson-training-2026/hero-training-board.jpg",
         ogImage: "/images/news/roson-training-2026/og-roson-visit.jpg",
         hideHeroImage: false,
@@ -804,3 +806,5 @@ A new PDA administrative term is mostly an internal transition, but the permit e
 Sources: [Philippine Dental Association — Officers](https://pda.com.ph/about-us/officers/), [Philippine Dental Association](https://pda.com.ph/), [117th PDA Annual Convention & Scientific Sessions](https://117.pda.com.ph/).`,
     }
 ];
+
+export const newsData = [...baseNews, ...fbNews2026];
