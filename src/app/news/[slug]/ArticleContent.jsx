@@ -67,6 +67,41 @@ export default function ArticleContent({ article }) {
                         if (trimmed === '[marbles]') {
                             return <ArticleMarbles key={idx} />;
                         }
+                        // A Facebook reel/post embed — a paragraph that is exactly [facebook](url)
+                        const fbMatch = trimmed.match(/^\[facebook\]\((https:\/\/www\.facebook\.com\/[^)]+)\)$/);
+                        if (fbMatch) {
+                            const isReel = /\/reel\//.test(fbMatch[1]);
+                            const plugin = `https://www.facebook.com/plugins/${isReel ? 'video' : 'post'}.php?href=${encodeURIComponent(fbMatch[1])}&show_text=false&width=500`;
+                            return (
+                                <div key={idx} className={isReel ? styles.fbReelWrapper : styles.fbPostWrapper}>
+                                    <iframe
+                                        src={plugin}
+                                        className={styles.fbFrame}
+                                        loading="lazy"
+                                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                        allowFullScreen
+                                        title="Facebook post"
+                                    />
+                                    <a href={fbMatch[1]} target="_blank" rel="noopener noreferrer" className={styles.fbLink}>
+                                        Watch the original on Facebook
+                                    </a>
+                                </div>
+                            );
+                        }
+                        // Several images in one block (one per line) render as a grid — used for portrait reel frames
+                        if (trimmed.startsWith('![')) {
+                            const all = [...trimmed.matchAll(/!\[(.*?)\]\((.*?)\)/g)];
+                            if (all.length > 1) {
+                                return (
+                                    <div key={idx} className={styles.imageGrid} data-count={all.length}>
+                                        {all.map((m, i) => (
+                                            // eslint-disable-next-line @next/next/no-img-element
+                                            <img key={i} src={m[2]} alt={m[1]} className={styles.gridImage} loading="lazy" />
+                                        ))}
+                                    </div>
+                                );
+                            }
+                        }
                         // Handle images and videos
                         if (trimmed.startsWith('![')) {
                             const match = trimmed.match(/!\[(.*?)\]\((.*?)\)/);
