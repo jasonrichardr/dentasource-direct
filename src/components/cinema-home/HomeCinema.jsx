@@ -31,7 +31,20 @@ import './home-cinema.css';
  *  wordmark at y -2.0, which is exactly where a home panel's copy band lands: measured at
  *  390x844 the two collided, particles running straight through the headline. Mark and
  *  wordmark were lifted together so the particles own the upper half and the copy owns
- *  the lower one, on a phone and on a laptop alike. */
+ *  the lower one, on a phone and on a laptop alike.
+ *
+ *  ☠️ AND THEN THE TOP OF THE DISC WENT OFF THE SCREEN. Two knobs decide the framing in
+ *  the rebuilt lockup builder, and they are NOT the two this file used to lean on:
+ *  wordHalfW sets the scale of the WHOLE group (the wordmark's width is the unit, the
+ *  disc is a quarter of it, centred above with the asset's own gap), and markY is the
+ *  group's CENTRE. markBox and wordCenterY are accepted and ignored there; they are kept
+ *  below only so the legacy path stays sane if it is ever taken again.
+ *
+ *  THE PHONE IS THE BINDING CONSTRAINT, not the laptop. A portrait aspect makes the
+ *  engine pull the camera back by up to 2x, which buys vertical room and spends
+ *  HORIZONTAL room, so a group sized to fill a 1440 viewport runs off the sides of a 390
+ *  one. Computed at both: group 9.20 wide inside 10.9 available on the phone, and the top
+ *  of the disc clearing the viewport by 95px on the laptop and 247px on the phone. */
 const MARK = '/cinema/brand/dsd-round.png';
 const MARK_CROP = { sx: 86, sy: 41, sw: 308, sh: 300 };
 const WORDMARK = 'DentaSource Direct';
@@ -44,7 +57,7 @@ const WORDMARK = 'DentaSource Direct';
 const FORMATIONS = {
   hero: {
     kind: 'lockup', src: MARK, crop: MARK_CROP, text: WORDMARK,
-    lockup: { markBox: 2.7, markY: 3.45, wordBoxH: 2.2, wordCenterY: 0.95 },
+    lockup: { markBox: 2.3, markY: 2.66, wordHalfW: 4.6, wordBoxH: 2.2, wordCenterY: 0.6 },
   },
   // copyLow: the copy sits UNDER the heart rather than inside it, as in the lab.
   heart: { kind: 'heart', copyLow: true },
@@ -66,7 +79,7 @@ const FORMATIONS = {
   // the opening one, so the door's mark is the biggest in the arc without a dial here.
   door: {
     kind: 'lockup', src: MARK, crop: MARK_CROP, text: WORDMARK,
-    lockup: { markBox: 2.6, markY: 3.2, wordBoxH: 2.1, wordCenterY: 0.85 },
+    lockup: { markBox: 2.2, markY: 2.30, wordHalfW: 4.5, wordBoxH: 2.1, wordCenterY: 0.4 },
   },
 };
 
