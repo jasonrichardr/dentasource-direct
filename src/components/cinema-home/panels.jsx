@@ -257,9 +257,17 @@ export function InstallsPanel({ beat, beatIndex }) {
 /** How many parts the two rows carry. The file holds 244; a marquee that long is a
  *  warehouse inventory, not a shelf, and every extra tile is another image to fetch. */
 const PARTS_SHOWN = 28;
+// ☠️ THE CREW ROW IS SHORTER THAN THE PARTS ROWS ON PURPOSE. Its tiles are photographs at
+// 126px wide against parts cards at up to 250px, so matching the parts count would make
+// the bottom row visibly shorter than the two above it and its loop seam would come round
+// twice as often. 18 photographs is about the same track length as 14 parts cards.
+const CREW_SHOWN = 18;
 
-export function PartsPanel({ beat, beatIndex, parts = [] }) {
+export function PartsPanel({ beat, beatIndex, parts = [], crew = [] }) {
   const near = useBeatNear(beatIndex);
+  // The manifest already alternates technician and sales so a row never runs as one kind,
+  // so this is a slice and not a shuffle: re-ordering here would undo that.
+  const crewRow = useMemo(() => crew.slice(0, CREW_SHOWN), [crew]);
   const rows = useMemo(() => {
     // ☠️ A SPREAD, NOT A PREFIX. Taking the first 28 of the file would hand the beat
     // whichever category happens to sort first; going round the categories in turn shows
@@ -319,8 +327,36 @@ export function PartsPanel({ beat, beatIndex, parts = [] }) {
             </div>
           </div>
         ))}
+        {/* ☠️ A THIRD ROW, AND IT SWEEPS THE WAY THE TOP ROW DOES. Three rows all moving
+            together read as one sheet sliding sideways; the point of the alternation is
+            that the eye has something to fix on. The middle row is the reversed one, so
+            the row under it goes back the other way, same as the row above it.
+            Photographs of the crew, no captions: the parts rows carry the names, and a
+            caption under a candid photograph would be a claim about a person. */}
+        {crewRow.length ? (
+          <div className="dsd-news-row">
+            <div className="dsd-news-track">
+              {(near ? [...crewRow, ...crewRow] : []).map((shot, i) => (
+                near ? (
+                  <Image
+                    key={`c-${i}-${shot.src}`}
+                    className="dsd-crew-shot"
+                    src={shot.src}
+                    alt={i >= crewRow.length ? '' : shot.alt}
+                    aria-hidden={i >= crewRow.length ? 'true' : undefined}
+                    width={126}
+                    height={84}
+                    loading="lazy"
+                  />
+                ) : (
+                  <span className="dsd-crew-shot" key={`c-${i}`} aria-hidden="true" />
+                )
+              ))}
+            </div>
+          </div>
+        ) : null}
       </div>
-      <Cta cta={beat.cta} />
+      <Ctas beat={beat} />
     </div>
   );
 }

@@ -17,6 +17,7 @@ import askScript from '@/data/cinema/ask-dsd.json';
 import marblesReels from '@/data/cinema/marbles-reels.json';
 import actionReels from '@/data/cinema/action-reels.json';
 import partsData from '@/data/cinema/parts.json';
+import crewShots from '@/data/cinema/crew-shots.json';
 
 import {
   ActionPanel, ChatPanel, DoorPanel, HeartPanel, InstallsPanel, LockupPanel,
@@ -93,7 +94,7 @@ function panelFor(beat, i, articles) {
     case 'strip': return <StripPanel beat={beat} beatIndex={i} />;
     case 'marquee': return <NewsPanel beat={beat} beatIndex={i} articles={articles} />;
     case 'installs': return <InstallsPanel beat={beat} beatIndex={i} />;
-    case 'parts': return <PartsPanel beat={beat} beatIndex={i} parts={partsData.parts} />;
+    case 'parts': return <PartsPanel beat={beat} beatIndex={i} parts={partsData.parts} crew={crewShots.items} />;
     case 'chat': return <ChatPanel beat={beat} beatIndex={i} script={askScript} />;
     case 'marbles': return <MarblesPanel beat={beat} beatIndex={i} reels={marblesReels.reels} />;
     case 'action': return <ActionPanel beat={beat} beatIndex={i} items={actionReels.items} />;

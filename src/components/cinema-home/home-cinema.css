@@ -528,6 +528,23 @@
    width a caption would have needed */
 .dsd-part-card.is-bare { width: auto; padding: 8px; }
 
+/* ☠️ THE CREW ROW IS A PHOTOGRAPH, NOT A CARD. The parts tiles are transparent cut-outs
+   that need a plate behind them to read; these are real frames and a plate around one
+   turns it into a product listing. Fixed box with object-fit cover, because the manifest
+   mixes 1200x630 landscape with 1080x1920 portrait and a row of honest aspect ratios
+   staircases. */
+.dsd-crew-shot {
+  flex: 0 0 auto;
+  width: 126px;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+@media (max-width: 700px) {
+  .dsd-crew-shot { width: 104px; height: 70px; }
+}
+
 /* ---- the action beat: six vertical reels ---- */
 .dsd-reels {
   display: flex;
