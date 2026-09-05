@@ -27,8 +27,7 @@ const SRC = path.join(ROOT, 'src');
 const GUARDED = [
   'home-beats.json', 'about-beats.json', 'contact-beats.json', 'products.json',
   'ask-dsd.json', 'action-reels.json', 'installs.json', 'crew-shots.json',
-  'growth-partner.json', 'reel-library.json', 'training-media.json',
-  'marbles-reels.json', 'parts.json',
+  'growth-partner.json', 'reel-library.json', 'training-media.json', 'parts.json',
 ];
 
 // The studio owns the raw files: it MUST read them unfiltered, that is its job.

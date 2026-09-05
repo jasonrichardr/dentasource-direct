@@ -477,7 +477,7 @@ export function ChatPanel({ beat, beatIndex, script }) {
 /* ── the marbles beat: the reel cluster, on the night stage ────────────────────────── */
 
 // The same glass-marble cluster the old home carried, mounted as a beat panel instead of
-// a page section. It is fed from src/data/cinema/marbles-reels.json so the wall grows by
+// a page section. It is fed from src/data/cinema/reel-library.json so the wall grows by
 // editing a list: the cluster is built with count = the list length, one bead per reel.
 // ROLES ONLY. Nothing on this wall names a person.
 /**
@@ -500,25 +500,21 @@ export function ChatPanel({ beat, beatIndex, script }) {
  */
 
 // ☠️ THE WALL PAGES, IT DOES NOT GROW. One bead per reel with no duplicates is the rule
-// this cluster was built on, so a library of a hundred and forty reels would be a hundred
-// and forty decoders. 24 is the set size: it fills the stage at the sizes the beads are
-// drawn at, and it is under the point where a phone starts refusing to decode more.
-const MARBLE_SET = 24;
-
-export function MarblesPanel({ beat, beatIndex, reels = [] }) {
+// this cluster was built on, so the 192 entry library would be 192 video decoders on one
+// screen. The sets arrive already cut in reel-library.json, 24 at a time, with the entries
+// the wall already showed first so that nothing moves on the day of the switch. This
+// component pages through what it is handed and does not re-cut it.
+export function MarblesPanel({ beat, beatIndex, sets = [] }) {
   const mountRef = useRef(null);
   const near = useBeatNear(beatIndex, { margin: '80%' });
   const [reduced, setReduced] = useState(false);
   const [set, setSet] = useState(0);
 
-  const setCount = Math.max(1, Math.ceil(reels.length / MARBLE_SET));
+  const setCount = Math.max(1, sets.length);
   // Clamp rather than modulo: a library that shrinks under the visitor should land on the
   // last real set, not wrap to the first.
   const setIndex = Math.min(set, setCount - 1);
-  const shown = useMemo(
-    () => reels.slice(setIndex * MARBLE_SET, setIndex * MARBLE_SET + MARBLE_SET),
-    [reels, setIndex],
-  );
+  const shown = useMemo(() => sets[setIndex] || [], [sets, setIndex]);
 
   useEffect(() => {
     try { setReduced(matchMedia('(prefers-reduced-motion: reduce)').matches); } catch (e) { /* assume motion is fine */ }
@@ -787,7 +783,7 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
         // prefers-reduced-motion branch anywhere in GlassMarbles or marbleCluster. So the
         // still wall is built here, from the same list, and nothing moves or decodes.
         <div className="dsd-marbles" role="list">
-          {reels.slice(0, 12).map((r) => (
+          {(sets[0] || []).slice(0, 12).map((r) => (
             <div className="dsd-marble" role="listitem" key={r.src}>
               <span className="dsd-marble-art" aria-hidden="true" />
               <span className="dsd-marble-note">{r.alt}</span>

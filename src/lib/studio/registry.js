@@ -44,8 +44,8 @@ export const FILES = [
   { id: 'ask-dsd', label: 'Ask DSD script', arc: 'Arcs', path: 'src/data/cinema/ask-dsd.json', collection: 'exchanges', route: '/' },
 
   // ☠️ THESE NAMES MOVE. team-fun.json was deleted and its tiles folded into
-  // action-reels.json (b116455); marbles-reels.json is being replaced by
-  // reel-library.json. So the rail SHOWS an absent manifest greyed out rather
+  // action-reels.json (b116455); marbles-reels.json was replaced by reel-library.json and
+  // its row removed with the file. So the rail SHOWS an absent manifest greyed out rather
   // than hiding it, and the collection below is a PREFERENCE rather than a
   // requirement: the files route falls back to detecting the array itself. A
   // manifest that changes its collection key, or arrives before this list is
@@ -56,7 +56,6 @@ export const FILES = [
   { id: 'growth-partner', label: 'Growth partner', arc: 'Media', path: 'src/data/cinema/growth-partner.json', collection: 'items', route: '/' },
   { id: 'reel-library', label: 'Reel library', arc: 'Media', path: 'src/data/cinema/reel-library.json', collection: 'items', route: '/' },
   { id: 'training-media', label: 'Training center', arc: 'Media', path: 'src/data/cinema/training-media.json', collection: 'items', route: '/' },
-  { id: 'marbles-reels', label: 'Marble reels (being replaced)', arc: 'Media', path: 'src/data/cinema/marbles-reels.json', collection: 'reels', route: '/' },
   { id: 'parts', label: 'Spare parts', arc: 'Media', path: 'src/data/cinema/parts.json', collection: 'parts', route: '/' },
 ];
 

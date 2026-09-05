@@ -14,12 +14,13 @@ import CinemaPage from '@/cinema/CinemaPage';
 import NightSky from '@/cinema/NightSky';
 import beatsData from '@/data/cinema/home-beats.json';
 import askScript from '@/data/cinema/ask-dsd.json';
-import marblesReels from '@/data/cinema/marbles-reels.json';
 import actionReels from '@/data/cinema/action-reels.json';
 import partsData from '@/data/cinema/parts.json';
 import crewShots from '@/data/cinema/crew-shots.json';
 import installsData from '@/data/cinema/installs.json';
 import growthPartner from '@/data/cinema/growth-partner.json';
+import reelLibrary from '@/data/cinema/reel-library.json';
+import trainingMedia from '@/data/cinema/training-media.json';
 import { visible } from '@/lib/cinema/visible';
 
 // ☠️ EVERY MANIFEST IS FILTERED HERE, AT MODULE SCOPE, AND NOWHERE ELSE.
@@ -30,7 +31,24 @@ import { visible } from '@/lib/cinema/visible';
 // scripts/check-hidden-filter.mjs fails the build if a manifest is read without this.
 const HOME_BEATS = visible(beatsData.beats);
 const ASK_SCRIPT = { ...askScript, exchanges: visible(askScript.exchanges) };
-const MARBLE_REELS = visible(marblesReels.reels);
+const REEL_LIBRARY = visible(reelLibrary.reels);
+const TRAINING_ITEMS = visible(trainingMedia.items);
+
+// ☠️ THE WALL PAGES ON THE MANIFEST'S OWN SETS, AND LOOKS REELS UP BY id.
+// reel-library.json ships `sets` precomputed in groups of 24 with the existing wall
+// entries first, so the wall is identical to marbles-reels.json on the day of the switch
+// and only grows after it. Slicing the flat list here instead would quietly re-cut those
+// groups the moment an entry is hidden or added, and the first set is the one that must
+// not move. An id that resolves to nothing is dropped rather than left as a hole, which
+// is also how a hidden reel leaves its set.
+const REEL_BY_ID = new Map(REEL_LIBRARY.map((r) => [r.id, r]));
+// `sets` is STRUCTURE, not content: it holds labels and id lists, and the studio hides
+// reels rather than sets. The hiding still reaches it, because every id is resolved
+// through REEL_BY_ID above, which is built from the filtered list, and an id that resolves
+// to nothing is dropped on the next line.
+const REEL_SETS = (reelLibrary.sets || []) /* unfiltered: id lists, resolved through the filtered REEL_BY_ID below */
+  .map((set) => (set.ids || []).map((id) => REEL_BY_ID.get(id)).filter(Boolean))
+  .filter((set) => set.length);
 const ACTION_ITEMS = visible(actionReels.items);
 const PARTS = visible(partsData.parts);
 const CREW_SHOTS = visible(crewShots.items);
@@ -113,13 +131,15 @@ const FORMATIONS = {
  * room and the visitor should still see it. The component spaces the clips through
  * whatever it is handed, so a merge does not need the sources pre interleaved.
  *
- * ☠️ WAITING ON training-media.json. When it lands its items join this array and nothing
- * else changes.
+ * training-media.json landed at 500c180 and leads the merged array: it is this Training
+ * Center, and the growth partner frames follow it. mixOrder() spaces the clips through
+ * whatever it is handed, so a merge does not need the sources pre interleaved.
  */
 const TRAINING_BEAT = HOME_BEATS.find((b) => b.key === 'training-center');
 const MIXED_ITEMS = {
   'see-us-in-action': ACTION_ITEMS,
   'training-center': [
+    ...TRAINING_ITEMS,
     ...GROWTH_ITEMS,
     ...(TRAINING_BEAT?.media || []).map((src) => ({
       type: 'image', src, caption: 'Inside the Training Center in Pasig',
@@ -139,7 +159,7 @@ function panelFor(beat, i, articles) {
       case 'installs': return <InstallsPanel beat={beat} beatIndex={i} tiles={INSTALL_TILES} />;
     case 'parts': return <PartsPanel beat={beat} beatIndex={i} parts={PARTS} crew={CREW_SHOTS} />;
     case 'chat': return <ChatPanel beat={beat} beatIndex={i} script={ASK_SCRIPT} />;
-    case 'marbles': return <MarblesPanel beat={beat} beatIndex={i} reels={MARBLE_REELS} />;
+    case 'marbles': return <MarblesPanel beat={beat} beatIndex={i} sets={REEL_SETS} />;
     case 'action': return <ActionPanel beat={beat} beatIndex={i} items={MIXED_ITEMS[beat.key] || []} />;
     case 'door': return <DoorPanel beat={beat} />;
     case 'photo':
