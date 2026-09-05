@@ -10,6 +10,7 @@ import { useCallback, useRef, useState } from 'react';
 
 import { READ_ONLY_FIELDS, isVideoPath } from '@/lib/studio/registry';
 import AssetPicker from './AssetPicker';
+import TransferPicker from './TransferPicker';
 
 const srcOf = (row) => (typeof row === 'string' ? row : row?.src || '');
 const withSrc = (row, src) => (typeof row === 'string' ? src : { ...row, src });
@@ -42,13 +43,22 @@ function Thumb({ src }) {
   );
 }
 
-export default function MediaGrid({ k, value, onChange, single = false }) {
+export default function MediaGrid({ k, value, onChange, single = false, source = null, dirty = false, onTransferred = null }) {
   const rows = Array.isArray(value) ? value : [];
   const objectMode = rows.some((r) => r && typeof r === 'object');
   const [picking, setPicking] = useState(null); // index being swapped, or 'add'
   const [drag, setDrag] = useState(null);
   const [pending, setPending] = useState(null); // {file, alt, busy, error, warnings}
+  const [picked, setPicked] = useState(() => new Set()); // multi-select for transfer
+  const [sending, setSending] = useState(false);
   const fileInput = useRef(null);
+  const toggle = (i) =>
+    setPicked((s2) => {
+      const n = new Set(s2);
+      if (n.has(i)) n.delete(i);
+      else n.add(i);
+      return n;
+    });
 
   const set = useCallback((next) => onChange(next), [onChange]);
   const patch = (i, row) => set(rows.map((r, j) => (j === i ? row : r)));
@@ -152,13 +162,46 @@ export default function MediaGrid({ k, value, onChange, single = false }) {
                 </>
               ) : null}
               <div className="st-cell-tools">
+                {!single && source ? (
+                  <label className="st-pickbox" title="Select for Send to…">
+                    <input type="checkbox" checked={picked.has(i)} onChange={() => toggle(i)} />
+                  </label>
+                ) : null}
                 <button type="button" onClick={() => setPicking(i)}>Swap</button>
+                {!single ? (
+                  <button type="button" onClick={() => set([...rows.slice(0, i + 1), rows[i], ...rows.slice(i + 1)])} title="Copy it into this same list">
+                    Duplicate
+                  </button>
+                ) : null}
                 {!single ? <button type="button" className="danger" onClick={() => del(i)}>Delete</button> : null}
               </div>
             </div>
           );
         })}
       </div>
+
+      {!single && source ? (
+        <div className="st-send">
+          <span className="st-f-n">
+            {picked.size ? `${picked.size} selected` : 'tick a picture to send it somewhere'}
+          </span>
+          <button
+            type="button"
+            className="st-btn sm"
+            disabled={!picked.size || dirty}
+            onClick={() => setSending(true)}
+            title={dirty ? 'Save your changes first: a transfer reads what is on disk' : 'Move or copy these into another set'}
+          >
+            Send to…
+          </button>
+          {picked.size ? (
+            <button type="button" className="st-btn ghost sm" onClick={() => setPicked(new Set())}>
+              Clear
+            </button>
+          ) : null}
+          {dirty ? <span className="st-warn">Save first. A transfer writes the version on disk.</span> : null}
+        </div>
+      ) : null}
 
       {!single ? (
         <div className="st-add">
@@ -203,6 +246,19 @@ export default function MediaGrid({ k, value, onChange, single = false }) {
       )}
 
       {picking !== null ? <AssetPicker onPick={chose} onClose={() => setPicking(null)} /> : null}
+      {sending ? (
+        <TransferPicker
+          source={source}
+          indexes={[...picked].sort((a, b) => a - b)}
+          entries={[...picked].sort((a, b) => a - b).map((i) => rows[i])}
+          onClose={() => setSending(false)}
+          onDone={(res) => {
+            setSending(false);
+            setPicked(new Set());
+            if (onTransferred) onTransferred(res);
+          }}
+        />
+      ) : null}
     </div>
   );
 }

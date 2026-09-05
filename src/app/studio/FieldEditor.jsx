@@ -110,7 +110,7 @@ function isMediaArray(k, arr) {
   return arr.length > 0 && arr.every((x) => x && typeof x === 'object' && typeof x.src === 'string');
 }
 
-export default function FieldEditor({ value, path, onChange, heading, depth = 0 }) {
+export default function FieldEditor({ value, path, onChange, heading, depth = 0, filePath = null, dirty = false, onTransferred = null }) {
   if (value === null || value === undefined) return null;
 
   if (typeof value === 'string') {
@@ -145,7 +145,16 @@ export default function FieldEditor({ value, path, onChange, heading, depth = 0 
   if (Array.isArray(value)) {
     const k = path[path.length - 1];
     if (isMediaArray(k, value)) {
-      return <MediaGrid k={k} value={value} onChange={(next) => onChange(path, next)} />;
+      return (
+        <MediaGrid
+          k={k}
+          value={value}
+          onChange={(next) => onChange(path, next)}
+          source={filePath ? { path: filePath, pointer: path } : null}
+          dirty={dirty}
+          onTransferred={onTransferred}
+        />
+      );
     }
     if (value.every((x) => typeof x === 'string')) {
       return <StringList k={k} value={value} onChange={(next) => onChange(path, next)} />;
@@ -159,7 +168,7 @@ export default function FieldEditor({ value, path, onChange, heading, depth = 0 
         {value.map((row, i) => (
           <div className="st-sub" key={i}>
             <div className="st-sub-h">{i + 1}</div>
-            <FieldEditor value={row} path={[...path, i]} onChange={onChange} depth={depth + 1} />
+            <FieldEditor value={row} path={[...path, i]} onChange={onChange} depth={depth + 1} filePath={filePath} dirty={dirty} onTransferred={onTransferred} />
           </div>
         ))}
       </div>
@@ -178,10 +187,10 @@ export default function FieldEditor({ value, path, onChange, heading, depth = 0 
             {(typeof v === 'object' && !Array.isArray(v)) || (Array.isArray(v) && !isMediaArray(k, v) && !v.every((x) => typeof x === 'string')) ? (
               <div className="st-nest">
                 <div className="st-nest-h">{title(k)}</div>
-                <FieldEditor value={v} path={[...path, k]} onChange={onChange} depth={depth + 1} />
+                <FieldEditor value={v} path={[...path, k]} onChange={onChange} depth={depth + 1} filePath={filePath} dirty={dirty} onTransferred={onTransferred} />
               </div>
             ) : (
-              <FieldEditor value={v} path={[...path, k]} onChange={onChange} depth={depth + 1} />
+              <FieldEditor value={v} path={[...path, k]} onChange={onChange} depth={depth + 1} filePath={filePath} dirty={dirty} onTransferred={onTransferred} />
             )}
           </div>
         );

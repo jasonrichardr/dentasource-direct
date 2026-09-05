@@ -375,3 +375,32 @@
   overflow-x: auto;
   user-select: all;
 }
+
+/* ── send to… ── */
+.st-send { display: flex; align-items: center; gap: 10px; margin: 4px 0 10px; flex-wrap: wrap; }
+.st-pickbox { display: inline-flex; align-items: center; padding: 0 4px; cursor: pointer; }
+.st-pickbox input { accent-color: var(--signal); }
+.st-send-h { color: var(--ink); font-size: 13px; flex: none; }
+.st-mode { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--ink-soft); flex: none; }
+.st-mode input { accent-color: var(--signal); }
+.st-targets { flex: 1; overflow-y: auto; padding: 10px 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.st-target {
+  display: grid;
+  grid-template-columns: 1fr 7em 3.5em auto;
+  gap: 10px;
+  align-items: baseline;
+  text-align: left;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--ink-soft);
+  padding: 9px 12px;
+  cursor: pointer;
+  font-size: 12.5px;
+}
+.st-target:hover:not(:disabled) { border-color: var(--signal); color: var(--ink); }
+.st-target:disabled { opacity: 0.4; cursor: default; }
+.st-target-l em { font-style: normal; color: var(--signal); font-size: 11px; }
+.st-target-s { font-family: ui-monospace, monospace; font-size: 10.5px; color: var(--ink-faint); }
+.st-target-c { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-faint); }
+.st-target-x { font-size: 10px; color: var(--warn); }

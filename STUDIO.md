@@ -48,6 +48,22 @@ Upload adds a new file from your computer:
 - Alt text is required. A picture with no description cannot be added.
 - Uploads land in `public/cinema/uploads/<year-month>/`.
 
+**Send a picture somewhere else.** Tick the box on any thumbnail (or several),
+press **Send to…**, and pick another set: another strip, or a particular beat's
+own pictures. Choose **Move** to take it out of here, or **Copy** to leave it
+in both. The alt text and the poster travel with it, and the entry is reshaped
+to match whatever the target set uses.
+
+- A transfer writes BOTH files immediately, each with its own `.bak`. It does
+  not wait for Save, because leaving one half of a move unsaved is how the same
+  picture ends up in two places.
+- For that reason it asks you to save first if you have unsaved edits open. It
+  reads what is on disk.
+- A video can only be sent to a set that already carries video. The studio will
+  not offer the others.
+
+**Duplicate** copies a picture again inside the same set, next to itself.
+
 **Open beat** opens that beat on the running site in a new tab.
 
 **A greyed out arc** means that file is not in the repo right now. These

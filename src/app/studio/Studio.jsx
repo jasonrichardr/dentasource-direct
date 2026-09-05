@@ -106,6 +106,33 @@ export default function Studio() {
     }
   }, [active, doc, items.length]);
 
+  /** A transfer is written by the server, in both files, before we hear about
+   *  it. So the only correct thing to do afterwards is throw away what is in
+   *  memory and re-read from disk. */
+  const afterTransfer = useCallback(
+    async (res) => {
+      const verb = res.mode === 'move' ? 'Moved' : 'Copied';
+      const n = res.moved || res.copied;
+      try {
+        const r = await fetch(`/api/studio/file?path=${encodeURIComponent(active.path)}`);
+        const d = await r.json();
+        if (r.ok) {
+          setDoc(d.data);
+          setDirty(false);
+          setSel(0);
+        }
+      } catch {
+        /* the write already happened; a manual reload will show it */
+      }
+      setNote({ text: `${verb} ${n} into ${res.label}. Both files were written, each with a .bak.` });
+      fetch('/api/studio/files')
+        .then((r) => r.json())
+        .then((d) => setFiles(d.files || []))
+        .catch(() => {});
+    },
+    [active],
+  );
+
   const change = useCallback((keys, value) => {
     setDoc((d) => setIn(d, keys, value));
     setDirty(true);
@@ -289,6 +316,9 @@ export default function Studio() {
                   setDoc((d) => ({ ...d, [active.collection]: next }));
                   setDirty(true);
                 }}
+                source={{ path: active.path, pointer: [active.collection] }}
+                dirty={dirty}
+                onTransferred={afterTransfer}
               />
               {/* ☠️ WHY SOMETHING IS MISSING IS EDITORIAL INFORMATION. The growth
                   partner set carries an `excluded` map of id range to reason,
@@ -317,6 +347,9 @@ export default function Studio() {
               path={[active.collection, sel]}
               onChange={change}
               heading={label(current, sel)}
+              filePath={active.path}
+              dirty={dirty}
+              onTransferred={afterTransfer}
             />
           )}
         </main>
