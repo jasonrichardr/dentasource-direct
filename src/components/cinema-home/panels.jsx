@@ -25,10 +25,18 @@ export function Copy({ beat, level = 2, className = 'dsd-copy' }) {
   );
 }
 
+/**
+ * ☠️ NOTHING IN THE ARC PREFETCHES. Every beat's panel is a FIXED overlay, so as far as an
+ * App Router <Link> is concerned all fifteen of them are on screen the moment the page
+ * loads, and every destination in the whole arc was being fetched before the visitor had
+ * scrolled past the hero: the CTAs of all fifteen beats plus forty eight cards in the news
+ * marquee. Measured on a fresh load, forty one route prefetches. Hover still prefetches,
+ * which is where intent actually shows up.
+ */
 export function Cta({ cta, variant = 'ghost' }) {
   if (!cta) return null;
   return (
-    <Link href={cta.href} className={`cinema-cta dsd-cta dsd-cta-${variant}`}>
+    <Link href={cta.href} prefetch={false} className={`cinema-cta dsd-cta dsd-cta-${variant}`}>
       {cta.label}
     </Link>
   );
@@ -56,10 +64,10 @@ export function DoorPanel({ beat }) {
     <div className="dsd-panel dsd-copy-wide">
       <Copy beat={beat} className="dsd-copy-wide" />
       <div className="dsd-cta-row">
-        <Link href="/contact#showroom" className="cinema-cta dsd-cta dsd-cta-solid">
+        <Link href="/contact#showroom" prefetch={false} className="cinema-cta dsd-cta dsd-cta-solid">
           Visit the showroom
         </Link>
-        <Link href="/contact" className="cinema-cta dsd-cta dsd-cta-ghost">
+        <Link href="/contact" prefetch={false} className="cinema-cta dsd-cta dsd-cta-ghost">
           Send an inquiry
         </Link>
       </div>
@@ -189,6 +197,7 @@ export function NewsPanel({ beat, beatIndex, articles = [] }) {
                 <Link
                   key={`${r}-${i}-${a.slug}`}
                   href={`/news/${a.slug}`}
+                  prefetch={false}
                   className="dsd-news-card"
                   tabIndex={i >= row.length ? -1 : undefined}
                   aria-hidden={i >= row.length ? 'true' : undefined}
