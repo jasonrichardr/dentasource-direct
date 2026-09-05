@@ -35,6 +35,11 @@
   --news-invert-bg-hover: #1a1a1a;
   --news-invert-ink: #ffffff;
   --news-on-accent: #ffffff;      /* type sitting ON the green */
+  /* The night sky only ever runs in dark, so by day these are the flat grounds the page
+     has always had and nothing composites over anything. */
+  --news-list-ground: var(--news-paper);
+  --news-article-ground: var(--news-surface);
+  --news-plate: transparent;
 }
 
 :root[data-theme="dark"] {
@@ -64,4 +69,15 @@
   /* ☠️ WHITE ON THE NIGHT GREEN IS 1.9:1. The dark accent carries white type by day, but
      by night the accent IS the light, so the type has to be the ground. */
   --news-on-accent: #06231a;
+
+  /* ---- THE CONSTELLATION GROUND.
+     The sky canvas is fixed at z-index 1 behind the whole route, so the page grounds
+     stop being opaque and become veils over it: the stars read at the margins and behind
+     the headline, and the page still has one settled colour rather than raw black.
+     The reading column then takes a second, denser pass (--news-plate) so body copy is
+     never asked to sit on bare sky, where the moon can drift under a line of text. */
+  --news-veil: rgba(9, 14, 24, 0.58);
+  --news-list-ground: var(--news-veil);
+  --news-article-ground: var(--news-veil);
+  --news-plate: rgba(12, 19, 32, 0.55);
 }

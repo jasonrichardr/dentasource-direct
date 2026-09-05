@@ -44,7 +44,11 @@ export default function NewsContent({ articles = [] }) {
 
       <main style={{
         minHeight: '100vh',
-        background: 'var(--news-paper)',
+        // A veil over the night sky in dark, the flat paper it always was by day.
+        // position/zIndex raise the list above the fixed sky canvas at z-index 1.
+        background: 'var(--news-list-ground)',
+        position: 'relative',
+        zIndex: 2,
         paddingTop: 130,
         paddingBottom: 80,
         fontFamily: "'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif",
@@ -170,7 +174,10 @@ export default function NewsContent({ articles = [] }) {
               >
                 <Link href={`/news/${article.slug}`} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
                   <div style={{
-                    background: 'white',
+                    // Was the literal 'white' while every sibling here was already a
+                    // token, so the night register put white cards on a night page.
+                    // --news-surface IS #ffffff by day, so the day card is unchanged.
+                    background: 'var(--news-surface)',
                     borderRadius: 16,
                     overflow: 'hidden',
                     border: '1px solid var(--news-line)',

@@ -1,10 +1,16 @@
 .articlePage {
-    background-color: var(--news-surface);
+    background-color: var(--news-article-ground);
     color: var(--news-ink);
     min-height: 100vh;
     padding-top: 100px;
     /* offset for navbar */
     font-family: var(--font-body);
+    /* The night sky is a fixed canvas at z-index 1. A page in normal flow would paint
+       UNDER it (positioned boxes paint after in-flow ones), so the article is raised
+       one step to sit on the sky rather than behind it. By day there is no sky and this
+       costs nothing. */
+    position: relative;
+    z-index: 2;
 }
 
 .heroSection {
@@ -71,6 +77,54 @@
 
 .articleBody {
     color: var(--news-ink);
+}
+
+/* Dark only: the hero date takes the skin's night accent.
+   --orange (#F26522) is a global brand token that never got a night value, unlike every
+   other ink in news-theme.css, and it is the weakest ink on the page: even over the
+   damped hero ground it measured 4.54:1, which clears AA by 0.04 and would fail outright
+   wherever the moon sits a little differently. --news-gold is already the night accent in
+   this skin and measures 7.02:1 on the same ground, so this is margin rather than luck.
+   The day register keeps the orange exactly. */
+:global(:root[data-theme="dark"]) .date {
+    color: var(--news-gold);
+}
+
+/* Dark only: the hero carries its own ground.
+   MEASURED, not assumed: with the page veil alone the moon drifts behind the hero, and
+   the brightest ground pixel there read [94,97,105]. Against that the date fell to
+   2.02:1 and the abstract to 3.71:1, both under AA for normal text. Recolouring cannot
+   fix it: a ground that bright needs near-white type to clear 4.5:1, and the news gold
+   reaches only 3.07:1 there. So the ground itself comes down, and it comes down LOCALLY,
+   because veiling the whole page enough to save the date would need about 0.86 opacity
+   and would put the stars out everywhere, which is the opposite of the point.
+
+   ☠️ THE PERCENTAGES IN A RADIAL ARE RADII, NOT THE DIAMETER. A 105% extent puts the
+   transparent stop a full box-width past the edge, so the edge is still near 0.9 and the
+   hero reads as a hard black card dropped on the sky. At 52% the fade lands ON the edge
+   and the corners stay clear, so it reads as atmosphere instead. The padding is what
+   gives the ellipse room to cover the type.
+
+   The date and the abstract are centred and short, so they sit in the dense core; the
+   title is wide, but its ink is opaque and clears AA on bare sky regardless. */
+:global(:root[data-theme="dark"]) .heroContent {
+    background: radial-gradient(52% 52% at 50% 46%,
+        rgba(6, 10, 18, 0.93) 0%,
+        rgba(6, 10, 18, 0.90) 60%,
+        rgba(6, 10, 18, 0.55) 82%,
+        rgba(6, 10, 18, 0) 100%);
+    padding: 4rem 5rem 3.5rem;
+}
+
+/* Dark only: the reading column becomes a plate. The veil on .articlePage already dims
+   the sky page-wide; this second pass gives the body copy its own steady ground so a
+   passing moon can never sit behind a paragraph. Scoped with :global so the day register
+   keeps exactly the flat, plateless column it always had. */
+:global(:root[data-theme="dark"]) .contentSection {
+    background: var(--news-plate);
+    border: 1px solid var(--news-line);
+    border-radius: 20px;
+    padding-top: 2.5rem;
 }
 
 .heading1 {
