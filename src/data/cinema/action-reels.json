@@ -1,7 +1,7 @@
 {
   "version": 1,
   "generated": "2026-09-05",
-  "notes": "The reels from the old home's VideoShowcase, kept in order. EXTENDABLE. Captions are the originals with the emoji and the dash characters removed, per the public copy rules; nothing else about them changed.",
+  "notes": "The mixed marquee for the See us in action beat. ORDER RULE, and it is deliberate: it OPENS ON A VIDEO, then alternates image, video, image so the eye keeps changing gear; when the videos run out the tail continues in images rather than looping the clips, because a repeat reads as a loop and a new photograph reads as more evidence. Stills are chosen for a clinic owner (the finished operatory, the fit, the handover, where it is taught) and are deliberately different from the team-fun strip. EXTENDABLE: append either type and re-run the rule.",
   "eyebrow": "See us in action",
   "headline": "The real DentaSource.",
   "reels": [
@@ -34,6 +34,84 @@
       "src": "/videos/dsd-showcase-3.mp4",
       "poster": "/videos/dsd-showcase-3-poster.jpg",
       "caption": "Digital dentistry and surgery, updated skills every year"
+    }
+  ],
+  "items": [
+    {
+      "type": "video",
+      "src": "/videos/dsd-showcase-4.mp4",
+      "poster": "/videos/dsd-showcase-4-poster.jpg",
+      "caption": "Meet the team. Stay vibrant"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/two-roson-dx-s3-ignacio-dental-clinic/v089-6.jpg",
+      "caption": "A finished operatory with two new chairs in place"
+    },
+    {
+      "type": "video",
+      "src": "/videos/dsd-showcase.mp4",
+      "poster": "/videos/dsd-showcase-poster.jpg",
+      "caption": "SMX Convention"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/roson-dx-a3s-installation-pampanga/v017-4.jpg",
+      "caption": "The unit going together in the clinic it will live in"
+    },
+    {
+      "type": "video",
+      "src": "/videos/dsd-showcase-2.mp4",
+      "poster": "/videos/dsd-showcase-2-poster.jpg",
+      "caption": "Pre inspection before delivery and install"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/dentasource-training-center-opens-pasig/v032-4.jpg",
+      "caption": "The Training Center room where a team is taught"
+    },
+    {
+      "type": "video",
+      "src": "/videos/dsd-showcase-6.mp4",
+      "poster": "/videos/dsd-showcase-6-poster.jpg",
+      "caption": "ROSON training and service, our exclusive partner"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/why-visit-the-pasig-showroom/v014-2.jpg",
+      "caption": "Chairs side by side on the showroom floor"
+    },
+    {
+      "type": "video",
+      "src": "/videos/dsd-showcase-5.mp4",
+      "poster": "/videos/dsd-showcase-5-poster.jpg",
+      "caption": "Denjoy, endo focused, with research and development"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-9.jpg",
+      "caption": "Handover, with the clinic's own staff at the chair"
+    },
+    {
+      "type": "video",
+      "src": "/videos/dsd-showcase-3.mp4",
+      "poster": "/videos/dsd-showcase-3-poster.jpg",
+      "caption": "Digital dentistry and surgery, updated skills every year"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg",
+      "caption": "The inspection sheet being signed before anything ships"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/dental-chair-installation-cabuyao-laguna/v081-5.jpg",
+      "caption": "The dentist with the finished unit"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/roson-dental-south-china-2026/v018-4.jpg",
+      "caption": "At the ROSON factory show where the range is chosen"
     }
   ]
 }

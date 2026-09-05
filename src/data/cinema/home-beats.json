@@ -2,7 +2,7 @@
   "version": 1,
   "generated": "2026-09-05",
   "page": "/",
-  "notes": "Home arc for the DSD cinema overhaul. 15 beats (console removed and See us in action added, 2026-09-05), ruled in brainstorms/2026-09-05-dsd-site-overhaul-ffc-parity.md Q10 to Q16. Copy follows builds/dentasource-news/fb2026/WRITER-BRIEF.md: no dash characters, no emoji, no exclamation marks, no prices, no warranty terms, no personal names.",
+  "notes": "Home arc for the DSD cinema overhaul. Q19 round (2026-09-06): showroom, ROSON and Denjoy merged into one beat; pre-delivery inspection removed; delivery became the installs marquee; after sales became the parts marquee; see us in action became a mixed marquee.",
   "beats": [
     {
       "key": "hero",
@@ -137,62 +137,27 @@
       ]
     },
     {
-      "key": "showroom",
+      "key": "the-floor",
       "kind": "photo",
       "eyebrow": "The showroom",
-      "headline": "The largest dental showroom in the country",
-      "body": "610 C. Raymundo Avenue, Maybunga, Pasig City. Open Monday to Sunday, 9 AM to 8 PM. Compare models side by side in the same light, sit in them, and bring your operatory measurements.",
+      "headline": "The largest dental showroom in the country, and the only door to two brands",
+      "body": "610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. We are the exclusive Philippine distributor for ROSON and the exclusive Denjoy partner here, so the unit on our floor is the unit the factory shipped, and the spares and the support stay in the country. Sit in them side by side in the same light before you choose.",
       "cta": {
-        "label": "Book a showroom visit",
+        "label": "Visit the showroom",
         "href": "/contact"
       },
       "media": [
         "/images/news/why-visit-the-pasig-showroom/v014-1.jpg",
-        "/images/news/why-visit-the-pasig-showroom/v014-2.jpg",
-        "/images/news/why-visit-the-pasig-showroom/v013-1.jpg",
-        "/images/news/why-visit-the-pasig-showroom/v014-3.jpg"
-      ]
-    },
-    {
-      "key": "roson",
-      "kind": "photo",
-      "eyebrow": "ROSON, exclusively",
-      "headline": "Exclusive Philippine distributor for ROSON",
-      "body": "ROSON marked twenty years at Dental South China in March 2026. Its chairs reach Filipino clinics through one channel, straight from the source, so the unit on our floor is the unit ROSON shipped.",
-      "cta": {
-        "label": "See the flagship A3",
-        "href": "/a3"
-      },
-      "media": [
         "/images/news/roson-dental-south-china-2026/v018-4.jpg",
-        "/images/news/roson-dental-south-china-2026/v018-2.jpg",
-        "/images/news/roson-dental-south-china-2026/v018-3.jpg",
-        "/images/brand/roson-logo-final.png"
-      ]
-    },
-    {
-      "key": "denjoy",
-      "kind": "photo",
-      "eyebrow": "Denjoy, exclusively",
-      "headline": "Exclusive Denjoy partner in the Philippines",
-      "body": "Announced on May 30, 2026, and on the showroom floor from June 4. Endo motors, apex locators, ultrasonic activators and the workstations that hold them, with the spares and the support kept here.",
-      "cta": {
-        "label": "See the Denjoy range",
-        "href": "/denjoy"
-      },
-      "media": [
-        "/images/news/dentasource-exclusive-denjoy-partner-philippines/p073-1.jpg",
-        "/images/news/denjoy-now-available-dentasource-showroom/p076-1.jpg",
-        "/images/news/inside-the-box-genuine-denjoy/v099-5.jpg",
-        "/images/brand/denjoy-logo-final.png"
+        "/images/news/dentasource-exclusive-denjoy-partner-philippines/p073-1.jpg"
       ]
     },
     {
       "key": "training-center",
       "kind": "photo",
       "eyebrow": "The Training Center",
-      "headline": "A room of phantom heads, minutes away",
-      "body": "Units 307 and 308, 3rd Floor, Mercedes Square Plaza, Mercedes Avenue corner Luis Street, San Miguel, Pasig City. A row of simulator stations, an interactive teaching board, and courses run with partner study groups.",
+      "headline": "A room of phantom heads, and the people who teach in it",
+      "body": "Units 307 and 308 at Mercedes Square Plaza in Pasig, minutes from the showroom. A row of simulator stations, an interactive board, and courses run with partner study groups and clinical instructors. Our own team learns here before they teach here, which is why the person who trains your staff on handover day has done the procedure themselves.",
       "cta": {
         "label": "Ask about training",
         "href": "/contact"
@@ -202,59 +167,194 @@
         "/images/news/dentasource-training-center-opens-pasig/v032-2.jpg",
         "/images/news/dentasource-training-center-opens-pasig/v032-4.jpg",
         "/images/news/9-day-digital-dentistry-course-2026/v022-3.jpg"
-      ]
+      ],
+      "cta2": {
+        "label": "The Growth Partner program",
+        "href": "https://ffcdentalclinic.com/growth-partner",
+        "external": true
+      }
     },
     {
       "key": "delivery",
-      "kind": "photo",
+      "kind": "installs",
       "eyebrow": "Nationwide delivery",
-      "headline": "We deliver, and we install what we deliver",
-      "body": "Clinics on Luzon are served by our own van and installation team. Units bound for the Visayas and Mindanao go by freight, with installation arranged on arrival. A free ocular visit comes first, so the unit fits the room.",
+      "headline": "We travel the whole country to build it",
+      "body": "Luzon is served by our own van and our own installation team. Units bound for the Visayas and Mindanao go by freight with installation arranged on arrival. A free ocular visit comes first, so the unit fits the room before it ever leaves the warehouse.",
       "cta": {
         "label": "Arrange a delivery",
         "href": "/contact"
       },
       "media": [
         "/images/news/new-year-restock-nationwide-delivery-2026/v001-3.jpg",
-        "/images/news/roson-a3l-delivery-pangasinan/v003-1.jpg",
+        "/images/news/dental-chair-delivery-occidental-mindoro/v023-1.jpg",
         "/images/news/dental-chair-delivery-occidental-mindoro/v023-2.jpg",
-        "/images/news/roson-dx-a3s-installation-pampanga/v017-4.jpg"
+        "/images/news/dental-chair-installation-cabuyao-laguna/v081-1.jpg"
+      ],
+      "tiles": [
+        {
+          "src": "/images/news/new-year-restock-nationwide-delivery-2026/v001-3.jpg",
+          "alt": "Lifting a crated unit off the truck on the new year restock run"
+        },
+        {
+          "src": "/images/news/dental-chair-delivery-occidental-mindoro/v023-1.jpg",
+          "alt": "An installation in Occidental Mindoro"
+        },
+        {
+          "src": "/images/news/dental-chair-delivery-occidental-mindoro/v023-2.jpg",
+          "alt": "An installation in Occidental Mindoro"
+        },
+        {
+          "src": "/images/news/dental-chair-installation-cabuyao-laguna/v081-1.jpg",
+          "alt": "An installation in Cabuyao, Laguna"
+        },
+        {
+          "src": "/images/news/dental-chair-installation-cabuyao-laguna/v081-2.jpg",
+          "alt": "An installation in Cabuyao, Laguna"
+        },
+        {
+          "src": "/images/news/dental-chair-installation-mandaluyong/v020-1.jpg",
+          "alt": "An installation in Mandaluyong"
+        },
+        {
+          "src": "/images/news/dental-chair-installation-mandaluyong/v020-2.jpg",
+          "alt": "An installation in Mandaluyong"
+        },
+        {
+          "src": "/images/news/dental-chair-upgrade-proof-of-delivery-june-2025/p313-1.jpg",
+          "alt": "An installation in an upgrade handover"
+        },
+        {
+          "src": "/images/news/dental-chair-upgrade-proof-of-delivery-june-2025/p313-2.jpg",
+          "alt": "An installation in an upgrade handover"
+        },
+        {
+          "src": "/images/news/install-2026/hero-install.jpg",
+          "alt": "An installation in the install, step by step"
+        },
+        {
+          "src": "/images/news/install-2026/og-install-marbles-v1.jpg",
+          "alt": "An installation in the install, step by step"
+        },
+        {
+          "src": "/images/news/new-year-restock-nationwide-delivery-2026/v001-1.jpg",
+          "alt": "An installation in the new year restock"
+        },
+        {
+          "src": "/images/news/new-year-restock-nationwide-delivery-2026/v001-2.jpg",
+          "alt": "An installation in the new year restock"
+        },
+        {
+          "src": "/images/news/roson-a3l-delivery-pangasinan/v003-1.jpg",
+          "alt": "An installation in Pangasinan"
+        },
+        {
+          "src": "/images/news/roson-a3l-delivery-pangasinan/v003-2.jpg",
+          "alt": "An installation in Pangasinan"
+        },
+        {
+          "src": "/images/news/roson-chair-lineup-18-month-installment-may-2026/p051-1.jpg",
+          "alt": "An installation in the showroom lineup"
+        },
+        {
+          "src": "/images/news/roson-chair-lineup-18-month-installment-may-2026/p053-1.jpg",
+          "alt": "An installation in the showroom lineup"
+        },
+        {
+          "src": "/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-1.jpg",
+          "alt": "An installation in Santa Maria, Bulacan"
+        },
+        {
+          "src": "/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-2.jpg",
+          "alt": "An installation in Santa Maria, Bulacan"
+        },
+        {
+          "src": "/images/news/roson-dx-a3s-delivery-taguig/v103-1.jpg",
+          "alt": "An installation in Taguig"
+        },
+        {
+          "src": "/images/news/roson-dx-a3s-delivery-taguig/v103-2.jpg",
+          "alt": "An installation in Taguig"
+        },
+        {
+          "src": "/images/news/roson-dx-a3s-installation-pampanga/v017-1.jpg",
+          "alt": "An installation in San Fernando, Pampanga"
+        },
+        {
+          "src": "/images/news/roson-dx-a3s-installation-pampanga/v017-2.jpg",
+          "alt": "An installation in San Fernando, Pampanga"
+        },
+        {
+          "src": "/images/news/roson-dx-n1-installed-general-trias-cavite-2025/v308-1.jpg",
+          "alt": "An installation in General Trias, Cavite"
+        },
+        {
+          "src": "/images/news/roson-dx-n1-installed-general-trias-cavite-2025/v308-2.jpg",
+          "alt": "An installation in General Trias, Cavite"
+        },
+        {
+          "src": "/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-1.jpg",
+          "alt": "An installation in Quezon City"
+        },
+        {
+          "src": "/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-2.jpg",
+          "alt": "An installation in Quezon City"
+        },
+        {
+          "src": "/images/news/roson-dx-n2-pro-installation-doc-jake/v042-1.jpg",
+          "alt": "An installation in a clinic in Metro Manila"
+        },
+        {
+          "src": "/images/news/roson-dx-n2-pro-installation-doc-jake/v042-2.jpg",
+          "alt": "An installation in a clinic in Metro Manila"
+        },
+        {
+          "src": "/images/news/roson-dx-s3-installation-balanga-bataan/v201-1.jpg",
+          "alt": "An installation in Balanga, Bataan"
+        },
+        {
+          "src": "/images/news/roson-dx-s3-installation-balanga-bataan/v201-2.jpg",
+          "alt": "An installation in Balanga, Bataan"
+        },
+        {
+          "src": "/images/news/roson-dx-s3-premium-package-installation/v015-1.jpg",
+          "alt": "An installation in a premium package install"
+        },
+        {
+          "src": "/images/news/roson-dx-s3-premium-package-installation/v015-2.jpg",
+          "alt": "An installation in a premium package install"
+        },
+        {
+          "src": "/images/news/three-deliveries-one-week-dx-s3-dx-n2-pro/v046-1.jpg",
+          "alt": "An installation in three clinics in one week"
+        },
+        {
+          "src": "/images/news/three-deliveries-one-week-dx-s3-dx-n2-pro/v046-2.jpg",
+          "alt": "An installation in three clinics in one week"
+        },
+        {
+          "src": "/images/news/two-roson-dental-chairs-delivered-march-2025/v306-1.jpg",
+          "alt": "An installation in a two chair delivery"
+        },
+        {
+          "src": "/images/news/two-roson-dental-chairs-delivered-march-2025/v306-2.jpg",
+          "alt": "An installation in a two chair delivery"
+        },
+        {
+          "src": "/images/news/two-roson-dx-a3-caloocan-contract-to-christmas-delivery/p211-1.jpg",
+          "alt": "An installation in Caloocan"
+        },
+        {
+          "src": "/images/news/two-roson-dx-a3-caloocan-contract-to-christmas-delivery/v212-1.jpg",
+          "alt": "An installation in Caloocan"
+        }
       ]
     },
     {
-      "key": "pre-delivery-inspection",
-      "kind": "photo",
-      "eyebrow": "Pre delivery inspection",
-      "headline": "Opened here, not in your operatory",
-      "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse first. Eight checks, one technician signing the sheet, and nothing released for delivery until that sheet is complete.",
-      "cta": {
-        "label": "Read the checklist",
-        "href": "/news"
-      },
-      "media": [
-        "/images/news/pre-delivery-inspection-every-dental-chair/v033-2.jpg",
-        "/images/news/pre-delivery-inspection-every-dental-chair/v033-6.jpg",
-        "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
-        "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
-      ],
-      "checklist": [
-        "Visual and structural inspection",
-        "Electrical and power system testing",
-        "Chair movement and positioning calibration",
-        "Delivery system and handpiece ports",
-        "Dental light and auxiliary functions",
-        "Water system and drainage inspection",
-        "Accessories and package inclusions verification",
-        "Final quality assurance approval"
-      ],
-      "sourceArticle": "pre-delivery-inspection-every-dental-chair"
-    },
-    {
       "key": "after-sales",
-      "kind": "photo",
+      "kind": "parts",
       "eyebrow": "After sales and parts",
       "headline": "The chair is the room, so downtime is the cost",
-      "body": "Our technicians assess a fault on site first, and we hold parts locally for that reason. When the assessment says it will not clear quickly, we deliver a replacement unit and take the affected one back.",
+      "body": "Our technicians assess a fault on site first, and we hold parts here for that reason. Handpiece lines, valves, upholstery, control boards and delivery arms are all serviceable. When the assessment says it will not clear quickly, a replacement unit goes out and the affected one comes back.",
       "cta": {
         "label": "Talk to our service team",
         "href": "/contact"
@@ -270,10 +370,10 @@
       "key": "news",
       "kind": "marquee",
       "eyebrow": "From the news desk",
-      "headline": "More than ninety articles, from our own posts",
-      "body": "Installs, showroom days, conventions, training sessions and product arrivals. Each one written from the Facebook post it came from, dated to the day it happened, with the original post linked at the end.",
+      "headline": "Something is always happening on the floor",
+      "body": "Installs, showroom days, conventions, courses and the odd thing that only happens once. We write it down the day it happens, from our own posts.",
       "cta": {
-        "label": "Read the news",
+        "label": "See what is happening",
         "href": "/news"
       },
       "media": [

@@ -35,6 +35,20 @@ export function Copy({ beat, level = 2, className = 'dsd-copy' }) {
  */
 export function Cta({ cta, variant = 'ghost' }) {
   if (!cta) return null;
+  // An external door is a plain anchor, and it carries rel="noopener" because a target
+  // _blank without it hands the opened page a handle on this one.
+  if (cta.external) {
+    return (
+      <a
+        href={cta.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`cinema-cta dsd-cta dsd-cta-${variant}`}
+      >
+        {cta.label}
+      </a>
+    );
+  }
   return (
     <Link href={cta.href} prefetch={false} className={`cinema-cta dsd-cta dsd-cta-${variant}`}>
       {cta.label}
@@ -126,12 +140,18 @@ export function StripPanel({ beat, beatIndex }) {
   return (
     <div className="dsd-panel">
       <Copy beat={beat} />
+      {/* ☠️ AN EMPTY TRACK UNTIL THE BEAT IS NEAR. Gating the SOURCES stopped the bytes,
+          but the elements were still built: three marquees' worth of tiles rendering at
+          boot for beats nobody had reached, which is main thread work and nothing else.
+          Measured, that cost showed up as TBT rather than as weight. The track is empty
+          until `near`, and the copy above it is untouched, so nothing a crawler or a
+          reader wants disappears. */}
       <div className="dsd-strip">
         {/* The track is doubled so the -50% sweep wraps seamlessly. The second half is
-            the same twelve tiles again, so it is announced to nobody. */}
+            the same tiles again, so it is announced to nobody. */}
         <div className="dsd-strip-track">
-          {tiles.map((t, i) => <StripTile key={`a-${i}`} tile={t} near={near} />)}
-          {tiles.map((t, i) => <StripTile key={`b-${i}`} tile={t} near={near} echo />)}
+          {near ? tiles.map((t, i) => <StripTile key={`a-${i}`} tile={t} near />) : null}
+          {near ? tiles.map((t, i) => <StripTile key={`b-${i}`} tile={t} near echo />) : null}
         </div>
       </div>
       <Cta cta={beat.cta} />
@@ -145,7 +165,9 @@ export function StripPanel({ beat, beatIndex }) {
 // media entries are the photographs (a logo, where a beat carries one, is last).
 export function PhotoPanel({ beat, beatIndex }) {
   const near = useBeatNear(beatIndex);
-  const shots = (beat.media || []).filter((m) => !m.startsWith('PLACEHOLDER:')).slice(0, 2);
+  // The merged floor beat shows three: the showroom, a ROSON frame and a Denjoy frame.
+  // Every other photo beat still shows two, and a phone shows one of whichever it is.
+  const shots = (beat.media || []).filter((m) => !m.startsWith('PLACEHOLDER:')).slice(0, 3);
   return (
     <div className="dsd-panel">
       <div className="dsd-photos">
@@ -172,6 +194,97 @@ export function PhotoPanel({ beat, beatIndex }) {
           {beat.checklist.map((line) => <li key={line}>{line}</li>)}
         </ul>
       ) : null}
+      <div className="dsd-cta-row">
+        <Cta cta={beat.cta} />
+        <Cta cta={beat.cta2} />
+      </div>
+    </div>
+  );
+}
+
+/* ── the installs marquee: every article's install and delivery frames ─────────────── */
+
+export function InstallsPanel({ beat, beatIndex }) {
+  const near = useBeatNear(beatIndex);
+  const tiles = beat.tiles || [];
+  return (
+    <div className="dsd-panel">
+      <Copy beat={beat} />
+      {/* ☠️ AN EMPTY TRACK UNTIL THE BEAT IS NEAR. Gating the SOURCES stopped the bytes,
+          but the elements were still built: three marquees' worth of tiles rendering at
+          boot for beats nobody had reached, which is main thread work and nothing else.
+          Measured, that cost showed up as TBT rather than as weight. The track is empty
+          until `near`, and the copy above it is untouched, so nothing a crawler or a
+          reader wants disappears. */}
+      <div className="dsd-strip">
+        <div className="dsd-strip-track">
+          {near ? tiles.map((t, i) => <StripTile key={`a-${i}`} tile={t} near />) : null}
+          {near ? tiles.map((t, i) => <StripTile key={`b-${i}`} tile={t} near echo />) : null}
+        </div>
+      </div>
+      <Cta cta={beat.cta} />
+    </div>
+  );
+}
+
+/* ── the parts marquee: two rows, the news desk's grammar ──────────────────────────── */
+
+/** How many parts the two rows carry. The file holds 244; a marquee that long is a
+ *  warehouse inventory, not a shelf, and every extra tile is another image to fetch. */
+const PARTS_SHOWN = 28;
+
+export function PartsPanel({ beat, beatIndex, parts = [] }) {
+  const near = useBeatNear(beatIndex);
+  const rows = useMemo(() => {
+    // ☠️ A SPREAD, NOT A PREFIX. Taking the first 28 of the file would hand the beat
+    // whichever category happens to sort first; going round the categories in turn shows
+    // a chair's worth of parts instead: upholstery, then a syringe, then a light, and so
+    // on. Anything filed as Other is used last, since those are the least legible names.
+    const buckets = new Map();
+    for (const part of parts) {
+      const k = part.category && part.category !== 'Other' ? part.category : '~other';
+      if (!buckets.has(k)) buckets.set(k, []);
+      buckets.get(k).push(part);
+    }
+    const keys = [...buckets.keys()].sort();
+    const picked = [];
+    for (let round = 0; picked.length < PARTS_SHOWN; round += 1) {
+      let addedThisRound = false;
+      for (const k of keys) {
+        const list = buckets.get(k);
+        if (round < list.length) { picked.push(list[round]); addedThisRound = true; }
+        if (picked.length >= PARTS_SHOWN) break;
+      }
+      if (!addedThisRound) break;          // every bucket exhausted
+    }
+    const half = Math.ceil(picked.length / 2) || 1;
+    return [picked.slice(0, half), picked.slice(half)];
+  }, [parts]);
+  return (
+    <div className="dsd-panel">
+      <Copy beat={beat} />
+      <div className="dsd-news">
+        {rows.map((row, r) => (
+          <div className="dsd-news-row" key={r}>
+            <div className={`dsd-news-track${r === 1 ? ' reverse' : ''}`}>
+              {(near ? [...row, ...row] : []).map((part, i) => (
+                <div className={`dsd-part-card${part.name ? '' : ' is-bare'}`} key={`${r}-${i}-${part.slug}`} aria-hidden={i >= row.length ? 'true' : undefined}>
+                  {near ? (
+                    <Image src={part.src} alt="" width={112} height={112} loading="lazy" className="dsd-part-img" />
+                  ) : (
+                    <span className="dsd-part-img" aria-hidden="true" />
+                  )}
+                  {/* ☠️ NAMES ONLY, AND ONLY WHEN THERE IS ONE. 161 of the 244 parts carry
+                      no name in the source, just a code, and a code is never shown. Those
+                      tiles are the photograph alone: no caption, and no apologetic
+                      placeholder text standing in for one. */}
+                  {part.name ? <span className="dsd-part-name">{part.name}</span> : null}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
       <Cta cta={beat.cta} />
     </div>
   );
@@ -421,6 +534,12 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
   return (
     <div className="dsd-panel">
       <Copy beat={beat} />
+      {/* ☠️ THE STAGE IS THE POINT, NOT JUST THE SPHERES. Ported from FFC's leadership
+          beat: a dark academia field behind the glass, a soft centre vignette so the beads
+          read as gems rather than as cut-outs, and a bottom scrim so the copy stays
+          legible over it. Rendered ONLY when the beat is near, because a CSS background
+          image on an always-mounted panel would fetch at boot like everything else did. */}
+      {near && !reduced ? <div className="dsd-marble-stage" aria-hidden="true" /> : null}
       {reduced ? (
         // ☠️ THE CLUSTER HAS NO REDUCED MOTION PATH OF ITS OWN. I checked: there is no
         // prefers-reduced-motion branch anywhere in GlassMarbles or marbleCluster. So the
@@ -448,43 +567,94 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
 /** Next's optimiser, addressed directly. A <video poster> cannot take a next/image
  *  component, but it can take the URL the optimiser serves, which is AVIF or WebP at the
  *  width actually rendered instead of the full JPEG. */
-const optimised = (src, w = 384, q = 70) => `/_next/image?url=${encodeURIComponent(src)}&w=${w}&q=${q}`;
+// ☠️ THE QUALITY MUST BE ONE NEXT ALLOWS. Next 16 answers 400 with '"q" parameter
+// (quality) of 70 is not allowed' for anything outside its configured list, and the
+// default list is [75]. A hand built optimiser URL has to respect that; a next/image
+// component would have picked a legal value for us. Measured: 19 of these 400s on a
+// desktop pass before this was corrected.
+const optimised = (src, w = 384, q = 75) => `/_next/image?url=${encodeURIComponent(src)}&w=${w}&q=${q}`;
 
-export function ActionPanel({ beat, beatIndex, reels = [] }) {
+export function ActionPanel({ beat, beatIndex, items = [] }) {
   const near = useBeatNear(beatIndex, { margin: '80%' });
 
-  // The room stands aside for a reel that is actually speaking, and comes back after.
+  // The room only stands aside for a reel that is actually AUDIBLE. Everything in this
+  // marquee autoplays muted, so in practice it never asks; the handler exists because a
+  // visitor can unmute one, and then it must.
   const speak = (on) => {
     try { window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on } })); } catch (e) { /* no CustomEvent */ }
   };
   useEffect(() => () => speak(false), []);
 
+  // ☠️ ONE DOUBLED TRACK, MIXED. The order comes from action-reels.json and is deliberate
+  // (video first, then image, then video, and images alone once the clips run out); this
+  // component does not sort, it renders what the file decided, so the strategy is
+  // editable without touching code.
+  const tiles = items.length ? items : [];
+  const trackRef = useRef(null);
+
+  // ☠️ ONE CLIP SPEAKS AT A TIME, AND THAT IS A DATA DECISION, NOT A TASTE ONE.
+  // Autoplaying every tile in the doubled track measured 47 MB of video at this beat: six
+  // clips, each mounted twice, all streaming at once. For a dentist on Philippine mobile
+  // data that is not a marquee, it is a bill. So the tiles carry preload="none" and only
+  // the ONE nearest the middle of the screen plays; the rest sit on their poster frames.
+  // The strip still moves and something in it is always alive, which is what the FFC
+  // marquee actually reads as, at about a twelfth of the bytes.
+  useEffect(() => {
+    if (!near) return undefined;
+    const tick = () => {
+      const vids = trackRef.current ? [...trackRef.current.querySelectorAll('video')] : [];
+      if (!vids.length) return;
+      const mid = window.innerWidth / 2;
+      let best = null, bestD = Infinity;
+      for (const v of vids) {
+        const r = v.getBoundingClientRect();
+        if (r.right < 0 || r.left > window.innerWidth) { if (!v.paused) v.pause(); continue; }
+        const d = Math.abs(r.left + r.width / 2 - mid);
+        if (d < bestD) { bestD = d; best = v; }
+      }
+      for (const v of vids) {
+        if (v === best) { if (v.paused) v.play().catch(() => {}); }
+        else if (!v.paused) v.pause();
+      }
+    };
+    tick();
+    const id = setInterval(tick, 1200);
+    return () => {
+      clearInterval(id);
+      const vids = trackRef.current ? [...trackRef.current.querySelectorAll('video')] : [];
+      for (const v of vids) { try { v.pause(); } catch (e) { /* torn down */ } }
+    };
+  }, [near]);
+
   return (
     <div className="dsd-panel">
       <Copy beat={beat} />
-      <div className="dsd-reels dsd-interactive">
-        {reels.map((r) => (
-          <figure className="dsd-reel" key={r.src}>
-            <video
-              src={near ? r.src : undefined}
-              // ☠️ THE POSTER WAITS TOO. A poster attribute is fetched whether or not the
-              // video has a src, so six full JPEGs were downloading at boot for a beat
-              // thirteen screens down: 670 KB, the single largest thing on the page. It
-              // now arrives with the beat, and through the optimiser rather than raw.
-              poster={near ? optimised(r.poster, 384) : undefined}
-              controls
-              muted
-              loop
-              playsInline
-              preload="none"
-              onPlay={(e) => { if (!e.currentTarget.muted) speak(true); }}
-              onVolumeChange={(e) => speak(!e.currentTarget.muted && !e.currentTarget.paused)}
-              onPause={() => speak(false)}
-              onEnded={() => speak(false)}
-            />
-            <figcaption>{r.caption}</figcaption>
-          </figure>
-        ))}
+      <div className="dsd-strip dsd-mixed">
+        <div className="dsd-strip-track" ref={trackRef}>
+          {(near ? [...tiles, ...tiles] : []).map((it, i) => {
+            const echo = i >= tiles.length;
+            const key = `${i}-${it.src}`;
+            if (it.type === 'video') {
+              return (
+                <video
+                  key={key}
+                  src={near ? it.src : undefined}
+                  poster={near ? optimised(it.poster, 384) : undefined}
+                  aria-hidden={echo ? 'true' : undefined}
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                  onVolumeChange={(e) => speak(!e.currentTarget.muted && !e.currentTarget.paused)}
+                  onPause={() => speak(false)}
+                />
+              );
+            }
+            return near
+              ? <Image key={key} src={it.src} alt={echo ? '' : it.caption} aria-hidden={echo ? 'true' : undefined} width={320} height={240} sizes="(max-width: 700px) 34vw, 300px" loading="eager" />
+              : <img key={key} alt="" aria-hidden="true" />;
+          })}
+        </div>
       </div>
       <Cta cta={beat.cta} />
     </div>

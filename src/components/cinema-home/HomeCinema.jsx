@@ -16,10 +16,11 @@ import beatsData from '@/data/cinema/home-beats.json';
 import askScript from '@/data/cinema/ask-dsd.json';
 import marblesReels from '@/data/cinema/marbles-reels.json';
 import actionReels from '@/data/cinema/action-reels.json';
+import partsData from '@/data/cinema/parts.json';
 
 import {
-  ActionPanel, ChatPanel, DoorPanel, HeartPanel, LockupPanel,
-  MarblesPanel, NewsPanel, PhotoPanel, StripPanel,
+  ActionPanel, ChatPanel, DoorPanel, HeartPanel, InstallsPanel, LockupPanel,
+  MarblesPanel, NewsPanel, PartsPanel, PhotoPanel, StripPanel,
 } from './panels';
 import './home-cinema.css';
 
@@ -62,12 +63,10 @@ const FORMATIONS = {
   // copyLow: the copy sits UNDER the heart rather than inside it, as in the lab.
   heart: { kind: 'heart', copyLow: true },
   'our-people': { kind: 'sphere', radius: 3.9, ripple: 0.13, dim: true },
-  showroom: { kind: 'sphere', radius: 3.6, ripple: 0.17, dim: true },
-  roson: { kind: 'sphere', radius: 3.75, ripple: 0.20, dim: true },
-  denjoy: { kind: 'sphere', radius: 3.5, ripple: 0.15, dim: true },
+  // the merged beat: the floor, and the two brands that only come through it
+  'the-floor': { kind: 'sphere', radius: 3.7, ripple: 0.18, dim: true },
   'training-center': { kind: 'sphere', radius: 3.85, ripple: 0.19, dim: true },
   delivery: { kind: 'sphere', radius: 3.6, ripple: 0.16, dim: true },
-  'pre-delivery-inspection': { kind: 'sphere', radius: 3.7, ripple: 0.18, dim: true },
   'after-sales': { kind: 'sphere', radius: 3.5, ripple: 0.21, dim: true },
   news: { kind: 'sphere', radius: 4.0, ripple: 0.12, dim: true },
   'ask-dsd': { kind: 'sphere', radius: 3.4, ripple: 0.22, dim: true },
@@ -89,9 +88,11 @@ function panelFor(beat, i, articles) {
     case 'heart': return <HeartPanel beat={beat} />;
     case 'strip': return <StripPanel beat={beat} beatIndex={i} />;
     case 'marquee': return <NewsPanel beat={beat} beatIndex={i} articles={articles} />;
+    case 'installs': return <InstallsPanel beat={beat} beatIndex={i} />;
+    case 'parts': return <PartsPanel beat={beat} beatIndex={i} parts={partsData.parts} />;
     case 'chat': return <ChatPanel beat={beat} beatIndex={i} script={askScript} />;
     case 'marbles': return <MarblesPanel beat={beat} beatIndex={i} reels={marblesReels.reels} />;
-    case 'action': return <ActionPanel beat={beat} beatIndex={i} reels={actionReels.reels} />;
+    case 'action': return <ActionPanel beat={beat} beatIndex={i} items={actionReels.items} />;
     case 'door': return <DoorPanel beat={beat} />;
     case 'photo':
     default: return <PhotoPanel beat={beat} beatIndex={i} />;
