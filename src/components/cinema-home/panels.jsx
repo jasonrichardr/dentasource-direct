@@ -8,7 +8,6 @@
 // the Ask DSD intro, which the JSON also carries. No names, no prices, no warranty terms.
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { createMarbleCluster } from '@/components/home/marbleCluster';
 import Link from 'next/link';
 import Image from 'next/image';
 import useBeatNear from './useBeatNear';
@@ -326,6 +325,34 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
     const mount = mountRef.current;
     if (!mount || !reels.length) return undefined;
 
+    // ☠️ THE CLUSTER AND ITS PHYSICS ENGINE ARRIVE WITH THE BEAT, NOT WITH THE PAGE.
+    // marbleCluster pulls in cannon-es and its own several hundred lines, and a static
+    // import put all of it in the home page's first load for a beat thirteen screens
+    // down. It is imported here instead, so the bytes are fetched by the same signal that
+    // decides to build the wall at all. `cancelled` covers the visitor who scrolls past
+    // during the fetch.
+    let cancelled = false;
+    let cluster = null;
+    let io = null;
+    let mo = null;
+    let theaterOpen = false;
+
+    import('@/components/home/marbleCluster').then(({ createMarbleCluster }) => {
+      if (cancelled || !mountRef.current) return;
+      start(createMarbleCluster);
+    });
+
+    return () => {
+      cancelled = true;
+      io?.disconnect();
+      mo?.disconnect();
+      if (theaterOpen) window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on: false } }));
+      delete mount._dsdCluster;
+      cluster?.dispose();
+    };
+
+    function start(createMarbleCluster) {
+
     // ☠️ LANDSCAPE GETS THE WIDE STAGE, THE PHONE KEEPS ITS BALL.
     // On a wide screen the isotropic well left a small clump of beads in a lot of empty
     // space; the wall is meant to read as big glass spheres spread across the stage. So a
@@ -351,7 +378,7 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
     // The fov is VERTICAL, so cameraZ is what decides how much of the shoal is on screen;
     // the box shape only ever changes how much is visible sideways. Both numbers above
     // were set by measuring bounds(), not by eye.
-    const cluster = createMarbleCluster(mount, {
+    cluster = createMarbleCluster(mount, {
       videos: reels.map((r) => r.src),
       count: reels.length,          // exactly one bead per reel, however many there are
       ...shape,
@@ -363,7 +390,7 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
     mount._dsdCluster = cluster;
 
     // The cluster sleeps whenever its stage leaves the screen.
-    const io = new IntersectionObserver(
+    io = new IntersectionObserver(
       ([entry]) => cluster.setActive(entry.isIntersecting && entry.intersectionRatio >= 0.2),
       { threshold: [0, 0.2] },
     );
@@ -371,8 +398,7 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
 
     // Press and hold opens a reel WITH audio. The theater mounts a .cp-theater overlay, so
     // watching for it is how we tell the room to stand aside without forking the cluster.
-    let theaterOpen = false;
-    const mo = new MutationObserver(() => {
+    mo = new MutationObserver(() => {
       const open = !!document.querySelector('.cp-theater');
       if (open !== theaterOpen) {
         theaterOpen = open;
@@ -380,14 +406,7 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
       }
     });
     mo.observe(document.body, { childList: true });
-
-    return () => {
-      io.disconnect();
-      mo.disconnect();
-      if (theaterOpen) window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on: false } }));
-      delete mount._dsdCluster;
-      cluster.dispose();
-    };
+    }
   }, [near, reduced, reels]);
 
   return (
@@ -417,6 +436,11 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
 
 // The old home's VideoShowcase, as a beat. Sources are attached only once the beat is
 // near, so six vertical clips never download for a visitor who stops at the heart.
+/** Next's optimiser, addressed directly. A <video poster> cannot take a next/image
+ *  component, but it can take the URL the optimiser serves, which is AVIF or WebP at the
+ *  width actually rendered instead of the full JPEG. */
+const optimised = (src, w = 384, q = 70) => `/_next/image?url=${encodeURIComponent(src)}&w=${w}&q=${q}`;
+
 export function ActionPanel({ beat, beatIndex, reels = [] }) {
   const near = useBeatNear(beatIndex, { margin: '80%' });
 
@@ -434,7 +458,11 @@ export function ActionPanel({ beat, beatIndex, reels = [] }) {
           <figure className="dsd-reel" key={r.src}>
             <video
               src={near ? r.src : undefined}
-              poster={r.poster}
+              // ☠️ THE POSTER WAITS TOO. A poster attribute is fetched whether or not the
+              // video has a src, so six full JPEGs were downloading at boot for a beat
+              // thirteen screens down: 670 KB, the single largest thing on the page. It
+              // now arrives with the beat, and through the optimiser rather than raw.
+              poster={near ? optimised(r.poster, 384) : undefined}
               controls
               muted
               loop

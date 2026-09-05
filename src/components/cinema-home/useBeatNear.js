@@ -14,7 +14,14 @@ import { useEffect, useState } from 'react';
  * Latching: once near, always near. A tile that has been fetched must not be dropped and
  * re-fetched when the visitor scrolls past and back.
  */
-export default function useBeatNear(beatIndex, { margin = '150%' } = {}) {
+// ☠️ THE MARGIN MUST BE UNDER 100%, AND THAT IS ARITHMETIC, NOT TASTE.
+// rootMargin percentages are read against the ROOT, so 150% meant 1.5 viewport heights.
+// Beat 2's section starts exactly ONE viewport height below the fold, so a 150% margin
+// was satisfied at scroll 0 and the team strip fetched all eighteen tiles before the
+// visitor had moved: measured at 346 KB of the 1,424 KB the home page was pulling at
+// boot. 45% keeps a comfortable half screen of lead time and cannot reach beat 2 from a
+// standing start. Beats further down are many viewports away and unaffected either way.
+export default function useBeatNear(beatIndex, { margin = '45%' } = {}) {
   const [near, setNear] = useState(false);
 
   useEffect(() => {
