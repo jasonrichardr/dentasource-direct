@@ -24,9 +24,12 @@ reels, spare parts).
 **Reorder beats** by dragging them in the left rail. The order in the list is
 the order on the site.
 
-**Hide a beat** with the ● button. It stays in the file and gets marked
-`hidden: true`. Note: the arc renderer has to be taught to skip hidden beats
-before this changes what a visitor sees. Until then it is a note to yourself.
+**Hide a beat** with the ● button. It stays in the file, marked
+`hidden: true`, and it is GONE from the site: every arc and every picture strip
+filters hidden entries out, so the beat disappears on the next dev reload or
+build, and its stop vanishes from the scroll rail with it. The same applies to
+a hidden picture in a strip. Press ● again to bring it back. Nothing is
+deleted, so this is the safe way to take something down.
 
 **Edit the writing.** Every text field of the selected beat is an input: the
 eyebrow, the headline, the body, the button labels and links, the lists of

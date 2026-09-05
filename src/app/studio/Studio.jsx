@@ -306,8 +306,8 @@ export default function Studio() {
           </ol>
           {items.length && !showTool ? (
             <p className="st-hint">
-              A hidden beat keeps its place in the file and is marked <code>hidden: true</code>. The arc renderer has to
-              honour that flag for it to disappear from the site.
+              A hidden beat keeps its place in the file, marked <code>hidden: true</code>, and is gone from the site on
+              the next reload. Press ● again to bring it back. Nothing is deleted.
             </p>
           ) : null}
         </aside>
