@@ -189,6 +189,9 @@ export default function CinemaPage({ beats, panels = [], classicHref = '/classic
       let lastFrame = 0;
       const nearState = new Array(S).fill(false);
       let raf = 0, settle = 0;
+      // The room covers the screen with an opaque stage and runs its own spectrum, so
+      // there is nothing to see behind it and no reason to spend a frame on 150k points.
+      let roomOpen = false;
 
       function frame() {
         const now = performance.now();
@@ -261,7 +264,8 @@ export default function CinemaPage({ beats, panels = [], classicHref = '/classic
 
         renderer.render(scene, camera);
 
-        if (!reduced) raf = requestAnimationFrame(frame);
+        if (roomOpen) raf = 0;
+        else if (!reduced) raf = requestAnimationFrame(frame);
         else if (settle > 0) { settle -= 1; raf = requestAnimationFrame(frame); }
         else raf = 0;
       }
@@ -270,6 +274,7 @@ export default function CinemaPage({ beats, panels = [], classicHref = '/classic
       // movement is the reader's own), but it settles in a short burst and then stops, so
       // nothing animates on its own.
       const kick = () => {
+        if (roomOpen) return;
         settle = 8;
         if (!raf) raf = requestAnimationFrame(frame);
       };
@@ -285,8 +290,23 @@ export default function CinemaPage({ beats, panels = [], classicHref = '/classic
         }
         if (reduced) kick();
       };
+      // the room announces itself; the cinema stands down while it holds the screen
+      const onRoom = (e) => {
+        const open = !!(e && e.detail && e.detail.open);
+        if (open === roomOpen) return;
+        roomOpen = open;
+        if (open) {
+          if (raf) cancelAnimationFrame(raf);
+          raf = 0;
+        } else {
+          lastFrame = 0;                       // no dt spike on the first frame back
+          if (reduced) kick();
+          else if (!raf) raf = requestAnimationFrame(frame);
+        }
+      };
       window.addEventListener('resize', onResize);
       window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('dsd:room', onRoom);
 
       if (reduced) kick();
       else raf = requestAnimationFrame(frame);
@@ -295,6 +315,7 @@ export default function CinemaPage({ beats, panels = [], classicHref = '/classic
         if (raf) cancelAnimationFrame(raf);
         window.removeEventListener('resize', onResize);
         window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('dsd:room', onRoom);
         paintRef.current = null;
         scene.remove(points);
         geometry.dispose();

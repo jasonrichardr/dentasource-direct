@@ -28,13 +28,14 @@ const BEATS = [
   },
   {
     // A white ground studio shot with no alpha, so the sampler keys on brightness:
-    // everything darker than 0.72 is the unit, everything above it is the room. The
-    // crop drops the floor slab and the backdrop panels.
+    // everything darker than inkMax is the unit, everything above it is the room. The
+    // crop drops the floor slab, and 0.72 (below the 'dark' default of 0.85) drops the
+    // grey backdrop panels too.
     key: 'chair',
     kind: 'image',
     media: ['/images/products/a1-pro/hero.jpg'],
     mode: 'dark',
-    threshold: 0.72,
+    inkMax: 0.72,
     crop: { x: 0.15, y: 0.02, w: 0.66, h: 0.74 },
     boxW: 6.4,
     boxH: 3.8,

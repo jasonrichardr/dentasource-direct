@@ -28,6 +28,14 @@
   --dsd-green-light: #a7ffd8;
 }
 
+/* THE NIGHT IS PAINTED ON THE PAGE, not just on the cinema. globals.css gives body a
+   white ground in its base layer, which would sit behind every dark page and leave the
+   room nothing to veil. Unlayered rules beat @layer base, so these two lines are what let
+   the room be a 25% veil over a night body with the stars still showing through. The
+   light register is untouched: it keeps whatever the page already had. */
+:root[data-theme="dark"],
+:root[data-theme="dark"] body { background: var(--paper); }
+
 .cinema-root {
   position: relative;
   background: var(--paper);

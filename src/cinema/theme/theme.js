@@ -1,6 +1,8 @@
-// theme/theme.js — light and dark, resolved in one order: a remembered tap wins, else the
-// device's own setting (live, so a phone that flips at sunset flips the cinema with it),
-// and a tap overrides and is remembered on that device. The mode is stamped on
+// theme/theme.js — DARK IS THE DEFAULT. The cinema is a night sky with a moon in it, so
+// that is what a first visit meets; light is opt-in through the toggle and remembered on
+// that device. A remembered tap is the only thing that overrides the default, which is
+// why prefers-color-scheme is not consulted at all: a phone in light mode would otherwise
+// open the cinema in daylight and never show the stars. The mode is stamped on
 // <html data-theme>, which is what every cinema token keys off: one attribute, the whole
 // page turns.
 
@@ -15,16 +17,10 @@ export function storedTheme() {
   }
 }
 
-export function systemTheme() {
-  try {
-    return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  } catch (e) {
-    return "light";
-  }
-}
+export const DEFAULT_THEME = "dark";
 
 export function resolveTheme() {
-  return storedTheme() || systemTheme();
+  return storedTheme() || DEFAULT_THEME;
 }
 
 export function applyTheme(mode) {
@@ -35,25 +31,13 @@ export function rememberTheme(mode) {
   try { localStorage.setItem(THEME_KEY, mode); } catch (e) {}
 }
 
-/** Until they choose, the device keeps the wheel. Returns an unsubscribe. */
-export function watchSystemTheme(onChange) {
-  let media;
-  try {
-    media = matchMedia("(prefers-color-scheme: dark)");
-  } catch (e) {
-    return () => {};
-  }
-  const handler = (e) => { if (!storedTheme()) onChange(e.matches ? "dark" : "light"); };
-  if (media.addEventListener) media.addEventListener("change", handler);
-  else media.addListener(handler);
-  return () => {
-    if (media.removeEventListener) media.removeEventListener("change", handler);
-    else media.removeListener(handler);
-  };
-}
-
 // The pre-paint stamp, as a string so it can be inlined in <head>. Without it the cinema
-// paints cream for one frame and then snaps to night.
-export const THEME_SCRIPT = `(function(){try{var k='${THEME_KEY}';var v=localStorage.getItem(k);` +
-  `if(v!=='light'&&v!=='dark')v=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';` +
-  `document.documentElement.setAttribute('data-theme',v);}catch(e){}})();`;
+// paints cream for one frame and then snaps to night. Same rule as resolveTheme: a
+// remembered choice, else dark.
+//
+// ONE template literal, never a concatenation of several. Built as `a` + `b` + `c` this
+// reached the page as a spliced ruin: `var k='dsd:theme` followed by fragments of the
+// other two literals, which is a syntax error, which means no stamp and a light flash on
+// every load. Node printed the correct 218 characters from the same source, so the splice
+// happens when the bundler folds the pieces. One literal, one string, nothing to fold.
+export const THEME_SCRIPT = `(function(){var v='${DEFAULT_THEME}';try{if(localStorage.getItem('${THEME_KEY}')==='light')v='light';}catch(e){}document.documentElement.setAttribute('data-theme',v);})();`;

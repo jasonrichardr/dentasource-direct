@@ -90,15 +90,14 @@ function lockupPositions(N, img, beat) {
   return out;
 }
 
-// Every sampler knob a beat may hand to imageToPositions.
+// Every sampler knob a beat may hand to imageToPositions, for image AND lockup beats
+// alike. Unset keys are left off so the sampler's own defaults apply, which is what makes
+// {mode:'dark'} and {mode:'dark', inkMax:0.8} both do the right thing.
+const SAMPLE_KEYS = ["threshold", "inkMax", "inkMin", "maxSide", "jitter"];
 function sampleOpts(beat) {
-  return {
-    crop: beat.crop || null,
-    mode: beat.mode || "alpha",
-    ...(beat.threshold !== undefined ? { threshold: beat.threshold } : {}),
-    ...(beat.maxSide !== undefined ? { maxSide: beat.maxSide } : {}),
-    ...(beat.jitter !== undefined ? { jitter: beat.jitter } : {}),
-  };
+  const out = { crop: beat.crop || null, mode: beat.mode || "alpha" };
+  for (const k of SAMPLE_KEYS) if (beat[k] !== undefined) out[k] = beat[k];
+  return out;
 }
 
 function positionsFor(N, beat, images) {

@@ -78,6 +78,7 @@ export function createNightSky(canvas, { assetBase = SKY_ASSET_BASE } = {}) {
   let near = [];                   // live twinkling motes
   let shots = [];                  // shooting stars in flight
   let raf = 0, active = false, started = 0, nextShot = 0;
+  let held = false;                // paused in place (the room is open) — canvas stays lit
   const worldImg = {};             // tex name -> HTMLImageElement
   const worldSprite = {};          // world id -> baked canvas
   let worldsAsked = false;
@@ -460,8 +461,26 @@ export function createNightSky(canvas, { assetBase = SKY_ASSET_BASE } = {}) {
     if (reduced) frame(performance.now());
     else raf = requestAnimationFrame(frame);
   }
+  // PAUSE IS NOT STOP. The room hides the cinema but keeps the star field showing
+  // through its veil, so the canvas must keep its last painted frame: only the loop
+  // stands down. stop() would set display:none and take the stars with it.
+  function pause() {
+    if (!active || held) return;
+    held = true;
+    if (raf) cancelAnimationFrame(raf);
+    raf = 0;
+  }
+  function resume() {
+    if (!held) return;
+    held = false;
+    if (!active || raf || reduced) return;
+    last = 0;
+    raf = requestAnimationFrame(frame);
+  }
+
   function stop() {
     active = false;
+    held = false;
     canvas.style.display = "none";
     if (raf) cancelAnimationFrame(raf);
     raf = 0;
@@ -472,7 +491,7 @@ export function createNightSky(canvas, { assetBase = SKY_ASSET_BASE } = {}) {
   const onResize = () => { clearTimeout(rt); rt = setTimeout(resize, 180); };
   // A backgrounded tab must not keep a rAF loop warm on someone's data plan.
   const onVisibility = () => {
-    if (!active) return;
+    if (!active || held) return;
     if (document.hidden) { if (raf) cancelAnimationFrame(raf); raf = 0; }
     else if (!raf && !reduced) { last = 0; raf = requestAnimationFrame(frame); }
   };
@@ -483,6 +502,8 @@ export function createNightSky(canvas, { assetBase = SKY_ASSET_BASE } = {}) {
   return {
     start,
     stop,
+    pause,
+    resume,
     get active() { return active; },
     /** React unmount: stop the loop and give the listeners back. */
     destroy() {

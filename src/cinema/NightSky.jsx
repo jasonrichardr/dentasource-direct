@@ -32,5 +32,18 @@ export default function NightSky() {
     else sky.stop();
   }, [dark]);
 
+  // The room shows the stars through its veil but runs its own canvases, so the sky
+  // pauses in place rather than stopping: the last frame stays painted.
+  useEffect(() => {
+    const onRoom = (e) => {
+      const sky = skyRef.current;
+      if (!sky) return;
+      if (e && e.detail && e.detail.open) sky.pause();
+      else sky.resume();
+    };
+    window.addEventListener('dsd:room', onRoom);
+    return () => window.removeEventListener('dsd:room', onRoom);
+  }, []);
+
   return <canvas id="sky" ref={canvasRef} className="cinema-sky" aria-hidden="true" />;
 }

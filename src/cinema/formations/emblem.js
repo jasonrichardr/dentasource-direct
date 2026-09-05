@@ -3,11 +3,14 @@
 // box: the text.js technique but for an image. Swap the file and it works, so any logo
 // or product photo can form from the cloud.
 //
-// WHAT COUNTS AS INK depends on the source, which is why there are three modes. A logo
-// exported with alpha keys on alpha ('alpha'). A studio product shot has NO alpha and is
-// a dark subject on a white ground, so it keys on brightness instead ('dark' keeps what
-// is darker than the threshold; 'light' keeps what is brighter, for a pale subject on a
-// dark ground). Nothing else about the sampler changes between them.
+// WHAT COUNTS AS INK depends on the source, which is why there is a mode. A logo exported
+// with alpha carries its own cutout, so 'alpha' only has to drop near-white (inkMax
+// 0.985) in case the logo sits on a white plate. A studio product shot has NO alpha at
+// all and is a dark subject on a pale ground, so 'dark' lowers that same ceiling to 0.85:
+// everything brighter than it IS the ground. 'light' inverts the test for a pale subject
+// on a dark ground. The knob is inkMax in every mode, so a beat can tune one number:
+// Denjoy's hero grounds out at luminance 0.93 and needs 0.85, a chair on white is happy
+// at 0.72. `threshold` stays what it always was, the ALPHA cutoff.
 
 import { WORLD, shuffle } from "./util.js";
 
@@ -24,17 +27,18 @@ export function loadImage(src) {
 
 // img: a loaded HTMLImageElement.
 // crop: either {sx,sy,sw,sh} in source pixels or {x,y,w,h} as 0..1 fractions of the source.
-// mode: 'alpha' | 'dark' | 'light'. threshold means the alpha cutoff in 'alpha' mode and
-// the luminance cutoff in the other two.
+// mode: 'alpha' | 'dark' | 'light'; 'dark' just lowers the inkMax default to 0.85, and a
+// beat that sets inkMax itself always wins.
+// threshold: the alpha cutoff, in every mode. A transparent pixel is never ink.
 // maxSide: the sampling canvas is downsampled to this long edge first, so a 3000px photo
 // costs the same as a 500px one.
 export function imageToPositions(N, img, opts = {}) {
   const {
     crop = null,
     mode = "alpha",
-    threshold = mode === "alpha" ? 36 : 0.72,
-    alphaMin = 36,         // a transparent pixel is never ink, whatever the mode
-    inkMax = 0.985,        // 'alpha' mode also drops near-white (a logo on a white plate)
+    threshold = 36,        // ALPHA cutoff (transparent bg -> only ink survives)
+    inkMax = mode === "dark" ? 0.85 : 0.985,   // luminance ceiling: brighter than this is ground
+    inkMin = 0.35,         // 'light' mode floor: darker than this is ground
     maxSide = 512,
     boxW = WORLD * 0.84,
     boxH = WORLD * 0.84,
@@ -67,17 +71,15 @@ export function imageToPositions(N, img, opts = {}) {
   ctx.clearRect(0, 0, cw, ch);                 // TRANSPARENT — never fill a background
   ctx.drawImage(img, sx, sy, sw, sh, 0, 0, cw, ch);
 
-  const alphaCut = mode === "alpha" ? threshold : alphaMin;
   const { data } = ctx.getImageData(0, 0, cw, ch);
   const pts = [];
   for (let y = 0; y < ch; y++) {
     for (let x = 0; x < cw; x++) {
       const idx = (y * cw + x) * 4;
-      if (data[idx + 3] <= alphaCut) continue;
+      if (data[idx + 3] <= threshold) continue;
       const lum = (0.299 * data[idx] + 0.587 * data[idx + 1] + 0.114 * data[idx + 2]) / 255;
-      if (mode === "dark") { if (lum >= threshold) continue; }
-      else if (mode === "light") { if (lum <= threshold) continue; }
-      else if (lum > inkMax) continue;         // drop pure white
+      if (mode === "light") { if (lum < inkMin) continue; }
+      else if (lum > inkMax) continue;         // the ground, in both 'alpha' and 'dark'
       pts.push([x, y]);
     }
   }
