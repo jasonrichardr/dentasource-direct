@@ -1,7 +1,7 @@
 {
   "version": 1,
   "generated": "2026-09-06",
-  "notes": "Every installation and delivery article's photographs, one or two frames each, for the nationwide delivery beat. THE FIRST TILE IS FIXED: it is the frame the beat already led with and Jarich asked to keep it at the start. Places only, never names. EXTENDABLE: the strip reads any number of entries and re-times itself, so a new install article's frames can simply be appended.",
+  "notes": "Every installation and delivery article's PHOTOGRAPHS, one or two frames each, for the nationwide delivery beat. THE FIRST TILE IS FIXED: it is the frame the beat already led with and Jarich asked to keep it at the start. Places only, never names. ☠️ PHOTOGRAPHS ONLY. Nine tiles were removed on 2026-09-06 because they were advertising, not evidence: the five p### files are designed cards (two proof of delivery panels with a QR code and an ORDER NOW button, two monthly price cards, one thank you card), the two install-2026 files are marketing collateral (a studio render still captioned Step 4, and a How We Install promo graphic), one v frame is overprinted with a Bound to Pangasinan title, and one is a screenshot of a map. The naming holds the rule: p### means a poster the design desk made, v### means a frame from real footage. Anything added later that carries overlaid selling text, a price, a render or a screenshot does not belong on this strip. EXTENDABLE: the strip reads any number of entries and re-times itself.",
   "tiles": [
     {
       "src": "/images/news/new-year-restock-nationwide-delivery-2026/v001-3.jpg",
@@ -32,22 +32,6 @@
       "alt": "An installation in Mandaluyong"
     },
     {
-      "src": "/images/news/dental-chair-upgrade-proof-of-delivery-june-2025/p313-1.jpg",
-      "alt": "An installation in an upgrade handover"
-    },
-    {
-      "src": "/images/news/dental-chair-upgrade-proof-of-delivery-june-2025/p313-2.jpg",
-      "alt": "An installation in an upgrade handover"
-    },
-    {
-      "src": "/images/news/install-2026/hero-install.jpg",
-      "alt": "An installation in the install, step by step"
-    },
-    {
-      "src": "/images/news/install-2026/og-install-marbles-v1.jpg",
-      "alt": "An installation in the install, step by step"
-    },
-    {
       "src": "/images/news/new-year-restock-nationwide-delivery-2026/v001-1.jpg",
       "alt": "An installation in the new year restock"
     },
@@ -58,22 +42,6 @@
     {
       "src": "/images/news/roson-a3l-delivery-pangasinan/v003-1.jpg",
       "alt": "An installation in Pangasinan"
-    },
-    {
-      "src": "/images/news/roson-a3l-delivery-pangasinan/v003-2.jpg",
-      "alt": "An installation in Pangasinan"
-    },
-    {
-      "src": "/images/news/roson-chair-lineup-18-month-installment-may-2026/p051-1.jpg",
-      "alt": "An installation in the showroom lineup"
-    },
-    {
-      "src": "/images/news/roson-chair-lineup-18-month-installment-may-2026/p053-1.jpg",
-      "alt": "An installation in the showroom lineup"
-    },
-    {
-      "src": "/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-1.jpg",
-      "alt": "An installation in Santa Maria, Bulacan"
     },
     {
       "src": "/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-2.jpg",
@@ -150,10 +118,6 @@
     {
       "src": "/images/news/two-roson-dental-chairs-delivered-march-2025/v306-2.jpg",
       "alt": "An installation in a two chair delivery"
-    },
-    {
-      "src": "/images/news/two-roson-dx-a3-caloocan-contract-to-christmas-delivery/p211-1.jpg",
-      "alt": "An installation in Caloocan"
     },
     {
       "src": "/images/news/two-roson-dx-a3-caloocan-contract-to-christmas-delivery/v212-1.jpg",
