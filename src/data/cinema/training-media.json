@@ -1,0 +1,580 @@
+{
+  "version": 1,
+  "source": "public/images/news training articles, and reel-library.json for the footage",
+  "generated": "2026-09-06",
+  "notes": "Photographs from the 15 training articles, picked by looking at a contact sheet, interleaved with every reel the library classified as training so the marquee alternates image, video, image. Videos reference the reel library by id; there is one copy of each clip on disk. ALT TEXT IS ROLE ONLY. Excluded: the live patient procedure frames, the course poster and Q and A card, which are promo graphics carrying speaker names, the certificate collages, and individual portraits.",
+  "counts": {
+    "images": 38,
+    "videos": 30,
+    "total": 68,
+    "missing": 0
+  },
+  "items": [
+    {
+      "type": "image",
+      "src": "/images/news/dentasource-training-center-opens-pasig/v032-1.jpg",
+      "alt": "The Training Center floor before a session",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/4101796030119234.mp4",
+      "poster": "/cinema/reels/4101796030119234.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 51.07,
+      "reel_id": "4101796030119234"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/dentasource-training-center-opens-pasig/v032-2.jpg",
+      "alt": "A lesson on the main screen",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1079638194648073.mp4",
+      "poster": "/cinema/reels/1079638194648073.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 32.79,
+      "reel_id": "1079638194648073"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/dentasource-training-center-opens-pasig/v032-3.jpg",
+      "alt": "Working at a phantom head station",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/3384789398370772.mp4",
+      "poster": "/cinema/reels/3384789398370772.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 85.59,
+      "reel_id": "3384789398370772"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/dentasource-training-center-opens-pasig/v032-4.jpg",
+      "alt": "A demonstration on the teaching model",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/2537378053361272.mp4",
+      "poster": "/cinema/reels/2537378053361272.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 48.11,
+      "reel_id": "2537378053361272"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/dentasource-training-center-opens-pasig/v032-6.jpg",
+      "alt": "The operatory bay set up for teaching",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "image",
+      "src": "/images/news/dentasource-training-center-opens-pasig/v032-7.jpg",
+      "alt": "Stations ready for a hands on course",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/880174031563895.mp4",
+      "poster": "/cinema/reels/880174031563895.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 40.94,
+      "reel_id": "880174031563895"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/pda-quezon-city-3rd-scientific-seminar-2026/v006-1.jpg",
+      "alt": "The registration table before a course",
+      "width": 1076,
+      "height": 1292
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1058866666938609.mp4",
+      "poster": "/cinema/reels/1058866666938609.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 23.57,
+      "reel_id": "1058866666938609"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/9-day-digital-dentistry-course-2026/v022-3.jpg",
+      "alt": "A session under way",
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1686392845807696.mp4",
+      "poster": "/cinema/reels/1686392845807696.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 32.9,
+      "reel_id": "1686392845807696"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/9-day-digital-dentistry-course-2026/v022-4.jpg",
+      "alt": "Following the lesson at a station",
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "type": "image",
+      "src": "/images/news/crest-hands-on-digital-designing-training/v039-2.jpg",
+      "alt": "Guiding a technique at the chair",
+      "width": 360,
+      "height": 640
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1464261549053843.mp4",
+      "poster": "/cinema/reels/1464261549053843.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 34.75,
+      "reel_id": "1464261549053843"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/crest-hands-on-digital-designing-training/v039-3.jpg",
+      "alt": "Attendees working through a case",
+      "width": 360,
+      "height": 640
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/27702237096105510.mp4",
+      "poster": "/cinema/reels/27702237096105510.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 53.82,
+      "reel_id": "27702237096105510"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/crest-hands-on-digital-designing-training/v039-4.jpg",
+      "alt": "Working under the operating light",
+      "width": 360,
+      "height": 640
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/2039690190757920.mp4",
+      "poster": "/cinema/reels/2039690190757920.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 40.7,
+      "reel_id": "2039690190757920"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/crest-hands-on-digital-designing-training/v039-5.jpg",
+      "alt": "Close work at the station",
+      "width": 360,
+      "height": 640
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1917792168939952.mp4",
+      "poster": "/cinema/reels/1917792168939952.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 62.94,
+      "reel_id": "1917792168939952"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/crest-hands-on-digital-designing-training/v039-6.jpg",
+      "alt": "Practising on the teaching model",
+      "width": 360,
+      "height": 640
+    },
+    {
+      "type": "image",
+      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-2.jpg",
+      "alt": "The room during a hands on session",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1783856553066745.mp4",
+      "poster": "/cinema/reels/1783856553066745.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 29.84,
+      "reel_id": "1783856553066745"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-3.jpg",
+      "alt": "A station in use",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1655693562346487.mp4",
+      "poster": "/cinema/reels/1655693562346487.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 40.84,
+      "reel_id": "1655693562346487"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-4.jpg",
+      "alt": "The teaching bay in use",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1518637086604072.mp4",
+      "poster": "/cinema/reels/1518637086604072.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 21.31,
+      "reel_id": "1518637086604072"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-1.jpg",
+      "alt": "Presenting from a tablet",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1003522505429933.mp4",
+      "poster": "/cinema/reels/1003522505429933.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 27.49,
+      "reel_id": "1003522505429933"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-2.jpg",
+      "alt": "Reviewing a case at the screen",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "image",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-4.jpg",
+      "alt": "The class at their stations",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1320731836605600.mp4",
+      "poster": "/cinema/reels/1320731836605600.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 34.97,
+      "reel_id": "1320731836605600"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-5.jpg",
+      "alt": "Working through a case together",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1633186301286255.mp4",
+      "poster": "/cinema/reels/1633186301286255.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 50.34,
+      "reel_id": "1633186301286255"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-6.jpg",
+      "alt": "A course in progress",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/952495344243881.mp4",
+      "poster": "/cinema/reels/952495344243881.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 60.67,
+      "reel_id": "952495344243881"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-7.jpg",
+      "alt": "Using the microscope at the bench",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1275618868025503.mp4",
+      "poster": "/cinema/reels/1275618868025503.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 41.61,
+      "reel_id": "1275618868025503"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-1.jpg",
+      "alt": "The lesson on the big screen",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "image",
+      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-2.jpg",
+      "alt": "The room mid session",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1305206541522895.mp4",
+      "poster": "/cinema/reels/1305206541522895.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 25.63,
+      "reel_id": "1305206541522895"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-4.jpg",
+      "alt": "Talking a step through at the chair",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1275898978018496.mp4",
+      "poster": "/cinema/reels/1275898978018496.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 360,
+      "height": 640,
+      "duration": 46.99,
+      "reel_id": "1275898978018496"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-6.jpg",
+      "alt": "A group around a station",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/906655618875261.mp4",
+      "poster": "/cinema/reels/906655618875261.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 32.82,
+      "reel_id": "906655618875261"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-8.jpg",
+      "alt": "The class watching a demonstration",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "image",
+      "src": "/images/news/smile-design-guided-crown-lengthening-training/v070-2.jpg",
+      "alt": "The room during a lecture",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/857481130682886.mp4",
+      "poster": "/cinema/reels/857481130682886.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 32.66,
+      "reel_id": "857481130682886"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/smile-design-guided-crown-lengthening-training/v070-4.jpg",
+      "alt": "A lecture in the Training Center",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1633561794664812.mp4",
+      "poster": "/cinema/reels/1633561794664812.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 38.5,
+      "reel_id": "1633561794664812"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/smile-design-guided-crown-lengthening-training/v070-7.jpg",
+      "alt": "A demonstration at the chair",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1089983923204877.mp4",
+      "poster": "/cinema/reels/1089983923204877.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 598,
+      "height": 720,
+      "duration": 36.71,
+      "reel_id": "1089983923204877"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/smile-design-guided-crown-lengthening-training/v078-2.jpg",
+      "alt": "Attendees at the workstations",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1933731330832312.mp4",
+      "poster": "/cinema/reels/1933731330832312.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 17.39,
+      "reel_id": "1933731330832312"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/pda-benguet-chapter-induction-baguio-2026/v106-1.jpg",
+      "alt": "The seminar floor",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "image",
+      "src": "/images/news/digital-cad-designing-training-crest/v117-3.jpg",
+      "alt": "A hands on session under way",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1932366960885180.mp4",
+      "poster": "/cinema/reels/1932366960885180.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 36.88,
+      "reel_id": "1932366960885180"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/digital-cad-designing-training-crest/v117-5.jpg",
+      "alt": "A demonstration for the room",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/1079344027095374.mp4",
+      "poster": "/cinema/reels/1079344027095374.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 59.93,
+      "reel_id": "1079344027095374"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/tads-training-first-batch-dr-emil/v129-3.jpg",
+      "alt": "Working at the bench",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/501984766310299.mp4",
+      "poster": "/cinema/reels/501984766310299.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 33.6,
+      "reel_id": "501984766310299"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/tads-training-first-batch-dr-emil/v131-4.jpg",
+      "alt": "Presenting to the class",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "video",
+      "src": "/cinema/reels/4261374460809316.mp4",
+      "poster": "/cinema/reels/4261374460809316.jpg",
+      "alt": "Hands on training at the Training Center",
+      "width": 404,
+      "height": 720,
+      "duration": 26.01,
+      "reel_id": "4261374460809316"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/tads-training-first-batch-dr-emil/v131-6.jpg",
+      "alt": "A session at the stand",
+      "width": 1080,
+      "height": 1920
+    }
+  ]
+}
