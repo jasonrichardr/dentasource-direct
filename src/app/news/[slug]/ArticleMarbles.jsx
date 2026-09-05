@@ -7,14 +7,19 @@ import { createMarbleCluster } from '@/components/home/marbleCluster';
 // (same physics, same press-and-hold theater), but curated: ONLY reels of the
 // team working on dental chairs — deliveries, on-site installs, inspections.
 // Every marble is NAMED so future curation can grep by what's in the video.
-const CDN = 'https://ffcdentalclinic.care/company-profile';
-const A = (p) => CDN + p;
+// ☠️ NO DSD ROUTE STREAMS FROM THE FFC PATIENT DOMAIN. Two of these marbles used to be
+// fetched from https://ffcdentalclinic.care/company-profile, which made an article page
+// depend on a clinic domain it has no business calling. Both are local now, mapped through
+// src/data/cinema/reel-library.json by source_url rather than by guessing at a filename:
+//   .../reels/dsd-showcase-2.mp4  ->  wall-04  ->  /cinema/reels/wall-dsd-showcase-2.mp4
+//   .../reels/fb/fb-01.mp4        ->  wall-08  ->  /cinema/reels/wall-fb-01.mp4
+// The other 27 were already local under /reels/ and every one of them is on disk.
 
 // ORDER MAPS TO SIZE (marbleCluster.js sizing): marble 0 = big HERO, LAST = small.
 // field-01..24 = Jarich's 24 field reels (2026-07-05 batch, FB reel rips):
 // beads at /reels/field-NN.mp4 (24s muted), theater HD at /reels/hd/field-NN.mp4.
 const MARBLES = [
-    { src: A('/reels/dsd-showcase-2.mp4'), name: 'Pre-inspection before delivery & install' }, // HERO
+    { src: '/cinema/reels/wall-dsd-showcase-2.mp4', name: 'Pre-inspection before delivery & install' }, // HERO
     { src: '/reels/ex-07.mp4', name: 'Delivery day — hauling units up the stairs by hand' },
     { src: '/reels/ex-08.mp4', name: 'Provincial run — ferry crossing, then the on-site chair build' },
     { src: '/reels/ex-03.mp4', name: 'Blue chair install road trip' },
@@ -42,7 +47,7 @@ const MARBLES = [
     { src: '/reels/field-01.mp4', name: 'Showroom consult — walking a clinic owner through the fit' },
     { src: '/reels/field-13.mp4', name: 'Christmas at the showroom — new hardware in hand' },
     { src: '/reels/field-14.mp4', name: 'Dealer rounds — corridor to the MMR booth' },
-    { src: A('/reels/fb/fb-01.mp4'), name: 'Showroom chair session — hands on a live unit' }, // SMALL
+    { src: '/cinema/reels/wall-fb-01.mp4', name: 'Showroom chair session — hands on a live unit' }, // SMALL
 ];
 
 export default function ArticleMarbles() {
