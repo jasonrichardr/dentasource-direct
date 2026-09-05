@@ -2,6 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 import styles from './page.module.css';
+// ☠️ THE TOKENS TRAVEL WITH THE COMPONENT, not with the route. page.module.css is written
+// in var(--news-*), and this component is ALSO mounted outside /news (the product pages'
+// FocusBand imports it). Without this line every one of those custom properties resolves
+// to nothing there: measured on /a1-pro, the "on" pill came back with a TRANSPARENT
+// background and near-black ink on a night page. The module and its palette ship together.
+import '../news-theme.css';
 
 const TARGET_VOLUME = 0.35;
 const TOAST_MS = 2000;

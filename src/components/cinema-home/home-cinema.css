@@ -142,16 +142,6 @@
    compositing off screen at opacity 0. */
 .cinema-panel:not(.near) .dsd-strip-track,
 .cinema-panel:not(.near) .dsd-news-track { animation-play-state: paused; }
-/* REDUCED MOTION. The engine already stands its rAF loop down; these are the parts of
-   the arc that move on their own without it. Both marquees stop dead rather than crawl,
-   the caret stops blinking (and under reduced motion the answer is filled in one go, so
-   there is no caret to blink anyway), and every hover transition and lift is dropped. */
-@media (prefers-reduced-motion: reduce) {
-  .dsd-strip-track, .dsd-news-track { animation: none; }
-  .cinema-cta, .dsd-cta, .dsd-chip, .dsd-news-card,
-  .dsd-photos img, .dsd-strip-track img { transition: none; }
-  .dsd-cta:hover { transform: none; }
-}
 
 /* ---- the news marquee: two rows, opposite sweeps ---- */
 .dsd-news {
@@ -395,4 +385,25 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ---- REDUCED MOTION -----------------------------------------------------------------
+   ☠️ THIS BLOCK LIVES LAST, AND THAT IS LOAD BEARING. It sat above the news marquee's own
+   rule and did nothing to it: `.dsd-news-track { animation: none }` and
+   `.dsd-news-track { animation: dsd-strip-scroll 52s ... }` have the SAME specificity, so
+   the later declaration won and the marquee kept sweeping for a visitor who had asked the
+   whole system to hold still. Measured, not eyeballed: computed animationName read
+   `dsd-strip-scroll` under prefers-reduced-motion until this moved to the end of the file.
+   The strip only escaped because its own rule happens to be declared earlier.
+
+   The engine already stands its rAF loop down; these are the parts of the arc that move
+   on their own without it. Both marquees stop dead rather than crawl, the caret stops
+   blinking (under reduced motion the answer arrives whole, so there is no caret at all),
+   and every hover transition and lift is dropped. */
+@media (prefers-reduced-motion: reduce) {
+  .dsd-strip-track, .dsd-news-track { animation: none; }
+  .dsd-caret { animation: none; }
+  .cinema-cta, .dsd-cta, .dsd-chip, .dsd-news-card,
+  .dsd-photos img, .dsd-strip-track img { transition: none; }
+  .dsd-cta:hover { transform: none; }
 }
