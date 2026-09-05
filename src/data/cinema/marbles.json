@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "generated": "2026-09-05",
+  "notes": "Leadership marbles, roles only, no names, ruled in Q14. Each marble takes a portrait or a short muted loop. Media entries are placeholders until Jarich drops team photos; fallback points at an existing DSD loop already in public/videos so the cluster renders now. Bead order maps to size, bead 0 is the large hero marble.",
+  "marbles": [
+    {
+      "order": 0,
+      "role": "Founder",
+      "description": "Runs the business and still walks the showroom floor with dentists who are choosing a first chair.",
+      "media": "PLACEHOLDER:portrait or short muted loop, founder, no name caption",
+      "fallback": "/videos/dsd-hero-loop.mp4",
+      "alt": "DentaSource Direct, founder"
+    },
+    {
+      "order": 1,
+      "role": "Sales lead",
+      "description": "Takes a clinic from the first message to the quote, and knows which model suits which room.",
+      "media": "PLACEHOLDER:portrait or short muted loop, sales lead, no name caption",
+      "fallback": "/videos/dsd-showcase.mp4",
+      "alt": "DentaSource Direct, sales lead"
+    },
+    {
+      "order": 2,
+      "role": "Technical lead",
+      "description": "Owns the inspection sheet and the service calls, and decides when a fault gets a repair or a replacement.",
+      "media": "PLACEHOLDER:portrait or short muted loop, technical lead, no name caption",
+      "fallback": "/videos/dsd-showcase-2.mp4",
+      "alt": "DentaSource Direct, technical lead"
+    },
+    {
+      "order": 3,
+      "role": "Training Center lead",
+      "description": "Schedules the courses at Mercedes Square Plaza and keeps the simulator stations running.",
+      "media": "PLACEHOLDER:portrait or short muted loop, training center lead, no name caption",
+      "fallback": "/videos/dsd-showcase-3.mp4",
+      "alt": "DentaSource Direct, training center lead"
+    },
+    {
+      "order": 4,
+      "role": "Installation technicians",
+      "description": "Build the unit in your operatory, level it, connect it, and hand it over working.",
+      "media": "PLACEHOLDER:portrait or short muted loop, installation technicians, no name caption",
+      "fallback": "/videos/dsd-showcase-4.mp4",
+      "alt": "DentaSource Direct, installation technicians"
+    },
+    {
+      "order": 5,
+      "role": "Showroom team",
+      "description": "Keep the floor set up and powered, so the chair you asked about is ready when you walk in.",
+      "media": "PLACEHOLDER:portrait or short muted loop, showroom team, no name caption",
+      "fallback": "/videos/dsd-showcase-5.mp4",
+      "alt": "DentaSource Direct, showroom team"
+    }
+  ]
+}

@@ -8,6 +8,11 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import MetaPixel from '@/components/analytics/MetaPixel';
 import MotionProvider from '@/components/MotionProvider';
 import ThemeScript from '@/cinema/ThemeScript';
+import SiteShell from '@/components/site/SiteShell';
+// The cinema tokens are site-wide from here on: the navbar, the footer and the room all
+// key off --paper / --ink / --dsd-green, so they must resolve on /news and /classic too,
+// not only on the routes that mount CinemaPage.
+import '@/cinema/cinema.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });
@@ -76,11 +81,13 @@ export default function RootLayout({ children }) {
       </head>
       <body className="antialiased">
         <MotionProvider>
+        <SiteShell>
         <MetaPixel />
         <JsonLd id="organization-graph" data={organizationGraph} />
         <Navbar />
         {children}
         <Footer />
+        </SiteShell>
         {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
         {/* Umami — the family's own watchtower on the VPS (2026-09-01). Live visitors,
             per-page, city/device/referrer; IPs hashed. Sits beside GA/Pixel, replaces neither. */}
