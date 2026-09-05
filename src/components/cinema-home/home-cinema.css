@@ -123,7 +123,12 @@
   display: flex;
   width: max-content;
   font-size: 0;
-  animation: dsd-strip-scroll 39s linear infinite;
+  /* ☠️ THIS DURATION IS A FALLBACK, NOT THE SPEED. src/lib/cinema/marquee.js measures each
+     track and writes an inline animation-duration that makes it run at FFC's measured
+     px/s, because a fixed duration on a variable width track is a variable SPEED: at 39s
+     the 198 tile training strip ran at 488 px/s, nearly four times FFC. This value only
+     applies if that never runs, so it errs SLOW rather than fast. */
+  animation: dsd-strip-scroll 120s linear infinite;
 }
 .dsd-strip-track img {
   height: clamp(110px, 24vh, 240px);
@@ -159,7 +164,8 @@
   display: flex;
   width: max-content;
   gap: 10px;
-  animation: dsd-strip-scroll 52s linear infinite;
+  /* Fallback only; the real duration is measured per row. See .dsd-strip-track above. */
+  animation: dsd-strip-scroll 60s linear infinite;
 }
 .dsd-news-track.reverse { animation-direction: reverse; }
 .dsd-news-card {

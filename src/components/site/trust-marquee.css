@@ -31,7 +31,11 @@
   /* ☠️ THE SWEEP IS DECLARED HERE, NOT INLINE. The navbar wrote its animation as an inline
      style, which outranks every ordinary rule, so the reduced-motion block below could
      not reach it without !important. In a stylesheet it is just a rule like any other. */
-  animation: dsd-trust-sweep 40s linear infinite;
+  /* ☠️ FALLBACK ONLY. src/lib/cinema/marquee.js sets the real duration from this track's
+     own width so it runs at the 75.7 px/s (wide) / 58.1 px/s (narrow) measured on FFC's
+     own text ticker. A fixed duration here would be a different speed every time an item
+     is added to the line. */
+  animation: dsd-trust-sweep 67s linear infinite;
 }
 .dsd-trust-item {
   display: inline-flex;

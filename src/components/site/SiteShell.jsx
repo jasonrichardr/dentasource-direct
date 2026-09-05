@@ -18,6 +18,7 @@ import ThemeProvider from '@/cinema/ThemeProvider';
 import Room from '@/cinema/room';
 import RoomChrome from './RoomChrome';
 import ThemeToggle from '@/cinema/ThemeToggle';
+import MarqueeSpeed from './MarqueeSpeed';
 
 /**
  * ☠️ THE WORKING ROUTES GET NO ROOM.
@@ -52,6 +53,9 @@ export default function SiteShell({ children }) {
           room's 🌗 button proxies whatever carries id="theme-switch", and CSS in
           trust-marquee.css hides it while the room holds the screen. */}
       <ThemeToggle id="theme-switch" />
+      {/* Every marquee, site wide, held at the speed measured on ffcdentalclinic.com.
+          See src/lib/cinema/marquee.js for the numbers and how they were taken. */}
+      <MarqueeSpeed />
       {!roomFree && <Room />}
       {!roomFree && <RoomChrome />}
     </ThemeProvider>
