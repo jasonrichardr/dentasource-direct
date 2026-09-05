@@ -18,6 +18,7 @@ import marblesReels from '@/data/cinema/marbles-reels.json';
 import actionReels from '@/data/cinema/action-reels.json';
 import partsData from '@/data/cinema/parts.json';
 import crewShots from '@/data/cinema/crew-shots.json';
+import growthPartner from '@/data/cinema/growth-partner.json';
 
 import {
   ActionPanel, ChatPanel, DoorPanel, HeartPanel, InstallsPanel, LockupPanel,
@@ -87,6 +88,28 @@ const FORMATIONS = {
   },
 };
 
+/**
+ * Two beats render the mixed marquee now, and they read different manifests.
+ *
+ * The training beat's strip is MERGED: the growth partner page's frames plus the four
+ * Training Center photographs the beat was already showing, because those four are this
+ * room and the visitor should still see it. The component spaces the clips through
+ * whatever it is handed, so a merge does not need the sources pre interleaved.
+ *
+ * ☠️ WAITING ON training-media.json. When it lands its items join this array and nothing
+ * else changes.
+ */
+const TRAINING_BEAT = (beatsData.beats || beatsData).find((b) => b.key === 'training-center');
+const MIXED_ITEMS = {
+  'see-us-in-action': actionReels.items,
+  'training-center': [
+    ...growthPartner.items,
+    ...(TRAINING_BEAT?.media || []).map((src) => ({
+      type: 'image', src, caption: 'Inside the Training Center in Pasig',
+    })),
+  ],
+};
+
 function panelFor(beat, i, articles) {
   switch (beat.kind) {
     case 'lockup': return <LockupPanel beat={beat} level={1} />;
@@ -97,7 +120,7 @@ function panelFor(beat, i, articles) {
     case 'parts': return <PartsPanel beat={beat} beatIndex={i} parts={partsData.parts} crew={crewShots.items} />;
     case 'chat': return <ChatPanel beat={beat} beatIndex={i} script={askScript} />;
     case 'marbles': return <MarblesPanel beat={beat} beatIndex={i} reels={marblesReels.reels} />;
-    case 'action': return <ActionPanel beat={beat} beatIndex={i} items={actionReels.items} />;
+    case 'action': return <ActionPanel beat={beat} beatIndex={i} items={MIXED_ITEMS[beat.key] || []} />;
     case 'door': return <DoorPanel beat={beat} />;
     case 'photo':
     default: return <PhotoPanel beat={beat} beatIndex={i} />;

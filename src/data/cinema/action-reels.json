@@ -1,7 +1,7 @@
 {
   "version": 1,
   "generated": "2026-09-05",
-  "notes": "The mixed marquee for the beat that is now THE REAL DENTASOURCE, and it carries the candid team frames too: the separate Our people strip was removed on 2026-09-06 and its eighteen tiles were folded in here, so one marquee shows the crew and the work instead of two showing them apart. ORDER RULE: it OPENS ON A VIDEO, and the videos are then SPACED EVENLY through the whole run so the eye keeps changing gear from the first tile to the last. The old rule alternated image, video, image, which was right at fourteen items and wrong at thirty two: strict alternation spends all six clips in the first eleven tiles and leaves a long silent tail. Everything between the clips is a photograph. EXTENDABLE: append either type and re-run the rule.",
+  "notes": "The mixed marquee for the beat that is now THE REAL DENTASOURCE, and it carries the candid team frames too: the separate Our people strip was removed on 2026-09-06 and its eighteen tiles were folded in here, so one marquee shows the crew and the work instead of two showing them apart. THIS FILE CHOOSES WHICH ITEMS, NOT WHAT ORDER THEY RUN IN. The interleave moved into mixOrder() in panels.jsx on 2026-09-06, because the training beat's strip is merged in code from two manifests and no single file can decide the order for it; two rules for the same marquee is how they drift apart. The rule is: open on a video, space the videos evenly through the whole run. Everything between the clips is a photograph. EXTENDABLE: append either type, the component re-spaces it.",
   "eyebrow": "See us in action",
   "headline": "The real DentaSource.",
   "reels": [

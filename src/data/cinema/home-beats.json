@@ -83,25 +83,29 @@
     },
     {
       "key": "training-center",
-      "kind": "photo",
-      "eyebrow": "The Training Center",
-      "headline": "A room of phantom heads, and the people who teach in it",
-      "body": "Units 307 and 308 at Mercedes Square Plaza in Pasig, minutes from the showroom. A row of simulator stations, an interactive board, and courses run with partner study groups and clinical instructors. Our own team learns here before they teach here, which is why the person who trains your staff on handover day has done the procedure themselves.",
-      "cta": {
-        "label": "Ask about training",
-        "href": "/contact"
-      },
+      "kind": "action",
+      "eyebrow": "Growth Partner",
+      "headline": "A growth partner, not a supplier.",
+      "body": "Units 307 and 308 at Mercedes Square Plaza in Pasig, minutes from the showroom. Simulator stations, an interactive board, and courses run with partner study groups and clinical instructors. Your staff train on the same unit that will be standing in your operatory, and our own team learns in this room before they teach in it, which is why the person who trains them on handover day has done the procedure themselves.",
       "media": [
         "/images/news/dentasource-training-center-opens-pasig/v032-1.jpg",
         "/images/news/dentasource-training-center-opens-pasig/v032-2.jpg",
         "/images/news/dentasource-training-center-opens-pasig/v032-4.jpg",
         "/images/news/9-day-digital-dentistry-course-2026/v022-3.jpg"
       ],
-      "cta2": {
-        "label": "The Growth Partner program",
-        "href": "https://ffcdentalclinic.com/growth-partner",
-        "external": true
-      }
+      "ctas": [
+        {
+          "label": "Ask about training",
+          "href": "/contact",
+          "variant": "solid"
+        },
+        {
+          "label": "The Growth Partner program",
+          "href": "https://ffcdentalclinic.com/growth-partner",
+          "external": true,
+          "variant": "ghost"
+        }
+      ]
     },
     {
       "key": "delivery",

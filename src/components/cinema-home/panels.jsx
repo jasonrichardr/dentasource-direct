@@ -713,6 +713,32 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
 // desktop pass before this was corrected.
 const optimised = (src, w = 384, q = 75) => `/_next/image?url=${encodeURIComponent(src)}&w=${w}&q=${q}`;
 
+/**
+ * The mixed marquee's order rule, and it lives HERE now rather than baked into a manifest.
+ *
+ * It used to be action-reels.json's own decision: the file shipped its items already
+ * interleaved and this component rendered them in file order. That worked while one file
+ * fed one beat. The training beat's strip is merged in code from two manifests, so no
+ * single file can decide the interleave for it, and two different ordering rules for the
+ * same marquee is how they drift apart.
+ *
+ * ☠️ SPACED EVENLY, NOT ALTERNATED. Strict image, video, image alternation is right at a
+ * dozen items and wrong at thirty: it spends every clip in the first third and leaves a
+ * long silent tail. Opening on a video and spreading the rest across the whole run keeps
+ * something moving from the first tile to the last, whatever the ratio happens to be.
+ */
+export function mixOrder(items) {
+  const vids = items.filter((i) => i.type === 'video');
+  const rest = items.filter((i) => i.type !== 'video');
+  if (!vids.length) return rest;
+  const n = vids.length + rest.length;
+  const out = new Array(n).fill(null);
+  vids.forEach((v, k) => { out[Math.round((k * n) / vids.length)] = v; });
+  let r = 0;
+  for (let i = 0; i < n; i += 1) if (!out[i]) { out[i] = rest[r]; r += 1; }
+  return out.filter(Boolean);
+}
+
 export function ActionPanel({ beat, beatIndex, items = [] }) {
   const near = useBeatNear(beatIndex, { margin: '80%' });
 
@@ -728,7 +754,7 @@ export function ActionPanel({ beat, beatIndex, items = [] }) {
   // (video first, then image, then video, and images alone once the clips run out); this
   // component does not sort, it renders what the file decided, so the strategy is
   // editable without touching code.
-  const tiles = items.length ? items : [];
+  const tiles = useMemo(() => mixOrder(items), [items]);
   const trackRef = useRef(null);
 
   // ☠️ ONE CLIP SPEAKS AT A TIME, AND THAT IS A DATA DECISION, NOT A TASTE ONE.
@@ -789,8 +815,28 @@ export function ActionPanel({ beat, beatIndex, items = [] }) {
                 />
               );
             }
+            // ☠️ A STILL TAKES ITS OWN SHAPE WHEN THE MANIFEST KNOWS IT. The stylesheet
+            // pins every still to 4/3, which was right while every still in this strip was
+            // a landscape news frame. The growth partner manifest is mostly portrait, at
+            // 719x1200 and the like, and 4/3 with object-fit cover crops that to a thin
+            // band out of the middle of the picture. Where width and height are given the
+            // tile keeps the frame's real ratio; the HEIGHT is still fixed by the
+            // stylesheet, so the track stays one clean band and only the width varies.
+            const ratio = it.width && it.height ? `${it.width} / ${it.height}` : undefined;
             return near
-              ? <Image key={key} src={it.src} alt={echo ? '' : it.caption} aria-hidden={echo ? 'true' : undefined} width={320} height={240} sizes="(max-width: 700px) 34vw, 300px" loading="eager" />
+              ? (
+                <Image
+                  key={key}
+                  src={it.src}
+                  alt={echo ? '' : it.caption || it.alt || ''}
+                  aria-hidden={echo ? 'true' : undefined}
+                  width={it.width || 320}
+                  height={it.height || 240}
+                  style={ratio ? { aspectRatio: ratio } : undefined}
+                  sizes="(max-width: 700px) 34vw, 300px"
+                  loading="eager"
+                />
+              )
               : <img key={key} alt="" aria-hidden="true" />;
           })}
         </div>
