@@ -464,10 +464,26 @@ export function ChatPanel({ beat, beatIndex, script }) {
  */
 const CLUSTER_CAMERA_Z = 9.6;
 
+// ☠️ THE WALL PAGES, IT DOES NOT GROW. One bead per reel with no duplicates is the rule
+// this cluster was built on, so a library of a hundred and forty reels would be a hundred
+// and forty decoders. 24 is the set size: it fills the stage at the sizes the beads are
+// drawn at, and it is under the point where a phone starts refusing to decode more.
+const MARBLE_SET = 24;
+
 export function MarblesPanel({ beat, beatIndex, reels = [] }) {
   const mountRef = useRef(null);
   const near = useBeatNear(beatIndex, { margin: '80%' });
   const [reduced, setReduced] = useState(false);
+  const [set, setSet] = useState(0);
+
+  const setCount = Math.max(1, Math.ceil(reels.length / MARBLE_SET));
+  // Clamp rather than modulo: a library that shrinks under the visitor should land on the
+  // last real set, not wrap to the first.
+  const setIndex = Math.min(set, setCount - 1);
+  const shown = useMemo(
+    () => reels.slice(setIndex * MARBLE_SET, setIndex * MARBLE_SET + MARBLE_SET),
+    [reels, setIndex],
+  );
 
   useEffect(() => {
     try { setReduced(matchMedia('(prefers-reduced-motion: reduce)').matches); } catch (e) { /* assume motion is fine */ }
@@ -480,7 +496,7 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
     // would be the opposite of what they asked for.
     if (!near || reduced) return undefined;
     const mount = mountRef.current;
-    if (!mount || !reels.length) return undefined;
+    if (!mount || !shown.length) return undefined;
 
     // ☠️ THE CLUSTER AND ITS PHYSICS ENGINE ARRIVE WITH THE BEAT, NOT WITH THE PAGE.
     // marbleCluster pulls in cannon-es and its own several hundred lines, and a static
@@ -548,8 +564,8 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
     // the box shape only ever changes how much is visible sideways. Both numbers above
     // were set by measuring bounds(), not by eye.
     cluster = createMarbleCluster(mount, {
-      videos: reels.map((r) => r.src),
-      count: reels.length,          // exactly one bead per reel, however many there are
+      videos: shown.map((r) => r.src),
+      count: shown.length,          // exactly one bead per reel in THIS set
       ...shape,
       // ☠️ THE STAGE IS THE WHOLE SCREEN, NOT A BOX IN THE MIDDLE OF IT. See the note on
       // .dsd-cluster: the canvas is pinned to the viewport and the mount stays in flow as
@@ -580,7 +596,13 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
     });
     mo.observe(document.body, { childList: true });
     }
-  }, [near, reduced, reels]);
+    // ☠️ setIndex IS A DEPENDENCY, AND THE TEARDOWN IS THE POINT. Changing set runs this
+    // effect's cleanup, which calls cluster.dispose(), which now actually releases the 24
+    // video decoders, their textures and every material holding one. Swapping the textures
+    // in place would avoid rebuilding the WebGL context, but it would also mean carrying a
+    // second teardown path for the same objects, and the one that runs on every set change
+    // is exactly the one that has to be right. One path, exercised constantly.
+  }, [near, reduced, shown, setIndex]);
 
   return (
     <div className="dsd-panel">
@@ -606,7 +628,37 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
       ) : (
         <div className="dsd-cluster dsd-interactive" ref={mountRef} />
       )}
-      <Cta cta={beat.cta} />
+      {/* The pager only appears when there is somewhere to go. It sits above the canvas,
+          which now covers the screen, and it is .dsd-interactive so the engine only lets
+          it be tapped while this beat is the live one. */}
+      {!reduced && setCount > 1 ? (
+        <div className="dsd-pager dsd-interactive">
+          <button
+            type="button"
+            className="dsd-pager-btn"
+            onClick={() => setSet((n) => Math.max(0, n - 1))}
+            disabled={setIndex === 0}
+            aria-label="Previous set of reels"
+          >
+            Prev
+          </button>
+          {/* aria-live so a screen reader is told the wall changed under it: the beads
+              themselves announce nothing. */}
+          <span className="dsd-pager-count" aria-live="polite">
+            {`Set ${setIndex + 1} of ${setCount}`}
+          </span>
+          <button
+            type="button"
+            className="dsd-pager-btn"
+            onClick={() => setSet((n) => Math.min(setCount - 1, n + 1))}
+            disabled={setIndex === setCount - 1}
+            aria-label="Next set of reels"
+          >
+            Next
+          </button>
+        </div>
+      ) : null}
+      <Ctas beat={beat} />
     </div>
   );
 }

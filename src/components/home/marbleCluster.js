@@ -588,7 +588,29 @@ export function createMarbleCluster(container, {
     window.removeEventListener("pointercancel", onLeave);
     window.removeEventListener("touchcancel", onLeave);
     window.removeEventListener("resize", resize);
-    sphereGeo.dispose(); planeGeo.dispose(); envRT.dispose(); renderer.dispose();
+    // ☠️ THE OLD TEARDOWN LEAKED EVERYTHING THAT COSTS MEMORY.
+    // It released two geometries, the environment render target and the renderer, and
+    // nothing else: not the video elements, not their VideoTextures, not the materials
+    // holding those textures, not the glass. That was survivable while the cluster was
+    // built once and lived for the visit. It is not survivable now the wall pages through
+    // sets, because a switch is a dispose and a rebuild, and every switch would strand
+    // another 24 decoders and 24 GPU textures.
+    // The video element needs BOTH halves: removing src alone leaves the decoder holding
+    // the last buffer, and load() on a src-less element is what actually releases it.
+    for (const { el, planeMat } of texPool) {
+      try { el.pause(); el.removeAttribute("src"); el.load(); } catch (e) { /* already torn down */ }
+      planeMat.map?.dispose();
+      planeMat.dispose();
+    }
+    for (const shell of shells) shell.material.dispose();
+    sphereGeo.dispose(); planeGeo.dispose(); envRT.dispose();
+    scene.environment = null;   // envSrc is already disposed at build time, line ~161
+
+    renderer.dispose();
+    // Contexts are reclaimed lazily, and a browser allows only about sixteen live ones.
+    // A visitor clicking through six sets would otherwise be racing the garbage collector
+    // for them. forceContextLoss hands this one back on the spot.
+    try { renderer.forceContextLoss(); } catch (e) { /* not all backends implement it */ }
     canvas.remove();
   }
 
