@@ -3817,4 +3817,492 @@ Written from our post of September 3, 2026.
 
 [See the Denjoy range](/denjoy)`
     },
+    {
+        id: "fb-2026-08-30-roson-dx-s3-installation-balanga-bataan",
+        slug: "roson-dx-s3-installation-balanga-bataan",
+        title: "ROSON DX-S3 Installed at Zabala Dental Clinic in Balanga",
+        date: "August 30, 2026",
+        image: "/images/news/roson-dx-s3-installation-balanga-bataan/og.jpg",
+        ogImage: "/images/news/roson-dx-s3-installation-balanga-bataan/og.jpg",
+        hideHeroImage: false,
+        abstract: "On August 28, 2026 our team installed a ROSON DX-S3 at Zabala Dental Clinic in Balanga, Bataan. The reel follows the unit from the Pasig showroom floor to a finished operatory.",
+        content: `## A DX-S3 Arrives In Balanga
+
+On August 28, 2026 our team installed a ROSON **DX-S3** at Zabala Dental Clinic in Balanga, Bataan. We posted the reel of the job two days later, on August 30. Our thanks to Doc Zabala for choosing DentaSource Direct for the fit out.
+
+Balanga is a province run, not a city run. The van is loaded the evening before, the tool kit has to be complete because there is no second trip that day, and the clinic expects to be seeing patients again the following morning. The whole job is planned backwards from that.
+
+## Before The Van Left
+
+One frame in the reel was shot before the trip, on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, with our technician going over the unit a final time.
+
+That check is the pre-delivery inspection, and it is the cheapest hour in the whole job. The chair is powered up, the hydraulics are run through their full travel, the water and suction lines are flowed, and the light is switched on and aimed. A fault found in Pasig costs an hour. The same fault found in Bataan costs a day and a second trip.
+
+![Our technician going over the DX-S3 in the Pasig showroom before the trip](/images/news/roson-dx-s3-installation-balanga-bataan/v201-3.jpg)
+![Assembling the base of the DX-S3 inside the clinic](/images/news/roson-dx-s3-installation-balanga-bataan/v201-4.jpg)
+
+## Building The Chair In The Room
+
+At the clinic the base goes down first and is levelled against the floor. A base that is out of level puts the chair out of true through its entire travel, and no adjustment further up recovers it.
+
+After that the work happens underneath: the water feed, the drain, the suction and the power are all run and seated before any cover goes back on. That is the frame of our technician on his back under the chair, and it is where most of the hours in an installation actually go.
+
+The last frame is the finished unit. The beige headrest sits in a glass walled operatory with trees outside, which is the sort of room a chair looks good in and, more usefully, the sort of room that gives a technician space to work.
+
+![Our technician working underneath the DX-S3 during assembly](/images/news/roson-dx-s3-installation-balanga-bataan/v201-2.jpg)
+![The finished DX-S3 headrest in the glass walled operatory](/images/news/roson-dx-s3-installation-balanga-bataan/v201-1.jpg)
+
+## What The DX-S3 Is
+
+The **DX-S3** sits in the ROSON S series, the line built around a quieter, more finished look for clinics that treat the operatory as part of the patient experience rather than a back room. The upholstery, the trim and the delivery arrangement are what separate it from the A series. The work it will do is the same work, and the honest way to choose between them is to sit in both on the showroom floor in Pasig.
+
+## Why It Matters Outside Metro Manila
+
+A clinic in Bataan carries a risk that a clinic in Pasig does not. If the chair goes down, the nearest technician is normally three hours away, and every hour of that is a chair not earning. That is why the pre-delivery inspection matters more on a province run, and why the handover at the end covers the daily flush, the shut offs and the routine cleaning before we leave.
+
+Provincial installs are a normal week for us. If your clinic is outside Metro Manila, the delivery and the installation are quoted together, so the number you see already includes getting our people to your door.
+
+## From Our Facebook Page
+
+Written from our post of August 30, 2026.
+
+[facebook](https://www.facebook.com/dentasource/videos/1371313487964265/)
+
+[See the ROSON DX-S3](/s3)`
+    },
+    {
+        id: "fb-2026-08-31-tads-hands-on-live-patients-ffc-dental-c",
+        slug: "tads-hands-on-live-patients-ffc-dental-clinic",
+        title: "TADs Hands On With Live Patients at FFC Dental Clinic",
+        date: "August 31, 2026",
+        image: "/images/news/tads-hands-on-live-patients-ffc-dental-clinic/og.jpg",
+        ogImage: "/images/news/tads-hands-on-live-patients-ffc-dental-clinic/og.jpg",
+        hideHeroImage: false,
+        abstract: "On August 31, 2026 the first TADs batch moved from our Training Center to FFC Dental Clinic and placed mini screws on live patients under Dr. Emil Dayanghirang Santos.",
+        content: `## From The Classroom To The Chair
+
+On August 31, 2026 the first batch of our mini screw programme moved out of the classroom and into a working clinic. The dentists who trained at the DentaSource Direct Training Center in Pasig on August 17 and 18 spent the day at FFC Dental Clinic placing temporary anchorage devices on live patients, with Dr. Emil Dayanghirang Santos supervising every placement.
+
+The classroom half of the programme is covered in our earlier report on [the first TADs batch at the Training Center](/news/tads-training-first-batch-dr-emil). This article is the second half, the one that decides whether the first half took.
+
+## What A TAD Is
+
+A temporary anchorage device, usually called a TAD or a mini screw, is a small titanium screw placed in the jaw bone. Orthodontics is a game of push against pull, and without a fixed point the teeth you want to hold still drift as much as the teeth you want to move. The screw gives the appliance that fixed point. It comes out once the movement is done.
+
+Placement itself takes minutes. What takes training is everything around it: reading the site off the radiograph, choosing the length, finding the angle, and staying clear of the roots on either side.
+
+## Reading The Case First
+
+The session opened with the case on a laptop rather than an instrument in a hand. The instructor and the trainee due to place first went through the scan while the rest of the cohort watched over their shoulders, marking the site and agreeing the angle before anyone was seated.
+
+From there it moved to the chair. The first placement was done with the instructor at the trainee's elbow, hands close but not on the handpiece, and with two more clinicians standing in to see the approach from the operator's side rather than from the back of the room.
+
+![The instructor and a trainee reviewing the scan on a laptop with the cohort watching](/images/news/tads-hands-on-live-patients-ffc-dental-clinic/v202-1.jpg)
+![The instructor guiding a trainee placing a mini screw on a patient](/images/news/tads-hands-on-live-patients-ffc-dental-clinic/v202-2.jpg)
+![Three clinicians working together around the patient during placement](/images/news/tads-hands-on-live-patients-ffc-dental-clinic/v202-3.jpg)
+
+## Hands On The Handpiece
+
+The middle of the reel is the work itself. The operating light comes over the patient, the field is isolated, and the trainee drives the screw while the instructor reads the angle from the side and calls the corrections.
+
+This is the part a lecture cannot give you. Bone density is not the same in every site or in every patient, and the feedback that tells a clinician to stop, back off or change the angle comes through the handpiece. You learn it by feeling it, once, with someone experienced standing next to you.
+
+![The operating light over the patient as a dentist works](/images/news/tads-hands-on-live-patients-ffc-dental-clinic/v202-4.jpg)
+![The instructor guiding the trainee's hands through the placement](/images/news/tads-hands-on-live-patients-ffc-dental-clinic/v202-5.jpg)
+
+## The Rest Of The Room
+
+Between placements the cohort gathered around the chair, and the dentist who had just placed a screw stepped back to watch the next one from a different angle. The last frame is a straightforward examination, a clinician checking the mouth after the appliance work was finished.
+
+![The cohort gathered around the chair between placements](/images/news/tads-hands-on-live-patients-ffc-dental-clinic/v202-6.jpg)
+![A dentist examining the patient's mouth after placement](/images/news/tads-hands-on-live-patients-ffc-dental-clinic/v202-7.jpg)
+
+## Why The Live Patient Day Is The Point
+
+A dentist who has placed a screw into a plastic jaw knows the sequence but has never felt the moment where the bone changes under the driver, and that is the moment that decides whether the screw holds.
+
+Our congratulations to the dentists of FFC Dental Clinic, who put their own operatories and their own working day into this. Running a live patient session costs a clinic real chair time, and it is the reason the training was worth attending.
+
+## From Our Facebook Page
+
+Written from our post of August 31, 2026.
+
+[facebook](https://www.facebook.com/dentasource/videos/4101796030119234/)
+
+[Ask about our training programmes](/contact)`
+    },
+    {
+        id: "fb-2025-11-21-roson-dx-a3l-apex-dental-studio-fairview",
+        slug: "roson-dx-a3l-apex-dental-studio-fairview",
+        title: "ROSON DX-A3L for Apex Dental Studio in Fairview",
+        date: "November 21, 2025",
+        image: "/images/news/roson-dx-a3l-apex-dental-studio-fairview/og.jpg",
+        ogImage: "/images/news/roson-dx-a3l-apex-dental-studio-fairview/og.jpg",
+        hideHeroImage: false,
+        abstract: "A ROSON DX-A3L left Pasig for Quezon City on November 21, 2025. Eight days later we named the clinic: Apex Dental Studio in Fairview, and Dr. Hans Matthew Sevilla.",
+        content: `## A DX-A3L Heads To Quezon City
+
+On November 21, 2025 we posted a six second card from a job in progress: a ROSON **DX-A3L** on its way to a clinic in Quezon City. Eight days later, on November 29, we were able to say where. The chair went to Apex Dental Studio in Fairview, Quezon City, and to Dr. Hans Matthew Sevilla.
+
+We post the delivery card first and the clinic second on purpose. A dentist deciding on a chair wants to know that units are actually moving, and a card from the road says that better than a product sheet does.
+
+## The Card From The Road
+
+The first post is a single collage card, made from photos taken during the delivery itself. It shows the unit being carried in and unboxed at the door, which is the point in the day when a crate stops being a crate and starts being a chair.
+
+![Quezon City delivery in progress card showing the DX-A3L being carried in and unboxed](/images/news/roson-dx-a3l-apex-dental-studio-fairview/v203-1.jpg)
+
+## The Clinic
+
+The November 29 post is the one that names the practice. Apex Dental Studio in Fairview now runs the DX-A3L as its treatment unit, and Dr. Sevilla let us mark it publicly.
+
+Fairview is a dense part of Quezon City with a lot of clinics in it, which raises the bar on the room a patient walks into. A treatment unit is the largest object in that room and the one every patient spends the whole appointment looking at and lying in.
+
+![Dr. Hans Matthew Sevilla with the newly installed ROSON DX-A3L](/images/news/roson-dx-a3l-apex-dental-studio-fairview/p204-1.jpg)
+
+## Where The A3L Sits
+
+The **DX-A3L** is part of the ROSON A3 family, the range most Philippine clinics end up choosing between when they fit out or upgrade a single operatory. The models in that family differ in the delivery arrangement, the seating and the finish rather than in whether they will carry a full day of work.
+
+Which one suits a clinic depends on how the dentist works and how the room is laid out, so the useful comparison is a physical one. The full range is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, and the model page covers the detail: [ROSON DX-A3L](/a3l).
+
+## Why It Matters
+
+An upgrade like this one is usually a growth decision rather than a repair decision. The old chair still works, but it limits how the day runs, and the clinic decides it would rather spend on the room than keep working around it.
+
+That is the point at which delivery and installation stop being a footnote. Our own technicians build the unit in the room, level it, run the services, and hand it over with the daily routine explained, so the practice opens the next morning on a chair it already knows how to use.
+
+## From Our Facebook Page
+
+Written from our posts of November 21 and November 29, 2025.
+
+[facebook](https://www.facebook.com/dentasource/videos/1386966919458021/)
+
+[facebook](https://www.facebook.com/dentasource/posts/122182999778480133)
+
+[See the ROSON DX-A3L](/a3l)`
+    },
+    {
+        id: "fb-2025-11-03-roson-dx-a3-nextcare-dental-bacolod",
+        slug: "roson-dx-a3-nextcare-dental-bacolod",
+        title: "ROSON DX-A3 Opens NextCare Dental's New Bacolod Clinic",
+        date: "November 3, 2025",
+        image: "/images/news/roson-dx-a3-nextcare-dental-bacolod/og.jpg",
+        ogImage: "/images/news/roson-dx-a3-nextcare-dental-bacolod/og.jpg",
+        hideHeroImage: false,
+        abstract: "NextCare Dental opened its new clinic in Bacolod City on a ROSON DX-A3 delivered by our team in July 2025. Our congratulations to Dr. Christian Alvarez.",
+        content: `## A New Clinic In Bacolod City
+
+NextCare Dental opened its new clinic in Bacolod City on a ROSON **DX-A3**. Our team delivered and installed the unit on July 25, 2025, and we posted the congratulations to Dr. Christian Alvarez on November 3.
+
+Opening a clinic is a different purchase from replacing a chair. There is no old unit to work around and no existing routine to protect, but there is also no revenue yet, and every decision has to be made before the first patient walks in.
+
+![Dr. Christian Alvarez with the new ROSON DX-A3 at NextCare Dental in Bacolod City](/images/news/roson-dx-a3-nextcare-dental-bacolod/p205-1.jpg)
+
+## Getting A Chair To Negros
+
+Bacolod is in Negros Occidental, which puts a sea crossing between the showroom and the clinic. A unit bound for Bacolod leaves Pasig by road and finishes the journey by ship, and it travels crated the whole way.
+
+We deliver nationwide, and provincial jobs run on a longer clock than Metro Manila ones rather than a different one. The unit is inspected and cycled through its full travel in Pasig before it is crated, because a fault found on the showroom floor is an hour of work and the same fault found in Negros is a week.
+
+## Fitting Out The First Operatory
+
+The chair is normally the first thing a new clinic commits to, because the room is built around it. Where the base sits decides where the water feed, the drain, the suction and the power have to come up through the floor or the wall, and it decides how much room the dentist and the assistant have on either side.
+
+That is why we would rather be in the conversation before the tiles go down than after. Getting the service points right at the fit out stage costs nothing. Moving them later means opening a finished floor.
+
+## What The A3 Is For
+
+The **DX-A3** is the model most Philippine clinics land on for a single operatory that has to carry a full day of general practice. It is the middle of the ROSON range in the sense that matters: it is specified for continuous clinic use rather than for occasional use, and it is common enough here that parts and technicians are not a problem.
+
+For a practice that is opening rather than expanding, that ordinariness is the feature. A new clinic does not need an unusual chair. It needs one that works every day and can be serviced.
+
+## Why It Matters
+
+A first clinic has thin margins in its first year, and an equipment failure in month three is the kind of thing that ends practices rather than annoying them. The questions worth asking a supplier are who installs the unit, how long a technician takes to reach your city, and whether the parts are on a shelf in the Philippines.
+
+Our congratulations to Dr. Alvarez and the NextCare Dental team on the opening.
+
+## From Our Facebook Page
+
+Written from our post of November 3, 2025.
+
+[facebook](https://www.facebook.com/dentasource/posts/122179769474480133)
+
+[See the ROSON DX-A3](/a3)`
+    },
+    {
+        id: "fb-2025-11-05-roson-dx-a3-dr-mark-ruffy-macrodent-mari",
+        slug: "roson-dx-a3-dr-mark-ruffy-macrodent-marikina",
+        title: "ROSON DX-A3 Installed for Dr. Mark Ruffy in Marikina",
+        date: "November 5, 2025",
+        image: "/images/news/roson-dx-a3-dr-mark-ruffy-macrodent-marikina/og.jpg",
+        ogImage: "/images/news/roson-dx-a3-dr-mark-ruffy-macrodent-marikina/og.jpg",
+        hideHeroImage: false,
+        abstract: "Dr. Mark Ruffy upgraded Macrodent Dental in Marikina City to a ROSON DX-A3, delivered and installed by our own technicians on July 29, 2025. We posted the congratulations on November 5.",
+        content: `## An Upgrade In Marikina
+
+Dr. Mark Ruffy's clinic, Macrodent Dental in Marikina City, now runs a ROSON **DX-A3**. Our team delivered and installed the unit on July 29, 2025, and we posted the congratulations on November 5.
+
+This was an upgrade rather than a fit out. There was already a working chair in the room, a working schedule around it, and patients booked on either side of the changeover.
+
+![Dr. Mark Ruffy with the newly installed ROSON DX-A3 at his Marikina clinic](/images/news/roson-dx-a3-dr-mark-ruffy-macrodent-marikina/p206-1.jpg)
+
+## Changing A Chair In A Working Clinic
+
+Swapping a treatment unit is the most disruptive thing that happens to an operatory, and the disruption is almost entirely in the services rather than in the chair. The old unit has to come out, the water feed, the drain, the suction and the power have to be capped and then rerouted to wherever the new base sits, and the floor has to be made good.
+
+We plan those jobs around the clinic's diary instead of ours. The usual shape is a full day with the room closed, and the practice opening the next morning on the new unit. What we will not do is leave a room half finished overnight, because a half finished operatory is a closed clinic.
+
+## What Changes On The Day
+
+The visible difference is the chair. The difference the dentist actually feels is in the small things: where the delivery arm sits when it is let go, how far the assistant has to reach, how quickly the chair returns to a preset position between patients.
+
+Those are the things worth testing before you buy rather than after. A unit that is a hand's width out of position is a small annoyance on day one and a back problem in year three.
+
+## Why It Matters
+
+Marikina is well inside our normal service radius, which changes the arithmetic on an upgrade. A technician can be on site the same week, and the parts that fail first on any dental unit, the valves, the seals and the tubing, are held here rather than ordered in.
+
+Our congratulations to Dr. Ruffy on the upgrade, and our thanks for choosing DentaSource Direct for it.
+
+## From Our Facebook Page
+
+Written from our post of November 5, 2025.
+
+[facebook](https://www.facebook.com/dentasource/posts/122180020556480133)
+
+[See the ROSON DX-A3](/a3)`
+    },
+    {
+        id: "fb-2025-11-08-roson-dx-a3-amba-dental-clinic-alabang",
+        slug: "roson-dx-a3-amba-dental-clinic-alabang",
+        title: "ROSON DX-A3 for Amba Dental Clinic in Alabang",
+        date: "November 8, 2025",
+        image: "/images/news/roson-dx-a3-amba-dental-clinic-alabang/og.jpg",
+        ogImage: "/images/news/roson-dx-a3-amba-dental-clinic-alabang/og.jpg",
+        hideHeroImage: false,
+        abstract: "Dr. Renoir Amba's clinic on Alabang-Zapote Road now runs a ROSON DX-A3, specified with SMC tubing and ROSON's patented EOW-Tech electro osmotic water system for the unit's water lines.",
+        content: `## A DX-A3 For Amba Dental Clinic
+
+Amba Dental Clinic on Alabang-Zapote Road now runs a ROSON **DX-A3**, and we posted the congratulations to Dr. Renoir Amba on November 8, 2025.
+
+The unit went in with two things worth explaining, because both of them sit inside the chair where nobody sees them and both of them are the sort of specification a dentist only thinks about once something goes wrong.
+
+![Dr. Renoir Amba with the new ROSON DX-A3 at Amba Dental Clinic in Alabang](/images/news/roson-dx-a3-amba-dental-clinic-alabang/p207-1.jpg)
+
+## The Tubing
+
+ROSON fits SMC tubing on this unit, which the manufacturer rates as more durable than the tubing commonly used elsewhere in the class.
+
+Tubing is not a glamorous part, but it is the part that carries air, water and suction to every instrument on the delivery arm, and it flexes every time the arm is moved. Over a few years of a busy clinic that is a great many flexes. Tubing that hardens or splits is the most common reason a treatment unit starts leaking, and replacing it means opening the arm.
+
+## The Water System
+
+The second is ROSON's patented EOW-Tech electro osmotic water system, which ROSON describes as purifying and disinfecting the unit's water lines.
+
+The problem it addresses is a real one in every dental chair, whatever the brand. The lines that feed the handpieces and the syringe are very narrow, water sits in them overnight and over weekends, and a biofilm forms on the inside wall. Clinics deal with it by flushing at the start and end of the day and by running a line cleaner. A system that treats the water in the unit itself is a second layer on top of that routine, not a replacement for it.
+
+## Why It Matters In Alabang
+
+Alabang-Zapote Road is a competitive stretch, and the clinics along it are increasingly bought on the room as much as the dentistry. Patients read a treatment unit the way they read a car: they cannot judge the mechanism, so they judge the finish, the noise and the comfort.
+
+The specification underneath is the part that decides what the chair costs to own over the next five years. Tubing, valves and waterline hygiene are unremarkable until they fail, and then they are the entire conversation.
+
+Our thanks to Dr. Amba for choosing DentaSource Direct. If you want to compare the A3 family against each other, all of the current models are on the floor at 610 C. Raymundo Avenue, Maybunga, Pasig City.
+
+## From Our Facebook Page
+
+Written from our post of November 8, 2025.
+
+[facebook](https://www.facebook.com/dentasource/posts/122180417342480133)
+
+[See the ROSON DX-A3](/a3)`
+    },
+    {
+        id: "fb-2025-10-26-two-roson-dx-n1-pilapil-abao-dental-bara",
+        slug: "two-roson-dx-n1-pilapil-abao-dental-baras",
+        title: "Two ROSON DX-N1 Chairs for Pilapil Abao Dental in Baras",
+        date: "October 26, 2025",
+        image: "/images/news/two-roson-dx-n1-pilapil-abao-dental-baras/og.jpg",
+        ogImage: "/images/news/two-roson-dx-n1-pilapil-abao-dental-baras/og.jpg",
+        hideHeroImage: false,
+        abstract: "Dr. Ermilyn Pilapil put two ROSON DX-N1 chairs into Pilapil-Abao Dental Clinic in Baras, Rizal. Our technicians installed both units on the same day, October 8, 2025.",
+        content: `## Two Chairs For Baras, Rizal
+
+Pilapil-Abao Dental Clinic in Baras, Rizal now runs two ROSON **DX-N1** units. Our team installed both on October 8, 2025, and we posted the thanks to Dr. Ermilyn Pilapil on October 26.
+
+Dr. Pilapil has been in practice long enough to know what she was buying, and she bought two of the same model rather than one of each. That is a deliberate choice and a good one.
+
+![Dr. Ermilyn Pilapil with the two new ROSON DX-N1 units in Baras, Rizal](/images/news/two-roson-dx-n1-pilapil-abao-dental-baras/p208-1.jpg)
+
+## Why Two Identical Units
+
+Running matching chairs simplifies a clinic in ways that are easy to miss at the point of purchase. One set of spare seals, valves and tubing covers both rooms. Any dentist or assistant can work in either room without relearning where the controls are. A technician who services one is already familiar with the other.
+
+The alternative, two different units bought two years apart, is how most clinics end up here, and it is why so many practices carry two sets of consumables and two sets of habits.
+
+## Adding A Second Operatory
+
+A second chair is the point where a clinic stops being one dentist's schedule and starts being a business with capacity. It lets an associate or a hygienist work in parallel, it absorbs the appointment that overruns, and it turns walk ins from an interruption into revenue.
+
+The constraint is usually the room rather than the chair. Two units need two sets of service points, enough space between them for an assistant to pass behind, and suction and compressor capacity sized for both running at once. That last one catches people out. A compressor specified for a single chair will keep up until the day both rooms are busy.
+
+## The Offer That Was Running
+
+At the time of this purchase we had a zero downpayment installment plan running, alongside a discount for clinics settling in cash. Those were time limited terms tied to that period, so treat them as a record of the offer rather than a current quote. Current pricing and installment terms are on request.
+
+## Why It Matters
+
+Baras sits at the eastern edge of Rizal, an hour or more from Pasig depending on the traffic on Ortigas Extension. Both units were installed by our own technicians on the same day, and the clinic was handed a single point of contact for service on both rooms.
+
+Our congratulations to Dr. Pilapil and the Pilapil-Abao team.
+
+## From Our Facebook Page
+
+Written from our post of October 26, 2025.
+
+[facebook](https://www.facebook.com/dentasource/posts/122178775868480133)
+
+[See the ROSON DX-N1](/n1)`
+    },
+    {
+        id: "fb-2025-10-25-roson-dx-n1-juvy-pilapil-dental-tanay",
+        slug: "roson-dx-n1-juvy-pilapil-dental-tanay",
+        title: "ROSON DX-N1 for Dr. Juvy Pilapil Dental Clinic in Tanay",
+        date: "October 25, 2025",
+        image: "/images/news/roson-dx-n1-juvy-pilapil-dental-tanay/og.jpg",
+        ogImage: "/images/news/roson-dx-n1-juvy-pilapil-dental-tanay/og.jpg",
+        hideHeroImage: false,
+        abstract: "Dr. Juvy Pilapil Dental Clinic in Tanay, Rizal took delivery of a ROSON DX-N1, installed by our team on October 15, 2025. The second Pilapil clinic to do so that month.",
+        content: `## A DX-N1 For Tanay, Rizal
+
+Dr. Juvy Pilapil Dental Clinic in Tanay, Rizal now runs a ROSON **DX-N1**. Our team installed the unit on October 15, 2025, and we posted the thanks on October 25.
+
+It was the second Pilapil clinic to take the same model that month. Pilapil-Abao Dental Clinic in Baras put in [two DX-N1 units on October 8](/news/two-roson-dx-n1-pilapil-abao-dental-baras), which meant our technicians made two runs into eastern Rizal inside a fortnight.
+
+![The new ROSON DX-N1 dental chair at Dr. Juvy Pilapil Dental Clinic in Tanay](/images/news/roson-dx-n1-juvy-pilapil-dental-tanay/p209-1.jpg)
+
+## What The N1 Is
+
+The **DX-N1** is the ROSON model most clinics choose when the brief is a solid working chair rather than a showpiece. It is specified for full day general practice, it uses the same service parts as the rest of the range, and it is priced for a practice that is buying its first unit or replacing one that has given up.
+
+That last point matters more than the specification sheet does. A chair that shares parts with the units already installed across the country is a chair a technician can fix on the first visit instead of the third.
+
+## Getting To Tanay
+
+Tanay is at the far end of Rizal, well past the point where a service call stops being a short drive. Our own technicians handle the delivery, the assembly and the handover, and the handover is where the daily routine is taught: the start and end of day flush, where the water and air shut off, and how the upholstery and the ceramic are cleaned without damaging them.
+
+Ten minutes spent on that at installation is the cheapest service call a clinic will ever avoid, and it matters most in the clinics that are furthest away.
+
+## Why It Matters
+
+Two clinics under the same family name choosing the same model in the same month is the kind of decision that says more than a brochure does. Dentists in a province talk to each other, and what they compare is not the feature list. It is whether the chair is still running a year later and how long a technician took to arrive when it was not.
+
+Our thanks to Dr. Juvy Pilapil for the trust, and our congratulations on the new unit.
+
+## From Our Facebook Page
+
+Written from our post of October 25, 2025.
+
+[facebook](https://www.facebook.com/dentasource/posts/122178657008480133)
+
+[See the ROSON DX-N1](/n1)`
+    },
+    {
+        id: "fb-2025-10-28-roson-dx-a3s-hannah-medical-clinic-malat",
+        slug: "roson-dx-a3s-hannah-medical-clinic-malate",
+        title: "ROSON DX-A3S for Hannah Medical Clinic in Malate",
+        date: "October 28, 2025",
+        image: "/images/news/roson-dx-a3s-hannah-medical-clinic-malate/og.jpg",
+        ogImage: "/images/news/roson-dx-a3s-hannah-medical-clinic-malate/og.jpg",
+        hideHeroImage: false,
+        abstract: "Hannah Medical Clinic in Malate, Manila installed a ROSON DX-A3S on August 2, 2025, one of the harder districts in the capital to move a dental chair into.",
+        content: `## A DX-A3S For Malate
+
+Hannah Medical Clinic in Malate, Manila now runs a ROSON **DX-A3S**. Our team delivered and installed the unit on August 2, 2025, and we posted the congratulations on October 28.
+
+Malate is dense, old and built up, which makes it one of the harder parts of Metro Manila to move a dental chair into. Access is a lift and a corridor rather than a loading bay, and the room is usually already finished by the time the crate arrives.
+
+![The newly installed ROSON DX-A3S at Hannah Medical Clinic in Malate](/images/news/roson-dx-a3s-hannah-medical-clinic-malate/p210-1.jpg)
+
+## Installing In A Built Up District
+
+A unit going into a fitted room is planned differently from one going into a shell. We measure the doorways and the lift before the delivery date, not on the day, and the chair stays crated until it is at the door of the operatory.
+
+Inside, the base is set and levelled first, and it is levelled properly rather than approximately. Everything above it inherits that setting, so a base left slightly off puts the chair out of true through its whole travel and nothing further up the unit will bring it back.
+
+## Where The A3S Sits
+
+The **DX-A3S** belongs to the ROSON A3 family, which is the range most Philippine clinics choose between for a single operatory. Across that family the differences are in the delivery arrangement, the seating and the finish rather than in whether the unit will carry a full working day.
+
+The A3S is the variant clinics tend to pick when the room is on the smaller side and the finish still has to look right, which describes a great many practices in the older parts of Metro Manila. The model page has the detail: [ROSON DX-A3S](/a3s).
+
+## Why It Matters
+
+A treatment unit is a ten year purchase made in an afternoon. The two questions that decide whether it was a good one are both about the years after the sale: how quickly a technician reaches you, and whether the parts that fail first are held in the country.
+
+We install with our own technicians rather than subcontractors, and the clinic gets one number to call afterwards. That is the whole argument, and it only becomes visible on the day something stops working.
+
+Our thanks to Hannah Medical Clinic for choosing DentaSource Direct.
+
+## From Our Facebook Page
+
+Written from our post of October 28, 2025.
+
+[facebook](https://www.facebook.com/dentasource/posts/122179029290480133)
+
+[See the ROSON DX-A3S](/a3s)`
+    },
+    {
+        id: "fb-2025-12-18-two-roson-dx-a3-caloocan-contract-to-chr",
+        slug: "two-roson-dx-a3-caloocan-contract-to-christmas-delivery",
+        title: "Two ROSON DX-A3 Units for Caloocan, Signed in October",
+        date: "December 18, 2025",
+        image: "/images/news/two-roson-dx-a3-caloocan-contract-to-christmas-delivery/og.jpg",
+        ogImage: "/images/news/two-roson-dx-a3-caloocan-contract-to-christmas-delivery/og.jpg",
+        hideHeroImage: false,
+        abstract: "Dr. Patricia Zamora signed for two ROSON DX-A3 units on October 31, 2025. Our team unloaded both in Caloocan on the night of December 18, before the Christmas break.",
+        content: `## From A Signature In October To A Delivery In December
+
+On October 31, 2025 Dr. Patricia Zamora signed for two ROSON **DX-A3** treatment units. On the night of December 18 our team unloaded both of them in Caloocan, ahead of the Christmas break. This article covers both ends of that.
+
+Seven weeks between contract and delivery is a normal interval for a two chair order. The clinic uses it to get the service points and the floor ready, and we use it to confirm stock and schedule the technicians.
+
+## The Contract
+
+The signing photograph is the least dramatic part of any equipment purchase and the part that sets everything else. Two units were specified, along with a K-Clamp rubber dam set and a gutta percha cutter from our small equipment range.
+
+Those two items are worth a line. A rubber dam clamp set is what isolates the tooth being worked on, keeping the field dry and keeping everything else out of the way, and it is the difference between a comfortable endodontic appointment and a difficult one. A gutta percha cutter trims the filling material cleanly at the canal orifice instead of leaving the operator to improvise with a heated instrument.
+
+![Dr. Patricia Zamora signing the contract for two ROSON DX-A3 dental units](/images/news/two-roson-dx-a3-caloocan-contract-to-christmas-delivery/p211-1.jpg)
+
+## The Delivery
+
+The second post is the delivery itself, filmed at night as the crates came off the truck in Caloocan. December is the tightest month in this business. Clinics want the room finished before they close for the holidays, deliveries compete with everyone else's deliveries for road space, and the working days run out faster than the orders do.
+
+We had both units in stock, which is the only reason a December date was possible at all. A chair that has to be ordered in at the end of the year does not arrive before the break.
+
+![Our team unloading the crated DX-A3 units from the truck at night](/images/news/two-roson-dx-a3-caloocan-contract-to-christmas-delivery/v212-1.jpg)
+
+## Two Chairs At Once
+
+Buying two identical units in one order is cheaper to own than buying two different ones two years apart. One set of spare seals, valves and tubing covers both rooms, staff can work in either room without relearning the controls, and a technician servicing one is already familiar with the other.
+
+The thing to size correctly is the plant. Suction and compressor capacity has to be specified for both chairs running at the same time, not one at a time, and that is the detail most often missed when a clinic adds its second room.
+
+## Why It Matters
+
+Our congratulations to Dr. Zamora on the new rooms, and our thanks for the trust. Both units were installed by our own technicians and handed over with the daily routine explained.
+
+## From Our Facebook Page
+
+Written from our posts of October 31 and December 18, 2025.
+
+[facebook](https://www.facebook.com/dentasource/posts/122179402574480133)
+
+[facebook](https://www.facebook.com/dentasource/videos/1873040906635560/)
+
+[See the ROSON DX-A3](/a3)`
+    },
 ];
