@@ -1,0 +1,260 @@
+{
+  "version": 1,
+  "source": "https://ffcdentalclinic.com/growth-partner/",
+  "generated": "2026-09-06",
+  "notes": "Training Center photographs and footage from the growth partner page, re-encoded for the web. ALT TEXT IS ROLE ONLY, never a person. The page offers 37 images and 12 videos; 19 and 8 ship. Excluded by opening each file: 17 private knowledge base screenshots carrying a personal name, a portrait and patient case data; a speaker lineup graphic and a certificate handover reel, both carrying names; a promotional card, which is an ad render rather than footage; a reel of live procedures on patients; and one image too small to use.",
+  "excluded": {
+    "kb-01..kb-16, digi-01": "private knowledge base screenshots carrying a personal name, a portrait and patient case data",
+    "reel-01": "speaker lineup graphic with names and headshots",
+    "reel-04": "certificate handovers; certificates carry recipients' names",
+    "reel-05": "promotional card, not footage",
+    "reel-03": "close ups of live procedures on patients",
+    "mini-18": "320 by 240, too small for the page"
+  },
+  "copy": {
+    "headline": "Teach at a Training Center built for the way you teach.",
+    "statements": [
+      "Software & Agentic Engineering",
+      "Dental Assistant Training"
+    ]
+  },
+  "counts": {
+    "images": 19,
+    "videos": 8,
+    "missing": 0
+  },
+  "items": [
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-01.jpg",
+      "width": 719,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-02.jpg",
+      "width": 740,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-03.jpg",
+      "width": 748,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-04.jpg",
+      "width": 733,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-05.jpg",
+      "width": 765,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-06.jpg",
+      "width": 785,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-07.jpg",
+      "width": 748,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-08.jpg",
+      "width": 900,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-09.jpg",
+      "width": 900,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-10.jpg",
+      "width": 1400,
+      "height": 1050,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/scan-01.jpg",
+      "width": 742,
+      "height": 1200,
+      "alt": "Digital scanning and planning at a workstation",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/scan-02.jpg",
+      "width": 750,
+      "height": 1200,
+      "alt": "Digital scanning and planning at a workstation",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/scan-03.jpg",
+      "width": 1014,
+      "height": 1200,
+      "alt": "Digital scanning and planning at a workstation",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/scan-04.jpg",
+      "width": 800,
+      "height": 1200,
+      "alt": "Digital scanning and planning at a workstation",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/scan-05.jpg",
+      "width": 798,
+      "height": 1200,
+      "alt": "Digital scanning and planning at a workstation",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/scan-06.jpg",
+      "width": 916,
+      "height": 1200,
+      "alt": "Digital scanning and planning at a workstation",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/scan-07.jpg",
+      "width": 900,
+      "height": 1200,
+      "alt": "Digital scanning and planning at a workstation",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/scan-08.jpg",
+      "width": 1400,
+      "height": 1050,
+      "alt": "Digital scanning and planning at a workstation",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/studio-01.jpg",
+      "width": 757,
+      "height": 1200,
+      "alt": "Filming a lesson on the Training Center floor",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "video",
+      "src": "/cinema/growth/reel-02.mp4",
+      "poster": "/cinema/growth/reel-02-poster.jpg",
+      "width": 404,
+      "height": 720,
+      "duration": 44.9,
+      "alt": "The teaching screen in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "video",
+      "src": "/cinema/growth/reel-06.mp4",
+      "poster": "/cinema/growth/reel-06-poster.jpg",
+      "width": 404,
+      "height": 720,
+      "duration": 48.11,
+      "alt": "A lecturer presenting beside the instrument wall",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "video",
+      "src": "/cinema/growth/reel-07.mp4",
+      "poster": "/cinema/growth/reel-07-poster.jpg",
+      "width": 404,
+      "height": 720,
+      "duration": 40.94,
+      "alt": "Hands on work at a phantom head station",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "video",
+      "src": "/cinema/growth/reel-08.mp4",
+      "poster": "/cinema/growth/reel-08-poster.jpg",
+      "width": 404,
+      "height": 720,
+      "duration": 32.9,
+      "alt": "A session in progress on the training floor",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "video",
+      "src": "/cinema/growth/reel-09.mp4",
+      "poster": "/cinema/growth/reel-09-poster.jpg",
+      "width": 404,
+      "height": 720,
+      "duration": 27.49,
+      "alt": "An instructor working through a case with attendees",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "video",
+      "src": "/cinema/growth/reel-10.mp4",
+      "poster": "/cinema/growth/reel-10-poster.jpg",
+      "width": 404,
+      "height": 720,
+      "duration": 34.97,
+      "alt": "A demonstration on the main screen",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "video",
+      "src": "/cinema/growth/reel-11.mp4",
+      "poster": "/cinema/growth/reel-11-poster.jpg",
+      "width": 720,
+      "height": 404,
+      "duration": 48.02,
+      "alt": "Attendees at the phantom head stations",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "video",
+      "src": "/cinema/growth/reel-12.mp4",
+      "poster": "/cinema/growth/reel-12-poster.jpg",
+      "width": 720,
+      "height": 404,
+      "duration": 101.67,
+      "alt": "A lesson being delivered to the room",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    }
+  ]
+}
