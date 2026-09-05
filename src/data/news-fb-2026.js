@@ -4888,14 +4888,14 @@ Our tape is on every carton for a reason that has nothing to do with branding. P
 
 The crew lift the wrapped unit into position with the dentist watching, which is how we prefer it. Placement is easier to agree on while the chair can still be moved.
 
-Then comes the part of the day that matters most and photographs least. Our technician takes the dentist through the arm mounted monitor and the control panel: what each key on the panel does, how the chair positions are stored and recalled, and how the imaging software on the screen behaves. This unit went in with an imaging screen, so the monitor is not a television. It is where the radiograph appears, seconds after it is taken, with the patient still in the chair.
+Then comes the part of the day that matters most and photographs least. Our technician takes the dentist through the arm mounted monitor and the control panel: what each key on the panel does, how the chair positions are stored and recalled, and how the imaging software on the screen behaves. This unit went in with an intraoral sensor, so the monitor is not a television. It is where the radiograph appears, seconds after it is taken, with the patient still in the chair.
 
 ![Our crew lifting the wrapped unit into position in the empty room](/images/news/dr-kristalyn-rufino-roson-dental-chair-caloocan-2025/v307-3.jpg)
 ![A technician walking the dentist through the monitor and control panel](/images/news/dr-kristalyn-rufino-roson-dental-chair-caloocan-2025/v307-4.jpg)
 
 ## Handover
 
-The finished unit is upholstered in cream. On the tray in the handover frames are the two accessories that came with it, an imaging screen and an LED curing light, and on the monitor behind is a set of periapical radiographs pulled up during the walkthrough.
+The finished unit is upholstered in cream. On the tray in the handover frames are the two accessories that came with it, an intraoral sensor and an LED curing light, and on the monitor behind is a set of periapical radiographs pulled up during the walkthrough.
 
 The chair sits where the dentist put it, the hoses are dressed, and the temporary water line still runs across the floor because the room was not finished yet. The chair was.
 
