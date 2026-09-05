@@ -259,6 +259,12 @@ export default function Room() {
     let warmCap = 0;
     let capped = false;
     let userPaused = false;
+    // 🎬 THE THIRD LEGITIMATE PAUSE. 'suppressed' = a showcase video or the marble
+    // theater is speaking and we stood aside for it; 'reelOn' = it still is. Both
+    // ride the same seam as userPaused and capped, so the revocation handler keeps
+    // its hands off them. See THE VIDEO ETIQUETTE below.
+    let suppressed = false;
+    let reelOn = false;
     function warmRun() {
       capped = false;
       a.muted = true;
@@ -369,7 +375,7 @@ export default function Room() {
     // an equaliser over silence. Two pauses are legitimate and must not trigger
     // this: the visitor's own ❙❙, and our 20s data cap.
     function onPause() {
-      if (userPaused || capped) return;
+      if (userPaused || capped || suppressed) return;
       fallBack();
     }
     function onVolumeChange() {
@@ -391,13 +397,21 @@ export default function Room() {
     // 'once' listeners: a scroll that cannot grant activation simply fails and
     // costs nothing, while on Android it is usually what starts the music.
     const armed = ['touchend', 'pointerup', 'click', 'pointerdown', 'touchstart', 'wheel', 'keydown', 'scroll'];
+    /** ☠️ THE ARMED LISTENERS GO THROUGH HERE, NEVER STRAIGHT TO kick(). An ambient
+     *  gesture must not start the song over a video that is already speaking, which
+     *  is the same rule FloatingLounge keeps with its reelOn check. A deliberate ask
+     *  (the dock, ▶, a chapter tap) still calls kick() directly and still wins. */
+    function kickAmbient() {
+      if (reelOn) return;
+      kick();
+    }
     function arm() {
       for (let i = 0; i < armed.length; i++) {
-        D.addEventListener(armed[i], kick, { capture: true, passive: true });
+        D.addEventListener(armed[i], kickAmbient, { capture: true, passive: true });
       }
     }
     function disarm() {
-      for (let i = 0; i < armed.length; i++) D.removeEventListener(armed[i], kick, true);
+      for (let i = 0; i < armed.length; i++) D.removeEventListener(armed[i], kickAmbient, true);
     }
     function kick() {
       touched = true;
@@ -1030,6 +1044,9 @@ export default function Room() {
     }
     function onPlayClick() {
       graph();
+      // A manual press always wins over auto-resume: whatever a speaking video did
+      // to this player, the visitor has just overruled it.
+      suppressed = false;
       // Pressing it counts as touching the rail, so the bar stays up for another
       // 2s instead of fading out from under the finger.
       show();
@@ -1047,6 +1064,38 @@ export default function Room() {
     a.addEventListener('play', paint);
     a.addEventListener('pause', paint);
     paint();
+
+    // ── 🎬 THE VIDEO ETIQUETTE — one audio source at a time ──────────────────
+    // The site already coordinates its audio through one window event:
+    //   window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on } }))
+    // fired by the home VideoShowcase as a reel takes the centre of the screen,
+    // and by GlassMarbles / ArticleMarbles as the theater opens and closes.
+    // FloatingLounge and FocusMusic both answer it the same way, and so does this
+    // room: stand aside while a video speaks, come back when it stops, and only if
+    // WE were the one who stepped away. It replaces FFC's __txHush / __txEnsurePlay
+    // window bridges, which were function calls into a page that no longer exists.
+    //
+    // ☠️ THE TEST IS audible(), NOT !a.paused. The muted warm-up is "not paused"
+    // and makes no sound, so suppressing it would set the resume flag on silence
+    // and then hand the reel's ending an un-mute nobody asked for. Only real,
+    // hearable music is worth standing aside for.
+    function onVideoAudio(e) {
+      reelOn = !!(e.detail && e.detail.on);
+      if (reelOn) {
+        if (audible()) {
+          suppressed = true;
+          clearTimeout(warmCap);
+          a.pause();
+        }
+      } else if (suppressed) {
+        suppressed = false;
+        // Same resume path as the visitor's own ▶: intent recorded, kick() rides,
+        // so a platform refusal still falls back cleanly and the dock stays honest.
+        userPaused = false;
+        kick();
+      }
+    }
+    window.addEventListener('dsd:videoaudio', onVideoAudio);
 
     // ── open / close ───────────────────────────────────────────────────────
     // Tapping the dock ANYWHERE opens the room. It never pauses the music: the
@@ -1135,6 +1184,7 @@ export default function Room() {
       D.removeEventListener('pointerdown', graph, true);
       D.removeEventListener('visibilitychange', onVisibility);
       D.removeEventListener('keydown', onEscape);
+      window.removeEventListener('dsd:videoaudio', onVideoAudio);
       for (let wi = 0; wi < wake.length; wi++) room.removeEventListener(wake[wi], show, true);
       a.removeEventListener('pause', onPause);
       a.removeEventListener('playing', onPlaying);

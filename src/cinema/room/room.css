@@ -18,6 +18,10 @@
      #fff6da / #fff3cf / #ffe9a8  →  #ecfdf5
      rgba(74,60,26,x)  shadows    →  rgba(6,40,28,x)
 
+   TWO THINGS ON THIS PAGE ARE NEVER GREEN: the spectrum's hue sweep, which
+   belongs to the music, and the rail's Smooth Drift heart, which is red by
+   house law. Both are called out where they are drawn.
+
    Fonts follow the DSD tokens: var(--font-heading) is the serif voice (names,
    titles, whispers), var(--font-body) the sans.
    ══════════════════════════════════════════════════════════════════════════ */
@@ -566,9 +570,15 @@
   transform: scale(1.45);
   box-shadow: 0 0 0 1.5px rgba(6, 10, 8, 0.92), 0 0 10px rgba(110, 231, 183, 0.9);
 }
-/* ── 💛 THE HEART ───────────────────────────────────────────────────────────
+/* ── ❤️ THE HEART ───────────────────────────────────────────────────────────
    ONE chapter, Smooth Drift, wears a heart instead of a circle. Nobody is told;
    you find it. Same absolute placement, same aria-hidden, same hit target.
+   ☠️ THE HEART IS THE ONE THING ON THIS RAIL THAT IS NEVER GREEN. House law
+   (2026-09-05, Q5): green is the DSD accent, the heart stays RED. These are the
+   cinema's own night reds, RED_NIGHT #e84a60 and RED_HI_NIGHT #ff97a8 from
+   CinemaPage.jsx, so the marker and the heart beat of the scroll arc are the
+   same red. This room is always a dark stage, so the night pair is the right
+   one; there is no day register to match.
    ☠️ THE SELECTORS ARE DOUBLED (.tx-cdot.tx-heart) ON PURPOSE: the lit '.on'
    state above is two classes, so a single .tx-heart could not out-specify it
    and the circle's background and ring would bleed through the heart as a blob. */
@@ -583,13 +593,13 @@
 }
 .tx-cdot.tx-heart svg { display: block; width: 100%; height: 100%; transform-origin: 50% 55%; }
 .tx-cdot.tx-heart path {
-  fill: rgba(110, 231, 183, 0.55);
+  fill: rgba(232, 74, 96, 0.6);
   stroke: rgba(6, 10, 8, 0.92);
   stroke-width: 2.2;
   paint-order: stroke;
 }
 .tx-cdot.tx-heart.on { background: none; box-shadow: none; transform: scale(1.28); }
-.tx-cdot.tx-heart.on path { fill: #6ee7b7; filter: drop-shadow(0 0 7px rgba(110, 231, 183, 0.85)); }
+.tx-cdot.tx-heart.on path { fill: #ff97a8; filter: drop-shadow(0 0 7px rgba(232, 74, 96, 0.9)); }
 /* The faintest beat, and only on the INNER svg: the outer span already owns
    transform for the .on scale, and an animation there would win and freeze it
    at 1. Reduced motion never opts in. */
