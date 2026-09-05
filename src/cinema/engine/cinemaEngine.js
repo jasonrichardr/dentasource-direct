@@ -42,9 +42,11 @@ export async function startCinema({ canvas, root, beats: arc, isDark }) {
 
   let chain = null;
   let onBeatBuilt = () => {};
-  const builder = buildArcProgressive(N, arc, images, {
-    onFormation: (i, positions, isText) => {
-      chain?.setFormation(i, positions, isText);
+  // the wordmark's second word is sampled in the register it will be read in
+  const arcForBuild = arc.map((b) => (b.kind === 'lockup' ? { ...b, isDark: !!isDark } : b));
+  const builder = buildArcProgressive(N, arcForBuild, images, {
+    onFormation: (i, positions, isText, colors, sizeScale) => {
+      chain?.setFormation(i, positions, isText, colors, sizeScale);
       onBeatBuilt();
     },
   });
@@ -99,6 +101,11 @@ export async function startCinema({ canvas, root, beats: arc, isDark }) {
       COL_RED.multiplyScalar(NIGHT_EXP_RED);
       COL_RED_HI.multiplyScalar(NIGHT_EXP_RED);
     }
+    // THE SAMPLED COLOURS TAKE THE SAME EXPOSURE AS THE BRAND ONES. Multiplied, never
+    // replaced: at night additive blending sums overlapping dots, and a silver ring at
+    // full value clips to white exactly the way the gold wordmark once did. In light the
+    // gain is 1, so the logo renders true on the cream ground under normal blending.
+    material.uniforms.uTintGain.value = dark ? NIGHT_EXP : 1;
     material.blending = dark ? THREE.AdditiveBlending : THREE.NormalBlending;
     material.uniforms.uColorA.value.copy(COL_ACCENT);
     material.uniforms.uColorB.value.copy(COL_DEEP);

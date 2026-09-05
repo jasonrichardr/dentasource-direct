@@ -36,7 +36,12 @@ export function buildArcProgressive(N, beats, images, { onFormation, onDone } = 
   const formations = new Array(beats.length).fill(null);
 
   const finish = (i) => {
-    formations[i] = { positions: jobs[i].positions, isText: jobs[i].isText };
+    formations[i] = {
+      positions: jobs[i].positions,
+      isText: jobs[i].isText,
+      colors: jobs[i].colors || null,
+      sizeScale: jobs[i].sizeScale ?? 1,
+    };
     return formations[i];
   };
 
@@ -60,7 +65,7 @@ export function buildArcProgressive(N, beats, images, { onFormation, onDone } = 
     while (next < jobs.length && performance.now() < until) {
       if (jobs[next].work()) {
         const f = finish(next);
-        onFormation?.(next, f.positions, f.isText);
+        onFormation?.(next, f.positions, f.isText, f.colors, f.sizeScale);
         next += 1;
       }
     }

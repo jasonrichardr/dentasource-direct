@@ -36,8 +36,8 @@ export class MorphChain {
   }
 
   /** A formation finished building. Slot it in, and re-bind if the live pair just grew. */
-  setFormation(i, positions, isText = false) {
-    this.formations[i] = { positions, isText };
+  setFormation(i, positions, isText = false, colors = null, sizeScale = 1) {
+    this.formations[i] = { positions, isText, colors, sizeScale };
     this._countReady();
     if (i === this.lastSeg + 1) this._rebind(this.lastSeg);
   }
@@ -51,6 +51,16 @@ export class MorphChain {
     g.attributes.position.needsUpdate = true;
     g.attributes.aTarget.array.set(this.formations[seg + 1].positions);
     g.attributes.aTarget.needsUpdate = true;
+    // the colours travel with the positions, and a formation with none simply reads zero
+    const zero = this._zero || (this._zero = new Float32Array(g.attributes.aColor.array.length));
+    g.attributes.aColor.array.set(this.formations[seg].colors || zero);
+    g.attributes.aColor.needsUpdate = true;
+    g.attributes.aColorTarget.array.set(this.formations[seg + 1].colors || zero);
+    g.attributes.aColorTarget.needsUpdate = true;
+    this.material.uniforms.uTintA.value = this.formations[seg].colors ? 1 : 0;
+    this.material.uniforms.uTintB.value = this.formations[seg + 1].colors ? 1 : 0;
+    this.material.uniforms.uSizeA.value = this.formations[seg].sizeScale ?? 1;
+    this.material.uniforms.uSizeB.value = this.formations[seg + 1].sizeScale ?? 1;
     // calm the turbulence when ARRIVING at a text state so words resolve crisply
     this.material.uniforms.uTextLock.value = this.formations[seg + 1].isText ? 1 : 0;
     this.lastSeg = seg;

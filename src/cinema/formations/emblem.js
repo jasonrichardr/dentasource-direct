@@ -43,6 +43,7 @@ export function imageToPositions(N, img, opts = {}) {
     boxW = WORLD * 0.84,
     boxH = WORLD * 0.84,
     jitter = 0.02,
+    edgeShare = 0.5,       // share of the budget spent on the silhouette
     z = 0,
     zBow = 0,              // optional parabolic bow toward the camera (depth on orbit)
     yOffset = 0,           // lift/lower the whole mark in world units
@@ -72,32 +73,56 @@ export function imageToPositions(N, img, opts = {}) {
   ctx.drawImage(img, sx, sy, sw, sh, 0, 0, cw, ch);
 
   const { data } = ctx.getImageData(0, 0, cw, ch);
-  const pts = [];
+  const keep = (x, y) => {
+    if (x < 0 || y < 0 || x >= cw || y >= ch) return false;
+    const idx = (y * cw + x) * 4;
+    if (data[idx + 3] <= threshold) return false;
+    const l = (0.299 * data[idx] + 0.587 * data[idx + 1] + 0.114 * data[idx + 2]) / 255;
+    return mode === "light" ? l >= inkMin : l <= inkMax;
+  };
+
+  // TWO POOLS, EDGES AND FILL. Spreading the budget evenly over the ink gives a cloud of
+  // confetti: the interior of a shape eats most of the particles and the outline, which
+  // is the only part the eye reads as a logo, gets whatever is left. So a pixel next to
+  // a pixel we are NOT keeping is an edge, and edges get their own share of the budget.
+  const edge = [];
+  const fill = [];
   for (let y = 0; y < ch; y++) {
     for (let x = 0; x < cw; x++) {
-      const idx = (y * cw + x) * 4;
-      if (data[idx + 3] <= threshold) continue;
-      const lum = (0.299 * data[idx] + 0.587 * data[idx + 1] + 0.114 * data[idx + 2]) / 255;
-      if (mode === "light") { if (lum < inkMin) continue; }
-      else if (lum > inkMax) continue;         // the ground, in both 'alpha' and 'dark'
-      pts.push([x, y]);
+      if (!keep(x, y)) continue;
+      const isEdge = !keep(x - 1, y) || !keep(x + 1, y) || !keep(x, y - 1) || !keep(x, y + 1);
+      (isEdge ? edge : fill).push([x, y]);
     }
   }
+  const pts = edge.length + fill.length ? [...edge, ...fill] : [];
 
   const out = new Float32Array(N * 3);
-  if (pts.length === 0) return out;
-  shuffle(pts);
+  const col = new Float32Array(N * 3);
+  if (pts.length === 0) return { positions: out, colors: col };
+  shuffle(edge);
+  shuffle(fill);
 
   // CONTAIN-FIT to the world box, preserving aspect (so crops of any shape center cleanly).
   const halfW = cw / 2;
   const halfH = ch / 2;
   const s = Math.min(boxW / halfW, boxH / halfH);
+  // How much of the budget the outline gets. Edges are a small fraction of the pixels and
+  // the whole of the silhouette, so they are worth over-serving.
+  const nEdge = edge.length ? Math.min(N, Math.round(N * edgeShare)) : 0;
   for (let i = 0; i < N; i++) {
-    const p = pts[i % pts.length];
+    const fromEdge = i < nEdge;
+    const pool = fromEdge ? edge : (fill.length ? fill : edge);
+    const p = pool[(fromEdge ? i : i - nEdge) % pool.length];
     const nx = halfW > 0 ? (p[0] - halfW) / halfW : 0; // -1..1 across width (for the bow)
     out[i * 3 + 0] = (p[0] - halfW) * s + (Math.random() - 0.5) * jitter;
     out[i * 3 + 1] = -(p[1] - halfH) * s + yOffset + (Math.random() - 0.5) * jitter;
     out[i * 3 + 2] = z + zBow * (1 - nx * nx) + (Math.random() - 0.5) * jitter;
+    // THE DOT WEARS THE PIXEL IT CAME FROM. The ring is silver, the D is green, the
+    // shadow is near black, and a single brand colour throws all three away.
+    const idx = (p[1] * cw + p[0]) * 4;
+    col[i * 3 + 0] = data[idx] / 255;
+    col[i * 3 + 1] = data[idx + 1] / 255;
+    col[i * 3 + 2] = data[idx + 2] / 255;
   }
-  return out;
+  return { positions: out, colors: col };
 }

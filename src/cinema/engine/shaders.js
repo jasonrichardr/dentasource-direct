@@ -5,6 +5,8 @@
 export const vertexShader = /* glsl */ `
   attribute vec3 aTarget;   // where this particle goes in the NEXT formation
   attribute vec4 aRandom;   // stable per-particle randoms (stagger, turbulence, size)
+  attribute vec3 aColor;       // this dot's colour in the CURRENT formation
+  attribute vec3 aColorTarget; // and in the next one
 
   uniform float uProgress;        // 0..1 within the CURRENT segment (driven by scroll)
   uniform float uDelay;           // per-particle stagger spread
@@ -16,10 +18,22 @@ export const vertexShader = /* glsl */ `
   uniform float uMaxSize;         // upper clamp on point size in px (smaller on mobile)
   uniform float uTextLock;        // 1.0 = arriving at a TEXT state -> calm the turbulence
   uniform vec2  uVideoScale;      // maps particle xy -> photo UV (0..1)
+  // A formation either wears the colours sampled from its source image (a logo, a
+  // wordmark) or the uniform brand colour (a sphere, the heart). uTintA and uTintB carry
+  // that as a WEIGHT per formation rather than a branch, so a morph from a sampled
+  // formation to a uniform one simply lerps the weight to zero and lands on whatever the
+  // director has the uniform doing. The lockup to heart transition is that and nothing
+  // more: sampled colour on one side, red on the other.
+  uniform float uTintA;
+  uniform float uTintB;
+  uniform float uSizeA;           // per formation point size scale, lerped like everything
+  uniform float uSizeB;
 
   varying vec4  vRandom;
   varying float vFade;
   varying vec2  vVideoUv;
+  varying vec3  vTint;
+  varying float vTintW;
 
   // ---- Ashima 3D simplex noise (snoise) ----
   vec3 mod289(vec3 x){return x - floor(x*(1.0/289.0))*289.0;}
@@ -112,11 +126,18 @@ export const vertexShader = /* glsl */ `
     // plane-top (pos.y+ -> v=1) already samples the image top — no extra flip.
     vVideoUv = mixedPosition.xy * uVideoScale + 0.5;
 
+    // the dot's own colour, and how much of it to use, both carried across the morph
+    vTint = mix(aColor, aColorTarget, progress);
+    vTintW = mix(uTintA, uTintB, progress);
+
     vec4 mvPos = modelViewMatrix * vec4(mixedPosition, 1.0);
 
     // 5) POINT SIZE — distance-attenuated + per-particle jitter, CLAMPED both ways. The
     //    lower bound keeps far dots visible; the upper bound stops near-camera explosion.
-    gl_PointSize = clamp(uSize / -mvPos.z * (aRandom.x * 0.6 + 0.5), 1.5, uMaxSize);
+    // A sampled formation reads as a logo rather than confetti when its dots are SMALLER
+    // and denser, so each formation carries its own size scale across the morph.
+    float sizeScale = mix(uSizeA, uSizeB, progress);
+    gl_PointSize = clamp(uSize * sizeScale / -mvPos.z * (aRandom.x * 0.6 + 0.5), 1.5, uMaxSize);
     gl_Position = projectionMatrix * mvPos;
   }
 `;
@@ -129,10 +150,16 @@ export const fragmentShader = /* glsl */ `
   uniform sampler2D uVideo; // photo / video texture
   uniform float uVideoMix;  // 0 = brand color, 1 = pure photo color (driven by scroll)
   uniform float uVideoGain; // brightness gain on the sampled photo (1.0 = true-to-life)
+  // The theme's exposure, applied to the SAMPLED colours the same way it is applied to
+  // the brand colours on the CPU side. Multiplied, never replaced: at night every dot
+  // contributes less so overlapping dots sum to a colour instead of clipping to white.
+  uniform float uTintGain;
 
   varying vec4  vRandom;
   varying float vFade;
   varying vec2  vVideoUv;
+  varying vec3  vTint;
+  varying float vTintW;
 
   void main() {
     // soft round dot from the square point sprite
@@ -143,6 +170,8 @@ export const fragmentShader = /* glsl */ `
 
     // a few percent of dots lean to the accent -> richer than a flat single color
     vec3 col = mix(uColorA, uColorB, step(0.92, vRandom.z) * 0.8);
+    // and where the formation was sampled from a source image, the dot wears that pixel
+    col = mix(col, vTint * uTintGain, vTintW);
 
     // PHOTO — each dot takes the color of the sampled image at its position
     if (uVideoMix > 0.001) {
