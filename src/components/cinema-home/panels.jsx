@@ -541,6 +541,7 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
     // during the fetch.
     let cancelled = false;
     let cluster = null;
+    let cleanupSeat = null;
     let io = null;
     let mo = null;
     let theaterOpen = false;
@@ -555,6 +556,7 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
       io?.disconnect();
       mo?.disconnect();
       if (theaterOpen) window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on: false } }));
+      cleanupSeat?.();
       delete mount._dsdCluster;
       cluster?.dispose();
     };
@@ -581,7 +583,20 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
       // around it: a nearer camera shows less world, so the same beads fill more of the
       // frame and render larger at the same time. cameraZ, not spreadX, is the dial to
       // reach for if this needs adjusting again.
-      ? { isMobile: false, cameraZ: 7.0, spreadX: 6.4, spreadY: 2.2 }
+      // ☠️ spreadY CAME DOWN 2.2 -> 1.4 SO THE WALL CAN SIT UNDER THE COPY AT ALL.
+      // Measured: at spreadY 2.2 the desktop shoal stands 4.25 world units tall against a
+      // visible height of 5.80, which leaves 1.55 of slack. Clearing the copy needs the
+      // top at world 1.19 on a 1440x900, and 1.19 minus 4.25 puts the bottom at -3.07
+      // against a screen bottom of -2.90. It does not fit, and the seating loop's own
+      // clamp was correctly refusing to push the wall off the bottom of the screen: it
+      // came to rest at 9px of clearance where 24 was asked for.
+      // The camera is NOT the dial here. Pulling it back would buy the room and cost the
+      // 98 percent width fill that was ruled to stay. A flatter well buys the same room
+      // and touches only the height: the wall becomes the wide band of glass across the
+      // stage that it was asked to be, and spreadX is untouched.
+      // Shoal height runs about 2 * (0.5 * spreadY + 1.04) on this bead set, so 1.4 gives
+      // roughly 3.5 units and about 95px of room to spare under the wall.
+      ? { isMobile: false, cameraZ: 7.0, spreadX: 5.8, spreadY: 1.4 }
       // ☠️ A PORTRAIT STAGE NEEDS A PORTRAIT WELL. The phone kept an isotropic shoal and a
       // near camera while its canvas was a 98vw by 52vh landscape box. The viewport stage
       // is the opposite shape: at 390x844 the aspect is 0.46, so the visible WIDTH in
@@ -619,6 +634,118 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
     // the proof harness reads the shoal's real extent through this; nothing in the page
     // uses it, and it goes with the cluster on dispose
     mount._dsdCluster = cluster;
+
+    // ☠️ THE WALL RESTS BELOW THE WORDS, AND IT IS MEASURED, NOT DIALLED.
+    // Jarich: the shoal was sitting across the headline and body. The fix is to move where
+    // the centring spring PULLS TO, never to fence the beads: a flung bead still travels
+    // anywhere on or off the screen, it just comes home lower down.
+    //
+    // The seating is self calibrating because the spring is LINEAR. The shoal's shape does
+    // not depend on where its well sits, so once we know the settled top relative to the
+    // current centre, that gap is a constant and the correct centre is one subtraction
+    // away. No sweep, no magic number, and it re derives itself at any viewport.
+    //
+    //   1. seat it at a safe estimate immediately, so it never sits over the copy even
+    //      while the spring is still converging. spreadY overestimates the half height on
+    //      both viewports (measured: 2.2 -> 2.03, 4.2 -> 2.97), and overestimating pushes
+    //      the wall DOWN, which is the safe direction to be wrong in.
+    //   2. once settled, read the real gap and seat it exactly.
+    //   3. on resize, re-seat from the stored gap against the re measured copy block.
+    // ☠️ AIM ABOVE THE FLOOR AND DO NOT CHASE NOISE. The instruction is a MINIMUM of 24px,
+    // and the thing being measured is the top edge of the topmost bead, which is never
+    // still: the beads jostle in the well, so that edge wanders several pixels either way
+    // for as long as the wall is alive. A loop aiming at exactly 24 with a tight deadband
+    // hunted around it and was measured resting at 19, 22, 23, 28. So it aims at 34 and
+    // ignores errors under 8px: the wall comes to rest somewhere in a 26 to 42 band, and
+    // the floor Jarich set is never breached by the jitter.
+    const COPY_GAP_PX = 34;                 // aim, 10px above the 24px floor asked for
+    const DEADBAND_PX = 8;                  // wider than the shoal's own jitter
+
+    // ☠️ THE LOOP CLOSES ON THE PIXEL GAP, NOT ON A MODEL OF THE SHOAL.
+    // Two earlier versions tried to predict where to put the well: seat it at
+    // targetTop minus the shoal's half height, refine that half height once the spring
+    // settled. Both were consistently short, and the reason is instructive. The half
+    // height is an INTERMEDIATE quantity, so every tolerance in measuring it becomes an
+    // error in the thing we actually care about: a 2 percent tolerance on a 1.89 unit
+    // half height is 6 pixels of clearance, and the wall came to rest at 15px where 24
+    // was asked for. So this measures the ONE number in the instruction, the gap in
+    // pixels between the copy's bottom and the wall's top, and moves the well by exactly
+    // that error. The spring is linear, so the correction is exact and converges in a
+    // tick or two from any starting point, at any viewport, with no constant to keep.
+    //
+    // ☠️ IT ONLY CORRECTS WHILE THE SHOAL IS CALM. A flung bead makes the top edge shoot
+    // up, and a loop that reacted to that would shove the whole wall downward every time
+    // somebody played with it. Two consecutive samples have to agree before it touches
+    // anything, which parks the loop for the duration of a fling and resumes after, and
+    // is also what makes it correct itself after a resize without any resize handler
+    // arithmetic. It runs for the life of the cluster because it costs a rect read and
+    // some arithmetic every 1.2 seconds.
+    // ☠️ CONTROL ON THE MEAN, NOT ON THE TOPMOST BEAD. The extreme edge is the noisiest
+    // number the wall produces: whichever bead happens to be highest changes from tick to
+    // tick and its edge wanders several pixels. Controlling on it meant the calm test
+    // almost never passed on the phone, where 24 beads jostle in a narrow well, so the
+    // correction hardly ever fired and the wall sat wherever the opening estimate left it.
+    // meanY is an average over every bead and moves smoothly, and the shoal's half height
+    // above that mean is a SHAPE property, so it is smoothed across ticks rather than
+    // trusted from one. Together they give a control signal steady enough to act on and a
+    // calm test that is true whenever the wall has actually stopped travelling.
+    const spreadY = shape.spreadY ?? 3.0;
+    let halfTop = null;
+
+    const adjust = () => {
+      const copy = mount.parentElement?.querySelector('.dsd-copy');
+      const b = cluster.bounds();
+      if (!copy || !b || !Number.isFinite(b.top) || !Number.isFinite(b.meanY)) return;
+
+      // ☠️ THE CORRECTION ALWAYS RUNS. Gating it on the wall being calm was self
+      // defeating and it is worth writing down why: a correction MOVES the shoal, which
+      // makes the next sample not calm, which blocks the next correction. The loop could
+      // therefore take exactly one step per settling period, each settling period is 7 to
+      // 15 seconds, and the step it took was based on whatever the shape estimate happened
+      // to be at that moment. Measured across two runs of identical code the desktop wall
+      // came to rest at 73px and then at 19px. That is not a tuning problem, it is a loop
+      // that cannot iterate.
+      //
+      // So the position command runs every tick and the SHAPE estimate is what gets
+      // steadied, by a slow moving average. That also makes it fling proof without a calm
+      // test: flinging one bead barely moves the mean, and the average absorbs the brief
+      // change in the shoal's height rather than chasing it.
+      const sample = b.top - b.meanY;
+      halfTop = halfTop == null ? sample : halfTop * 0.85 + sample * 0.15;
+
+      // World units per CSS pixel. The fov is vertical, so the visible HEIGHT maps onto
+      // the canvas height, and on this stage the canvas is the viewport.
+      const perPx = (b.visibleHalfH * 2) / (window.innerHeight || 1);
+      const topPx = window.innerHeight / 2 - (b.meanY + halfTop) / perPx;
+      const wantPx = copy.getBoundingClientRect().bottom + COPY_GAP_PX;
+      const errPx = topPx - wantPx;               // negative means the wall is too high
+      if (Math.abs(errPx) < DEADBAND_PX) return;
+
+      // Never seat it so low that the wall's own bottom leaves the screen. Clearing the
+      // copy is the instruction, but a wall nobody can see is not an improvement.
+      // GAIN below 1 so the wall eases into place over a few ticks instead of lurching
+      // the moment the page is resized, and so a wrong shape estimate cannot overshoot.
+      let delta = errPx * perPx * 0.5;
+      const floor = -b.visibleHalfH - b.bottom;   // the most we may still move down
+      if (delta < floor) delta = floor;
+      cluster.setCenterY(b.centreY + delta);
+    };
+
+    // One coarse placement before the first correction, so the wall never sits over the
+    // copy even on the opening frames. spreadY overestimates the half height on both
+    // viewports (2.2 -> 2.03, 4.2 -> 2.97) and overestimating seats it LOWER, which is
+    // the safe direction to be wrong in.
+    (() => {
+      const copy = mount.parentElement?.querySelector('.dsd-copy');
+      const b = cluster.bounds();
+      if (!copy || !b) return;
+      const perPx = (b.visibleHalfH * 2) / (window.innerHeight || 1);
+      const targetTop = (window.innerHeight / 2 - (copy.getBoundingClientRect().bottom + COPY_GAP_PX)) * perPx;
+      cluster.setCenterY(targetTop - spreadY);
+    })();
+
+    const seatTimer = setInterval(adjust, 1200);
+    cleanupSeat = () => clearInterval(seatTimer);
 
     // The cluster sleeps whenever its stage leaves the screen.
     io = new IntersectionObserver(

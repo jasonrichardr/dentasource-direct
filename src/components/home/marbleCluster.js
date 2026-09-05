@@ -64,8 +64,15 @@ const MAX_DT = 1 / 30;
 export function createMarbleCluster(container, {
   videos = [], count = 18, isMobile = false, faceFocus = {}, faceZoom = {},
   faceZoomDefault = 1, cameraZ = 8, spreadX = NATURAL_R, spreadY = NATURAL_R,
-  stage = 'container',
+  stage = 'container', centerY = 0,
 } = {}) {
+  // ☠️ THE WELL'S CENTRE MOVES, THE WALL'S FREEDOM DOES NOT.
+  // Jarich: the shoal was sitting across the headline. The fix is NOT a wall or a clamp,
+  // both of which would undo the round before this one; it is moving where the centring
+  // spring PULLS TO. A bead can still be flung anywhere on or off the screen, it just
+  // comes home to a point lower down. Held in a mutable so the caller can re-seat it on
+  // resize, which it must: the copy block's height changes with the viewport.
+  let centreY = centerY;
   // ☠️ THE INVISIBLE BOX WAS NEVER PHYSICS. There are no cannon planes in this file and
   // never were: a bead flung outward is not stopped, it is simply drawn outside the
   // drawing buffer and disappears. The box IS the canvas, and on the home beat that canvas
@@ -534,7 +541,11 @@ export function createMarbleCluster(container, {
     // center spring (mass-normalised accel → all sizes feel the same pull); firmer on Z to keep it facing
     for (const { body } of units) {
       const m = body.mass;
-      _f.set(-kX * body.position.x * m, -kY * body.position.y * m, -K_CENTER_Z * body.position.z * m);
+      _f.set(
+        -kX * body.position.x * m,
+        -kY * (body.position.y - centreY) * m,   // pulls home to centreY, not to zero
+        -K_CENTER_Z * body.position.z * m,
+      );
       body.applyForce(_f, body.position);
     }
 
@@ -620,12 +631,29 @@ export function createMarbleCluster(container, {
    *  screenshot: this canvas has no preserveDrawingBuffer, so its pixels cannot be read
    *  back after the frame is presented. */
   function bounds() {
-    let maxY = 0, maxX = 0;
+    // ☠️ TOP AND BOTTOM SEPARATELY, BECAUSE THE SHOAL IS NO LONGER CENTRED ON ZERO.
+    // halfH used to be max(|y|)+r, which is only the shoal's extent while its centre sits
+    // at the origin. With the well seated lower that number silently becomes the distance
+    // to whichever edge happens to be further from zero, and a caller asking "does the top
+    // clear the copy" would get an answer about the bottom. top and bottom are the real
+    // edges; halfH is kept as the half HEIGHT so existing fit checks still mean something.
+    let maxX = 0, top = -Infinity, bottom = Infinity, sumY = 0;
     for (const { unit, body } of units) {
       const r = body.shapes[0]?.radius ?? 0;
-      maxY = Math.max(maxY, Math.abs(unit.position.y) + r);
       maxX = Math.max(maxX, Math.abs(unit.position.x) + r);
+      top = Math.max(top, unit.position.y + r);
+      bottom = Math.min(bottom, unit.position.y - r);
+      sumY += unit.position.y;
     }
+    if (!units.length) { top = 0; bottom = 0; }
+    // ☠️ meanY IS WHAT A CALLER SHOULD MEASURE THE SHOAL'S SHAPE AGAINST, NOT centreY.
+    // The shoal's SPREAD about its own centre of mass settles in a second or two. The
+    // journey of that centre of mass to the well's centre takes far longer, and after the
+    // well is re-seated it is a slow slide. Measuring the shape against centreY during
+    // that slide reads a shoal that is smaller than it will be, which is exactly how the
+    // first seating attempt ended up parking the wall over the copy it was meant to clear.
+    const meanY = units.length ? sumY / units.length : 0;
+    const maxY = (top - bottom) / 2;
     // ☠️ READ LIVE OFF THE CAMERA, NOT OFF A STORED NUMBER. The fov is vertical and fixed,
     // so the visible HEIGHT only depends on the camera distance, but the visible WIDTH is
     // height times the aspect, and resize() rewrites that aspect on every window change.
@@ -634,11 +662,15 @@ export function createMarbleCluster(container, {
     const visibleHalfW = visibleHalfH * camera.aspect;
     return {
       halfH: maxY, halfW: maxX,
+      top, bottom, centreY, meanY,
       visibleHalfH, visibleHalfW,
       fits: maxY <= visibleHalfH && maxX <= visibleHalfW,
       fitsH: maxY <= visibleHalfH, fitsW: maxX <= visibleHalfW,
     };
   }
 
-  return { setActive, resize, dispose, canvas, bounds };
+  /** Re-seat the well. The shoal slides to the new centre under its own spring. */
+  function setCenterY(y) { if (Number.isFinite(y)) centreY = y; }
+
+  return { setActive, resize, dispose, canvas, bounds, setCenterY };
 }

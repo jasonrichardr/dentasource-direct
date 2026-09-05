@@ -476,7 +476,20 @@
 /* ☠️ DISABLED IS DIMMED, NOT HIDDEN. A pager whose ends disappear changes width as the
    visitor moves through it, and the count label jumps sideways under their eye. */
 .dsd-pager-btn:disabled { opacity: .34; cursor: default; }
-.dsd-pager-count { font-variant-numeric: tabular-nums; }
+
+/* ☠️ THE COUNT NEEDS ITS OWN GROUND NOW THAT THE WALL SITS UNDER IT. The pager used to
+   float over the night sky, where bare text was perfectly legible. Seating the shoal below
+   the copy moved the glass down to exactly where this label sits, and pale text over a
+   lit, moving bead is not readable at any size. It carries the same pill as the buttons
+   either side of it, which also stops the row reading as two controls with a gap. */
+.dsd-pager-count {
+  font-variant-numeric: tabular-nums;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(8, 6, 12, .55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
 
 @media (max-width: 700px) {
   .dsd-pager { gap: 10px; font-size: 11px; }
