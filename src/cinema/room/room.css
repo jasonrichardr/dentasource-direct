@@ -4,23 +4,25 @@
 
    Ported 1:1 from the FFC room (ffc-patient-management/scripts/fork-thanks-
    cinema.ts, the template-literal block grafted before </body>). Every layout
-   number, every measured comment and every fallback law is kept. The one
-   systematic change is the metal: FFC's gold ladder became DentaSource green,
-   because the pill and the room are brand furniture. The spectrum's own red to
-   violet hue law is NOT brand ink and is untouched.
+   number, every measured comment and every fallback law is kept.
 
-     #8e6f18 / #7d6316 / #6f5a1e  →  #065f46      (deep, ink on a pale pane)
-     #9a7b1e                      →  #047857
-     #b8932e                      →  #10b981      (the signal, --green-primary)
-     #c9a227 / #a8842a            →  #059669
-     #e6c76a                      →  #6ee7b7      (light, ink on the dark stage)
-     #f0dfa8 / #f2dc9a / #dcc98d  →  #a7f3d0
-     #fff6da / #fff3cf / #ffe9a8  →  #ecfdf5
-     rgba(74,60,26,x)  shadows    →  rgba(6,40,28,x)
+   ☠️ THE METAL IS FFC GOLD, 1:1. THIS IS NOT A DSD GREEN SURFACE.
+   Q19, 2026-09-06, Jarich on the preview: "our thank you button mp3 player make
+   it like ffcdentalclinic color 1:1 gold i want it 1:1 even the thank you i
+   want the ffc gold 1:1 ... all in here get the ffc color 1:1 brother."
+   An earlier ruling had recoloured this room onto DentaSource's green ladder.
+   That ruling is withdrawn FOR THIS ROOM ONLY, and every value here was taken
+   literally out of the FFC source, rule by rule, matched on selector rather
+   than picked by eye. The full old-to-new table is in the commit that did it.
+   Green anywhere in this file is now a bug, and the same goes for the two
+   colours that live in JS: the wall's gold baseline in spectrum.js and the
+   breath phase tints in Room.jsx.
 
-   TWO THINGS ON THIS PAGE ARE NEVER GREEN: the spectrum's hue sweep, which
-   belongs to the music, and the rail's Smooth Drift heart, which is red by
-   house law. Both are called out where they are drawn.
+   The room keeps exactly three DSD things: the round DSD badge at #tx-logo,
+   the 144 thought lines in DSD's voice, and the rail's Smooth Drift heart,
+   which is RED by a separate house law. The heart was never part of the green
+   ladder, so the gold ruling does not reach it. The spectrum's red-to-violet
+   hue sweep belongs to the music and to neither palette.
 
    Fonts follow the DSD tokens: var(--font-heading) is the serif voice (names,
    titles, whispers), var(--font-body) the sans.
@@ -64,15 +66,15 @@
   padding: 9px 14px 9px 12px;
   /* A sticky BAR, never a floating bubble (house decree), fully rounded ends. */
   border-radius: 999px;
-  border: 1px solid rgba(6, 95, 70, 0.45);
+  border: 1px solid rgba(154, 123, 30, 0.45);
   /* the body: a top-lit pane, not a flat wash */
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.55) 46%, rgba(236, 253, 245, 0.6));
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.55) 46%, rgba(255, 247, 230, 0.6));
   -webkit-backdrop-filter: blur(20px) saturate(1.75);
   backdrop-filter: blur(20px) saturate(1.75);
   /* rim light INSIDE, lift OUTSIDE: the two shadows that make it a solid of
      glass rather than a translucent rectangle */
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.55),
-    0 10px 28px rgba(6, 40, 28, 0.26), 0 2px 6px rgba(6, 40, 28, 0.16);
+    0 10px 28px rgba(74, 60, 26, 0.26), 0 2px 6px rgba(74, 60, 26, 0.16);
   cursor: pointer;
   user-select: none;
   transition: transform 0.18s ease, border-color 0.18s ease;
@@ -81,14 +83,14 @@
    the newly-darkened ink on a near-black pane and hand the no-backdrop-filter
    engines the one outcome the fallback exists to prevent. */
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  #tx-dock { background: #f6fdfa; border-color: rgba(6, 95, 70, 0.5); }
+  #tx-dock { background: #fdfbf6; border-color: rgba(154, 123, 30, 0.5); }
 }
 @media (prefers-reduced-transparency: reduce) {
   #tx-dock {
-    background: #f6fdfa;
+    background: #fdfbf6;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
-    border-color: rgba(6, 95, 70, 0.5);
+    border-color: rgba(154, 123, 30, 0.5);
   }
 }
 
@@ -100,12 +102,12 @@
 #tx-dock.idle { animation: tx-invite 3.4s ease-in-out infinite; }
 @keyframes tx-invite {
   0%, 100% {
-    border-color: rgba(6, 95, 70, 0.45);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.55), 0 10px 28px rgba(6, 40, 28, 0.26);
+    border-color: rgba(154, 123, 30, 0.45);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.55), 0 10px 28px rgba(74, 60, 26, 0.26);
   }
   50% {
-    border-color: rgba(6, 95, 70, 0.9);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.65), 0 10px 28px rgba(6, 40, 28, 0.28), 0 0 20px rgba(16, 185, 129, 0.5);
+    border-color: rgba(154, 123, 30, 0.9);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.65), 0 10px 28px rgba(74, 60, 26, 0.28), 0 0 20px rgba(184, 147, 46, 0.5);
   }
 }
 /* ☠️ A SHIMMER MUST TRAVEL TOWARD THE LIGHT. Deep-green letters with a brighter
@@ -114,7 +116,7 @@
 #tx-dock.idle .tx-hint {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(100deg, #065f46 0%, #065f46 38%, #10b981 50%, #065f46 62%, #065f46 100%);
+  background: linear-gradient(100deg, #6f5a1e 0%, #6f5a1e 38%, #c9a227 50%, #6f5a1e 62%, #6f5a1e 100%);
   background-size: 280% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -127,28 +129,28 @@
   100% { background-position: -40% 0; }
 }
 @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
-  #tx-dock.idle .tx-hint { color: #065f46; -webkit-text-fill-color: #065f46; }
+  #tx-dock.idle .tx-hint { color: #6f5a1e; -webkit-text-fill-color: #6f5a1e; }
 }
 @media (prefers-reduced-motion: reduce) {
   #tx-dock.idle,
   #tx-dock.idle .tx-hint { animation: none; }
-  #tx-dock.idle { border-color: rgba(6, 95, 70, 0.8); }
+  #tx-dock.idle { border-color: rgba(154, 123, 30, 0.8); }
 }
 #tx-dock.idle .tx-eq { display: none; }
 #tx-dock:not(.idle) .tx-note,
 #tx-dock:not(.idle) .tx-hint { display: none; }
 
 /* ── the ink, cut for a light pane. Nothing in this pill is white. ── */
-.tx-note { color: #047857; font-size: 15px; line-height: 1; flex: none; }
-.tx-hint { color: #065f46; font-size: 10.5px; letter-spacing: 0.08em; flex: none; }
-#tx-dock:hover { transform: translateY(-1px); border-color: rgba(6, 95, 70, 0.75); }
-#tx-dock:focus-visible { outline: 2px solid #047857; outline-offset: 3px; }
+.tx-note { color: #9a7b1e; font-size: 15px; line-height: 1; flex: none; }
+.tx-hint { color: #6f5a1e; font-size: 10.5px; letter-spacing: 0.08em; flex: none; }
+#tx-dock:hover { transform: translateY(-1px); border-color: rgba(154, 123, 30, 0.75); }
+#tx-dock:focus-visible { outline: 2px solid #9a7b1e; outline-offset: 3px; }
 .tx-eq { display: flex; align-items: flex-end; gap: 2.5px; height: 15px; flex: none; }
 .tx-eq i {
   width: 2.5px;
   height: 3px;
   border-radius: 1.5px;
-  background: linear-gradient(180deg, #10b981, #065f46);
+  background: linear-gradient(180deg, #b8932e, #7d6316);
   transition: height 90ms linear;
 }
 .tx-dt {
@@ -157,16 +159,16 @@
   letter-spacing: 0.045em;
   font-style: italic;
   /* the dark stops carry the legibility, the bright middle is the sweep */
-  background: linear-gradient(92deg, #065f46, #10b981 50%, #065f46);
+  background: linear-gradient(92deg, #7d6316, #b8932e 50%, #7d6316);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
 @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
-  .tx-dt { color: #065f46; -webkit-text-fill-color: #065f46; }
+  .tx-dt { color: #7d6316; -webkit-text-fill-color: #7d6316; }
 }
-.tx-dp { color: rgba(6, 60, 44, 0.8); font-size: 12px; letter-spacing: 0.06em; flex: none; }
+.tx-dp { color: rgba(90, 74, 26, 0.8); font-size: 12px; letter-spacing: 0.06em; flex: none; }
 
 /* ══ 🌙 THE DOCK AT NIGHT. ☠️ THE INK WAS CUT FOR A PALE PANE. Every glyph in
    this pill sits in DEEP green so it carries on light glass; the pane is
@@ -175,45 +177,45 @@
    dark enough to own its own contrast. Move the fill back toward pale and you
    MUST re-cut the ink with it, again. ══ */
 :root[data-theme='dark'] #tx-dock {
-  border-color: rgba(110, 231, 183, 0.45);
-  background: linear-gradient(160deg, rgba(58, 84, 74, 0.55), rgba(12, 20, 16, 0.66) 46%, rgba(26, 44, 36, 0.6));
+  border-color: rgba(230, 199, 106, 0.45);
+  background: linear-gradient(160deg, rgba(58, 64, 84, 0.55), rgba(12, 15, 25, 0.66) 46%, rgba(26, 31, 48, 0.6));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 10px 28px rgba(0, 0, 0, 0.6), 0 0 22px rgba(16, 185, 129, 0.14);
+    0 10px 28px rgba(0, 0, 0, 0.6), 0 0 22px rgba(184, 147, 46, 0.14);
 }
-:root[data-theme='dark'] .tx-note { color: #a7f3d0; }
-:root[data-theme='dark'] .tx-hint { color: #a7f3d0; }
-:root[data-theme='dark'] .tx-dp { color: rgba(236, 253, 245, 0.88); }
+:root[data-theme='dark'] .tx-note { color: #f2dc9a; }
+:root[data-theme='dark'] .tx-hint { color: #ecdca8; }
+:root[data-theme='dark'] .tx-dp { color: rgba(242, 236, 214, 0.88); }
 :root[data-theme='dark'] .tx-dt {
-  background: linear-gradient(92deg, #6ee7b7, #ecfdf5 50%, #6ee7b7);
+  background: linear-gradient(92deg, #e6c76a, #fff6da 50%, #e6c76a);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
-  :root[data-theme='dark'] .tx-dt { color: #a7f3d0; -webkit-text-fill-color: #a7f3d0; }
+  :root[data-theme='dark'] .tx-dt { color: #f0dca4; -webkit-text-fill-color: #f0dca4; }
 }
-:root[data-theme='dark'] .tx-eq i { background: linear-gradient(180deg, #a7f3d0, #059669); }
+:root[data-theme='dark'] .tx-eq i { background: linear-gradient(180deg, #ffe9a8, #c9a227); }
 /* the idle shimmer travels toward the light, and at night the light is pale */
 :root[data-theme='dark'] #tx-dock.idle .tx-hint {
-  background: linear-gradient(100deg, #a7f3d0 0%, #a7f3d0 38%, #ecfdf5 50%, #a7f3d0 62%, #a7f3d0 100%);
+  background: linear-gradient(100deg, #dcc98d 0%, #dcc98d 38%, #fff8e2 50%, #dcc98d 62%, #dcc98d 100%);
   background-size: 280% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
-  :root[data-theme='dark'] #tx-dock.idle .tx-hint { color: #a7f3d0; -webkit-text-fill-color: #a7f3d0; }
+  :root[data-theme='dark'] #tx-dock.idle .tx-hint { color: #dcc98d; -webkit-text-fill-color: #dcc98d; }
 }
 /* the breath also has to lift, or the pulse disappears into the night */
 :root[data-theme='dark'] #tx-dock.idle { animation: tx-invite-night 3.4s ease-in-out infinite; }
 @keyframes tx-invite-night {
   0%, 100% {
-    border-color: rgba(110, 231, 183, 0.45);
+    border-color: rgba(230, 199, 106, 0.45);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 10px 28px rgba(0, 0, 0, 0.6);
   }
   50% {
-    border-color: rgba(167, 243, 208, 0.95);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 26px rgba(110, 231, 183, 0.5);
+    border-color: rgba(255, 233, 168, 0.95);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 26px rgba(230, 199, 106, 0.5);
   }
 }
 /* ☠️ THE NIGHT BREATH NEEDS ITS OWN STAND-DOWN. The reduced-motion rule up in
@@ -224,14 +226,14 @@
 @media (prefers-reduced-motion: reduce) {
   :root[data-theme='dark'] #tx-dock.idle,
   :root[data-theme='dark'] #tx-dock.idle .tx-hint { animation: none; }
-  :root[data-theme='dark'] #tx-dock.idle { border-color: rgba(167, 243, 208, 0.85); }
+  :root[data-theme='dark'] #tx-dock.idle { border-color: rgba(230, 199, 106, 0.8); }
 }
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  :root[data-theme='dark'] #tx-dock { background: #0e1a15; }
+  :root[data-theme='dark'] #tx-dock { background: #141a28; }
 }
 @media (prefers-reduced-transparency: reduce) {
   :root[data-theme='dark'] #tx-dock {
-    background: #0e1a15;
+    background: #141a28;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -270,13 +272,13 @@
      room (10010) and its two buttons (10020) sit above all of it on purpose.
      Anything in the low thousands would put the room UNDER the marble theater. */
   z-index: 10010;
-  background: #04100c;
+  background: #000;
   display: none;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 :root[data-theme='light'] #tx-room {
-  background: rgba(5, 15, 12, 0.94);
+  background: rgba(10, 13, 22, 0.55);
   -webkit-backdrop-filter: blur(18px) saturate(1.4);
   backdrop-filter: blur(18px) saturate(1.4);
 }
@@ -294,7 +296,7 @@
    with the chrome visible and once hidden — identical bytes means the chrome
    contributes no pixels. At .94 it was 21,408 vs 5,744, so even the opaque-ish
    stage was leaking; the fix was never the alpha, it was the chrome. */
-:root[data-theme='dark'] #tx-room { background: rgba(3, 10, 8, 0.25); }
+:root[data-theme='dark'] #tx-room { background: rgba(3, 6, 13, 0.25); }
 /* The page steps aside anyway. It no longer has to — the stage is opaque — but
    hiding a full-screen WebGL canvas and the beat panels while the room holds the
    screen stops the browser compositing layers nobody can see, which is real
@@ -305,15 +307,15 @@
 .tx-open #gl { visibility: hidden; }
 :root[data-theme='dark'].tx-open #sky { visibility: visible; }
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  :root[data-theme='light'] #tx-room { background: #04100c; }
+  :root[data-theme='light'] #tx-room { background: #000; }
 }
 @media (prefers-reduced-transparency: reduce) {
   :root[data-theme='light'] #tx-room {
-    background: #04100c;
+    background: #000;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
-  :root[data-theme='dark'] #tx-room { background: #04100c; }
+  :root[data-theme='dark'] #tx-room { background: rgba(3, 6, 13, 0.6); }
 }
 #tx-room.on { display: block; }
 /* The bottom padding keeps the thought stream clear of the fixed ✕ in the
@@ -355,10 +357,10 @@
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.12) 60%, rgba(255, 255, 255, 0.15));
 }
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  #tx-x { background: rgba(28, 30, 28, 0.92); }
+  #tx-x { background: rgba(28, 28, 32, 0.92); }
 }
 @media (prefers-reduced-transparency: reduce) {
-  #tx-x { background: rgba(28, 30, 28, 0.94); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  #tx-x { background: rgba(28, 28, 32, 0.94); -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
 /* 🌗 the room's own mode switch: the ✕'s recipe, mirrored to the right */
 #tx-theme {
@@ -375,7 +377,7 @@
   -webkit-backdrop-filter: blur(20px) saturate(1.7);
   backdrop-filter: blur(20px) saturate(1.7);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 8px 24px rgba(0, 0, 0, 0.5);
-  color: rgba(167, 243, 208, 0.9);
+  color: rgba(255, 233, 168, 0.9);
   font-size: 19px;
   line-height: 1;
   cursor: pointer;
@@ -384,10 +386,10 @@
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.12) 60%, rgba(255, 255, 255, 0.15));
 }
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  #tx-theme { background: rgba(28, 30, 28, 0.92); }
+  #tx-theme { background: rgba(28, 28, 32, 0.92); }
 }
 @media (prefers-reduced-transparency: reduce) {
-  #tx-theme { background: rgba(28, 30, 28, 0.94); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  #tx-theme { background: rgba(28, 28, 32, 0.94); -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
 .tx-open #tx-dock { display: none !important; }
 .tx-open #tx-x { display: block; }
@@ -406,7 +408,7 @@
   font-size: clamp(40px, 12vw, 74px);
   line-height: 1.22;
   letter-spacing: 0.012em;
-  background: linear-gradient(96deg, #065f46 2%, #6ee7b7 34%, #ecfdf5 50%, #6ee7b7 66%, #065f46 98%);
+  background: linear-gradient(96deg, #8e6f18 2%, #e6c76a 34%, #fff3cf 50%, #e6c76a 66%, #8e6f18 98%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -415,7 +417,7 @@
   text-shadow: 0 2px 22px rgba(0, 0, 0, 0.6);
 }
 @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
-  .tx-h { color: #6ee7b7; -webkit-text-fill-color: #6ee7b7; }
+  .tx-h { color: #e6c76a; -webkit-text-fill-color: #e6c76a; }
 }
 .tx-sub {
   color: rgba(255, 255, 255, 0.56);
@@ -453,8 +455,8 @@
   border-radius: 50%;
   overflow: hidden;
   background: #fff;
-  border: 1.5px solid rgba(16, 185, 129, 0.5);
-  box-shadow: 0 2px 8px rgba(6, 95, 70, 0.5), 0 0 26px rgba(16, 185, 129, 0.22);
+  border: 1.5px solid rgba(184, 147, 46, 0.5);
+  box-shadow: 0 2px 8px rgba(154, 123, 30, 0.5), 0 0 26px rgba(184, 147, 46, 0.22);
   position: relative;
   z-index: 1;
 }
@@ -532,22 +534,22 @@
   border: 0;
   border-radius: 50%;
   background: none;
-  color: #6ee7b7;
+  color: #e6c76a;
   font-size: 15px;
   line-height: 1;
   cursor: pointer;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
-#tx-play:hover { background: rgba(16, 185, 129, 0.14); }
-#tx-play:focus-visible { outline: 2px solid #6ee7b7; outline-offset: -4px; }
+#tx-play:hover { background: rgba(184, 147, 46, 0.14); }
+#tx-play:focus-visible { outline: 2px solid #e6c76a; outline-offset: -4px; }
 /* The running title takes the serif register the room uses for anything that is
    a NAME rather than a number. It comes LAST and takes the slack, so a long
    chapter name ellipsises instead of pushing the clock off the row. */
 #tx-cht {
   font-family: var(--font-heading);
   font-style: italic;
-  color: #6ee7b7;
+  color: #e6c76a;
   font-size: 14.5px;
   letter-spacing: 0.05em;
   white-space: nowrap;
@@ -576,7 +578,7 @@
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
-#tx-chb:focus-visible { outline: 2px solid #6ee7b7; outline-offset: 8px; border-radius: 4px; }
+#tx-chb:focus-visible { outline: 2px solid #e6c76a; outline-offset: 8px; border-radius: 4px; }
 .tx-cwrap { position: absolute; left: 0; right: 0; top: 19px; height: 6px; }
 /* Each chapter is its own little track, so the GAPS between them are real gaps.
    That is what makes a chaptered bar read as chaptered. */
@@ -596,7 +598,7 @@
   bottom: 0;
   width: 0;
   display: block;
-  background: linear-gradient(90deg, #059669, #6ee7b7);
+  background: linear-gradient(90deg, #a8842a, #e6c76a);
 }
 /* The tappable circle at every chapter's opening. ☠️ KEPT DELIBERATELY SMALL.
    Fourteen chapters across a 350px bar leaves ~25px between openings; at 9px
@@ -610,14 +612,14 @@
   margin: -3px 0 0 -3px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.28);
-  box-shadow: 0 0 0 1.5px rgba(6, 10, 8, 0.92);
+  box-shadow: 0 0 0 1.5px rgba(6, 8, 12, 0.92);
   transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 /* Only the chapter you are IN is lit, and it is the one that grows. */
 .tx-cdot.on {
-  background: #6ee7b7;
+  background: #e6c76a;
   transform: scale(1.45);
-  box-shadow: 0 0 0 1.5px rgba(6, 10, 8, 0.92), 0 0 10px rgba(110, 231, 183, 0.9);
+  box-shadow: 0 0 0 1.5px rgba(6, 8, 12, 0.92), 0 0 10px rgba(230, 199, 106, 0.9);
 }
 /* ── ❤️ THE HEART ───────────────────────────────────────────────────────────
    ONE chapter, Smooth Drift, wears a heart instead of a circle. Nobody is told;
@@ -643,7 +645,7 @@
 .tx-cdot.tx-heart svg { display: block; width: 100%; height: 100%; transform-origin: 50% 55%; }
 .tx-cdot.tx-heart path {
   fill: rgba(232, 74, 96, 0.6);
-  stroke: rgba(6, 10, 8, 0.92);
+  stroke: rgba(6, 8, 12, 0.92);
   stroke-width: 2.2;
   paint-order: stroke;
 }
@@ -666,8 +668,8 @@
   margin: 0 0 20px;
   padding: 7px 15px;
   border-radius: 999px;
-  border: 1px solid rgba(16, 185, 129, 0.42);
-  color: #34d399;
+  border: 1px solid rgba(184, 147, 46, 0.42);
+  color: #c9a227;
   font-size: 11.5px;
   letter-spacing: 0.075em;
 }
@@ -675,7 +677,7 @@
 .tx-au summary {
   cursor: pointer;
   list-style: none;
-  color: rgba(52, 211, 153, 0.86);
+  color: rgba(184, 147, 46, 0.86);
   font-size: 11px;
   letter-spacing: 0.16em;
   text-align: center;
@@ -696,7 +698,7 @@
 .tx-v {
   font-size: 11.5px;
   letter-spacing: 0.03em;
-  color: #34d399;
+  color: #c9a227;
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
@@ -707,7 +709,7 @@
    bars use, and it leans on the same bass term. */
 .tx-brh { margin: 8px 0 30px; position: relative; }
 #tx-orb { display: block; width: 210px; height: 210px; margin: 0 auto; cursor: pointer; }
-#tx-orb:focus-visible { outline: 2px solid #6ee7b7; outline-offset: 6px; border-radius: 50%; }
+#tx-orb:focus-visible { outline: 2px solid #e6c76a; outline-offset: 6px; border-radius: 50%; }
 #tx-ph {
   font-family: var(--font-heading);
   font-style: italic;
@@ -715,7 +717,7 @@
   letter-spacing: 0.16em;
   margin: 2px 0 4px;
   transition: color 1.1s ease;
-  color: rgba(236, 253, 245, 0.8);
+  color: rgba(246, 239, 221, 0.8);
 }
 #tx-cd { font-size: 11px; letter-spacing: 0.22em; color: rgba(255, 255, 255, 0.3); margin: 0 0 16px; min-height: 1.2em; }
 /* The resting state is the orb and one quiet line. That is all. */
@@ -725,7 +727,7 @@
   font-style: italic;
   font-weight: 400;
   letter-spacing: 0.05em;
-  color: #6ee7b7;
+  color: #e6c76a;
   font-size: 14px;
 }
 
@@ -739,12 +741,12 @@
   margin: 10px auto 0;
   padding: 8px 16px;
   border-radius: 999px;
-  border: 1px solid rgba(16, 185, 129, 0.4);
+  border: 1px solid rgba(184, 147, 46, 0.4);
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05) 60%, rgba(255, 255, 255, 0.08));
   -webkit-backdrop-filter: blur(20px) saturate(1.7);
   backdrop-filter: blur(20px) saturate(1.7);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  color: #6ee7b7;
+  color: #e6c76a;
   font-size: 11.5px;
   letter-spacing: 0.12em;
   cursor: pointer;
@@ -752,26 +754,26 @@
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 #tx-min:hover {
-  border-color: rgba(5, 150, 105, 0.7);
+  border-color: rgba(201, 162, 39, 0.7);
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.19), rgba(255, 255, 255, 0.08) 60%, rgba(255, 255, 255, 0.11));
 }
-#tx-min:focus-visible { outline: 2px solid #6ee7b7; outline-offset: 3px; }
-#tx-min.run { border-color: rgba(5, 150, 105, 0.7); }
+#tx-min:focus-visible { outline: 2px solid #e6c76a; outline-offset: 3px; }
+#tx-min.run { border-color: rgba(201, 162, 39, 0.7); }
 /* the finish is serif italic: the whisper voice, not the button voice */
 #tx-min.done {
   font-family: var(--font-heading);
   font-style: italic;
   letter-spacing: 0.05em;
   font-size: 13px;
-  color: #a7f3d0;
-  border-color: rgba(5, 150, 105, 0.8);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 18px rgba(16, 185, 129, 0.3);
+  color: #f0dfa8;
+  border-color: rgba(201, 162, 39, 0.8);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 18px rgba(184, 147, 46, 0.3);
 }
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  #tx-min { background: rgba(28, 30, 28, 0.92); }
+  #tx-min { background: rgba(28, 28, 32, 0.92); }
 }
 @media (prefers-reduced-transparency: reduce) {
-  #tx-min { background: rgba(28, 30, 28, 0.94); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  #tx-min { background: rgba(28, 28, 32, 0.94); -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
 
 /* ── ✨ THE AFTERGLOW. When the clock reaches zero the pill does not announce
@@ -786,12 +788,12 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  border: 1px solid rgba(5, 150, 105, 0.5);
-  background: linear-gradient(165deg, rgba(40, 52, 46, 0.55), rgba(11, 16, 14, 0.66) 50%, rgba(22, 30, 26, 0.6));
+  border: 1px solid rgba(201, 162, 39, 0.5);
+  background: linear-gradient(165deg, rgba(44, 46, 56, 0.55), rgba(12, 13, 18, 0.66) 50%, rgba(24, 25, 32, 0.6));
   -webkit-backdrop-filter: blur(30px) saturate(1.7);
   backdrop-filter: blur(30px) saturate(1.7);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 18px 50px rgba(0, 0, 0, 0.55), 0 0 30px rgba(16, 185, 129, 0.18);
+    0 18px 50px rgba(0, 0, 0, 0.55), 0 0 30px rgba(184, 147, 46, 0.18);
   padding: 20px 22px 16px;
   animation: tx-bloom 0.5s cubic-bezier(0.2, 0.8, 0.3, 1);
 }
@@ -817,16 +819,16 @@
   font-size: clamp(20px, 5.4vw, 26px);
   line-height: 1.3;
   padding-bottom: 0.1em;
-  background: linear-gradient(96deg, #065f46 2%, #6ee7b7 40%, #ecfdf5 52%, #6ee7b7 64%, #065f46 98%);
+  background: linear-gradient(96deg, #8e6f18 2%, #e6c76a 40%, #fff3cf 52%, #e6c76a 64%, #8e6f18 98%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
 @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
-  .tx-af-h { color: #6ee7b7; -webkit-text-fill-color: #6ee7b7; }
+  .tx-af-h { color: #e6c76a; -webkit-text-fill-color: #e6c76a; }
 }
-.tx-af-k { font-size: 9.5px; letter-spacing: 0.22em; color: #34d399; margin: 14px 0 5px; font-weight: 700; }
+.tx-af-k { font-size: 9.5px; letter-spacing: 0.22em; color: #c9a227; margin: 14px 0 5px; font-weight: 700; }
 .tx-af-p { font-size: 13px; line-height: 1.65; color: rgba(255, 255, 255, 0.88); margin: 0; }
 .tx-af-f { margin: 16px 0 0; font-size: 10.5px; letter-spacing: 0.14em; color: rgba(255, 255, 255, 0.5); text-align: center; }
 
@@ -852,9 +854,9 @@
   max-height: 76%;
   display: flex;
   flex-direction: column;
-  border-top: 1px solid rgba(16, 185, 129, 0.55);
+  border-top: 1px solid rgba(184, 147, 46, 0.55);
   border-radius: 20px 20px 0 0;
-  background: linear-gradient(168deg, rgba(40, 52, 46, 0.4), rgba(13, 18, 16, 0.48) 48%, rgba(22, 30, 26, 0.44));
+  background: linear-gradient(168deg, rgba(44, 46, 56, 0.4), rgba(14, 15, 20, 0.48) 48%, rgba(24, 25, 32, 0.44));
   -webkit-backdrop-filter: blur(40px) saturate(1.8);
   backdrop-filter: blur(40px) saturate(1.8);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.07), 0 -22px 60px rgba(0, 0, 0, 0.6);
@@ -864,10 +866,10 @@
    transparency) means the near-solid pane, because a .4 gradient with nothing
    blurring behind it is just a dim window onto whatever scrolled under it. */
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  #tx-sheet { background: rgba(8, 11, 10, 0.96); }
+  #tx-sheet { background: rgba(8, 9, 12, 0.96); }
 }
 @media (prefers-reduced-transparency: reduce) {
-  #tx-sheet { background: rgba(8, 11, 10, 0.96); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  #tx-sheet { background: rgba(8, 9, 12, 0.96); -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
 @keyframes tx-rise {
   from { transform: translateY(14%); opacity: 0.4; }
@@ -880,7 +882,7 @@
 #tx-sheet[hidden],
 #tx-scrim[hidden] { display: none; }
 .tx-sh-top { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px 10px; flex: none; }
-.tx-sh-t { font-family: var(--font-heading); font-style: italic; font-size: 17px; color: #6ee7b7; letter-spacing: 0.04em; }
+.tx-sh-t { font-family: var(--font-heading); font-style: italic; font-size: 17px; color: #e6c76a; letter-spacing: 0.04em; }
 /* the ✕ is #tx-x's recipe at 38px: one grammar, two sizes */
 #tx-sh-x {
   width: 38px;
@@ -934,15 +936,15 @@
 }
 /* the chosen breath: the same pane, TINTED, in the house metal */
 .tx-mode.sel {
-  border-color: rgba(5, 150, 105, 0.65);
-  background: linear-gradient(160deg, rgba(16, 185, 129, 0.26), rgba(16, 185, 129, 0.1) 55%, rgba(6, 95, 70, 0.16));
-  box-shadow: inset 0 1px 0 rgba(167, 243, 208, 0.32), 0 0 18px rgba(16, 185, 129, 0.22);
+  border-color: rgba(201, 162, 39, 0.65);
+  background: linear-gradient(160deg, rgba(201, 162, 39, 0.26), rgba(184, 147, 46, 0.1) 55%, rgba(154, 123, 30, 0.16));
+  box-shadow: inset 0 1px 0 rgba(255, 224, 140, 0.32), 0 0 18px rgba(184, 147, 46, 0.22);
 }
 .tx-mn {
   font-family: var(--font-heading);
   font-style: italic;
   font-size: 18px;
-  color: #6ee7b7;
+  color: #e6c76a;
   display: flex;
   align-items: baseline;
   justify-content: space-between;

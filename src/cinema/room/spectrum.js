@@ -8,8 +8,9 @@
 // from reading as a box.
 //
 // The hue law is the MUSIC's, not the brand's: it is the same red to violet
-// sweep the band strips and the breathing orb use, so nothing here is recoloured
-// to DSD green. The only brand ink on this canvas is the baseline hairline.
+// sweep the band strips and the breathing orb use, so no palette ruling ever
+// touches it. The only brand ink on this canvas is the baseline hairline, and
+// that one is FFC gold, rgba(184,147,46,.34), exactly as the source has it.
 
 export const BARS = 96;
 export const MIN_HZ = 24;
@@ -174,8 +175,8 @@ export function drawSpectrum(c2, cv, s) {
   c2.fillRect(0, 0, w, h);
   c2.globalCompositeOperation = 'source-over';
 
-  // the baseline the whole instrument stands on, in the house metal
-  c2.fillStyle = 'rgba(16,185,129,.34)';
+  // the gold baseline the whole instrument stands on
+  c2.fillStyle = 'rgba(184,147,46,.34)';
   c2.fillRect(0, baseline, w, 1);
 
   // UNBOX IT. Nothing here is framed in CSS; what reads as a box is the canvas

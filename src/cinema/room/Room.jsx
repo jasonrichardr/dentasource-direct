@@ -995,13 +995,13 @@ export default function Room() {
       if (phase !== lastPhase) {
         lastPhase = phase;
         phEl.textContent = LABELS[phase];
-        // The phase tints the words: rising, held, falling.
+        // The phase tints the words: gold rising, cream held, soft blue falling.
         phEl.style.color =
           phase === 0
-            ? 'rgba(110,231,183,.92)'
+            ? 'rgba(230,199,106,.92)'
             : phase === 2
               ? 'rgba(150,205,235,.85)'
-              : 'rgba(236,253,245,.8)';
+              : 'rgba(246,239,221,.8)';
       }
       cdEl.textContent = Math.ceil(left) + '';
     }
