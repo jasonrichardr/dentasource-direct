@@ -152,3 +152,16 @@
   border-color: color-mix(in srgb, var(--dsd-green) 55%, transparent);
   background: color-mix(in srgb, var(--dsd-green) 10%, transparent);
 }
+
+/* ---- the chrome stands down while the room is open ---------------------------------
+   RoomChrome stamps .dsd-room-open on <html> from the room's own `dsd:room` event. The
+   room's `.tx-open main { visibility: hidden }` cannot reach the header and the footer:
+   they are siblings of <main>, not children, so they read through the open room's veil.
+   visibility, not display: nothing reflows, so closing the room restores the page
+   exactly as it was, scroll position and all. */
+:root.dsd-room-open .dsd-nav,
+:root.dsd-room-open .dsd-nav-trust,
+:root.dsd-room-open .dsd-nav-menu,
+:root.dsd-room-open .dsd-footer {
+  visibility: hidden;
+}

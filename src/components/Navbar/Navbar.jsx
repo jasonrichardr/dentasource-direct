@@ -121,7 +121,10 @@ export default function Navbar() {
                 Contact
               </Link>
               <span className="dsd-nav-switch-slot">
-                <ThemeToggle />
+                {/* id="theme-switch" is a contract, not decoration: the room's 🌗 button
+                    proxies whatever carries it. Only the desktop toggle claims it, so the
+                    proxy can never land on two controls at once. */}
+                <ThemeToggle id="theme-switch" />
               </span>
             </div>
 

@@ -5,10 +5,26 @@
    Colours only ever come from the cinema tokens in src/cinema/cinema.css, so one
    data-theme attribute on <html> turns the whole arc. */
 
-/* The nav is fixed over the cinema, so every panel reserves its height at the top.
-   The lockup beats seat their copy at the bottom, so they are untouched by it. */
+/* The nav is fixed over the cinema, so every panel reserves its height at the top. */
 .cinema-panel {
   padding-top: max(clamp(48px, 10vh, 140px), 112px);
+}
+
+/* ☠️ A BEAT WITH A FORMATION SEATS ITS COPY BELOW IT, NOT OVER IT.
+   The engine marks those panels .copy-low. Its own rule bottom-anchors them, which is
+   right for a short caption and wrong for a home beat: the hero carries an eyebrow, a
+   headline, four lines of body and a button, and bottom-anchoring floated all of that
+   straight back up through the particle wordmark.
+   So the panel is TOP-anchored instead, at a fraction of the engine's own locked --vh:
+   the particles own the upper band, the words start under them, and because --vh is
+   frozen at load the seam cannot move when a phone's URL bar slides. */
+.cinema-panel.copy-low {
+  justify-content: flex-start;
+  padding-top: calc(var(--vh, 1vh) * 68);
+  padding-bottom: clamp(20px, 4vh, 48px);
+}
+@media (max-width: 700px) {
+  .cinema-panel.copy-low { padding-top: calc(var(--vh, 1vh) * 62); }
 }
 
 /* Only the live beat may be touched: the panels are stacked fixed overlays, so a

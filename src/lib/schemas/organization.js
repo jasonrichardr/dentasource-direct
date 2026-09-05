@@ -46,7 +46,10 @@ export const organizationGraph = {
       hasMap: 'https://www.google.com/maps?cid=6544193348824466616',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: '610 C. Maybunga Road',
+        // ☠️ THE RULED ADDRESS. "610 C. Maybunga Road" was a stale reading; the Facebook
+        // page, the contact page and the cinema content configs all say Raymundo Avenue,
+        // and Maybunga is the barangay, not the street.
+        streetAddress: '610 C. Raymundo Avenue, Maybunga',
         addressLocality: 'Pasig City',
         addressRegion: 'Metro Manila',
         postalCode: '1600',

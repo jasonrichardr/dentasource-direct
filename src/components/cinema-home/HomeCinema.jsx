@@ -45,7 +45,8 @@ const FORMATIONS = {
     kind: 'lockup', src: MARK, crop: MARK_CROP, text: WORDMARK,
     lockup: { markBox: 2.7, markY: 3.45, wordBoxH: 2.2, wordCenterY: 0.95 },
   },
-  heart: { kind: 'heart' },
+  // copyLow: the copy sits UNDER the heart rather than inside it, as in the lab.
+  heart: { kind: 'heart', copyLow: true },
   'one-team': { kind: 'sphere', radius: 3.9, ripple: 0.13, dim: true },
   showroom: { kind: 'sphere', radius: 3.6, ripple: 0.17, dim: true },
   roson: { kind: 'sphere', radius: 3.75, ripple: 0.20, dim: true },

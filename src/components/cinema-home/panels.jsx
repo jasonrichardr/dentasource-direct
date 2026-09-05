@@ -36,11 +36,15 @@ export function Cta({ cta, variant = 'ghost' }) {
 
 /* ── beat 0 and beat 14: the lockups ───────────────────────────────────────── */
 
-// The particles carry the mark, so the panel is only the words seated under it.
+// The particles carry the mark, so the panel is only the words seated under it. The
+// eyebrow is dropped from the glass because the canvas wordmark above it already reads
+// "DentaSource Direct"; it stays in the HTML so the JSON's copy is still crawlable.
 export function LockupPanel({ beat, level = 1 }) {
+  const { eyebrow, ...rest } = beat;
   return (
     <div className="dsd-panel dsd-copy-wide">
-      <Copy beat={beat} level={level} className="dsd-copy-wide" />
+      {eyebrow ? <p className="dsd-sr-only">{eyebrow}</p> : null}
+      <Copy beat={rest} level={level} className="dsd-copy-wide" />
       <Cta cta={beat.cta} variant="solid" />
     </div>
   );

@@ -12,12 +12,14 @@
 
 import ThemeProvider from '@/cinema/ThemeProvider';
 import Room from '@/cinema/room';
+import RoomChrome from './RoomChrome';
 
 export default function SiteShell({ children }) {
   return (
     <ThemeProvider>
       {children}
       <Room />
+      <RoomChrome />
     </ThemeProvider>
   );
 }
