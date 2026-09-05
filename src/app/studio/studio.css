@@ -360,3 +360,18 @@
 .st-dial input[type='range'] { width: 100%; accent-color: var(--signal); }
 .st-dial-n { text-align: right; }
 .st-dial-d { font-size: 10.5px; color: var(--ink-faint); font-variant-numeric: tabular-nums; text-align: right; }
+.st-export {
+  max-width: 62em;
+  margin: 0 0 20px;
+  padding: 12px 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: ui-monospace, monospace;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  white-space: pre;
+  overflow-x: auto;
+  user-select: all;
+}

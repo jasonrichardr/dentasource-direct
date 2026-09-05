@@ -64,6 +64,41 @@ export default function LogoDials() {
   const reset = () => push({ ...LOCKUP_DEFAULTS });
   const changed = Object.keys(stored).length;
 
+  // ── EXPORT ────────────────────────────────────────────────────────────────
+  // The dials only become real when their numbers reach LOCKUP_DEFAULTS, so the
+  // export is shaped for THAT paste, not for a file nobody will open: the full
+  // set, in the meta's own order, ready to drop into lockupConfig.js. Copy uses
+  // the clipboard where it exists and falls back to selecting the block, which
+  // is what a non-secure origin gets.
+  const exportText = () => {
+    const merged = { ...LOCKUP_DEFAULTS, ...stored };
+    const lines = LOCKUP_DIAL_META.map((m) => {
+      const v = merged[m.key];
+      const moved = v !== LOCKUP_DEFAULTS[m.key];
+      return `  ${m.key}: ${v},${moved ? '   // moved in the studio' : ''}`;
+    });
+    return `export const LOCKUP_DEFAULTS = {\n${lines.join('\n')}\n};`;
+  };
+  const [copied, setCopied] = useState('');
+  const copy = async () => {
+    const text = exportText();
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied('copied');
+    } catch {
+      const el = document.getElementById('st-dial-export');
+      if (el) {
+        const r = document.createRange();
+        r.selectNodeContents(el);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(r);
+      }
+      setCopied('selected, press copy');
+    }
+    setTimeout(() => setCopied(''), 2600);
+  };
+
   return (
     <>
       <h2 className="st-h">Logo dials</h2>
@@ -78,7 +113,11 @@ export default function LogoDials() {
         <button type="button" className="st-btn ghost sm" onClick={reset} disabled={!changed}>
           Reset all
         </button>
+        <button type="button" className="st-btn sm" onClick={copy}>
+          {copied || 'Copy for lockupConfig.js'}
+        </button>
       </div>
+      <pre id="st-dial-export" className="st-export">{exportText()}</pre>
 
       {groups.map((g) => (
         <div className="st-dial-group" key={g}>

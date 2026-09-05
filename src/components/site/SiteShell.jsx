@@ -30,7 +30,10 @@ import ThemeToggle from '@/cinema/ThemeToggle';
  * Prefix matching, not equality, because these are route TREES: /admin/leads and
  * /auth/callback have to be caught as surely as /admin and /auth.
  */
-const ROOM_FREE_PREFIXES = ['/portal', '/admin', '/attendance', '/login', '/auth', '/api', '/team'];
+// /studio is the localhost editor: the room's dock over a text field is noise,
+// and its document-level gesture listeners would start the music on the first
+// click into a headline.
+const ROOM_FREE_PREFIXES = ['/portal', '/admin', '/attendance', '/login', '/auth', '/api', '/team', '/studio'];
 
 export function isRoomFree(pathname) {
   if (!pathname) return false;

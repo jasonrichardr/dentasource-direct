@@ -102,6 +102,14 @@ site will point at pictures that are not there.
 
 The `.bak` files are working files. Do not commit those.
 
+## Known, and deliberately left
+
+The studio's compiled JavaScript is still in the production build output
+(about 32 KB in `.next/static`). Removing it needs a build-time exclusion,
+which costs more than it is worth: nothing sensitive is in it, no served page
+loads it, and `/studio` and every `/api/studio` route return a hard 404 in
+production from `src/proxy.ts`, so there is nothing for it to talk to.
+
 ## Where it writes
 
 The studio refuses to write anywhere except these three places:
