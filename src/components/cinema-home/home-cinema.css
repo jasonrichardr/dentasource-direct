@@ -408,7 +408,7 @@
    and this element stays exactly where it was, at exactly its old size, as a SENTINEL: it
    is what the panel's IntersectionObserver watches, and it is what reserves the vertical
    space the copy is laid out around. A mount pinned to the viewport would intersect
-   forever and the cluster would never sleep, which on this wall is thirty three video
+   forever and the cluster would never sleep, which on this wall is a whole set of video
    decoders that never stop. */
 .dsd-cluster {
   width: min(98vw, 1240px);

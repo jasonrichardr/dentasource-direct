@@ -526,7 +526,7 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
 
   useEffect(() => {
     // ☠️ NOT UNTIL THE BEAT IS NEAR, AND NEVER UNDER REDUCED MOTION. This is a WebGL
-    // canvas decoding thirty three videos; booting it at page load would cost the arc its
+    // canvas decoding a set of videos; booting it at page load would cost the arc its
     // first paint, and running it at all for someone who asked the system to hold still
     // would be the opposite of what they asked for.
     if (!near || reduced) return undefined;
