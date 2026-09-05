@@ -42,27 +42,6 @@ export default function Studio() {
     return Array.isArray(c) ? c : [];
   }, [active, doc]);
 
-  // ☠️ KEEP THE MUSIC OUT OF THE EDITOR. SiteShell mounts the music room on
-  // every route, /studio included, and the room arms document-level gesture
-  // listeners: without this, the first click on a headline field would start
-  // the lounge playing under somebody who is trying to write.
-  // `dsd:videoaudio` is the site's own "something else has the sound, stand
-  // aside" contract, and the room honours it by refusing to start on an ambient
-  // gesture. Using the public event is the only way to do this without reaching
-  // into another builder's component. The proper fix is one line in SiteShell,
-  // adding /studio to the room-free list; until that lands, this holds.
-  useEffect(() => {
-    const say = (on) => {
-      try {
-        window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on } }));
-      } catch {
-        /* no CustomEvent: the worst case is the dock behaving normally */
-      }
-    };
-    say(true);
-    return () => say(false);
-  }, []);
-
   useEffect(() => {
     fetch('/api/studio/files')
       .then((r) => r.json())
