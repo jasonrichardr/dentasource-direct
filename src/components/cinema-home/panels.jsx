@@ -8,6 +8,7 @@
 // the Ask DSD intro, which the JSON also carries. No names, no prices, no warranty terms.
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { createMarbleCluster } from '@/components/home/marbleCluster';
 import Link from 'next/link';
 import Image from 'next/image';
 import useBeatNear from './useBeatNear';
@@ -276,41 +277,124 @@ export function ChatPanel({ beat, beatIndex, script }) {
   );
 }
 
-/* ── beat 12: inside the console ───────────────────────────────────────────── */
+/* ── the marbles beat: the reel cluster, on the night stage ────────────────────────── */
 
-// The real screenshots are still to be taken, so the plates say exactly what they are
-// rather than pretending to be a product. The captions come from the JSON's media list.
-export function ConsolePanel({ beat }) {
-  const shots = ['/cinema/placeholder/console-1.svg', '/cinema/placeholder/console-2.svg', '/cinema/placeholder/console-3.svg'];
-  const labels = (beat.media || []).map((m) => m.replace(/^PLACEHOLDER:/, ''));
+// The same glass-marble cluster the old home carried, mounted as a beat panel instead of
+// a page section. It is fed from src/data/cinema/marbles-reels.json so the wall grows by
+// editing a list: the cluster is built with count = the list length, one bead per reel.
+// ROLES ONLY. Nothing on this wall names a person.
+export function MarblesPanel({ beat, beatIndex, reels = [] }) {
+  const mountRef = useRef(null);
+  const near = useBeatNear(beatIndex, { margin: '80%' });
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    try { setReduced(matchMedia('(prefers-reduced-motion: reduce)').matches); } catch (e) { /* assume motion is fine */ }
+  }, []);
+
+  useEffect(() => {
+    // ☠️ NOT UNTIL THE BEAT IS NEAR, AND NEVER UNDER REDUCED MOTION. This is a WebGL
+    // canvas decoding thirty three videos; booting it at page load would cost the arc its
+    // first paint, and running it at all for someone who asked the system to hold still
+    // would be the opposite of what they asked for.
+    if (!near || reduced) return undefined;
+    const mount = mountRef.current;
+    if (!mount || !reels.length) return undefined;
+
+    let isMobile = false;
+    try { isMobile = matchMedia('(max-width: 768px)').matches; } catch (e) { /* desktop */ }
+    const cluster = createMarbleCluster(mount, {
+      videos: reels.map((r) => r.src),
+      count: reels.length,          // exactly one bead per reel, however many there are
+      isMobile,
+      faceZoomDefault: 0.55,
+      faceZoom: {},
+    });
+
+    // The cluster sleeps whenever its stage leaves the screen.
+    const io = new IntersectionObserver(
+      ([entry]) => cluster.setActive(entry.isIntersecting && entry.intersectionRatio >= 0.2),
+      { threshold: [0, 0.2] },
+    );
+    io.observe(mount);
+
+    // Press and hold opens a reel WITH audio. The theater mounts a .cp-theater overlay, so
+    // watching for it is how we tell the room to stand aside without forking the cluster.
+    let theaterOpen = false;
+    const mo = new MutationObserver(() => {
+      const open = !!document.querySelector('.cp-theater');
+      if (open !== theaterOpen) {
+        theaterOpen = open;
+        window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on: open } }));
+      }
+    });
+    mo.observe(document.body, { childList: true });
+
+    return () => {
+      io.disconnect();
+      mo.disconnect();
+      if (theaterOpen) window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on: false } }));
+      cluster.dispose();
+    };
+  }, [near, reduced, reels]);
+
   return (
     <div className="dsd-panel">
       <Copy beat={beat} />
-      <div className="dsd-console">
-        {shots.map((src, i) => (
-          <img key={src} src={src} alt={labels[i] || 'Console screenshot placeholder'} width="640" height="400" loading="lazy" decoding="async" />
-        ))}
-      </div>
+      {reduced ? (
+        // ☠️ THE CLUSTER HAS NO REDUCED MOTION PATH OF ITS OWN. I checked: there is no
+        // prefers-reduced-motion branch anywhere in GlassMarbles or marbleCluster. So the
+        // still wall is built here, from the same list, and nothing moves or decodes.
+        <div className="dsd-marbles" role="list">
+          {reels.slice(0, 12).map((r) => (
+            <div className="dsd-marble" role="listitem" key={r.src}>
+              <span className="dsd-marble-art" aria-hidden="true" />
+              <span className="dsd-marble-note">{r.alt}</span>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="dsd-cluster dsd-interactive" ref={mountRef} />
+      )}
       <Cta cta={beat.cta} />
     </div>
   );
 }
 
-/* ── beat 13: the marbles wall ─────────────────────────────────────────────── */
+/* ── the action beat: the showcase reels ───────────────────────────────────────────── */
 
-// Roles, never names. Phase B1 draws the beads in CSS: the cannon-es cluster is a later
-// pass, and a static wall says the same thing without a physics engine on a phone.
-export function MarblesPanel({ beat, roster = [] }) {
+// The old home's VideoShowcase, as a beat. Sources are attached only once the beat is
+// near, so six vertical clips never download for a visitor who stops at the heart.
+export function ActionPanel({ beat, beatIndex, reels = [] }) {
+  const near = useBeatNear(beatIndex, { margin: '80%' });
+
+  // The room stands aside for a reel that is actually speaking, and comes back after.
+  const speak = (on) => {
+    try { window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on } })); } catch (e) { /* no CustomEvent */ }
+  };
+  useEffect(() => () => speak(false), []);
+
   return (
     <div className="dsd-panel">
       <Copy beat={beat} />
-      <div className="dsd-marbles">
-        {roster.map((m) => (
-          <div className="dsd-marble" key={m.role}>
-            <span className="dsd-marble-art" role="img" aria-label={m.alt} />
-            <span className="dsd-marble-role">{m.role}</span>
-            <span className="dsd-marble-note">{m.description}</span>
-          </div>
+      <div className="dsd-reels dsd-interactive">
+        {reels.map((r) => (
+          <figure className="dsd-reel" key={r.src}>
+            <video
+              src={near ? r.src : undefined}
+              poster={r.poster}
+              controls
+              muted
+              loop
+              playsInline
+              preload="none"
+              onPlay={(e) => { if (!e.currentTarget.muted) speak(true); }}
+              onVolumeChange={(e) => speak(!e.currentTarget.muted && !e.currentTarget.paused)}
+              onPause={() => speak(false)}
+              onEnded={() => speak(false)}
+            />
+            <figcaption>{r.caption}</figcaption>
+          </figure>
         ))}
       </div>
       <Cta cta={beat.cta} />

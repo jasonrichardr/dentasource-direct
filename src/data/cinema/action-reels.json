@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "generated": "2026-09-05",
+  "notes": "The reels from the old home's VideoShowcase, kept in order. EXTENDABLE. Captions are the originals with the emoji and the dash characters removed, per the public copy rules; nothing else about them changed.",
+  "eyebrow": "See us in action",
+  "headline": "The real DentaSource.",
+  "reels": [
+    {
+      "src": "/videos/dsd-showcase-4.mp4",
+      "poster": "/videos/dsd-showcase-4-poster.jpg",
+      "caption": "Meet the team. Stay vibrant"
+    },
+    {
+      "src": "/videos/dsd-showcase.mp4",
+      "poster": "/videos/dsd-showcase-poster.jpg",
+      "caption": "SMX Convention"
+    },
+    {
+      "src": "/videos/dsd-showcase-2.mp4",
+      "poster": "/videos/dsd-showcase-2-poster.jpg",
+      "caption": "Pre inspection before delivery and install"
+    },
+    {
+      "src": "/videos/dsd-showcase-6.mp4",
+      "poster": "/videos/dsd-showcase-6-poster.jpg",
+      "caption": "ROSON training and service, our exclusive partner"
+    },
+    {
+      "src": "/videos/dsd-showcase-5.mp4",
+      "poster": "/videos/dsd-showcase-5-poster.jpg",
+      "caption": "Denjoy, endo focused, with research and development"
+    },
+    {
+      "src": "/videos/dsd-showcase-3.mp4",
+      "poster": "/videos/dsd-showcase-3-poster.jpg",
+      "caption": "Digital dentistry and surgery, updated skills every year"
+    }
+  ]
+}

@@ -17,6 +17,7 @@ import { usePathname } from 'next/navigation';
 import ThemeProvider from '@/cinema/ThemeProvider';
 import Room from '@/cinema/room';
 import RoomChrome from './RoomChrome';
+import ThemeToggle from '@/cinema/ThemeToggle';
 
 /**
  * ☠️ THE WORKING ROUTES GET NO ROOM.
@@ -43,6 +44,11 @@ export default function SiteShell({ children }) {
   return (
     <ThemeProvider>
       {children}
+      {/* ☠️ ONE SWITCH, SITE WIDE, AND IT KEEPS THE ID. With the navbar gone this corner
+          control is the only way to change register, so it mounts on every route; the
+          room's 🌗 button proxies whatever carries id="theme-switch", and CSS in
+          trust-marquee.css hides it while the room holds the screen. */}
+      <ThemeToggle id="theme-switch" />
       {!roomFree && <Room />}
       {!roomFree && <RoomChrome />}
     </ThemeProvider>

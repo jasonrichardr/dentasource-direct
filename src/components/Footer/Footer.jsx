@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import '@/components/Navbar/navbar.css';
 
@@ -132,7 +133,17 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="dsd-footer-rule flex items-center justify-center gap-5 border-t pt-8">
+        <div className="dsd-footer-rule flex flex-col items-center gap-5 border-t pt-8">
+          {/* The round mark, never the banner: the banner asset ships an opaque white
+              ground, and this one is transparent outside its circle. */}
+          <Image
+            src="/cinema/brand/dsd-round.png"
+            alt="DentaSource Direct"
+            width={112}
+            height={112}
+            className="h-14 w-14 object-contain opacity-90"
+          />
+          <div className="flex items-center justify-center gap-5">
           <span className="dsd-footer-faint text-[11px] uppercase tracking-[0.18em] font-semibold">Follow us</span>
           <a
             href="https://www.facebook.com/dentasource"
@@ -152,6 +163,7 @@ export default function Footer() {
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.3 0 .6.045.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 5.66 20.3a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.7-.3z"/></svg>
           </a>
+          </div>
         </div>
 
         <div className="dsd-footer-faint flex flex-col md:flex-row items-center justify-between gap-3 pt-6 text-xs sm:text-sm font-medium">

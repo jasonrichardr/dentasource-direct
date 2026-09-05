@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "generated": "2026-09-05",
+  "notes": "Every reel the old GlassMarbles cluster carried, in its original order, which the cluster maps to bead SIZE: entry 0 is the big hero marble and the last is the smallest. EXTENDABLE: add entries and the cluster grows a bead each, since it is built with count = list length. ROLES ONLY, NO NAMES: the old internal `name` fields were grep aids that carried a personal name and clinical descriptors, and none of them reach the wall. Reels on ffcdentalclinic.care are served with open CORS, which the WebGL video textures require; /reels/ex-* are local to this repo.",
+  "reels": [
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-11.mp4",
+      "alt": "Chairside, mid procedure"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/dsd-showcase-4.mp4",
+      "alt": "Meet the team"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/dsd-showcase.mp4",
+      "alt": "At the convention showcase"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/dsd-showcase-2.mp4",
+      "alt": "Pre delivery inspection"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/dsd-showcase-5.mp4",
+      "alt": "Endodontics research and development"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/dsd-showcase-3.mp4",
+      "alt": "Digital dentistry and surgery"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/dsd-hero-loop.mp4",
+      "alt": "A sweep across the showroom floor"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-01.mp4",
+      "alt": "Hands on a live unit in the showroom"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-02.mp4",
+      "alt": "Behind the scenes at a studio shoot"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-04.mp4",
+      "alt": "A dentist at the chair"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-05.mp4",
+      "alt": "Clinic preparation"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-06.mp4",
+      "alt": "Chairside treatment"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-07.mp4",
+      "alt": "A walk through the clinic"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-08.mp4",
+      "alt": "A greeting at the door"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-09.mp4",
+      "alt": "A patient talking about the work"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-10.mp4",
+      "alt": "Treatment in close up"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-12.mp4",
+      "alt": "A showroom event on the microphone"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-16.mp4",
+      "alt": "Chairside dentistry"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-27.mp4",
+      "alt": "A digital scan on the laptop"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-17.mp4",
+      "alt": "Two clinicians walking the floor"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-24.mp4",
+      "alt": "The operatory built at an expo"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-28.mp4",
+      "alt": "The team over the equipment"
+    },
+    {
+      "src": "/reels/ex-01.mp4",
+      "alt": "A founder talking beside the simulator chairs"
+    },
+    {
+      "src": "/reels/ex-03.mp4",
+      "alt": "An installation road trip"
+    },
+    {
+      "src": "/reels/ex-07.mp4",
+      "alt": "Carrying units up the stairs by hand"
+    },
+    {
+      "src": "/reels/ex-08.mp4",
+      "alt": "A provincial run, ferry then build"
+    },
+    {
+      "src": "/reels/ex-11.mp4",
+      "alt": "The Training Center and its phantom heads"
+    },
+    {
+      "src": "/reels/ex-12.mp4",
+      "alt": "A short skit about endodontics"
+    },
+    {
+      "src": "/reels/ex-14.mp4",
+      "alt": "Arriving on an event night"
+    },
+    {
+      "src": "/reels/ex-18.mp4",
+      "alt": "An autoclave demonstration at the booth"
+    },
+    {
+      "src": "/reels/ex-20.mp4",
+      "alt": "Speaking from the stand"
+    },
+    {
+      "src": "/reels/ex-21.mp4",
+      "alt": "The showroom at the end of the day"
+    },
+    {
+      "src": "https://ffcdentalclinic.care/company-profile/reels/fb/fb-03.mp4",
+      "alt": "A wave from the convention floor"
+    }
+  ]
+}

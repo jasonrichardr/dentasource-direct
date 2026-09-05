@@ -1,6 +1,5 @@
 import { Inter, Playfair_Display, Geist, Instrument_Sans, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
 import JsonLd from '@/components/JsonLd';
 import { organizationGraph } from '@/lib/schemas/organization';
@@ -9,6 +8,7 @@ import MetaPixel from '@/components/analytics/MetaPixel';
 import MotionProvider from '@/components/MotionProvider';
 import ThemeScript from '@/cinema/ThemeScript';
 import SiteShell from '@/components/site/SiteShell';
+import TrustMarquee from '@/components/site/TrustMarquee';
 // The cinema tokens are site-wide from here on: the navbar, the footer and the room all
 // key off --paper / --ink / --dsd-green, so they must resolve on /news and /classic too,
 // not only on the routes that mount CinemaPage.
@@ -84,7 +84,7 @@ export default function RootLayout({ children }) {
         <SiteShell>
         <MetaPixel />
         <JsonLd id="organization-graph" data={organizationGraph} />
-        <Navbar />
+        <TrustMarquee />
         {children}
         <Footer />
         </SiteShell>

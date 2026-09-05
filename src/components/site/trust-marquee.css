@@ -1,0 +1,67 @@
+/* trust-marquee.css — the only chrome left at the top of the page, and the rules that
+   keep the corner theme switch behaving now that it is site wide. */
+
+:root {
+  --trust-bg: #12352c;
+  --trust-ink: rgba(255, 255, 255, .76);
+}
+:root[data-theme="dark"] {
+  --trust-bg: rgba(8, 14, 24, .86);
+  --trust-ink: rgba(241, 236, 225, .70);
+}
+
+.dsd-trust {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;              /* well under the room's 1000, as it must stay */
+  overflow: hidden;
+  padding: 6px 0;
+  background: var(--trust-bg);
+  color: var(--trust-ink);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.dsd-trust-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 32px;
+  /* ☠️ THE SWEEP IS DECLARED HERE, NOT INLINE. The navbar wrote its animation as an inline
+     style, which outranks every ordinary rule, so the reduced-motion block below could
+     not reach it without !important. In a stylesheet it is just a rule like any other. */
+  animation: dsd-trust-sweep 40s linear infinite;
+}
+.dsd-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.dsd-trust-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--dsd-green, #34d399);
+  flex: 0 0 4px;
+}
+@keyframes dsd-trust-sweep { to { transform: translateX(-50%); } }
+
+/* The pages below the marquee reserve its height. It is one short line, so this is a far
+   smaller reserve than the old two tier header asked for. */
+:root { --trust-h: 24px; }
+
+/* ---- the corner theme switch, now on every route -----------------------------------
+   It is the cinema's own control (.cinema-switch, fixed bottom corner) and it carries
+   id="theme-switch" because the room's 🌗 button proxies whatever holds that id. */
+:root.dsd-room-open .cinema-switch { visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dsd-trust-track { animation: none; }
+}

@@ -14,10 +14,11 @@ import CinemaPage from '@/cinema/CinemaPage';
 import NightSky from '@/cinema/NightSky';
 import beatsData from '@/data/cinema/home-beats.json';
 import askScript from '@/data/cinema/ask-dsd.json';
-import marblesData from '@/data/cinema/marbles.json';
+import marblesReels from '@/data/cinema/marbles-reels.json';
+import actionReels from '@/data/cinema/action-reels.json';
 
 import {
-  ChatPanel, ConsolePanel, DoorPanel, HeartPanel, LockupPanel,
+  ActionPanel, ChatPanel, DoorPanel, HeartPanel, LockupPanel,
   MarblesPanel, NewsPanel, PhotoPanel, StripPanel,
 } from './panels';
 import './home-cinema.css';
@@ -47,7 +48,7 @@ const FORMATIONS = {
   },
   // copyLow: the copy sits UNDER the heart rather than inside it, as in the lab.
   heart: { kind: 'heart', copyLow: true },
-  'one-team': { kind: 'sphere', radius: 3.9, ripple: 0.13, dim: true },
+  'our-people': { kind: 'sphere', radius: 3.9, ripple: 0.13, dim: true },
   showroom: { kind: 'sphere', radius: 3.6, ripple: 0.17, dim: true },
   roson: { kind: 'sphere', radius: 3.75, ripple: 0.20, dim: true },
   denjoy: { kind: 'sphere', radius: 3.5, ripple: 0.15, dim: true },
@@ -57,8 +58,10 @@ const FORMATIONS = {
   'after-sales': { kind: 'sphere', radius: 3.5, ripple: 0.21, dim: true },
   news: { kind: 'sphere', radius: 4.0, ripple: 0.12, dim: true },
   'ask-dsd': { kind: 'sphere', radius: 3.4, ripple: 0.22, dim: true },
-  console: { kind: 'sphere', radius: 3.8, ripple: 0.15, dim: true },
+  // The reel cluster and the showcase reels are their own light source: the cloud drops
+  // right back so a WebGL wall of video is not competing with a particle field.
   marbles: { kind: 'sphere', radius: 3.9, ripple: 0.18, dim: true },
+  'see-us-in-action': { kind: 'sphere', radius: 3.6, ripple: 0.14, dim: true },
   // The closing lockup. The camera director already seats a final lockup nearer than
   // the opening one, so the door's mark is the biggest in the arc without a dial here.
   door: {
@@ -74,8 +77,8 @@ function panelFor(beat, i, articles) {
     case 'strip': return <StripPanel beat={beat} beatIndex={i} />;
     case 'marquee': return <NewsPanel beat={beat} beatIndex={i} articles={articles} />;
     case 'chat': return <ChatPanel beat={beat} beatIndex={i} script={askScript} />;
-    case 'app': return <ConsolePanel beat={beat} />;
-    case 'marbles': return <MarblesPanel beat={beat} roster={marblesData.marbles} />;
+    case 'marbles': return <MarblesPanel beat={beat} beatIndex={i} reels={marblesReels.reels} />;
+    case 'action': return <ActionPanel beat={beat} beatIndex={i} reels={actionReels.reels} />;
     case 'door': return <DoorPanel beat={beat} />;
     case 'photo':
     default: return <PhotoPanel beat={beat} beatIndex={i} />;
