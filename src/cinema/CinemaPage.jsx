@@ -314,7 +314,8 @@ export default function CinemaPage({ beats, panels = [], classicHref = '/classic
 
   return (
     <div className="cinema-root" ref={rootRef}>
-      <canvas ref={canvasRef} className="cinema-gl" />
+      {/* the id is the room's contract: it hides #gl while it holds the screen */}
+      <canvas id="gl" ref={canvasRef} className="cinema-gl" />
       <div className="cinema-vignette" />
       <nav className="cinema-rail" aria-hidden="true">
         {beats.map((b, i) => <span key={b.key || i} className="cinema-tick" />)}
@@ -325,7 +326,7 @@ export default function CinemaPage({ beats, panels = [], classicHref = '/classic
       {beats.map((b, i) => (
         <div
           key={b.key || i}
-          className={`cinema-panel${b.kind === 'lockup' ? ' is-lockup' : ''}`}
+          className={`cinema-panel${(b.copyLow ?? b.kind === 'lockup') ? ' copy-low' : ''}`}
           aria-hidden={i !== 0}
         >
           {panels[i]}

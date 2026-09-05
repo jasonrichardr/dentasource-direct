@@ -137,16 +137,17 @@
   text-shadow: 0 2px 22px var(--paper), 0 0 14px var(--paper);
 }
 
-/* A lockup beat lifts its mark, so its copy is seated in the lower band and the two
-   never overlap. */
-.cinema-panel.is-lockup { justify-content: flex-end; padding-bottom: clamp(56px, 15vh, 150px); }
+/* A beat whose formation is lifted (a lockup, a product photo) seats its copy in the
+   lower band so the two never overlap. */
+.cinema-panel.copy-low { justify-content: flex-end; padding-bottom: clamp(56px, 15vh, 150px); }
 
 /* ---- the light/dark switch: a glass pill with a sphere riding it ---- */
 .cinema-switch {
   position: fixed;
   z-index: 20;
   right: calc(14px + env(safe-area-inset-right, 0px));
-  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  /* clears the room's dock pill, which owns the bottom right corner */
+  bottom: calc(66px + env(safe-area-inset-bottom, 0px));
   width: 124px;
   height: 44px;
   padding: 0;
@@ -215,10 +216,14 @@
   :root[data-theme="dark"] .cinema-switch { background: #141a28; }
 }
 
+/* the room is opaque and full screen: nothing may float over it */
+.tx-open .cinema-switch { display: none !important; }
+
 @media (max-width: 768px) {
   .cinema-switch {
     right: auto;
     left: calc(14px + env(safe-area-inset-left, 0px));
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
     transform-origin: 0 100%;
   }
   .cinema-rail { display: none; }

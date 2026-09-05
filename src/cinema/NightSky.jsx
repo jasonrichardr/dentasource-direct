@@ -6,6 +6,10 @@ import { useTheme } from './ThemeProvider';
 
 // The sky canvas behind everything. It only ever runs in dark: a light-mode visitor
 // never pays for a star.
+//
+// The id is part of the contract the room was ported against: while the room is open it
+// hides the cinema but restores #sky, so the stars stay lit behind it. One cinema per
+// page, so one #sky.
 export default function NightSky() {
   const canvasRef = useRef(null);
   const skyRef = useRef(null);
@@ -28,5 +32,5 @@ export default function NightSky() {
     else sky.stop();
   }, [dark]);
 
-  return <canvas ref={canvasRef} className="cinema-sky" aria-hidden="true" />;
+  return <canvas id="sky" ref={canvasRef} className="cinema-sky" aria-hidden="true" />;
 }

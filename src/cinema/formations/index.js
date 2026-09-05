@@ -32,9 +32,19 @@ const DEFAULT_LOCKUP = {
   fontWeight: 700,
 };
 
+// A beat names its image either as `src` or as the first image in the content config's
+// `media` array, so the JSON the pages consume (key, kind, media[]) drops straight in.
+const IMAGE_FILE = /\.(png|jpe?g|webp|avif)(\?|$)/i;
+export function beatImageSrc(beat) {
+  if (!beat) return null;
+  if (beat.src) return beat.src;
+  if (Array.isArray(beat.media)) return beat.media.find((m) => typeof m === "string" && IMAGE_FILE.test(m)) || null;
+  return null;
+}
+
 // The sources every image-backed beat needs, de-duplicated.
 export function beatSources(beats) {
-  return [...new Set(beats.filter((b) => b && b.src).map((b) => b.src))];
+  return [...new Set(beats.map(beatImageSrc).filter(Boolean))];
 }
 
 // Load them all; a source that fails resolves to null so the arc still builds.
@@ -60,7 +70,7 @@ function lockupPositions(N, img, beat) {
   const Kmark = N - Kword;
 
   const markPos = imageToPositions(Kmark, img, {
-    crop: beat.crop || null,
+    ...sampleOpts(beat),
     boxW: cfg.markBox, boxH: cfg.markBox, yOffset: cfg.markY,
   });
   const out = new Float32Array(N * 3);
@@ -80,8 +90,20 @@ function lockupPositions(N, img, beat) {
   return out;
 }
 
+// Every sampler knob a beat may hand to imageToPositions.
+function sampleOpts(beat) {
+  return {
+    crop: beat.crop || null,
+    mode: beat.mode || "alpha",
+    ...(beat.threshold !== undefined ? { threshold: beat.threshold } : {}),
+    ...(beat.maxSide !== undefined ? { maxSide: beat.maxSide } : {}),
+    ...(beat.jitter !== undefined ? { jitter: beat.jitter } : {}),
+  };
+}
+
 function positionsFor(N, beat, images) {
-  const img = beat.src ? images[beat.src] : null;
+  const src = beatImageSrc(beat);
+  const img = src ? images[src] : null;
   switch (beat.kind) {
     case "lockup":
       return img
@@ -90,7 +112,7 @@ function positionsFor(N, beat, images) {
     case "image":
       return img
         ? imageToPositions(N, img, {
-            crop: beat.crop || null,
+            ...sampleOpts(beat),
             boxW: beat.boxW ?? WORLD * 0.84,
             boxH: beat.boxH ?? WORLD * 0.84,
             yOffset: beat.yOffset ?? 0,

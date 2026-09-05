@@ -1,7 +1,13 @@
 // formations/emblem.js — sample an image into particle positions. Draw it to a
-// TRANSPARENT canvas, keep the ink pixels (alpha > threshold), shuffle, and contain-fit
-// to a world box: the text.js technique but for an image. Swap the PNG and it works, so
-// any logo or product silhouette can form from the cloud.
+// TRANSPARENT canvas, keep the pixels that are INK, shuffle, and contain-fit to a world
+// box: the text.js technique but for an image. Swap the file and it works, so any logo
+// or product photo can form from the cloud.
+//
+// WHAT COUNTS AS INK depends on the source, which is why there are three modes. A logo
+// exported with alpha keys on alpha ('alpha'). A studio product shot has NO alpha and is
+// a dark subject on a white ground, so it keys on brightness instead ('dark' keeps what
+// is darker than the threshold; 'light' keeps what is brighter, for a pale subject on a
+// dark ground). Nothing else about the sampler changes between them.
 
 import { WORLD, shuffle } from "./util.js";
 
@@ -16,12 +22,20 @@ export function loadImage(src) {
   });
 }
 
-// img: a loaded HTMLImageElement. crop: {sx,sy,sw,sh} in source px (omit -> full image).
+// img: a loaded HTMLImageElement.
+// crop: either {sx,sy,sw,sh} in source pixels or {x,y,w,h} as 0..1 fractions of the source.
+// mode: 'alpha' | 'dark' | 'light'. threshold means the alpha cutoff in 'alpha' mode and
+// the luminance cutoff in the other two.
+// maxSide: the sampling canvas is downsampled to this long edge first, so a 3000px photo
+// costs the same as a 500px one.
 export function imageToPositions(N, img, opts = {}) {
   const {
     crop = null,
-    threshold = 36,        // alpha cutoff (transparent bg -> only ink survives)
-    inkMax = 0.985,        // also drop near-white (robust if a logo has a white bg)
+    mode = "alpha",
+    threshold = mode === "alpha" ? 36 : 0.72,
+    alphaMin = 36,         // a transparent pixel is never ink, whatever the mode
+    inkMax = 0.985,        // 'alpha' mode also drops near-white (a logo on a white plate)
+    maxSide = 512,
     boxW = WORLD * 0.84,
     boxH = WORLD * 0.84,
     jitter = 0.02,
@@ -32,12 +46,19 @@ export function imageToPositions(N, img, opts = {}) {
 
   const sw0 = img.naturalWidth || img.width;
   const sh0 = img.naturalHeight || img.height;
-  const sx = crop ? crop.sx : 0;
-  const sy = crop ? crop.sy : 0;
-  const sw = crop ? crop.sw : sw0;
-  const sh = crop ? crop.sh : sh0;
-  const cw = Math.max(1, Math.round(sw));
-  const ch = Math.max(1, Math.round(sh));
+  const frac = crop && crop.w !== undefined;   // {x,y,w,h} in 0..1
+  let sx = crop ? (frac ? crop.x * sw0 : crop.sx) : 0;
+  let sy = crop ? (frac ? crop.y * sh0 : crop.sy) : 0;
+  let sw = crop ? (frac ? crop.w * sw0 : crop.sw) : sw0;
+  let sh = crop ? (frac ? crop.h * sh0 : crop.sh) : sh0;
+  sx = Math.max(0, Math.min(sw0 - 1, sx));
+  sy = Math.max(0, Math.min(sh0 - 1, sy));
+  sw = Math.max(1, Math.min(sw0 - sx, sw));
+  sh = Math.max(1, Math.min(sh0 - sy, sh));
+
+  const shrink = maxSide > 0 ? Math.min(1, maxSide / Math.max(sw, sh)) : 1;
+  const cw = Math.max(1, Math.round(sw * shrink));
+  const ch = Math.max(1, Math.round(sh * shrink));
 
   const cv = document.createElement("canvas");
   cv.width = cw;
@@ -46,14 +67,17 @@ export function imageToPositions(N, img, opts = {}) {
   ctx.clearRect(0, 0, cw, ch);                 // TRANSPARENT — never fill a background
   ctx.drawImage(img, sx, sy, sw, sh, 0, 0, cw, ch);
 
+  const alphaCut = mode === "alpha" ? threshold : alphaMin;
   const { data } = ctx.getImageData(0, 0, cw, ch);
   const pts = [];
   for (let y = 0; y < ch; y++) {
     for (let x = 0; x < cw; x++) {
       const idx = (y * cw + x) * 4;
-      if (data[idx + 3] <= threshold) continue;
+      if (data[idx + 3] <= alphaCut) continue;
       const lum = (0.299 * data[idx] + 0.587 * data[idx + 1] + 0.114 * data[idx + 2]) / 255;
-      if (lum > inkMax) continue;              // drop pure white
+      if (mode === "dark") { if (lum >= threshold) continue; }
+      else if (mode === "light") { if (lum <= threshold) continue; }
+      else if (lum > inkMax) continue;         // drop pure white
       pts.push([x, y]);
     }
   }
