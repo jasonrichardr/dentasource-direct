@@ -18,6 +18,7 @@ import marblesReels from '@/data/cinema/marbles-reels.json';
 import actionReels from '@/data/cinema/action-reels.json';
 import partsData from '@/data/cinema/parts.json';
 import crewShots from '@/data/cinema/crew-shots.json';
+import installsData from '@/data/cinema/installs.json';
 import growthPartner from '@/data/cinema/growth-partner.json';
 
 import {
@@ -116,7 +117,10 @@ function panelFor(beat, i, articles) {
     case 'heart': return <HeartPanel beat={beat} />;
     case 'strip': return <StripPanel beat={beat} beatIndex={i} />;
     case 'marquee': return <NewsPanel beat={beat} beatIndex={i} articles={articles} />;
-    case 'installs': return <InstallsPanel beat={beat} beatIndex={i} />;
+    // ☠️ THE TILES COME FROM THE MANIFEST, NOT FROM THE BEAT. See the note in
+      // home-beats.json: the beat used to carry its own copy of this list and
+      // installs.json was read by nothing.
+      case 'installs': return <InstallsPanel beat={beat} beatIndex={i} tiles={installsData.tiles} />;
     case 'parts': return <PartsPanel beat={beat} beatIndex={i} parts={partsData.parts} crew={crewShots.items} />;
     case 'chat': return <ChatPanel beat={beat} beatIndex={i} script={askScript} />;
     case 'marbles': return <MarblesPanel beat={beat} beatIndex={i} reels={marblesReels.reels} />;

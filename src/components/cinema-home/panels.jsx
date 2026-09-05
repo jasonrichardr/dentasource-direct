@@ -229,9 +229,8 @@ export function PhotoPanel({ beat, beatIndex }) {
 
 /* ── the installs marquee: every article's install and delivery frames ─────────────── */
 
-export function InstallsPanel({ beat, beatIndex }) {
+export function InstallsPanel({ beat, beatIndex, tiles = [] }) {
   const near = useBeatNear(beatIndex);
-  const tiles = beat.tiles || [];
   return (
     <div className="dsd-panel">
       <Copy beat={beat} />
@@ -482,23 +481,23 @@ export function ChatPanel({ beat, beatIndex, script }) {
 // editing a list: the cluster is built with count = the list length, one bead per reel.
 // ROLES ONLY. Nothing on this wall names a person.
 /**
- * Camera distance for the reel shoal. MEASURED, not guessed, through cluster.bounds(),
- * which reports the beads' own extent in world units because this canvas carries no
- * preserveDrawingBuffer and its pixels cannot be read back.
+ * ☠️ THE 9.6 PHONE CAMERA IS GONE, AND ITS WORKING IS KEPT HERE BECAUSE IT EXPLAINS WHY.
  *
- * At the stock z=8 the camera shows 3.314 units above the axis. Measured half heights of
- * the shoal on a 1440x900 desktop as the spring pulls the initial scatter in:
+ * It was measured on the OLD stage, where the canvas was a 98vw by 52vh box and the shoal
+ * was 33 beads under an isotropic spring. Settling readings on a 1440x900 desktop, as the
+ * spring pulled the initial scatter in:
  *   14s 6.32   24s 3.45   34s 3.32   44s 2.95  (equilibrium)
- * So the settled shoal is about 3.0 and the stock framing clipped it for the first half
- * minute and sat right on the edge after that. On a phone it settles smaller, near 2.97,
- * and already fitted, which is why only the desktop frame showed the slice.
+ * 9.6 showed 3.976 units, 35% clear of that equilibrium, and the phone already fitted.
  *
- * 9.6 shows 3.976 units: 15% clear of the 24 second state and 35% clear of equilibrium.
- * The opening seconds are still wider than the frame, but that is the physics arriving,
- * not the framing being wrong, and chasing it would need a camera so far back that the
- * beads would read as beads rather than as reels.
+ * Two things then changed under it. The wall pages in sets of 24 rather than showing all
+ * 33, so the shoal is smaller. And the canvas is the viewport, so on a 390x844 phone the
+ * visible WIDTH collapsed to 1.84 world units while the height grew. 9.6 was correct for
+ * the stage it was measured on and wrong for this one, which is the whole reason bounds()
+ * reports visibleHalfW now: a framing number that is not re-read after the stage changes
+ * is a number that was true once.
+ *
+ * The phone's replacement (13.0 with a 2.4 by 4.2 portrait well) is at the call site.
  */
-const CLUSTER_CAMERA_Z = 9.6;
 
 // ☠️ THE WALL PAGES, IT DOES NOT GROW. One bead per reel with no duplicates is the rule
 // this cluster was built on, so a library of a hundred and forty reels would be a hundred
@@ -583,19 +582,26 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
       // frame and render larger at the same time. cameraZ, not spreadX, is the dial to
       // reach for if this needs adjusting again.
       ? { isMobile: false, cameraZ: 7.0, spreadX: 6.4, spreadY: 2.2 }
-      : { isMobile: true, cameraZ: CLUSTER_CAMERA_Z };   // phone: unchanged
-    // ☠️ THESE FOUR NUMBERS WERE MEASURED AGAINST THE OLD BOX AND ARE NOW PROVISIONAL.
-    // They were tuned when the canvas was min(98vw,1240px) by 56vh, an aspect near 2.5.
-    // The viewport stage is a different shape: the vertical fov is fixed so the visible
-    // HEIGHT in world units did not move, but the visible WIDTH is height times aspect,
-    // and desktop 1440x900 is 1.6 while a 390x844 phone is 0.46. At the same cameraZ the
-    // stage is therefore NARROWER in world units than the box it replaced, which is the
-    // opposite of what it looks like on screen. The shoal will need re-framing, and the
-    // right dial is cameraZ on the desktop and the well's shape on the phone (a portrait
-    // stage wants a portrait ellipse, not a further camera, or the beads go tiny).
-    // NOT GUESSED HERE. bounds() now reports visibleHalfW alongside visibleHalfH, so the
-    // browser pass reads the real settled extent against the real stage and sets these
-    // once, after the spring has settled rather than while it is still moving.
+      // ☠️ A PORTRAIT STAGE NEEDS A PORTRAIT WELL. The phone kept an isotropic shoal and a
+      // near camera while its canvas was a 98vw by 52vh landscape box. The viewport stage
+      // is the opposite shape: at 390x844 the aspect is 0.46, so the visible WIDTH in
+      // world units collapses to 1.84 while the height grows to 3.98. The round shoal
+      // measured 2.40 half-widths against that 1.84, which is 130 percent: a quarter of
+      // the wall was hanging off both sides at REST, before anyone touched it.
+      // Pushing the camera back alone would fix the overflow and shrink the beads to
+      // nothing, so the well turns portrait as well: narrow in X, tall in Y, at a camera
+      // far enough to hold it. Measured settled, 390x844: 81% of the visible width and
+      // 55% of the height, both axes fitting. The height deliberately does NOT fill: the
+      // copy sits above the beads and the pager below them, and the canvas now covers
+      // both, so the band of glass has to leave them room.
+      : { isMobile: true, cameraZ: 13.0, spreadX: 2.4, spreadY: 4.2 };
+    // ☠️ EVERY ONE OF THESE SIX NUMBERS IS A SETTLED bounds() READING, NOT AN EYE.
+    // Swept at the real viewports against the real stage, nine seconds after the beat was
+    // parked, because a shoal read while it is still converging reads small. Desktop was
+    // measured and LEFT ALONE: 7.0/6.4/2.2 fills 94% of the visible width and 70% of the
+    // height and fits on both axes, and 94% is not a near miss, it is the wall spread
+    // across the stage the way Jarich asked for. The alternatives that bought margin
+    // (7.6/5.8/2.4 at 80%, 8.2/6.4/2.6 at 75%) bought it by making the beads smaller.
     // The fov is VERTICAL, so cameraZ is what decides how much of the shoal is on screen;
     // the box shape only ever changes how much is visible sideways. Both numbers above
     // were set by measuring bounds(), not by eye.
