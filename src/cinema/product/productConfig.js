@@ -25,64 +25,28 @@ export const BEAT_ORDER = [
   'door',
 ];
 
-// WHERE THE THRESHOLDS COME FROM. The studio shots carry no alpha, so the sampler runs in
-// `dark` mode: keep every pixel darker than `threshold`, drop the ground. The cut was set
-// per source by measuring the DARKEST pixel in each image's border ring, which is the
-// ground at its dirtiest, and sitting under it:
-//   ring 1.000 (a true white ground, every chair shot)  -> 0.90, the fullest silhouette
-//                                                          the ground can never reach
-//   denjoy, ring 0.928 (flat pale blue, 231 238 244)    -> 0.85; at 0.94 the whole
-//                                                          rectangle floods in at 99%
-//   a1-pro hero, a chair on white in front of a PALE GREY  -> 0.86 (the panel measures
-//   backdrop panel, over a dark shadow band                   0.889, so 0.90 would form
-//                                                             the panel as a rectangle),
-//                                                             plus a crop that ends above
-//                                                             the shadow band, which runs
-//                                                             48 to 66 percent dark from
-//                                                             y 0.85 down
-//   n2-plus, an indexed PNG that is 72% TRANSPARENT     -> `alpha` mode. The content note
-//                                                          said no transparent PNG exists
-//                                                          in public/; this one does, and
-//                                                          alpha keeps the pale trim that
-//                                                          a brightness cut would drop.
-const DEFAULT_SAMPLER = { mode: 'dark', threshold: 0.9 };
-const SAMPLER_BY_SLUG = {
-  denjoy: { mode: 'dark', threshold: 0.85 },
-  'a1-pro': { mode: 'dark', threshold: 0.86, crop: { x: 0.05, y: 0.02, w: 0.90, h: 0.82 } },
-  'n2-plus': { mode: 'alpha' },
-};
-
-// THE PARTICLE WORDMARK IS THE MODEL CODE, NOTHING MORE. A full name like "ROSON
-// Affordable Luxury Model S9" only fits by wrapping to two lines and shrinking, and two
-// lines of particles land on top of the DOM panel underneath. Each value below is a
-// verbatim fragment of that product's own `name` in products.json, never a new name; the
-// full name still reads as the page's h1 in the panel.
-const WORDMARK = {
-  'a1-pro': 'A1 Pro',
-  a3: 'A3',
-  a3l: 'A3L',
-  a3s: 'A3S',
-  n1: 'N1',
-  'n2-plus': 'N2 Plus',
-  'n2-pro': 'N2 PRO',
-  s3: 'S3',
-  s6: 'S6',
-  s9: 'S9',
-  denjoy: 'Denjoy',
-  'roray-xray': 'RoRay',
-  dentalchairs: 'Chairs',
-  products: 'Equipment',
-};
-
-// The particle source: always the product's own hero, the first entry of its forms media.
+// RULED 2026-09-05 (Jarich): NO product is ever rendered in particles. The cloud is
+// reserved for the round DSD logo lockup and the red heart. Every beat here therefore
+// forms a calm sphere, dimmed where a DOM panel owns the frame, and the product itself
+// appears as a real PHOTOGRAPH in beat 1's panel.
 //
-// NOT the A1 Pro's "chair-silhouette-*.png". content-notes.md calls those "real silhouette
-// art" and "the best particle source in the repo"; they are not. Opened, the file is a
-// 3287 x 1375 marketing banner: a headline, three paragraphs of body copy, a colour swatch
-// and a close CROP of the upholstery, no whole chair anywhere. Sampled, it formed a block
-// of unreadable particle text on the page, including a superlative the editorial red-lines
-// ban. The note is wrong and should be corrected.
-function particleSource(product) {
+// The engine's mode/threshold/crop sampler keys are consequently unused by this file.
+// One warning worth keeping: the A1 Pro's pieces/chair-silhouette-*.png files are NOT
+// silhouettes, whatever content-notes.md says. They are 3287 x 1375 marketing banners
+// carrying a headline, body copy and a close crop of upholstery. Never feed them a sampler.
+
+// The door's second call. Ten of the twelve are ROSON chairs; the Denjoy endodontic range
+// and the RoRay handheld X-ray are not, and sending them to /dentalchairs offered a
+// visitor the one thing the page they were on is not.
+const NON_CHAIRS = new Set(['denjoy', 'roray-xray']);
+const SECOND_CTA = {
+  chairs: { label: 'See all chairs', href: '/dentalchairs' },
+  equipment: { label: 'See all equipment', href: '/products' },
+};
+
+// The product's own hero photograph, the first entry of its forms media. Shown as a
+// photograph in beat 1's panel, never sampled.
+function heroPhoto(product) {
   const media = product.beats?.forms?.media || [];
   return media[0] || product.heroImage;
 }
@@ -108,7 +72,7 @@ export function getProductEntry(slug) {
 
 /**
  * Build the serialisable config for one product page.
- * Returns { slug, name, beats: [{ id, formation, copy }] } with the inRealClinics beat
+ * Returns { slug, name, photo, beats: [{ id, formation, copy }] } with the inRealClinics beat
  * omitted entirely when the product has no install photographs.
  */
 export function productCinemaConfig(slug) {
@@ -116,24 +80,14 @@ export function productCinemaConfig(slug) {
   if (!product) throw new Error(`productCinemaConfig: no product "${slug}" in products.json`);
 
   const b = product.beats;
-  const src = particleSource(product);
-  const sampler = SAMPLER_BY_SLUG[slug] ?? DEFAULT_SAMPLER;
-  const wordmark = WORDMARK[slug] || product.name;
+  const photo = heroPhoto(product);
 
   const beats = [];
 
-  // 1 — the product forms from particles, its name seated underneath as canvas type.
+  // 1 — the product itself, as a photograph in the panel, over a dimmed calm cloud.
   beats.push({
     id: 'forms',
-    formation: {
-      key: 'forms',
-      kind: 'lockup',
-      src,
-      text: wordmark,
-      accentPeak: true,
-      ...sampler,
-      lockup: { markBox: 3.05, markY: 2.28, wordCenterY: -1.96, wordHalfW: 2.6, wordBoxH: 1.15 },
-    },
+    formation: { key: 'forms', kind: 'sphere', radius: 3.6, ripple: 0.14, dim: true },
     copy: b.forms,
   });
 
@@ -165,10 +119,7 @@ export function productCinemaConfig(slug) {
   if (installs.length > 0) {
     beats.push({
       id: 'inRealClinics',
-      formation: {
-        key: 'installs', kind: 'image', src, dim: true,
-        boxW: 3.3, boxH: 3.3, zBow: 0.9, ...sampler,
-      },
+      formation: { key: 'installs', kind: 'sphere', radius: 3.4, ripple: 0.2, dim: true },
       copy: b.inRealClinics,
     });
   }
@@ -187,21 +138,15 @@ export function productCinemaConfig(slug) {
     copy: { articles: relatedArticles(b.relatedNews) },
   });
 
-  // 8 — the door. Closing on the lockup bookends the arc, and the director seats the
-  // last lockup nearer than the first.
+  // 8 — the door. A calm closing cloud that deepens to rich green; no product in it.
+  // The primary call comes from products.json; the second one points at the range this
+  // product actually belongs to, so the endo bench and the handheld X-ray stop offering
+  // "See all chairs".
   beats.push({
     id: 'door',
-    formation: {
-      key: 'door',
-      kind: 'lockup',
-      src,
-      text: wordmark,
-      accentPeak: true,
-      ...sampler,
-      lockup: { markBox: 2.9, markY: 2.42, wordCenterY: -2.06, wordHalfW: 2.6, wordBoxH: 1.15 },
-    },
-    copy: b.door,
+    formation: { key: 'door', kind: 'sphere', radius: 3.0, ripple: 0.12, accentPeak: true },
+    copy: { ...b.door, secondaryCta: NON_CHAIRS.has(slug) ? SECOND_CTA.equipment : SECOND_CTA.chairs },
   });
 
-  return { slug, name: product.name, beats };
+  return { slug, name: product.name, photo, beats };
 }

@@ -31,13 +31,18 @@ function Body({ children }) {
   return <p className="cinema-sub">{children}</p>;
 }
 
-// Beat 1. The particles carry the model code as a wordmark, so the panel carries the FULL
-// model name as the page's h1 and one line under it. The marketing tagline is demoted to
-// that line rather than standing as the headline, and the panel is seated in the lower
-// third by product.css so it never lands on top of the particle group.
-function FormsPanel({ copy, name }) {
+// Beat 1. RULED: no product is ever drawn in particles, so the unit arrives as its real
+// photograph over the dimmed calm cloud, the same treatment the install and bench beats
+// use. Under it: the eyebrow, the full model name as the page's h1, and one line. The
+// marketing tagline is that line rather than the headline.
+function FormsPanel({ copy, name, photo }) {
   return (
-    <div className="cinema-copy pc-lockup-copy">
+    <div className="cinema-copy pc-wide">
+      {photo && (
+        <figure className="pc-hero">
+          <img className="pc-hero-img" src={photo} alt={name} />
+        </figure>
+      )}
       <Kicker>{copy.eyebrow}</Kicker>
       <Head lead>{name}</Head>
       <Body>{copy.headline}</Body>
@@ -180,6 +185,7 @@ function RelatedPanel({ copy }) {
 
 function DoorPanel({ copy }) {
   const cta = copy.cta || { label: 'Send an inquiry', href: '/contact' };
+  const second = copy.secondaryCta;
   return (
     <div className="cinema-copy">
       <Kicker>{copy.eyebrow}</Kicker>
@@ -187,7 +193,7 @@ function DoorPanel({ copy }) {
       <Body>{copy.body}</Body>
       <div className="pc-doors">
         <a className="cinema-cta pc-door pc-door-primary" href={cta.href}>{cta.label}</a>
-        <a className="cinema-cta pc-door" href="/dentalchairs">See all chairs</a>
+        {second && <a className="cinema-cta pc-door" href={second.href}>{second.label}</a>}
       </div>
     </div>
   );
@@ -208,7 +214,7 @@ export default function ProductCinema({ config, children, detailsLabel = 'Full d
   const beats = config.beats.map((b) => b.formation);
   const panels = config.beats.map((b) => {
     const Panel = PANEL_BY_ID[b.id];
-    return <Panel key={b.id} copy={b.copy} name={config.name} />;
+    return <Panel key={b.id} copy={b.copy} name={config.name} photo={config.photo} />;
   });
 
   return (

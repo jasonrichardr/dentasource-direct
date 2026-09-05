@@ -10,26 +10,35 @@
    a list, a grid or photographs need the room. ---- */
 .pc-wide { max-width: min(1040px, 92vw); }
 
-/* ---- beat 1: seat the copy UNDER the particle group ----
-   cinema.css centres every panel, which put the opening copy straight through the middle
-   of the formed product and its wordmark. The lockup lifts the mark and seats the model
-   code beneath it, so the panel starts in the lower third instead. --vh is the value the
-   engine locked at load, so this band does not move when a mobile URL bar slides.
-   Targeted through :has() rather than a nth-child on .cinema-panel, because the panel
-   order is the engine's business, not this file's.
-   Measured, not guessed: at 1440 by 900 the particle wordmark's baseline lands at about
-   620px and a 68% start put the eyebrow at 612px, so "THE UNIT" clipped the bottom of the
-   "A3". 73% starts the copy at 657px and clears it. */
-.cinema-panel:has(.pc-lockup-copy) {
-  justify-content: flex-start;
-  padding-top: calc(var(--vh, 1vh) * 73);
+/* ---- beat 1: the product as a photograph ----
+   RULED: no product is ever drawn in particles. The unit arrives as its real hero shot,
+   large and centred over the dimmed cloud, with the copy beneath it. The height is capped
+   in --vh (the value the engine locked at load, so it does not move when a mobile URL bar
+   slides) rather than in pixels, because the photo and three lines of copy have to share
+   one viewport on a 390 by 844 phone as well as on a desktop. */
+.pc-hero {
+  margin: 0 auto clamp(18px, 3vh, 30px);
+  max-width: min(760px, 84vw);
+}
+.pc-hero-img {
+  display: block;
+  width: 100%;
+  max-height: calc(var(--vh, 1vh) * 46);
+  object-fit: contain;
+  border-radius: 16px;
+  /* The mat is NEAR-WHITE IN BOTH THEMES, deliberately, and is not a token. Every product
+     hero is a studio shot on a white ground (Denjoy's is a pale blue), and `contain` means
+     the mat shows at the sides. A --paper mat therefore framed a hard white square inside
+     a dark rounded plate on the night page. Matching the mat to the photograph's own
+     ground lets the shot run to the rounded edge and read as one card. */
+  background: #f7f8fa;
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  box-shadow: 0 22px 60px color-mix(in srgb, var(--ink) 26%, transparent);
 }
 @media (max-width: 700px) {
-  .cinema-panel:has(.pc-lockup-copy) { padding-top: calc(var(--vh, 1vh) * 62); }
+  .pc-hero { max-width: 92vw; }
+  .pc-hero-img { max-height: calc(var(--vh, 1vh) * 38); border-radius: 13px; }
 }
-/* The opening line is one line, so it reads as a caption to the mark rather than a
-   second headline competing with it. */
-.pc-lockup-copy .cinema-sub { max-width: 560px; }
 
 /* The description carried down from beat 1. It leads the panel, so it sits a shade
    quieter than the beat's own line and keeps the two paragraphs from reading as one
