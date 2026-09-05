@@ -4305,4 +4305,626 @@ Written from our posts of October 31 and December 18, 2025.
 
 [See the ROSON DX-A3](/a3)`
     },
+    {
+        id: "fb-2025-02-08-roson-dental-chair-delivery-sta-maria-bu",
+        slug: "roson-dental-chair-delivery-sta-maria-bulacan-2025",
+        title: "From Our Pasig Showroom to a Clinic in Sta. Maria, Bulacan",
+        date: "February 8, 2025",
+        image: "/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/og.jpg",
+        ogImage: "/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/og.jpg",
+        hideHeroImage: false,
+        abstract: "Two reels posted on February 8, 2025 follow one dental chair from our Pasig showroom to a clinic in Sta. Maria, Bulacan, from the staging floor and the service lift to the loaded van.",
+        content: `On February 8, 2025 we posted two reels from the same job. Both follow one dental chair from our Pasig showroom to a clinic in Sta. Maria, Bulacan, and together they show the part of a purchase that dentists rarely see, which is everything that happens before the chair reaches the operatory.
+
+## The Route North
+
+The reel opens on a map. Pasig is marked at the bottom of the frame, and the line runs north through Quezon City and Valenzuela toward Sta. Maria. On paper it is a short trip. On a weekday, with a chair in the back and a clinic waiting at the other end, it is most of a working day.
+
+The next frame is the showroom door, with the first boxed unit going out. Deliveries start light and finish heavy. Accessories, hoses and control boxes move first, while the floor is still clear and there is room to work.
+
+![Map animation tracing the route from Pasig north to Sta. Maria](/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-1.jpg)
+![Technician carrying a boxed unit out through the showroom door](/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-2.jpg)
+
+## Staging the Order
+
+The camera then turns back into the room where the order is staged. Cartons stacked shoulder high, a chair already sheathed in bubble film, a tool case on the floor and the team moving around all of it.
+
+A dental chair is not a single object. It travels as a base, a seat and backrest, a delivery unit, an operating light, a spittoon assembly and a bundle of hoses and cables. The order in which those go into the vehicle decides how quickly they come out at the other end, so the staging is done before anything is lifted.
+
+![Team lifting a wrapped chair unit among stacked cartons](/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-3.jpg)
+![Crates and cartons staged on the showroom floor before loading](/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-4.jpg)
+![Wrapped chair unit and tool case beside a wall display panel](/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-5.jpg)
+
+## Into the Lift and Into the Van
+
+The last stretch of the reel is the loading itself. The wrapped unit goes into the service lift on a trolley, the tool case and cartons follow, and downstairs four hands guide the chair into the vehicle over a padded floor.
+
+Nothing in these frames is dramatic, which is the point. A chair that is loaded carefully arrives without a mark on it, and a chair that arrives without a mark on it is installed the same day instead of being photographed for a claim.
+
+![Two technicians wheeling the wrapped chair into the service lift](/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-6.jpg)
+![The team easing the wrapped chair into the delivery vehicle](/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-7.jpg)
+
+## What Is Inside the Chair
+
+The second caption is where the specification appears. Our chairs are built with imported components, with tubings and motors sourced from Italy, Japan and the United States.
+
+That is worth a moment for a clinic owner. The parts that move and the parts that carry water and air are the parts that wear, so they are the ones to ask about before signing anything. Where a chair is assembled matters less than where those components come from and whether the supplier holds them in the country.
+
+## From Our Facebook Page
+
+Written from our two reels of February 8, 2025.
+
+[facebook](https://www.facebook.com/reel/1350890952932206/)
+
+[facebook](https://www.facebook.com/reel/946982620834462/)
+
+[Talk to us about a chair for your clinic](/contact)`
+    },
+    {
+        id: "fb-2025-02-13-dental-chair-installation-team-at-work-f",
+        slug: "dental-chair-installation-team-at-work-february-2025",
+        title: "An Installation Day, From the Van to a Working Chair",
+        date: "February 13, 2025",
+        image: "/images/news/dental-chair-installation-team-at-work-february-2025/og.jpg",
+        ogImage: "/images/news/dental-chair-installation-team-at-work-february-2025/og.jpg",
+        hideHeroImage: false,
+        abstract: "A reel from February 13, 2025 follows one installation from the van at the door to the handover, with the wrapping, the cabling and the assembly order in between.",
+        content: `Some jobs do not come with a place name. This one reached our page on February 13, 2025 as a short reel with captions running over it, and what it records is an ordinary installation day: a van at the door in the morning, a wrapped chair on the floor by the middle of it, and a dentist being walked through the controls before we left.
+
+## The Van, Then the Room
+
+The reel opens inside the clinic, with our staff standing at the new chair and the dentist in teal scrubs beside it, then cuts back to where the day actually started. Two of our team work at the rear of the van, easing wrapped parts out one at a time.
+
+Unloading is slower than it looks on video. Every piece is checked off as it comes out, because a missing bracket found at nine in the morning is a phone call, and the same bracket found at four in the afternoon is a second trip on another day.
+
+![Our staff and the dentist beside the newly installed chair](/images/news/dental-chair-installation-team-at-work-february-2025/v303-1.jpg)
+![Technicians easing wrapped parts out of the delivery van](/images/news/dental-chair-installation-team-at-work-february-2025/v303-2.jpg)
+![Cutting the protective wrapping off the delivery unit indoors](/images/news/dental-chair-installation-team-at-work-february-2025/v303-3.jpg)
+
+## Wrapping Off and the Handover
+
+Inside, the film comes off over a wooden crate, which doubles as the work bench for the day. Cables are already run across the floor at this stage, because almost everything else sits on top of them. Once the seat, the arm and the covers are on, going back to a line that was run badly means taking parts off again.
+
+Assembly then moves in the usual order. Base, chair body, delivery arm, spittoon, light, and finally the hoses and lines that tie the unit to the room itself: power in, water in, drainage out, and compressed air from the compressor.
+
+The reel closes on the part that matters most to the clinic. The tray table is on, the touch panel is live, the instruments are seated in their holders, and one of our staff is handing the dentist a handpiece off the hanger while a patient waits at the side.
+
+![Our staff working on the wrapped unit over a wooden crate](/images/news/dental-chair-installation-team-at-work-february-2025/v303-4.jpg)
+![Handing the dentist a handpiece at the finished chair](/images/news/dental-chair-installation-team-at-work-february-2025/v303-5.jpg)
+
+## Why the Last Ten Minutes Count
+
+A chair set down in a room and left there is a box. A chair connected, leveled, tested and explained is a working operatory, and the distance between the two is a technician on site who stays until the dentist has run the thing personally.
+
+That is why the handover is on the video at all. Chair positions, the foot control, the light, the suction, the daily clean and the short list of things to check before calling us. Ten minutes at the end of the day saves a service call in the first week.
+
+## From Our Facebook Page
+
+Written from our reel of February 13, 2025.
+
+[facebook](https://www.facebook.com/reel/946148631003184/)
+
+[Talk to us about a chair for your clinic](/contact)`
+    },
+    {
+        id: "fb-2025-03-09-metro-manila-dental-chair-installation-m",
+        slug: "metro-manila-dental-chair-installation-march-2025",
+        title: "Through Metro Manila Streets to a Finished Chair Install",
+        date: "March 9, 2025",
+        image: "/images/news/metro-manila-dental-chair-installation-march-2025/og.jpg",
+        ogImage: "/images/news/metro-manila-dental-chair-installation-march-2025/og.jpg",
+        hideHeroImage: false,
+        abstract: "A reel from March 9, 2025 follows a chair from a kerbside unload on a Metro Manila street to a finished grey unit, a connected compressor and a handover checklist.",
+        content: `On March 9, 2025 we posted a reel from an installation somewhere in Metro Manila. The caption thanked the dentist without naming the practice, so this is a story about a street, a van and a room rather than about a clinic.
+
+## Kerbside on a Weekday
+
+The reel opens at the back of a white van parked at the kerb, power lines overhead and walk-up buildings on both sides. Anyone who has moved anything large through these streets knows the frame: no loading bay, traffic behind you, and a chair to get out before someone leans on a horn.
+
+Our team works from the rear doors. One carries the wrapped compressor tank clear of the tail lights. Behind him three more lift a white chair section out through the door frame while neighbours step around them on the pavement.
+
+![Our team opening the delivery van on a city street](/images/news/metro-manila-dental-chair-installation-march-2025/v304-1.jpg)
+![Technician carrying the wrapped compressor tank from the van](/images/news/metro-manila-dental-chair-installation-march-2025/v304-2.jpg)
+![The crew lifting a chair section out of the van](/images/news/metro-manila-dental-chair-installation-march-2025/v304-3.jpg)
+
+## The Compressor Is Not an Afterthought
+
+The tank in the second frame is the part clinic owners forget to plan for. A dental chair runs on compressed air, and the compressor has to sit somewhere it can breathe, somewhere its noise will not carry into the treatment room, and somewhere a technician can still reach the drain valve.
+
+Deciding that on delivery day is how compressors end up wedged under desks. Deciding it a week earlier costs nothing.
+
+## The Grey Chair in the Room
+
+Inside, the reel changes tone. The chair is standing, the delivery arm sits over the tray, the cuspidor bowl and the control panel are connected, and the room around it already has its air conditioner, its cabinets and its framed certificates. Fitting a new unit into an operatory that is already furnished is most of the skill in this job.
+
+The last frame is the group photo. Our team on one side, the clinic staff on the other, the finished grey and white unit between them, and a checklist in one hand. That checklist is the handover, and nobody leaves before it is finished.
+
+![The installed grey chair with its delivery arm and control panel](/images/news/metro-manila-dental-chair-installation-march-2025/v304-4.jpg)
+![Our team and the clinic staff beside the finished chair](/images/news/metro-manila-dental-chair-installation-march-2025/v304-5.jpg)
+
+## The Terms of That Period
+
+The caption carried the offer we were running in early 2025, including a plan with zero downpayment and free delivery and installation. Those were the terms of that period rather than a standing quote, and current pricing and payment plans are on request.
+
+What has not changed is the rest of it. Spare parts are held here, our own technicians do the installs, and the same team that carried the chair up the street answers the phone when something needs attention.
+
+## From Our Facebook Page
+
+Written from our reel of March 9, 2025.
+
+[facebook](https://www.facebook.com/reel/1278774399878877/)
+
+[Talk to us about a chair for your clinic](/contact)`
+    },
+    {
+        id: "fb-2025-03-11-maroon-roson-dental-chair-installation-m",
+        slug: "maroon-roson-dental-chair-installation-march-2025",
+        title: "A Maroon ROSON Unit Finds Its Clinic",
+        date: "March 11, 2025",
+        image: "/images/news/maroon-roson-dental-chair-installation-march-2025/og.jpg",
+        ogImage: "/images/news/maroon-roson-dental-chair-installation-march-2025/og.jpg",
+        hideHeroImage: false,
+        abstract: "A reel from March 11, 2025 follows a maroon ROSON unit from the van to a narrow clinic with a slatted wooden ceiling, and why upholstery colour is worth choosing on purpose.",
+        content: `On March 11, 2025 we posted a reel from an installation that stands out for one reason. The chair was maroon. Most operatories in the country are furnished in white, grey or blue, and a deep red unit under a dark wooden ceiling makes a room look like a decision rather than a default.
+
+## Out of the Van, Under the Trees
+
+The reel opens on the upholstery, wrapped in bubble film and bound with our own tape, sitting in the back of the vehicle beside a trolley. Then two of our team carry a wooden crate across a covered driveway toward the entrance, and a wrapped seat back goes in through the door on a shoulder.
+
+Crated parts and wrapped parts travel differently on purpose. Anything with a painted or upholstered surface goes in film and bubble so nothing rubs against it. Anything with a mechanism inside goes in timber so nothing bends.
+
+![The wrapped maroon chair pads loaded in the delivery van](/images/news/maroon-roson-dental-chair-installation-march-2025/v305-1.jpg)
+![Two technicians carrying a wooden crate toward the clinic entrance](/images/news/maroon-roson-dental-chair-installation-march-2025/v305-2.jpg)
+![The wrapped maroon seat back carried into the clinic corridor](/images/news/maroon-roson-dental-chair-installation-march-2025/v305-3.jpg)
+
+## Assembly Under a Wooden Ceiling
+
+Inside, the room is narrow and bright, with a glass partition down one side, a wall mounted screen and a slatted wooden ceiling above it. The crate becomes the work bench again. One of our technicians works standing at the delivery unit, another sits on the floor at the base, and a third stays at the head of the chair.
+
+By the last frames the unit is standing on its own. The light arm is up, the delivery arm is swung across, and the maroon upholstery is finally out of its film and reading almost black under the ceiling lights. One of our team is still kneeling by the foot control while the clinic looks the chair over.
+
+![Technicians working on the wrapped unit over a wooden crate](/images/news/maroon-roson-dental-chair-installation-march-2025/v305-4.jpg)
+![The crew assembling the chair beside the glass partition](/images/news/maroon-roson-dental-chair-installation-march-2025/v305-5.jpg)
+![The finished maroon chair with its light arm mounted](/images/news/maroon-roson-dental-chair-installation-march-2025/v305-6.jpg)
+
+## Colour Is a Real Choice
+
+Upholstery colour is the one specification a dentist picks freely, and it is worth picking on purpose. A dark seat makes a small room feel finished and photographs well for a clinic that posts. A pale seat shows less dust and keeps a windowless room from closing in.
+
+We keep chairs in the standard colours at 610 C. Raymundo Avenue, Maybunga, Pasig City, and other colours can be ordered. Seeing a colour under real clinic lighting beats choosing it from a phone screen.
+
+## From Our Facebook Page
+
+Written from our reel of March 11, 2025.
+
+[facebook](https://www.facebook.com/reel/1585400655485928/)
+
+[Talk to us about a chair for your clinic](/contact)`
+    },
+    {
+        id: "fb-2025-03-14-two-roson-dental-chairs-delivered-march-",
+        slug: "two-roson-dental-chairs-delivered-march-2025",
+        title: "Two ROSON Dental Chairs Delivered in One Night Run",
+        date: "March 14, 2025",
+        image: "/images/news/two-roson-dental-chairs-delivered-march-2025/og.jpg",
+        ogImage: "/images/news/two-roson-dental-chairs-delivered-march-2025/og.jpg",
+        hideHeroImage: false,
+        abstract: "On March 14, 2025 we delivered two dental chair units to one clinic in a single night run, from the truck and the stairwell to the eight lamp operating light going on.",
+        content: `On March 14, 2025 we delivered two dental chair units to one clinic on a single night run. The reel we posted is worth watching for the last few seconds alone, when the operating light comes on, but the work in front of that is the reason the light gets to come on at all.
+
+## Two Units, One Trip
+
+The reel opens in a lobby, with three of our team steering a wrapped delivery unit and its suction hose across the tiles on a blue dolly. Then it cuts outside to a closed truck at night, four sets of hands working at the tailgate under the interior strip lights. After that comes a stairwell, and a wrapped cuspidor and arm going up by hand.
+
+Two chairs is not twice the work of one. It is a little more than twice. The same trip, the same stairs and the same team, but every part now belongs to a set, and mixing up which base goes with which delivery unit costs an hour that nobody has at nine in the evening.
+
+![Three technicians steering a wrapped unit on a dolly](/images/news/two-roson-dental-chairs-delivered-march-2025/v306-1.jpg)
+![The crew unloading crates from the truck at night](/images/news/two-roson-dental-chairs-delivered-march-2025/v306-2.jpg)
+![Carrying a wrapped cuspidor and arm up the stairwell](/images/news/two-roson-dental-chairs-delivered-march-2025/v306-3.jpg)
+
+## Wrap Off, Chair Up
+
+Inside, the film comes off. One of our technicians works down the side of the delivery unit with a cutter while the hoses and the foot control lie ready on the floor and a tool roll sits open on the crate behind him.
+
+Then the chair goes together and the frames change character. A cream seat on a white base, the tray table with its keypad already mounted, and a technician bringing the light arm up into position over the headrest.
+
+![Technician cutting the wrapping off the delivery unit](/images/news/two-roson-dental-chairs-delivered-march-2025/v306-4.jpg)
+![Technician raising the light arm over the assembled chair](/images/news/two-roson-dental-chairs-delivered-march-2025/v306-5.jpg)
+
+## The Light Above the Chair
+
+The close shots at the end are the operating light, still inside its protective bag with all eight bulbs lit. It is worth explaining plainly, because it is the piece a dentist looks at every working hour.
+
+An operating light has one job: put a bright, evenly lit field into the mouth without laying a shadow across the middle of it. This head does that with eight LED lamps arranged around the face rather than a single bulb behind a reflector, which is why the beam keeps its shape when the dentist or the assistant leans across it. The controls sit along the top edge, and the head swings on a balanced arm so it stays wherever it is put.
+
+![Close view of the LED operating light with bulbs lit](/images/news/two-roson-dental-chairs-delivered-march-2025/v306-6.jpg)
+![The finished light on its arm in the treatment room](/images/news/two-roson-dental-chairs-delivered-march-2025/v306-7.jpg)
+
+## The Terms of That Period
+
+The caption mentioned flexible payment plans and a zero downpayment option. That was the arrangement we were running in March 2025 rather than a standing quote, and current terms are on request.
+
+## From Our Facebook Page
+
+Written from our reel of March 14, 2025.
+
+[facebook](https://www.facebook.com/reel/1862434721226777/)
+
+[Talk to us about a chair for your clinic](/contact)`
+    },
+    {
+        id: "fb-2025-04-25-roson-dx-n1-installed-general-trias-cavi",
+        slug: "roson-dx-n1-installed-general-trias-cavite-2025",
+        title: "ROSON DX-N1 Installed in General Trias, Cavite",
+        date: "April 25, 2025",
+        image: "/images/news/roson-dx-n1-installed-general-trias-cavite-2025/og.jpg",
+        ogImage: "/images/news/roson-dx-n1-installed-general-trias-cavite-2025/og.jpg",
+        hideHeroImage: false,
+        abstract: "On April 25, 2025 our team delivered and installed a ROSON DX-N1 for a clinic in General Trias, Cavite, from the crated unit on our floor to the finished chair in the room.",
+        content: `On April 25, 2025 our team delivered and installed a ROSON DX-N1 for a dental clinic in General Trias, Cavite. The reel runs the job from one end to the other, from a strapped crate on our own floor to the finished unit standing in a treatment room lined with supply shelves.
+
+## Loading Out
+
+The first frame is our own space. Black ceiling, strip lighting, cartons stacked against the wall, a display chair with its light arm folded back, and a flat crate on the floor bound in green banding. That crate is the chair.
+
+Then it is dark, and the reel cuts to the vehicle at a gated entrance with the wrapped unit coming out over the tailgate. Cavite deliveries usually mean leaving Pasig against the traffic and arriving after the clinic has closed for the day, which is why so many of these frames are lit by a single bulb over a doorway.
+
+![The crated DX-N1 waiting on our warehouse floor](/images/news/roson-dx-n1-installed-general-trias-cavite-2025/v308-1.jpg)
+![The crew lifting the wrapped unit out at night](/images/news/roson-dx-n1-installed-general-trias-cavite-2025/v308-2.jpg)
+![Technicians easing the wrapped unit through the doorway](/images/news/roson-dx-n1-installed-general-trias-cavite-2025/v308-3.jpg)
+
+## Through the Door and Into the Room
+
+A trolley does the rest. The wrapped unit and the compressor go in on a blue dolly with the suction hose coiled over the handle. Inside, the room has already been cleared for us: marble patterned tiles, a run of shelving loaded with supply cartons, and stacked chairs pushed against one wall to make space.
+
+Our technicians build the unit up in the middle of that room. By the final frame the DX-N1 is standing on its base with the light arm swung out over the headrest and the delivery unit connected, and the shelving has been pushed back into place around it.
+
+![Wheeling the wrapped unit and compressor in on a dolly](/images/news/roson-dx-n1-installed-general-trias-cavite-2025/v308-4.jpg)
+![Our technicians assembling the chair beside the supply shelves](/images/news/roson-dx-n1-installed-general-trias-cavite-2025/v308-5.jpg)
+![The finished DX-N1 with its light arm over the chair](/images/news/roson-dx-n1-installed-general-trias-cavite-2025/v308-6.jpg)
+
+## What the DX-N1 Is
+
+The DX-N1 is an integrated treatment unit rather than a chair on its own. The seat, the delivery arm, the cuspidor and the overhead LED light all mount to one base and share one set of services, so the room needs a single point for power, water, drainage and air instead of four.
+
+For a clinic running one or two operatories that is the practical argument. There is one thing to install, one thing to clean down at the end of the day, one thing to service and one supplier to call. The full specification sits on the [ROSON DX-N1](/n1) page.
+
+## Terms and Timing
+
+The caption also mentioned flexible payment plans, including a zero downpayment option, which is what we were running at that time. Current terms and pricing are on request, and a clinic anywhere in Cavite is welcome to see the same unit standing on the floor in Pasig first.
+
+## From Our Facebook Page
+
+Written from our reel of April 25, 2025.
+
+[facebook](https://www.facebook.com/reel/1360163231895400/)
+
+[See the ROSON DX-N1](/n1)`
+    },
+    {
+        id: "fb-2025-04-29-roson-s900-pro-delivered-catanauan-quezo",
+        slug: "roson-s900-pro-delivered-catanauan-quezon-2025",
+        title: "The ROSON S900 Pro Reaches Catanauan, Quezon",
+        date: "April 29, 2025",
+        image: "/images/news/roson-s900-pro-delivered-catanauan-quezon-2025/og.jpg",
+        ogImage: "/images/news/roson-s900-pro-delivered-catanauan-quezon-2025/og.jpg",
+        hideHeroImage: false,
+        abstract: "On April 29, 2025 our crew delivered and installed a ROSON S900 Pro in a clinic in Catanauan, Quezon, near the far end of the Bondoc Peninsula, and handed it over on the same visit.",
+        content: `## The Delivery
+
+On April 29, 2025 we delivered and installed a ROSON **S900 Pro** in a dental clinic in Catanauan, Quezon. Catanauan sits near the far end of the Bondoc Peninsula, which makes it one of the longer runs our van does from Pasig.
+
+The crew travels with the unit. That is the part worth saying plainly, because a chair that arrives in a province and then waits for somebody to come and set it up is a chair the clinic cannot work from. This one was delivered and installed on the same visit.
+
+## Unloading
+
+The reel opens at the back of the van on the street outside the clinic. The boxed parts come out first, the monitor carton among them, and the wrapped chair follows. Nothing is dragged. A dental unit arrives as a set of parts and only becomes a chair once it is assembled, so the pieces that scratch or bend most easily are the ones that come out first and get carried by hand.
+
+Three of the crew take the wrapped base through the clinic door together. In a converted house, the door and the turn behind it are the tightest part of any install, and they are measured before the unit is lifted rather than while it is being carried.
+
+![Our crew unloading boxed parts from the van outside the clinic](/images/news/roson-s900-pro-delivered-catanauan-quezon-2025/v309-1.jpg)
+![Three of the crew carrying the wrapped chair through the clinic door](/images/news/roson-s900-pro-delivered-catanauan-quezon-2025/v309-2.jpg)
+
+## Assembly
+
+Inside, the film comes off with the blade run flat along the wrapping so the panels underneath are never touched. Under it are the base, the backrest, the delivery arm and the light post, each still bagged.
+
+The light arm goes up next. It has the longest reach of anything in the room, so it is fitted and then swung through its full travel to confirm it clears the ceiling, the wall and the operator standing at the chair. The delivery tray is wiped down before anything is set on it. That is the moment a unit stops being freight and starts being clinical equipment.
+
+![A technician cutting the protective film off the wrapped unit](/images/news/roson-s900-pro-delivered-catanauan-quezon-2025/v309-3.jpg)
+![The crew fitting the light arm in the treatment room](/images/news/roson-s900-pro-delivered-catanauan-quezon-2025/v309-4.jpg)
+![Wiping down the delivery tray before the unit is used](/images/news/roson-s900-pro-delivered-catanauan-quezon-2025/v309-5.jpg)
+
+## The Finished Room
+
+The S900 Pro went in with beige upholstery. The headrest is the piece patients actually notice, since it is the one part of the chair they lie against for the length of an appointment, and it is the first thing the camera stops on once the wrapping is gone.
+
+The reel also passes the clinic's older grey unit, hoses taped and tray covered. Most of the clinics we deliver to are not new builds. They are working practices with a chair already in the room, and the new unit has to fit around the sink, the window and the way the dentist already moves.
+
+The crew and the clinic staff took the handover photo beside the finished chair, with the monitor live on its arm.
+
+![Close-up of the beige upholstered headrest on the new chair](/images/news/roson-s900-pro-delivered-catanauan-quezon-2025/v309-6.jpg)
+![The clinic's older grey dental chair with its tray covered](/images/news/roson-s900-pro-delivered-catanauan-quezon-2025/v309-7.jpg)
+![The crew and clinic staff beside the installed S900 Pro](/images/news/roson-s900-pro-delivered-catanauan-quezon-2025/v309-8.jpg)
+
+## Why It Matters
+
+For a clinic owner outside Metro Manila, the question is rarely whether a chair can be bought. It is whether anyone will drive it out, put it together properly, and still be reachable afterwards. Catanauan is a long way from our showroom and it was still a delivery and an installation in one visit.
+
+We are the exclusive Philippine distributor for ROSON, and the team that installs a unit is the team that comes back to it. The showroom at 610 C. Raymundo Avenue, Maybunga, Pasig City has the same chairs on the floor if you want to sit in one before you decide.
+
+## From Our Facebook Page
+
+Written from our post of April 29, 2025.
+
+[facebook](https://www.facebook.com/reel/1340525937239978/)
+
+[See the ROSON S900 Pro](/s9)`
+    },
+    {
+        id: "fb-2025-05-08-celestial-dental-clinic-binangonan-proof",
+        slug: "celestial-dental-clinic-binangonan-proof-of-delivery-2025",
+        title: "Proof of Delivery: Celestial Dental Clinic in Binangonan",
+        date: "May 8, 2025",
+        image: "/images/news/celestial-dental-clinic-binangonan-proof-of-delivery-2025/og.jpg",
+        ogImage: "/images/news/celestial-dental-clinic-binangonan-proof-of-delivery-2025/og.jpg",
+        hideHeroImage: false,
+        abstract: "Dr. Joanna of Celestial Dental Clinic in Binangonan, Rizal took delivery of a complete ROSON unit, installed by our technicians in January 2025 and posted as proof of delivery in May.",
+        content: `## The Handover
+
+On May 8, 2025 we posted the proof of delivery for **Celestial Dental Clinic** in Binangonan, Rizal. The unit went in on January 31 of the same year, and the two photographs are the ones our team takes at the end of every install: the people, and then the room on its own. Dr. Joanna is the dentist the clinic belongs to.
+
+## What Proof of Delivery Means
+
+The phrase sits on most of the install posts we publish, and we mean it literally. A photograph taken inside the clinic, with the unit assembled and running, is the only thing that separates a delivery from an order. An invoice proves nothing about a dental chair.
+
+Our technicians stay until the chair moves through its full travel, the bowl drains cleanly, the light holds its position when the arm is moved, and the dentist has worked the controls herself. The photo comes after that, not before.
+
+![Our installation team with the dentist beside the finished ROSON unit](/images/news/celestial-dental-clinic-binangonan-proof-of-delivery-2025/p310-1.jpg)
+
+## The Room
+
+The second photograph is the operatory on its own. The chair is upholstered in beige, the delivery unit carries the control panel and the instrument hoses, and the monitor is mounted on the post above the chair so an image can be shown to the patient where the patient is lying, rather than at a desk in another room.
+
+Behind it is the glass partition etched with the clinic's own tooth logo. That detail is worth pointing out, because a partition like that goes in long before the chair does. The unit has to fit the room the dentist already designed, which is why the light arm and the monitor are swung through their full travel at placement, before anything is fixed down.
+
+![The finished chair and monitor beside the etched glass partition](/images/news/celestial-dental-clinic-binangonan-proof-of-delivery-2025/p310-2.jpg)
+
+## Why It Matters
+
+Binangonan is a short drive from Pasig, so this was not a hard delivery. The value is the same on an easy run as on a long one. Delivery and installation are a single job for us, carried out by our own technicians, and what the clinic gets at the end of the day is a working operatory rather than crates in a corridor.
+
+We are the exclusive Philippine distributor for ROSON. The same units are on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City if you want to sit in one before you order.
+
+## From Our Facebook Page
+
+Written from our post of May 8, 2025.
+
+[facebook](https://www.facebook.com/dentasource/posts/122155037756480133)
+
+[Talk to us about a chair for your clinic](/contact)`
+    },
+    {
+        id: "fb-2025-06-06-roson-dx-n1-installed-quezon-city-june-2",
+        slug: "roson-dx-n1-installed-quezon-city-june-2025",
+        title: "The ROSON DX-N1 Installed in a Quezon City Clinic",
+        date: "June 6, 2025",
+        image: "/images/news/roson-dx-n1-installed-quezon-city-june-2025/og.jpg",
+        ogImage: "/images/news/roson-dx-n1-installed-quezon-city-june-2025/og.jpg",
+        hideHeroImage: false,
+        abstract: "On June 6, 2025 our team installed a ROSON DX-N1 in a primary care clinic inside a BJMP facility in Quezon City, from the tail of the truck through to a working operatory.",
+        content: `## The Job
+
+On June 6, 2025 our team installed a ROSON **DX-N1** in Quezon City. The signage above the room reads BJMP MBAI Primary Care Clinic, operated by Life Saver Medical Services, so this one went into a primary care clinic inside a Bureau of Jail Management and Penology facility rather than a private practice.
+
+That makes it one of the less usual jobs in our year, and one of the more useful ones. A working dental chair inside a facility clinic serves people who have very few other ways to be seen by a dentist.
+
+## Getting It Off the Truck
+
+The unit arrived on a light truck and came off with a hydraulic stacker rather than by hand. The stacker takes the weight of the wrapped base at the height of the truck bed, so the heaviest single piece of the delivery is never lowered by muscle. A flat platform trolley takes it from there across the driveway.
+
+The unwrapping happened in the covered hall outside the clinic door, which is the sensible place for it. Packaging is bulk, and bulk does not belong in a treatment room that has to be clean by the end of the day.
+
+![A hydraulic stacker lifting the wrapped chair off the delivery truck](/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-1.jpg)
+![Our crew unwrapping the chair base in the covered hall](/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-2.jpg)
+![The primary care clinic signage above the room being fitted out](/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-3.jpg)
+
+## Carrying the Parts In
+
+From there the unit goes in as parts. The team carries the panels and the sub assemblies through the door one at a time, which is both safer for the finish and the only way most clinic doorways can be cleared.
+
+Inside, the light post goes up. The post carries the arm, and the arm carries the head, so it is the piece that decides where the dentist can put light for the next several years. It is fitted, then swung through its full travel against the ceiling and the wall before anything else is bolted to the unit.
+
+![The team carrying chair parts through the clinic doorway](/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-4.jpg)
+![Our technicians raising the light post beside the new unit](/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-5.jpg)
+
+## The Unit in Place
+
+The DX-N1 went in with brown upholstery. In the finished frames the light head is mounted and aimed, the delivery unit tray is on its arm over the chair, and the ceramic bowl and its faucet are plumbed at the side.
+
+The upholstery is still in the protective film it travels in. That comes off after the room is cleaned down, not before, because the last hour of an install is the dustiest one.
+
+![The finished brown DX-N1 with the light head mounted and aimed](/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-6.jpg)
+![Close-up of the brown upholstery still in its protective film](/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-7.jpg)
+
+## Handover
+
+The wide shot shows the whole operatory: the chair, the delivery unit with its control panel and hoses, the operator stool, the foot control on the floor and the eye chart on the wall, which tells you this room does more than dentistry.
+
+The handover photo has our technicians standing with the clinic's staff beside the chair, and a boxed LED curing light sitting on the tray. A curing light is what sets composite filling material hard in seconds instead of leaving it to cure on its own, and it is one of the small pieces of equipment that decides what a clinic can actually treat on the day.
+
+![The finished operatory with chair, delivery unit and foot control](/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-8.jpg)
+![Our technicians with clinic staff beside the installed DX-N1](/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-9.jpg)
+
+## Why It Matters
+
+An institutional clinic has the same requirements as a private one and less room to absorb a mistake. The chair has to arrive whole, go in on the day, and work when the crew leaves, because there is no second visit scheduled and no spare operatory to fall back on.
+
+We are the exclusive Philippine distributor for ROSON. The DX-N1 and the rest of the range are on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City.
+
+## From Our Facebook Page
+
+Written from our post of June 6, 2025.
+
+[facebook](https://www.facebook.com/reel/2101453593669620/)
+
+[See the ROSON DX-N1](/n1)`
+    },
+    {
+        id: "fb-2025-06-30-dental-chair-upgrade-proof-of-delivery-j",
+        slug: "dental-chair-upgrade-proof-of-delivery-june-2025",
+        title: "A Chair Upgrade for a Long Running Clinic",
+        date: "June 30, 2025",
+        image: "/images/news/dental-chair-upgrade-proof-of-delivery-june-2025/og.jpg",
+        ogImage: "/images/news/dental-chair-upgrade-proof-of-delivery-june-2025/og.jpg",
+        hideHeroImage: false,
+        abstract: "On June 30, 2025 we posted the proof of delivery for a dental chair upgrade in a small working clinic, from the wrapped unit in the corridor to the dentist beside her finished chair.",
+        content: `## The Upgrade
+
+On June 30, 2025 we posted the proof of delivery for a dental chair upgrade. The caption named neither the dentist nor her clinic, so neither will we. What the photographs show is the more useful part anyway: a new unit going into a small clinic that has been working for years, rather than a fit out of an empty room.
+
+## Through the Door
+
+The first pair of frames is the delivery. The wrapped unit comes in on its shipping frame through the clinic's own doorway, past the glass door and the framed prints on the corridor wall, and the crew open the cartons where they stand because there is nowhere else to put them.
+
+That is what an upgrade looks like in most Philippine clinics. There is no loading bay and no spare room. The corridor is the staging area, the packaging goes back out as fast as it comes off, and the floor is clear again before the base is set down.
+
+![Our crew unpacking cartons in the clinic corridor beside the wrapped unit](/images/news/dental-chair-upgrade-proof-of-delivery-june-2025/p313-2.jpg)
+
+## The New Unit
+
+The second pair is the finished operatory, with the dentist on her operator stool beside the new chair and then with our technician standing behind her. The upholstery is brown, the instrument hoses are still in their sleeves, and the specification plate is still taped to the delivery tray.
+
+Everything else in the frame is the clinic it was the week before. The same tile, the same electric fan on the wall, the same chart above the counter. That is the whole point of an upgrade. The practice does not change. The chair the dentist will spend the next several years working at does.
+
+![The dentist on her stool beside the new brown ROSON chair, and with our technician](/images/news/dental-chair-upgrade-proof-of-delivery-june-2025/p313-1.jpg)
+
+## Why It Matters
+
+An upgrade is a different job from a new installation. The room is in use, patients are booked, and the space around the chair is already committed to a sink, a window and a door that cannot move. Placement has to be settled against what is already there.
+
+Delivery and installation are one visit for us, done by our own technicians, which is what keeps the disruption to a single closure rather than a week of them. We are the exclusive Philippine distributor for ROSON, and the units are on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City.
+
+## From Our Facebook Page
+
+Written from our post of June 30, 2025.
+
+[facebook](https://www.facebook.com/dentasource/posts/122162966582480133)
+
+[Talk to us about a chair for your clinic](/contact)`
+    },
+    {
+        id: "fb-2025-08-08-beyond-the-smile-dental-clinic-new-roson",
+        slug: "beyond-the-smile-dental-clinic-new-roson-chair-2025",
+        title: "Beyond the Smile Dental Clinic Takes a New ROSON Chair",
+        date: "August 8, 2025",
+        image: "/images/news/beyond-the-smile-dental-clinic-new-roson-chair-2025/og.jpg",
+        ogImage: "/images/news/beyond-the-smile-dental-clinic-new-roson-chair-2025/og.jpg",
+        hideHeroImage: false,
+        abstract: "Beyond the Smile Dental Clinic in Sampaloc, Manila took delivery of a new ROSON unit, installed by our technicians on August 7, 2025 and posted as proof of delivery the next day.",
+        content: `## The Delivery
+
+**Beyond the Smile Dental Clinic** took delivery of a new ROSON unit on August 7, 2025. The clinic is in Sampaloc, Manila. We posted the proof of delivery the following day.
+
+## The Installation
+
+The first pair of photographs is our technician at work in the operatory. The chair is standing on the finished floor, the backrest and headrest are being fitted, and the instrument tray still holds its sealed packets. Someone from the clinic is watching from a step away, which is how it usually goes. Nobody leaves a new chair alone in a room.
+
+Behind the unit is the wood panelled wall the clinic built before the chair existed. The light arm, the delivery unit and the ceramic bowl all have to work around a room that was finished first, so placement is argued out on the floor and settled before anything is bolted down. It is far cheaper to move a chair by half a metre at that stage than to discover the light will not reach the working field a month later.
+
+![Our technician fitting the backrest and headrest on the new ROSON chair](/images/news/beyond-the-smile-dental-clinic-new-roson-chair-2025/p314-1.jpg)
+
+## The Handover
+
+The second photograph is the handover, our technician standing with the clinic's people beside the finished unit. The monitor is up on its post above the chair, the ceramic bowl and its faucet are plumbed at the side, and the upholstery is still in the film it travels in. The film comes off after the room has been cleaned down, because the last hour of an installation is the dustiest one.
+
+A monitor on the post is not decoration. It puts the radiograph or the intraoral image in front of the patient while the patient is still lying in the chair, which is where explanations land best and where treatment gets accepted or declined.
+
+![Our technician with the clinic team beside the finished ROSON unit](/images/news/beyond-the-smile-dental-clinic-new-roson-chair-2025/p314-2.jpg)
+
+## About the Offer in That Post
+
+The post carried the promotional terms that were running at the time, including installment plans. Those offers were tied to that period and are not current. Pricing today is on request.
+
+## Why It Matters
+
+A new chair in a small clinic is the largest single purchase most Philippine dentists make in a decade, and the part that decides whether it goes well is the day it lands. Delivery and installation are one job for us, carried out by our own technicians, and the clinic ends the day with a unit that has been run through its functions in front of them.
+
+We are the exclusive Philippine distributor for ROSON. The showroom at 610 C. Raymundo Avenue, Maybunga, Pasig City has the range on the floor if you want to sit in a chair before you choose one.
+
+## From Our Facebook Page
+
+Written from our post of August 8, 2025.
+
+[facebook](https://www.facebook.com/dentasource/posts/122168483942480133)
+
+[Talk to us about a chair for your clinic](/contact)`
+    },
+    {
+        id: "fb-2025-04-11-dr-kristalyn-rufino-roson-dental-chair-c",
+        slug: "dr-kristalyn-rufino-roson-dental-chair-caloocan-2025",
+        title: "Dr. Kristalyn Rufino Chooses ROSON for Her Caloocan Clinic",
+        date: "April 11, 2025",
+        image: "/images/news/dr-kristalyn-rufino-roson-dental-chair-caloocan-2025/og.jpg",
+        ogImage: "/images/news/dr-kristalyn-rufino-roson-dental-chair-caloocan-2025/og.jpg",
+        hideHeroImage: false,
+        abstract: "Dr. Kristalyn Rufino's Caloocan clinic took a ROSON unit with an arm mounted monitor in April 2025. In June we posted the proof of delivery and thanked a repeat client.",
+        content: `## The Install
+
+On April 11, 2025 we posted the reel from **Dr. Kristalyn Rufino's** clinic in Caloocan. The unit went in on April 5, into a room that was still bare walls and floor tile when our truck arrived.
+
+An empty room is the straightforward case for placement and the demanding one for services. Nothing is hidden. Every hose, every cable and every decision about where the chair faces is made in front of the person who has to work there.
+
+## Off the Truck and Into the Room
+
+The delivery arrives as boxes and one wrapped assembly. The cartons come off the truck onto a platform trolley, taped and strapped for the trip, and the delivery arm with the instrument hoses comes in separately and goes on the floor until the base is standing.
+
+Our tape is on every carton for a reason that has nothing to do with branding. Parts for one chair travel together, and a set that stays together is a set that can be checked against the packing list at the door instead of halfway through the assembly.
+
+![The wrapped delivery arm and instrument hoses set down on the clinic floor](/images/news/dr-kristalyn-rufino-roson-dental-chair-caloocan-2025/v307-1.jpg)
+![Unloading strapped cartons from the truck onto a platform trolley](/images/news/dr-kristalyn-rufino-roson-dental-chair-caloocan-2025/v307-2.jpg)
+
+## Assembly and the Walkthrough
+
+The crew lift the wrapped unit into position with the dentist watching, which is how we prefer it. Placement is easier to agree on while the chair can still be moved.
+
+Then comes the part of the day that matters most and photographs least. Our technician takes the dentist through the arm mounted monitor and the control panel: what each key on the panel does, how the chair positions are stored and recalled, and how the imaging software on the screen behaves. This unit went in with an imaging screen, so the monitor is not a television. It is where the radiograph appears, seconds after it is taken, with the patient still in the chair.
+
+![Our crew lifting the wrapped unit into position in the empty room](/images/news/dr-kristalyn-rufino-roson-dental-chair-caloocan-2025/v307-3.jpg)
+![A technician walking the dentist through the monitor and control panel](/images/news/dr-kristalyn-rufino-roson-dental-chair-caloocan-2025/v307-4.jpg)
+
+## Handover
+
+The finished unit is upholstered in cream. On the tray in the handover frames are the two accessories that came with it, an imaging screen and an LED curing light, and on the monitor behind is a set of periapical radiographs pulled up during the walkthrough.
+
+The chair sits where the dentist put it, the hoses are dressed, and the temporary water line still runs across the floor because the room was not finished yet. The chair was.
+
+![Dr. Kristalyn Rufino beside her new cream ROSON unit and monitor](/images/news/dr-kristalyn-rufino-roson-dental-chair-caloocan-2025/v307-5.jpg)
+![Dr. Rufino and our technician with the finished chair and radiographs on screen](/images/news/dr-kristalyn-rufino-roson-dental-chair-caloocan-2025/v307-6.jpg)
+
+## She Came Back
+
+On June 6, 2025 we posted the proof of delivery card for Dr. Rufino's purchase, and the caption said what we were pleased to be able to say: a returning customer. A first sale is a decision made about a supplier's promises. A second one is a decision made about what the supplier actually did.
+
+The second card shows the same operatory finished: the full length mirror, the consultation corner with its chairs and desk, and the cream unit in its place along the wall. It is worth comparing against the bare room in the April frames.
+
+![Our technician with Dr. Kristalyn Rufino beside the installed chair](/images/news/dr-kristalyn-rufino-roson-dental-chair-caloocan-2025/p312-1.jpg)
+![The finished clinic with mirror, consultation corner and the cream unit](/images/news/dr-kristalyn-rufino-roson-dental-chair-caloocan-2025/p312-2.jpg)
+
+## Why It Matters
+
+Caloocan is close enough to Pasig that any supplier can reach it. What decides a second purchase is what happened after the first one: whether the walkthrough was real, whether the accessories worked on the day, and whether the number that was answered before the sale is still answered after it.
+
+We are the exclusive Philippine distributor for ROSON. The showroom at 610 C. Raymundo Avenue, Maybunga, Pasig City has the same units on the floor, monitors and all.
+
+## From Our Facebook Page
+
+Written from our reel of April 11, 2025 and our post of June 6, 2025.
+
+[facebook](https://www.facebook.com/reel/682494724272698/)
+
+[facebook](https://www.facebook.com/dentasource/posts/122159438762480133)
+
+[Talk to us about a chair for your clinic](/contact)`
+    },
 ];
