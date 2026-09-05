@@ -8,6 +8,7 @@
 // copy; it only decides which formation each beat forms and where the panel sits.
 
 import productsJson from '@/data/cinema/products.json';
+import { visible } from '@/lib/cinema/visible';
 import { newsData } from '@/data/news';
 
 const NEWS_BY_SLUG = new Map(newsData.map((n) => [n.slug, n]));
@@ -66,8 +67,12 @@ function relatedArticles(slugs = []) {
     .filter(Boolean);
 }
 
+// ☠️ HIDDEN AT MODULE SCOPE, LIKE EVERY OTHER MANIFEST. The studio can hide a whole
+// product entry, and this is the only place products.json is read anywhere in the app.
+const PRODUCTS = visible(productsJson.products);
+
 export function getProductEntry(slug) {
-  return productsJson.products.find((p) => p.slug === slug) || null;
+  return PRODUCTS.find((p) => p.slug === slug) || null;
 }
 
 /**
@@ -77,7 +82,18 @@ export function getProductEntry(slug) {
  */
 export function productCinemaConfig(slug) {
   const product = getProductEntry(slug);
-  if (!product) throw new Error(`productCinemaConfig: no product "${slug}" in products.json`);
+  // ☠️ HIDING A PRODUCT MUST NOT FAIL THE BUILD. Every product page is a hardcoded route
+  // calling this with a literal slug, so throwing here would mean that hiding one entry in
+  // the studio takes the whole site down at build time. A hidden product returns null and
+  // ProductCinema renders the page's detail sections without the cinema hero: the route
+  // stays alive, the specs stay readable, the arc is what disappears.
+  // A slug that is not in the file at all is still a programming error and still throws,
+  // because that one is a route pointing at nothing rather than a decision Jarich made.
+  if (!product) {
+    const known = productsJson.products.some((p) => p.slug === slug); /* unfiltered: asking whether the slug exists AT ALL, which is the question that separates a hidden product from a broken route */
+    if (known) return null;
+    throw new Error(`productCinemaConfig: no product "${slug}" in products.json`);
+  }
 
   const b = product.beats;
   const photo = heroPhoto(product);

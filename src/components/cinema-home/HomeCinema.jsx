@@ -20,6 +20,22 @@ import partsData from '@/data/cinema/parts.json';
 import crewShots from '@/data/cinema/crew-shots.json';
 import installsData from '@/data/cinema/installs.json';
 import growthPartner from '@/data/cinema/growth-partner.json';
+import { visible } from '@/lib/cinema/visible';
+
+// ☠️ EVERY MANIFEST IS FILTERED HERE, AT MODULE SCOPE, AND NOWHERE ELSE.
+// The studio writes `hidden: true` on an entry Jarich hides. Filtering at module scope
+// rather than inside a panel is what makes the hiding reach the arc's beat COUNT and the
+// engine's formation list: a filter applied further down would leave the engine holding a
+// slot for a beat nobody can see, and the scroll rail would still have a stop for it.
+// scripts/check-hidden-filter.mjs fails the build if a manifest is read without this.
+const HOME_BEATS = visible(beatsData.beats);
+const ASK_SCRIPT = { ...askScript, exchanges: visible(askScript.exchanges) };
+const MARBLE_REELS = visible(marblesReels.reels);
+const ACTION_ITEMS = visible(actionReels.items);
+const PARTS = visible(partsData.parts);
+const CREW_SHOTS = visible(crewShots.items);
+const INSTALL_TILES = visible(installsData.tiles);
+const GROWTH_ITEMS = visible(growthPartner.items);
 
 import {
   ActionPanel, ChatPanel, DoorPanel, HeartPanel, InstallsPanel, LockupPanel,
@@ -100,11 +116,11 @@ const FORMATIONS = {
  * ☠️ WAITING ON training-media.json. When it lands its items join this array and nothing
  * else changes.
  */
-const TRAINING_BEAT = (beatsData.beats || beatsData).find((b) => b.key === 'training-center');
+const TRAINING_BEAT = HOME_BEATS.find((b) => b.key === 'training-center');
 const MIXED_ITEMS = {
-  'see-us-in-action': actionReels.items,
+  'see-us-in-action': ACTION_ITEMS,
   'training-center': [
-    ...growthPartner.items,
+    ...GROWTH_ITEMS,
     ...(TRAINING_BEAT?.media || []).map((src) => ({
       type: 'image', src, caption: 'Inside the Training Center in Pasig',
     })),
@@ -120,10 +136,10 @@ function panelFor(beat, i, articles) {
     // ☠️ THE TILES COME FROM THE MANIFEST, NOT FROM THE BEAT. See the note in
       // home-beats.json: the beat used to carry its own copy of this list and
       // installs.json was read by nothing.
-      case 'installs': return <InstallsPanel beat={beat} beatIndex={i} tiles={installsData.tiles} />;
-    case 'parts': return <PartsPanel beat={beat} beatIndex={i} parts={partsData.parts} crew={crewShots.items} />;
-    case 'chat': return <ChatPanel beat={beat} beatIndex={i} script={askScript} />;
-    case 'marbles': return <MarblesPanel beat={beat} beatIndex={i} reels={marblesReels.reels} />;
+      case 'installs': return <InstallsPanel beat={beat} beatIndex={i} tiles={INSTALL_TILES} />;
+    case 'parts': return <PartsPanel beat={beat} beatIndex={i} parts={PARTS} crew={CREW_SHOTS} />;
+    case 'chat': return <ChatPanel beat={beat} beatIndex={i} script={ASK_SCRIPT} />;
+    case 'marbles': return <MarblesPanel beat={beat} beatIndex={i} reels={MARBLE_REELS} />;
     case 'action': return <ActionPanel beat={beat} beatIndex={i} items={MIXED_ITEMS[beat.key] || []} />;
     case 'door': return <DoorPanel beat={beat} />;
     case 'photo':
@@ -132,8 +148,8 @@ function panelFor(beat, i, articles) {
 }
 
 export default function HomeCinema({ articles = [] }) {
-  const beats = beatsData.beats.map((b) => ({ key: b.key, ...(FORMATIONS[b.key] || { kind: 'sphere', dim: true }) }));
-  const panels = beatsData.beats.map((b, i) => panelFor(b, i, articles));
+  const beats = HOME_BEATS.map((b) => ({ key: b.key, ...(FORMATIONS[b.key] || { kind: 'sphere', dim: true }) }));
+  const panels = HOME_BEATS.map((b, i) => panelFor(b, i, articles));
 
   return (
     <>

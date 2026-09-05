@@ -2,6 +2,11 @@ import PageCinema from '@/components/cinema-pages/PageCinema';
 import ShowroomInfo from '@/components/contact/ShowroomInfo';
 import BookingForm from '@/components/contact/BookingForm';
 import contactBeats from '@/components/cinema-pages/contact-beats.json';
+import { visible } from '@/lib/cinema/visible';
+
+// Hidden beats drop out before the arc is built, so the beat count and the scroll rail
+// exclude them too. See src/lib/cinema/visible.js.
+const CONTACT_BEATS = visible(contactBeats.beats);
 
 export const metadata = {
   title: 'Contact & Showroom',
@@ -17,7 +22,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <main>
-      <PageCinema beats={contactBeats.beats} />
+      <PageCinema beats={CONTACT_BEATS} />
       <div className="dsd-below">
         <section id="showroom" className="flex flex-col lg:flex-row">
           <div className="w-full lg:w-[45%]"><ShowroomInfo /></div>

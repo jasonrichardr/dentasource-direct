@@ -211,6 +211,19 @@ const PANEL_BY_ID = {
 };
 
 export default function ProductCinema({ config, children, detailsLabel = 'Full details' }) {
+  // ☠️ A NULL CONFIG MEANS THE PRODUCT IS HIDDEN, NOT THAT SOMETHING BROKE. productConfig
+  // returns null when the studio has hidden this product. The page keeps its route and its
+  // full detail sections; only the cinema arc stands down. Rendering nothing at all would
+  // turn a hidden arc into a blank page, which is a worse answer than a plain one.
+  if (!config) {
+    return (
+      <div className="pc-shell">
+        <section className="pc-details" id="full-details" aria-label={detailsLabel}>
+          <div className="pc-details-body">{children}</div>
+        </section>
+      </div>
+    );
+  }
   const beats = config.beats.map((b) => b.formation);
   const panels = config.beats.map((b) => {
     const Panel = PANEL_BY_ID[b.id];

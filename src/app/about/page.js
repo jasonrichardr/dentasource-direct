@@ -1,5 +1,10 @@
 import PageCinema from '@/components/cinema-pages/PageCinema';
 import aboutBeats from '@/components/cinema-pages/about-beats.json';
+import { visible } from '@/lib/cinema/visible';
+
+// Hidden beats drop out before the arc is built, so the beat count and the scroll rail
+// exclude them too. See src/lib/cinema/visible.js.
+const ABOUT_BEATS = visible(aboutBeats.beats);
 
 export const metadata = {
   title: 'About DentaSource Direct — Your Growth Partner in Dentistry',
@@ -11,7 +16,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <main>
-      <PageCinema beats={aboutBeats.beats} />
+      <PageCinema beats={ABOUT_BEATS} />
     </main>
   );
 }
