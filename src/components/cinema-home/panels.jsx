@@ -289,6 +289,25 @@ export function ChatPanel({ beat, beatIndex, script }) {
 // a page section. It is fed from src/data/cinema/marbles-reels.json so the wall grows by
 // editing a list: the cluster is built with count = the list length, one bead per reel.
 // ROLES ONLY. Nothing on this wall names a person.
+/**
+ * Camera distance for the reel shoal. MEASURED, not guessed, through cluster.bounds(),
+ * which reports the beads' own extent in world units because this canvas carries no
+ * preserveDrawingBuffer and its pixels cannot be read back.
+ *
+ * At the stock z=8 the camera shows 3.314 units above the axis. Measured half heights of
+ * the shoal on a 1440x900 desktop as the spring pulls the initial scatter in:
+ *   14s 6.32   24s 3.45   34s 3.32   44s 2.95  (equilibrium)
+ * So the settled shoal is about 3.0 and the stock framing clipped it for the first half
+ * minute and sat right on the edge after that. On a phone it settles smaller, near 2.97,
+ * and already fitted, which is why only the desktop frame showed the slice.
+ *
+ * 9.6 shows 3.976 units: 15% clear of the 24 second state and 35% clear of equilibrium.
+ * The opening seconds are still wider than the frame, but that is the physics arriving,
+ * not the framing being wrong, and chasing it would need a camera so far back that the
+ * beads would read as beads rather than as reels.
+ */
+const CLUSTER_CAMERA_Z = 9.6;
+
 export function MarblesPanel({ beat, beatIndex, reels = [] }) {
   const mountRef = useRef(null);
   const near = useBeatNear(beatIndex, { margin: '80%' });
@@ -319,9 +338,18 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
       videos: reels.map((r) => r.src),
       count: reels.length,          // exactly one bead per reel, however many there are
       isMobile: true,
+      // ☠️ THE DISTANCE IS THE FIT. The cluster's fov is vertical, so its camera distance
+      // is the only thing that decides how much of the shoal is on screen; the box shape
+      // cannot add height. Measured with cluster.bounds() and set so the beads clear the
+      // frame at 1440x900 and at 390x844. The option defaults to 8 for every other caller,
+      // so /classic renders exactly as it did.
+      cameraZ: CLUSTER_CAMERA_Z,
       faceZoomDefault: 0.55,
       faceZoom: {},
     });
+    // the proof harness reads the shoal's real extent through this; nothing in the page
+    // uses it, and it goes with the cluster on dispose
+    mount._dsdCluster = cluster;
 
     // The cluster sleeps whenever its stage leaves the screen.
     const io = new IntersectionObserver(
@@ -346,6 +374,7 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
       io.disconnect();
       mo.disconnect();
       if (theaterOpen) window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on: false } }));
+      delete mount._dsdCluster;
       cluster.dispose();
     };
   }, [near, reduced, reels]);

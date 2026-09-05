@@ -57,7 +57,7 @@ const FLING_SCALE = 0.3; // only a fraction of the finger's speed is imparted �
 const MAX_CURSOR = 4.5;  // cap the finger's effective speed so a quick press can't fling beads off-screen
 const MAX_DT = 1 / 30;
 
-export function createMarbleCluster(container, { videos = [], count = 18, isMobile = false, faceFocus = {}, faceZoom = {}, faceZoomDefault = 1 } = {}) {
+export function createMarbleCluster(container, { videos = [], count = 18, isMobile = false, faceFocus = {}, faceZoom = {}, faceZoomDefault = 1, cameraZ = 8 } = {}) {
   // mobile shows ALL the reels too (they're compressed 480p) — just smaller beads + camera pulled back
 
   // ── renderer: TRANSPARENT — only the marbles paint; the black comes from the panel's CSS bg (which
@@ -102,7 +102,14 @@ export function createMarbleCluster(container, { videos = [], count = 18, isMobi
   const scene = new THREE.Scene();
   // no scene.background → canvas stays transparent except where the glass renders (env still lights it)
   const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-  camera.position.set(0, 0, 8); // same framing on mobile + desktop; the mobile canvas is full-screen (no box)
+  // ☠️ THE FOV IS VERTICAL, SO THIS DISTANCE IS THE ONLY FIT CONTROL. The camera shows
+  // 2 * z * tan(22.5deg) world units of HEIGHT no matter how the container is shaped: a
+  // taller box renders the same shoal larger, a wider one only reveals more sideways. At
+  // the original z=8 that is 6.63 units, and a shoal of 33 beads packs slightly taller
+  // than that, so the bottom row was being sliced wherever it was mounted.
+  // DEFAULT 8 KEEPS EVERY EXISTING CALLER IDENTICAL (/classic through MeetTheTeam); only
+  // a caller that asks for more distance gets a wider view.
+  camera.position.set(0, 0, cameraZ);
 
   // colourful studio reflections (no HDR) — PMREM of a painted equirect → vibrant glass on black
   const pmrem = new THREE.PMREMGenerator(renderer);
@@ -542,5 +549,21 @@ export function createMarbleCluster(container, { videos = [], count = 18, isMobi
     canvas.remove();
   }
 
-  return { setActive, resize, dispose, canvas };
+  /** The shoal's own extent in world units, radii included, once the spring has settled.
+   *  A caller can compare it against the visible height (2 * cameraZ * tan(22.5deg)) and
+   *  know whether its framing actually clears the beads instead of guessing from a
+   *  screenshot: this canvas has no preserveDrawingBuffer, so its pixels cannot be read
+   *  back after the frame is presented. */
+  function bounds() {
+    let maxY = 0, maxX = 0;
+    for (const { unit, body } of units) {
+      const r = body.shapes[0]?.radius ?? 0;
+      maxY = Math.max(maxY, Math.abs(unit.position.y) + r);
+      maxX = Math.max(maxX, Math.abs(unit.position.x) + r);
+    }
+    const visibleHalfH = cameraZ * Math.tan((45 * Math.PI) / 180 / 2);
+    return { halfH: maxY, halfW: maxX, visibleHalfH, fits: maxY <= visibleHalfH };
+  }
+
+  return { setActive, resize, dispose, canvas, bounds };
 }
