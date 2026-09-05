@@ -1,0 +1,197 @@
+'use client';
+
+// Thumbnails for any media array in these files, whichever shape it is: a bare
+// list of paths (a beat's `media`), or a list of objects (`tiles` with alt,
+// `reels` with poster and caption). The mode is detected from the data rather
+// than passed in, so the same grid serves all of them and a new manifest with
+// the same shape works without being taught about.
+
+import { useCallback, useRef, useState } from 'react';
+
+import { isVideoPath } from '@/lib/studio/registry';
+import AssetPicker from './AssetPicker';
+
+const srcOf = (row) => (typeof row === 'string' ? row : row?.src || '');
+const withSrc = (row, src) => (typeof row === 'string' ? src : { ...row, src });
+
+function Thumb({ src }) {
+  const [dur, setDur] = useState(null);
+  if (!src) return <div className="st-thumb empty">no file</div>;
+  if (isVideoPath(src)) {
+    return (
+      <div className="st-thumb">
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          src={src}
+          muted
+          playsInline
+          preload="metadata"
+          onLoadedMetadata={(e) => setDur(e.currentTarget.duration)}
+        />
+        <span className="st-badge">
+          video{dur ? ` · ${Math.floor(dur / 60)}:${String(Math.round(dur % 60)).padStart(2, '0')}` : ''}
+        </span>
+      </div>
+    );
+  }
+  return (
+    <div className="st-thumb">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt="" loading="lazy" />
+    </div>
+  );
+}
+
+export default function MediaGrid({ k, value, onChange, single = false }) {
+  const rows = Array.isArray(value) ? value : [];
+  const objectMode = rows.some((r) => r && typeof r === 'object');
+  const [picking, setPicking] = useState(null); // index being swapped, or 'add'
+  const [drag, setDrag] = useState(null);
+  const [pending, setPending] = useState(null); // {file, alt, busy, error, warnings}
+  const fileInput = useRef(null);
+
+  const set = useCallback((next) => onChange(next), [onChange]);
+  const patch = (i, row) => set(rows.map((r, j) => (j === i ? row : r)));
+  const del = (i) => set(rows.filter((_, j) => j !== i));
+  const move = (from, to) => {
+    if (from == null || to == null || from === to) return;
+    const next = rows.slice();
+    const [row] = next.splice(from, 1);
+    next.splice(to, 0, row);
+    set(next);
+  };
+
+  const chose = (asset) => {
+    if (picking === 'add') {
+      set([...rows, objectMode ? { src: asset.src, alt: '' } : asset.src]);
+    } else if (typeof picking === 'number') {
+      patch(picking, withSrc(rows[picking], asset.src));
+    }
+    setPicking(null);
+  };
+
+  const upload = async () => {
+    if (!pending?.file || !pending.alt.trim()) return;
+    setPending((p) => ({ ...p, busy: true, error: null }));
+    try {
+      const fd = new FormData();
+      fd.append('file', pending.file);
+      fd.append('alt', pending.alt);
+      const r = await fetch('/api/studio/upload', { method: 'POST', body: fd });
+      const d = await r.json();
+      if (!r.ok) throw new Error(d.error || 'upload failed');
+      set([...rows, objectMode ? { src: d.src, alt: pending.alt } : d.src]);
+      setPending(d.warnings?.length ? { file: null, alt: '', warnings: d.warnings } : null);
+      if (fileInput.current) fileInput.current.value = '';
+    } catch (e) {
+      setPending((p) => ({ ...p, busy: false, error: e.message }));
+    }
+  };
+
+  return (
+    <div className="st-media">
+      <div className="st-f-k">
+        {k}
+        <span className="st-f-n">{rows.length} {rows.length === 1 ? 'file' : 'files'}</span>
+      </div>
+
+      <div className="st-grid">
+        {rows.map((row, i) => {
+          const src = srcOf(row);
+          const needsAlt = objectMode && 'alt' in (row || {}) && !String(row.alt || '').trim();
+          return (
+            <div
+              className={`st-cell${drag === i ? ' dragging' : ''}${needsAlt ? ' warn' : ''}`}
+              key={`${src}-${i}`}
+              draggable
+              onDragStart={() => setDrag(i)}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={() => {
+                move(drag, i);
+                setDrag(null);
+              }}
+              onDragEnd={() => setDrag(null)}
+            >
+              <Thumb src={src} />
+              <div className="st-cell-path" title={src}>{src.split('/').slice(-1)[0]}</div>
+              {objectMode ? (
+                <>
+                  {'alt' in (row || {}) ? (
+                    <input
+                      className={needsAlt ? 'bad' : ''}
+                      placeholder="alt text, required"
+                      value={row.alt || ''}
+                      onChange={(e) => patch(i, { ...row, alt: e.target.value })}
+                    />
+                  ) : null}
+                  {'caption' in (row || {}) ? (
+                    <input
+                      placeholder="caption"
+                      value={row.caption || ''}
+                      onChange={(e) => patch(i, { ...row, caption: e.target.value })}
+                    />
+                  ) : null}
+                  {'poster' in (row || {}) ? (
+                    <input
+                      placeholder="poster path"
+                      value={row.poster || ''}
+                      onChange={(e) => patch(i, { ...row, poster: e.target.value })}
+                    />
+                  ) : null}
+                </>
+              ) : null}
+              <div className="st-cell-tools">
+                <button type="button" onClick={() => setPicking(i)}>Swap</button>
+                {!single ? <button type="button" className="danger" onClick={() => del(i)}>Delete</button> : null}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {!single ? (
+        <div className="st-add">
+          <button type="button" className="st-btn ghost sm" onClick={() => setPicking('add')}>
+            Add from the site
+          </button>
+          <span className="st-or">or upload</span>
+          <input
+            ref={fileInput}
+            type="file"
+            accept="image/*,video/*"
+            onChange={(e) => setPending({ file: e.target.files?.[0] || null, alt: '', busy: false })}
+          />
+          {pending?.file ? (
+            <>
+              <input
+                placeholder="alt text, required before it can be added"
+                value={pending.alt}
+                onChange={(e) => setPending((p) => ({ ...p, alt: e.target.value }))}
+              />
+              <button
+                type="button"
+                className="st-btn sm"
+                disabled={!pending.alt.trim() || pending.busy}
+                onClick={upload}
+              >
+                {pending.busy ? 'Uploading…' : 'Upload'}
+              </button>
+            </>
+          ) : null}
+          {pending?.error ? <span className="st-err">{pending.error}</span> : null}
+          {pending?.warnings?.length
+            ? pending.warnings.map((w) => (
+                <span key={w} className="st-warn">{w}</span>
+              ))
+            : null}
+        </div>
+      ) : (
+        <div className="st-add">
+          <button type="button" className="st-btn ghost sm" onClick={() => setPicking(0)}>Swap this file</button>
+        </div>
+      )}
+
+      {picking !== null ? <AssetPicker onPick={chose} onClose={() => setPicking(null)} /> : null}
+    </div>
+  );
+}
