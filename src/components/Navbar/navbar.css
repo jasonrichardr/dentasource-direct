@@ -173,3 +173,15 @@
 :root.dsd-room-open .dsd-footer {
   visibility: hidden;
 }
+
+/* ---- reduced motion ----------------------------------------------------------------
+   ☠️ THE TRUST MARQUEE'S ANIMATION IS WRITTEN INLINE by the Navbar component, and an
+   inline declaration outranks every ordinary author rule. Only !important reaches it, so
+   this is the one place in my CSS that earns one. The doubled track simply stops, which
+   leaves the first run of items readable rather than crawling past. */
+@media (prefers-reduced-motion: reduce) {
+  .dsd-nav-trust > div { animation: none !important; }
+  .dsd-nav-bar, .dsd-nav-trust, .dsd-nav-link, .dsd-nav-cta, .dsd-nav-logo img,
+  .dsd-footer-link, .dsd-footer-cta, .dsd-footer-ghost, .dsd-footer-chip { transition: none; }
+  .dsd-nav-cta:hover, .dsd-footer-cta:hover { transform: none; }
+}

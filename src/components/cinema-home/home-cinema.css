@@ -126,6 +126,9 @@
 }
 .dsd-strip-track img {
   height: clamp(110px, 24vh, 240px);
+  /* width comes from the ratio, NOT from next/image's width attribute, so a tile that is
+     still a placeholder and a tile carrying a picture occupy the identical box. */
+  width: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   margin-right: 10px;
@@ -139,8 +142,15 @@
    compositing off screen at opacity 0. */
 .cinema-panel:not(.near) .dsd-strip-track,
 .cinema-panel:not(.near) .dsd-news-track { animation-play-state: paused; }
+/* REDUCED MOTION. The engine already stands its rAF loop down; these are the parts of
+   the arc that move on their own without it. Both marquees stop dead rather than crawl,
+   the caret stops blinking (and under reduced motion the answer is filled in one go, so
+   there is no caret to blink anyway), and every hover transition and lift is dropped. */
 @media (prefers-reduced-motion: reduce) {
   .dsd-strip-track, .dsd-news-track { animation: none; }
+  .cinema-cta, .dsd-cta, .dsd-chip, .dsd-news-card,
+  .dsd-photos img, .dsd-strip-track img { transition: none; }
+  .dsd-cta:hover { transform: none; }
 }
 
 /* ---- the news marquee: two rows, opposite sweeps ---- */

@@ -80,6 +80,32 @@ export function HeartPanel({ beat }) {
 
 /* ── beat 2: one team, the photo strip ─────────────────────────────────────── */
 
+/** One tile of the team strip.
+ *
+ *  ☠️ THE PLACEHOLDER IS ALSO AN <img>, and that is the whole trick. The doubled track
+ *  only wraps seamlessly at -50% if its two halves are the SAME WIDTH, so a tile that has
+ *  not loaded yet must occupy the identical box. Same element, same CSS rule, same
+ *  aspect-ratio box whether it is carrying a picture or waiting for one.
+ *
+ *  The source files are full-size news photographs; at a 240px tall tile that is most of
+ *  a megabyte thrown away twelve times over, so they go through next/image now. */
+const STRIP_W = 320;
+const STRIP_H = 240;
+
+function StripTile({ tile, near, echo = false }) {
+  if (!near) return <img alt="" aria-hidden="true" />;
+  return (
+    <Image
+      src={tile.src}
+      alt={echo ? '' : tile.alt}
+      aria-hidden={echo ? 'true' : undefined}
+      width={STRIP_W}
+      height={STRIP_H}
+      sizes="(max-width: 700px) 34vw, 320px"
+    />
+  );
+}
+
 export function StripPanel({ beat, beatIndex }) {
   const near = useBeatNear(beatIndex);
   const tiles = beat.tiles || [];
@@ -90,12 +116,8 @@ export function StripPanel({ beat, beatIndex }) {
         {/* The track is doubled so the -50% sweep wraps seamlessly. The second half is
             the same twelve tiles again, so it is announced to nobody. */}
         <div className="dsd-strip-track">
-          {tiles.map((t, i) => (
-            <img key={`a-${i}`} src={near ? t.src : undefined} data-src={t.src} alt={t.alt} loading="lazy" decoding="async" />
-          ))}
-          {tiles.map((t, i) => (
-            <img key={`b-${i}`} src={near ? t.src : undefined} data-src={t.src} alt="" aria-hidden="true" loading="lazy" decoding="async" />
-          ))}
+          {tiles.map((t, i) => <StripTile key={`a-${i}`} tile={t} near={near} />)}
+          {tiles.map((t, i) => <StripTile key={`b-${i}`} tile={t} near={near} echo />)}
         </div>
       </div>
       <Cta cta={beat.cta} />
@@ -113,8 +135,21 @@ export function PhotoPanel({ beat, beatIndex }) {
   return (
     <div className="dsd-panel">
       <div className="dsd-photos">
-        {shots.map((src, i) => (
-          <img key={src} src={near ? src : undefined} data-src={src} alt={i === 0 ? beat.headline : ''} aria-hidden={i > 0 ? 'true' : undefined} loading="lazy" decoding="async" />
+        {/* Nothing here is eager: the only beat above the fold is beat 0, and beat 0 is a
+            lockup made of particles, so the arc has no first paint image to prioritise. */}
+        {shots.map((src, i) => (near
+          ? (
+            <Image
+              key={src}
+              src={src}
+              alt={i === 0 ? beat.headline : ''}
+              aria-hidden={i > 0 ? 'true' : undefined}
+              width={940}
+              height={640}
+              sizes="(max-width: 700px) 92vw, 470px"
+            />
+          )
+          : <img key={src} alt="" aria-hidden="true" />
         ))}
       </div>
       <Copy beat={beat} />
