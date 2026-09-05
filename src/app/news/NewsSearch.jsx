@@ -108,7 +108,10 @@ function Highlight({ text, terms }) {
     );
 }
 
-export default function NewsSearch({ query, setQuery, result, totalArticles }) {
+// `onActivate` is the intent signal: the archive is fetched on the first focus or the
+// first keystroke, not on page load. `pending` is true while that fetch is in flight and
+// a query is already typed.
+export default function NewsSearch({ query, setQuery, result, totalArticles, onActivate, pending = false }) {
     const [open, setOpen] = useState(false);
     const [active, setActive] = useState(-1);
     const inputRef = useRef(null);
@@ -172,8 +175,8 @@ export default function NewsSearch({ query, setQuery, result, totalArticles }) {
                         autoComplete="off"
                         spellCheck={false}
                         value={query}
-                        onChange={(e) => { setQuery(e.target.value); setOpen(true); }}
-                        onFocus={() => setOpen(true)}
+                        onChange={(e) => { onActivate?.(); setQuery(e.target.value); setOpen(true); }}
+                        onFocus={() => { onActivate?.(); setOpen(true); }}
                         onKeyDown={onKeyDown}
                         placeholder={`Search every word in ${totalArticles} articles. Try "apex locator", "Pampanga", "TADS"`}
                         style={{
@@ -199,7 +202,13 @@ export default function NewsSearch({ query, setQuery, result, totalArticles }) {
                 </div>
             </div>
 
-            {terms.length > 0 && (
+            {pending && (
+                <p style={{ fontSize: 12, color: 'var(--news-ink-2)', margin: '10px 0 0 20px', letterSpacing: '0.3px' }}>
+                    Loading the archive<span aria-hidden="true">…</span>
+                </p>
+            )}
+
+            {!pending && terms.length > 0 && (
                 <p style={{ fontSize: 12, color: 'var(--news-ink-2)', margin: '10px 0 0 20px', letterSpacing: '0.3px' }}>
                     {total === 0
                         ? <>No article mentions <strong style={{ color: 'var(--news-ink)' }}>{query.trim()}</strong> yet.</>

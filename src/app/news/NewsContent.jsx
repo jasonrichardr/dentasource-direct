@@ -1,18 +1,37 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { newsData } from '@/data/news';
+import { useCallback, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { m as motion } from 'framer-motion';
-import NewsSearch, { buildIndex, search } from './NewsSearch';
+import NewsSearch, { search } from './NewsSearch';
 import './news-theme.css';
 
-export default function NewsContent() {
+const EMPTY = { terms: [], hits: [], matchedSlugs: null, total: 0 };
+
+export default function NewsContent({ articles = [] }) {
   const [query, setQuery] = useState('');
-  const sortedNews = useMemo(() => [...newsData].sort((a, b) => new Date(b.date) - new Date(a.date)), []);
-  const index = useMemo(() => buildIndex(sortedNews), [sortedNews]);
-  const result = useMemo(() => search(index, query), [index, query]);
+  // The archive arrives on demand. Until it does, `index` is null and the grid simply
+  // shows everything, which is exactly what it shows when nobody is searching anyway.
+  const [index, setIndex] = useState(null);
+
+  const sortedNews = articles;
+
+  /** Fetch the corpus once, on the first sign of intent: a focus, or a keystroke. */
+  const loadArchive = useCallback(() => {
+    setIndex((cur) => {
+      if (cur) return cur;                       // already here
+      import('./newsSearchIndex')
+        .then((m) => setIndex(m.default))
+        .catch(() => setIndex(null));            // a failed chunk leaves the grid intact
+      return cur;
+    });
+  }, []);
+
+  const result = useMemo(() => (index ? search(index, query) : EMPTY), [index, query]);
   const searching = result.terms.length > 0;
+  // A query typed before the archive lands: the box says so rather than saying "no results",
+  // which would be a lie about the archive rather than a fact about the query.
+  const archivePending = query.trim().length > 0 && !index;
   const visible = searching ? sortedNews.filter((a) => result.matchedSlugs.has(a.slug)) : sortedNews;
   const featured = searching ? null : sortedNews[0];
   const grid = searching ? visible : sortedNews.slice(1);
@@ -59,7 +78,14 @@ export default function NewsContent() {
             }}>
               The latest from the Philippine dental industry: product launches, PDA updates, technology trends, and expert buying guides.
             </p>
-            <NewsSearch query={query} setQuery={setQuery} result={result} totalArticles={sortedNews.length} />
+            <NewsSearch
+              query={query}
+              setQuery={setQuery}
+              result={result}
+              totalArticles={sortedNews.length}
+              onActivate={loadArchive}
+              pending={archivePending}
+            />
           </motion.div>
         </div>
 
