@@ -7,6 +7,7 @@ import { organizationGraph } from '@/lib/schemas/organization';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import MetaPixel from '@/components/analytics/MetaPixel';
 import MotionProvider from '@/components/MotionProvider';
+import ThemeScript from '@/cinema/ThemeScript';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });
@@ -68,6 +69,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${geistSans.variable} ${instrument.variable} ${plexMono.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Stamps data-theme on <html> before the first paint, so the cinema never
+            flashes the wrong theme on its way to the right one. */}
+        <ThemeScript />
+      </head>
       <body className="antialiased">
         <MotionProvider>
         <MetaPixel />
