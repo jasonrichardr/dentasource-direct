@@ -305,18 +305,30 @@ export default function Room() {
     }
 
     let started = false;
+    /** The 1.2s entry ramp. It is a volume curve, not a visual one, so reduced
+     *  motion keeps the fade (an abrupt start is the harsher experience) but
+     *  runs it on a coarse timer: no requestAnimationFrame anywhere in this room
+     *  once a visitor has asked for less motion. */
     function fadeIn() {
-      let t0 = 0;
-      function step(t) {
-        if (!t0) t0 = t;
-        const k = Math.min(1, (t - t0) / 1200);
+      const t0 = performance.now();
+      const set = () => {
+        const k = Math.min(1, (performance.now() - t0) / 1200);
         try {
           a.volume = 0.6 * k;
         } catch (e) {
           /* volume is read-only on iOS: the element plays at system volume */
         }
-        if (k < 1) requestAnimationFrame(step);
+        return k >= 1;
+      };
+      if (reduce) {
+        const iv = setInterval(() => {
+          if (set()) clearInterval(iv);
+        }, 50);
+        return;
       }
+      const step = () => {
+        if (!set()) requestAnimationFrame(step);
+      };
       requestAnimationFrame(step);
     }
 
@@ -331,6 +343,9 @@ export default function Room() {
     let confirming = 0;
     let everCommitted = false;
     let touched = false;
+    // volumechange can fire before the transport is wired; paint() is a function
+    // declaration and hoists, but the elements it writes to are read later.
+    let paintReady = false;
 
     function commit() {
       started = true;
@@ -381,8 +396,10 @@ export default function Room() {
     function onVolumeChange() {
       // 'playing' does NOT fire when a running element is un-muted; it is already
       // playing. 'volumechange' does, and it is the ONLY signal the warm-up path
-      // has that the flip took.
+      // has that the flip took. It is also the only signal the equaliser's gate
+      // has that silence just became sound, so the transport repaint rides along.
       if (!started && audible()) onPlaying();
+      if (paintReady) paint();
     }
     a.addEventListener('pause', onPause);
     a.addEventListener('playing', onPlaying);
@@ -534,32 +551,82 @@ export default function Room() {
       return v / 255;
     }
 
-    // ── the dock's three bars: the CHEAP loop, the only one that runs when the
-    //    room is closed. ~20fps, three numbers, no canvas.
+    // ── ⏱ THE SCHEDULER ────────────────────────────────────────────────────
+    // ☠️ NOTHING IN THIS ROOM FREE-RUNS WHILE NOTHING IS PLAYING. Measured by the
+    // engine builder in Phase C: with prefers-reduced-motion on, the cinema and
+    // the sky both stood down and this chunk was still asking for 61 animation
+    // frames a second on an idle page. The cause was the dock's equaliser: it
+    // started on the first confirmed sound and then never stopped, so one pause
+    // left a 60 Hz loop running for the rest of the session to draw three bars
+    // that are CONSTANTS whenever the music is not playing.
+    //
+    // Two rules now, and they are independent:
+    //   1. a loop runs only while it has something to say. The equaliser writes
+    //      its resting heights ONCE and stops the moment playback pauses.
+    //   2. under reduced motion nothing uses requestAnimationFrame at all. The
+    //      loops fall back to a calm interval, because a visitor who asked for
+    //      less motion has not asked for a 60 Hz repaint of it.
+    const LOW_HZ = 8;
+    /** rAF when motion is welcome, a calm interval when it is not. Idempotent:
+     *  start() on a running loop is a no-op, stop() always leaves nothing armed. */
+    function makeLoop(step) {
+      let raf = 0;
+      let timer = 0;
+      let on = false;
+      return {
+        start() {
+          if (on) return;
+          on = true;
+          if (reduce) {
+            step();
+            timer = setInterval(step, 1000 / LOW_HZ);
+          } else {
+            const tick = (t) => {
+              if (!on) return;
+              raf = requestAnimationFrame(tick);
+              step(t);
+            };
+            raf = requestAnimationFrame(tick);
+          }
+        },
+        stop() {
+          on = false;
+          if (raf) {
+            cancelAnimationFrame(raf);
+            raf = 0;
+          }
+          if (timer) {
+            clearInterval(timer);
+            timer = 0;
+          }
+        },
+      };
+    }
+
+    // ── the dock's three bars: the CHEAP loop, the only one that may run while
+    //    the room is closed. ~20fps in rAF mode, three numbers, no canvas.
     const eq = eqRefs.current;
-    let cheapOn = false;
-    let cheapRaf = 0;
     let last = 0;
+    function eqStep(t) {
+      const now = t || performance.now();
+      // the throttle belongs to the rAF path only; the interval is already calm
+      if (!reduce && now - last < 50) return;
+      last = now;
+      const lit = read() && !a.paused;
+      const v = [
+        lit ? energy(40, 160) : 0.18,
+        lit ? energy(300, 2000) : 0.3,
+        lit ? energy(3000, 12000) : 0.22,
+      ];
+      for (let i = 0; i < eq.length; i++) {
+        if (!eq[i]) continue;
+        eq[i].style.height =
+          (reduce ? 3 + v[i] * 6 : 3 + Math.min(1, v[i] * 1.25) * 12).toFixed(1) + 'px';
+      }
+    }
+    const eqLoop = makeLoop(eqStep);
     function cheap() {
-      if (cheapOn) return;
-      cheapOn = true;
-      (function tick(t) {
-        if (!cheapOn) return;
-        cheapRaf = requestAnimationFrame(tick);
-        if (t - last < 50) return;
-        last = t;
-        const lit = read() && !a.paused;
-        const v = [
-          lit ? energy(40, 160) : 0.18,
-          lit ? energy(300, 2000) : 0.3,
-          lit ? energy(3000, 12000) : 0.22,
-        ];
-        for (let i = 0; i < eq.length; i++) {
-          if (!eq[i]) continue;
-          eq[i].style.height =
-            (reduce ? 3 + v[i] * 6 : 3 + Math.min(1, v[i] * 1.25) * 12).toFixed(1) + 'px';
-        }
-      })(0);
+      eqLoop.start();
     }
 
     // ── the wall ───────────────────────────────────────────────────────────
@@ -567,10 +634,8 @@ export default function Room() {
     const c2 = cv.getContext('2d');
     const peaks = new Array(BARS).fill(0);
     let agc = AGC_F;
-    let raf = 0;
 
-    function draw() {
-      raf = requestAnimationFrame(draw);
+    function wallStep() {
       const lit = read() && !a.paused && !reduce;
       agc = drawSpectrum(c2, cv, {
         lit,
@@ -586,6 +651,7 @@ export default function Room() {
       orb();
       paintBands(bandRefs.current, lit, energy);
     }
+    const wallLoop = makeLoop(wallStep);
 
     // ── 🔬 THE AUDIOPHILE READOUT ──────────────────────────────────────────
     // Every live number below comes from OUR analyser, computed the way the
@@ -1041,6 +1107,20 @@ export default function Room() {
       pp.textContent = p ? '▶' : '❙❙';
       pp.setAttribute('aria-label', p ? 'Play the music' : 'Pause the music');
       if (dpRef.current) dpRef.current.textContent = p ? '▶' : '❙❙';
+      // ⏱ THE GATE. ☠️ THE TEST IS audible(), NOT !a.paused, and the difference is
+      // the whole bug. A muted warm-up is NOT paused — and it cannot be paused, by
+      // design: the revocation handler reads any pause it did not authorise as the
+      // platform taking sound away and goes straight back to silent running. So a
+      // gate on `paused` left the equaliser looping at 60 Hz over an analyser that
+      // was reading silence, drawing three bars at their 3px resting height.
+      // Nothing to hear means nothing to draw: write the resting heights once and
+      // stand down. Real sound re-arms it, which is why volumechange repaints too.
+      if (!audible()) {
+        eqStep();
+        eqLoop.stop();
+      } else {
+        eqLoop.start();
+      }
     }
     function onPlayClick() {
       graph();
@@ -1063,6 +1143,7 @@ export default function Room() {
     pp.addEventListener('click', onPlayClick);
     a.addEventListener('play', paint);
     a.addEventListener('pause', paint);
+    paintReady = true;
     paint();
 
     // ── 🎬 THE VIDEO ETIQUETTE — one audio source at a time ──────────────────
@@ -1131,7 +1212,7 @@ export default function Room() {
       D.documentElement.classList.add('tx-open');
       announceRoom(true);
       paintTheme();
-      if (!raf) draw();
+      wallLoop.start();
       nextThought();
       cycleT0 = 0; // every visit starts on an inhale
       xRef.current.focus();
@@ -1145,10 +1226,7 @@ export default function Room() {
       // The expensive loop stops with the room, and it is the ONLY thing driving
       // the wall AND the orb, so closing the room really does stop both. The
       // dock keeps its cheap three bars.
-      if (raf) {
-        cancelAnimationFrame(raf);
-        raf = 0;
-      }
+      wallLoop.stop();
       clearTimeout(thTimer);
       statsOff(); // the readout is the room's, and the room is shut
       closeSheet();
@@ -1212,9 +1290,8 @@ export default function Room() {
       a.removeEventListener('seeked', paintCh);
       a.removeEventListener('play', paint);
       a.removeEventListener('pause', paint);
-      cheapOn = false;
-      if (cheapRaf) cancelAnimationFrame(cheapRaf);
-      if (raf) cancelAnimationFrame(raf);
+      eqLoop.stop();
+      wallLoop.stop();
       clearTimeout(warmCap);
       clearTimeout(confirming);
       clearTimeout(thTimer);

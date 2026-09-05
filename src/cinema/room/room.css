@@ -216,6 +216,16 @@
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 26px rgba(110, 231, 183, 0.5);
   }
 }
+/* ☠️ THE NIGHT BREATH NEEDS ITS OWN STAND-DOWN. The reduced-motion rule up in
+   the light block is `#tx-dock.idle` (0,1,1,0); this dark one is
+   `:root[data-theme='dark'] #tx-dock.idle` (0,1,3,0) and OUT-SPECIFIES it, so
+   without these two lines a visitor who asked for less motion still got the
+   pulse and the shimmer all night. Found while auditing the room's idle cost. */
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme='dark'] #tx-dock.idle,
+  :root[data-theme='dark'] #tx-dock.idle .tx-hint { animation: none; }
+  :root[data-theme='dark'] #tx-dock.idle { border-color: rgba(167, 243, 208, 0.85); }
+}
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
   :root[data-theme='dark'] #tx-dock { background: #0e1a15; }
 }
