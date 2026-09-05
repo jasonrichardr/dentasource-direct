@@ -241,3 +241,65 @@
   .cinema-panel { transition: none; }
   .cinema-switch, .cinema-switch-word, .cinema-switch-knob { transition: none; }
 }
+
+/* ---- the lockup dials, a development tool.
+   Rendered only in a dev build or behind ?dials=1, so these rules never match anything a
+   visitor loads. Kept in this sheet rather than a module because the panel is mounted by
+   CinemaPage, which already owns this stylesheet. */
+.cinema-dials {
+  position: fixed;
+  right: 12px;
+  top: 88px;
+  z-index: 40;
+  width: min(320px, calc(100vw - 24px));
+  font: 12px/1.4 var(--font-geist-sans), system-ui, sans-serif;
+  color: #f1ece1;
+}
+.cinema-dials-tab {
+  display: block;
+  margin-left: auto;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .22);
+  background: rgba(10, 16, 28, .92);
+  color: inherit;
+  cursor: pointer;
+}
+.cinema-dials-body {
+  margin-top: 8px;
+  padding: 12px 14px 14px;
+  max-height: min(70vh, 620px);
+  overflow-y: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  background: rgba(8, 13, 23, .95);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, .5);
+}
+.cinema-dials-group { margin-bottom: 12px; }
+.cinema-dials-legend {
+  margin: 0 0 6px;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(241, 236, 225, .55);
+}
+.cinema-dials-row {
+  display: grid;
+  grid-template-columns: 1fr 110px 40px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+.cinema-dials-name { color: rgba(241, 236, 225, .84); }
+.cinema-dials-row input { width: 100%; }
+.cinema-dials-row output { text-align: right; font-variant-numeric: tabular-nums; }
+.cinema-dials-actions { display: flex; gap: 8px; margin-top: 4px; }
+.cinema-dials-actions button {
+  flex: 1;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  background: rgba(255, 255, 255, .08);
+  color: inherit;
+  cursor: pointer;
+}

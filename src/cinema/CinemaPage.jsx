@@ -1,8 +1,16 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useTheme } from './ThemeProvider';
+import { dialsEnabled } from './formations/lockupConfig';
 import './cinema.css';
+
+// The lockup dials are a development tool. next/dynamic with ssr false keeps the panel out
+// of the server render, and the gate below is evaluated on the client after mount, so a
+// production page contains neither the panel nor its markup unless somebody asks for it
+// with ?dials=1.
+const DialsPanel = dynamic(() => import('./DialsPanel'), { ssr: false });
 
 // ☠️ NOTHING THREE.JS IS IMPORTED HERE, AND THAT IS THE POINT. A static import at the top
 // of this file puts a 3D engine in the route's chunk, so the browser downloads and
@@ -79,8 +87,14 @@ export default function CinemaPage({ beats, panels = [], classicHref = '/classic
     engineRef.current?.paint(dark);
   }, [dark]);
 
+  // Evaluated after mount, never during render: reading location during the first render
+  // would disagree with the server's HTML and throw a hydration mismatch.
+  const [showDials, setShowDials] = useState(false);
+  useEffect(() => { setShowDials(dialsEnabled()); }, []);
+
   return (
     <div className="cinema-root" ref={rootRef}>
+      {showDials && <DialsPanel />}
       {/* the id is the room's contract: it hides #gl while it holds the screen */}
       <canvas id="gl" ref={canvasRef} className="cinema-gl" />
       <div className="cinema-vignette" />

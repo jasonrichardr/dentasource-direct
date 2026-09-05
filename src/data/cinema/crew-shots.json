@@ -1,0 +1,266 @@
+{
+  "version": 1,
+  "source": "public/images/news, the published article archive",
+  "generated": "2026-09-06",
+  "notes": "Technicians at a chair and sales staff with clients, chosen by looking at the frames rather than by filename. ALT TEXT IS ROLE ONLY, nobody is named. Real photographs only: the archive's PROOF OF DELIVERY cards, the How We Install promo graphics, the six model cards carrying prices, and the Denjoy product renders are all excluded. Items alternate technician and sales so a row never runs as one kind.",
+  "counts": {
+    "total": 36,
+    "technician": 20,
+    "sales": 16,
+    "missing": 0
+  },
+  "items": [
+    {
+      "src": "/images/news/clinic-upgrade-cavite-roson-dx-a3s/v019-1.jpg",
+      "alt": "Moving the wrapped unit into the operatory",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-1.jpg",
+      "alt": "Showing the range on a tablet",
+      "kind": "sales",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/dental-chair-delivery-occidental-mindoro/v023-1.jpg",
+      "alt": "The install team working on the chair base",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-2.jpg",
+      "alt": "Walking a visitor through a unit",
+      "kind": "sales",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/dental-chair-delivery-occidental-mindoro/v023-2.jpg",
+      "alt": "Setting the unit up on the operatory floor",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-3.jpg",
+      "alt": "Talking a clinic through the options",
+      "kind": "sales",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/dental-chair-delivery-occidental-mindoro/v023-3.jpg",
+      "alt": "Checking the console after assembly",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-4.jpg",
+      "alt": "The team at the convention stand",
+      "kind": "sales",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/dental-chair-dismantling-service/v005-1.jpg",
+      "alt": "Mounting the instrument holders",
+      "kind": "technician",
+      "width": 360,
+      "height": 640
+    },
+    {
+      "src": "/images/news/crest-hands-on-digital-designing-training/v039-1.jpg",
+      "alt": "A chairside demonstration for a visitor",
+      "kind": "sales",
+      "width": 360,
+      "height": 640
+    },
+    {
+      "src": "/images/news/dental-chair-dismantling-service/v005-2.jpg",
+      "alt": "Working through the delivery system",
+      "kind": "technician",
+      "width": 360,
+      "height": 640
+    },
+    {
+      "src": "/images/news/crest-hands-on-digital-designing-training/v039-2.jpg",
+      "alt": "Visitors seated at the stand",
+      "kind": "sales",
+      "width": 360,
+      "height": 640
+    },
+    {
+      "src": "/images/news/dental-chair-dismantling-service/v005-4.jpg",
+      "alt": "Carrying a component in",
+      "kind": "technician",
+      "width": 360,
+      "height": 640
+    },
+    {
+      "src": "/images/news/denjoy-first-arrivals-unboxing/v043-1.jpg",
+      "alt": "Demonstrating an apex locator",
+      "kind": "sales",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/dental-chair-installation-cabuyao-laguna/v081-2.jpg",
+      "alt": "Connecting the lines under the unit",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/denjoy-first-arrivals-unboxing/v043-2.jpg",
+      "alt": "Explaining the endodontic range",
+      "kind": "sales",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/dental-chair-installation-cabuyao-laguna/v081-3.jpg",
+      "alt": "Lifting the chair frame into position",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/denjoy-first-arrivals-unboxing/v043-3.jpg",
+      "alt": "Two visitors trying the instrument",
+      "kind": "sales",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/dental-chair-installation-cabuyao-laguna/v081-4.jpg",
+      "alt": "Fitting the backrest",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/denjoy-first-arrivals-unboxing/v043-4.jpg",
+      "alt": "A hands on demonstration at the stand",
+      "kind": "sales",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/dental-chair-installation-cabuyao-laguna/v081-6.jpg",
+      "alt": "Fitting the spittoon bowl",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/digicon-2026-dentasource-booth/v124-3.jpg",
+      "alt": "The stand during the convention",
+      "kind": "sales",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/dental-chair-installation-mandaluyong/v020-3.jpg",
+      "alt": "Working on the control block",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/digicon-2026-dentasource-booth/v124-4.jpg",
+      "alt": "Answering questions at the stand",
+      "kind": "sales",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/dental-chair-installation-mandaluyong/v020-5.jpg",
+      "alt": "Cleaning the bowl before handover",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/dr-manalo-showroom-visit-demo/v105-2.jpg",
+      "alt": "Going through an order together",
+      "kind": "sales",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/dental-chair-installation-mandaluyong/v020-6.jpg",
+      "alt": "Wheeling the unit in on a trolley",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/inside-the-box-genuine-denjoy/v099-2.jpg",
+      "alt": "Desk work on a clinic order",
+      "kind": "sales",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/new-year-restock-nationwide-delivery-2026/v001-2.jpg",
+      "alt": "Unloading the crate from the van",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/pda-benguet-chapter-induction-baguio-2026/v106-3.jpg",
+      "alt": "Visitors at the stand",
+      "kind": "sales",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/pre-delivery-inspection-every-dental-chair/v016-1.jpg",
+      "alt": "Uncrating a unit on delivery day",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/pda-quezon-city-seda-vertis-north-2026/v075-1.jpg",
+      "alt": "The team at the end of a convention day",
+      "kind": "sales",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/pre-delivery-inspection-every-dental-chair/v016-3.jpg",
+      "alt": "Unwrapping the chair in the clinic",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/pre-delivery-inspection-every-dental-chair/v016-4.jpg",
+      "alt": "Assembling the unit on site",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/roson-dx-a3s-delivery-taguig/v103-1.jpg",
+      "alt": "Servicing the chair at the clinic",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "/images/news/roson-dx-a3s-installation-pampanga/v017-5.jpg",
+      "alt": "Setting the operating light",
+      "kind": "technician",
+      "width": 1080,
+      "height": 1920
+    }
+  ]
+}

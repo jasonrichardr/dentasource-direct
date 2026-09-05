@@ -15,6 +15,7 @@
 // file lays out.
 
 import { WORLD } from "./util.js";
+import { getLockupDials } from "./lockupConfig.js";
 
 export const DISC_SRC = "/cinema/brand/dsd-round.png";
 export const STACK_SRC = "/images/brand/logo-stacked.png";
@@ -123,47 +124,66 @@ function pitchFor(ink, d, cw, ch, target) {
 // anything under this luminance is lifted onto the silver ladder, keeping a trace of its
 // own hue so the lift does not read as flat grey. Greens and greys are already legible
 // and are left exactly as the asset has them.
-const DARK_LIFT_BELOW = 0.35;
-const DARK_LIFT_TO = 0.85;
+// (defaults live in lockupConfig.js; these names are kept only as prose anchors)
 // LIGHT REGISTER: a silver-white disc on cream paper is nearly invisible, which is what
 // made the mark disappear in Jarich's light screenshot. The disc's own samples are taken
 // down toward the ink end so the mark has a ground to sit on; the wordmark is already
 // dark green and black and is left exactly as printed.
-const LIGHT_DISC_DARKEN = 0.62;
-function liftForDark(r, g, b) {
+function liftForDark(r, g, b, dials) {
   const l = 0.299 * r + 0.587 * g + 0.114 * b;
-  if (l >= DARK_LIFT_BELOW) return [r, g, b];
-  const k = DARK_LIFT_TO / Math.max(l, 0.04);
-  const hue = 0.22;                       // how much of the original colour survives
+  if (l >= dials.darkLiftBelow) return [r, g, b];
+  const k = dials.darkLiftTo / Math.max(l, 0.04);
+  const hue = dials.darkLiftHue;          // how much of the original colour survives
   return [
-    Math.min(1, r * k * hue + DARK_LIFT_TO * (1 - hue)),
-    Math.min(1, g * k * hue + DARK_LIFT_TO * (1 - hue) * 1.02),
-    Math.min(1, b * k * hue + DARK_LIFT_TO * (1 - hue)),
+    Math.min(1, r * k * hue + dials.darkLiftTo * (1 - hue)),
+    Math.min(1, g * k * hue + dials.darkLiftTo * (1 - hue) * 1.02),
+    Math.min(1, b * k * hue + dials.darkLiftTo * (1 - hue)),
   ];
+}
+
+// GRADE. The asset is a print file, and print greens are deliberately restrained: the
+// badge's rim measures rgb(171,206,142), a chroma of 0.31, where the brand green is
+// rgb(156,196,73) at 0.63. Saturation opens that gap around the pixel's OWN luma, so the
+// mark keeps its tonal drawing and only its colour gets its voice back; brightness and
+// contrast then put the metal back into the silver.
+function grade(r, g, b, dials) {
+  const l = 0.299 * r + 0.587 * g + 0.114 * b;
+  let o = [
+    l + (r - l) * dials.saturation,
+    l + (g - l) * dials.saturation,
+    l + (b - l) * dials.saturation,
+  ];
+  o = o.map((c) => (c - 0.5) * dials.contrast + 0.5);
+  o = o.map((c) => c * dials.brightness);
+  return o.map((c) => Math.min(1, Math.max(0, c)));
 }
 
 /**
  * Build the lockup. `images` holds the two decoded sources. Returns positions and colours
  * plus the pitch that was used, so the engine can size the dots to it.
  */
-export function buildLockup(N, { discImg, wordImg, isDark = false, markBox, markY, wordCenterY, wordHalfW }) {
+export function buildLockup(N, { discImg, wordImg, isDark = false, markBox, markY, wordCenterY, wordHalfW, dials: dialsIn }) {
+  // The live dials, unless a caller pinned a set (the studio will want to render a preview
+  // without disturbing what the page is currently showing).
+  const dials = { ...getLockupDials(), ...(dialsIn || {}) };
   const disc = draw(discImg, DISC_CROP, DISC_SAMPLE);
   const word = draw(wordImg, WORD_CROP, WORD_SAMPLE, false);
 
-  // ☠️ THE FLOOD ALONE GIVES A WHITE BALL, and I tried it before writing this. In this
-  // asset the badge is a WHITE PLATE with a grey D on it and a green rim around it, and
-  // the rim encloses the plate, so nothing outside can reach the white and the flood keeps
-  // all of it: a bright disc on the night sky with a ghost of a D in it. The plate is the
-  // badge's background, not the mark. So the disc keeps the flood, which is what stops the
-  // transparent corners leaking in, AND drops near-white, which is what removes the plate.
-  // What survives is the grey D and the green rim, which is the logo.
+  // ☠️ THE DISC KEEPS EVERYTHING THE FLOOD CANNOT REACH, PLATE INCLUDED.
+  // An earlier pass also dropped near-white here, on the theory that the plate was the
+  // badge's background rather than the mark. MEASURED, that theory was wrong twice over:
+  // 41.9% of the pixels inside the rim are above the near-white threshold, and they are
+  // not a background, they are the silver face of the badge and the D standing on it. So
+  // the rule removed the D and left a hole, which is exactly what read as a broken disc.
+  // The flood alone is the correct rule: it starts at the border, cannot cross the rim,
+  // and so drops the page and nothing else. What survives is the printed badge, silver
+  // face, white D, green rim, which is what a reader recognises as the logo.
   const discGround = groundMask(disc.data, disc.cw, disc.ch);
   let discInk = new Uint8Array(disc.cw * disc.ch);
   for (let i = 0; i < discInk.length; i++) {
-    const pale = disc.data[i * 4 + 3] <= 36 || lumOf(disc.data, i * 4) > NEAR_WHITE;
-    discInk[i] = discGround[i] || pale ? 0 : 1;
+    discInk[i] = discGround[i] ? 0 : 1;
   }
-  discInk = erode(discInk, disc.cw, disc.ch, 2);
+  discInk = erode(discInk, disc.cw, disc.ch, dials.erosion);
 
   // the wordmark sits on the page, and its counters are open to it, so a plain threshold
   // is the right rule here and a flood would be the wrong one
@@ -174,8 +194,18 @@ export function buildLockup(N, { discImg, wordImg, isDark = false, markBox, mark
 
   // split the budget the way the asset splits its own area
   const discShare = 0.42;
-  const dRes = pitchFor(discInk, disc.data, disc.cw, disc.ch, Math.round(N * discShare));
-  const wRes = pitchFor(wordInk, word.data, word.cw, word.ch, Math.round(N * (1 - discShare)));
+  // SHARPNESS. pitchFor lands the grid on the budget; pitchBias then re-samples at a
+  // finer or coarser pitch. Below 1 the grid samples MORE cells than there are slots, and
+  // place() strides through them, so the mark is drawn from more of the asset's detail.
+  const biased = (res, ink, d, cw, ch) => {
+    if (dials.pitchBias === 1) return res;
+    const pitch = Math.max(1, Math.round(res.pitch * dials.pitchBias));
+    return pitch === res.pitch ? res : { pitch, cells: gridCells(ink, d, cw, ch, pitch) };
+  };
+  const dRes = biased(pitchFor(discInk, disc.data, disc.cw, disc.ch, Math.round(N * discShare)),
+    discInk, disc.data, disc.cw, disc.ch);
+  const wRes = biased(pitchFor(wordInk, word.data, word.cw, word.ch, Math.round(N * (1 - discShare))),
+    wordInk, word.data, word.cw, word.ch);
 
   // LAYOUT, in the asset's proportions. The wordmark's width sets the scale; the disc is
   // a quarter of it and sits centred above, with the asset's own gap.
@@ -206,16 +236,17 @@ export function buildLockup(N, { discImg, wordImg, isDark = false, markBox, mark
       out[i * 3 + 0] = cx + (c[0] / cw - 0.5) * w;
       out[i * 3 + 1] = cy - (c[1] / ch - 0.5) * h;
       out[i * 3 + 2] = 0;
+      const [gr, gg, gb] = grade(c[2], c[3], c[4], dials);
       const rgb = isDark
-        ? liftForDark(c[2], c[3], c[4])
-        : (darken ? [c[2] * darken, c[3] * darken, c[4] * darken] : [c[2], c[3], c[4]]);
+        ? liftForDark(gr, gg, gb, dials)
+        : (darken ? [gr * darken, gg * darken, gb * darken] : [gr, gg, gb]);
       col[i * 3 + 0] = rgb[0];
       col[i * 3 + 1] = rgb[1];
       col[i * 3 + 2] = rgb[2];
     }
   };
   const nDisc = Math.min(N, Math.round(N * discShare));
-  place(dRes.cells, disc.cw, disc.ch, 0, discCY, discD, discD, 0, nDisc, isDark ? 0 : LIGHT_DISC_DARKEN);
+  place(dRes.cells, disc.cw, disc.ch, 0, discCY, discD, discD, 0, nDisc, isDark ? 0 : dials.lightDiscDarken);
   place(wRes.cells, word.cw, word.ch, 0, wordCY, wordW, wordH, nDisc, N);
 
   // The dot is sized to the spacing the particles ACTUALLY land at, which is the grid
@@ -227,12 +258,13 @@ export function buildLockup(N, { discImg, wordImg, isDark = false, markBox, mark
   return {
     positions: out,
     colors: col,
-    discPitchWorld: (discEff / disc.cw) * discD,
-    wordPitchWorld: (wordEff / word.cw) * wordW,
+    discPitchWorld: (discEff / disc.cw) * discD * dials.dotSize,
+    wordPitchWorld: (wordEff / word.cw) * wordW * dials.dotSize,
     counts: {
       discCells: dRes.cells.length, wordCells: wRes.cells.length,
       discPitch: dRes.pitch, wordPitch: wRes.pitch,
       discSlots: nDisc, wordSlots: N - nDisc,
     },
+    dials,
   };
 }

@@ -335,9 +335,14 @@ export async function startCinema({ canvas, root, beats: arc, isDark }) {
       else if (!raf) raf = requestAnimationFrame(frame);
     }
   };
+  // A dial moved in the dev panel (or, later, in /studio). buildLockup reads the live set
+  // itself, so a rebuild is the whole update: measured at 74 ms for both lockup formations,
+  // which is inside a frame budget a human dragging a slider will never notice.
+  const onDials = () => rebuildLockups(nightOn);
   window.addEventListener('resize', onResize);
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('dsd:room', onRoom);
+  window.addEventListener('dsd:lockup-dials', onDials);
 
   // Under reduced motion the loop sleeps between scrolls, so a formation landing has to
   // ask for the frame that shows it, or the arc would finish building invisibly.
@@ -354,6 +359,7 @@ export async function startCinema({ canvas, root, beats: arc, isDark }) {
       window.removeEventListener('resize', onResize);
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('dsd:room', onRoom);
+      window.removeEventListener('dsd:lockup-dials', onDials);
       scene.remove(points);
       geometry.dispose();
       material.dispose();
