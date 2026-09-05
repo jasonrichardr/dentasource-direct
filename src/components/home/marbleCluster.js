@@ -49,6 +49,10 @@ const CLEAR_TINTS = [0xbfe3ff, 0xd9c2ff, 0xffe6bf, 0xc2fff0, 0xffd0e8].map((h) =
 
 // ── tuning (cannon units) ──
 const K_CENTER = 11.0;   // center-spring accel — pulls the shoal home (mass-normalised → size-independent)
+/** The half-extent the shoal settles into under the plain isotropic spring, measured with
+ *  bounds() on the 33-reel wall: about 3.0 world units. It is the reference that lets a
+ *  caller ask for a spread in WORLD UNITS instead of in stiffness. */
+const NATURAL_R = 3.0;
 const K_CENTER_Z = 18.0; // stronger pull on Z so the cluster stays a camera-facing shoal, not a deep ball
 const LIN_DAMP = 0.72;   // body linear damping — higher = a fling settles sooner (doesn't fly far)
 const RESTITUTION = 0.45;// bounce between beads (a touch less bouncy)
@@ -57,7 +61,24 @@ const FLING_SCALE = 0.3; // only a fraction of the finger's speed is imparted �
 const MAX_CURSOR = 4.5;  // cap the finger's effective speed so a quick press can't fling beads off-screen
 const MAX_DT = 1 / 30;
 
-export function createMarbleCluster(container, { videos = [], count = 18, isMobile = false, faceFocus = {}, faceZoom = {}, faceZoomDefault = 1, cameraZ = 8 } = {}) {
+export function createMarbleCluster(container, {
+  videos = [], count = 18, isMobile = false, faceFocus = {}, faceZoom = {},
+  faceZoomDefault = 1, cameraZ = 8, spreadX = NATURAL_R, spreadY = NATURAL_R,
+} = {}) {
+  // ☠️ THE WELL CAN BE AN ELLIPSE. The centring spring was isotropic, so the shoal always
+  // settled into a ball; on a wide stage that reads as a small clump in a lot of empty
+  // space. spreadX and spreadY are the semi-axes the caller WANTS, in world units, and
+  // they are turned into per-axis stiffness below.
+  //
+  // Why the square: a bead sits where the collision pressure of its neighbours balances
+  // the restoring force, so the extent along an axis goes as 1/sqrt(k). Scaling k by
+  // (NATURAL_R / spread)^2 therefore scales the settled extent by spread / NATURAL_R,
+  // which makes the option behave the way its name promises.
+  //
+  // DEFAULTS ARE NATURAL_R ON BOTH AXES, so k comes out exactly K_CENTER and every
+  // existing caller settles into the same ball it always did.
+  const kX = K_CENTER * (NATURAL_R / Math.max(0.2, spreadX)) ** 2;
+  const kY = K_CENTER * (NATURAL_R / Math.max(0.2, spreadY)) ** 2;
   // mobile shows ALL the reels too (they're compressed 480p) — just smaller beads + camera pulled back
 
   // ── renderer: TRANSPARENT — only the marbles paint; the black comes from the panel's CSS bg (which
@@ -491,7 +512,7 @@ export function createMarbleCluster(container, { videos = [], count = 18, isMobi
     // center spring (mass-normalised accel → all sizes feel the same pull); firmer on Z to keep it facing
     for (const { body } of units) {
       const m = body.mass;
-      _f.set(-K_CENTER * body.position.x * m, -K_CENTER * body.position.y * m, -K_CENTER_Z * body.position.z * m);
+      _f.set(-kX * body.position.x * m, -kY * body.position.y * m, -K_CENTER_Z * body.position.z * m);
       body.applyForce(_f, body.position);
     }
 

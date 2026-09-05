@@ -326,24 +326,35 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
     const mount = mountRef.current;
     if (!mount || !reels.length) return undefined;
 
-    // ☠️ THE SMALL BEAD BUILD ON EVERY VIEWPORT, and it is the only fit knob there is.
-    // The cluster's camera is fixed at z=8 with a 45 degree VERTICAL fov, so the world it
-    // shows is always 6.63 units tall whatever size its box is: a taller box renders the
-    // same shoal larger, it does not reveal more of it. Since the centring spring packs
-    // the beads into a shoal about that tall, the only way to buy margin at the top and
-    // bottom is to make the beads themselves smaller, and `isMobile` is the one option
-    // that does it (radius 0.50 against 0.56, about 11%), uniformly, so the size ORDER
-    // that maps bead 0 to the hero reel is untouched.
+    // ☠️ LANDSCAPE GETS THE WIDE STAGE, THE PHONE KEEPS ITS BALL.
+    // On a wide screen the isotropic well left a small clump of beads in a lot of empty
+    // space; the wall is meant to read as big glass spheres spread across the stage. So a
+    // landscape viewport asks for an ELLIPSE (wide, short) and gets the LARGE bead build
+    // back, while a phone keeps the small beads and the round shoal it already had.
+    const landscape = (() => {
+      try { return matchMedia('(min-width: 820px)').matches; } catch (e) { return false; }
+    })();
+    const shape = landscape
+      // ☠️ THE SPREAD IS BISTABLE, SO THE WIDTH IS BOUGHT WITH THE CAMERA INSTEAD.
+      // Measured at a settled state, spreadX maps to the shoal's half width like this:
+      //   4.75 -> 4.92    6.0 -> 5.04    7.6 -> 13.25    9.5 -> 13.0
+      // There is a threshold between 6.0 and 7.6 where the shoal stops being a clump and
+      // flies apart into a band, and the span we want sits right inside it. Tuning there
+      // would be tuning on a knife edge: a small change in bead count or radius would
+      // flip the wall between a tight ball and a scatter that runs off both sides.
+      // So the shoal stays in the STABLE clumped regime, and the stage is made smaller
+      // around it: a nearer camera shows less world, so the same beads fill more of the
+      // frame and render larger at the same time. cameraZ, not spreadX, is the dial to
+      // reach for if this needs adjusting again.
+      ? { isMobile: false, cameraZ: 7.0, spreadX: 6.4, spreadY: 2.2 }
+      : { isMobile: true, cameraZ: CLUSTER_CAMERA_Z };   // phone: unchanged
+    // The fov is VERTICAL, so cameraZ is what decides how much of the shoal is on screen;
+    // the box shape only ever changes how much is visible sideways. Both numbers above
+    // were set by measuring bounds(), not by eye.
     const cluster = createMarbleCluster(mount, {
       videos: reels.map((r) => r.src),
       count: reels.length,          // exactly one bead per reel, however many there are
-      isMobile: true,
-      // ☠️ THE DISTANCE IS THE FIT. The cluster's fov is vertical, so its camera distance
-      // is the only thing that decides how much of the shoal is on screen; the box shape
-      // cannot add height. Measured with cluster.bounds() and set so the beads clear the
-      // frame at 1440x900 and at 390x844. The option defaults to 8 for every other caller,
-      // so /classic renders exactly as it did.
-      cameraZ: CLUSTER_CAMERA_Z,
+      ...shape,
       faceZoomDefault: 0.55,
       faceZoom: {},
     });

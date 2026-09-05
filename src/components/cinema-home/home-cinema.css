@@ -338,7 +338,7 @@
      the box only ever changes how much HORIZONTAL world is visible; widening it gives the
      shoal room to spread sideways instead of stacking into the top and bottom edges. */
   width: min(98vw, 1240px);
-  height: clamp(260px, 40vh, 420px);
+  height: clamp(300px, 56vh, 520px);
   /* the canvas paints transparent, so the night behind it is the beat's own ground */
   touch-action: none;
 }
