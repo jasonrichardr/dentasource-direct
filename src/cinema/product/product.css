@@ -1,0 +1,347 @@
+/* product.css — the furniture the product beats add on top of cinema.css. Everything here
+   is scoped to .pc-*; the shared tokens (--paper, --ink, --dsd-green) do the theming, so
+   nothing below hard-codes a colour that would strand in dark mode.
+
+   .pc-shell deliberately creates NO stacking context (no position, no z-index, no
+   transform): the cinema's fixed canvases and panels have to keep competing in the root
+   stacking order, which is what lets .pc-details paint over them at z-index 8. */
+
+/* ---- panel width. Copy-only beats keep cinema.css's 860px measure; the beats that carry
+   a list, a grid or photographs need the room. ---- */
+.pc-wide { max-width: min(1040px, 92vw); }
+
+/* ---- beat 1: seat the copy UNDER the particle group ----
+   cinema.css centres every panel, which put the opening copy straight through the middle
+   of the formed product and its wordmark. The lockup lifts the mark and seats the model
+   code beneath it, so the panel starts in the lower third instead. --vh is the value the
+   engine locked at load, so this band does not move when a mobile URL bar slides.
+   Targeted through :has() rather than a nth-child on .cinema-panel, because the panel
+   order is the engine's business, not this file's.
+   Measured, not guessed: at 1440 by 900 the particle wordmark's baseline lands at about
+   620px and a 68% start put the eyebrow at 612px, so "THE UNIT" clipped the bottom of the
+   "A3". 73% starts the copy at 657px and clears it. */
+.cinema-panel:has(.pc-lockup-copy) {
+  justify-content: flex-start;
+  padding-top: calc(var(--vh, 1vh) * 73);
+}
+@media (max-width: 700px) {
+  .cinema-panel:has(.pc-lockup-copy) { padding-top: calc(var(--vh, 1vh) * 62); }
+}
+/* The opening line is one line, so it reads as a caption to the mark rather than a
+   second headline competing with it. */
+.pc-lockup-copy .cinema-sub { max-width: 560px; }
+
+/* The description carried down from beat 1. It leads the panel, so it sits a shade
+   quieter than the beat's own line and keeps the two paragraphs from reading as one
+   wall of text on a phone. */
+.pc-carry {
+  max-width: 700px;
+  font-size: clamp(13px, 1.35vw, 17px);
+  color: color-mix(in srgb, var(--ink) 88%, transparent);
+}
+
+/* ---- who it is for, and the upholstery row: plain labelled chips ---- */
+.pc-chips {
+  list-style: none;
+  margin: 22px auto 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  max-width: 900px;
+}
+.pc-chips-tight { margin-top: 12px; }
+.pc-chip {
+  font-size: clamp(11.5px, 1.15vw, 13.5px);
+  line-height: 1.3;
+  padding: 7px 13px;
+  border-radius: 999px;
+  color: var(--ink);
+  border: 1px solid color-mix(in srgb, var(--dsd-green) 38%, transparent);
+  background: color-mix(in srgb, var(--paper) 84%, transparent);
+  backdrop-filter: blur(2px);
+}
+
+/* ---- features: a clean two column panel ---- */
+.pc-features {
+  list-style: none;
+  margin: 22px auto 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 26px;
+  text-align: left;
+  max-width: 960px;
+}
+.pc-feature {
+  position: relative;
+  padding: 9px 12px 9px 26px;
+  font-size: clamp(12.5px, 1.25vw, 15px);
+  line-height: 1.42;
+  color: var(--ink);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+}
+.pc-feature::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 1.05em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--dsd-green);
+}
+.pc-note {
+  margin: 16px auto 0;
+  max-width: 720px;
+  font-size: clamp(11.5px, 1.05vw, 13px);
+  line-height: 1.5;
+  color: var(--slate);
+  text-shadow: 0 1px 14px var(--paper);
+}
+
+/* ---- colours: the named swatches from products.json ---- */
+.pc-swatches {
+  list-style: none;
+  margin: 22px auto 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  justify-content: center;
+  max-width: 900px;
+}
+.pc-swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(11.5px, 1.15vw, 13.5px);
+  padding: 7px 14px 7px 9px;
+  border-radius: 999px;
+  color: var(--ink);
+  border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+}
+/* A neutral marker, not a colour claim: two of the site's own configurators publish
+   different hexes for the same colour name, so this page asserts neither. */
+.pc-swatch-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--dsd-green) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 24%, transparent);
+  flex: none;
+}
+
+/* ---- in real clinics: install photographs, each linked to its article ---- */
+.pc-shots,
+.pc-cards {
+  list-style: none;
+  margin: 24px auto 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 940px;
+}
+.pc-shot-link,
+.pc-card-link {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+  border-radius: 12px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--ink) 14%, transparent);
+  transition: transform .25s ease, border-color .25s ease;
+}
+.pc-shot-link:hover,
+.pc-card-link:hover { transform: translateY(-3px); border-color: var(--dsd-green); }
+.pc-shot-link img,
+.pc-card-link img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.pc-shot-cap,
+.pc-card-title,
+.pc-card-date { display: block; text-align: left; padding: 0 12px; }
+.pc-shot-cap {
+  padding-block: 10px 12px;
+  font-size: clamp(11px, 1.05vw, 12.5px);
+  line-height: 1.4;
+  color: var(--slate);
+}
+.pc-card-title {
+  padding-top: 11px;
+  font-size: clamp(12px, 1.15vw, 14px);
+  line-height: 1.35;
+  font-weight: 600;
+}
+.pc-card-date {
+  padding-block: 5px 12px;
+  font-size: clamp(10.5px, 1vw, 12px);
+  color: var(--slate);
+}
+
+/* ---- inspection and installation: the eight point check beside the bench photographs ---- */
+.pc-inspect {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 20px 28px;
+  align-items: start;
+  margin: 22px auto 0;
+  max-width: 960px;
+}
+.pc-checklist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: pc-step;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px 18px;
+  text-align: left;
+}
+.pc-checklist li {
+  counter-increment: pc-step;
+  position: relative;
+  padding-left: 26px;
+  font-size: clamp(11.5px, 1.1vw, 13.5px);
+  line-height: 1.4;
+  color: var(--ink);
+  text-shadow: 0 1px 12px var(--paper);
+}
+.pc-checklist li::before {
+  content: counter(pc-step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--dsd-green);
+}
+.pc-bench { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.pc-bench img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.pc-link {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: clamp(11.5px, 1.1vw, 13px);
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--dsd-green);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--dsd-green) 45%, transparent);
+  text-shadow: 0 1px 12px var(--paper);
+}
+.pc-link:hover { border-bottom-color: var(--dsd-green); }
+
+/* ---- the door ---- */
+.pc-doors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 26px;
+}
+.pc-door {
+  display: inline-block;
+  padding: 13px 26px;
+  border-radius: 999px;
+  font-size: clamp(13px, 1.2vw, 15px);
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  transition: transform .2s ease, background .25s ease, border-color .25s ease;
+}
+.pc-door:hover { transform: translateY(-2px); border-color: var(--dsd-green); }
+.pc-door-primary {
+  color: var(--paper);
+  background: var(--dsd-green);
+  border-color: var(--dsd-green);
+}
+:root[data-theme="dark"] .pc-door-primary { color: #06110c; }
+
+/* ---- the specs and detail sections, below the cinema ----
+   z-index 8 puts this over the fixed GL canvas (2), the vignette (3), the rail (4) and the
+   copy panels (6), so scrolling past the last beat replaces the cinema instead of stacking
+   on it. The theme toggle stays reachable at 20. */
+.pc-details {
+  position: relative;
+  z-index: 8;
+  background: var(--paper);
+  color: var(--ink);
+  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  /* THE TRANSFORM IS LOAD-BEARING, not a paint hint. Some of the route components brought
+     in here are whole landing pages with their own position:fixed furniture, and a fixed
+     element ignores document flow: /denjoy's DnaLanding painted its full-screen green hero
+     and its own header over the ENTIRE cinema, at every scroll position, so beat 1 through
+     8 photographed the landing instead of the product. A transform makes this section the
+     containing block for fixed descendants, which pins that furniture inside the Full
+     details section where it belongs. Chosen over `contain: paint`, which would also clip
+     legitimate overflow such as a component's dropdowns. */
+  transform: translateZ(0);
+}
+.pc-details-head {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(44px, 7vh, 78px) 6vw clamp(20px, 3vh, 34px);
+  text-align: center;
+}
+.pc-details-kicker {
+  display: block;
+  font-size: clamp(11px, 1.1vw, 13px);
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--dsd-green);
+  margin-bottom: 12px;
+}
+.pc-details-title {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  font-size: clamp(22px, 3vw, 40px);
+  line-height: 1.15;
+  margin: 0;
+  color: var(--ink);
+}
+/* The route's own components come through untouched, so they keep their own backgrounds
+   and their own type. They are simply seated under the cinema rather than replacing it. */
+.pc-details-body { position: relative; }
+
+@media (max-width: 900px) {
+  .pc-features { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .pc-inspect { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .pc-checklist { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 700px) {
+  .pc-shots, .pc-cards { grid-template-columns: minmax(0, 1fr); gap: 10px; max-width: 420px; }
+  /* On a phone the panel is the whole screen: show the first card, keep the rest for the
+     scroll rather than crushing three into a viewport that also carries the copy. */
+  .pc-shots .pc-shot:nth-child(n + 3), .pc-cards .pc-card:nth-child(n + 3) { display: none; }
+  .pc-shot-link img, .pc-card-link img { aspect-ratio: 16 / 9; }
+  .pc-bench { display: none; }
+  .pc-checklist { grid-template-columns: minmax(0, 1fr); gap: 5px; }
+  .pc-chip, .pc-swatch { font-size: 11.5px; padding: 6px 11px; }
+  .pc-note { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-shot-link, .pc-card-link, .pc-door { transition: none; }
+  .pc-shot-link:hover, .pc-card-link:hover, .pc-door:hover { transform: none; }
+}

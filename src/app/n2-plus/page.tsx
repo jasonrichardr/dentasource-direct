@@ -9,6 +9,8 @@ import N2PlusProductConfigurator from "@/components/n2-plus/N2PlusProductConfigu
 import N2PlusVisualTour from "@/components/n2-plus/N2PlusVisualTour";
 import N2PlusWhatsInTheBox from "@/components/n2-plus/N2PlusWhatsInTheBox";
 import N2PlusWarrantyTable from "@/components/n2-plus/N2PlusWarrantyTable";
+import ProductCinema from "@/cinema/product/ProductCinema";
+import { productCinemaConfig } from "@/cinema/product/productConfig";
 
 export const metadata = {
     title: "Roson Classic Model N2+",
@@ -26,15 +28,17 @@ export default function N2PlusPage() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
             <ChairSchemas route="/n2-plus" />
-            <N2PlusHeroVisual />
-            <N2PlusFeatureGrid />
-            <N2PlusCompleteSection />
-            <N2PlusErgonomicsSection />
-            <SpecGate><N2PlusTechSpecs /></SpecGate>
-            <N2PlusProductConfigurator />
-            <N2PlusVisualTour />
-            <N2PlusWhatsInTheBox />
-            <N2PlusWarrantyTable />
+            <ProductCinema config={productCinemaConfig("n2-plus")}>
+                <N2PlusHeroVisual />
+                <N2PlusFeatureGrid />
+                <N2PlusCompleteSection />
+                <N2PlusErgonomicsSection />
+                <SpecGate><N2PlusTechSpecs /></SpecGate>
+                <N2PlusProductConfigurator />
+                <N2PlusVisualTour />
+                <N2PlusWhatsInTheBox />
+                <N2PlusWarrantyTable />
+            </ProductCinema>
         </main>
     );
 }

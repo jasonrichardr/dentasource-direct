@@ -1,6 +1,7 @@
 import CatalogHero from '@/components/products/CatalogHero';
 import ProductGrid from '@/components/products/ProductGrid';
 import { products as staticProducts } from '@/data/products';
+import IndexShell from '@/cinema/product/IndexShell';
 
 export const metadata = {
   title: 'Equipment Catalog',
@@ -47,9 +48,11 @@ export default function ProductsPage() {
     .sort((a, b) => a.name.localeCompare(b.name));
 
   return (
-    <main className="w-full min-h-screen bg-white selection:bg-[#10b981] selection:text-white pb-24">
-      <CatalogHero />
-      <ProductGrid initialProducts={equipment} categories={categories} />
-    </main>
+    <IndexShell>
+      <main className="w-full min-h-screen selection:bg-[#10b981] selection:text-white pb-24">
+        <CatalogHero />
+        <ProductGrid initialProducts={equipment} categories={categories} />
+      </main>
+    </IndexShell>
   );
 }

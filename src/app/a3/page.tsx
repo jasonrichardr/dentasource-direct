@@ -9,6 +9,8 @@ import A3ProductConfigurator from "@/components/a3/A3ProductConfigurator";
 import A3VisualTour from "@/components/a3/A3VisualTour";
 import A3WhatsInTheBox from "@/components/a3/A3WhatsInTheBox";
 import A3WarrantyTable from "@/components/a3/A3WarrantyTable";
+import ProductCinema from "@/cinema/product/ProductCinema";
+import { productCinemaConfig } from "@/cinema/product/productConfig";
 
 export const metadata = {
     title: "Roson A3 Flagship Dental Chair",
@@ -26,15 +28,17 @@ export default function A3Page() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
             <ChairSchemas route="/a3" />
-            <A3HeroVisual />
-            <A3FeatureGrid />
-            <A3DisinfectionSection />
-            <A3ErgonomicsSection />
-            <SpecGate><A3TechSpecs /></SpecGate>
-            <A3ProductConfigurator />
-            <A3VisualTour />
-            <A3WhatsInTheBox />
-            <A3WarrantyTable />
+            <ProductCinema config={productCinemaConfig("a3")}>
+                <A3HeroVisual />
+                <A3FeatureGrid />
+                <A3DisinfectionSection />
+                <A3ErgonomicsSection />
+                <SpecGate><A3TechSpecs /></SpecGate>
+                <A3ProductConfigurator />
+                <A3VisualTour />
+                <A3WhatsInTheBox />
+                <A3WarrantyTable />
+            </ProductCinema>
         </main>
     );
 }

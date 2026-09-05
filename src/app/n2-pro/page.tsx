@@ -1,5 +1,7 @@
 import N2ProLanding from "@/components/n2-pro-v2/N2ProLanding";
 import N2ProSchemas from "@/components/n2-pro-v2/N2ProSchemas";
+import ProductCinema from "@/cinema/product/ProductCinema";
+import { productCinemaConfig } from "@/cinema/product/productConfig";
 
 export const metadata = {
     title: { absolute: "ROSON N2 Pro Dental Chair Philippines — DentaSource Direct" },
@@ -25,9 +27,11 @@ export const metadata = {
 
 export default function N2ProPage() {
     return (
-        <main className="min-h-screen bg-white">
+        <main className="min-h-screen">
             <N2ProSchemas />
-            <N2ProLanding />
+            <ProductCinema config={productCinemaConfig("n2-pro")}>
+                <N2ProLanding />
+            </ProductCinema>
         </main>
     );
 }

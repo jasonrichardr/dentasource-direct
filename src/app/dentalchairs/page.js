@@ -1,6 +1,7 @@
 import ChairsHero from '@/components/chairs/ChairsHero';
 import ChairCatalog from '@/components/chairs/ChairCatalog';
 import { products } from '@/data/products';
+import IndexShell from '@/cinema/product/IndexShell';
 
 export const metadata = {
   title: 'Dental Chairs — ROSON Collection',
@@ -33,9 +34,11 @@ export default function DentalChairsPage() {
     }));
 
   return (
-    <main className="w-full bg-white selection:bg-[#10b981] selection:text-white">
-      <ChairsHero />
-      <ChairCatalog initialChairs={chairs} />
-    </main>
+    <IndexShell>
+      <main className="w-full selection:bg-[#10b981] selection:text-white">
+        <ChairsHero />
+        <ChairCatalog initialChairs={chairs} />
+      </main>
+    </IndexShell>
   );
 }

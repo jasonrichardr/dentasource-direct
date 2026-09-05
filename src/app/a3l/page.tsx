@@ -9,6 +9,8 @@ import A3LProductConfigurator from "@/components/a3l/A3LProductConfigurator";
 import A3LVisualTour from "@/components/a3l/A3LVisualTour";
 import A3LWhatsInTheBox from "@/components/a3l/A3LWhatsInTheBox";
 import A3LWarrantyTable from "@/components/a3l/A3LWarrantyTable";
+import ProductCinema from "@/cinema/product/ProductCinema";
+import { productCinemaConfig } from "@/cinema/product/productConfig";
 
 export const metadata = {
     title: "ROSON Fashion Model A3L Dental Chair",
@@ -26,15 +28,17 @@ export default function A3LPage() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
             <ChairSchemas route="/a3l" />
-            <A3LHeroVisual />
-            <A3LFeatureGrid />
-            <A3LFashionSection />
-            <A3LErgonomicsSection />
-            <SpecGate><A3LTechSpecs /></SpecGate>
-            <A3LProductConfigurator />
-            <A3LVisualTour />
-            <A3LWhatsInTheBox />
-            <A3LWarrantyTable />
+            <ProductCinema config={productCinemaConfig("a3l")}>
+                <A3LHeroVisual />
+                <A3LFeatureGrid />
+                <A3LFashionSection />
+                <A3LErgonomicsSection />
+                <SpecGate><A3LTechSpecs /></SpecGate>
+                <A3LProductConfigurator />
+                <A3LVisualTour />
+                <A3LWhatsInTheBox />
+                <A3LWarrantyTable />
+            </ProductCinema>
         </main>
     );
 }

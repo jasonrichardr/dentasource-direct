@@ -1,5 +1,7 @@
 import RorayLanding from '@/components/roray-xray/RorayLanding';
 import RoraySchemas from '@/components/roray-xray/RoraySchemas';
+import ProductCinema from '@/cinema/product/ProductCinema';
+import { productCinemaConfig } from '@/cinema/product/productConfig';
 
 export const metadata = {
   title: { absolute: 'ROSON RoRay Handheld Dental X-Ray | DentaSource Direct Philippines' },
@@ -25,9 +27,11 @@ export const metadata = {
 
 export default function RorayXrayPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen">
       <RoraySchemas />
-      <RorayLanding />
+      <ProductCinema config={productCinemaConfig('roray-xray')}>
+        <RorayLanding />
+      </ProductCinema>
     </main>
   );
 }

@@ -9,6 +9,8 @@ import S3ProductConfigurator from "@/components/s3/S3ProductConfigurator";
 import S3VisualTour from "@/components/s3/S3VisualTour";
 import S3WhatsInTheBox from "@/components/s3/S3WhatsInTheBox";
 import S3WarrantyTable from "@/components/s3/S3WarrantyTable";
+import ProductCinema from "@/cinema/product/ProductCinema";
+import { productCinemaConfig } from "@/cinema/product/productConfig";
 
 export const metadata = {
     title: "Roson S3 Best-Selling Dental Chair",
@@ -26,15 +28,17 @@ export default function S3Page() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
             <ChairSchemas route="/s3" />
-            <S3HeroVisual />
-            <S3FeatureGrid />
-            <S3LightSection />
-            <S3ErgonomicsSection />
-            <SpecGate><S3TechSpecs /></SpecGate>
-            <S3ProductConfigurator />
-            <S3VisualTour />
-            <S3WhatsInTheBox />
-            <S3WarrantyTable />
+            <ProductCinema config={productCinemaConfig("s3")}>
+                <S3HeroVisual />
+                <S3FeatureGrid />
+                <S3LightSection />
+                <S3ErgonomicsSection />
+                <SpecGate><S3TechSpecs /></SpecGate>
+                <S3ProductConfigurator />
+                <S3VisualTour />
+                <S3WhatsInTheBox />
+                <S3WarrantyTable />
+            </ProductCinema>
         </main>
     );
 }
