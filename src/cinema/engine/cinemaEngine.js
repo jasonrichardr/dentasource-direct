@@ -220,7 +220,27 @@ export async function startCinema({ canvas, root, beats: arc, isDark }) {
       }
       // the heart is dense where the copy sits — soften it a little further
       if (HEART_BEATS.includes(i)) material.uniforms.uAlpha.value -= n * 0.18;
-      // a photo beat's DOM panel owns the frame, so the cloud drops well back
+      // A photo beat's DOM panel owns the frame, so the cloud drops well back.
+      //
+      // ☠️ ON A DIM BEAT IN DARK MODE THIS DOES NOT DIM THE CLOUD, IT SWITCHES IT OFF, AND
+      // THAT IS THE INTENDED LOOK. Ruled by Jarich on 2026-09-05, matching FFC, which
+      // carries the same arithmetic: behind a photo panel at night there is the night sky
+      // and nothing else. Do not read `-= n * 0.5` as a dimming and go looking for the
+      // faint cloud that is supposedly still there. It is not there, on purpose.
+      //
+      // The subtractions sum past zero at the centre of a dim beat, where its own bell is
+      // 1.0, before the neighbouring beats' bells are even added:
+      //   desktop  0.66 - 0.26 x 0.733 - 0.5 = -0.031
+      //   mobile   0.55 - 0.26 x 0.611 - 0.5 = -0.109
+      // A negative uAlpha multiplies the dot's coverage to nothing. Measured on the canvas
+      // with readPixels: zero lit pixels, max alpha zero, on all twelve dim beats of the
+      // home arc. LIGHT mode is the exception and keeps its cloud, because there the sum
+      // stays positive (0.9 - 0.26 - 0.5 = +0.14).
+      //
+      // So this line is load bearing in both directions: raising the 0.5, or flooring the
+      // result with something like Math.max(0.06, ...), brings a faint field back behind
+      // every photo panel on every cinema page. That was built and shown as
+      // proof/dim-floor-beat03-{before,after}.png and it was declined.
       if (DIM_BEATS.has(i)) material.uniforms.uAlpha.value -= n * 0.5;
     }
 
