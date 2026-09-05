@@ -18,6 +18,8 @@ import { textToPositions } from "./text.js";
 import {
   sphereToPositions, constellationToPositions, leafToPositions, heartToPositions,
 } from "./shapes.js";
+import { buildLockup, DISC_SRC, STACK_SRC } from "./lockup.js";
+import { CFG } from "../sky/skyConfig.js";
 
 export { WORLD };
 
@@ -63,7 +65,11 @@ export function beatImageSrc(beat) {
 
 // The sources every image-backed beat needs, de-duplicated.
 export function beatSources(beats) {
-  return [...new Set(beats.map(beatImageSrc).filter(Boolean))];
+  const out = beats.map(beatImageSrc).filter(Boolean);
+  // a lockup is built from two assets: the badge for the disc, the stacked logo for the
+  // words. Both must be decoded before the formation can be sampled.
+  if (beats.some((b) => b && b.kind === 'lockup')) out.push(DISC_SRC, STACK_SRC);
+  return [...new Set(out)];
 }
 
 // Load them all; a source that fails resolves to null so the arc still builds.
@@ -146,23 +152,44 @@ function sampleOpts(beat) {
 // Every sampler is normalised to the same shape here: positions, optional per dot
 // colours, and the point size scale this formation wants. `colors` being null is what
 // tells the engine to use the uniform brand colour for that beat.
+// THE DOT IS SIZED TO THE CELL IT SITS IN. A gridded formation only reads as a solid
+// mark if each dot is about as wide as the grid pitch: smaller and the shape shows the
+// gaps, larger and the detail fills in. Screen size is uSize * scale / distance, and the
+// world-to-pixel factor is (viewportHeight / 2) / (tan(fov/2) * distance), so distance
+// cancels and the scale depends only on the pitch and the viewport.
+const FOV_TAN = Math.tan((45 / 2) * Math.PI / 180);
+const AVG_RANDOM = 0.8;                    // mean of the shader's per particle size jitter
+function pitchToDotScale(pitchWorld) {
+  const h = typeof window !== 'undefined' ? window.innerHeight : 900;
+  return (pitchWorld * (h / 2)) / (FOV_TAN * AVG_RANDOM * (CFG.dotSize || 23));
+}
+
 function sampleBeat(N, beat, images) {
   const r = positionsFor(N, beat, images);
   const kind = beat.kind || 'sphere';
-  const scale = beat.dotScale ?? (kind === 'lockup' && r.colors ? LOCKUP_DOT_SCALE : 1);
-  return ArrayBuffer.isView(r)
-    ? { positions: r, colors: null, sizeScale: scale }
-    : { positions: r.positions, colors: r.colors || null, sizeScale: scale };
+  if (ArrayBuffer.isView(r)) return { positions: r, colors: null, sizeScale: beat.dotScale ?? 1 };
+  const scale = beat.dotScale
+    ?? (r.discPitchWorld ? pitchToDotScale(r.discPitchWorld)
+      : (kind === 'lockup' && r.colors ? LOCKUP_DOT_SCALE : 1));
+  return { positions: r.positions, colors: r.colors || null, sizeScale: scale, meta: r.counts || null };
 }
 
 function positionsFor(N, beat, images) {
   const src = beatImageSrc(beat);
   const img = src ? images[src] : null;
   switch (beat.kind) {
-    case "lockup":
-      return img
-        ? lockupPositions(N, img, beat)
+    case "lockup": {
+      const discImg = images[DISC_SRC] || img;
+      const wordImg = images[STACK_SRC];
+      const cfg = { ...DEFAULT_LOCKUP, ...(beat.lockup || {}) };
+      return discImg && wordImg
+        ? buildLockup(N, {
+            discImg, wordImg, isDark: !!beat.isDark,
+            markBox: cfg.markBox, markY: cfg.markY,
+            wordCenterY: cfg.wordCenterY, wordHalfW: cfg.wordHalfW,
+          })
         : leafToPositions(N, { halfHeight: WORLD * 0.52, bow: 0.7, yOffset: WORLD * 0.42 });
+    }
     case "image":
       return img
         ? imageToPositions(N, img, {
@@ -197,6 +224,16 @@ function positionsFor(N, beat, images) {
         radius: beat.radius ?? WORLD * 0.72,
         ripple: beat.ripple ?? 0.17,
       });
+  }
+}
+
+// One beat, built now rather than scheduled. The theme toggle uses this to re-bake the
+// lockup in the other register.
+export function buildArcOne(N, beat, images = {}) {
+  try {
+    return sampleBeat(N, beat, images);
+  } catch (e) {
+    return null;
   }
 }
 

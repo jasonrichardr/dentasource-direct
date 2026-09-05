@@ -15,7 +15,7 @@ import * as THREE from 'three';
 import { createPoints } from './points.js';
 import { MorphChain, dampf } from './morph.js';
 import { buildArcProgressive } from './arcBuilder.js';
-import { preloadBeatImages } from '../formations/index.js';
+import { buildArcOne, preloadBeatImages } from '../formations/index.js';
 import { cameraKeys, cameraTarget } from '../director/camera.js';
 import { CFG } from '../sky/skyConfig.js';
 
@@ -89,7 +89,30 @@ export async function startCinema({ canvas, root, beats: arc, isDark }) {
   const DAY_ALPHA = 0.9;
   let nightOn = false;
 
+  // ☠️ THE LOCKUP IS BAKED PER REGISTER, so a toggle has to rebuild it. Its colours come
+  // out of the source pixels and then get lifted for the night sky or taken down for the
+  // cream, and neither can be undone in the shader from the other. Only the lockups are
+  // rebuilt, and only when the register actually changed; measured cost is reported in
+  // the console under 'cinema: lockup rebuild'.
+  let lastPainted = null;
+  function rebuildLockups(dark) {
+    const jobs = arc
+      .map((b, i) => (b.kind === 'lockup' ? i : -1))
+      .filter((i) => i >= 0 && formations[i]);
+    if (!jobs.length) return;
+    const t0 = performance.now();
+    for (const i of jobs) {
+      const r = buildArcOne(N, { ...arc[i], isDark: !!dark }, images);
+      if (r) chain?.setFormation(i, r.positions, false, r.colors, r.sizeScale);
+    }
+    // eslint-disable-next-line no-console
+    console.log(`cinema: lockup rebuild ${jobs.length} formation(s) in ${Math.round(performance.now() - t0)}ms`);
+    if (reduced) kick();
+  }
+
   function paint(dark) {
+    if (lastPainted !== null && lastPainted !== dark) rebuildLockups(dark);
+    lastPainted = dark;
     nightOn = dark;
     COL_ACCENT.set(dark ? ACCENT_NIGHT : ACCENT_DAY);
     COL_DEEP.set(dark ? DEEP_NIGHT : DEEP_DAY);
