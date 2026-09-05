@@ -114,6 +114,25 @@ export default function ArticleContent({ article }) {
                                 </div>
                             );
                         }
+                        // An embedded Google Map — a paragraph that is exactly [map](embed url|directions url)
+                        const mapMatch = trimmed.match(/^\[map\]\((https:\/\/[^|)]+)\|(https:\/\/[^)]+)\)$/);
+                        if (mapMatch) {
+                            return (
+                                <div key={idx} className={styles.mapWrapper}>
+                                    <iframe
+                                        src={mapMatch[1]}
+                                        className={styles.mapFrame}
+                                        loading="lazy"
+                                        referrerPolicy="no-referrer-when-downgrade"
+                                        allowFullScreen
+                                        title="Map"
+                                    />
+                                    <a href={mapMatch[2]} target="_blank" rel="noopener noreferrer" className={styles.mapLink}>
+                                        Get directions in Google Maps
+                                    </a>
+                                </div>
+                            );
+                        }
                         // Several images in one block (one per line) render as a grid — used for portrait reel frames
                         if (trimmed.startsWith('![')) {
                             const all = [...trimmed.matchAll(/!\[(.*?)\]\((.*?)\)/g)];
