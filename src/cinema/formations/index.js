@@ -153,3 +153,47 @@ export function buildArc(N, beats, { images = {} } = {}) {
     positions: positionsFor(N, beat, images),
   }));
 }
+
+// ── one beat at a time ──────────────────────────────────────────────────────
+// buildArc above builds the whole arc in one go, which is what the engine used to do at
+// boot and what put two seconds of scripting on the main thread before the first frame.
+// A job builds ONE beat, and can be asked to do it in slices so no single task runs long
+// enough to be a blocking task. Cheap kinds finish in one call; the heart, the only
+// sampler that costs more than a frame, fills a slice per call.
+const HEART_SLICE = 12000;
+
+export function createBeatJob(N, beat, images = {}) {
+  const kind = beat.kind || 'sphere';
+  if (kind !== 'heart') {
+    // measured at N=92000: sphere 4ms, constellation 8ms, and the image and text samplers
+    // are bounded by their source pixels rather than by N. All finish inside one slice.
+    return {
+      isText: kind === 'text',
+      done: false,
+      work() {
+        this.positions = positionsFor(N, beat, images);
+        this.done = true;
+        return true;
+      },
+    };
+  }
+  const out = new Float32Array(N * 3);
+  let cursor = 0;
+  return {
+    isText: false,
+    done: false,
+    positions: out,
+    work() {
+      const to = Math.min(N, cursor + HEART_SLICE);
+      heartToPositions(N, {
+        size: beat.size ?? WORLD * 0.92,
+        depth: beat.depth ?? WORLD * 0.34,
+        yOffset: beat.yOffset ?? WORLD * 0.2,
+        out, from: cursor, to,
+      });
+      cursor = to;
+      this.done = cursor >= N;
+      return this.done;
+    },
+  };
+}

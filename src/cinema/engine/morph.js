@@ -23,10 +23,30 @@ export class MorphChain {
     this.smoothing = smoothing;
     this.smoothOffset = 0;
     this.lastSeg = -1;
+    this._countReady();
+  }
+
+  // The arc arrives a beat at a time now, so the chain has to know how far it can walk.
+  // `ready` is the CONTIGUOUS run of built formations from the start: a hole means the
+  // morph stops at its edge rather than reaching into nothing.
+  _countReady() {
+    let n = 0;
+    while (n < this.S && this.formations[n]) n += 1;
+    this.ready = n;
+  }
+
+  /** A formation finished building. Slot it in, and re-bind if the live pair just grew. */
+  setFormation(i, positions, isText = false) {
+    this.formations[i] = { positions, isText };
+    this._countReady();
+    if (i === this.lastSeg + 1) this._rebind(this.lastSeg);
   }
 
   _rebind(seg) {
     const g = this.geometry;
+    // A target that has not been built yet means holding this state rather than morphing
+    // into nothing. It cannot happen once the arc is complete.
+    if (!this.formations[seg] || !this.formations[seg + 1]) return;
     g.attributes.position.array.set(this.formations[seg].positions);
     g.attributes.position.needsUpdate = true;
     g.attributes.aTarget.array.set(this.formations[seg + 1].positions);
@@ -41,7 +61,10 @@ export class MorphChain {
     this.material.uniforms.uTime.value += dt;
     this.smoothOffset = dampf(this.smoothOffset, rawOffset, this.smoothing, dt);
 
-    const gRaw = this.smoothOffset * (this.S - 1);
+    // never walk past the built edge: the reader can scroll faster than the arc builds,
+    // and the cinema holds the last finished formation until the next one lands.
+    const limit = Math.max(0, this.ready - 1);
+    const gRaw = Math.min(this.smoothOffset * (this.S - 1), limit);
     let seg = Math.min(Math.floor(gRaw), this.S - 2);
     if (seg < 0) seg = 0;
     const easedLocal = smoother(gRaw - seg); // hold-then-snap pacing
