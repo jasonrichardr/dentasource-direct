@@ -270,7 +270,21 @@
   -webkit-backdrop-filter: blur(18px) saturate(1.4);
   backdrop-filter: blur(18px) saturate(1.4);
 }
-:root[data-theme='dark'] #tx-room { background: rgba(4, 14, 11, 0.94); }
+/* ☠️ THE DARK STAGE IS A VEIL AGAIN, AND IT ONLY WORKS BECAUSE OF TWO THINGS
+   OUTSIDE THIS FILE. Both were measured before this number was lowered:
+     1. the page's own ground is night — cinema.css sets body to var(--paper),
+        computed rgb(7,11,20), so a 25% veil reads dark instead of washing out;
+     2. the site chrome stands down — RoomChrome stamps .dsd-room-open on <html>
+        from this room's `dsd:room` event and navbar.css hides .dsd-nav,
+        .dsd-nav-trust, .dsd-nav-menu and .dsd-footer. They are LAYOUT SIBLINGS
+        of <main>, so `.tx-open main` can never reach them, and at any alpha
+        below 1 the nav links and the marquee read straight through.
+   Break either one and this line must go back to an opaque stage. The negative
+   control that proved it: capture the nav band twice at the same alpha, once
+   with the chrome visible and once hidden — identical bytes means the chrome
+   contributes no pixels. At .94 it was 21,408 vs 5,744, so even the opaque-ish
+   stage was leaking; the fix was never the alpha, it was the chrome. */
+:root[data-theme='dark'] #tx-room { background: rgba(3, 10, 8, 0.25); }
 /* The page steps aside anyway. It no longer has to — the stage is opaque — but
    hiding a full-screen WebGL canvas and the beat panels while the room holds the
    screen stops the browser compositing layers nobody can see, which is real
