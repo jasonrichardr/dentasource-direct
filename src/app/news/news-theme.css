@@ -30,6 +30,11 @@
   --news-gold: #c4993c;
   --news-shadow: rgba(0, 0, 0, 0.08);
   --news-shadow-lg: rgba(26, 60, 52, 0.16);
+  /* the "on" state of a pill: a filled chip whose ink is the page ground */
+  --news-invert-bg: #6f6f6f;
+  --news-invert-bg-hover: #1a1a1a;
+  --news-invert-ink: #ffffff;
+  --news-on-accent: #ffffff;      /* type sitting ON the green */
 }
 
 :root[data-theme="dark"] {
@@ -50,4 +55,13 @@
   --news-gold: #d9ae52;
   --news-shadow: rgba(0, 0, 0, 0.5);
   --news-shadow-lg: rgba(0, 0, 0, 0.6);
+  /* ☠️ THE FILLED PILL INVERTS, IT DOES NOT JUST DARKEN. Reusing the body ink for this
+     background put a PALE chip under WHITE type by night, which is the one combination
+     that cannot be read. By night the fill is the light and the type is the ground. */
+  --news-invert-bg: var(--ink);
+  --news-invert-bg-hover: #ffffff;
+  --news-invert-ink: #0b1220;
+  /* ☠️ WHITE ON THE NIGHT GREEN IS 1.9:1. The dark accent carries white type by day, but
+     by night the accent IS the light, so the type has to be the ground. */
+  --news-on-accent: #06231a;
 }
