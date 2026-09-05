@@ -189,18 +189,36 @@ export default function Room() {
     a.preload = 'none';
     a.loop = true;
     a.volume = 0;
-    a.src = coarse ? SONG_PHONE : SONG;
-    // With preload 'none' there is no metadata until the first play(), so the
-    // opener is seeded NOW as the spec's "default playback start position" (a
-    // currentTime set at HAVE_NOTHING is applied when metadata lands, and both
-    // engines honour it). The metadata handler is the belt to that brace.
-    // ☠️ NO-REWIND: a currentTime assignment inside the un-mute gesture path
-    // never takes, so the start position must be seeded while the element is
-    // still cold.
-    try {
-      a.currentTime = SD_START;
-    } catch (e) {
-      /* cold element refused the seek: the metadata handler will retry */
+    // ── 📶 NO SRC UNTIL A GESTURE ASKS FOR ONE ─────────────────────────────
+    // ☠️ preload='none' IS NOT ENOUGH ON ITS OWN, and this was measured, not
+    // assumed. With the src assigned at mount, a no-gesture page load fetched
+    // the 96 MB master anyway: once on /cinema-lab and THREE times on /, which
+    // reached readyState 4 (enough data) without anybody touching the page.
+    // play() forces the resource selection algorithm no matter what preload
+    // says, and the desktop branch used to call play() at load. While a media
+    // element is loading it also holds the delaying-the-load-event flag, which
+    // is the mechanism behind a navigation that waits on 'load' hanging.
+    //
+    // So the element now has NO src until the first gesture. Assignment and the
+    // opener seed both happen inside ensureSrc(), which every path that could
+    // start audio calls first. A visitor who never touches the page costs
+    // exactly zero bytes, which was always this room's stated law: the desktop
+    // load-time autoplay was the one exception, and it is withdrawn.
+    let srcArmed = false;
+    function ensureSrc() {
+      if (srcArmed) return;
+      srcArmed = true;
+      a.src = coarse ? SONG_PHONE : SONG;
+      // The opener is seeded as the spec's "default playback start position":
+      // a currentTime set at HAVE_NOTHING is applied when metadata lands, and
+      // both engines honour it. ☠️ NO-REWIND: the same assignment inside the
+      // un-mute path never takes, so it must happen while the element is cold,
+      // which is here, in the same task as the src.
+      try {
+        a.currentTime = SD_START;
+      } catch (e) {
+        /* cold element refused the seek: the metadata handler will retry */
+      }
     }
     a.addEventListener(
       'loadedmetadata',
@@ -267,6 +285,7 @@ export default function Room() {
     let reelOn = false;
     function warmRun() {
       capped = false;
+      ensureSrc();
       a.muted = true;
       a.play()
         .then(() => {
@@ -432,6 +451,8 @@ export default function Room() {
     }
     function kick() {
       touched = true;
+      // the gesture is what buys the bytes; nothing is fetched before this line
+      ensureSrc();
       graph();
       if (a.muted) {
         // The cheap ask: a synchronous property flip on a running element.
@@ -455,14 +476,20 @@ export default function Room() {
       });
     }
 
-    // ── the load-time ask, and why it is gated ──────────────────────────────
-    // 📶 On a phone the load-time ask is not merely useless, it is expensive:
-    // Chrome optimistically resolves play() before the audio track lands, grabs
-    // megabytes of buffer, THEN applies the policy and pauses. On a desktop that
-    // permits autoplay the same call simply works and the music is playing
-    // before the first beat is read.
-    if (coarse) arm();
-    else a.play().catch(() => arm());
+    // ── ☠️ THERE IS NO LOAD-TIME ASK ANY MORE ──────────────────────────────
+    // FFC calls play() at load on a desktop, reasoning that a machine which
+    // permits autoplay should have the music going before the first beat is
+    // read. On a phone it already refused to, because Chrome optimistically
+    // resolves play() before the audio track lands, grabs megabytes of buffer,
+    // THEN applies the policy and pauses: the visitor hears nothing and pays
+    // for it. Measured here, the desktop branch was just as expensive and
+    // costlier still on this site, because it is the one thing that can hold a
+    // navigation waiting on 'load'.
+    // So every device now waits for contact. The armed list includes scroll and
+    // wheel, and this is a scroll-driven site, so on a desktop the music still
+    // starts within about a second of arrival; the difference is that it starts
+    // because somebody moved, not because a page opened.
+    arm();
 
     // ── the graph ──────────────────────────────────────────────────────────
     // Built on the FIRST GESTURE, never before: routing an element through a
