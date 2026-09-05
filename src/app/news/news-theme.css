@@ -1,0 +1,53 @@
+/* news-theme.css — the news route's own palette, in one place.
+ *
+ * ☠️ THE LIGHT VALUES ARE THE OLD LITERALS, EXACTLY. Every token below opens on the hex
+ * the page already carried, so the day register is what it always was: same greys, same
+ * green, same gold, same hairlines. Only the dark block is new work.
+ *
+ * Why tokens at all: /news and /news/[slug] paint from inline style objects
+ * (NewsContent, NewsSearch) and a CSS module (the article). An inline style beats any
+ * stylesheet, so a dark skin could not be layered on top from outside; the values
+ * themselves had to become variables. Layout, spacing and type are untouched.
+ *
+ * The night ground itself comes from the engine's own rule in cinema.css
+ * (:root[data-theme="dark"] body), which is why the article body needed an ink that
+ * follows it: near-black type on a night page is the seam this file closes.
+ */
+
+:root {
+  --news-paper: #faf8f5;
+  --news-surface: #ffffff;
+  --news-surface-2: #f1efea;
+  --news-surface-glass: rgba(255, 255, 255, 0.94);
+  --news-ink: #1a1a1a;
+  --news-ink-2: #6f6f6f;
+  --news-ink-3: #9a9a9a;
+  --news-line: #e5e0d8;
+  --news-line-2: #dcd9d3;
+  --news-accent: #2d6a5a;
+  --news-accent-hover: #1a3c34;   /* link hover: darker than the accent by day */
+  --news-chip-ink: #1a3c34;       /* type on the gold tinted chip */
+  --news-gold: #c4993c;
+  --news-shadow: rgba(0, 0, 0, 0.08);
+  --news-shadow-lg: rgba(26, 60, 52, 0.16);
+}
+
+:root[data-theme="dark"] {
+  --news-paper: var(--paper);
+  --news-surface: #0e1524;
+  --news-surface-2: rgba(255, 255, 255, 0.07);
+  --news-surface-glass: rgba(12, 18, 31, 0.92);
+  --news-ink: var(--ink);
+  --news-ink-2: rgba(241, 236, 225, 0.74);
+  --news-ink-3: rgba(241, 236, 225, 0.52);
+  --news-line: rgba(255, 255, 255, 0.13);
+  --news-line-2: rgba(255, 255, 255, 0.16);
+  --news-accent: var(--dsd-green);
+  /* by night the hover goes BRIGHTER, not darker: a deeper green on a night page is
+     the one direction that reads as "disabled" rather than "active". */
+  --news-accent-hover: var(--dsd-green-light);
+  --news-chip-ink: #f2dda6;
+  --news-gold: #d9ae52;
+  --news-shadow: rgba(0, 0, 0, 0.5);
+  --news-shadow-lg: rgba(0, 0, 0, 0.6);
+}

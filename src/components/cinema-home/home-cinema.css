@@ -20,7 +20,7 @@
    frozen at load the seam cannot move when a phone's URL bar slides. */
 .cinema-panel.copy-low {
   justify-content: flex-start;
-  padding-top: calc(var(--vh, 1vh) * 68);
+  padding-top: calc(var(--vh, 1vh) * 73);
   padding-bottom: clamp(20px, 4vh, 48px);
 }
 @media (max-width: 700px) {

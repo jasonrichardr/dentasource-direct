@@ -7,6 +7,7 @@ import JsonLd from '@/components/JsonLd';
 import { articleGraph } from '@/lib/schemas/article';
 import ArticleMarbles from './ArticleMarbles';
 import styles from './page.module.css';
+import '../news-theme.css';
 
 export default function ArticleContent({ article }) {
     return (

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, m as motion } from 'framer-motion';
+import './news-theme.css';
 
 // Full-text search over every word of every article, built in the browser from newsData.
 // Each article is split into its ## sections so a hit can say WHERE it was found.
@@ -149,18 +150,18 @@ export default function NewsSearch({ query, setQuery, result, totalArticles }) {
                     borderRadius: 999,
                     padding: 2,
                     background: open
-                        ? 'linear-gradient(120deg, #2d6a5a, #c4993c 55%, #2d6a5a)'
-                        : 'linear-gradient(120deg, #e5e0d8, #e5e0d8)',
+                        ? 'linear-gradient(120deg, var(--news-accent), var(--news-gold) 55%, var(--news-accent))'
+                        : 'linear-gradient(120deg, var(--news-line), var(--news-line))',
                     transition: 'background 0.35s ease',
-                    boxShadow: open ? '0 18px 50px rgba(45,106,90,0.18)' : '0 4px 18px rgba(0,0,0,0.04)',
+                    boxShadow: open ? '0 18px 50px rgba(45,106,90,0.18)' : '0 4px 18px var(--news-shadow)',
                 }}
             >
                 <div style={{
                     display: 'flex', alignItems: 'center', gap: 12,
-                    background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(10px)',
+                    background: 'var(--news-surface-glass)', backdropFilter: 'blur(10px)',
                     borderRadius: 999, padding: '0 14px 0 18px', height: 54,
                 }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2d6a5a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--news-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
                     </svg>
                     <input
@@ -177,7 +178,7 @@ export default function NewsSearch({ query, setQuery, result, totalArticles }) {
                         placeholder={`Search every word in ${totalArticles} articles. Try "apex locator", "Pampanga", "TADS"`}
                         style={{
                             flex: 1, border: 0, outline: 'none', background: 'transparent',
-                            fontSize: 16, color: '#1a1a1a', fontFamily: 'inherit', minWidth: 0,
+                            fontSize: 16, color: 'var(--news-ink)', fontFamily: 'inherit', minWidth: 0,
                         }}
                     />
                     {query ? (
@@ -185,24 +186,24 @@ export default function NewsSearch({ query, setQuery, result, totalArticles }) {
                             type="button"
                             onClick={() => { setQuery(''); inputRef.current?.focus(); }}
                             aria-label="Clear search"
-                            style={{ border: 0, background: '#f1efea', color: '#555', borderRadius: 999, width: 28, height: 28, cursor: 'pointer', fontSize: 14 }}
+                            style={{ border: 0, background: 'var(--news-surface-2)', color: 'var(--news-ink-2)', borderRadius: 999, width: 28, height: 28, cursor: 'pointer', fontSize: 14 }}
                         >
                             ×
                         </button>
                     ) : (
                         <kbd style={{
-                            fontFamily: 'inherit', fontSize: 11, color: '#8a8a8a',
-                            border: '1px solid #e5e0d8', borderBottomWidth: 2, borderRadius: 6, padding: '2px 7px', background: '#faf8f5',
+                            fontFamily: 'inherit', fontSize: 11, color: 'var(--news-ink-3)',
+                            border: '1px solid var(--news-line)', borderBottomWidth: 2, borderRadius: 6, padding: '2px 7px', background: 'var(--news-surface-2)',
                         }}>/</kbd>
                     )}
                 </div>
             </div>
 
             {terms.length > 0 && (
-                <p style={{ fontSize: 12, color: '#7a7a7a', margin: '10px 0 0 20px', letterSpacing: '0.3px' }}>
+                <p style={{ fontSize: 12, color: 'var(--news-ink-2)', margin: '10px 0 0 20px', letterSpacing: '0.3px' }}>
                     {total === 0
-                        ? <>No article mentions <strong style={{ color: '#1a1a1a' }}>{query.trim()}</strong> yet.</>
-                        : <>{total} {total === 1 ? 'article mentions' : 'articles mention'} <strong style={{ color: '#1a1a1a' }}>{query.trim()}</strong>. Newest first below, best matches here.</>}
+                        ? <>No article mentions <strong style={{ color: 'var(--news-ink)' }}>{query.trim()}</strong> yet.</>
+                        : <>{total} {total === 1 ? 'article mentions' : 'articles mention'} <strong style={{ color: 'var(--news-ink)' }}>{query.trim()}</strong>. Newest first below, best matches here.</>}
                 </p>
             )}
 
@@ -217,9 +218,9 @@ export default function NewsSearch({ query, setQuery, result, totalArticles }) {
                         style={{
                             position: 'absolute', zIndex: 40, left: 0, right: 0, top: 'calc(100% - 4px)',
                             listStyle: 'none', margin: '10px 0 0', padding: 8,
-                            background: 'rgba(255,255,255,0.96)', backdropFilter: 'blur(14px)',
-                            border: '1px solid #e5e0d8', borderRadius: 20,
-                            boxShadow: '0 30px 80px rgba(26,60,52,0.16)',
+                            background: 'var(--news-surface-glass)', backdropFilter: 'blur(14px)',
+                            border: '1px solid var(--news-line)', borderRadius: 20,
+                            boxShadow: '0 30px 80px var(--news-shadow-lg)',
                             maxHeight: '68vh', overflowY: 'auto',
                         }}
                     >
@@ -235,7 +236,7 @@ export default function NewsSearch({ query, setQuery, result, totalArticles }) {
                                         transition: 'background 0.15s',
                                     }}
                                 >
-                                    <span style={{ display: 'block', width: 72, height: 54, borderRadius: 10, overflow: 'hidden', background: '#eee' }}>
+                                    <span style={{ display: 'block', width: 72, height: 54, borderRadius: 10, overflow: 'hidden', background: 'var(--news-surface-2)' }}>
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
                                         {h.image && <img src={h.image} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />}
                                     </span>
@@ -243,25 +244,25 @@ export default function NewsSearch({ query, setQuery, result, totalArticles }) {
                                         <span style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 4 }}>
                                             <span style={{
                                                 fontSize: 10, fontWeight: 700, letterSpacing: '1.8px', textTransform: 'uppercase',
-                                                color: '#1a3c34', background: 'rgba(196,153,60,0.28)', padding: '3px 9px', borderRadius: 999, whiteSpace: 'nowrap',
+                                                color: 'var(--news-chip-ink)', background: 'rgba(196,153,60,0.28)', padding: '3px 9px', borderRadius: 999, whiteSpace: 'nowrap',
                                             }}>{h.date}</span>
-                                            <span style={{ fontSize: 11, color: '#2d6a5a', letterSpacing: '1.2px', textTransform: 'uppercase', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                            <span style={{ fontSize: 11, color: 'var(--news-accent)', letterSpacing: '1.2px', textTransform: 'uppercase', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                                 in: {h.heading}
                                             </span>
                                         </span>
                                         <span style={{
-                                            display: 'block', fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 17, lineHeight: 1.25, color: '#1a1a1a', marginBottom: 4,
+                                            display: 'block', fontFamily: "'DM Serif Display', Georgia, serif", fontSize: 17, lineHeight: 1.25, color: 'var(--news-ink)', marginBottom: 4,
                                         }}>
                                             <Highlight text={h.title} terms={terms} />
                                         </span>
-                                        <span style={{ display: 'block', fontSize: 13, color: '#6b6b6b', lineHeight: 1.5 }}>
+                                        <span style={{ display: 'block', fontSize: 13, color: 'var(--news-ink-2)', lineHeight: 1.5 }}>
                                             <Highlight text={h.snippet} terms={terms} />
                                         </span>
                                     </span>
                                 </Link>
                             </li>
                         ))}
-                        <li aria-hidden="true" style={{ padding: '8px 12px 4px', fontSize: 11, color: '#9a9a9a', display: 'flex', gap: 14, justifyContent: 'flex-end' }}>
+                        <li aria-hidden="true" style={{ padding: '8px 12px 4px', fontSize: 11, color: 'var(--news-ink-3)', display: 'flex', gap: 14, justifyContent: 'flex-end' }}>
                             <span>↑ ↓ to move</span><span>↵ to open at that section</span><span>esc to close</span>
                         </li>
                     </motion.ul>
