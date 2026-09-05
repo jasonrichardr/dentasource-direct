@@ -37,7 +37,14 @@
   .mobileStickyBar {
     display: flex;
     position: fixed;
-    bottom: 0;
+    /* ABOVE THE ROOM'S DOCK, not under it. #tx-dock is fixed at bottom 14px plus the safe
+       area at z-index 10000, so a bar at bottom 0 loses its own button to the dock on a
+       390 wide screen. The clearance is the dock's real box, read off room.css: 9px + 9px
+       padding, a 15px tall row (.tx-note at font-size 15 / line-height 1, .tx-eq at 15px),
+       and 1px of border each side, so 36px, plus a 12px gap.
+       It stays full bleed on purpose: the house decree is sticky bars, never floating
+       bubbles, and insetting it into a rounded pill would make it the latter. */
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px) + 36px + 12px);
     left: 0;
     right: 0;
     z-index: 50;
@@ -47,4 +54,11 @@
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     justify-content: center;
   }
+}
+
+/* The room hides the page with `.tx-open main { visibility: hidden }`, but this bar is a
+   SIBLING of <main>, not a child, so without this it stayed on screen over the open room.
+   The dock hides itself the same way. */
+:global(.tx-open) .mobileStickyBar {
+  display: none !important;
 }

@@ -328,9 +328,54 @@
   margin: 0;
   color: var(--ink);
 }
-/* The route's own components come through untouched, so they keep their own backgrounds
-   and their own type. They are simply seated under the cinema rather than replacing it. */
 .pc-details-body { position: relative; }
+
+/* ---- skinning the route's own components for the night page ----
+   The 12 product pages are Tailwind utility driven, and their palette was written for a
+   white page: bg-white, bg-zinc-50, text-gray-900, border-gray-100, emerald accents. Left
+   alone under the cinema they became a bright slab hanging off the bottom of a night page.
+   These are OVERRIDES, not edits: the components are imported exactly as they are, and
+   only the classes they actually use are remapped to the shared tokens. The inventory
+   below came from counting every colour utility across all 13 component folders, so this
+   remaps what is really there rather than what one might guess.
+   DARK ONLY. In light the components already sit correctly on the cream page, and the
+   instruction was to skin the night, not to restyle the day.
+   Specificity does the work: :root[data-theme] plus two classes beats a lone utility, so
+   nothing here needs !important. */
+:root[data-theme="dark"] .pc-details-body .bg-white { background-color: var(--paper-2); }
+:root[data-theme="dark"] .pc-details-body .bg-zinc-50 { background-color: var(--paper); }
+:root[data-theme="dark"] .pc-details-body .bg-zinc-100 { background-color: var(--paper-warm); }
+
+/* type: the two greys that carry body copy, and the near-black headings */
+:root[data-theme="dark"] .pc-details-body .text-gray-900,
+:root[data-theme="dark"] .pc-details-body .text-zinc-900,
+:root[data-theme="dark"] .pc-details-body .text-black { color: var(--ink); }
+:root[data-theme="dark"] .pc-details-body .text-gray-700,
+:root[data-theme="dark"] .pc-details-body .text-gray-600 { color: var(--slate); }
+:root[data-theme="dark"] .pc-details-body .text-gray-500,
+:root[data-theme="dark"] .pc-details-body .text-gray-400 { color: color-mix(in srgb, var(--slate) 82%, transparent); }
+
+/* rules and dividers. The brutalist sections rule in solid black, which simply vanishes on
+   a dark ground, so they become a visible ink line instead. */
+:root[data-theme="dark"] .pc-details-body .border-gray-100,
+:root[data-theme="dark"] .pc-details-body .border-gray-200,
+:root[data-theme="dark"] .pc-details-body .border-gray-300 { border-color: color-mix(in srgb, var(--ink) 16%, transparent); }
+:root[data-theme="dark"] .pc-details-body .border-black { border-color: color-mix(in srgb, var(--ink) 28%, transparent); }
+:root[data-theme="dark"] .pc-details-body .divide-black > * + *,
+:root[data-theme="dark"] .pc-details-body .divide-gray-100 > * + * { border-color: color-mix(in srgb, var(--ink) 16%, transparent); }
+
+/* the green accents, moved onto the DSD tokens so they keep their contrast at night */
+:root[data-theme="dark"] .pc-details-body .text-emerald-700,
+:root[data-theme="dark"] .pc-details-body .text-emerald-600,
+:root[data-theme="dark"] .pc-details-body .text-emerald-500 { color: var(--dsd-green); }
+:root[data-theme="dark"] .pc-details-body .bg-emerald-50 { background-color: color-mix(in srgb, var(--dsd-green) 14%, transparent); }
+:root[data-theme="dark"] .pc-details-body .border-emerald-100 { border-color: color-mix(in srgb, var(--dsd-green) 30%, transparent); }
+:root[data-theme="dark"] .pc-details-body .ring-emerald-200 { --tw-ring-color: color-mix(in srgb, var(--dsd-green) 34%, transparent); }
+
+/* Deliberately NOT touched: bg-black, bg-emerald-500/600, text-white and the emerald
+   100/200/400 tints. Those belong to sections that are already dark by design and read
+   correctly on a night page; remapping them would invert sections that are right. */
+
 
 @media (max-width: 900px) {
   .pc-features { grid-template-columns: minmax(0, 1fr); gap: 8px; }
