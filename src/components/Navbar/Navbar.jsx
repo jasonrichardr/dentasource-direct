@@ -14,6 +14,24 @@ const CHROME_FREE_ROUTES = ['/denjoy'];
 // glass once the opening beat has been scrolled past.
 const CINEMA_ROUTES = ['/', '/cinema-lab'];
 
+/**
+ * ☠️ THE HEADER IS FIXED, SO EVERY LINK IN IT IS ALWAYS IN THE VIEWPORT, and an App Router
+ * <Link> prefetches when it enters the viewport. That means every visitor to every page
+ * was downloading these two routes' payloads before deciding to go anywhere.
+ *
+ * Measured, gzipped, as the extra a route costs over what the home page already loads:
+ *   /news   122 KB   the ENTIRE article corpus (92 slugs, 89 abstracts) because the
+ *                    news search is client side and full text
+ *   /login   63 KB   the Supabase client (createClient, GoTrue)
+ * Together 185 KB of the 362 KB Lighthouse reported as unused JavaScript on the home page,
+ * and Lighthouse called the news one 100% unused because nobody had clicked News.
+ *
+ * The other links stay prefetched on purpose: measured, they are 1 to 11 KB each, which is
+ * a fair price for an instant navigation on the links people actually take. This is a
+ * targeted cut, not a blanket one.
+ */
+const NO_PREFETCH = new Set(['/news', '/login']);
+
 const navLinks = [
   { name: 'Equipment', href: '/products' },
   { name: 'Dental Chairs', href: '/dentalchairs' },
@@ -103,6 +121,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
+                  prefetch={NO_PREFETCH.has(link.href) ? false : undefined}
                   className="dsd-nav-link text-xs font-semibold tracking-[0.12em] uppercase"
                 >
                   {link.name}
@@ -110,6 +129,7 @@ export default function Navbar() {
               ))}
               <Link
                 href="/login"
+                prefetch={false}
                 className="dsd-nav-link text-xs font-semibold tracking-[0.12em] uppercase"
               >
                 Sign In
@@ -162,6 +182,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
+                    prefetch={NO_PREFETCH.has(link.href) ? false : undefined}
                     onClick={() => setOpen(false)}
                     className="dsd-nav-menu-link block py-4 text-2xl font-semibold"
                   >
@@ -189,6 +210,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/login"
+                prefetch={false}
                 onClick={() => setOpen(false)}
                 className="dsd-footer-ghost mt-3 block w-full text-center py-4 rounded-2xl font-semibold text-base"
               >

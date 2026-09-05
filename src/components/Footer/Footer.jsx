@@ -10,6 +10,11 @@ const PHONE = '+63 962 579 3024';
 const PHONE_HREF = 'tel:+639625793024';
 const MESSENGER = 'https://m.me/dentasource';
 
+// The footer is on every page too, so its links prefetch on sight exactly as the header's
+// do. Same two heavy routes, same reason: /news carries the whole article corpus and
+// /login carries Supabase. See the note in Navbar.jsx for the measurements.
+const NO_PREFETCH = new Set(['/news', '/login']);
+
 const columns = [
   {
     title: 'Equipment',
@@ -86,6 +91,7 @@ export default function Footer() {
                     <li key={label} className="my-0.5">
                       <Link
                         href={href}
+                        prefetch={NO_PREFETCH.has(href) ? false : undefined}
                         className="dsd-footer-chip inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-1 backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-px sm:gap-2 sm:px-3.5 sm:py-1.5"
                       >
                         <span className="text-xs font-medium sm:text-sm">{label}</span>
@@ -99,7 +105,7 @@ export default function Footer() {
                     </li>
                   ) : (
                     <li key={label}>
-                      <Link href={href} className="dsd-footer-link text-sm">
+                      <Link href={href} prefetch={NO_PREFETCH.has(href) ? false : undefined} className="dsd-footer-link text-sm">
                         {label}
                       </Link>
                     </li>
