@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "generated": "2026-09-05",
+  "page": "/contact",
+  "notes": "Contact arc, 5 beats, Phase B3a. The real ShowroomInfo and BookingForm components are mounted below the cinema as the Details region and are untouched; beats 1 and 2 are the doors into them, which is why their CTAs are in-page anchors. #showroom is load bearing: the home door's Visit the showroom CTA points at it.",
+  "beats": [
+    {
+      "key": "hero",
+      "kind": "lockup",
+      "eyebrow": "Contact",
+      "headline": "Contact and showroom",
+      "body": "Walk in any day of the week, or send an inquiry and we will come back to you.",
+      "cta": { "label": "See the address", "href": "#showroom" }
+    },
+    {
+      "key": "showroom",
+      "kind": "details",
+      "eyebrow": "Where we are",
+      "headline": "610 C. Raymundo Avenue, Maybunga, Pasig City",
+      "body": "Open Monday to Sunday, 9 AM to 8 PM. No appointment needed. Telling us you are coming means the model you want is set up and powered when you arrive.",
+      "facts": [
+        { "label": "Showroom", "value": "610 C. Raymundo Avenue, Maybunga, Pasig City" },
+        { "label": "Open", "value": "Monday to Sunday, 9 AM to 8 PM" },
+        { "label": "Phone", "value": "+63 962 579 3024" }
+      ],
+      "cta": { "label": "Map and directions", "href": "#showroom" }
+    },
+    {
+      "key": "inquiry",
+      "kind": "form",
+      "eyebrow": "Send an inquiry",
+      "headline": "Tell us what the room needs",
+      "body": "The unit you are looking at, the size of the operatory, and when you want it in place. A free ocular visit comes first, so the unit fits the room.",
+      "cta": { "label": "Open the inquiry form", "href": "#inquiry" }
+    },
+    {
+      "key": "delivery",
+      "kind": "photo",
+      "eyebrow": "Nationwide delivery",
+      "headline": "We deliver, and we install what we deliver",
+      "body": "Clinics on Luzon are served by our own van and installation team. Units bound for the Visayas and Mindanao go by freight, with installation arranged on arrival.",
+      "media": [
+        "/images/news/new-year-restock-nationwide-delivery-2026/v001-3.jpg",
+        "/images/news/roson-a3l-delivery-pangasinan/v003-1.jpg"
+      ]
+    },
+    {
+      "key": "door",
+      "kind": "door",
+      "eyebrow": "The door",
+      "headline": "Come and sit in the chair",
+      "body": "The showroom floor is the shortest way to decide. Everything on it is powered, and someone who knows the units is on the floor with you.",
+      "ctas": [
+        { "label": "Send an inquiry", "href": "#inquiry", "variant": "solid" },
+        { "label": "Map and directions", "href": "#showroom", "variant": "ghost" }
+      ]
+    }
+  ]
+}

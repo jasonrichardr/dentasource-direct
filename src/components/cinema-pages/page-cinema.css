@@ -1,0 +1,50 @@
+/* The two classes About and Contact add on top of the shared home-cinema panel styles. */
+
+/* Contact beat 1: the three facts a visitor came for, above the fold of the real address
+   block further down. */
+.dsd-facts {
+  display: grid;
+  gap: 10px;
+  margin: 18px auto 0;
+  max-width: 520px;
+  text-align: left;
+}
+.dsd-fact {
+  display: grid;
+  grid-template-columns: minmax(70px, 22%) 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding-bottom: 10px;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.dsd-fact:last-child { border-bottom: 0; padding-bottom: 0; }
+.dsd-fact dt {
+  font-size: clamp(10px, 1vw, 12px);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--dsd-green-deep);
+  font-weight: 700;
+}
+.dsd-fact dd {
+  margin: 0;
+  font-size: clamp(14px, 1.4vw, 17px);
+  line-height: 1.45;
+  color: var(--ink);
+  text-shadow: 0 2px 22px var(--paper), 0 0 14px var(--paper);
+}
+
+/* ☠️ THE REGION BELOW THE CINEMA MUST OUTRANK THE PANELS. The beat panels are
+   position:fixed at z-index 6 and the scroll offset clamps at the last beat, so once a
+   reader scrolls past the track the door panel is still painted over everything. On the
+   home arc nothing follows the track and it never showed. Contact puts the real address
+   block and the real inquiry form down here, so this region sits above the panels and
+   carries an opaque ground of its own; the fixed cloud and the stars stay behind it. */
+.dsd-below {
+  position: relative;
+  z-index: 7;
+  background: var(--paper);
+}
+
+@media (max-width: 640px) {
+  .dsd-fact { grid-template-columns: 1fr; gap: 2px; }
+}
