@@ -8,6 +8,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import FieldEditor from './FieldEditor';
 import LogoDials from './LogoDials';
+import MarqueeSpeed from './MarqueeSpeed';
 import MediaGrid from './MediaGrid';
 import './studio.css';
 
@@ -177,6 +178,8 @@ export default function Studio() {
   );
 
   const showDials = activeId === '__dials';
+  const showMarquee = activeId === '__marquee';
+  const showTool = showDials || showMarquee;
   const current = items[sel];
   // ☠️ A MANIFEST IS NOT AN ARC. When the collection IS the media array — the
   // installs strip, the reels, the 244 spare parts — the thing to edit is the
@@ -248,15 +251,24 @@ export default function Studio() {
                 <span>Logo dials</span>
                 <span className="st-count">live</span>
               </button>
+              <button
+                type="button"
+                className={`st-tab${showMarquee ? ' on' : ''}`}
+                onClick={() => setActiveId('__marquee')}
+                title="FFC's measured marquee speeds. Read only: they live in code, not content."
+              >
+                <span>Marquee speed</span>
+                <span className="st-count">read only</span>
+              </button>
             </div>
           </div>
 
-          {!showDials ? (
+          {!showTool ? (
             <div className="st-arc-h">
               {active ? `${active.label} — drag to reorder` : 'Beats'}
             </div>
           ) : null}
-          <ol className="st-list" hidden={showDials}>
+          <ol className="st-list" hidden={showTool}>
             {items.map((it, i) => (
               <li
                 key={it?.key || it?.slug || it?.src || i}
@@ -292,7 +304,7 @@ export default function Studio() {
               </li>
             ))}
           </ol>
-          {items.length && !showDials ? (
+          {items.length && !showTool ? (
             <p className="st-hint">
               A hidden beat keeps its place in the file and is marked <code>hidden: true</code>. The arc renderer has to
               honour that flag for it to disappear from the site.
@@ -303,6 +315,8 @@ export default function Studio() {
         <main className="st-main">
           {showDials ? (
             <LogoDials />
+          ) : showMarquee ? (
+            <MarqueeSpeed />
           ) : busy === 'loading' ? (
             <p className="st-empty">Loading…</p>
           ) : collectionIsMedia ? (

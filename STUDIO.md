@@ -89,6 +89,18 @@ Open the home page in a second tab and watch it move as you drag.
 else sees them. When a setting looks right, the number has to be copied into
 `LOCKUP_DEFAULTS` in `src/cinema/formations/lockupConfig.js` to make it real.
 
+## Marquee speed
+
+The **Marquee speed** tab shows the four numbers every scrolling strip on the
+site runs at: FFC's own speeds, measured on the live site, one pair for
+photographs and video and one for a line of running text, each with a desktop
+and a phone value.
+
+It is read only. They live in `FFC_MARQUEE_PX_PER_S` in
+`src/lib/cinema/marquee.js`, which is code rather than content, so it sits
+outside the part of the repo this studio may write to. Changing one re-times
+every marquee on the site at once.
+
 ## Saving
 
 Nothing saves until you press **Save changes**. There is no autosave.
