@@ -226,6 +226,33 @@
     scroll-margin-top: 110px;
 }
 
+/* Embedded map */
+.mapWrapper {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.mapFrame {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border: 0;
+    border-radius: 16px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+    background: #eef1ef;
+}
+
+.mapLink {
+    align-self: center;
+    font-weight: 600;
+    color: #2d6a5a;
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #2d6a5a;
+    border-radius: 999px;
+}
+
 .fbLink {
     font-size: 0.9rem;
     color: #2d6a5a;

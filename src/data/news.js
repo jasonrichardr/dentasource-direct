@@ -804,7 +804,66 @@ Clinics that haven't renewed 2026 membership should do so before local chapter e
 A new PDA administrative term is mostly an internal transition, but the permit exemption it inherited is a real, ongoing benefit worth every member confirming with their own LGU. Watch for chapter-level program announcements as the "Empowered" theme translates into concrete 2026–2027 initiatives under Dr. Esquillo and the new national board.
 
 Sources: [Philippine Dental Association — Officers](https://pda.com.ph/about-us/officers/), [Philippine Dental Association](https://pda.com.ph/), [117th PDA Annual Convention & Scientific Sessions](https://117.pda.com.ph/).`,
-    }
+    },
+    {
+        id: "ffc-hiring-associate-dentist-angono-2026",
+        slug: "ffc-dental-clinic-hiring-associate-dentist-angono",
+        title: "FFC Dental Clinic Is Hiring an Associate Dentist in Angono, Rizal",
+        date: "September 3, 2026",
+        image: "/images/news/ffc-hiring-2026/og-we-are-hiring.jpg",
+        ogImage: "/images/news/ffc-hiring-2026/og.jpg",
+        hideHeroImage: false,
+        abstract: "FFC Dental Clinic, the five-branch clinic group that stands beside DentaSource Direct, has an Associate Dentist seat open at its Angono, Rizal branch. What the role is, who it suits, where the branch is, and how to apply. No experience needed.",
+        content: `## The Opening
+
+**FFC Dental Clinic** is hiring an **Associate Dentist** for its branch in **Angono, Rizal**. The seat is open now, applications go through one page, and new graduates are welcome. As the clinic puts it on its own careers page: no experience needed, all of us started without it.
+
+We are publishing this here because FFC and DentaSource Direct are two companies in one family. The clinic is where a lot of the equipment we write about does its daily work, and the Training Center where its dentists keep learning is ours.
+
+![We are hiring: FFC Dental Clinic and DentaSource Direct, one door for both](/images/news/ffc-hiring-2026/og-we-are-hiring.jpg)
+
+## About the Clinic
+
+FFC Dental Clinic has been caring for patients since 2017. It now runs five branches across the capital region and Rizal: San Juan, Manila, Pasig, Caloocan and Angono, with more than 64,000 patients seen since it opened.
+
+The habit the clinic keeps coming back to is learning. Its dentists train in Italy and Japan and bring what they learn home to every chair. The standard it sets for anyone who joins is stated plainly: curiosity, honesty about what you do not know yet, and the will to grow.
+
+![The careers page: grow with a clinic that keeps learning](/images/news/ffc-hiring-2026/careers-hero.jpg)
+
+## What the Associate Dentist Role Looks Like
+
+The clinic describes the role in its own words. Dentists there learn everything they can, from the basics done properly to the most digitally advanced dental flows, so that precision is a habit rather than an occasion.
+
+Three things come with the seat. Mentoring from dentists trained in Italy and Japan. A patient app that keeps your charts at hand, so the record follows the patient from branch to branch. And a place, in the clinic's phrase, where good work stays humble and keeps getting better.
+
+The branch runs on equipment covered elsewhere on this site, the chairs, imaging and endodontic systems our technicians install and service, so a new dentist learns on units the whole group knows well.
+
+![The Associate Dentist card on the careers page, marked as hiring](/images/news/ffc-hiring-2026/careers-dentist-card.jpg)
+
+## Who It Suits
+
+New graduates with a PRC license, or one on the way, who want their first years under mentors rather than alone. Dentists already in practice who want a digital clinic with a patient app and structured continuing education. And anyone from Rizal and the east of the capital region who would rather work close to home than commute into the city.
+
+Experience is not a requirement. Willingness to learn is.
+
+## Where the Branch Is
+
+The Angono branch is on the second floor of the Lexar Building on M.L. Quezon Street, Angono, Rizal. It opens at 9 AM. The map below is the branch pin; the button under it opens turn by turn directions in Google Maps.
+
+[map](https://maps.google.com/maps?q=14.5306512,121.1528272&z=16&output=embed|https://www.google.com/maps/dir/?api=1&destination=14.5306512,121.1528272)
+
+## How to Apply
+
+Applications go through the clinic's careers page at ffcdentalclinic.com/careers. Pick **Associate Dentist**, choose **Angono** as your preferred branch, and attach your resume as a PDF, a Word file, or a clear photo of up to 5 MB. The PRC license number field is optional at this stage; you can bring the license to the interview.
+
+You get a short email confirmation right away. The clinic calls if your profile fits the opening.
+
+## Also Open on the Same Page
+
+The same page carries DentaSource Direct's own openings. A **Dental Chair Technician** seat, for the hands that install, tune and rescue the chairs dentists depend on, and a **Junior Marketing** seat are both marked as hiring. Speakers and study groups who teach can enter as Growth Partners at the DentaSource Direct Training Center.
+
+[Apply at ffcdentalclinic.com/careers](https://ffcdentalclinic.com/careers/)`
+    },
 ];
 
 export const newsData = [...baseNews, ...fbNews2026];
