@@ -74,7 +74,7 @@ export default function ArticleContent({ article }) {
                         // poster card that opens the original. Photo posts: the post plugin, with a link under it.
                         const fbMatch = trimmed.match(/^\[facebook\]\((https:\/\/www\.facebook\.com\/[^)]+)\)$/);
                         if (fbMatch) {
-                            const isReel = /\/reel\//.test(fbMatch[1]);
+                            const isReel = /\/reel\/|\/videos\//.test(fbMatch[1]);
                             if (isReel) {
                                 return (
                                     <a
