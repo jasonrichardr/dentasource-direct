@@ -15,9 +15,9 @@
     {
       "key": "showroom",
       "kind": "details",
-      "eyebrow": "Where we are",
-      "headline": "610 C. Raymundo Avenue, Maybunga, Pasig City",
-      "body": "Open Monday to Sunday, 9 AM to 8 PM. No appointment needed. Telling us you are coming means the model you want is set up and powered when you arrive.",
+      "eyebrow": "The showroom",
+      "headline": "Where to find us",
+      "body": "No appointment needed. Telling us you are coming means the model you want is set up and powered when you arrive.",
       "facts": [
         { "label": "Showroom", "value": "610 C. Raymundo Avenue, Maybunga, Pasig City" },
         { "label": "Open", "value": "Monday to Sunday, 9 AM to 8 PM" },
