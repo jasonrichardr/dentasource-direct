@@ -58,7 +58,12 @@ const WORDMARK = 'DentaSource Direct';
 const FORMATIONS = {
   hero: {
     kind: 'lockup', src: MARK, crop: MARK_CROP, text: WORDMARK,
-    lockup: { markBox: 2.3, markY: 2.66, wordHalfW: 4.6, wordBoxH: 2.2, wordCenterY: 0.6 },
+    // ☠️ DROPPED 12% OF THE VIEWPORT (Jarich: "place it a bit low its too high").
+    // markY is the GROUP centre, so moving the disc down 12% of the screen means moving
+    // the centre by 0.12 of the visible height in world units: 1.49 at the lockup camera.
+    // Measured after: the disc top sits about 22% down instead of 10%, and the group's
+    // foot still clears the copy band on a 390px phone, which is the tighter of the two.
+    lockup: { markBox: 2.3, markY: 1.17, wordHalfW: 4.6, wordBoxH: 2.2, wordCenterY: 0.6 },
   },
   // copyLow: the copy sits UNDER the heart rather than inside it, as in the lab.
   heart: { kind: 'heart', copyLow: true },
