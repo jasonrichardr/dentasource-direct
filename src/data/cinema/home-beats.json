@@ -32,107 +32,36 @@
       "media": []
     },
     {
-      "key": "our-people",
-      "kind": "strip",
+      "key": "see-us-in-action",
+      "kind": "action",
       "eyebrow": "Our people",
-      "headline": "The people I'd build anything with.",
-      "body": "Most of them worked inside real clinics before they ever stood on a sales floor. They learn at our Training Center in Pasig, and then they teach in the same room, which is why the person who answers your question has usually done the thing you are asking about.",
-      "cta": {
-        "label": "About DentaSource Direct",
-        "href": "/about"
-      },
+      "headline": "The real DentaSource.",
+      "body": "True enthusiasts and professionals in their craft. The crew I get to build with every day, and they bring it.",
       "media": [
-        "/images/news/117th-pda-annual-convention-2026/v062-2.jpg",
-        "/images/news/digicon-2026-dentasource-booth/v124-3.jpg",
-        "/images/news/dentasource-training-center-opens-pasig/v032-1.jpg",
-        "/images/news/117th-pda-annual-convention-2026/v062-1.jpg",
-        "/images/news/crest-hands-on-digital-designing-training/v039-2.jpg",
-        "/images/news/two-roson-dx-s3-ignacio-dental-clinic/v089-5.jpg",
-        "/images/news/9-day-digital-dentistry-course-2026/v022-3.jpg",
-        "/images/news/roson-a3l-delivery-pangasinan/v003-1.jpg",
-        "/images/news/digicon-2026-dentasource-booth/v124-1.jpg",
-        "/images/news/roson-dx-a3s-installation-pampanga/v017-5.jpg",
-        "/images/news/crest-hands-on-digital-designing-training/v039-5.jpg",
-        "/images/news/dental-chair-installation-cabuyao-laguna/v081-5.jpg",
-        "/images/news/117th-pda-annual-convention-2026/v062-4.jpg",
-        "/images/news/new-year-restock-nationwide-delivery-2026/v001-3.jpg",
-        "/images/news/dentasource-training-center-opens-pasig/v032-2.jpg",
-        "/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-9.jpg",
-        "/images/news/crest-hands-on-digital-designing-training/v039-1.jpg",
-        "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+        "/videos/dsd-showcase-4.mp4",
+        "/videos/dsd-showcase.mp4",
+        "/videos/dsd-showcase-2.mp4",
+        "/videos/dsd-showcase-6.mp4",
+        "/videos/dsd-showcase-5.mp4",
+        "/videos/dsd-showcase-3.mp4"
       ],
-      "tiles": [
+      "reels": "action-reels.json",
+      "stars": [
+        "Most of them worked inside real clinics before they ever stood on a sales floor",
+        "They learn at our Training Center in Pasig, then teach in the same room",
+        "The person who answers your question has usually done the thing you are asking about",
+        "Every frame on this page is our own footage, never stock"
+      ],
+      "ctas": [
         {
-          "src": "/images/news/117th-pda-annual-convention-2026/v062-2.jpg",
-          "alt": "The team waving from the booth at the annual convention"
+          "label": "About DentaSource Direct",
+          "href": "/about",
+          "variant": "ghost"
         },
         {
-          "src": "/images/news/digicon-2026-dentasource-booth/v124-3.jpg",
-          "alt": "Welcoming delegates from behind the exhibition table"
-        },
-        {
-          "src": "/images/news/dentasource-training-center-opens-pasig/v032-1.jpg",
-          "alt": "The simulator row on the day the Training Center opened"
-        },
-        {
-          "src": "/images/news/117th-pda-annual-convention-2026/v062-1.jpg",
-          "alt": "The convention floor filling up in front of the stand"
-        },
-        {
-          "src": "/images/news/crest-hands-on-digital-designing-training/v039-2.jpg",
-          "alt": "Heads together over a screen during a hands on session"
-        },
-        {
-          "src": "/images/news/two-roson-dx-s3-ignacio-dental-clinic/v089-5.jpg",
-          "alt": "Our team with the clinic staff beside two new chairs"
-        },
-        {
-          "src": "/images/news/9-day-digital-dentistry-course-2026/v022-3.jpg",
-          "alt": "Simulator stations set up for a course at the Training Center"
-        },
-        {
-          "src": "/images/news/roson-a3l-delivery-pangasinan/v003-1.jpg",
-          "alt": "The delivery team inside the van on a long drive north"
-        },
-        {
-          "src": "/images/news/digicon-2026-dentasource-booth/v124-1.jpg",
-          "alt": "The stand on the morning of the first day"
-        },
-        {
-          "src": "/images/news/roson-dx-a3s-installation-pampanga/v017-5.jpg",
-          "alt": "Two technicians lifting a light arm into position together"
-        },
-        {
-          "src": "/images/news/crest-hands-on-digital-designing-training/v039-5.jpg",
-          "alt": "A study group working through a digital design exercise"
-        },
-        {
-          "src": "/images/news/dental-chair-installation-cabuyao-laguna/v081-5.jpg",
-          "alt": "The dentist with our team at the finished unit"
-        },
-        {
-          "src": "/images/news/117th-pda-annual-convention-2026/v062-4.jpg",
-          "alt": "A quiet moment at the stand between conversations"
-        },
-        {
-          "src": "/images/news/new-year-restock-nationwide-delivery-2026/v001-3.jpg",
-          "alt": "Three of the team lifting a crate off the truck"
-        },
-        {
-          "src": "/images/news/dentasource-training-center-opens-pasig/v032-2.jpg",
-          "alt": "The teaching board at the front of the Training Center room"
-        },
-        {
-          "src": "/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-9.jpg",
-          "alt": "Our technicians with the clinic staff beside the installed unit"
-        },
-        {
-          "src": "/images/news/crest-hands-on-digital-designing-training/v039-1.jpg",
-          "alt": "A full room at a hands on training day"
-        },
-        {
-          "src": "/images/news/why-visit-the-pasig-showroom/v014-1.jpg",
-          "alt": "Our staff among the chairs on the showroom floor"
+          "label": "Visit the showroom",
+          "href": "/contact#showroom",
+          "variant": "solid"
         }
       ]
     },
@@ -416,26 +345,6 @@
       },
       "media": [],
       "reels": "marbles-reels.json"
-    },
-    {
-      "key": "see-us-in-action",
-      "kind": "action",
-      "eyebrow": "See us in action",
-      "headline": "The real DentaSource.",
-      "body": "True enthusiasts and professionals in their craft. The crew I get to build with every day, and they bring it. Real footage, no stock photos.",
-      "cta": {
-        "label": "Visit the showroom",
-        "href": "/contact"
-      },
-      "media": [
-        "/videos/dsd-showcase-4.mp4",
-        "/videos/dsd-showcase.mp4",
-        "/videos/dsd-showcase-2.mp4",
-        "/videos/dsd-showcase-6.mp4",
-        "/videos/dsd-showcase-5.mp4",
-        "/videos/dsd-showcase-3.mp4"
-      ],
-      "reels": "action-reels.json"
     },
     {
       "key": "door",

@@ -21,8 +21,33 @@ export function Copy({ beat, level = 2, className = 'dsd-copy' }) {
       {beat.eyebrow ? <div className="cinema-kicker">{beat.eyebrow}</div> : null}
       <Head className="cinema-head">{beat.headline}</Head>
       {beat.body ? <p className="cinema-sub">{beat.body}</p> : null}
+      {/* ☠️ FFC'S STAR STATEMENT, PORTED 1:1. On the FFC sign in cinema the claim is one
+          short line and the proof sits under it as ✦ bullets, left aligned inside a
+          centred column so the marker column lines up and the sentences do not. A beat
+          that has more than one thing to say gets this instead of a longer paragraph:
+          four short lines are read, a six line paragraph on a moving stage is not. */}
+      {Array.isArray(beat.stars) && beat.stars.length ? (
+        <ul className="dsd-stars">
+          {beat.stars.map((line) => <li key={line}>{line}</li>)}
+        </ul>
+      ) : null}
     </div>
   );
+}
+
+/**
+ * One CTA or several. `beat.ctas` wins over `beat.cta`; the row is the same one the door
+ * beat uses, so a two button beat looks like the ending rather than like a new invention.
+ */
+export function Ctas({ beat, variant = 'ghost' }) {
+  if (Array.isArray(beat.ctas) && beat.ctas.length) {
+    return (
+      <div className="dsd-cta-row">
+        {beat.ctas.map((c) => <Cta key={c.href + c.label} cta={c} variant={c.variant || variant} />)}
+      </div>
+    );
+  }
+  return <Cta cta={beat.cta} variant={variant} />;
 }
 
 /**
@@ -666,7 +691,7 @@ export function ActionPanel({ beat, beatIndex, items = [] }) {
           })}
         </div>
       </div>
-      <Cta cta={beat.cta} />
+      <Ctas beat={beat} />
     </div>
   );
 }

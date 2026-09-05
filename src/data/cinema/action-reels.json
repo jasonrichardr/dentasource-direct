@@ -1,7 +1,7 @@
 {
   "version": 1,
   "generated": "2026-09-05",
-  "notes": "The mixed marquee for the See us in action beat. ORDER RULE, and it is deliberate: it OPENS ON A VIDEO, then alternates image, video, image so the eye keeps changing gear; when the videos run out the tail continues in images rather than looping the clips, because a repeat reads as a loop and a new photograph reads as more evidence. Stills are chosen for a clinic owner (the finished operatory, the fit, the handover, where it is taught) and are deliberately different from the team-fun strip. EXTENDABLE: append either type and re-run the rule.",
+  "notes": "The mixed marquee for the beat that is now THE REAL DENTASOURCE, and it carries the candid team frames too: the separate Our people strip was removed on 2026-09-06 and its eighteen tiles were folded in here, so one marquee shows the crew and the work instead of two showing them apart. ORDER RULE: it OPENS ON A VIDEO, and the videos are then SPACED EVENLY through the whole run so the eye keeps changing gear from the first tile to the last. The old rule alternated image, video, image, which was right at fourteen items and wrong at thirty two: strict alternation spends all six clips in the first eleven tiles and leaves a long silent tail. Everything between the clips is a photograph. EXTENDABLE: append either type and re-run the rule.",
   "eyebrow": "See us in action",
   "headline": "The real DentaSource.",
   "reels": [
@@ -49,32 +49,14 @@
       "caption": "A finished operatory with two new chairs in place"
     },
     {
-      "type": "video",
-      "src": "/videos/dsd-showcase.mp4",
-      "poster": "/videos/dsd-showcase-poster.jpg",
-      "caption": "SMX Convention"
-    },
-    {
       "type": "image",
       "src": "/images/news/roson-dx-a3s-installation-pampanga/v017-4.jpg",
       "caption": "The unit going together in the clinic it will live in"
     },
     {
-      "type": "video",
-      "src": "/videos/dsd-showcase-2.mp4",
-      "poster": "/videos/dsd-showcase-2-poster.jpg",
-      "caption": "Pre inspection before delivery and install"
-    },
-    {
       "type": "image",
       "src": "/images/news/dentasource-training-center-opens-pasig/v032-4.jpg",
       "caption": "The Training Center room where a team is taught"
-    },
-    {
-      "type": "video",
-      "src": "/videos/dsd-showcase-6.mp4",
-      "poster": "/videos/dsd-showcase-6-poster.jpg",
-      "caption": "ROSON training and service, our exclusive partner"
     },
     {
       "type": "image",
@@ -83,20 +65,14 @@
     },
     {
       "type": "video",
-      "src": "/videos/dsd-showcase-5.mp4",
-      "poster": "/videos/dsd-showcase-5-poster.jpg",
-      "caption": "Denjoy, endo focused, with research and development"
+      "src": "/videos/dsd-showcase.mp4",
+      "poster": "/videos/dsd-showcase-poster.jpg",
+      "caption": "SMX Convention"
     },
     {
       "type": "image",
       "src": "/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-9.jpg",
       "caption": "Handover, with the clinic's own staff at the chair"
-    },
-    {
-      "type": "video",
-      "src": "/videos/dsd-showcase-3.mp4",
-      "poster": "/videos/dsd-showcase-3-poster.jpg",
-      "caption": "Digital dentistry and surgery, updated skills every year"
     },
     {
       "type": "image",
@@ -112,6 +88,110 @@
       "type": "image",
       "src": "/images/news/roson-dental-south-china-2026/v018-4.jpg",
       "caption": "At the ROSON show where the range is chosen"
+    },
+    {
+      "type": "video",
+      "src": "/videos/dsd-showcase-2.mp4",
+      "poster": "/videos/dsd-showcase-2-poster.jpg",
+      "caption": "Pre inspection before delivery and install"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/117th-pda-annual-convention-2026/v062-2.jpg",
+      "caption": "The team waving from the booth at the annual convention"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/digicon-2026-dentasource-booth/v124-3.jpg",
+      "caption": "Welcoming delegates from behind the exhibition table"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/dentasource-training-center-opens-pasig/v032-1.jpg",
+      "caption": "The simulator row on the day the Training Center opened"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/117th-pda-annual-convention-2026/v062-1.jpg",
+      "caption": "The convention floor filling up in front of the stand"
+    },
+    {
+      "type": "video",
+      "src": "/videos/dsd-showcase-6.mp4",
+      "poster": "/videos/dsd-showcase-6-poster.jpg",
+      "caption": "ROSON training and service, our exclusive partner"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/crest-hands-on-digital-designing-training/v039-2.jpg",
+      "caption": "Heads together over a screen during a hands on session"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/two-roson-dx-s3-ignacio-dental-clinic/v089-5.jpg",
+      "caption": "Our team with the clinic staff beside two new chairs"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/9-day-digital-dentistry-course-2026/v022-3.jpg",
+      "caption": "Simulator stations set up for a course at the Training Center"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/roson-a3l-delivery-pangasinan/v003-1.jpg",
+      "caption": "The delivery team inside the van on a long drive north"
+    },
+    {
+      "type": "video",
+      "src": "/videos/dsd-showcase-5.mp4",
+      "poster": "/videos/dsd-showcase-5-poster.jpg",
+      "caption": "Denjoy, endo focused, with research and development"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/digicon-2026-dentasource-booth/v124-1.jpg",
+      "caption": "The stand on the morning of the first day"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/roson-dx-a3s-installation-pampanga/v017-5.jpg",
+      "caption": "Two technicians lifting a light arm into position together"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/crest-hands-on-digital-designing-training/v039-5.jpg",
+      "caption": "A study group working through a digital design exercise"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/117th-pda-annual-convention-2026/v062-4.jpg",
+      "caption": "A quiet moment at the stand between conversations"
+    },
+    {
+      "type": "video",
+      "src": "/videos/dsd-showcase-3.mp4",
+      "poster": "/videos/dsd-showcase-3-poster.jpg",
+      "caption": "Digital dentistry and surgery, updated skills every year"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/new-year-restock-nationwide-delivery-2026/v001-3.jpg",
+      "caption": "Three of the team lifting a crate off the truck"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/dentasource-training-center-opens-pasig/v032-2.jpg",
+      "caption": "The teaching board at the front of the Training Center room"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/crest-hands-on-digital-designing-training/v039-1.jpg",
+      "caption": "A full room at a hands on training day"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/why-visit-the-pasig-showroom/v014-1.jpg",
+      "caption": "Our staff among the chairs on the showroom floor"
     }
   ]
 }

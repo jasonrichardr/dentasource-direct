@@ -277,6 +277,42 @@
   animation: dsd-blink 1s steps(1) infinite;
 }
 @keyframes dsd-blink { 50% { opacity: 0; } }
+/* ---- the star statement, ported from the FFC sign in cinema -------------------------
+   FFC calls it .sd-stars. Same geometry, same marker, same gold: a fit-content column
+   capped at min(92vw, 560px) and centred, the text inside LEFT aligned so the ✦ markers
+   form a straight column while the sentences keep their natural ragged right. Centring
+   the sentences themselves is what makes a bullet list read as a poster instead of a
+   claim, which is why FFC does not.
+   ☠️ THE MARKER COLOUR IS TWO COLOURS ON PURPOSE. #b8932e is legible gold on paper and
+   goes muddy on a night sky; #e6c76a is legible on the night sky and washes out on paper.
+   The dark rule is the one the cinema actually spends most of its time in. */
+.dsd-stars {
+  list-style: none;
+  width: fit-content;
+  max-width: min(92vw, 560px);
+  margin: 10px auto 0;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+  text-align: left;
+}
+.dsd-stars li {
+  position: relative;
+  padding-left: 26px;
+}
+.dsd-stars li::before {
+  content: '\2726';
+  position: absolute;
+  left: 2px;
+  top: .05em;
+  color: #b8932e;
+  text-shadow: 0 0 10px rgba(184, 147, 46, .35);
+}
+:root[data-theme="dark"] .dsd-stars li::before {
+  color: #e6c76a;
+  text-shadow: 0 0 12px rgba(230, 199, 106, .5);
+}
+
 @media (prefers-reduced-motion: reduce) { .dsd-caret { animation: none; } }
 
 /* ---- the marbles wall: role tiles in glass, no names, no physics in this phase ---- */

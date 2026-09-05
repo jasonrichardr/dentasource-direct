@@ -67,7 +67,6 @@ const FORMATIONS = {
   },
   // copyLow: the copy sits UNDER the heart rather than inside it, as in the lab.
   heart: { kind: 'heart', copyLow: true },
-  'our-people': { kind: 'sphere', radius: 3.9, ripple: 0.13, dim: true },
   // the merged beat: the floor, and the two brands that only come through it
   'the-floor': { kind: 'sphere', radius: 3.7, ripple: 0.18, dim: true },
   'training-center': { kind: 'sphere', radius: 3.85, ripple: 0.19, dim: true },
