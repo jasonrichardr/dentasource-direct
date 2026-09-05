@@ -227,44 +227,69 @@
   }
 }
 
-/* 🌗 TWO STAGES.
-   LIGHT — a smoked-glass pane; the bright page glows through the blur.
-   DARK — the sky IS the stage: a near-clear veil, NO blur (blur would smear the
-   stars), and the page's CONTENT steps aside while the room is open, so only
-   the night sky remains behind the music. No-blur engines and reduced
-   transparency keep the solid stage (room law). */
+/* ☠️ THE STAGE IS OPAQUE HERE, AND THAT IS A DELIBERATE DEPARTURE FROM FFC.
+   FFC's room is a near-clear VEIL — rgba(3,6,13,.25) in dark — and it gets away
+   with that for exactly one reason: on that page the veil hangs over a body
+   whose own background is already night, with <main> and the GL canvas hidden
+   behind it, so the only thing left to see through is the star field. Every one
+   of those conditions is false on this site, and it was measured, not guessed
+   (lab, 2026-09-05): dentasourcedirect.com paints `body { background: white }`
+   from globals.css, and .cinema-root's night paper (--paper #070b14) lives
+   INSIDE <main> — the very element the room hides. So the moment the room
+   opened, the veil was a 25% wash over WHITE, and the hero particles, the
+   wordmark, the tagline and the fixed Navbar all read straight through it.
+   Hence: this room brings its OWN night. Nothing behind it can bleed.
+
+   ♻️ HOW TO GET FFC'S STAR STAGE BACK, if anyone wants it: paint the night on
+   <html>/<body> in dark (not only inside .cinema-root), then this veil can drop
+   back toward .25 and the sky rule below starts meaning something again. Until
+   that day, an opaque stage is the only honest option.
+
+   LIGHT keeps the smoked-glass grammar (blur + saturate) over the opaque base,
+   so the pane still reads as glass rather than as a painted rectangle. DARK
+   skips the blur, as FFC does: it is a full-screen compositor cost that buys
+   nothing behind an opaque layer. No-blur engines and reduced transparency get
+   the flat solid (room law). */
 #tx-room {
   position: fixed;
   inset: 0;
+  /* ☠️ 10010 IS NOT ARBITRARY AND MUST NOT BE LOWERED. Audited across src/ on
+     2026-09-05, the tallest z-index on this site is 9999 — .cp-theater, the
+     GlassMarbles video theater in components/home/marbleCluster.js. Then the
+     product lightboxes at 100, then the Navbar at 50. The dock (10000), the
+     room (10010) and its two buttons (10020) sit above all of it on purpose.
+     Anything in the low thousands would put the room UNDER the marble theater. */
   z-index: 10010;
-  background: #000;
+  background: #04100c;
   display: none;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 :root[data-theme='light'] #tx-room {
-  background: rgba(10, 20, 16, 0.55);
+  background: rgba(5, 15, 12, 0.94);
   -webkit-backdrop-filter: blur(18px) saturate(1.4);
   backdrop-filter: blur(18px) saturate(1.4);
 }
-:root[data-theme='dark'] #tx-room { background: rgba(3, 10, 8, 0.25); }
-:root[data-theme='dark'].tx-open main { visibility: hidden; }
-/* ☠️ #sky lives INSIDE <main> on the cinema pages. visibility (unlike display)
-   can be RESTORED on a descendant of a hidden parent, which is exactly how the
-   stars stay lit while every beat panel around them goes dark. Drop this rule
-   and the room opens starless. */
+:root[data-theme='dark'] #tx-room { background: rgba(4, 14, 11, 0.94); }
+/* The page steps aside anyway. It no longer has to — the stage is opaque — but
+   hiding a full-screen WebGL canvas and the beat panels while the room holds the
+   screen stops the browser compositing layers nobody can see, which is real
+   money on a phone. The #sky rule is kept for the day the star stage returns:
+   visibility (unlike display) can be RESTORED on a descendant of a hidden
+   parent, which is the whole trick FFC leans on. */
+.tx-open main { visibility: hidden; }
+.tx-open #gl { visibility: hidden; }
 :root[data-theme='dark'].tx-open #sky { visibility: visible; }
-:root[data-theme='dark'].tx-open #gl { visibility: hidden; }
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  :root[data-theme='light'] #tx-room { background: #000; }
+  :root[data-theme='light'] #tx-room { background: #04100c; }
 }
 @media (prefers-reduced-transparency: reduce) {
   :root[data-theme='light'] #tx-room {
-    background: #000;
+    background: #04100c;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
-  :root[data-theme='dark'] #tx-room { background: rgba(3, 10, 8, 0.6); }
+  :root[data-theme='dark'] #tx-room { background: #04100c; }
 }
 #tx-room.on { display: block; }
 /* The bottom padding keeps the thought stream clear of the fixed ✕ in the

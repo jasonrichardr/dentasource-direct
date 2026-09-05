@@ -1098,6 +1098,23 @@ export default function Room() {
     window.addEventListener('dsd:videoaudio', onVideoAudio);
 
     // ── open / close ───────────────────────────────────────────────────────
+    // 📢 THE ROOM SAYS WHEN IT HOLDS THE SCREEN. The stage is opaque, so while
+    // the room is open the scroll cinema behind it is painting frames nobody can
+    // see. CSS can hide the canvas but it cannot stop a rAF loop, so the room
+    // announces itself and the engine idles on its own terms:
+    //   window.addEventListener('dsd:room', e => e.detail.open ? pause() : resume())
+    // Fire and forget, exactly like the site's own dsd:videoaudio: the room does
+    // not know or care whether anybody is listening.
+    let roomOpen = false;
+    function announceRoom(open_) {
+      roomOpen = open_;
+      try {
+        window.dispatchEvent(new CustomEvent('dsd:room', { detail: { open: open_ } }));
+      } catch (e) {
+        /* no CustomEvent constructor: the engine simply keeps running */
+      }
+    }
+
     // Tapping the dock ANYWHERE opens the room. It never pauses the music: the
     // pause pill is the door, not the switch.
     function open() {
@@ -1112,6 +1129,7 @@ export default function Room() {
       // Makes "the dock can never collide with the ✕" a guarantee rather than a
       // happy consequence of the room being opaque.
       D.documentElement.classList.add('tx-open');
+      announceRoom(true);
       paintTheme();
       if (!raf) draw();
       nextThought();
@@ -1123,6 +1141,7 @@ export default function Room() {
       room.setAttribute('aria-hidden', 'true');
       D.documentElement.style.overflow = '';
       D.documentElement.classList.remove('tx-open');
+      announceRoom(false);
       // The expensive loop stops with the room, and it is the ONLY thing driving
       // the wall AND the orb, so closing the room really does stop both. The
       // dock keeps its cheap three bars.
@@ -1204,6 +1223,9 @@ export default function Room() {
       clearInterval(minTick);
       D.documentElement.classList.remove('tx-open');
       D.documentElement.style.overflow = '';
+      // Unmounting while open never calls close(), and an engine that was told
+      // to idle would stay idle for ever. Hand the screen back.
+      if (roomOpen) announceRoom(false);
       try {
         a.pause();
       } catch (e) {
