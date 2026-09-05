@@ -103,6 +103,12 @@ function StripTile({ tile, near, echo = false }) {
       width={STRIP_W}
       height={STRIP_H}
       sizes="(max-width: 700px) 34vw, 320px"
+      // ☠️ EAGER, ONCE NEAR. next/image lazy-loads per tile as it enters the viewport, but
+      // this viewport is a TRANSLATING track: tiles cross the edge one at a time and the
+      // optimizer answers one at a time, so the sweep showed holes where a tile had not
+      // arrived yet. The gate is `near`, not the scroll position; once the beat is close
+      // the whole doubled track is fetched at once and the strip is never gappy again.
+      loading="eager"
     />
   );
 }
@@ -301,12 +307,18 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
     const mount = mountRef.current;
     if (!mount || !reels.length) return undefined;
 
-    let isMobile = false;
-    try { isMobile = matchMedia('(max-width: 768px)').matches; } catch (e) { /* desktop */ }
+    // ☠️ THE SMALL BEAD BUILD ON EVERY VIEWPORT, and it is the only fit knob there is.
+    // The cluster's camera is fixed at z=8 with a 45 degree VERTICAL fov, so the world it
+    // shows is always 6.63 units tall whatever size its box is: a taller box renders the
+    // same shoal larger, it does not reveal more of it. Since the centring spring packs
+    // the beads into a shoal about that tall, the only way to buy margin at the top and
+    // bottom is to make the beads themselves smaller, and `isMobile` is the one option
+    // that does it (radius 0.50 against 0.56, about 11%), uniformly, so the size ORDER
+    // that maps bead 0 to the hero reel is untouched.
     const cluster = createMarbleCluster(mount, {
       videos: reels.map((r) => r.src),
       count: reels.length,          // exactly one bead per reel, however many there are
-      isMobile,
+      isMobile: true,
       faceZoomDefault: 0.55,
       faceZoom: {},
     });

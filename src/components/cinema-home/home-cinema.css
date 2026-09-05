@@ -334,8 +334,11 @@
 
 /* ---- the reel cluster: the WebGL stage sits inside the beat, not the page ---- */
 .dsd-cluster {
-  width: min(96vw, 1100px);
-  height: clamp(280px, 46vh, 520px);
+  /* A WIDE, SHORT WINDOW IS THE RIGHT SHAPE. The cluster's fov is vertical and fixed, so
+     the box only ever changes how much HORIZONTAL world is visible; widening it gives the
+     shoal room to spread sideways instead of stacking into the top and bottom edges. */
+  width: min(98vw, 1240px);
+  height: clamp(260px, 40vh, 420px);
   /* the canvas paints transparent, so the night behind it is the beat's own ground */
   touch-action: none;
 }
