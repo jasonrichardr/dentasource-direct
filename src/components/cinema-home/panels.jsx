@@ -532,6 +532,18 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
       // reach for if this needs adjusting again.
       ? { isMobile: false, cameraZ: 7.0, spreadX: 6.4, spreadY: 2.2 }
       : { isMobile: true, cameraZ: CLUSTER_CAMERA_Z };   // phone: unchanged
+    // ☠️ THESE FOUR NUMBERS WERE MEASURED AGAINST THE OLD BOX AND ARE NOW PROVISIONAL.
+    // They were tuned when the canvas was min(98vw,1240px) by 56vh, an aspect near 2.5.
+    // The viewport stage is a different shape: the vertical fov is fixed so the visible
+    // HEIGHT in world units did not move, but the visible WIDTH is height times aspect,
+    // and desktop 1440x900 is 1.6 while a 390x844 phone is 0.46. At the same cameraZ the
+    // stage is therefore NARROWER in world units than the box it replaced, which is the
+    // opposite of what it looks like on screen. The shoal will need re-framing, and the
+    // right dial is cameraZ on the desktop and the well's shape on the phone (a portrait
+    // stage wants a portrait ellipse, not a further camera, or the beads go tiny).
+    // NOT GUESSED HERE. bounds() now reports visibleHalfW alongside visibleHalfH, so the
+    // browser pass reads the real settled extent against the real stage and sets these
+    // once, after the spring has settled rather than while it is still moving.
     // The fov is VERTICAL, so cameraZ is what decides how much of the shoal is on screen;
     // the box shape only ever changes how much is visible sideways. Both numbers above
     // were set by measuring bounds(), not by eye.
@@ -539,6 +551,10 @@ export function MarblesPanel({ beat, beatIndex, reels = [] }) {
       videos: reels.map((r) => r.src),
       count: reels.length,          // exactly one bead per reel, however many there are
       ...shape,
+      // ☠️ THE STAGE IS THE WHOLE SCREEN, NOT A BOX IN THE MIDDLE OF IT. See the note on
+      // .dsd-cluster: the canvas is pinned to the viewport and the mount stays in flow as
+      // the sentinel the observer below watches.
+      stage: 'viewport',
       faceZoomDefault: 0.55,
       faceZoom: {},
     });

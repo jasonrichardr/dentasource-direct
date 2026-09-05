@@ -64,7 +64,20 @@ const MAX_DT = 1 / 30;
 export function createMarbleCluster(container, {
   videos = [], count = 18, isMobile = false, faceFocus = {}, faceZoom = {},
   faceZoomDefault = 1, cameraZ = 8, spreadX = NATURAL_R, spreadY = NATURAL_R,
+  stage = 'container',
 } = {}) {
+  // ☠️ THE INVISIBLE BOX WAS NEVER PHYSICS. There are no cannon planes in this file and
+  // never were: a bead flung outward is not stopped, it is simply drawn outside the
+  // drawing buffer and disappears. The box IS the canvas, and on the home beat that canvas
+  // was a min(98vw,1240px) by 56vh block sitting in the panel's flow, so the wall had hard
+  // edges a hand's width from the middle of the screen.
+  // stage:'viewport' lifts the canvas out of that block and pins it to the whole screen.
+  // The MOUNT stays where it was, in flow, because it is what the caller's
+  // IntersectionObserver watches: a mount pinned to the viewport intersects forever and
+  // the cluster would never sleep, which on this wall means thirty three video decoders
+  // that never stop. Only the canvas moves.
+  // DEFAULT 'container' KEEPS EVERY EXISTING CALLER IDENTICAL (/classic, MeetTheTeam).
+  const viewportStage = stage === 'viewport';
   // ☠️ THE WELL CAN BE AN ELLIPSE. The centring spring was isotropic, so the shoal always
   // settled into a ball; on a wide stage that reads as a small clump in a lot of empty
   // space. spreadX and spreadY are the semi-axes the caller WANTS, in world units, and
@@ -84,7 +97,14 @@ export function createMarbleCluster(container, {
   // ── renderer: TRANSPARENT — only the marbles paint; the black comes from the panel's CSS bg (which
   //    fades with the beat). No opaque rectangle = no visible frame + no occluding the next section. ──
   const canvas = document.createElement("canvas");
-  canvas.style.cssText = "width:100%;height:100%;display:block;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;";
+  // The inline style beats any stylesheet, so the viewport stage has to be declared here
+  // rather than in home-cinema.css. z-index 1 puts the glass OVER the beat's copy, which
+  // is the point: the beads pass across the headline instead of stopping short of it. The
+  // beat's own button is lifted above this in CSS so it stays tappable.
+  canvas.style.cssText = (viewportStage
+    ? "position:fixed;inset:0;width:100vw;height:100vh;z-index:1;"
+    : "width:100%;height:100%;")
+    + "display:block;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;";
   container.appendChild(canvas);
 
   // ── discoverability hint (Jarich 2026-06-27): users don't know the marbles are
@@ -473,7 +493,9 @@ export function createMarbleCluster(container, {
   canvas.addEventListener("contextmenu", onCtx);
 
   function resize() {
-    const w = container.clientWidth || 1, h = container.clientHeight || 1;
+    // On the viewport stage the sentinel's size says nothing about the drawing buffer.
+    const w = (viewportStage ? window.innerWidth : container.clientWidth) || 1;
+    const h = (viewportStage ? window.innerHeight : container.clientHeight) || 1;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
@@ -582,8 +604,18 @@ export function createMarbleCluster(container, {
       maxY = Math.max(maxY, Math.abs(unit.position.y) + r);
       maxX = Math.max(maxX, Math.abs(unit.position.x) + r);
     }
-    const visibleHalfH = cameraZ * Math.tan((45 * Math.PI) / 180 / 2);
-    return { halfH: maxY, halfW: maxX, visibleHalfH, fits: maxY <= visibleHalfH };
+    // ☠️ READ LIVE OFF THE CAMERA, NOT OFF A STORED NUMBER. The fov is vertical and fixed,
+    // so the visible HEIGHT only depends on the camera distance, but the visible WIDTH is
+    // height times the aspect, and resize() rewrites that aspect on every window change.
+    // Computing it here means the reported stage is always the stage as it is now.
+    const visibleHalfH = camera.position.z * Math.tan((45 * Math.PI) / 180 / 2);
+    const visibleHalfW = visibleHalfH * camera.aspect;
+    return {
+      halfH: maxY, halfW: maxX,
+      visibleHalfH, visibleHalfW,
+      fits: maxY <= visibleHalfH && maxX <= visibleHalfW,
+      fitsH: maxY <= visibleHalfH, fitsW: maxX <= visibleHalfW,
+    };
   }
 
   return { setActive, resize, dispose, canvas, bounds };

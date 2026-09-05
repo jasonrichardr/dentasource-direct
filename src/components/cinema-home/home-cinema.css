@@ -398,18 +398,46 @@
 .cinema-panel:has(.dsd-cluster) .cinema-sub,
 .cinema-panel:has(.dsd-cluster) .cinema-kicker { text-shadow: 0 1px 16px rgba(0,0,0,.7); }
 
-/* ---- the reel cluster: the WebGL stage sits inside the beat, not the page ---- */
+/* ---- the reel cluster: the stage IS the screen now ---------------------------------
+   Jarich: the wall had an invisible box around it. It did, and the box was this element.
+   The canvas used to fill a min(98vw,1240px) by 56vh block sitting in the panel's flow, so
+   a bead flung outward vanished at an edge a hand's width from the middle of the screen.
+   There were never any physics walls to remove: nothing in marbleCluster.js stops a bead,
+   it just stops being drawn.
+   So the CANVAS is pinned to the whole viewport by the cluster itself (stage:'viewport'),
+   and this element stays exactly where it was, at exactly its old size, as a SENTINEL: it
+   is what the panel's IntersectionObserver watches, and it is what reserves the vertical
+   space the copy is laid out around. A mount pinned to the viewport would intersect
+   forever and the cluster would never sleep, which on this wall is thirty three video
+   decoders that never stop. */
 .dsd-cluster {
-  /* A WIDE, SHORT WINDOW IS THE RIGHT SHAPE. The cluster's fov is vertical and fixed, so
-     the box only ever changes how much HORIZONTAL world is visible; widening it gives the
-     shoal room to spread sideways instead of stacking into the top and bottom edges. */
   width: min(98vw, 1240px);
   height: clamp(300px, 56vh, 520px);
-  /* the canvas paints transparent, so the night behind it is the beat's own ground */
   touch-action: none;
 }
 @media (max-width: 700px) {
   .dsd-cluster { height: clamp(300px, 52vh, 460px); }
+}
+
+/* ☠️ A FULL SCREEN touch-action:none WOULD TRAP A PHONE VISITOR ON THIS BEAT.
+   touch-action is resolved by walking up from the element the finger lands on, so the
+   canvas inherits `none` from the rule above. That was harmless while the canvas was a
+   52vh block with page above and below it to drag on. Covering the screen, it means every
+   vertical swipe is eaten by the cluster and there is no way to scroll off the beat.
+   A mouse wheel is not affected by touch-action, so the desktop keeps the free fling in
+   every direction; a coarse pointer gives the vertical axis back to the page and keeps
+   the horizontal one for the beads. A press and hold still opens a reel, because a hold
+   is not a pan. */
+@media (pointer: coarse) {
+  .dsd-cluster, .dsd-cluster canvas { touch-action: pan-y; }
+}
+
+/* The canvas sits at z-index 1 INSIDE the panel, over the copy. The button has to come
+   back over the canvas or the beat's only control is behind a sheet of glass. */
+.cinema-panel:has(.dsd-cluster) .cinema-cta,
+.cinema-panel:has(.dsd-cluster) .dsd-cta-row {
+  position: relative;
+  z-index: 2;
 }
 
 /* ---- the mixed marquee: stills and clips in one track ---- */
