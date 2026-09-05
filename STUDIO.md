@@ -50,6 +50,29 @@ Upload adds a new file from your computer:
 
 **Open beat** opens that beat on the running site in a new tab.
 
+**A greyed out arc** means that file is not in the repo right now. These
+manifests are being reshaped while you work: one was deleted and folded into
+another, one is being replaced. The studio lists it anyway with the reason, so
+you can see it is coming rather than wonder where it went.
+
+**Some fields under a photo are grey and cannot be typed into**: `meta_caption`,
+the width and height, the source link, the id. They are generated next to the
+file. Rewriting one here would only make it disagree with where it came from.
+
+**Left out on purpose** appears under a picture set that carries exclusions,
+with the reason for each. Most are privacy calls. It is read only.
+
+## Logo dials
+
+The **Logo dials** tab tunes the particle lockup live: vibrancy, brightness,
+contrast, sharpness, dot size, edge erosion, and the dark and light registers.
+Open the home page in a second tab and watch it move as you drag.
+
+☠️ These are a preview setting in YOUR browser, not a saved file. They live in
+`localStorage` under `dsd:lockup-dials`, they never reach the repo, and nobody
+else sees them. When a setting looks right, the number has to be copied into
+`LOCKUP_DEFAULTS` in `src/cinema/formations/lockupConfig.js` to make it real.
+
 ## Saving
 
 Nothing saves until you press **Save changes**. There is no autosave.

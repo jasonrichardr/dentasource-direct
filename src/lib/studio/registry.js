@@ -33,7 +33,9 @@ export const LOG_FILE = 'src/data/cinema/.studio-log';
 /** Files that carry beats or media, in the order the rail shows them. `arc` is
  *  the tab; `collection` names the array (or object) the editor walks; `route`
  *  is where the beat can be previewed on the running site. A file that does not
- *  exist is simply skipped, so this list may name more than the repo has. */
+ *  exist is listed anyway, greyed out with a reason: these manifests are being
+ *  reshaped upstream while the studio is in use, and a silent omission would
+ *  read as "the studio cannot do that" rather than "that file is not here yet". */
 export const FILES = [
   { id: 'home', label: 'Home arc', arc: 'Arcs', path: 'src/data/cinema/home-beats.json', collection: 'beats', route: '/' },
   { id: 'about', label: 'About arc', arc: 'Arcs', path: 'src/components/cinema-pages/about-beats.json', collection: 'beats', route: '/about' },
@@ -41,18 +43,45 @@ export const FILES = [
   { id: 'products', label: 'Product arcs', arc: 'Arcs', path: 'src/data/cinema/products.json', collection: 'products', route: null },
   { id: 'ask-dsd', label: 'Ask DSD script', arc: 'Arcs', path: 'src/data/cinema/ask-dsd.json', collection: 'exchanges', route: '/' },
 
-  { id: 'team-fun', label: 'Our people strip', arc: 'Media', path: 'src/data/cinema/team-fun.json', collection: 'tiles', route: '/' },
-  { id: 'installs', label: 'Installs strip', arc: 'Media', path: 'src/data/cinema/installs.json', collection: 'tiles', route: '/' },
+  // ☠️ THESE NAMES MOVE. team-fun.json was deleted and its tiles folded into
+  // action-reels.json (b116455); marbles-reels.json is being replaced by
+  // reel-library.json. So the rail SHOWS an absent manifest greyed out rather
+  // than hiding it, and the collection below is a PREFERENCE rather than a
+  // requirement: the files route falls back to detecting the array itself. A
+  // manifest that changes its collection key, or arrives before this list is
+  // updated, still opens.
   { id: 'action-reels', label: 'See us in action', arc: 'Media', path: 'src/data/cinema/action-reels.json', collection: 'items', route: '/' },
-  { id: 'marbles-reels', label: 'Marble reels', arc: 'Media', path: 'src/data/cinema/marbles-reels.json', collection: 'reels', route: '/' },
+  { id: 'installs', label: 'Installs strip', arc: 'Media', path: 'src/data/cinema/installs.json', collection: 'tiles', route: '/' },
+  { id: 'crew-shots', label: 'Crew shots', arc: 'Media', path: 'src/data/cinema/crew-shots.json', collection: 'items', route: '/' },
+  { id: 'growth-partner', label: 'Growth partner', arc: 'Media', path: 'src/data/cinema/growth-partner.json', collection: 'items', route: '/' },
+  { id: 'reel-library', label: 'Reel library', arc: 'Media', path: 'src/data/cinema/reel-library.json', collection: 'items', route: '/' },
+  { id: 'training-media', label: 'Training center', arc: 'Media', path: 'src/data/cinema/training-media.json', collection: 'items', route: '/' },
+  { id: 'marbles-reels', label: 'Marble reels (being replaced)', arc: 'Media', path: 'src/data/cinema/marbles-reels.json', collection: 'reels', route: '/' },
   { id: 'parts', label: 'Spare parts', arc: 'Media', path: 'src/data/cinema/parts.json', collection: 'parts', route: '/' },
-  // Named in the brief but not present in the repo today. They appear the
-  // moment somebody adds the file; until then the rail just does not list them.
-  { id: 'reel-library', label: 'Reel library', arc: 'Media', path: 'src/data/cinema/reel-library.json', collection: 'reels', route: '/' },
-  { id: 'training-media', label: 'Training center', arc: 'Media', path: 'src/data/cinema/training-media.json', collection: 'tiles', route: '/' },
-  { id: 'crew-shots', label: 'Crew shots', arc: 'Media', path: 'src/data/cinema/crew-shots.json', collection: 'tiles', route: '/' },
-  { id: 'growth-partner', label: 'Growth partner', arc: 'Media', path: 'src/data/cinema/growth-partner.json', collection: 'tiles', route: '/' },
 ];
+
+/** Keys that may hold an array of items, most specific first. Used when a
+ *  registry entry's named collection is not in the file, which happens every
+ *  time a manifest is reshaped upstream. */
+export const COLLECTION_CANDIDATES = ['items', 'tiles', 'reels', 'beats', 'products', 'parts', 'exchanges'];
+
+/** The collection this document actually carries. */
+export function detectCollection(data, preferred) {
+  if (data && Array.isArray(data[preferred])) return preferred;
+  if (data && data[preferred] && typeof data[preferred] === 'object') return preferred;
+  if (!data || typeof data !== 'object') return preferred;
+  for (const k of COLLECTION_CANDIDATES) if (Array.isArray(data[k])) return k;
+  const any = Object.keys(data).find((k) => Array.isArray(data[k]) && data[k].length && typeof data[k][0] === 'object');
+  return any || preferred;
+}
+
+/** ☠️ NEVER EDITABLE AS COPY. meta_caption is generated alongside a reel and is
+ *  not a sentence anybody should retype; width, height and the source URL are
+ *  measurements. They are shown, so the editor can see them, and locked. */
+export const READ_ONLY_FIELDS = new Set([
+  'meta_caption', 'width', 'height', 'source_url', 'duration', 'date', 'id', 'type', 'category',
+]);
+
 
 /** True only for a path that resolves inside one of the write roots. */
 export function isWritable(relPath) {

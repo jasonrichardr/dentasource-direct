@@ -328,3 +328,35 @@
 .st-pick img, .st-pick video { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; background: #05100c; }
 .st-pick-n { font-size: 10.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .st-pick-b { font-size: 9.5px; color: var(--ink-faint); }
+
+/* ── absent manifests, generated fields, exclusions, dials ── */
+.st-tab.gone { opacity: 0.45; cursor: default; }
+.st-tab.gone .st-count { font-size: 10px; letter-spacing: 0.04em; }
+.st-tab:disabled:hover { background: none; color: var(--ink-soft); }
+
+.st-ro {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--ink-faint);
+  font-family: ui-monospace, monospace;
+  border-top: 1px dashed var(--line);
+  padding-top: 3px;
+}
+.st-ro span:last-child { text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%; }
+
+.st-excluded { margin-top: 22px; border-top: 1px solid var(--line); padding-top: 14px; max-width: 62em; }
+.st-ex { display: grid; grid-template-columns: 15em 1fr; gap: 10px; padding: 5px 0; border-bottom: 1px solid var(--line); }
+.st-ex-id { font-family: ui-monospace, monospace; font-size: 11px; color: var(--warn); }
+.st-ex-why { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+
+.st-dials-top { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; max-width: 62em; }
+.st-dial-group { margin-bottom: 18px; max-width: 62em; }
+.st-dial { display: grid; grid-template-columns: 14em 1fr 6.5em 4em; gap: 10px; align-items: center; padding: 5px 0; }
+.st-dial.off .st-dial-k { color: var(--signal); }
+.st-dial-k { font-size: 12px; color: var(--ink-soft); }
+.st-dial-k em { font-style: normal; font-size: 10px; color: var(--ink-faint); }
+.st-dial input[type='range'] { width: 100%; accent-color: var(--signal); }
+.st-dial-n { text-align: right; }
+.st-dial-d { font-size: 10.5px; color: var(--ink-faint); font-variant-numeric: tabular-nums; text-align: right; }

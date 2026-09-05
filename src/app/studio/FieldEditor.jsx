@@ -8,11 +8,16 @@
 // another builder adds a field. So this walks the value and decides by type and
 // by key name, which means a field nobody has invented yet still gets an input.
 
-import { MEDIA_ARRAY_KEYS, MEDIA_KEYS, redLines } from '@/lib/studio/registry';
+import { MEDIA_ARRAY_KEYS, MEDIA_KEYS, READ_ONLY_FIELDS, redLines } from '@/lib/studio/registry';
 import MediaGrid from './MediaGrid';
 
-/** Structural keys the renderer matches on. Editable would mean breakable. */
-const LOCKED = new Set(['key', 'kind', 'slug', 'route', 'version', 'generated', 'isIndex']);
+/** Structural keys the renderer matches on, plus the generated fields nobody
+ *  should retype (meta_caption, the measurements, the ids). Editable would mean
+ *  breakable in the first case and wrong in the second. */
+const LOCKED = new Set([
+  'key', 'kind', 'slug', 'route', 'version', 'generated', 'isIndex',
+  ...READ_ONLY_FIELDS,
+]);
 /** Keys whose copy runs long enough to want a textarea. */
 const LONG = new Set(['body', 'notes', 'note', 'answer', 'question', 'caption', 'alt', 'heroImageNote', 'intro']);
 

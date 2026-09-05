@@ -4,7 +4,7 @@
 
 import { readFile, stat } from 'node:fs/promises';
 
-import { FILES, absolute, studioDisabled } from '@/lib/studio/registry';
+import { FILES, absolute, detectCollection, studioDisabled } from '@/lib/studio/registry';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -17,19 +17,32 @@ export async function GET() {
     try {
       const [raw, s] = await Promise.all([readFile(absolute(f.path), 'utf8'), stat(absolute(f.path))]);
       const data = JSON.parse(raw);
-      const coll = data?.[f.collection];
+      // the file decides which key holds the items, not this list
+      const collection = detectCollection(data, f.collection);
+      const coll = data?.[collection];
       out.push({
         ...f,
+        collection,
         exists: true,
         count: Array.isArray(coll) ? coll.length : coll && typeof coll === 'object' ? Object.keys(coll).length : 0,
         modified: s.mtime.toISOString(),
         notes: typeof data?.notes === 'string' ? data.notes : '',
       });
-    } catch {
-      // A registry entry with no file on disk is not an error: the brief names
-      // manifests this repo does not have yet. They appear when somebody adds
-      // them, and until then the rail simply does not show them.
-      out.push({ ...f, exists: false, count: 0, modified: null, notes: '' });
+    } catch (e) {
+      // ☠️ AN ABSENT MANIFEST IS NOT AN ERROR AND MUST NOT BE HIDDEN. These files
+      // are being reshaped upstream while the studio is in use: one was deleted
+      // and folded into another, one is mid-replacement. Showing it greyed out
+      // with a reason tells the editor "this is coming" rather than leaving a
+      // hole they cannot ask about. A malformed file reports its parse error
+      // for the same reason.
+      out.push({
+        ...f,
+        exists: false,
+        count: 0,
+        modified: null,
+        notes: '',
+        why: e.code === 'ENOENT' ? 'not present' : `unreadable: ${e.message}`,
+      });
     }
   }
   return Response.json({ files: out });

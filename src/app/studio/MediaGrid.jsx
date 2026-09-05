@@ -8,7 +8,7 @@
 
 import { useCallback, useRef, useState } from 'react';
 
-import { isVideoPath } from '@/lib/studio/registry';
+import { READ_ONLY_FIELDS, isVideoPath } from '@/lib/studio/registry';
 import AssetPicker from './AssetPicker';
 
 const srcOf = (row) => (typeof row === 'string' ? row : row?.src || '');
@@ -138,6 +138,17 @@ export default function MediaGrid({ k, value, onChange, single = false }) {
                       onChange={(e) => patch(i, { ...row, poster: e.target.value })}
                     />
                   ) : null}
+                  {/* ☠️ meta_caption and the measurements are SHOWN, never typed
+                      into: they are generated beside the reel, and an editor who
+                      rewrites one has quietly desynced it from its source. */}
+                  {Object.keys(row || {})
+                    .filter((f) => READ_ONLY_FIELDS.has(f) && row[f] !== '' && row[f] != null)
+                    .map((f) => (
+                      <div className="st-ro" key={f} title="generated, read only">
+                        <span>{f}</span>
+                        <span>{String(row[f])}</span>
+                      </div>
+                    ))}
                 </>
               ) : null}
               <div className="st-cell-tools">

@@ -7,6 +7,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import FieldEditor from './FieldEditor';
+import LogoDials from './LogoDials';
 import MediaGrid from './MediaGrid';
 import './studio.css';
 
@@ -66,9 +67,14 @@ export default function Studio() {
     fetch('/api/studio/files')
       .then((r) => r.json())
       .then((d) => {
-        const live = (d.files || []).filter((f) => f.exists);
-        setFiles(live);
-        if (live.length) setActiveId(live[0].id);
+        // ☠️ ABSENT MANIFESTS STAY IN THE LIST. Filtering them out made a file
+        // that is being reshaped upstream look like something the studio cannot
+        // open. They are shown greyed with the reason instead, and only a file
+        // that EXISTS can be selected.
+        const all = d.files || [];
+        setFiles(all);
+        const first = all.find((f) => f.exists);
+        if (first) setActiveId(first.id);
       })
       .catch((e) => setNote({ bad: true, text: `Could not list files: ${e.message}` }));
   }, []);
@@ -164,6 +170,7 @@ export default function Studio() {
     [items, active],
   );
 
+  const showDials = activeId === '__dials';
   const current = items[sel];
   // ☠️ A MANIFEST IS NOT AN ARC. When the collection IS the media array — the
   // installs strip, the reels, the 244 spare parts — the thing to edit is the
@@ -210,21 +217,40 @@ export default function Studio() {
                     <button
                       key={f.id}
                       type="button"
-                      className={`st-tab${f.id === activeId ? ' on' : ''}`}
-                      onClick={() => open(f)}
+                      className={`st-tab${f.id === activeId ? ' on' : ''}${f.exists ? '' : ' gone'}`}
+                      onClick={() => f.exists && open(f)}
+                      disabled={!f.exists}
+                      title={f.exists ? f.path : `${f.path} — ${f.why || 'not present'}`}
                     >
                       <span>{f.label}</span>
-                      <span className="st-count">{f.count}</span>
+                      <span className="st-count">{f.exists ? f.count : f.why || 'not present'}</span>
                     </button>
                   ))}
               </div>
             </div>
           ))}
 
-          <div className="st-arc-h">
-            {active ? `${active.label} — drag to reorder` : 'Beats'}
+          <div className="st-arc">
+            <div className="st-arc-h">Tools</div>
+            <div className="st-tabs">
+              <button
+                type="button"
+                className={`st-tab${showDials ? ' on' : ''}`}
+                onClick={() => setActiveId('__dials')}
+                title="Tune the particle lockup live. Browser only, never saved to the repo."
+              >
+                <span>Logo dials</span>
+                <span className="st-count">live</span>
+              </button>
+            </div>
           </div>
-          <ol className="st-list">
+
+          {!showDials ? (
+            <div className="st-arc-h">
+              {active ? `${active.label} — drag to reorder` : 'Beats'}
+            </div>
+          ) : null}
+          <ol className="st-list" hidden={showDials}>
             {items.map((it, i) => (
               <li
                 key={it?.key || it?.slug || it?.src || i}
@@ -260,7 +286,7 @@ export default function Studio() {
               </li>
             ))}
           </ol>
-          {items.length ? (
+          {items.length && !showDials ? (
             <p className="st-hint">
               A hidden beat keeps its place in the file and is marked <code>hidden: true</code>. The arc renderer has to
               honour that flag for it to disappear from the site.
@@ -269,7 +295,9 @@ export default function Studio() {
         </aside>
 
         <main className="st-main">
-          {busy === 'loading' ? (
+          {showDials ? (
+            <LogoDials />
+          ) : busy === 'loading' ? (
             <p className="st-empty">Loading…</p>
           ) : collectionIsMedia ? (
             <>
@@ -283,6 +311,24 @@ export default function Studio() {
                   setDirty(true);
                 }}
               />
+              {/* ☠️ WHY SOMETHING IS MISSING IS EDITORIAL INFORMATION. The growth
+                  partner set carries an `excluded` map of id range to reason,
+                  most of them privacy calls. Showing it read-only under the grid
+                  answers "where is that clip" before it is asked, and keeps the
+                  reasons from being quietly edited away. */}
+              {doc?.excluded && typeof doc.excluded === 'object' ? (
+                <div className="st-excluded">
+                  <div className="st-nest-h">
+                    Left out on purpose ({Object.keys(doc.excluded).length}) — read only
+                  </div>
+                  {Object.entries(doc.excluded).map(([id, why]) => (
+                    <div className="st-ex" key={id}>
+                      <span className="st-ex-id">{id}</span>
+                      <span className="st-ex-why">{String(why)}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
             </>
           ) : !current ? (
             <p className="st-empty">Pick a beat on the left.</p>
