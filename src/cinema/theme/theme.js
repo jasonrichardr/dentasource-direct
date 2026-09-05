@@ -31,13 +31,20 @@ export function rememberTheme(mode) {
   try { localStorage.setItem(THEME_KEY, mode); } catch (e) {}
 }
 
-// The pre-paint stamp, as a string so it can be inlined in <head>. Without it the cinema
-// paints cream for one frame and then snaps to night. Same rule as resolveTheme: a
-// remembered choice, else dark.
+// The pre-paint stamp, inlined in <head>. Without it the page paints the wrong theme for
+// one frame and then snaps, which is the flash this whole file exists to prevent.
 //
-// ONE template literal, never a concatenation of several. Built as `a` + `b` + `c` this
-// reached the page as a spliced ruin: `var k='dsd:theme` followed by fragments of the
-// other two literals, which is a syntax error, which means no stamp and a light flash on
-// every load. Node printed the correct 218 characters from the same source, so the splice
-// happens when the bundler folds the pieces. One literal, one string, nothing to fold.
-export const THEME_SCRIPT = `(function(){var v='${DEFAULT_THEME}';try{if(localStorage.getItem('${THEME_KEY}')==='light')v='light';}catch(e){}document.documentElement.setAttribute('data-theme',v);})();`;
+// ☠️ ONE PLAIN STRING LITERAL. No template literal, no `+` concatenation, no interpolation.
+// Written as `a` + `b` + `c` this reached the browser spliced into nonsense:
+//     (function(){try{var k='dsd:themedocument.documentElement.setAttribute('data-theme','dark');}})();
+// which throws `Unexpected identifier 'data'`, so data-theme is never stamped and every
+// page flashes. Node printed the correct string from that same source, so the splice
+// happens when the bundler folds the pieces, and the only safe shape is a literal with
+// nothing to fold. The outer quotes are double so every quote inside can be single.
+//
+// The key and the default are spelled out here rather than interpolated, for the same
+// reason. THEME_KEY and DEFAULT_THEME above are the source of truth for the JS side;
+// scripts/check-theme-script.mjs fails the build if this literal drifts from them or if
+// what reaches the built HTML is not this exact script.
+export const THEME_SCRIPT =
+  "(function(){var v='dark';try{if(localStorage.getItem('dsd:theme')==='light')v='light';}catch(e){}document.documentElement.setAttribute('data-theme',v);})();";
