@@ -1,0 +1,83 @@
+/* footer.css — the footer's own paint, and the rule that stands it down for the room.
+ *
+ * This was living in Navbar/navbar.css, which made sense while there was a navbar. There
+ * is not: the nav was removed on 2026-09-05 and Navbar.jsx went with it, so that file had
+ * become a stylesheet of dead .dsd-nav selectors wrapped around the footer's real ones,
+ * and its room-open hide list named three elements that no longer exist and one that had
+ * been renamed. A hide list nothing matches is worse than none, because it reads as
+ * covered. The footer's rules live with the footer now, and the marquee's live with the
+ * marquee.
+ */
+
+:root {
+  --footer-line: rgba(10, 20, 16, .10);
+}
+:root[data-theme="dark"] {
+  --footer-line: rgba(255, 255, 255, .10);
+}
+
+/* ☠️ THE FOOTER OUTRANKS THE CINEMA PANELS (z-index 7 over their 6).
+   The scroll track is one full-height section per beat and the footer follows it in
+   NORMAL FLOW, so the last stretch of the arc and the top of the footer share the
+   viewport. The copy panels are position:fixed, so without a rank the door beat's
+   headline and the footer's own "Ready to see it in person?" print straight through each
+   other, and the footer's buttons swallow taps meant for the door's. Raising the opaque
+   footer makes the ending a clean hand-off: the arc plays, then the footer rises over it
+   and takes the screen. */
+.dsd-footer {
+  background: var(--paper-2);
+  color: var(--ink);
+  border-top: 1px solid var(--footer-line);
+  z-index: 7;
+}
+
+/* ☠️ THE FOOTER STANDS DOWN FOR THE ROOM. RoomChrome stamps .dsd-room-open on <html> from
+   the room's own dsd:room event. The room hides the page with `.tx-open main { visibility:
+   hidden }`, and that rule can only ever reach <main>: the footer is a SIBLING of <main>,
+   so without this it reads straight through the open room's veil. visibility, not display,
+   so nothing reflows and closing the room restores the page exactly as it was. */
+:root.dsd-room-open .dsd-footer { visibility: hidden; }
+
+.dsd-footer-glow { background: color-mix(in srgb, var(--dsd-green) 12%, transparent); }
+.dsd-footer-head { color: var(--ink); }
+.dsd-footer-muted { color: color-mix(in srgb, var(--ink) 62%, transparent); }
+.dsd-footer-faint { color: color-mix(in srgb, var(--ink) 46%, transparent); }
+.dsd-footer-label { color: var(--dsd-green); }
+.dsd-footer-rule { border-color: var(--footer-line); }
+
+.dsd-footer-link {
+  color: color-mix(in srgb, var(--ink) 66%, transparent);
+  transition: color .25s ease;
+}
+.dsd-footer-link:hover { color: var(--dsd-green); }
+
+.dsd-footer-cta {
+  background: var(--dsd-green);
+  color: var(--paper);
+  transition: transform .25s ease;
+}
+:root[data-theme="dark"] .dsd-footer-cta { color: #06231a; }
+.dsd-footer-cta:hover { transform: translateY(-1px); }
+
+.dsd-footer-ghost {
+  border: 1px solid var(--footer-line);
+  color: var(--ink);
+  transition: background .25s ease;
+}
+.dsd-footer-ghost:hover { background: color-mix(in srgb, var(--ink) 7%, transparent); }
+
+.dsd-footer-chip {
+  border: 1px solid var(--footer-line);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  color: var(--ink);
+  transition: border-color .25s ease, background .25s ease;
+}
+.dsd-footer-chip:hover {
+  border-color: color-mix(in srgb, var(--dsd-green) 55%, transparent);
+  background: color-mix(in srgb, var(--dsd-green) 10%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dsd-footer-link, .dsd-footer-cta, .dsd-footer-ghost, .dsd-footer-chip { transition: none; }
+  .dsd-footer-cta:hover { transform: none; }
+}

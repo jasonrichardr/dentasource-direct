@@ -60,6 +60,12 @@
 /* ---- the corner theme switch, now on every route -----------------------------------
    It is the cinema's own control (.cinema-switch, fixed bottom corner) and it carries
    id="theme-switch" because the room's 🌗 button proxies whatever holds that id. */
+/* ☠️ THE MARQUEE STANDS DOWN TOO, AND IT WAS NOT DOING SO. The old hide list lived in
+   navbar.css and named .dsd-nav, .dsd-nav-trust and .dsd-nav-menu. This element is
+   .dsd-trust, which matches none of them, so with the room open the trust line still read
+   straight across the top of the veil. The rule that hides the switch was right here all
+   along; the marquee's was in a file about a component that no longer exists. */
+:root.dsd-room-open .dsd-trust,
 :root.dsd-room-open .cinema-switch { visibility: hidden; }
 
 @media (prefers-reduced-motion: reduce) {

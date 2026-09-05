@@ -10,8 +10,9 @@
 //
 // So the chrome answers the room's own announcement instead: `dsd:room` carries
 // { open: true|false }, and the only thing this component does is stamp a class on
-// <html>. The hiding itself is CSS in navbar.css, which is also where the chrome's own
-// paint lives. Nothing here reaches into src/cinema/room.
+// <html>. The hiding itself is CSS, and it lives with each piece of chrome: the trust
+// marquee and the theme switch in trust-marquee.css, the footer in Footer/footer.css.
+// Nothing here reaches into src/cinema/room.
 //
 // The room dispatches open:false on unmount, but a route change that unmounts it
 // mid-open would leave the class behind, so the cleanup clears it unconditionally.

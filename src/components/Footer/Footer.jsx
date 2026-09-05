@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import '@/components/Navbar/navbar.css';
+import './footer.css';
 
 // Routes with their own immersive chrome (design-DNA pages) — global footer stays out.
 const CHROME_FREE_ROUTES = ['/denjoy'];
