@@ -43,6 +43,16 @@ LIBRARY = REPO / "src/data/cinema/reel-library.json"
 MARBLE_PX: int | None = None
 COVER_MIN = 0.95
 
+# ☠️ RECORD HOW THE NUMBER WAS OBTAINED, BECAUSE NOBODY CAN RE-MEASURE IT.
+# builder-room's point and it is the right one: every other tile on this arc can be
+# checked by opening devtools and reading a box. A bead cannot. It is a sample of a
+# texture inside a three.js scene, so there is no element to inspect and no way for the
+# next person to confirm or refute this number without redoing the whole derivation.
+# The provenance therefore ships IN the manifest rather than living in a commit message.
+# Fill both fields when MARBLE_PX is set; the script refuses without them.
+MARBLE_PX_METHOD: str | None = None      # e.g. "measured on the rendered canvas at 1440x900"
+MARBLE_PX_RAW: int | None = None         # the measurement BEFORE rounding down
+
 
 def judge(w: int, h: int, d: int) -> float:
     """Cover ratio for a square tile. The bead samples a square, so both axes bind."""
@@ -69,6 +79,16 @@ def main() -> int:
             "MARBLE_PX is not set. It needs builder-home's measured bead diameter,\n"
             "rounded DOWN to a multiple of 10. See the note above; do not guess it."
         )
+    if not MARBLE_PX_METHOD or MARBLE_PX_RAW is None:
+        raise SystemExit(
+            "MARBLE_PX_METHOD and MARBLE_PX_RAW are required alongside MARBLE_PX.\n"
+            "This tile cannot be re-measured from the page, so a number without its\n"
+            "provenance is a number nobody after you can check or correct."
+        )
+    if MARBLE_PX % 10 or MARBLE_PX > MARBLE_PX_RAW:
+        raise SystemExit(
+            f"MARBLE_PX {MARBLE_PX} must be MARBLE_PX_RAW {MARBLE_PX_RAW} rounded DOWN "
+            "to a multiple of 10.")
     apply = "--apply" in sys.argv
     lib = json.loads(LIBRARY.read_text())
     every = list(lib["reels"]) + list(lib.get("heldBack", []))
@@ -89,6 +109,14 @@ def main() -> int:
     lib["tilePx"] = lib["tileHeightPx"] = MARBLE_PX
     lib["tileVideoPx"] = lib["tileVideoHeightPx"] = MARBLE_PX   # all video
     lib["coverMin"] = COVER_MIN
+    lib["tileSource"] = (
+        f"{MARBLE_PX_METHOD}; measured {MARBLE_PX_RAW}px, declared {MARBLE_PX}px "
+        "(rounded down to a multiple of 10 so a few optimistic pixels cannot delete a "
+        "whole shape). THIS TILE HAS NO ELEMENT: the beads are a texture sampled inside a "
+        "three.js scene, so it cannot be re-measured in devtools the way every other tile "
+        "can. To revise it, redo the derivation from marbleCluster.js or re-measure on a "
+        "rendered canvas, and state which."
+    )
     lib["reels"] = keep
     lib["heldBack"] = held
 
