@@ -7,7 +7,7 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
-    "postbuild": "node scripts/check-theme-script.mjs && node scripts/check-hidden-filter.mjs"
+    "postbuild": "node scripts/check-theme-script.mjs && node scripts/check-hidden-filter.mjs && node scripts/check-media-base.mjs"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.6",

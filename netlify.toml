@@ -10,10 +10,6 @@
   path = "/images/og/*"
   function = "crawler-full"
 
-[[edge_functions]]
-  path = "/videos/dsd-share-grid.mp4"
-  function = "crawler-full"
-
 # The Living Map (claude.ai artifact, COEP require-corp) streams the lounge + anthem from here.
 # These headers only ALLOW cross-origin embedding of media — zero effect on the site itself.
 [[headers]]
