@@ -603,6 +603,30 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
       // stage that it was asked to be, and spreadX is untouched.
       // Shoal height runs about 2 * (0.5 * spreadY + 1.04) on this bead set, so 1.4 gives
       // roughly 3.5 units and about 95px of room to spare under the wall.
+      // ☠️ cameraZ AND beadScale SET A RESOLUTION GATE IN ANOTHER FILE. READ THIS BEFORE
+      // CHANGING EITHER.
+      // Together they decide the hero bead's rendered diameter, and that diameter is
+      // declared as reel-library.json's tile, which decides WHICH CLIPS MAY APPEAR ON THE
+      // WALL AT ALL. Measured off the live scene on 2026-09-06:
+      //
+      //   desktop  cameraZ 7.0   hero bead 482.4 css px   declared as a tile of 480
+      //   phone    cameraZ 13.0  hero bead 217.5 css px
+      //
+      // A clip is held when its square crop falls under 0.95 of that tile, so today
+      // 480x854 passes at 1.00 and 720x406 is held at 0.85. Raise cameraZ and the beads
+      // shrink, the gate loosens and clips we judged too soft become admissible; lower it
+      // and clips already on the wall become barred. Nothing in reel-library.json points
+      // back here, so the coupling is invisible from that end.
+      //
+      // ☠️ THE TWO VIEWPORTS ARE 2.22x APART AND THAT IS THIS LINE'S DOING. Every other
+      // tile on the arc varies about 1.1x between desktop and phone; the bead varies 482
+      // to 217 because the phone was moved to cameraZ 13.0 to fit a portrait stage. The
+      // wall serves the SAME clips to both, so the desktop number has to govern: a clip
+      // fine on a phone and soft on a desktop would otherwise ship soft. The phone number
+      // could not have been declared, which is why the gate is a desktop gate.
+      //
+      // If you change either number, re-measure the bead and tell whoever owns
+      // reel-library.json. The frames alone will not show you what you moved.
       ? { isMobile: false, cameraZ: 7.0, spreadX: 5.8, spreadY: 1.4, centerPull: 1.8, beadScale: 1.5 }
       // ☠️ A PORTRAIT STAGE NEEDS A PORTRAIT WELL. The phone kept an isotropic shoal and a
       // near camera while its canvas was a 98vw by 52vh landscape box. The viewport stage
