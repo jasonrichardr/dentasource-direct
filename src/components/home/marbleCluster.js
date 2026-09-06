@@ -62,9 +62,9 @@ const MAX_CURSOR = 4.5;  // cap the finger's effective speed so a quick press ca
 const MAX_DT = 1 / 30;
 
 export function createMarbleCluster(container, {
-  videos = [], count = 18, isMobile = false, faceFocus = {}, faceZoom = {},
+  videos = [], hdVideos = [], count = 18, isMobile = false, faceFocus = {}, faceZoom = {},
   faceZoomDefault = 1, cameraZ = 8, spreadX = NATURAL_R, spreadY = NATURAL_R,
-  stage = 'container', centerY = 0,
+  stage = 'container', centerY = 0, centerPull = 1, beadScale = 1,
 } = {}) {
   // ☠️ THE WELL'S CENTRE MOVES, THE WALL'S FREEDOM DOES NOT.
   // Jarich: the shoal was sitting across the headline. The fix is NOT a wall or a clamp,
@@ -97,8 +97,17 @@ export function createMarbleCluster(container, {
   //
   // DEFAULTS ARE NATURAL_R ON BOTH AXES, so k comes out exactly K_CENTER and every
   // existing caller settles into the same ball it always did.
-  const kX = K_CENTER * (NATURAL_R / Math.max(0.2, spreadX)) ** 2;
-  const kY = K_CENTER * (NATURAL_R / Math.max(0.2, spreadY)) ** 2;
+  // ☠️ centerPull IS A STIFFNESS, AND IT IS NOT FREE. Jarich asked for the wall to be
+  // "middle gravitated", so a flung bead should visibly come home rather than loiter.
+  // That is k, and k also decides where the shoal comes to REST: a bead sits where its
+  // neighbours' collision pressure balances the restoring force, so the settled extent
+  // goes as 1 / sqrt(k). Raising the pull therefore TIGHTENS the wall as a side effect,
+  // and the two cannot be separated by scaling spread to compensate, because the spread
+  // term and the pull term cancel exactly. So the spread numbers at the call site are
+  // re-measured whenever this changes; they are not independent of it.
+  const pull = Math.max(0.1, centerPull);
+  const kX = K_CENTER * pull * (NATURAL_R / Math.max(0.2, spreadX)) ** 2;
+  const kY = K_CENTER * pull * (NATURAL_R / Math.max(0.2, spreadY)) ** 2;
   // mobile shows ALL the reels too (they're compressed 480p) — just smaller beads + camera pulled back
 
   // ── renderer: TRANSPARENT — only the marbles paint; the black comes from the panel's CSS bg (which
@@ -232,7 +241,9 @@ export function createMarbleCluster(container, {
   const hash = (n) => { const s = Math.sin(n * 12.9898 + 78.233) * 43758.5453; return s - Math.floor(s); };
   const nFilled = Math.min(texPool.length, count);
   const HERO_I = 0, SMALL_I = nFilled - 1;
-  const baseR = isMobile ? 0.5 : 0.56;
+  // beadScale lets a caller showing FEWER reels draw BIGGER glass, so a short set still
+  // reads as a wall rather than as a handful of beads in a lot of empty stage.
+  const baseR = (isMobile ? 0.5 : 0.56) * Math.max(0.2, beadScale);
   // EQUAL-FILL zoom: the glass lens strength scales with bead radius (thickness ∝ r), so a SMALLER
   // bead magnifies its video LESS and shows a glass ring. video-fill ∝ r·zoom, so to make EVERY bead
   // fill like the biggest, hold r·zoom constant → zoom = refZoom·rMax/r (capped so the inner disc
@@ -263,7 +274,12 @@ export function createMarbleCluster(container, {
     if ("dispersion" in glass) glass.dispersion = isFilled ? 0.7 : 1.5; // chromatic-aberration rainbow rim
     const shell = new THREE.Mesh(sphereGeo, glass);
     shell.scale.setScalar(r);
-    shell.userData = { index: i, isFilled, url: isFilled ? videos[i] : null };
+    shell.userData = {
+      index: i, isFilled,
+      url: isFilled ? videos[i] : null,
+      // The manifest's own high definition copy for this reel, when it has one.
+      hd: isFilled ? (hdVideos[i] || null) : null,
+    };
     shells.push(shell);
 
     const unit = new THREE.Group();
@@ -407,9 +423,17 @@ export function createMarbleCluster(container, {
     // allow it; a strict policy (iOS) may block audible autoplay → fall back to muted so it never
     // freezes; the 🔊 toggle then unmutes on a direct tap.
     const tryPlay = () => { vid.muted = false; const p = vid.play(); if (p && p.catch) p.catch(() => { vid.muted = true; vid.play().catch(() => {}); }); };
-    // HD-on-demand: cluster reels are tiny 480p; the theater prefers a high-def + audio copy at
-    // /reels/hd/<name>. If that 404s (no HD yet) we swap once to the cluster reel so it still plays.
-    const hdUrl = pick.url.replace(/\/reels\/(?:fb\/)?([^/]+)$/, "/reels/hd/$1");
+    // ☠️ THE MANIFEST NAMES THE HD FILE; THE PATH REWRITE IS ONLY THE FALLBACK.
+    // The cluster reels are small 480p loops with no sound, and the theatre is the whole
+    // point of press and hold, so it must never play one of those when a real high
+    // definition copy exists. It used to GUESS the HD path by rewriting the bead's URL
+    // into /reels/hd/<name>, which worked only for clips that happened to live under
+    // /reels and silently fell back to the 480 loop for every clip that did not, with no
+    // error and nothing visibly wrong. reel-library.json now carries `hd` per entry, so
+    // the entry is asked first and the rewrite is kept only for the callers that have no
+    // manifest behind them.
+    const guessed = pick.url.replace(/\/reels\/(?:fb\/)?([^/]+)$/, "/reels/hd/$1");
+    const hdUrl = pick.hd || guessed;
     let usedFallback = (hdUrl === pick.url);
     vid.addEventListener("error", () => { if (!usedFallback) { usedFallback = true; vid.src = pick.url; tryPlay(); } });
     vid.src = usedFallback ? pick.url : hdUrl;
@@ -637,13 +661,14 @@ export function createMarbleCluster(container, {
     // to whichever edge happens to be further from zero, and a caller asking "does the top
     // clear the copy" would get an answer about the bottom. top and bottom are the real
     // edges; halfH is kept as the half HEIGHT so existing fit checks still mean something.
-    let maxX = 0, top = -Infinity, bottom = Infinity, sumY = 0;
+    let maxX = 0, top = -Infinity, bottom = Infinity, sumY = 0, sumX = 0;
     for (const { unit, body } of units) {
       const r = body.shapes[0]?.radius ?? 0;
       maxX = Math.max(maxX, Math.abs(unit.position.x) + r);
       top = Math.max(top, unit.position.y + r);
       bottom = Math.min(bottom, unit.position.y - r);
       sumY += unit.position.y;
+      sumX += unit.position.x;
     }
     if (!units.length) { top = 0; bottom = 0; }
     // ☠️ meanY IS WHAT A CALLER SHOULD MEASURE THE SHOAL'S SHAPE AGAINST, NOT centreY.
@@ -653,6 +678,11 @@ export function createMarbleCluster(container, {
     // that slide reads a shoal that is smaller than it will be, which is exactly how the
     // first seating attempt ended up parking the wall over the copy it was meant to clear.
     const meanY = units.length ? sumY / units.length : 0;
+    // ☠️ meanX IS THE SIGNAL FOR "DID IT COME BACK TO THE MIDDLE". The shoal's WIDTH is
+    // not: beads rearrange when they are flung, so the extent settles near a different
+    // number afterwards and a test watching it reads "never came home" on a wall that
+    // plainly did. The centre of mass returns to the well's centre every time.
+    const meanX = units.length ? sumX / units.length : 0;
     const maxY = (top - bottom) / 2;
     // ☠️ READ LIVE OFF THE CAMERA, NOT OFF A STORED NUMBER. The fov is vertical and fixed,
     // so the visible HEIGHT only depends on the camera distance, but the visible WIDTH is
@@ -662,7 +692,7 @@ export function createMarbleCluster(container, {
     const visibleHalfW = visibleHalfH * camera.aspect;
     return {
       halfH: maxY, halfW: maxX,
-      top, bottom, centreY, meanY,
+      top, bottom, centreY, meanY, meanX,
       visibleHalfH, visibleHalfW,
       fits: maxY <= visibleHalfH && maxX <= visibleHalfW,
       fitsH: maxY <= visibleHalfH, fitsW: maxX <= visibleHalfW,

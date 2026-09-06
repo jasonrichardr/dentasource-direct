@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "generated": "2026-09-06",
+  "notes": "Live-tunable settings for the running page. THE SHIPPED VALUES ARE THE MEASURED ONES: marquee speeds are px per second read off https://ffcdentalclinic.com on 2026-09-06 (.sm-track for media, .kb-track for text), at 1440 wide and at 390 wide. Editing this file changes the DEFAULT. The studio changes what Jarich is looking at RIGHT NOW without a reload, by writing a partial to localStorage['dsd:settings'] and dispatching window 'dsd:settings'; nothing is persisted back here unless somebody edits this file. 'wide' applies above the narrow breakpoint (700px), 'narrow' at or below it. 'overrides' is keyed by a track's data-marquee id and wins over its family: leave it empty unless one strip genuinely needs to differ, because a per-track speed is a thing to keep in step forever.",
+  "marquee": {
+    "media": { "wide": 131.8, "narrow": 88.6 },
+    "text": { "wide": 75.7, "narrow": 58.1 },
+    "overrides": {}
+  }
+}

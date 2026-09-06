@@ -148,7 +148,15 @@ function StripTile({ tile, near, echo = false }) {
       aria-hidden={echo ? 'true' : undefined}
       width={STRIP_W}
       height={STRIP_H}
-      sizes="(max-width: 700px) 34vw, 320px"
+      /* ☠️ THE OLD sizes LIED ABOUT THIS TILE BY A FACTOR OF THREE. It said 34vw, which
+         is 132px on a 390 phone. The tile's HEIGHT is what the stylesheet fixes; its width
+         is height times the frame's aspect, and measured on the running page these render
+         up to 360px wide on a phone and 384 on a desktop. The browser trusted the 34vw,
+         asked the optimiser for 384, and painted it into 360 css px on a retina screen
+         where 720 was needed. This describes the widest tile instead, which over-serves
+         the narrow ones and is the right way round to be wrong when the ruling is quality. */
+      sizes="(max-width: 700px) 92vw, 384px"
+      quality={85}
       // ☠️ EAGER, ONCE NEAR. next/image lazy-loads per tile as it enters the viewport, but
       // this viewport is a TRANSLATING track: tiles cross the edge one at a time and the
       // optimizer answers one at a time, so the sweep showed holes where a tile had not
@@ -174,7 +182,7 @@ export function StripPanel({ beat, beatIndex }) {
       <div className="dsd-strip">
         {/* The track is doubled so the -50% sweep wraps seamlessly. The second half is
             the same tiles again, so it is announced to nobody. */}
-        <div className="dsd-strip-track">
+        <div className="dsd-strip-track" data-marquee="strip">
           {near ? tiles.map((t, i) => <StripTile key={`a-${i}`} tile={t} near />) : null}
           {near ? tiles.map((t, i) => <StripTile key={`b-${i}`} tile={t} near echo />) : null}
         </div>
@@ -208,6 +216,7 @@ export function PhotoPanel({ beat, beatIndex }) {
               width={940}
               height={640}
               sizes="(max-width: 700px) 92vw, 470px"
+              quality={85}
             />
           )
           : <img key={src} alt="" aria-hidden="true" />
@@ -241,7 +250,7 @@ export function InstallsPanel({ beat, beatIndex, tiles = [] }) {
           until `near`, and the copy above it is untouched, so nothing a crawler or a
           reader wants disappears. */}
       <div className="dsd-strip">
-        <div className="dsd-strip-track">
+        <div className="dsd-strip-track" data-marquee="installs">
           {near ? tiles.map((t, i) => <StripTile key={`a-${i}`} tile={t} near />) : null}
           {near ? tiles.map((t, i) => <StripTile key={`b-${i}`} tile={t} near echo />) : null}
         </div>
@@ -308,11 +317,11 @@ export function PartsPanel({ beat, beatIndex, parts = [], crew = [] }) {
       <div className="dsd-news">
         {rows.map((row, r) => (
           <div className="dsd-news-row" key={r}>
-            <div className={`dsd-news-track${r === 1 ? ' reverse' : ''}`}>
+            <div className={`dsd-news-track${r === 1 ? ' reverse' : ''}`} data-marquee={`parts-${r + 1}`}>
               {(near ? [...row, ...row] : []).map((part, i) => (
                 <div className={`dsd-part-card${part.name ? '' : ' is-bare'}`} key={`${r}-${i}-${part.slug}`} aria-hidden={i >= row.length ? 'true' : undefined}>
                   {near ? (
-                    <Image src={part.src} alt="" width={112} height={112} loading="lazy" className="dsd-part-img" />
+                    <Image src={part.src} alt="" width={112} height={112} quality={85} loading="lazy" className="dsd-part-img" />
                   ) : (
                     <span className="dsd-part-img" aria-hidden="true" />
                   )}
@@ -334,7 +343,7 @@ export function PartsPanel({ beat, beatIndex, parts = [], crew = [] }) {
             caption under a candid photograph would be a claim about a person. */}
         {crewRow.length ? (
           <div className="dsd-news-row">
-            <div className="dsd-news-track">
+            <div className="dsd-news-track" data-marquee="parts-crew">
               {(near ? [...crewRow, ...crewRow] : []).map((shot, i) => (
                 near ? (
                   <Image
@@ -345,6 +354,7 @@ export function PartsPanel({ beat, beatIndex, parts = [], crew = [] }) {
                     aria-hidden={i >= crewRow.length ? 'true' : undefined}
                     width={126}
                     height={84}
+                    quality={85}
                     loading="lazy"
                   />
                 ) : (
@@ -375,7 +385,7 @@ export function NewsPanel({ beat, beatIndex, articles = [] }) {
       <div className="dsd-news dsd-interactive">
         {rows.map((row, r) => (
           <div className="dsd-news-row" key={r}>
-            <div className={`dsd-news-track${r === 1 ? ' reverse' : ''}`}>
+            <div className={`dsd-news-track${r === 1 ? ' reverse' : ''}`} data-marquee={`news-${r + 1}`}>
               {[...row, ...row].map((a, i) => (
                 <Link
                   key={`${r}-${i}-${a.slug}`}
@@ -389,7 +399,7 @@ export function NewsPanel({ beat, beatIndex, articles = [] }) {
                       megabyte of nothing. next/image serves the cut this box actually needs,
                       and the thumb is only mounted once the beat is near. */}
                   {near
-                    ? <Image src={a.image} alt="" width={96} height={72} sizes="96px" className="dsd-news-thumb" />
+                    ? <Image src={a.image} alt="" width={96} height={72} sizes="96px" quality={85} className="dsd-news-thumb" />
                     : <span className="dsd-news-thumb" aria-hidden="true" />}
                   <span className="dsd-news-title">{a.title}</span>
                 </Link>
@@ -592,7 +602,7 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
       // stage that it was asked to be, and spreadX is untouched.
       // Shoal height runs about 2 * (0.5 * spreadY + 1.04) on this bead set, so 1.4 gives
       // roughly 3.5 units and about 95px of room to spare under the wall.
-      ? { isMobile: false, cameraZ: 7.0, spreadX: 5.8, spreadY: 1.4 }
+      ? { isMobile: false, cameraZ: 7.0, spreadX: 5.8, spreadY: 1.4, centerPull: 1.8, beadScale: 1.5 }
       // ☠️ A PORTRAIT STAGE NEEDS A PORTRAIT WELL. The phone kept an isotropic shoal and a
       // near camera while its canvas was a 98vw by 52vh landscape box. The viewport stage
       // is the opposite shape: at 390x844 the aspect is 0.46, so the visible WIDTH in
@@ -605,7 +615,7 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
       // 55% of the height, both axes fitting. The height deliberately does NOT fill: the
       // copy sits above the beads and the pager below them, and the canvas now covers
       // both, so the band of glass has to leave them room.
-      : { isMobile: true, cameraZ: 13.0, spreadX: 2.4, spreadY: 4.2 };
+      : { isMobile: true, cameraZ: 13.0, spreadX: 2.4, spreadY: 4.2, centerPull: 1.8, beadScale: 1.5 };
     // ☠️ EVERY ONE OF THESE SIX NUMBERS IS A SETTLED bounds() READING, NOT AN EYE.
     // Swept at the real viewports against the real stage, nine seconds after the beat was
     // parked, because a shoal read while it is still converging reads small. Desktop was
@@ -618,6 +628,8 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
     // were set by measuring bounds(), not by eye.
     cluster = createMarbleCluster(mount, {
       videos: shown.map((r) => r.src),
+      // The theatre plays these, not the 480 bead loops, whenever the manifest has one.
+      hdVideos: shown.map((r) => r.hd || null),
       count: shown.length,          // exactly one bead per reel in THIS set
       ...shape,
       // ☠️ THE STAGE IS THE WHOLE SCREEN, NOT A BOX IN THE MIDDLE OF IT. See the note on
@@ -924,7 +936,7 @@ export function ActionPanel({ beat, beatIndex, items = [] }) {
     <div className="dsd-panel">
       <Copy beat={beat} />
       <div className="dsd-strip dsd-mixed">
-        <div className="dsd-strip-track" ref={trackRef}>
+        <div className="dsd-strip-track" ref={trackRef} data-marquee={`mixed-${beat.key}`}>
           {(near ? [...tiles, ...tiles] : []).map((it, i) => {
             const echo = i >= tiles.length;
             const key = `${i}-${it.src}`;
@@ -962,7 +974,8 @@ export function ActionPanel({ beat, beatIndex, items = [] }) {
                   width={it.width || 320}
                   height={it.height || 240}
                   style={ratio ? { aspectRatio: ratio } : undefined}
-                  sizes="(max-width: 700px) 34vw, 300px"
+                  sizes="(max-width: 700px) 92vw, 384px"
+                  quality={85}
                   loading="eager"
                 />
               )

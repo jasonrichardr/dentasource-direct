@@ -34,21 +34,24 @@ const ASK_SCRIPT = { ...askScript, exchanges: visible(askScript.exchanges) };
 const REEL_LIBRARY = visible(reelLibrary.reels);
 const TRAINING_ITEMS = visible(trainingMedia.items);
 
-// ☠️ THE WALL PAGES ON THE MANIFEST'S OWN SETS, AND LOOKS REELS UP BY id.
-// reel-library.json ships `sets` precomputed in groups of 24 with the existing wall
-// entries first, so the wall is identical to marbles-reels.json on the day of the switch
-// and only grows after it. Slicing the flat list here instead would quietly re-cut those
-// groups the moment an entry is hidden or added, and the first set is the one that must
-// not move. An id that resolves to nothing is dropped rather than left as a hole, which
-// is also how a hidden reel leaves its set.
-const REEL_BY_ID = new Map(REEL_LIBRARY.map((r) => [r.id, r]));
-// `sets` is STRUCTURE, not content: it holds labels and id lists, and the studio hides
-// reels rather than sets. The hiding still reaches it, because every id is resolved
-// through REEL_BY_ID above, which is built from the filtered list, and an id that resolves
-// to nothing is dropped on the next line.
-const REEL_SETS = (reelLibrary.sets || []) /* unfiltered: id lists, resolved through the filtered REEL_BY_ID below */
-  .map((set) => (set.ids || []).map((id) => REEL_BY_ID.get(id)).filter(Boolean))
-  .filter((set) => set.length);
+// ☠️ TEN PER SET, CUT HERE, NOT THE MANIFEST'S TWENTY FOUR.
+// Jarich: "instead of set of 8 make them set of 10 so we can reduce glass marbles for
+// each". Read as ten MARBLES per page rather than ten pages: "reduce glass marbles for
+// each" only makes sense as fewer beads on screen at once, and 192 reels at ten a page is
+// twenty sets, which matches "instead of set of 8" being about the label he can see.
+//
+// reel-library.json still ships `sets` of 24 and this no longer reads them. The cut is
+// taken from the FLAT reels order, which is the same order those sets were built from
+// (the 33 entries the wall has always shown come first), so nothing is dropped and
+// nothing is reordered: there are simply more, shorter pages. The reason the old code
+// deferred to the manifest was to keep set 1 stable on the day of the switch; that day
+// has passed, and the instruction now is explicitly to re-cut. If builder-products ever
+// re-cuts `sets` to ten, this should go back to reading them.
+const MARBLES_PER_SET = 10;
+const REEL_SETS = [];
+for (let i = 0; i < REEL_LIBRARY.length; i += MARBLES_PER_SET) {
+  REEL_SETS.push(REEL_LIBRARY.slice(i, i + MARBLES_PER_SET));
+}
 const ACTION_ITEMS = visible(actionReels.items);
 const PARTS = visible(partsData.parts);
 const CREW_SHOTS = visible(crewShots.items);

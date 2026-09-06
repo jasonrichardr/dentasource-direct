@@ -38,7 +38,7 @@ export default function TrustMarquee() {
   return (
     <div className="dsd-trust" role="presentation">
       {/* doubled, so the -50% sweep wraps with no seam */}
-      <div className="dsd-trust-track">
+      <div className="dsd-trust-track" data-marquee="trust">
         {[...trustItems, ...trustItems].map((text, i) => (
           <span className="dsd-trust-item" key={i} aria-hidden={i >= trustItems.length ? 'true' : undefined}>
             <span className="dsd-trust-dot" />

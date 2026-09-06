@@ -50,21 +50,113 @@
 // phone as a side effect rather than by design. We reproduce the observed speeds at the
 // two widths the brief named and step between them at our existing phone breakpoint.
 
-/** Measured on https://ffcdentalclinic.com, 2026-09-06. See the note above. */
-export const FFC_MARQUEE_PX_PER_S = {
-  media: { wide: 131.8, narrow: 88.6 },
-  text: { wide: 75.7, narrow: 58.1 },
-};
+// ---- the live settings contract, mirroring the lockup dials -------------------------
+//
+//   defaults  src/data/cinema/settings.json  (the shipped, measured values)
+//   storage   localStorage['dsd:settings'] = JSON of a PARTIAL settings object
+//   event     window 'dsd:settings', detail = { settings, source }
+//
+// Jarich: "make me able set the speed in localhost let me see marquee there so i can see
+// and sense the speed". A speed is not a number you can pick on paper, you pick it by
+// watching it, so the studio has to be able to re-time every track under his eye with no
+// reload. A partial is always merged over the defaults, so a stored set written by an
+// older studio can never break when a new family or override is added.
+
+import SETTINGS from '@/data/cinema/settings.json';
+
+export const SETTINGS_STORAGE_KEY = 'dsd:settings';
+export const SETTINGS_EVENT = 'dsd:settings';
+
+/**
+ * The shipped defaults, which ARE the FFC measurements: settings.json carries them and
+ * this is that object.
+ *
+ * ☠️ BOTH NAMES ARE EXPORTED ON PURPOSE. The studio (src/app/studio/MarqueeSpeed.jsx)
+ * imports FFC_MARQUEE_PX_PER_S in eight places, and renaming it out from under a sibling
+ * in a shared tree broke their build, not mine. The name is also the more precise of the
+ * two, since these numbers are exactly what was measured on FFC. MARQUEE_DEFAULTS is the
+ * alias for code that cares that they are the DEFAULTS rather than where they came from.
+ */
+export const FFC_MARQUEE_PX_PER_S = SETTINGS.marquee;
+export const MARQUEE_DEFAULTS = SETTINGS.marquee;
 
 /** Matches the phone breakpoint the cinema stylesheets already use. */
 export const NARROW_MAX_PX = 700;
 
-/** The speed a marquee of this kind should run at, for the viewport we are on now. */
-export function marqueePxPerSecond(kind = 'media') {
-  const band = FFC_MARQUEE_PX_PER_S[kind] || FFC_MARQUEE_PX_PER_S.media;
+const clone = (o) => JSON.parse(JSON.stringify(o));
+
+/** A partial merged over the defaults, two levels deep, which is all this shape needs. */
+function mergeMarquee(partial) {
+  const out = clone(MARQUEE_DEFAULTS);
+  const m = partial && partial.marquee;
+  if (!m) return out;
+  for (const family of ['media', 'text']) {
+    if (m[family]) {
+      for (const band of ['wide', 'narrow']) {
+        const v = Number(m[family][band]);
+        // ☠️ A SPEED OF ZERO IS A STOPPED MARQUEE AND AN INFINITE DURATION. The studio is
+        // a slider, so it WILL pass through small numbers on the way somewhere; anything
+        // not finite and positive is ignored rather than divided by.
+        if (Number.isFinite(v) && v > 0) out[family][band] = v;
+      }
+    }
+  }
+  if (m.overrides && typeof m.overrides === 'object') {
+    out.overrides = { ...out.overrides };
+    for (const [id, band] of Object.entries(m.overrides)) {
+      if (band && typeof band === 'object') out.overrides[id] = { ...band };
+    }
+  }
+  return out;
+}
+
+function readStored() {
+  try { return JSON.parse(localStorage.getItem(SETTINGS_STORAGE_KEY) || 'null'); } catch (e) { return null; }
+}
+
+let live = mergeMarquee(readStored());
+
+/** What the page is running right now: defaults, with any stored or live partial over it. */
+export function marqueeSettings() { return live; }
+
+/**
+ * Apply a partial. The studio calls this, or dispatches the event; either works, and both
+ * end up here so there is one path.
+ */
+export function setMarqueeSettings(partial) {
+  live = mergeMarquee(partial);
+  return live;
+}
+
+const listeners = new Set();
+/** Called whenever the live settings change, so observers can re-derive every duration. */
+export function onSettingsChange(fn) {
+  listeners.add(fn);
+  return () => listeners.delete(fn);
+}
+if (typeof window !== 'undefined') {
+  window.addEventListener(SETTINGS_EVENT, (e) => {
+    setMarqueeSettings((e.detail && e.detail.settings) || readStored());
+    for (const fn of listeners) fn();
+  });
+  // A second tab or the studio writing storage directly still reaches the page.
+  window.addEventListener('storage', (e) => {
+    if (e.key !== SETTINGS_STORAGE_KEY) return;
+    setMarqueeSettings(readStored());
+    for (const fn of listeners) fn();
+  });
+}
+
+/** The speed a marquee should run at now: a per-track override wins over its family. */
+export function marqueePxPerSecond(kind = 'media', id = null) {
   let narrow = false;
   try { narrow = window.matchMedia(`(max-width: ${NARROW_MAX_PX}px)`).matches; } catch (e) { /* SSR */ }
-  return narrow ? band.narrow : band.wide;
+  const band = narrow ? 'narrow' : 'wide';
+  const override = id && live.overrides && live.overrides[id];
+  const v = override && Number(override[band]);
+  if (Number.isFinite(v) && v > 0) return v;
+  const family = live[kind] || live.media;
+  return family[band];
 }
 
 /**
@@ -88,7 +180,7 @@ export function applyMarqueeSpeed(el, kind = 'media') {
   if (!el) return;
   const half = el.scrollWidth / 2;
   if (!half) return;                       // an empty track has no speed to set yet
-  const seconds = half / marqueePxPerSecond(kind);
+  const seconds = half / marqueePxPerSecond(kind, el.dataset ? el.dataset.marquee : null);
   if (!Number.isFinite(seconds) || seconds <= 0) return;
   el.style.animationDuration = `${seconds.toFixed(2)}s`;
 }
@@ -132,10 +224,13 @@ export function observeMarquees(root, kind = 'media', selector = '.dsd-strip-tra
     mq = window.matchMedia(`(max-width: ${NARROW_MAX_PX}px)`);
     mq.addEventListener('change', apply);
   } catch (e) { /* no matchMedia */ }
+  // The studio moving a slider re-times every track on the next frame, no reload.
+  const offSettings = onSettingsChange(apply);
   return () => {
     queued = true;            // stop a queued frame from touching a torn down tree
     ro.disconnect();
     mo.disconnect();
+    offSettings();
     if (mq) mq.removeEventListener('change', apply);
   };
 }
