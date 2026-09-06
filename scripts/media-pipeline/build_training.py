@@ -92,6 +92,12 @@ PICKS = {
 # head"), so overwriting the file with a bigger frame from another course would caption
 # one event with a picture of another. The articles keep them, where 360 wide reads fine;
 # the strips drop them.
+REASON = (
+    "360x640 source, too soft at strip tile size. NOT swapped for a larger frame: "
+    "each is a published article photograph whose alt text describes that exact "
+    "scene, so repointing the file would caption one event with a picture of "
+    "another. The articles keep them, where 360 wide reads correctly."
+)
 STRIP_UNSAFE = {"v039-1.jpg", "v039-2.jpg", "v039-5.jpg", "v033-8.jpg", "v301-2.jpg"}
 
 
@@ -107,7 +113,7 @@ def load_index() -> dict[int, Path]:
 
 def main() -> int:
     idx = load_index()
-    images, missing = [], []
+    images, missing, skipped = [], [], []
     for i, alt in PICKS.items():
         src = idx.get(i)
         if not src or not src.exists():
@@ -117,6 +123,7 @@ def main() -> int:
             raise SystemExit(f"index {i} is a share card: {src.name}")
         if src.name in STRIP_UNSAFE:
             print(f"  skipped {src.name}: too small for a strip tile, see STRIP_UNSAFE")
+            skipped.append(src.name)
             continue
         with Image.open(src) as im:
             w, h = im.size
@@ -164,9 +171,12 @@ def main() -> int:
             "the live patient procedure frames, the course poster and Q and A card, which "
             "are promo graphics carrying speaker names, the certificate collages, and "
             "individual portraits."
+            + (" REMOVED FROM THIS STRIP: " + ", ".join(sorted(skipped)) + ". " + REASON
+               if skipped else "")
         ),
+        "stripUnsafe": {n: REASON for n in sorted(skipped)},
         "counts": {"images": len(images), "videos": len(videos),
-                   "total": len(items), "missing": len(missing)},
+                   "total": len(items), "removedTooSmall": len(skipped)},
         "items": items,
     }
     OUT_JSON.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf8")

@@ -29,8 +29,6 @@ except ImportError:
     sys.exit("Pillow is required")
 
 REPO = Path(__file__).resolve().parents[2]
-SC = Path("/private/tmp/claude-501/-Users-jarich-second-brain/"
-          "bd07f7c7-7fc8-48d1-acd9-274356db7d47/scratchpad/media/crew")
 OUT_JSON = REPO / "src/data/cinema/crew-shots.json"
 
 # index -> alt, from the two contact sheets. Indices below 1000 are the install and
@@ -93,22 +91,56 @@ def is_share_card(path: Path) -> bool:
 # head"), so overwriting the file with a bigger frame from another course would caption
 # one event with a picture of another. The articles keep them, where 360 wide reads fine;
 # the strips drop them.
+REASON = (
+    "360x640 source, too soft at strip tile size. NOT swapped for a larger frame: "
+    "each is a published article photograph whose alt text describes that exact "
+    "scene, so repointing the file would caption one event with a picture of "
+    "another. The articles keep them, where 360 wide reads correctly."
+)
 STRIP_UNSAFE = {"v039-1.jpg", "v039-2.jpg", "v039-5.jpg", "v033-8.jpg", "v301-2.jpg"}
 
 
-def load_index(name: str) -> dict[int, Path]:
-    out = {}
-    for line in (SC / name).read_text().splitlines():
-        if not line.strip():
-            continue
-        idx, path = line.split("\t", 1)
-        out[int(idx)] = REPO / path
-    return out
+# THE INDEX IS REBUILT FROM THE REPO, NOT READ FROM A SCRATCH FILE. The first version of
+# this script read the contact-sheet index out of the session scratchpad, which meant that
+# once the intermediates were deleted the generator could not run at all: the picks below
+# were frozen numbers pointing at a list that no longer existed. The same rules that built
+# those sheets are stated here instead, so the numbering is reproducible from the repo
+# alone and a re-run is a real check rather than a wish.
+#
+# Rules, exactly as the sheets were built: install and delivery folders first, up to 6
+# photographs each, indices from 0; then every other folder, up to 4 each, indices from
+# 1000. Share cards are filtered out BEFORE numbering, which is why the numbering is
+# stable even though og.jpg exists in most folders.
+TECH_KEYWORDS = ("install", "deliver", "technician", "service", "dismantling",
+                 "restock", "pre-delivery", "turnover", "upgrade")
+NEWS = REPO / "public/images/news"
+
+
+def _folder_images(slug: str, limit: int) -> list[Path]:
+    files = [f for f in sorted((NEWS / slug).glob("*.jpg")) if not is_share_card(f)]
+    return files[:limit]
+
+
+def build_index() -> dict[int, Path]:
+    slugs = sorted(p.name for p in NEWS.iterdir() if p.is_dir())
+    tech = [s for s in slugs if any(k in s for k in TECH_KEYWORDS)]
+    other = [s for s in slugs if not any(k in s for k in TECH_KEYWORDS)]
+    idx, n = {}, 0
+    for s in tech:
+        for f in _folder_images(s, 6):
+            idx[n] = f
+            n += 1
+    n = 1000
+    for s in other:
+        for f in _folder_images(s, 4):
+            idx[n] = f
+            n += 1
+    return idx
 
 
 def main() -> int:
-    idx = load_index("t2.txt") | load_index("o2.txt")
-    items, missing = [], []
+    idx = build_index()
+    items, missing, skipped = [], [], []
 
     def add(i: int, alt: str, kind: str):
         src = idx.get(i)
@@ -119,6 +151,7 @@ def main() -> int:
             raise SystemExit(f"index {i} is a share card, not a photograph: {src.name}")
         if src.name in STRIP_UNSAFE:
             print(f"  skipped {src.name}: too small for a strip tile, see STRIP_UNSAFE")
+            skipped.append(src.name)
             return
         with Image.open(src) as im:
             w, h = im.size
@@ -145,11 +178,14 @@ def main() -> int:
             "Install promo graphics, the six model cards carrying prices, and the Denjoy "
             "product renders are all excluded. Items alternate technician and sales so a "
             "row never runs as one kind."
+            + (" REMOVED FROM THIS STRIP: " + ", ".join(sorted(skipped)) + ". " + REASON
+               if skipped else "")
         ),
+        "stripUnsafe": {n: REASON for n in sorted(skipped)},
         "counts": {"total": len(items),
                    "technician": sum(1 for i in items if i["kind"] == "technician"),
                    "sales": sum(1 for i in items if i["kind"] == "sales"),
-                   "missing": len(missing)},
+                   "removedTooSmall": len(skipped)},
         "items": items,
     }
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
