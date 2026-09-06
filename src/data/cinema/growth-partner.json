@@ -12,14 +12,23 @@
     "mini-18": "320 by 240, too small for the page"
   },
   "stripUnsafe": {
-    "reel-02.mp4": "404x720 into a 320x240 css tile: needs 640x480 device px at DPR 2",
-    "reel-06.mp4": "404x720 into a 320x240 css tile: needs 640x480 device px at DPR 2",
-    "reel-07.mp4": "404x720 into a 320x240 css tile: needs 640x480 device px at DPR 2",
-    "reel-08.mp4": "404x720 into a 320x240 css tile: needs 640x480 device px at DPR 2",
-    "reel-09.mp4": "404x720 into a 320x240 css tile: needs 640x480 device px at DPR 2",
-    "reel-10.mp4": "404x720 into a 320x240 css tile: needs 640x480 device px at DPR 2",
-    "reel-11.mp4": "720x404 into a 320x240 css tile: needs 640x480 device px at DPR 2",
-    "reel-12.mp4": "720x404 into a 320x240 css tile: needs 640x480 device px at DPR 2"
+    "reel-02.mp4": "404x720, short side 404 under 768: too soft for a 384px tile at DPR 2",
+    "reel-06.mp4": "404x720, short side 404 under 768: too soft for a 384px tile at DPR 2",
+    "reel-07.mp4": "404x720, short side 404 under 768: too soft for a 384px tile at DPR 2",
+    "reel-08.mp4": "404x720, short side 404 under 768: too soft for a 384px tile at DPR 2",
+    "reel-09.mp4": "404x720, short side 404 under 768: too soft for a 384px tile at DPR 2",
+    "reel-10.mp4": "404x720, short side 404 under 768: too soft for a 384px tile at DPR 2",
+    "reel-11.mp4": "720x404, short side 404 under 768: too soft for a 384px tile at DPR 2",
+    "reel-12.mp4": "720x404, short side 404 under 768: too soft for a 384px tile at DPR 2",
+    "scan-01.jpg": "742x1200, short side 742 under 768: too soft for a 384px tile at DPR 2",
+    "scan-02.jpg": "750x1200, short side 750 under 768: too soft for a 384px tile at DPR 2",
+    "studio-01.jpg": "757x1200, short side 757 under 768: too soft for a 384px tile at DPR 2",
+    "venue-01.jpg": "719x1200, short side 719 under 768: too soft for a 384px tile at DPR 2",
+    "venue-02.jpg": "740x1200, short side 740 under 768: too soft for a 384px tile at DPR 2",
+    "venue-03.jpg": "748x1200, short side 748 under 768: too soft for a 384px tile at DPR 2",
+    "venue-04.jpg": "733x1200, short side 733 under 768: too soft for a 384px tile at DPR 2",
+    "venue-05.jpg": "765x1200, short side 765 under 768: too soft for a 384px tile at DPR 2",
+    "venue-07.jpg": "748x1200, short side 748 under 768: too soft for a 384px tile at DPR 2"
   },
   "copy": {
     "headline": "Teach at a Training Center built for the way you teach.",
@@ -29,63 +38,15 @@
     ]
   },
   "counts": {
-    "images": 19,
+    "images": 10,
     "videos": 0,
     "missing": 0
   },
   "items": [
     {
       "type": "image",
-      "src": "/cinema/growth/venue-01.jpg",
-      "width": 719,
-      "height": 1200,
-      "alt": "A session under way in the Training Center",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    },
-    {
-      "type": "image",
-      "src": "/cinema/growth/venue-02.jpg",
-      "width": 740,
-      "height": 1200,
-      "alt": "A session under way in the Training Center",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    },
-    {
-      "type": "image",
-      "src": "/cinema/growth/venue-03.jpg",
-      "width": 748,
-      "height": 1200,
-      "alt": "A session under way in the Training Center",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    },
-    {
-      "type": "image",
-      "src": "/cinema/growth/venue-04.jpg",
-      "width": 733,
-      "height": 1200,
-      "alt": "A session under way in the Training Center",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    },
-    {
-      "type": "image",
-      "src": "/cinema/growth/venue-05.jpg",
-      "width": 765,
-      "height": 1200,
-      "alt": "A session under way in the Training Center",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    },
-    {
-      "type": "image",
       "src": "/cinema/growth/venue-06.jpg",
       "width": 785,
-      "height": 1200,
-      "alt": "A session under way in the Training Center",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    },
-    {
-      "type": "image",
-      "src": "/cinema/growth/venue-07.jpg",
-      "width": 748,
       "height": 1200,
       "alt": "A session under way in the Training Center",
       "source_url": "https://ffcdentalclinic.com/growth-partner/"
@@ -112,22 +73,6 @@
       "width": 1400,
       "height": 1050,
       "alt": "A session under way in the Training Center",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    },
-    {
-      "type": "image",
-      "src": "/cinema/growth/scan-01.jpg",
-      "width": 742,
-      "height": 1200,
-      "alt": "Digital scanning and planning at a workstation",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    },
-    {
-      "type": "image",
-      "src": "/cinema/growth/scan-02.jpg",
-      "width": 750,
-      "height": 1200,
-      "alt": "Digital scanning and planning at a workstation",
       "source_url": "https://ffcdentalclinic.com/growth-partner/"
     },
     {
@@ -177,6 +122,73 @@
       "height": 1050,
       "alt": "Digital scanning and planning at a workstation",
       "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    }
+  ],
+  "tilePx": 384,
+  "heldBack": [
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-01.jpg",
+      "width": 719,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-02.jpg",
+      "width": 740,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-03.jpg",
+      "width": 748,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-04.jpg",
+      "width": 733,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-05.jpg",
+      "width": 765,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/venue-07.jpg",
+      "width": 748,
+      "height": 1200,
+      "alt": "A session under way in the Training Center",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/scan-01.jpg",
+      "width": 742,
+      "height": 1200,
+      "alt": "Digital scanning and planning at a workstation",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+    },
+    {
+      "type": "image",
+      "src": "/cinema/growth/scan-02.jpg",
+      "width": 750,
+      "height": 1200,
+      "alt": "Digital scanning and planning at a workstation",
+      "source_url": "https://ffcdentalclinic.com/growth-partner/"
     },
     {
       "type": "image",
@@ -185,11 +197,7 @@
       "height": 1200,
       "alt": "Filming a lesson on the Training Center floor",
       "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    }
-  ],
-  "tilePx": 320,
-  "tileHeightPx": 240,
-  "heldBack": [
+    },
     {
       "type": "video",
       "src": "/cinema/growth/reel-02.mp4",

@@ -93,30 +93,36 @@ def is_share_card(path: Path) -> bool:
 # the strips drop them.
 # ☠️ TILE SIZE DECIDES, NOT MANIFEST TYPE. Ruled a117e320 after builder-home's
 # counterexample: crew-shots' row is 126px, where a 360 wide photograph is fine, so a
-# blanket "strip manifest" ban removed two frames from the one place they still worked.
+# blanket "strip manifest" ban removed frames from the one place they still worked.
 #
-# The comparison is min(srcW/tileW, srcH/tileH) >= DPR, NOT tileW*DPR vs the long side.
-# These tiles are object-fit: cover, which crops the excess, so the BINDING axis is the
-# smaller of the two ratios. The long side shorthand gets crew-shots right and
-# training-media wrong: a 360x640 frame in a 320x240 tile has a long side of 640, which
-# clears 320*2, yet only 360 pixels cover a 640 device px width. Measured, not assumed.
+# THE COMPARISON IS THE SHORT SIDE, NOT THE LONG ONE, and not the width either. These
+# tiles are object-fit: cover, so the source has to cover BOTH axes: w >= 2*tileW AND
+# h >= 2*tileH. For these 4:3 tiles and these portrait sources that reduces to the short
+# side, which is the form builder-room shipped in the studio (39093a8). Using the same
+# form here is the point: a file the studio bars has to be the file the generator bars,
+# or the code and the data disagree about the same photograph.
 #
-# The case that started it: v039-1, v039-2, v039-5, v033-8, v301-2, all 360x640 because
-# that is their source reel's native size. Under this rule they are barred where the tile
-# is large and kept where it is small, rather than banned everywhere by name.
+# The long-side shorthand is what this replaces. It would compute 288*2 = 576 < 640 for
+# installs and re-admit v301-2 on the next run, undoing a correct removal.
+#
+# DELIBERATELY CONSERVATIVE, and here is where it differs from the exact cover condition:
+# an 800x600 source in a 384x288 tile needs 768x576 and has it, but its short side is 600,
+# under 768, so this bars it. Nothing in the set is shaped like that (the sources are 360,
+# 720, 1080 and 1400), so the conservatism costs nothing today. Recorded because the day
+# it does cost something, the reason should not have to be rediscovered.
 DPR = 2
 
 
-def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None:
+def strip_unsafe(src_w: int, src_h: int, tile_px: int) -> str | None:
     """Reason the file is too soft for this tile, or None if it is fine."""
     if not src_w or not src_h:
         return None
-    if min(src_w / tile_w, src_h / tile_h) >= DPR:
+    if min(src_w, src_h) >= tile_px * DPR:
         return None
-    return (f"{src_w}x{src_h} into a {tile_w}x{tile_h} css tile: needs "
-            f"{tile_w * DPR}x{tile_h * DPR} device px at DPR {DPR}")
+    return (f"{src_w}x{src_h}, short side {min(src_w, src_h)} under {tile_px * DPR}: "
+            f"too soft for a {tile_px}px tile at DPR {DPR}")
 
-TILE_W, TILE_H = 126, 84   # .dsd-crew-shot in home-cinema.css, measured
+TILE_PX = 126   # .dsd-crew-shot in home-cinema.css, measured
 
 
 # THE INDEX IS REBUILT FROM THE REPO, NOT READ FROM A SCRATCH FILE. The first version of
@@ -171,7 +177,7 @@ def main() -> int:
 
         with Image.open(src) as im:
             w, h = im.size
-        why = strip_unsafe(w, h, TILE_W, TILE_H)
+        why = strip_unsafe(w, h, TILE_PX)
         if why:
             skipped[src.name] = why
             return
@@ -201,8 +207,7 @@ def main() -> int:
             + (" REMOVED AT THIS TILE SIZE: " + ", ".join(sorted(skipped)) + "."
                if skipped else "")
         ),
-        "tilePx": TILE_W,
-        "tileHeightPx": TILE_H,
+        "tilePx": TILE_PX,
         "stripUnsafe": dict(sorted(skipped.items())),
         "counts": {"total": len(items),
                    "technician": sum(1 for i in items if i["kind"] == "technician"),

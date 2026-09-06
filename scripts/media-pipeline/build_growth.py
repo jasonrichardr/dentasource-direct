@@ -78,32 +78,45 @@ VIDEOS = [
 # growth-partner.json feeds the training beat's mixed marquee ALONGSIDE
 # training-media.json: HomeCinema.jsx concatenates GROWTH_ITEMS onto TRAINING_ITEMS into
 # ONE array on the `training-center` beat, rendered by one ActionPanel. Same track, same
-# tile. That is why the tile below is 320 and not the 384 an earlier draft carried: the
-# number is read off the element that renders these files, not off the manifest they
-# happen to live in. Adding the key to the JSON by hand would not survive, because this
-# script, build_hd.py and vps_encode.py all rewrite the file; it has to be emitted.
+# tile, and that tile is `.dsd-mixed .dsd-strip-track img`, NOT the plain `.dsd-strip-track
+# img` one class less specific. The specific rule wins the cascade: clamp(150px, 32vh,
+# 300px) at 4/3, which measures 384 css px wide on a production build. I read the general
+# rule first and declared 320, which asked for 640px of source where the tile needs 768.
+# Adding the key to the JSON by hand would not survive, because this script, build_hd.py
+# and vps_encode.py all rewrite the file; it has to be emitted.
 #
 # ☠️ TILE SIZE DECIDES, NOT MANIFEST TYPE. Ruled a117e320 after builder-home's
 # counterexample: crew-shots' row is 126px, where a 360 wide photograph is fine, so a
 # blanket "strip manifest" ban removed frames from the one place they still worked.
 #
-# The comparison is min(srcW/tileW, srcH/tileH) >= DPR, NOT tileW*DPR vs the long side.
-# These tiles are object-fit: cover, which crops the excess, so the BINDING axis is the
-# smaller of the two ratios. The long side shorthand gets crew-shots right and this strip
-# wrong: a 360x640 frame has a long side of 640, which clears 320*2, yet only 360 pixels
-# cover a 640 device px width. Measured, not assumed.
+# THE COMPARISON IS THE SHORT SIDE, NOT THE LONG ONE, and not the width either. These
+# tiles are object-fit: cover, so the source has to cover BOTH axes: w >= 2*tileW AND
+# h >= 2*tileH. For these 4:3 tiles and these portrait sources that reduces to the short
+# side, which is the form builder-room shipped in the studio (39093a8). Using the same
+# form here is the point: a file the studio bars has to be the file the generator bars,
+# or the code and the data disagree about the same photograph.
+#
+# The long-side shorthand is what this replaces. It would compute 288*2 = 576 < 640 for
+# installs and re-admit v301-2 on the next run, undoing a correct removal.
+#
+# DELIBERATELY CONSERVATIVE, and here is where it differs from the exact cover condition:
+# an 800x600 source in a 384x288 tile needs 768x576 and has it, but its short side is 600,
+# under 768, so this bars it. Nothing in the set is shaped like that (the sources are 360,
+# 720, 1080 and 1400), so the conservatism costs nothing today. Recorded because the day
+# it does cost something, the reason should not have to be rediscovered.
 DPR = 2
-TILE_W, TILE_H = 320, 240   # .dsd-strip-track img, 24vh cap at 4/3, measured
 
 
-def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None:
+def strip_unsafe(src_w: int, src_h: int, tile_px: int) -> str | None:
     """Reason the file is too soft for this tile, or None if it is fine."""
     if not src_w or not src_h:
         return None
-    if min(src_w / tile_w, src_h / tile_h) >= DPR:
+    if min(src_w, src_h) >= tile_px * DPR:
         return None
-    return (f"{src_w}x{src_h} into a {tile_w}x{tile_h} css tile: needs "
-            f"{tile_w * DPR}x{tile_h * DPR} device px at DPR {DPR}")
+    return (f"{src_w}x{src_h}, short side {min(src_w, src_h)} under {tile_px * DPR}: "
+            f"too soft for a {tile_px}px tile at DPR {DPR}")
+
+TILE_PX = 384   # the SAME .dsd-mixed track as training-media, measured
 
 
 EXCLUDED = {
@@ -201,14 +214,15 @@ def refresh() -> int:
                 raise SystemExit(f"growth image missing from the repo: {it['src']}")
             with Image.open(f) as im:
                 it["width"], it["height"] = im.size
-        why = strip_unsafe(it.get("width") or 0, it.get("height") or 0, TILE_W, TILE_H)
+        why = strip_unsafe(it.get("width") or 0, it.get("height") or 0, TILE_PX)
         if why:
             refused[Path(it["src"]).name] = why
             held.append(it)
             continue
         items.append(it)
 
-    prev["tilePx"], prev["tileHeightPx"] = TILE_W, TILE_H
+    prev["tilePx"] = TILE_PX
+    prev.pop("tileHeightPx", None)          # an earlier draft carried a second key
     prev["stripUnsafe"] = dict(sorted(refused.items()))
     prev["heldBack"] = held
     prev["counts"] = {"images": sum(1 for i in items if i["type"] == "image"),
@@ -247,7 +261,7 @@ def main() -> int:
         items.append({"type": "image", "src": f"/cinema/growth/{name}",
                       "width": im.width, "height": im.height, "alt": alt,
                       "source_url": PAGE_URL})
-        why = strip_unsafe(im.width, im.height, TILE_W, TILE_H)
+        why = strip_unsafe(im.width, im.height, TILE_PX)
         if why:
             refused[name] = why
             items.pop()
@@ -268,7 +282,7 @@ def main() -> int:
                       "poster": f"/cinema/growth/{poster_name}",
                       "width": w, "height": h, "duration": dur, "alt": alt,
                       "source_url": PAGE_URL})
-        why = strip_unsafe(w, h, TILE_W, TILE_H)
+        why = strip_unsafe(w, h, TILE_PX)
         if why:
             refused[name] = why
             items.pop()
@@ -285,18 +299,19 @@ def main() -> int:
             "portrait and patient case data; a speaker lineup graphic and a certificate "
             "handover reel, both carrying names; a promotional card, which is an ad "
             "render rather than footage; a reel of live procedures on patients; and one "
-            "image too small to use. THE 8 CLIPS ARE OUT OF THE STRIP FOR NOW, AND THE "
-            "CAUSE IS OUR OWN ENCODE, NOT THE SOURCE: VIDEO_MAX caps the LONG side at 720, "
-            "so a 9:16 clip lands 404 wide, and 404 cannot cover a 320px tile at DPR 2, "
-            "which needs 640. The originals are larger. The remedy is a 720 WIDE bead "
-            "re-encode, the same profile the reel beads get, after which they measure 720 "
-            "x 1280 and this generator readmits them with no edit here. They are barred "
-            "rather than left in because a 404 wide clip in a 640 device px tile is "
-            "exactly the softness that was complained about."
+            "image too small to use. 17 OF THE 27 ARE OUT OF THE STRIP AT THIS TILE, IN "
+            "TWO GROUPS. The 8 clips are our own encode, not a source ceiling: VIDEO_MAX "
+            "caps the LONG side at 720, so a 9:16 clip lands 404 wide against the 768 a "
+            "384px tile needs at DPR 2. The originals are larger, and a 720 WIDE bead "
+            "re-encode, the profile the reel beads already get, brings them back with no "
+            "edit here. The 9 photographs are a different case and a much closer call: "
+            "they are 719 to 765 wide against 768, missing by 3 to 49 pixels, under 7 "
+            "percent. That is the source's own size and not a downscale, so it cannot be "
+            "recovered by re-encoding. They are held, not deleted, and readmit themselves "
+            "if larger originals are ever fetched."
         ),
         "excluded": EXCLUDED,
-        "tilePx": TILE_W,
-        "tileHeightPx": TILE_H,
+        "tilePx": TILE_PX,
         "stripUnsafe": dict(sorted(refused.items())),
         "copy": page_copy(),
         "counts": {"images": sum(1 for i in items if i["type"] == "image"),
