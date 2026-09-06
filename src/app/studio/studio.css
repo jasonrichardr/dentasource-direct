@@ -505,3 +505,16 @@
 .st-pick-x { font-size: 9.5px; color: var(--warn); }
 .st-guard { font-size: 9.5px; letter-spacing: 0.06em; color: var(--signal); border: 1px solid var(--signal-deep); border-radius: 999px; padding: 1px 8px; cursor: help; text-transform: none; }
 .st-guard.none { color: var(--ink-faint); border-color: var(--line); }
+
+/* the size guard reporting itself unable to measure: loud, because the failure
+   it announces is indistinguishable from everything being fine */
+.st .st-outage {
+  margin: 0;
+  padding: 8px 16px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #7a2718;
+  background: #ffe9e2;
+  border-bottom: 1px solid #f0b8a6;
+}
+.st .st-outage strong { font-weight: 700; }

@@ -36,6 +36,14 @@ export default function Studio() {
   const [sel, setSel] = useState(0);
   const [busy, setBusy] = useState('');
   const [note, setNote] = useState(null);
+  // ☠️ A GUARD THAT CANNOT MEASURE IS A GUARD THAT IS OFF, AND IT LOOKS FINE.
+  // Every size decision comes from sharp or ffprobe reading the actual file, and
+  // an unmeasurable file is never barred — so a broken pipeline renders as a
+  // studio where everything passes. The two states were indistinguishable until
+  // this banner; the flag had been returned by the route and displayed nowhere.
+  // One pipeline can fail without the other, so the wording claims only what is
+  // known: some files, not all.
+  const [pipeline, setPipeline] = useState(null);
   const [dragFrom, setDragFrom] = useState(null);
 
 
@@ -55,6 +63,7 @@ export default function Studio() {
         // that EXISTS can be selected.
         const all = d.files || [];
         setFiles(all);
+        setPipeline(d.pipelineBroken || null);
         const first = all.find((f) => f.exists);
         if (first) setActiveId(first.id);
       })
@@ -132,6 +141,7 @@ export default function Studio() {
         .then((r) => r.json())
         .then((d) => {
           setFiles(d.files || []);
+          setPipeline(d.pipelineBroken || null);
         })
         .catch(() => {});
     },
@@ -217,6 +227,13 @@ export default function Studio() {
           {busy === 'saving' ? 'Saving…' : dirty ? 'Save changes' : 'Saved'}
         </button>
       </header>
+
+      {pipeline ? (
+        <p className="st-outage">
+          <strong>Some files cannot be measured.</strong> Anything the studio cannot measure is never
+          barred, which on screen looks exactly like it passing. Reason: {pipeline}
+        </p>
+      ) : null}
 
       <div className="st-body">
         <aside className="st-rail">

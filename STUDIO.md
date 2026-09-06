@@ -257,6 +257,14 @@ its `tileHeightPx`.
 A list that declares **no `tilePx`** bars nothing, and the studio labels it "no
 tile size declared" rather than looking guarded.
 
+**If the studio cannot measure, it says so.** Every size decision reads the
+actual file — sharp for pictures, ffprobe for video — and a file that cannot be
+read is never barred. So a broken pipeline renders as a studio where everything
+passes, which is indistinguishable from a healthy one. A red strip across the
+top now names the failure the moment any measurement fails. If `sharp` is
+missing outright the file list fails loudly instead, with the error in the
+header.
+
 **Where a tile size came from** can travel with it, in `tileSource`, and the
 studio prints it in the hover on the set. Every other tile can be checked by
 opening the page and inspecting the element; the marbles' bead cannot, because

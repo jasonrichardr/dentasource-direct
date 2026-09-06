@@ -39,7 +39,7 @@ const run = promisify(execFile);
 
 const dimsCache = new Map(); // basename -> {width, height} | null
 let indexed = null; // basename -> absolute path
-let pipelineBroken = null; // first failure message, surfaced to the studio
+let pipelineBroken = null; // first failure message; the studio prints it as a banner
 
 async function walk(dir, out, depth = 0) {
   if (depth > 6) return;
