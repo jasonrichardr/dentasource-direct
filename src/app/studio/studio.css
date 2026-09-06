@@ -518,3 +518,17 @@
   border-bottom: 1px solid #f0b8a6;
 }
 .st .st-outage strong { font-weight: 700; }
+
+/* offered, but never examined: the size could not be read, so the rule had no
+   opinion. Distinct from both a clean tile and a barred one. */
+.st .st-pick.unjudged { outline: 1px dashed color-mix(in srgb, var(--ink) 30%, transparent); }
+.st .st-pick-u {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  font-size: 9.5px;
+  padding: 1px 5px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--ink) 62%, transparent);
+  color: #fff;
+}

@@ -136,7 +136,16 @@ export default function Studio() {
       } catch {
         /* the write already happened; a manual reload will show it */
       }
-      setNote({ text: `${verb} ${n} into ${res.label}. Both files were written, each with a .bak.` });
+      // ☠️ AN ADMITTED FILE THAT WAS NEVER JUDGED IS NOT THE SAME AS ONE THAT
+      // PASSED. The size test has no opinion on a file it cannot measure — one
+      // that is not in the repo and carries no width in its row — so it goes in
+      // unexamined. Saying which ones is the difference between a guard that
+      // was quiet because nothing was wrong and a guard that was quiet because
+      // it was not looking.
+      const blind = res.unmeasured?.length
+        ? ` ${res.unmeasured.length === 1 ? 'One file was' : `${res.unmeasured.length} files were`} admitted unmeasured, so the size rule did not judge ${res.unmeasured.length === 1 ? 'it' : 'them'}: ${res.unmeasured.join(', ')}.`
+        : '';
+      setNote({ text: `${verb} ${n} into ${res.label}. Both files were written, each with a .bak.${blind}`, bad: !!blind });
       fetch('/api/studio/files')
         .then((r) => r.json())
         .then((d) => {
@@ -354,7 +363,6 @@ export default function Studio() {
                 source={{ path: active.path, pointer: [active.collection] }}
                 dirty={dirty}
                 onTransferred={afterTransfer}
-                guard={active.guard || null}
                 guard={active.guard || null}
               />
               {/* ☠️ WHY SOMETHING IS MISSING IS EDITORIAL INFORMATION. The growth

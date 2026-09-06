@@ -106,10 +106,20 @@ export async function measure(nameOrPath) {
 /** The reason this file is too small for that list, or null. The measurement is
  *  the file itself; dimensions written into a manifest row are the fallback for
  *  a file that cannot be read. */
+/** The dimensions to judge a file by: the file itself, else what its manifest
+ *  row claimed, else null. Null is the case worth naming — 25 of the reel
+ *  library's rows are neither on disk nor carry a width — because a file with no
+ *  dimensions is admitted without being judged, and that must not look like
+ *  passing. */
+export async function dimsFor(nameOrPath, declared = null) {
+  const measured = await measure(nameOrPath);
+  if (measured) return measured;
+  return declared?.width > 0 && declared?.height > 0 ? { width: declared.width, height: declared.height } : null;
+}
+
 export async function refusalFor(tile, nameOrPath, declared = null) {
   if (!tile) return null;
-  const dims = (await measure(nameOrPath)) || (declared?.width && declared?.height ? declared : null);
-  return softnessReason(tile, dims, isVideoPath(nameOrPath) ? 'video' : 'image');
+  return softnessReason(tile, await dimsFor(nameOrPath, declared), isVideoPath(nameOrPath) ? 'video' : 'image');
 }
 
 /**
@@ -162,6 +172,11 @@ export async function tileGuards() {
     // obtained. That belongs where the number is USED — on the set, in the
     // studio — not only in the file somebody would have to go and read.
     if (typeof data?.tileSource === 'string' && data.tileSource.trim()) tile.tileSource = data.tileSource.trim();
+    // the generator's own count of files it admitted because it could not
+    // measure them (builder-products, cf14e84). A non-zero count means that
+    // list's guard was partly blind when it last ran, which belongs on screen
+    // beside the tile it guards.
+    if (Number.isFinite(Number(data?.admittedUnmeasured))) tile.admittedUnmeasured = Number(data.admittedUnmeasured);
     let notedBarred = 0;
     for (const info of Object.values(noted)) if (softnessReason(tile, info.dims, info.kind)) notedBarred += 1;
     byPath[f.path] = {

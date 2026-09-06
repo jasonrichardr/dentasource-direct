@@ -71,14 +71,20 @@ export default function AssetPicker({ onPick, onClose, tile = null }) {
             // manifest happened to flag. A video has no width here and is never
             // barred by it.
             const why = softnessReason(tile, it, it.kind);
+            // ☠️ AND UNJUDGED IS NOT PASSED. A file whose size cannot be read —
+            // not in the repo, or a format nothing here can measure — is offered,
+            // because refusing what we cannot examine would empty the picker on
+            // a broken pipeline. It is marked so that "fine" and "never looked
+            // at" are different things on screen.
+            const unjudged = !why && tile?.tilePx && it.width == null;
             return (
             <button
               type="button"
-              className={`st-pick${why ? ' barred' : ''}`}
+              className={`st-pick${why ? ' barred' : ''}${unjudged ? ' unjudged' : ''}`}
               key={it.src}
               disabled={!!why}
               onClick={() => !why && onPick(it)}
-              title={why ? `Too small for this set: ${why}` : it.src}
+              title={why ? `Too small for this set: ${why}` : unjudged ? `${it.src}\nSize unknown, so the resolution rule did not judge this file.` : it.src}
             >
               {isVideoPath(it.src) ? (
                 // eslint-disable-next-line jsx-a11y/media-has-caption
@@ -90,6 +96,8 @@ export default function AssetPicker({ onPick, onClose, tile = null }) {
               <span className="st-pick-n">{it.name}</span>
               {why ? (
                 <span className="st-pick-x">too small here</span>
+              ) : unjudged ? (
+                <span className="st-pick-u">size unknown</span>
               ) : it.bytes ? (
                 <span className="st-pick-b">{Math.round(it.bytes / 1024)} KB</span>
               ) : null}

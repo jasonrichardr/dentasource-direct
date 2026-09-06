@@ -265,6 +265,15 @@ top now names the failure the moment any measurement fails. If `sharp` is
 missing outright the file list fails loudly instead, with the error in the
 header.
 
+**A file that could not be measured is never barred, and never silent.** The
+size rule has no opinion on a file it cannot read — one that is not in the repo
+and whose row carries no `width`, which is 25 of the reel library's rows. It
+goes in, because refusing what cannot be examined would empty the picker the
+moment a pipeline broke. So the studio says which ones: the picker tags them
+"size unknown", a transfer that admits one names it in the note, and a manifest
+carrying its generator's own `admittedUnmeasured` count shows it on the set.
+Admitted-unjudged and admitted-because-it-passed must not look the same.
+
 **Where a tile size came from** can travel with it, in `tileSource`, and the
 studio prints it in the hover on the set. Every other tile can be checked by
 opening the page and inspecting the element; the marbles' bead cannot, because

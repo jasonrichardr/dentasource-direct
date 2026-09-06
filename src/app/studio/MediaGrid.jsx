@@ -149,6 +149,7 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
                     ? 'It carries no video: "tileVideoPx" is declared null, so every clip is refused.'
                     : 'No video tile measured — the key is absent rather than null, so no clip is barred and nobody has said whether this list takes video.',
                 `The same test runs in the picker, in Send to… and on upload, whether or not a manifest ever flagged a file. ${guard.notedBarred} of the flagged files fail here.`,
+                guard.admittedUnmeasured ? `Its generator last admitted ${guard.admittedUnmeasured} file${guard.admittedUnmeasured === 1 ? '' : 's'} it could not measure, so the guard was partly blind on that run.` : '',
                 guard.tileSource ? `Where the tile size comes from: ${guard.tileSource}` : '',
               ].filter(Boolean).join(' ')
             }
@@ -165,6 +166,7 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
                 : ' · video tile not declared'}
             {guard.pictures === 'measured' && guard.floor !== COVER_MIN ? ` · floor ${floorText(guard.floor)}x` : null}
             {guard.pictures === 'measured' ? `: ${guard.notedBarred} barred` : null}
+            {guard.admittedUnmeasured ? ` · ${guard.admittedUnmeasured} admitted unmeasured` : null}
           </span>
         ) : null}
         <span className="st-f-n">{rows.length} {rows.length === 1 ? 'file' : 'files'}</span>

@@ -11,8 +11,8 @@
 
 import { readFile, writeFile, copyFile, appendFile } from 'node:fs/promises';
 
-import { FILES, LOG_FILE, absolute, basename, detectCollection, isVideoPath, isWritable, studioDisabled } from '@/lib/studio/registry';
-import { refusalFor, tileGuards } from '@/lib/studio/unsafe';
+import { FILES, LOG_FILE, absolute, basename, detectCollection, isVideoPath, isWritable, studioDisabled, tileState } from '@/lib/studio/registry';
+import { dimsFor, refusalFor, tileGuards } from '@/lib/studio/unsafe';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -191,6 +191,12 @@ export async function POST(request) {
   const { byPath } = await tileGuards();
   const tile = byPath[to.path] || null;
 
+  // ☠️ AND WHAT THE TEST COULD NOT JUDGE IS COUNTED, NOT ASSUMED FINE. A file
+  // that is not in the repo and whose row carries no width — 25 of the reel
+  // library's rows are exactly that — cannot be measured, so it goes in
+  // unexamined. That is the right policy and the wrong silence: admitted
+  // unjudged and admitted because it passed look identical unless one says so.
+  const unmeasured = [];
   if (tile) {
     for (const entry of picked) {
       const src = srcOf(entry);
@@ -198,6 +204,8 @@ export async function POST(request) {
       const why = await refusalFor(tile, src, declared);
       // the reason reads as a sentence about the file, so it needs no preamble
       if (why) return bad(`${basename(src)}: ${why}.`);
+      const kind = isVideoPath(src) ? 'video' : 'image';
+      if (tileState(tile, kind) === 'measured' && !(await dimsFor(src, declared))) unmeasured.push(basename(src));
     }
   }
 
@@ -214,7 +222,7 @@ export async function POST(request) {
   if (sameList) {
     const next = [...sourceList, ...adapted];
     await saveDoc(from.path, setIn(sourceDoc, from.pointer, next), `duplicate ${adapted.length} in ${from.path} ${from.pointer.join('.')}`);
-    return Response.json({ ok: true, moved: 0, copied: adapted.length, target: to.path });
+    return Response.json({ ok: true, moved: 0, copied: adapted.length, target: to.path, unmeasured });
   }
 
   targetDoc = setIn(targetDoc, to.pointer, [...targetList, ...adapted]);
@@ -232,5 +240,6 @@ export async function POST(request) {
     moved: mode === 'move' ? adapted.length : 0,
     copied: mode === 'copy' ? adapted.length : 0,
     target: to.path,
+    unmeasured,
   });
 }
