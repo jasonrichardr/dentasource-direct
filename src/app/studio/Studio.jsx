@@ -110,7 +110,8 @@ export default function Studio() {
       const d = await r.json();
       if (!r.ok) throw new Error(d.error || 'write failed');
       setDirty(false);
-      setNote({ text: `Saved ${active.path}. Previous version kept at ${d.backup}.` });
+      const unlogged = d.logged && d.logged.ok === false ? ` The file was saved but NOT written to the studio log: ${d.logged.error}.` : '';
+      setNote({ text: `Saved ${active.path}. Previous version kept at ${d.backup}.${unlogged}`, bad: !!unlogged });
     } catch (e) {
       setNote({ bad: true, text: e.message });
     } finally {
@@ -142,10 +143,14 @@ export default function Studio() {
       // unexamined. Saying which ones is the difference between a guard that
       // was quiet because nothing was wrong and a guard that was quiet because
       // it was not looking.
+      // ☠️ AND IF THE EDIT WAS NOT WRITTEN DOWN, SAY THAT TOO. The log never
+      // blocks a write, so a failed line used to disappear and leave the log
+      // reading as a complete account of the day.
+      const unlogged = res.logFailures?.length ? ` The change was made but NOT written to the studio log: ${res.logFailures.join('; ')}.` : '';
       const blind = res.unmeasured?.length
         ? ` ${res.unmeasured.length === 1 ? 'One file was' : `${res.unmeasured.length} files were`} admitted unmeasured, so the size rule did not judge ${res.unmeasured.length === 1 ? 'it' : 'them'}: ${res.unmeasured.join(', ')}.`
         : '';
-      setNote({ text: `${verb} ${n} into ${res.label}. Both files were written, each with a .bak.${blind}`, bad: !!blind });
+      setNote({ text: `${verb} ${n} into ${res.label}. Both files were written, each with a .bak.${blind}${unlogged}`, bad: !!(blind || unlogged) });
       fetch('/api/studio/files')
         .then((r) => r.json())
         .then((d) => {

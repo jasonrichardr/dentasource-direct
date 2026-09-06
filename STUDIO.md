@@ -265,6 +265,14 @@ top now names the failure the moment any measurement fails. If `sharp` is
 missing outright the file list fails loudly instead, with the error in the
 header.
 
+**If an edit was not written to the log, the studio says so.** Every write
+appends a line to `src/data/cinema/.studio-log`, and a failed append never
+blocks the write — that is right, an edit should not be lost because a log
+could not be opened. But the failure used to disappear into an empty catch,
+which left the log reading as a complete account of the day while missing
+entries. A save, a transfer or an upload whose line could not be written now
+says which, in red, and the edit still goes through.
+
 **A file that could not be measured is never barred, and never silent.** The
 size rule has no opinion on a file it cannot read — one that is not in the repo
 and whose row carries no `width`, which is 25 of the reel library's rows. It

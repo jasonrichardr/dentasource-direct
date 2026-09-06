@@ -9,15 +9,21 @@
 // The UI refuses to start one while the open file has unsaved edits, because
 // this reads the version on DISK and would otherwise silently discard them.
 
-import { readFile, writeFile, copyFile, appendFile } from 'node:fs/promises';
+import { readFile, writeFile, copyFile } from 'node:fs/promises';
 
-import { FILES, LOG_FILE, absolute, basename, detectCollection, isVideoPath, isWritable, studioDisabled, tileState } from '@/lib/studio/registry';
+import { FILES, absolute, basename, detectCollection, isVideoPath, isWritable, studioDisabled, tileState } from '@/lib/studio/registry';
+import { logLine } from '@/lib/studio/log';
 import { dimsFor, refusalFor, tileGuards } from '@/lib/studio/unsafe';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const bad = (msg) => Response.json({ error: msg }, { status: 400 });
+
+// ☠️ A RECORD THAT CAN BE INCOMPLETE WITHOUT SAYING SO IS WORSE THAN NO RECORD.
+// Two files are written per transfer and each logs; a swallowed failure left the
+// log looking complete while missing the line for a write that happened.
+const logFailures = [];
 
 const getIn = (obj, keys) => keys.reduce((o, k) => (o == null ? o : o[k]), obj);
 function setIn(obj, keys, value) {
@@ -136,11 +142,9 @@ async function saveDoc(path, data, note) {
     if (e.code !== 'ENOENT') throw e;
   }
   await writeFile(abs, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
-  try {
-    await appendFile(absolute(LOG_FILE), `${new Date().toISOString()}  ${note}\n`, 'utf8');
-  } catch {
-    /* the log never blocks a write */
-  }
+  // never blocks the write; the failure is returned so it can be shown
+  const logged = await logLine(note);
+  if (!logged.ok) logFailures.push(logged.error);
 }
 
 export async function POST(request) {
@@ -222,7 +226,7 @@ export async function POST(request) {
   if (sameList) {
     const next = [...sourceList, ...adapted];
     await saveDoc(from.path, setIn(sourceDoc, from.pointer, next), `duplicate ${adapted.length} in ${from.path} ${from.pointer.join('.')}`);
-    return Response.json({ ok: true, moved: 0, copied: adapted.length, target: to.path, unmeasured });
+    return Response.json({ ok: true, moved: 0, copied: adapted.length, target: to.path, unmeasured, logFailures: logFailures.splice(0) });
   }
 
   targetDoc = setIn(targetDoc, to.pointer, [...targetList, ...adapted]);
@@ -241,5 +245,6 @@ export async function POST(request) {
     copied: mode === 'copy' ? adapted.length : 0,
     target: to.path,
     unmeasured,
+    logFailures: logFailures.splice(0),
   });
 }

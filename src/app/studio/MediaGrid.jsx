@@ -116,8 +116,14 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
       // somewhere it fits — but it is not added here.
       const why = softnessReason(guard, d.dimensions, d.kind);
       if (why) throw new Error(`Saved to ${d.src}, but not added here. ${why}.`);
+      // the upload happened; if the log line did not, that joins the warnings
+      // rather than disappearing the way an empty catch used to lose it
+      const warnings = [
+        ...(d.warnings || []),
+        ...(d.logged && d.logged.ok === false ? [`Uploaded, but NOT written to the studio log: ${d.logged.error}`] : []),
+      ];
       set([...rows, objectMode ? { src: d.src, alt: pending.alt } : d.src]);
-      setPending(d.warnings?.length ? { file: null, alt: '', warnings: d.warnings } : null);
+      setPending(warnings.length ? { file: null, alt: '', warnings } : null);
       if (fileInput.current) fileInput.current.value = '';
     } catch (e) {
       setPending((p) => ({ ...p, busy: false, error: e.message }));

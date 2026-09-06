@@ -10,10 +10,11 @@
 // an absolute path and a path that merely starts with the right prefix all
 // fail. The only thing that passes is a file actually under the fence.
 
-import { readFile, writeFile, copyFile, appendFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, copyFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 
-import { LOG_FILE, absolute, isWritable, studioDisabled } from '@/lib/studio/registry';
+import { logLine } from '@/lib/studio/log';
+import { absolute, isWritable, studioDisabled } from '@/lib/studio/registry';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -21,14 +22,7 @@ export const dynamic = 'force-dynamic';
 const gone = () => new Response(null, { status: 404 });
 const bad = (msg) => Response.json({ error: msg }, { status: 400 });
 
-/** One line per write, so the day's edits can be read back without git. */
-async function log(line) {
-  try {
-    await appendFile(absolute(LOG_FILE), `${new Date().toISOString()}  ${line}\n`, 'utf8');
-  } catch {
-    /* the log is a convenience; never fail a save because of it */
-  }
-}
+
 
 export async function GET(request) {
   if (studioDisabled()) return gone();
@@ -77,6 +71,10 @@ export async function PUT(request) {
     return bad(`could not write: ${e.message}`);
   }
 
-  await log(`save ${rel} (${text.length} bytes)${note ? ` — ${note}` : ''}`);
-  return Response.json({ ok: true, path: rel, bytes: text.length, backup: `${rel}.bak` });
+  // ☠️ THE WRITE HAPPENED; SAY SO EVEN IF THE RECORD OF IT DID NOT. A failed
+  // log line never fails a save — that policy is right — but it used to vanish
+  // into an empty catch, which left the log looking like a full account of the
+  // day while missing entries. The caller reports it instead.
+  const logged = await logLine(`save ${rel} (${text.length} bytes)${note ? ` — ${note}` : ''}`);
+  return Response.json({ ok: true, path: rel, bytes: text.length, backup: `${rel}.bak`, logged });
 }

@@ -4,10 +4,11 @@
 // in public/cinema/uploads/<yyyy-mm>/<slug>.<ext>, which is inside the write
 // fence and nowhere near the tracked media. Dev only.
 
-import { mkdir, writeFile, appendFile, stat } from 'node:fs/promises';
+import { mkdir, writeFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 
-import { LOG_FILE, absolute, isImagePath, isVideoPath, studioDisabled } from '@/lib/studio/registry';
+import { logLine } from '@/lib/studio/log';
+import { absolute, isImagePath, isVideoPath, studioDisabled } from '@/lib/studio/registry';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -106,15 +107,8 @@ export async function POST(request) {
 
   await writeFile(absolute(`${dirRel}/${name}`), out);
   const src = `/cinema/uploads/${month}/${name}`;
-  try {
-    await appendFile(
-      absolute(LOG_FILE),
-      `${new Date().toISOString()}  upload ${src} (${out.length} bytes) alt="${alt.replace(/"/g, "'")}"\n`,
-      'utf8',
-    );
-  } catch {
-    /* the log never blocks an upload */
-  }
+  // never blocks the upload; a failed line is reported rather than swallowed
+  const logged = await logLine(`upload ${src} (${out.length} bytes) alt="${alt.replace(/"/g, "'")}"`);
 
   return Response.json({
     ok: true,
@@ -124,5 +118,6 @@ export async function POST(request) {
     bytes: out.length,
     dimensions,
     warnings,
+    logged,
   });
 }
