@@ -296,6 +296,7 @@ def main() -> int:
         # so a bar that can never fire would be decoration rather than a check. The strip
         # manifests declare it because theirs CAN fire and has.
         "tilePx": 56,
+        "tileHeightPx": 56,
         "counts": {
             "catalogue": len(parts),
             "produced": len(produced),

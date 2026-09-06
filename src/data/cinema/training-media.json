@@ -4,14 +4,15 @@
   "generated": "2026-09-06",
   "notes": "Photographs from the 15 training articles, picked by looking at a contact sheet, interleaved with every reel the library classified as training so the marquee alternates image, video, image. Videos reference the reel library by id; there is one copy of each clip on disk. ALT TEXT IS ROLE ONLY. Excluded: the live patient procedure frames, the course poster and Q and A card, which are promo graphics carrying speaker names, the certificate collages, and individual portraits. REMOVED AT THIS TILE SIZE: v022-3.jpg, v022-4.jpg, v039-2.jpg, v039-3.jpg, v039-4.jpg, v039-5.jpg, v039-6.jpg.",
   "tilePx": 384,
+  "tileHeightPx": 288,
   "stripUnsafe": {
-    "v022-3.jpg": "720x1280, short side 720 under 768: too soft for a 384px tile at DPR 2",
-    "v022-4.jpg": "720x1280, short side 720 under 768: too soft for a 384px tile at DPR 2",
-    "v039-2.jpg": "360x640, short side 360 under 768: too soft for a 384px tile at DPR 2",
-    "v039-3.jpg": "360x640, short side 360 under 768: too soft for a 384px tile at DPR 2",
-    "v039-4.jpg": "360x640, short side 360 under 768: too soft for a 384px tile at DPR 2",
-    "v039-5.jpg": "360x640, short side 360 under 768: too soft for a 384px tile at DPR 2",
-    "v039-6.jpg": "360x640, short side 360 under 768: too soft for a 384px tile at DPR 2"
+    "v022-3.jpg": "720x1280 into a 384x288 css tile: needs 768x576 device px at DPR 2",
+    "v022-4.jpg": "720x1280 into a 384x288 css tile: needs 768x576 device px at DPR 2",
+    "v039-2.jpg": "360x640 into a 384x288 css tile: needs 768x576 device px at DPR 2",
+    "v039-3.jpg": "360x640 into a 384x288 css tile: needs 768x576 device px at DPR 2",
+    "v039-4.jpg": "360x640 into a 384x288 css tile: needs 768x576 device px at DPR 2",
+    "v039-5.jpg": "360x640 into a 384x288 css tile: needs 768x576 device px at DPR 2",
+    "v039-6.jpg": "360x640 into a 384x288 css tile: needs 768x576 device px at DPR 2"
   },
   "counts": {
     "images": 31,

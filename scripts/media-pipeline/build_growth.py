@@ -89,34 +89,34 @@ VIDEOS = [
 # counterexample: crew-shots' row is 126px, where a 360 wide photograph is fine, so a
 # blanket "strip manifest" ban removed frames from the one place they still worked.
 #
-# THE COMPARISON IS THE SHORT SIDE, NOT THE LONG ONE, and not the width either. These
-# tiles are object-fit: cover, so the source has to cover BOTH axes: w >= 2*tileW AND
-# h >= 2*tileH. For these 4:3 tiles and these portrait sources that reduces to the short
-# side, which is the form builder-room shipped in the studio (39093a8). Using the same
-# form here is the point: a file the studio bars has to be the file the generator bars,
-# or the code and the data disagree about the same photograph.
+# THE TEST IS EXACT COVER: min(srcW/tileW, srcH/tileH) >= DPR. These tiles are
+# object-fit: cover, which crops the excess, so the source has to satisfy BOTH axes and
+# the binding one is whichever ratio is smaller. Ruled form as of 2026-09-06.
 #
-# The long-side shorthand is what this replaces. It would compute 288*2 = 576 < 640 for
-# installs and re-admit v301-2 on the next run, undoing a correct removal.
+# It is NOT the long side, which would compute 288*2 = 576 < 640 for installs and
+# re-admit v301-2, undoing a correct removal. It is not the width either.
 #
-# DELIBERATELY CONSERVATIVE, and here is where it differs from the exact cover condition:
-# an 800x600 source in a 384x288 tile needs 768x576 and has it, but its short side is 600,
-# under 768, so this bars it. Nothing in the set is shaped like that (the sources are 360,
-# 720, 1080 and 1400), so the conservatism costs nothing today. Recorded because the day
-# it does cost something, the reason should not have to be rediscovered.
+# THE SHORT SIDE SHORTHAND AGREES WITH IT ON EVERY FILE WE HOLD, checked rather than
+# assumed: 124 files across crew-shots, training-media and growth-partner, zero
+# disagreements. That matters because builder-room's studio (39093a8) compares short
+# sides, and a file the studio bars has to be the file the generator bars. The two forms
+# part company only for a landscape source in a non-square tile, an 800x600 into a
+# 384x288 being the shape: it has the 768x576 cover needs, so this admits it, while the
+# short side of 600 would bar it. Nothing we hold is shaped that way. If something ever
+# is, the studio is the copy that needs updating, because cover is the true condition.
 DPR = 2
 
 
-def strip_unsafe(src_w: int, src_h: int, tile_px: int) -> str | None:
+def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None:
     """Reason the file is too soft for this tile, or None if it is fine."""
     if not src_w or not src_h:
         return None
-    if min(src_w, src_h) >= tile_px * DPR:
+    if min(src_w / tile_w, src_h / tile_h) >= DPR:
         return None
-    return (f"{src_w}x{src_h}, short side {min(src_w, src_h)} under {tile_px * DPR}: "
-            f"too soft for a {tile_px}px tile at DPR {DPR}")
+    return (f"{src_w}x{src_h} into a {tile_w}x{tile_h} css tile: needs "
+            f"{tile_w * DPR}x{tile_h * DPR} device px at DPR {DPR}")
 
-TILE_PX = 384   # the SAME .dsd-mixed track as training-media, measured
+TILE_W, TILE_H = 384, 288   # the SAME .dsd-mixed track as training-media, measured
 
 
 EXCLUDED = {
@@ -214,15 +214,14 @@ def refresh() -> int:
                 raise SystemExit(f"growth image missing from the repo: {it['src']}")
             with Image.open(f) as im:
                 it["width"], it["height"] = im.size
-        why = strip_unsafe(it.get("width") or 0, it.get("height") or 0, TILE_PX)
+        why = strip_unsafe(it.get("width") or 0, it.get("height") or 0, TILE_W, TILE_H)
         if why:
             refused[Path(it["src"]).name] = why
             held.append(it)
             continue
         items.append(it)
 
-    prev["tilePx"] = TILE_PX
-    prev.pop("tileHeightPx", None)          # an earlier draft carried a second key
+    prev["tilePx"], prev["tileHeightPx"] = TILE_W, TILE_H
     prev["stripUnsafe"] = dict(sorted(refused.items()))
     prev["heldBack"] = held
     prev["counts"] = {"images": sum(1 for i in items if i["type"] == "image"),
@@ -261,7 +260,7 @@ def main() -> int:
         items.append({"type": "image", "src": f"/cinema/growth/{name}",
                       "width": im.width, "height": im.height, "alt": alt,
                       "source_url": PAGE_URL})
-        why = strip_unsafe(im.width, im.height, TILE_PX)
+        why = strip_unsafe(im.width, im.height, TILE_W, TILE_H)
         if why:
             refused[name] = why
             items.pop()
@@ -282,7 +281,7 @@ def main() -> int:
                       "poster": f"/cinema/growth/{poster_name}",
                       "width": w, "height": h, "duration": dur, "alt": alt,
                       "source_url": PAGE_URL})
-        why = strip_unsafe(w, h, TILE_PX)
+        why = strip_unsafe(w, h, TILE_W, TILE_H)
         if why:
             refused[name] = why
             items.pop()
@@ -311,7 +310,8 @@ def main() -> int:
             "if larger originals are ever fetched."
         ),
         "excluded": EXCLUDED,
-        "tilePx": TILE_PX,
+        "tilePx": TILE_W,
+        "tileHeightPx": TILE_H,
         "stripUnsafe": dict(sorted(refused.items())),
         "copy": page_copy(),
         "counts": {"images": sum(1 for i in items if i["type"] == "image"),
