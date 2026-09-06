@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { mediaUrl } from '@/lib/cinema/media';
 
 const MESSENGER_HREF =
   'https://m.me/dentasource?ref=denjoy_2026_landing';
@@ -13,7 +14,7 @@ export default function DenjoyCTA() {
     >
       {/* Joining Forces brand-bookend video */}
       <video
-        src="/videos/denjoy/joining-forces.mp4"
+        src={mediaUrl('/videos/denjoy/joining-forces.mp4')}
         poster="/videos/denjoy/joining-forces-poster.jpg"
         autoPlay
         muted

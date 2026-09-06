@@ -14,6 +14,7 @@ import { useRef } from 'react';
 import { m, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { SectionWrap, Pill, MonoLabel } from '../primitives';
 import { closing } from '../content';
+import { mediaUrl } from '@/lib/cinema/media';
 
 /* Full-bleed background, over-sized so the parallax translate never
    reveals an edge (wrapper runs 10% past each side of the section).
@@ -25,7 +26,7 @@ function ParallaxBg({ y }) {
     <m.div className="absolute inset-x-0 will-change-transform" style={{ top: '-10%', bottom: '-10%', y }}>
       <video
         className="absolute inset-0 h-full w-full object-cover object-center"
-        src={closing.video}
+        src={mediaUrl(closing.video)}
         poster={closing.bg}
         autoPlay
         muted

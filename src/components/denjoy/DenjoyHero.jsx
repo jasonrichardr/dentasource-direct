@@ -3,12 +3,13 @@
 import { useState } from 'react';
 import { m as motion } from 'framer-motion';
 import Link from 'next/link';
+import { mediaUrl } from '@/lib/cinema/media';
 
 const MESSENGER_HREF = 'https://m.me/dentasource?ref=denjoy_2026_landing';
 
 const CLIPS = [
-  { src: '/videos/denjoy/denjoy-hq-720.mp4',   poster: '/videos/denjoy/denjoy-hq-poster.jpg' },
-  { src: '/videos/denjoy/denjoy-team-720.mp4', poster: '/videos/denjoy/denjoy-team-poster.jpg' },
+  { src: mediaUrl('/videos/denjoy/denjoy-hq-720.mp4'),   poster: '/videos/denjoy/denjoy-hq-poster.jpg' },
+  { src: mediaUrl('/videos/denjoy/denjoy-team-720.mp4'), poster: '/videos/denjoy/denjoy-team-poster.jpg' },
 ];
 
 export default function DenjoyHero() {
