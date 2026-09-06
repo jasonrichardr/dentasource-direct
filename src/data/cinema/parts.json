@@ -2,14 +2,19 @@
   "version": 1,
   "source": "https://dsd-servicehub-11edfd29b6df.vercel.app/spare-parts",
   "generated": "2026-09-06",
-  "notes": "Spare parts from DSD's own service hub knowledge base, built by scripts/parts-pipeline/build.py from the catalogue that generates that site. RULED: code numbers never render. `code` is internal reference only and slugs are built from the part name, never the code. White studio backgrounds are flood filled from the border so interior highlights survive. 161 of the 244 catalogue entries carry NO name in the source, only a code; those keep name null and labelled false so the marquee can show the photograph without a caption. No name has been invented. Order: named parts first, categories interleaved so the opening run reads as variety, unnamed photographs after.",
+  "notes": "Every one of the 244 parts now carries a dental unit name. The 75 the catalogue named keep their wording (`named_by: source`); the other 169 were IDENTIFIED BY SIGHT from the photographs (`named_by: inferred`) using dental unit and pneumatic terminology. Where a photograph does not show enough to state a function the name is an honest generic and `confidence` is low, so it can be corrected in the studio. RV codes never appear in a name or a slug; `code` stays internal and the script asserts no code string reaches a name. Source named and inferred parts alternate in this list.",
   "counts": {
     "catalogue": 244,
     "produced": 244,
-    "named": 75,
-    "unnamed": 169,
+    "named": 244,
+    "unnamed": 0,
     "backgroundNotCleaned": 0,
-    "failed": 0
+    "failed": 0,
+    "namedBySource": 75,
+    "namedByInference": 169,
+    "confidenceHigh": 175,
+    "confidenceMedium": 66,
+    "confidenceLow": 3
   },
   "parts": [
     {
@@ -20,7 +25,21 @@
       "width": 381,
       "height": 208,
       "category": "Headrest & Upholstery",
-      "code": "RV045-2"
+      "code": "RV045-2",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "mounting-bracket-u-channel",
+      "name": "Mounting bracket, U channel",
+      "labelled": true,
+      "src": "/cinema/parts/mounting-bracket-u-channel.png",
+      "width": 237,
+      "height": 276,
+      "category": "Covers & Frame",
+      "code": "RV151",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "3-way-syringe",
@@ -30,7 +49,21 @@
       "width": 408,
       "height": 229,
       "category": "Syringe & Handpiece",
-      "code": "RV022"
+      "code": "RV022",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "toroidal-transformer",
+      "name": "Toroidal transformer",
+      "labelled": true,
+      "src": "/cinema/parts/toroidal-transformer.png",
+      "width": 259,
+      "height": 225,
+      "category": "Electrical",
+      "code": "RV100-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "led-x-ray",
@@ -40,7 +73,21 @@
       "width": 230,
       "height": 233,
       "category": "Light & X-Ray",
-      "code": "RV013"
+      "code": "RV013",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "toroidal-transformer-2",
+      "name": "Toroidal transformer",
+      "labelled": true,
+      "src": "/cinema/parts/toroidal-transformer-2.png",
+      "width": 259,
+      "height": 225,
+      "category": "Electrical",
+      "code": "RV100-3",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "controller",
@@ -50,7 +97,21 @@
       "width": 312,
       "height": 266,
       "category": "Motor & Chair",
-      "code": "RV111"
+      "code": "RV111",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "air-filter-regulator-with-pressure-gauge",
+      "name": "Air filter regulator with pressure gauge",
+      "labelled": true,
+      "src": "/cinema/parts/air-filter-regulator-with-pressure-gauge.png",
+      "width": 194,
+      "height": 248,
+      "category": "Electrical",
+      "code": "RV100-4",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "weak-suction-handle",
@@ -60,7 +121,21 @@
       "width": 320,
       "height": 162,
       "category": "Suction",
-      "code": "RV031"
+      "code": "RV031",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "toroidal-transformer-3",
+      "name": "Toroidal transformer",
+      "labelled": true,
+      "src": "/cinema/parts/toroidal-transformer-3.png",
+      "width": 259,
+      "height": 225,
+      "category": "Electrical",
+      "code": "RV100-5",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "supply-pipe",
@@ -70,7 +145,21 @@
       "width": 323,
       "height": 120,
       "category": "Water System",
-      "code": "RV029"
+      "code": "RV029",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "control-box-housing-cover",
+      "name": "Control box housing cover",
+      "labelled": true,
+      "src": "/cinema/parts/control-box-housing-cover.png",
+      "width": 247,
+      "height": 267,
+      "category": "Electrical",
+      "code": "RV163",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "spittoon",
@@ -80,7 +169,21 @@
       "width": 332,
       "height": 243,
       "category": "Spittoon",
-      "code": "RV122"
+      "code": "RV122",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "monitor-mount-arm",
+      "name": "Monitor mount arm",
+      "labelled": true,
+      "src": "/cinema/parts/monitor-mount-arm.png",
+      "width": 346,
+      "height": 111,
+      "category": "Other",
+      "code": "RV020",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "transformer",
@@ -90,7 +193,21 @@
       "width": 259,
       "height": 225,
       "category": "Electrical",
-      "code": "RV100-1"
+      "code": "RV100-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "three-way-syringe-tip",
+      "name": "Three way syringe tip",
+      "labelled": true,
+      "src": "/cinema/parts/three-way-syringe-tip.png",
+      "width": 401,
+      "height": 253,
+      "category": "Other",
+      "code": "RV021",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "apparatus-arm",
@@ -100,7 +217,21 @@
       "width": 385,
       "height": 189,
       "category": "Covers & Frame",
-      "code": "RV017"
+      "code": "RV017",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "three-way-syringe-handpiece-body",
+      "name": "Three way syringe handpiece body",
+      "labelled": true,
+      "src": "/cinema/parts/three-way-syringe-handpiece-body.png",
+      "width": 386,
+      "height": 251,
+      "category": "Other",
+      "code": "RV023",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "hand-rest-left-or-right-2",
@@ -110,7 +241,21 @@
       "width": 264,
       "height": 268,
       "category": "Headrest & Upholstery",
-      "code": "RV054-1"
+      "code": "RV054-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "handpiece-holder",
+      "name": "Handpiece holder",
+      "labelled": true,
+      "src": "/cinema/parts/handpiece-holder.png",
+      "width": 218,
+      "height": 270,
+      "category": "Other",
+      "code": "RV024",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "3-way-syringe-2",
@@ -120,7 +265,21 @@
       "width": 406,
       "height": 233,
       "category": "Syringe & Handpiece",
-      "code": "RV022-1"
+      "code": "RV022-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "handpiece-holder-with-control-buttons",
+      "name": "Handpiece holder with control buttons",
+      "labelled": true,
+      "src": "/cinema/parts/handpiece-holder-with-control-buttons.png",
+      "width": 210,
+      "height": 273,
+      "category": "Other",
+      "code": "RV025",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "led-x-ray-viewer",
@@ -130,7 +289,21 @@
       "width": 230,
       "height": 233,
       "category": "Light & X-Ray",
-      "code": "RV013-1"
+      "code": "RV013-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "clean-water-bottle",
+      "name": "Clean water bottle",
+      "labelled": true,
+      "src": "/cinema/parts/clean-water-bottle.png",
+      "width": 347,
+      "height": 263,
+      "category": "Other",
+      "code": "RV027",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "controller-2",
@@ -140,7 +313,21 @@
       "width": 312,
       "height": 266,
       "category": "Motor & Chair",
-      "code": "RV111-1"
+      "code": "RV111-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "clean-water-bottle-2",
+      "name": "Clean water bottle",
+      "labelled": true,
+      "src": "/cinema/parts/clean-water-bottle-2.png",
+      "width": 347,
+      "height": 263,
+      "category": "Other",
+      "code": "RV027-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "strong-suction-handle",
@@ -150,7 +337,21 @@
       "width": 321,
       "height": 201,
       "category": "Suction",
-      "code": "RV032"
+      "code": "RV032",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "cup-holder-assembly",
+      "name": "Cup holder assembly",
+      "labelled": true,
+      "src": "/cinema/parts/cup-holder-assembly.png",
+      "width": 253,
+      "height": 232,
+      "category": "Other",
+      "code": "RV028",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "rinse-pipe",
@@ -160,7 +361,21 @@
       "width": 323,
       "height": 120,
       "category": "Water System",
-      "code": "RV029-1"
+      "code": "RV029-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "saliva-ejector-valve-low-volume",
+      "name": "Saliva ejector valve, low volume",
+      "labelled": true,
+      "src": "/cinema/parts/saliva-ejector-valve-low-volume.png",
+      "width": 268,
+      "height": 199,
+      "category": "Other",
+      "code": "RV033",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "heater-24v",
@@ -170,7 +385,21 @@
       "width": 108,
       "height": 258,
       "category": "Electrical",
-      "code": "RV101"
+      "code": "RV101",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "suction-handle-valve-high-volume",
+      "name": "Suction handle valve, high volume",
+      "labelled": true,
+      "src": "/cinema/parts/suction-handle-valve-high-volume.png",
+      "width": 315,
+      "height": 213,
+      "category": "Other",
+      "code": "RV034",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "5-hold-frame",
@@ -180,7 +409,21 @@
       "width": 317,
       "height": 245,
       "category": "Covers & Frame",
-      "code": "RV026"
+      "code": "RV026",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "suction-handle-valve-high-volume-2",
+      "name": "Suction handle valve, high volume",
+      "labelled": true,
+      "src": "/cinema/parts/suction-handle-valve-high-volume-2.png",
+      "width": 315,
+      "height": 213,
+      "category": "Other",
+      "code": "RV034-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "headrest-frame-pu",
@@ -190,7 +433,21 @@
       "width": 379,
       "height": 179,
       "category": "Headrest & Upholstery",
-      "code": "RV102-1"
+      "code": "RV102-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "suction-valve-seal-kit",
+      "name": "Suction valve seal kit",
+      "labelled": true,
+      "src": "/cinema/parts/suction-valve-seal-kit.png",
+      "width": 350,
+      "height": 159,
+      "category": "Other",
+      "code": "RV035",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "doctor-table",
@@ -200,7 +457,21 @@
       "width": 339,
       "height": 137,
       "category": "Syringe & Handpiece",
-      "code": "RV166"
+      "code": "RV166",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "suction-valve-seal-kit-2",
+      "name": "Suction valve seal kit",
+      "labelled": true,
+      "src": "/cinema/parts/suction-valve-seal-kit-2.png",
+      "width": 350,
+      "height": 159,
+      "category": "Other",
+      "code": "RV035-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "led-x-ray-viewer-2",
@@ -210,7 +481,21 @@
       "width": 225,
       "height": 255,
       "category": "Light & X-Ray",
-      "code": "RV014"
+      "code": "RV014",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "brass-mounting-bracket",
+      "name": "Brass mounting bracket",
+      "labelled": true,
+      "src": "/cinema/parts/brass-mounting-bracket.png",
+      "width": 368,
+      "height": 212,
+      "category": "Other",
+      "code": "RV036",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "motor",
@@ -220,7 +505,21 @@
       "width": 325,
       "height": 228,
       "category": "Motor & Chair",
-      "code": "RV112"
+      "code": "RV112",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "inline-water-filter-bowl",
+      "name": "Inline water filter bowl",
+      "labelled": true,
+      "src": "/cinema/parts/inline-water-filter-bowl.png",
+      "width": 365,
+      "height": 269,
+      "category": "Other",
+      "code": "RV037",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "weak-suction-handle-2",
@@ -230,7 +529,21 @@
       "width": 268,
       "height": 199,
       "category": "Suction",
-      "code": "RV033-1"
+      "code": "RV033-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "inline-water-filter-cartridge",
+      "name": "Inline water filter cartridge",
+      "labelled": true,
+      "src": "/cinema/parts/inline-water-filter-cartridge.png",
+      "width": 304,
+      "height": 227,
+      "category": "Other",
+      "code": "RV038",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "supply-pipe-2",
@@ -240,7 +553,21 @@
       "width": 217,
       "height": 250,
       "category": "Water System",
-      "code": "RV029-2"
+      "code": "RV029-2",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "air-and-water-syringe-tip",
+      "name": "Air and water syringe tip",
+      "labelled": true,
+      "src": "/cinema/parts/air-and-water-syringe-tip.png",
+      "width": 288,
+      "height": 232,
+      "category": "Other",
+      "code": "RV039",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "heater-24v-2",
@@ -250,7 +577,21 @@
       "width": 108,
       "height": 258,
       "category": "Electrical",
-      "code": "RV101-1"
+      "code": "RV101-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "inline-filter-with-brass-bowl",
+      "name": "Inline filter with brass bowl",
+      "labelled": true,
+      "src": "/cinema/parts/inline-filter-with-brass-bowl.png",
+      "width": 284,
+      "height": 235,
+      "category": "Other",
+      "code": "RV042",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "swivel-hanger",
@@ -260,7 +601,21 @@
       "width": 317,
       "height": 245,
       "category": "Covers & Frame",
-      "code": "RV026-1"
+      "code": "RV026-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "cuspidor-filter-strainer-basket",
+      "name": "Cuspidor filter strainer basket",
+      "labelled": true,
+      "src": "/cinema/parts/cuspidor-filter-strainer-basket.png",
+      "width": 338,
+      "height": 166,
+      "category": "Other",
+      "code": "RV043-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "frame-leather",
@@ -270,7 +625,21 @@
       "width": 374,
       "height": 147,
       "category": "Headrest & Upholstery",
-      "code": "RV102-2"
+      "code": "RV102-2",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "cuspidor-bowl-mounting-ring",
+      "name": "Cuspidor bowl mounting ring",
+      "labelled": true,
+      "src": "/cinema/parts/cuspidor-bowl-mounting-ring.png",
+      "width": 288,
+      "height": 254,
+      "category": "Other",
+      "code": "RV046",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "doctor-table-2",
@@ -280,7 +649,21 @@
       "width": 284,
       "height": 259,
       "category": "Syringe & Handpiece",
-      "code": "RV167"
+      "code": "RV167",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "cuspidor-cover-plate",
+      "name": "Cuspidor cover plate",
+      "labelled": true,
+      "src": "/cinema/parts/cuspidor-cover-plate.png",
+      "width": 399,
+      "height": 235,
+      "category": "Other",
+      "code": "RV047",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "light-arm",
@@ -290,7 +673,21 @@
       "width": 318,
       "height": 265,
       "category": "Light & X-Ray",
-      "code": "RV015"
+      "code": "RV015",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "water-line-fitting-assembly",
+      "name": "Water line fitting assembly",
+      "labelled": true,
+      "src": "/cinema/parts/water-line-fitting-assembly.png",
+      "width": 264,
+      "height": 267,
+      "category": "Other",
+      "code": "RV048",
+      "named_by": "inferred",
+      "confidence": "low"
     },
     {
       "slug": "motor-motor",
@@ -300,7 +697,21 @@
       "width": 325,
       "height": 228,
       "category": "Motor & Chair",
-      "code": "RV112-1"
+      "code": "RV112-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "tissue-box-holder",
+      "name": "Tissue box holder",
+      "labelled": true,
+      "src": "/cinema/parts/tissue-box-holder.png",
+      "width": 392,
+      "height": 229,
+      "category": "Other",
+      "code": "RV049",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "suction-filter",
@@ -310,7 +721,21 @@
       "width": 288,
       "height": 232,
       "category": "Suction",
-      "code": "RV039-1"
+      "code": "RV039-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "water-box-tank",
+      "name": "Water box tank",
+      "labelled": true,
+      "src": "/cinema/parts/water-box-tank.png",
+      "width": 361,
+      "height": 213,
+      "category": "Other",
+      "code": "RV050",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "supply-pipe-3",
@@ -320,7 +745,21 @@
       "width": 354,
       "height": 200,
       "category": "Water System",
-      "code": "RV029-3"
+      "code": "RV029-3",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "water-box-tank-2",
+      "name": "Water box tank",
+      "labelled": true,
+      "src": "/cinema/parts/water-box-tank-2.png",
+      "width": 361,
+      "height": 213,
+      "category": "Other",
+      "code": "RV050-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "cable",
@@ -330,7 +769,21 @@
       "width": 266,
       "height": 228,
       "category": "Electrical",
-      "code": "RV114"
+      "code": "RV114",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "operating-light-reflector",
+      "name": "Operating light reflector",
+      "labelled": true,
+      "src": "/cinema/parts/operating-light-reflector.png",
+      "width": 276,
+      "height": 245,
+      "category": "Other",
+      "code": "RV052",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "column-800mm",
@@ -340,7 +793,21 @@
       "width": 345,
       "height": 193,
       "category": "Covers & Frame",
-      "code": "RV132"
+      "code": "RV132",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "saliva-ejector-hose-with-tip",
+      "name": "Saliva ejector hose with tip",
+      "labelled": true,
+      "src": "/cinema/parts/saliva-ejector-hose-with-tip.png",
+      "width": 391,
+      "height": 270,
+      "category": "Other",
+      "code": "RV053",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "leather",
@@ -350,7 +817,21 @@
       "width": 415,
       "height": 297,
       "category": "Headrest & Upholstery",
-      "code": "RV102-3"
+      "code": "RV102-3",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "armrest",
+      "name": "Armrest",
+      "labelled": true,
+      "src": "/cinema/parts/armrest.png",
+      "width": 264,
+      "height": 268,
+      "category": "Other",
+      "code": "RV054",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "light-arm-2",
@@ -360,7 +841,21 @@
       "width": 348,
       "height": 68,
       "category": "Light & X-Ray",
-      "code": "RV016"
+      "code": "RV016",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "foot-controller-disc-type",
+      "name": "Foot controller, disc type",
+      "labelled": true,
+      "src": "/cinema/parts/foot-controller-disc-type.png",
+      "width": 300,
+      "height": 260,
+      "category": "Other",
+      "code": "RV056",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "motor-2",
@@ -370,7 +865,21 @@
       "width": 203,
       "height": 210,
       "category": "Motor & Chair",
-      "code": "RV113"
+      "code": "RV113",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "water-valve-brass-two-port",
+      "name": "Water valve, brass, two port",
+      "labelled": true,
+      "src": "/cinema/parts/water-valve-brass-two-port.png",
+      "width": 358,
+      "height": 187,
+      "category": "Other",
+      "code": "RV060",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "suction-filter-2",
@@ -380,7 +889,21 @@
       "width": 355,
       "height": 262,
       "category": "Suction",
-      "code": "RV040-1"
+      "code": "RV040-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "water-valve-brass-two-port-2",
+      "name": "Water valve, brass, two port",
+      "labelled": true,
+      "src": "/cinema/parts/water-valve-brass-two-port-2.png",
+      "width": 318,
+      "height": 181,
+      "category": "Other",
+      "code": "RV061",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "rinse-pipe-2",
@@ -390,7 +913,21 @@
       "width": 331,
       "height": 161,
       "category": "Water System",
-      "code": "RV030"
+      "code": "RV030",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "water-control-valve-push-type",
+      "name": "Water control valve, push type",
+      "labelled": true,
+      "src": "/cinema/parts/water-control-valve-push-type.png",
+      "width": 321,
+      "height": 185,
+      "category": "Other",
+      "code": "RV062",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "cable-2",
@@ -400,7 +937,21 @@
       "width": 346,
       "height": 164,
       "category": "Electrical",
-      "code": "RV115"
+      "code": "RV115",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "pneumatic-toggle-valve",
+      "name": "Pneumatic toggle valve",
+      "labelled": true,
+      "src": "/cinema/parts/pneumatic-toggle-valve.png",
+      "width": 209,
+      "height": 237,
+      "category": "Other",
+      "code": "RV063",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "light-column-cover",
@@ -410,7 +961,21 @@
       "width": 344,
       "height": 209,
       "category": "Covers & Frame",
-      "code": "RV133"
+      "code": "RV133",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "air-control-valve-with-lever",
+      "name": "Air control valve with lever",
+      "labelled": true,
+      "src": "/cinema/parts/air-control-valve-with-lever.png",
+      "width": 187,
+      "height": 236,
+      "category": "Other",
+      "code": "RV064",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "backrest",
@@ -420,7 +985,21 @@
       "width": 299,
       "height": 237,
       "category": "Headrest & Upholstery",
-      "code": "RV150"
+      "code": "RV150",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "pressure-microswitch-assembly",
+      "name": "Pressure microswitch assembly",
+      "labelled": true,
+      "src": "/cinema/parts/pressure-microswitch-assembly.png",
+      "width": 253,
+      "height": 206,
+      "category": "Other",
+      "code": "RV065",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "light-arm-3",
@@ -430,7 +1009,21 @@
       "width": 348,
       "height": 68,
       "category": "Light & X-Ray",
-      "code": "RV016-1"
+      "code": "RV016-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "pneumatic-manifold-block-multi-port",
+      "name": "Pneumatic manifold block, multi port",
+      "labelled": true,
+      "src": "/cinema/parts/pneumatic-manifold-block-multi-port.png",
+      "width": 169,
+      "height": 247,
+      "category": "Other",
+      "code": "RV066",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "suction-filter-3",
@@ -440,7 +1033,21 @@
       "width": 356,
       "height": 262,
       "category": "Suction",
-      "code": "RV040-2"
+      "code": "RV040-2",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "pneumatic-manifold-block-multi-port-2",
+      "name": "Pneumatic manifold block, multi port",
+      "labelled": true,
+      "src": "/cinema/parts/pneumatic-manifold-block-multi-port-2.png",
+      "width": 169,
+      "height": 247,
+      "category": "Other",
+      "code": "RV066-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "supply-pipe-4",
@@ -450,7 +1057,21 @@
       "width": 331,
       "height": 161,
       "category": "Water System",
-      "code": "RV030-1"
+      "code": "RV030-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "water-pressure-regulator-adjustable",
+      "name": "Water pressure regulator, adjustable",
+      "labelled": true,
+      "src": "/cinema/parts/water-pressure-regulator-adjustable.png",
+      "width": 201,
+      "height": 231,
+      "category": "Other",
+      "code": "RV067",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "cable-3",
@@ -460,7 +1081,21 @@
       "width": 346,
       "height": 164,
       "category": "Electrical",
-      "code": "RV115-2"
+      "code": "RV115-2",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "inline-air-filter-cartridge",
+      "name": "Inline air filter cartridge",
+      "labelled": true,
+      "src": "/cinema/parts/inline-air-filter-cartridge.png",
+      "width": 333,
+      "height": 146,
+      "category": "Other",
+      "code": "RV068",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "light-column-cover-2",
@@ -470,7 +1105,21 @@
       "width": 344,
       "height": 209,
       "category": "Covers & Frame",
-      "code": "RV133-1"
+      "code": "RV133-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "inline-air-filter-cartridge-2",
+      "name": "Inline air filter cartridge",
+      "labelled": true,
+      "src": "/cinema/parts/inline-air-filter-cartridge-2.png",
+      "width": 333,
+      "height": 146,
+      "category": "Other",
+      "code": "RV068-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "backrest-2",
@@ -480,7 +1129,21 @@
       "width": 299,
       "height": 237,
       "category": "Headrest & Upholstery",
-      "code": "RV150-1"
+      "code": "RV150-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "brass-t-connector-three-port",
+      "name": "Brass T connector, three port",
+      "labelled": true,
+      "src": "/cinema/parts/brass-t-connector-three-port.png",
+      "width": 230,
+      "height": 210,
+      "category": "Other",
+      "code": "RV069",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "optic-fiber",
@@ -490,7 +1153,21 @@
       "width": 259,
       "height": 226,
       "category": "Light & X-Ray",
-      "code": "RV098"
+      "code": "RV098",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "valve-manifold-block-two-port",
+      "name": "Valve manifold block, two port",
+      "labelled": true,
+      "src": "/cinema/parts/valve-manifold-block-two-port.png",
+      "width": 299,
+      "height": 202,
+      "category": "Other",
+      "code": "RV071-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "suction-filter-4",
@@ -500,7 +1177,21 @@
       "width": 356,
       "height": 262,
       "category": "Suction",
-      "code": "RV040-3"
+      "code": "RV040-3",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "pull-valve-with-knob-air",
+      "name": "Pull valve with knob, air",
+      "labelled": true,
+      "src": "/cinema/parts/pull-valve-with-knob-air.png",
+      "width": 289,
+      "height": 193,
+      "category": "Other",
+      "code": "RV072",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "water-valve-size-32mm",
@@ -510,7 +1201,21 @@
       "width": 348,
       "height": 146,
       "category": "Water System",
-      "code": "RV057"
+      "code": "RV057",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "push-button-valve",
+      "name": "Push button valve",
+      "labelled": true,
+      "src": "/cinema/parts/push-button-valve.png",
+      "width": 186,
+      "height": 192,
+      "category": "Other",
+      "code": "RV074",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "external-junction-box",
@@ -520,7 +1225,21 @@
       "width": 275,
       "height": 249,
       "category": "Electrical",
-      "code": "RV164"
+      "code": "RV164",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "push-button-valve-2",
+      "name": "Push button valve",
+      "labelled": true,
+      "src": "/cinema/parts/push-button-valve-2.png",
+      "width": 186,
+      "height": 192,
+      "category": "Other",
+      "code": "RV074-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "base-plate",
@@ -530,7 +1249,21 @@
       "width": 332,
       "height": 214,
       "category": "Covers & Frame",
-      "code": "RV137"
+      "code": "RV137",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "mounting-block-with-air-ports",
+      "name": "Mounting block with air ports",
+      "labelled": true,
+      "src": "/cinema/parts/mounting-block-with-air-ports.png",
+      "width": 306,
+      "height": 249,
+      "category": "Other",
+      "code": "RV075",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "endoscope-light",
@@ -540,7 +1273,21 @@
       "width": 307,
       "height": 208,
       "category": "Light & X-Ray",
-      "code": "RV131"
+      "code": "RV131",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "air-valve-block-two-port",
+      "name": "Air valve block, two port",
+      "labelled": true,
+      "src": "/cinema/parts/air-valve-block-two-port.png",
+      "width": 239,
+      "height": 216,
+      "category": "Other",
+      "code": "RV076",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "diaphragm",
@@ -550,7 +1297,21 @@
       "width": 280,
       "height": 208,
       "category": "Suction",
-      "code": "RV082"
+      "code": "RV082",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "inline-valve-block",
+      "name": "Inline valve block",
+      "labelled": true,
+      "src": "/cinema/parts/inline-valve-block.png",
+      "width": 261,
+      "height": 197,
+      "category": "Other",
+      "code": "RV077",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "water-valve-size-32mm-2",
@@ -560,7 +1321,21 @@
       "width": 348,
       "height": 146,
       "category": "Water System",
-      "code": "RV057-1"
+      "code": "RV057-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "water-and-air-relay-valve",
+      "name": "Water and air relay valve",
+      "labelled": true,
+      "src": "/cinema/parts/water-and-air-relay-valve.png",
+      "width": 221,
+      "height": 222,
+      "category": "Other",
+      "code": "RV078",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "back-cover",
@@ -570,7 +1345,21 @@
       "width": 314,
       "height": 243,
       "category": "Covers & Frame",
-      "code": "RV138"
+      "code": "RV138",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "water-and-air-relay-valve-2",
+      "name": "Water and air relay valve",
+      "labelled": true,
+      "src": "/cinema/parts/water-and-air-relay-valve-2.png",
+      "width": 221,
+      "height": 222,
+      "category": "Other",
+      "code": "RV078-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "water-valve",
@@ -580,7 +1369,21 @@
       "width": 376,
       "height": 153,
       "category": "Water System",
-      "code": "RV058-1"
+      "code": "RV058-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "water-and-air-relay-valve-3",
+      "name": "Water and air relay valve",
+      "labelled": true,
+      "src": "/cinema/parts/water-and-air-relay-valve-3.png",
+      "width": 220,
+      "height": 222,
+      "category": "Other",
+      "code": "RV078-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "back-cover-side",
@@ -590,7 +1393,21 @@
       "width": 299,
       "height": 212,
       "category": "Covers & Frame",
-      "code": "RV139"
+      "code": "RV139",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "suction-hose-connector",
+      "name": "Suction hose connector",
+      "labelled": true,
+      "src": "/cinema/parts/suction-hose-connector.png",
+      "width": 220,
+      "height": 237,
+      "category": "Other",
+      "code": "RV079",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "water-normal",
@@ -600,7 +1417,21 @@
       "width": 257,
       "height": 165,
       "category": "Water System",
-      "code": "RV059"
+      "code": "RV059",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "suction-valve-stem-fitting",
+      "name": "Suction valve stem fitting",
+      "labelled": true,
+      "src": "/cinema/parts/suction-valve-stem-fitting.png",
+      "width": 270,
+      "height": 242,
+      "category": "Other",
+      "code": "RV080",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "end-cover",
@@ -610,7 +1441,21 @@
       "width": 299,
       "height": 212,
       "category": "Covers & Frame",
-      "code": "RV139-1"
+      "code": "RV139-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "manifold-block-with-adjusters-multi-port",
+      "name": "Manifold block with adjusters, multi port",
+      "labelled": true,
+      "src": "/cinema/parts/manifold-block-with-adjusters-multi-port.png",
+      "width": 345,
+      "height": 238,
+      "category": "Other",
+      "code": "RV081",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "copper-connector",
@@ -620,7 +1465,21 @@
       "width": 365,
       "height": 236,
       "category": "Water System",
-      "code": "RV070"
+      "code": "RV070",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "mounting-plate-perforated",
+      "name": "Mounting plate, perforated",
+      "labelled": true,
+      "src": "/cinema/parts/mounting-plate-perforated.png",
+      "width": 323,
+      "height": 132,
+      "category": "Other",
+      "code": "RV083",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "chair-housing-cover",
@@ -630,7 +1489,21 @@
       "width": 354,
       "height": 188,
       "category": "Covers & Frame",
-      "code": "RV140"
+      "code": "RV140",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "mounting-plate-perforated-2",
+      "name": "Mounting plate, perforated",
+      "labelled": true,
+      "src": "/cinema/parts/mounting-plate-perforated-2.png",
+      "width": 323,
+      "height": 132,
+      "category": "Other",
+      "code": "RV083-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "t-connector",
@@ -640,7 +1513,21 @@
       "width": 245,
       "height": 208,
       "category": "Water System",
-      "code": "RV117"
+      "code": "RV117",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "brass-manifold-block",
+      "name": "Brass manifold block",
+      "labelled": true,
+      "src": "/cinema/parts/brass-manifold-block.png",
+      "width": 252,
+      "height": 227,
+      "category": "Other",
+      "code": "RV084",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "motor-cover",
@@ -650,7 +1537,21 @@
       "width": 353,
       "height": 198,
       "category": "Covers & Frame",
-      "code": "RV141"
+      "code": "RV141",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "rotary-valve-block-six-port",
+      "name": "Rotary valve block, six port",
+      "labelled": true,
+      "src": "/cinema/parts/rotary-valve-block-six-port.png",
+      "width": 239,
+      "height": 230,
+      "category": "Other",
+      "code": "RV085",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "t-connector-2",
@@ -660,7 +1561,21 @@
       "width": 250,
       "height": 189,
       "category": "Water System",
-      "code": "RV118"
+      "code": "RV118",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "rotary-valve-block-six-port-2",
+      "name": "Rotary valve block, six port",
+      "labelled": true,
+      "src": "/cinema/parts/rotary-valve-block-six-port-2.png",
+      "width": 239,
+      "height": 230,
+      "category": "Other",
+      "code": "RV085-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "chair-upper-cover",
@@ -670,7 +1585,21 @@
       "width": 298,
       "height": 244,
       "category": "Covers & Frame",
-      "code": "RV142"
+      "code": "RV142",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "rotary-valve-block-six-port-3",
+      "name": "Rotary valve block, six port",
+      "labelled": true,
+      "src": "/cinema/parts/rotary-valve-block-six-port-3.png",
+      "width": 253,
+      "height": 274,
+      "category": "Other",
+      "code": "RV086",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "water-box-lower",
@@ -680,7 +1609,21 @@
       "width": 354,
       "height": 220,
       "category": "Water System",
-      "code": "RV155-1"
+      "code": "RV155-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "rotary-valve-block-six-port-4",
+      "name": "Rotary valve block, six port",
+      "labelled": true,
+      "src": "/cinema/parts/rotary-valve-block-six-port-4.png",
+      "width": 253,
+      "height": 274,
+      "category": "Other",
+      "code": "RV086-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
       "slug": "side-panel",
@@ -690,7 +1633,21 @@
       "width": 317,
       "height": 216,
       "category": "Covers & Frame",
-      "code": "RV147"
+      "code": "RV147",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "valve-diaphragm-rubber",
+      "name": "Valve diaphragm, rubber",
+      "labelled": true,
+      "src": "/cinema/parts/valve-diaphragm-rubber.png",
+      "width": 242,
+      "height": 129,
+      "category": "Other",
+      "code": "RV087",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "eow-system-filter",
@@ -700,7 +1657,21 @@
       "width": 288,
       "height": 243,
       "category": "Water System",
-      "code": "RV168"
+      "code": "RV168",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "lever-valve-brass-two-port",
+      "name": "Lever valve, brass, two port",
+      "labelled": true,
+      "src": "/cinema/parts/lever-valve-brass-two-port.png",
+      "width": 287,
+      "height": 145,
+      "category": "Other",
+      "code": "RV088",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "right-side-panel",
@@ -710,7 +1681,21 @@
       "width": 248,
       "height": 214,
       "category": "Covers & Frame",
-      "code": "RV149"
+      "code": "RV149",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "lever-valve-brass-two-port-2",
+      "name": "Lever valve, brass, two port",
+      "labelled": true,
+      "src": "/cinema/parts/lever-valve-brass-two-port-2.png",
+      "width": 287,
+      "height": 145,
+      "category": "Other",
+      "code": "RV088-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "solenoid-valve-24v",
@@ -720,7 +1705,21 @@
       "width": 304,
       "height": 193,
       "category": "Water System",
-      "code": "RVO099"
+      "code": "RVO099",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "pressure-gauge",
+      "name": "Pressure gauge",
+      "labelled": true,
+      "src": "/cinema/parts/pressure-gauge.png",
+      "width": 326,
+      "height": 265,
+      "category": "Other",
+      "code": "RV090",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "table-lower",
@@ -730,7 +1729,21 @@
       "width": 376,
       "height": 219,
       "category": "Covers & Frame",
-      "code": "RV165"
+      "code": "RV165",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "pressure-gauge-2",
+      "name": "Pressure gauge",
+      "labelled": true,
+      "src": "/cinema/parts/pressure-gauge-2.png",
+      "width": 326,
+      "height": 265,
+      "category": "Other",
+      "code": "RV090-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "filter",
@@ -740,7 +1753,21 @@
       "width": 322,
       "height": 261,
       "category": "Water System",
-      "code": "RVO45"
+      "code": "RVO45",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "air-filter-regulator-with-pressure-gauge-2",
+      "name": "Air filter regulator with pressure gauge",
+      "labelled": true,
+      "src": "/cinema/parts/air-filter-regulator-with-pressure-gauge-2.png",
+      "width": 210,
+      "height": 251,
+      "category": "Other",
+      "code": "RV092",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "filter-strainer",
@@ -750,7 +1777,21 @@
       "width": 322,
       "height": 261,
       "category": "Water System",
-      "code": "RVO45-1"
+      "code": "RVO45-1",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "air-pressure-regulator",
+      "name": "Air pressure regulator",
+      "labelled": true,
+      "src": "/cinema/parts/air-pressure-regulator.png",
+      "width": 253,
+      "height": 232,
+      "category": "Other",
+      "code": "RV093",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
       "slug": "filter-strainer-water",
@@ -760,1697 +1801,1149 @@
       "width": 267,
       "height": 252,
       "category": "Water System",
-      "code": "RVO45-2"
-    },
-    {
-      "slug": "part",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part.png",
-      "width": 237,
-      "height": 276,
-      "category": "Covers & Frame",
-      "code": "RV151"
-    },
-    {
-      "slug": "part-2",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-2.png",
-      "width": 259,
-      "height": 225,
-      "category": "Electrical",
-      "code": "RV100-2"
-    },
-    {
-      "slug": "part-3",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-3.png",
-      "width": 259,
-      "height": 225,
-      "category": "Electrical",
-      "code": "RV100-3"
-    },
-    {
-      "slug": "part-4",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-4.png",
-      "width": 194,
-      "height": 248,
-      "category": "Electrical",
-      "code": "RV100-4"
-    },
-    {
-      "slug": "part-5",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-5.png",
-      "width": 259,
-      "height": 225,
-      "category": "Electrical",
-      "code": "RV100-5"
-    },
-    {
-      "slug": "part-6",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-6.png",
-      "width": 247,
-      "height": 267,
-      "category": "Electrical",
-      "code": "RV163"
-    },
-    {
-      "slug": "part-7",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-7.png",
-      "width": 346,
-      "height": 111,
-      "category": "Other",
-      "code": "RV020"
-    },
-    {
-      "slug": "part-8",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-8.png",
-      "width": 401,
-      "height": 253,
-      "category": "Other",
-      "code": "RV021"
-    },
-    {
-      "slug": "part-9",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-9.png",
-      "width": 386,
-      "height": 251,
-      "category": "Other",
-      "code": "RV023"
-    },
-    {
-      "slug": "part-10",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-10.png",
-      "width": 218,
-      "height": 270,
-      "category": "Other",
-      "code": "RV024"
-    },
-    {
-      "slug": "part-11",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-11.png",
-      "width": 210,
-      "height": 273,
-      "category": "Other",
-      "code": "RV025"
-    },
-    {
-      "slug": "part-12",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-12.png",
-      "width": 347,
-      "height": 263,
-      "category": "Other",
-      "code": "RV027"
-    },
-    {
-      "slug": "part-13",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-13.png",
-      "width": 347,
-      "height": 263,
-      "category": "Other",
-      "code": "RV027-1"
-    },
-    {
-      "slug": "part-14",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-14.png",
-      "width": 253,
-      "height": 232,
-      "category": "Other",
-      "code": "RV028"
-    },
-    {
-      "slug": "part-15",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-15.png",
-      "width": 268,
-      "height": 199,
-      "category": "Other",
-      "code": "RV033"
-    },
-    {
-      "slug": "part-16",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-16.png",
-      "width": 315,
-      "height": 213,
-      "category": "Other",
-      "code": "RV034"
-    },
-    {
-      "slug": "part-17",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-17.png",
-      "width": 315,
-      "height": 213,
-      "category": "Other",
-      "code": "RV034-2"
-    },
-    {
-      "slug": "part-18",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-18.png",
-      "width": 350,
-      "height": 159,
-      "category": "Other",
-      "code": "RV035"
-    },
-    {
-      "slug": "part-19",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-19.png",
-      "width": 350,
-      "height": 159,
-      "category": "Other",
-      "code": "RV035-1"
-    },
-    {
-      "slug": "part-20",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-20.png",
-      "width": 368,
-      "height": 212,
-      "category": "Other",
-      "code": "RV036"
-    },
-    {
-      "slug": "part-21",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-21.png",
-      "width": 365,
-      "height": 269,
-      "category": "Other",
-      "code": "RV037"
-    },
-    {
-      "slug": "part-22",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-22.png",
-      "width": 304,
-      "height": 227,
-      "category": "Other",
-      "code": "RV038"
-    },
-    {
-      "slug": "part-23",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-23.png",
-      "width": 288,
-      "height": 232,
-      "category": "Other",
-      "code": "RV039"
-    },
-    {
-      "slug": "part-24",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-24.png",
-      "width": 284,
-      "height": 235,
-      "category": "Other",
-      "code": "RV042"
-    },
-    {
-      "slug": "part-25",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-25.png",
-      "width": 338,
-      "height": 166,
-      "category": "Other",
-      "code": "RV043-2"
-    },
-    {
-      "slug": "part-26",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-26.png",
-      "width": 288,
-      "height": 254,
-      "category": "Other",
-      "code": "RV046"
-    },
-    {
-      "slug": "part-27",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-27.png",
-      "width": 399,
-      "height": 235,
-      "category": "Other",
-      "code": "RV047"
-    },
-    {
-      "slug": "part-28",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-28.png",
-      "width": 264,
-      "height": 267,
-      "category": "Other",
-      "code": "RV048"
-    },
-    {
-      "slug": "part-29",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-29.png",
-      "width": 392,
-      "height": 229,
-      "category": "Other",
-      "code": "RV049"
-    },
-    {
-      "slug": "part-30",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-30.png",
-      "width": 361,
-      "height": 213,
-      "category": "Other",
-      "code": "RV050"
-    },
-    {
-      "slug": "part-31",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-31.png",
-      "width": 361,
-      "height": 213,
-      "category": "Other",
-      "code": "RV050-1"
-    },
-    {
-      "slug": "part-32",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-32.png",
-      "width": 276,
-      "height": 245,
-      "category": "Other",
-      "code": "RV052"
-    },
-    {
-      "slug": "part-33",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-33.png",
-      "width": 391,
-      "height": 270,
-      "category": "Other",
-      "code": "RV053"
-    },
-    {
-      "slug": "part-34",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-34.png",
-      "width": 264,
-      "height": 268,
-      "category": "Other",
-      "code": "RV054"
-    },
-    {
-      "slug": "part-35",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-35.png",
-      "width": 300,
-      "height": 260,
-      "category": "Other",
-      "code": "RV056"
-    },
-    {
-      "slug": "part-36",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-36.png",
-      "width": 358,
-      "height": 187,
-      "category": "Other",
-      "code": "RV060"
-    },
-    {
-      "slug": "part-37",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-37.png",
-      "width": 318,
-      "height": 181,
-      "category": "Other",
-      "code": "RV061"
-    },
-    {
-      "slug": "part-38",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-38.png",
-      "width": 321,
-      "height": 185,
-      "category": "Other",
-      "code": "RV062"
-    },
-    {
-      "slug": "part-39",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-39.png",
-      "width": 209,
-      "height": 237,
-      "category": "Other",
-      "code": "RV063"
-    },
-    {
-      "slug": "part-40",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-40.png",
-      "width": 187,
-      "height": 236,
-      "category": "Other",
-      "code": "RV064"
-    },
-    {
-      "slug": "part-41",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-41.png",
-      "width": 253,
-      "height": 206,
-      "category": "Other",
-      "code": "RV065"
-    },
-    {
-      "slug": "part-42",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-42.png",
-      "width": 169,
-      "height": 247,
-      "category": "Other",
-      "code": "RV066"
-    },
-    {
-      "slug": "part-43",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-43.png",
-      "width": 169,
-      "height": 247,
-      "category": "Other",
-      "code": "RV066-1"
-    },
-    {
-      "slug": "part-44",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-44.png",
-      "width": 201,
-      "height": 231,
-      "category": "Other",
-      "code": "RV067"
-    },
-    {
-      "slug": "part-45",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-45.png",
-      "width": 333,
-      "height": 146,
-      "category": "Other",
-      "code": "RV068"
-    },
-    {
-      "slug": "part-46",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-46.png",
-      "width": 333,
-      "height": 146,
-      "category": "Other",
-      "code": "RV068-1"
-    },
-    {
-      "slug": "part-47",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-47.png",
-      "width": 230,
-      "height": 210,
-      "category": "Other",
-      "code": "RV069"
-    },
-    {
-      "slug": "part-48",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-48.png",
-      "width": 299,
-      "height": 202,
-      "category": "Other",
-      "code": "RV071-1"
-    },
-    {
-      "slug": "part-49",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-49.png",
-      "width": 289,
-      "height": 193,
-      "category": "Other",
-      "code": "RV072"
-    },
-    {
-      "slug": "part-50",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-50.png",
-      "width": 186,
-      "height": 192,
-      "category": "Other",
-      "code": "RV074"
-    },
-    {
-      "slug": "part-51",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-51.png",
-      "width": 186,
-      "height": 192,
-      "category": "Other",
-      "code": "RV074-1"
-    },
-    {
-      "slug": "part-52",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-52.png",
-      "width": 306,
-      "height": 249,
-      "category": "Other",
-      "code": "RV075"
-    },
-    {
-      "slug": "part-53",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-53.png",
-      "width": 239,
-      "height": 216,
-      "category": "Other",
-      "code": "RV076"
-    },
-    {
-      "slug": "part-54",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-54.png",
-      "width": 261,
-      "height": 197,
-      "category": "Other",
-      "code": "RV077"
-    },
-    {
-      "slug": "part-55",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-55.png",
-      "width": 221,
-      "height": 222,
-      "category": "Other",
-      "code": "RV078"
-    },
-    {
-      "slug": "part-56",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-56.png",
-      "width": 221,
-      "height": 222,
-      "category": "Other",
-      "code": "RV078-1"
-    },
-    {
-      "slug": "part-57",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-57.png",
-      "width": 220,
-      "height": 222,
-      "category": "Other",
-      "code": "RV078-2"
-    },
-    {
-      "slug": "part-58",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-58.png",
-      "width": 220,
-      "height": 237,
-      "category": "Other",
-      "code": "RV079"
-    },
-    {
-      "slug": "part-59",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-59.png",
-      "width": 270,
-      "height": 242,
-      "category": "Other",
-      "code": "RV080"
-    },
-    {
-      "slug": "part-60",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-60.png",
-      "width": 345,
-      "height": 238,
-      "category": "Other",
-      "code": "RV081"
-    },
-    {
-      "slug": "part-61",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-61.png",
-      "width": 323,
-      "height": 132,
-      "category": "Other",
-      "code": "RV083"
-    },
-    {
-      "slug": "part-62",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-62.png",
-      "width": 323,
-      "height": 132,
-      "category": "Other",
-      "code": "RV083-1"
-    },
-    {
-      "slug": "part-63",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-63.png",
-      "width": 252,
-      "height": 227,
-      "category": "Other",
-      "code": "RV084"
-    },
-    {
-      "slug": "part-64",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-64.png",
-      "width": 239,
-      "height": 230,
-      "category": "Other",
-      "code": "RV085"
-    },
-    {
-      "slug": "part-65",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-65.png",
-      "width": 239,
-      "height": 230,
-      "category": "Other",
-      "code": "RV085-1"
-    },
-    {
-      "slug": "part-66",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-66.png",
-      "width": 253,
-      "height": 274,
-      "category": "Other",
-      "code": "RV086"
-    },
-    {
-      "slug": "part-67",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-67.png",
-      "width": 253,
-      "height": 274,
-      "category": "Other",
-      "code": "RV086-1"
-    },
-    {
-      "slug": "part-68",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-68.png",
-      "width": 242,
-      "height": 129,
-      "category": "Other",
-      "code": "RV087"
-    },
-    {
-      "slug": "part-69",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-69.png",
-      "width": 287,
-      "height": 145,
-      "category": "Other",
-      "code": "RV088"
-    },
-    {
-      "slug": "part-70",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-70.png",
-      "width": 287,
-      "height": 145,
-      "category": "Other",
-      "code": "RV088-1"
-    },
-    {
-      "slug": "part-71",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-71.png",
-      "width": 326,
-      "height": 265,
-      "category": "Other",
-      "code": "RV090"
-    },
-    {
-      "slug": "part-72",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-72.png",
-      "width": 326,
-      "height": 265,
-      "category": "Other",
-      "code": "RV090-2"
-    },
-    {
-      "slug": "part-73",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-73.png",
-      "width": 210,
-      "height": 251,
-      "category": "Other",
-      "code": "RV092"
-    },
-    {
-      "slug": "part-74",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-74.png",
-      "width": 253,
-      "height": 232,
-      "category": "Other",
-      "code": "RV093"
-    },
-    {
-      "slug": "part-75",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-75.png",
+      "code": "RVO45-2",
+      "named_by": "source",
+      "confidence": "high"
+    },
+    {
+      "slug": "valve-spindle-assembly",
+      "name": "Valve spindle assembly",
+      "labelled": true,
+      "src": "/cinema/parts/valve-spindle-assembly.png",
       "width": 311,
       "height": 190,
       "category": "Other",
-      "code": "RV094"
+      "code": "RV094",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-76",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-76.png",
+      "slug": "cuspidor-assembly-with-bowl-and-faucet",
+      "name": "Cuspidor assembly with bowl and faucet",
+      "labelled": true,
+      "src": "/cinema/parts/cuspidor-assembly-with-bowl-and-faucet.png",
       "width": 237,
       "height": 264,
       "category": "Other",
-      "code": "RV095-1"
+      "code": "RV095-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-77",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-77.png",
+      "slug": "cuspidor-bowl-glass",
+      "name": "Cuspidor bowl, glass",
+      "labelled": true,
+      "src": "/cinema/parts/cuspidor-bowl-glass.png",
       "width": 276,
       "height": 218,
       "category": "Other",
-      "code": "RV095-2"
+      "code": "RV095-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-78",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-78.png",
+      "slug": "cuspidor-assembly-ceramic-bowl",
+      "name": "Cuspidor assembly, ceramic bowl",
+      "labelled": true,
+      "src": "/cinema/parts/cuspidor-assembly-ceramic-bowl.png",
       "width": 265,
       "height": 248,
       "category": "Other",
-      "code": "RV096-1"
+      "code": "RV096-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-79",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-79.png",
+      "slug": "cuspidor-bowl-with-support-arm",
+      "name": "Cuspidor bowl with support arm",
+      "labelled": true,
+      "src": "/cinema/parts/cuspidor-bowl-with-support-arm.png",
       "width": 303,
       "height": 203,
       "category": "Other",
-      "code": "RV096-2"
+      "code": "RV096-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-80",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-80.png",
+      "slug": "cuspidor-bowl-with-drain-hose",
+      "name": "Cuspidor bowl with drain hose",
+      "labelled": true,
+      "src": "/cinema/parts/cuspidor-bowl-with-drain-hose.png",
       "width": 245,
       "height": 269,
       "category": "Other",
-      "code": "RV096-3"
+      "code": "RV096-3",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-81",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-81.png",
+      "slug": "instrument-tray-perforated",
+      "name": "Instrument tray, perforated",
+      "labelled": true,
+      "src": "/cinema/parts/instrument-tray-perforated.png",
       "width": 157,
       "height": 236,
       "category": "Other",
-      "code": "RV096-4"
+      "code": "RV096-4",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-82",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-82.png",
+      "slug": "cuspidor-assembly-chrome-faucet",
+      "name": "Cuspidor assembly, chrome faucet",
+      "labelled": true,
+      "src": "/cinema/parts/cuspidor-assembly-chrome-faucet.png",
       "width": 209,
       "height": 253,
       "category": "Other",
-      "code": "RV096-5"
+      "code": "RV096-5",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-83",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-83.png",
+      "slug": "cuspidor-assembly-chrome-faucet-2",
+      "name": "Cuspidor assembly, chrome faucet",
+      "labelled": true,
+      "src": "/cinema/parts/cuspidor-assembly-chrome-faucet-2.png",
       "width": 209,
       "height": 253,
       "category": "Other",
-      "code": "RV096-6"
+      "code": "RV096-6",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-84",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-84.png",
+      "slug": "delivery-arm-cover-panel",
+      "name": "Delivery arm cover panel",
+      "labelled": true,
+      "src": "/cinema/parts/delivery-arm-cover-panel.png",
       "width": 364,
       "height": 117,
       "category": "Other",
-      "code": "RV097-1"
+      "code": "RV097-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-85",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-85.png",
+      "slug": "housing-cover-panel",
+      "name": "Housing cover panel",
+      "labelled": true,
+      "src": "/cinema/parts/housing-cover-panel.png",
       "width": 317,
       "height": 202,
       "category": "Other",
-      "code": "RV097-2"
+      "code": "RV097-2",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-86",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-86.png",
+      "slug": "light-power-supply-module",
+      "name": "Light power supply module",
+      "labelled": true,
+      "src": "/cinema/parts/light-power-supply-module.png",
       "width": 337,
       "height": 200,
       "category": "Other",
-      "code": "RV097-3"
+      "code": "RV097-3",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-87",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-87.png",
+      "slug": "instrument-tray-perforated-2",
+      "name": "Instrument tray, perforated",
+      "labelled": true,
+      "src": "/cinema/parts/instrument-tray-perforated-2.png",
       "width": 335,
       "height": 162,
       "category": "Other",
-      "code": "RV097-4"
+      "code": "RV097-4",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-88",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-88.png",
+      "slug": "housing-cover-hexagonal",
+      "name": "Housing cover, hexagonal",
+      "labelled": true,
+      "src": "/cinema/parts/housing-cover-hexagonal.png",
       "width": 244,
       "height": 210,
       "category": "Other",
-      "code": "RV097-5"
+      "code": "RV097-5",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-89",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-89.png",
+      "slug": "housing-cover-hexagonal-2",
+      "name": "Housing cover, hexagonal",
+      "labelled": true,
+      "src": "/cinema/parts/housing-cover-hexagonal-2.png",
       "width": 314,
       "height": 230,
       "category": "Other",
-      "code": "RV097-6"
+      "code": "RV097-6",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-90",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-90.png",
+      "slug": "foot-pedal-cover-ribbed",
+      "name": "Foot pedal cover, ribbed",
+      "labelled": true,
+      "src": "/cinema/parts/foot-pedal-cover-ribbed.png",
       "width": 152,
       "height": 274,
       "category": "Other",
-      "code": "RV097-7"
+      "code": "RV097-7",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-91",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-91.png",
+      "slug": "toroidal-transformer-4",
+      "name": "Toroidal transformer",
+      "labelled": true,
+      "src": "/cinema/parts/toroidal-transformer-4.png",
       "width": 259,
       "height": 225,
       "category": "Other",
-      "code": "RV100"
+      "code": "RV100",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-92",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-92.png",
+      "slug": "upholstery-set-seat-and-backrest",
+      "name": "Upholstery set, seat and backrest",
+      "labelled": true,
+      "src": "/cinema/parts/upholstery-set-seat-and-backrest.png",
       "width": 312,
       "height": 248,
       "category": "Other",
-      "code": "RV103"
+      "code": "RV103",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-93",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-93.png",
+      "slug": "upholstery-set-seat-and-backrest-2",
+      "name": "Upholstery set, seat and backrest",
+      "labelled": true,
+      "src": "/cinema/parts/upholstery-set-seat-and-backrest-2.png",
       "width": 312,
       "height": 248,
       "category": "Other",
-      "code": "RV103-1"
+      "code": "RV103-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-94",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-94.png",
+      "slug": "upholstery-set-seat-and-backrest-3",
+      "name": "Upholstery set, seat and backrest",
+      "labelled": true,
+      "src": "/cinema/parts/upholstery-set-seat-and-backrest-3.png",
       "width": 355,
       "height": 269,
       "category": "Other",
-      "code": "RV103-2"
+      "code": "RV103-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-95",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-95.png",
+      "slug": "upholstery-set-seat-and-backrest-4",
+      "name": "Upholstery set, seat and backrest",
+      "labelled": true,
+      "src": "/cinema/parts/upholstery-set-seat-and-backrest-4.png",
       "width": 315,
       "height": 267,
       "category": "Other",
-      "code": "RV103-3"
+      "code": "RV103-3",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-96",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-96.png",
+      "slug": "upholstery-set-seat-and-backrest-5",
+      "name": "Upholstery set, seat and backrest",
+      "labelled": true,
+      "src": "/cinema/parts/upholstery-set-seat-and-backrest-5.png",
       "width": 248,
       "height": 228,
       "category": "Other",
-      "code": "RV103-4"
+      "code": "RV103-4",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-97",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-97.png",
+      "slug": "membrane-keypad-overlay-memory-positions",
+      "name": "Membrane keypad overlay, memory positions",
+      "labelled": true,
+      "src": "/cinema/parts/membrane-keypad-overlay-memory-positions.png",
       "width": 326,
       "height": 268,
       "category": "Other",
-      "code": "RV105"
+      "code": "RV105",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-98",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-98.png",
+      "slug": "membrane-keypad-overlay-memory-positions-2",
+      "name": "Membrane keypad overlay, memory positions",
+      "labelled": true,
+      "src": "/cinema/parts/membrane-keypad-overlay-memory-positions-2.png",
       "width": 326,
       "height": 268,
       "category": "Other",
-      "code": "RV105-1"
+      "code": "RV105-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-99",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-99.png",
+      "slug": "keypad-button-set-rubber",
+      "name": "Keypad button set, rubber",
+      "labelled": true,
+      "src": "/cinema/parts/keypad-button-set-rubber.png",
       "width": 145,
       "height": 221,
       "category": "Other",
-      "code": "RV106-1"
+      "code": "RV106-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-100",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-100.png",
+      "slug": "membrane-keypad-dentist-side",
+      "name": "Membrane keypad, dentist side",
+      "labelled": true,
+      "src": "/cinema/parts/membrane-keypad-dentist-side.png",
       "width": 157,
       "height": 241,
       "category": "Other",
-      "code": "RV106-2"
+      "code": "RV106-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-101",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-101.png",
+      "slug": "membrane-keypad-overlay",
+      "name": "Membrane keypad overlay",
+      "labelled": true,
+      "src": "/cinema/parts/membrane-keypad-overlay.png",
       "width": 291,
       "height": 198,
       "category": "Other",
-      "code": "RV107"
+      "code": "RV107",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-102",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-102.png",
+      "slug": "membrane-keypad-overlay-2",
+      "name": "Membrane keypad overlay",
+      "labelled": true,
+      "src": "/cinema/parts/membrane-keypad-overlay-2.png",
       "width": 291,
       "height": 198,
       "category": "Other",
-      "code": "RV107-1"
+      "code": "RV107-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-103",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-103.png",
+      "slug": "control-panel-overlay-assistant-side",
+      "name": "Control panel overlay, assistant side",
+      "labelled": true,
+      "src": "/cinema/parts/control-panel-overlay-assistant-side.png",
       "width": 357,
       "height": 81,
       "category": "Other",
-      "code": "RV107-2"
+      "code": "RV107-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-104",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-104.png",
+      "slug": "membrane-keypad-overlay-memory-positions-3",
+      "name": "Membrane keypad overlay, memory positions",
+      "labelled": true,
+      "src": "/cinema/parts/membrane-keypad-overlay-memory-positions-3.png",
       "width": 279,
       "height": 273,
       "category": "Other",
-      "code": "RV107-3"
+      "code": "RV107-3",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-105",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-105.png",
+      "slug": "keypad-button-set-rubber-2",
+      "name": "Keypad button set, rubber",
+      "labelled": true,
+      "src": "/cinema/parts/keypad-button-set-rubber-2.png",
       "width": 349,
       "height": 146,
       "category": "Other",
-      "code": "RV107-4"
+      "code": "RV107-4",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-106",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-106.png",
+      "slug": "membrane-keypad-assistant-side",
+      "name": "Membrane keypad, assistant side",
+      "labelled": true,
+      "src": "/cinema/parts/membrane-keypad-assistant-side.png",
       "width": 321,
       "height": 89,
       "category": "Other",
-      "code": "RV107-5"
+      "code": "RV107-5",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-107",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-107.png",
+      "slug": "control-board-keypad",
+      "name": "Control board, keypad",
+      "labelled": true,
+      "src": "/cinema/parts/control-board-keypad.png",
       "width": 157,
       "height": 241,
       "category": "Other",
-      "code": "RV108-1"
+      "code": "RV108-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-108",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-108.png",
+      "slug": "control-board-keypad-2",
+      "name": "Control board, keypad",
+      "labelled": true,
+      "src": "/cinema/parts/control-board-keypad-2.png",
       "width": 157,
       "height": 250,
       "category": "Other",
-      "code": "RV108-2"
+      "code": "RV108-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-109",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-109.png",
+      "slug": "control-board-keypad-3",
+      "name": "Control board, keypad",
+      "labelled": true,
+      "src": "/cinema/parts/control-board-keypad-3.png",
       "width": 385,
       "height": 161,
       "category": "Other",
-      "code": "RV108-3"
+      "code": "RV108-3",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-110",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-110.png",
+      "slug": "control-board-keypad-4",
+      "name": "Control board, keypad",
+      "labelled": true,
+      "src": "/cinema/parts/control-board-keypad-4.png",
       "width": 366,
       "height": 138,
       "category": "Other",
-      "code": "RV109-1"
+      "code": "RV109-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-111",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-111.png",
+      "slug": "control-board-keypad-5",
+      "name": "Control board, keypad",
+      "labelled": true,
+      "src": "/cinema/parts/control-board-keypad-5.png",
       "width": 160,
       "height": 260,
       "category": "Other",
-      "code": "RV109-2"
+      "code": "RV109-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-112",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-112.png",
+      "slug": "control-board-main",
+      "name": "Control board, main",
+      "labelled": true,
+      "src": "/cinema/parts/control-board-main.png",
       "width": 345,
       "height": 212,
       "category": "Other",
-      "code": "RV109-3"
+      "code": "RV109-3",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-113",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-113.png",
+      "slug": "control-board-keypad-6",
+      "name": "Control board, keypad",
+      "labelled": true,
+      "src": "/cinema/parts/control-board-keypad-6.png",
       "width": 379,
       "height": 107,
       "category": "Other",
-      "code": "RV109-4"
+      "code": "RV109-4",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-114",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-114.png",
+      "slug": "control-board-keypad-7",
+      "name": "Control board, keypad",
+      "labelled": true,
+      "src": "/cinema/parts/control-board-keypad-7.png",
       "width": 363,
       "height": 123,
       "category": "Other",
-      "code": "RV109-5"
+      "code": "RV109-5",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-115",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-115.png",
+      "slug": "control-box-chair",
+      "name": "Control box, chair",
+      "labelled": true,
+      "src": "/cinema/parts/control-box-chair.png",
       "width": 240,
       "height": 203,
       "category": "Other",
-      "code": "RV111-2"
+      "code": "RV111-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-116",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-116.png",
+      "slug": "control-box-chair-2",
+      "name": "Control box, chair",
+      "labelled": true,
+      "src": "/cinema/parts/control-box-chair-2.png",
       "width": 291,
       "height": 248,
       "category": "Other",
-      "code": "RV111-3"
+      "code": "RV111-3",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-117",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-117.png",
+      "slug": "control-box-chair-3",
+      "name": "Control box, chair",
+      "labelled": true,
+      "src": "/cinema/parts/control-box-chair-3.png",
       "width": 285,
       "height": 244,
       "category": "Other",
-      "code": "RV111-4"
+      "code": "RV111-4",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-118",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-118.png",
+      "slug": "linear-actuator-chair",
+      "name": "Linear actuator, chair",
+      "labelled": true,
+      "src": "/cinema/parts/linear-actuator-chair.png",
       "width": 325,
       "height": 228,
       "category": "Other",
-      "code": "RV112-2"
+      "code": "RV112-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-119",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-119.png",
+      "slug": "pivot-bearing-housing",
+      "name": "Pivot bearing housing",
+      "labelled": true,
+      "src": "/cinema/parts/pivot-bearing-housing.png",
       "width": 219,
       "height": 257,
       "category": "Other",
-      "code": "RV115-1"
+      "code": "RV115-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-120",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-120.png",
+      "slug": "wiring-harness",
+      "name": "Wiring harness",
+      "labelled": true,
+      "src": "/cinema/parts/wiring-harness.png",
       "width": 346,
       "height": 164,
       "category": "Other",
-      "code": "RV115-3"
+      "code": "RV115-3",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-121",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-121.png",
+      "slug": "brass-cross-connector-four-port",
+      "name": "Brass cross connector, four port",
+      "labelled": true,
+      "src": "/cinema/parts/brass-cross-connector-four-port.png",
       "width": 300,
       "height": 237,
       "category": "Other",
-      "code": "RV119"
+      "code": "RV119",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-122",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-122.png",
+      "slug": "water-bottle-cap-and-mount",
+      "name": "Water bottle cap and mount",
+      "labelled": true,
+      "src": "/cinema/parts/water-bottle-cap-and-mount.png",
       "width": 239,
       "height": 266,
       "category": "Other",
-      "code": "RV121"
+      "code": "RV121",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-123",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-123.png",
+      "slug": "cuspidor-bowl-drain-strainer",
+      "name": "Cuspidor bowl drain strainer",
+      "labelled": true,
+      "src": "/cinema/parts/cuspidor-bowl-drain-strainer.png",
       "width": 290,
       "height": 237,
       "category": "Other",
-      "code": "RV123"
+      "code": "RV123",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-124",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-124.png",
+      "slug": "water-valve-brass-three-port",
+      "name": "Water valve, brass, three port",
+      "labelled": true,
+      "src": "/cinema/parts/water-valve-brass-three-port.png",
       "width": 224,
       "height": 233,
       "category": "Other",
-      "code": "RV126"
+      "code": "RV126",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-125",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-125.png",
+      "slug": "air-valve-block",
+      "name": "Air valve block",
+      "labelled": true,
+      "src": "/cinema/parts/air-valve-block.png",
       "width": 279,
       "height": 188,
       "category": "Other",
-      "code": "RV127"
+      "code": "RV127",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-126",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-126.png",
+      "slug": "valve-manifold-with-switches",
+      "name": "Valve manifold with switches",
+      "labelled": true,
+      "src": "/cinema/parts/valve-manifold-with-switches.png",
       "width": 245,
       "height": 244,
       "category": "Other",
-      "code": "RV128"
+      "code": "RV128",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-127",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-127.png",
+      "slug": "valve-manifold-with-switches-2",
+      "name": "Valve manifold with switches",
+      "labelled": true,
+      "src": "/cinema/parts/valve-manifold-with-switches-2.png",
       "width": 245,
       "height": 244,
       "category": "Other",
-      "code": "RV128-1"
+      "code": "RV128-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-128",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-128.png",
+      "slug": "toggle-switch-chair-control",
+      "name": "Toggle switch, chair control",
+      "labelled": true,
+      "src": "/cinema/parts/toggle-switch-chair-control.png",
       "width": 376,
       "height": 297,
       "category": "Other",
-      "code": "RV129-1"
+      "code": "RV129-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-129",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-129.png",
+      "slug": "trim-rod",
+      "name": "Trim rod",
+      "labelled": true,
+      "src": "/cinema/parts/trim-rod.png",
       "width": 415,
       "height": 297,
       "category": "Other",
-      "code": "RV130"
+      "code": "RV130",
+      "named_by": "inferred",
+      "confidence": "low"
     },
     {
-      "slug": "part-130",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-130.png",
+      "slug": "saliva-ejector-tube",
+      "name": "Saliva ejector tube",
+      "labelled": true,
+      "src": "/cinema/parts/saliva-ejector-tube.png",
       "width": 192,
       "height": 261,
       "category": "Other",
-      "code": "RV134"
+      "code": "RV134",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-131",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-131.png",
+      "slug": "delivery-arm-cover",
+      "name": "Delivery arm cover",
+      "labelled": true,
+      "src": "/cinema/parts/delivery-arm-cover.png",
       "width": 363,
       "height": 220,
       "category": "Other",
-      "code": "RV135"
+      "code": "RV135",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-132",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-132.png",
+      "slug": "delivery-arm-cover-2",
+      "name": "Delivery arm cover",
+      "labelled": true,
+      "src": "/cinema/parts/delivery-arm-cover-2.png",
       "width": 363,
       "height": 220,
       "category": "Other",
-      "code": "RV135-1"
+      "code": "RV135-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-133",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-133.png",
+      "slug": "housing-cover-panel-2",
+      "name": "Housing cover panel",
+      "labelled": true,
+      "src": "/cinema/parts/housing-cover-panel-2.png",
       "width": 291,
       "height": 261,
       "category": "Other",
-      "code": "RV135-2"
+      "code": "RV135-2",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-134",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-134.png",
+      "slug": "housing-cover-panel-3",
+      "name": "Housing cover panel",
+      "labelled": true,
+      "src": "/cinema/parts/housing-cover-panel-3.png",
       "width": 301,
       "height": 241,
       "category": "Other",
-      "code": "RV135-3"
+      "code": "RV135-3",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-135",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-135.png",
+      "slug": "cuspidor-mounting-frame",
+      "name": "Cuspidor mounting frame",
+      "labelled": true,
+      "src": "/cinema/parts/cuspidor-mounting-frame.png",
       "width": 284,
       "height": 235,
       "category": "Other",
-      "code": "RV136"
+      "code": "RV136",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-136",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-136.png",
+      "slug": "chair-base-cover",
+      "name": "Chair base cover",
+      "labelled": true,
+      "src": "/cinema/parts/chair-base-cover.png",
       "width": 332,
       "height": 214,
       "category": "Other",
-      "code": "RV137-1"
+      "code": "RV137-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-137",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-137.png",
+      "slug": "housing-cover-panel-4",
+      "name": "Housing cover panel",
+      "labelled": true,
+      "src": "/cinema/parts/housing-cover-panel-4.png",
       "width": 294,
       "height": 205,
       "category": "Other",
-      "code": "RV143"
+      "code": "RV143",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-138",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-138.png",
+      "slug": "side-panel-cover",
+      "name": "Side panel cover",
+      "labelled": true,
+      "src": "/cinema/parts/side-panel-cover.png",
       "width": 163,
       "height": 252,
       "category": "Other",
-      "code": "RV144"
+      "code": "RV144",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-139",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-139.png",
+      "slug": "side-panel-cover-2",
+      "name": "Side panel cover",
+      "labelled": true,
+      "src": "/cinema/parts/side-panel-cover-2.png",
       "width": 113,
       "height": 243,
       "category": "Other",
-      "code": "RV145"
+      "code": "RV145",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-140",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-140.png",
+      "slug": "chair-column-cover",
+      "name": "Chair column cover",
+      "labelled": true,
+      "src": "/cinema/parts/chair-column-cover.png",
       "width": 311,
       "height": 212,
       "category": "Other",
-      "code": "RV146"
+      "code": "RV146",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-141",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-141.png",
+      "slug": "delivery-arm-cover-3",
+      "name": "Delivery arm cover",
+      "labelled": true,
+      "src": "/cinema/parts/delivery-arm-cover-3.png",
       "width": 317,
       "height": 216,
       "category": "Other",
-      "code": "RV147-1"
+      "code": "RV147-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-142",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-142.png",
+      "slug": "backrest-side-cover",
+      "name": "Backrest side cover",
+      "labelled": true,
+      "src": "/cinema/parts/backrest-side-cover.png",
       "width": 334,
       "height": 159,
       "category": "Other",
-      "code": "RV148"
+      "code": "RV148",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-143",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-143.png",
+      "slug": "backrest-side-cover-2",
+      "name": "Backrest side cover",
+      "labelled": true,
+      "src": "/cinema/parts/backrest-side-cover-2.png",
       "width": 334,
       "height": 159,
       "category": "Other",
-      "code": "RV148-1"
+      "code": "RV148-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-144",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-144.png",
+      "slug": "housing-cover-left",
+      "name": "Housing cover, left",
+      "labelled": true,
+      "src": "/cinema/parts/housing-cover-left.png",
       "width": 141,
       "height": 250,
       "category": "Other",
-      "code": "RV152-1"
+      "code": "RV152-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-145",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-145.png",
+      "slug": "housing-cover-panel-5",
+      "name": "Housing cover panel",
+      "labelled": true,
+      "src": "/cinema/parts/housing-cover-panel-5.png",
       "width": 240,
       "height": 223,
       "category": "Other",
-      "code": "RV153"
+      "code": "RV153",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-146",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-146.png",
+      "slug": "light-housing-frame",
+      "name": "Light housing frame",
+      "labelled": true,
+      "src": "/cinema/parts/light-housing-frame.png",
       "width": 253,
       "height": 239,
       "category": "Other",
-      "code": "RV156"
+      "code": "RV156",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-147",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-147.png",
+      "slug": "backrest-cover-two-piece",
+      "name": "Backrest cover, two piece",
+      "labelled": true,
+      "src": "/cinema/parts/backrest-cover-two-piece.png",
       "width": 364,
       "height": 129,
       "category": "Other",
-      "code": "RV157"
+      "code": "RV157",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-148",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-148.png",
+      "slug": "foot-pedal-cover-ribbed-2",
+      "name": "Foot pedal cover, ribbed",
+      "labelled": true,
+      "src": "/cinema/parts/foot-pedal-cover-ribbed-2.png",
       "width": 240,
       "height": 256,
       "category": "Other",
-      "code": "RV158"
+      "code": "RV158",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-149",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-149.png",
+      "slug": "housing-cover-box",
+      "name": "Housing cover, box",
+      "labelled": true,
+      "src": "/cinema/parts/housing-cover-box.png",
       "width": 259,
       "height": 260,
       "category": "Other",
-      "code": "RV159"
+      "code": "RV159",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-150",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-150.png",
+      "slug": "arm-cover-bracket",
+      "name": "Arm cover bracket",
+      "labelled": true,
+      "src": "/cinema/parts/arm-cover-bracket.png",
       "width": 243,
       "height": 243,
       "category": "Other",
-      "code": "RV160"
+      "code": "RV160",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-151",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-151.png",
+      "slug": "junction-panel-with-ports",
+      "name": "Junction panel with ports",
+      "labelled": true,
+      "src": "/cinema/parts/junction-panel-with-ports.png",
       "width": 403,
       "height": 297,
       "category": "Other",
-      "code": "RV161"
+      "code": "RV161",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-152",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-152.png",
+      "slug": "cover-panel-flat",
+      "name": "Cover panel, flat",
+      "labelled": true,
+      "src": "/cinema/parts/cover-panel-flat.png",
       "width": 205,
       "height": 248,
       "category": "Other",
-      "code": "RV162"
+      "code": "RV162",
+      "named_by": "inferred",
+      "confidence": "low"
     },
     {
-      "slug": "part-153",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-153.png",
+      "slug": "housing-cover-panel-6",
+      "name": "Housing cover panel",
+      "labelled": true,
+      "src": "/cinema/parts/housing-cover-panel-6.png",
       "width": 276,
       "height": 247,
       "category": "Other",
-      "code": "RVIS4"
+      "code": "RVIS4",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-154",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-154.png",
+      "slug": "suction-handle-valve-high-volume-3",
+      "name": "Suction handle valve, high volume",
+      "labelled": true,
+      "src": "/cinema/parts/suction-handle-valve-high-volume-3.png",
       "width": 291,
       "height": 178,
       "category": "Other",
-      "code": "RVO033-2"
+      "code": "RVO033-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-155",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-155.png",
+      "slug": "suction-handle-valve-high-volume-4",
+      "name": "Suction handle valve, high volume",
+      "labelled": true,
+      "src": "/cinema/parts/suction-handle-valve-high-volume-4.png",
       "width": 296,
       "height": 212,
       "category": "Other",
-      "code": "RVO034-1"
+      "code": "RVO034-1",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-156",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-156.png",
+      "slug": "push-button-water-valve",
+      "name": "Push button water valve",
+      "labelled": true,
+      "src": "/cinema/parts/push-button-water-valve.png",
       "width": 159,
       "height": 217,
       "category": "Other",
-      "code": "RVO073"
+      "code": "RVO073",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-157",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-157.png",
+      "slug": "bowl-drain-collar-and-nut",
+      "name": "Bowl drain collar and nut",
+      "labelled": true,
+      "src": "/cinema/parts/bowl-drain-collar-and-nut.png",
       "width": 377,
       "height": 170,
       "category": "Other",
-      "code": "RVO090-1"
+      "code": "RVO090-1",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-158",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-158.png",
+      "slug": "water-filter-housing-with-cartridge",
+      "name": "Water filter housing with cartridge",
+      "labelled": true,
+      "src": "/cinema/parts/water-filter-housing-with-cartridge.png",
       "width": 341,
       "height": 231,
       "category": "Other",
-      "code": "RVO44"
+      "code": "RVO44",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-159",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-159.png",
+      "slug": "foot-controller",
+      "name": "Foot controller",
+      "labelled": true,
+      "src": "/cinema/parts/foot-controller.png",
       "width": 255,
       "height": 230,
       "category": "Other",
-      "code": "RVO55"
+      "code": "RVO55",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-160",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-160.png",
+      "slug": "manifold-block-two-port-with-couplings",
+      "name": "Manifold block, two port with couplings",
+      "labelled": true,
+      "src": "/cinema/parts/manifold-block-two-port-with-couplings.png",
       "width": 284,
       "height": 218,
       "category": "Other",
-      "code": "RVO71"
+      "code": "RVO71",
+      "named_by": "inferred",
+      "confidence": "medium"
     },
     {
-      "slug": "part-161",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-161.png",
+      "slug": "cuspidor-bowl-ceramic",
+      "name": "Cuspidor bowl, ceramic",
+      "labelled": true,
+      "src": "/cinema/parts/cuspidor-bowl-ceramic.png",
       "width": 319,
       "height": 162,
       "category": "Other",
-      "code": "RVO90"
+      "code": "RVO90",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-162",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-162.png",
+      "slug": "operating-light-reflector-2",
+      "name": "Operating light reflector",
+      "labelled": true,
+      "src": "/cinema/parts/operating-light-reflector-2.png",
       "width": 308,
       "height": 253,
       "category": "Other",
-      "code": "RVv051"
+      "code": "RVv051",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-163",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-163.png",
+      "slug": "control-board",
+      "name": "Control board",
+      "labelled": true,
+      "src": "/cinema/parts/control-board.png",
       "width": 366,
       "height": 138,
       "category": "Other",
-      "code": "Rv109"
+      "code": "Rv109",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-164",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-164.png",
+      "slug": "control-board-main-2",
+      "name": "Control board, main",
+      "labelled": true,
+      "src": "/cinema/parts/control-board-main-2.png",
       "width": 276,
       "height": 213,
       "category": "Other",
-      "code": "Rv110"
+      "code": "Rv110",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-165",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-165.png",
+      "slug": "needle-valve-water-adjustable",
+      "name": "Needle valve, water, adjustable",
+      "labelled": true,
+      "src": "/cinema/parts/needle-valve-water-adjustable.png",
       "width": 317,
       "height": 177,
       "category": "Water System",
-      "code": "RV057-2"
+      "code": "RV057-2",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-166",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-166.png",
+      "slug": "needle-valve-water-adjustable-2",
+      "name": "Needle valve, water, adjustable",
+      "labelled": true,
+      "src": "/cinema/parts/needle-valve-water-adjustable-2.png",
       "width": 317,
       "height": 177,
       "category": "Water System",
-      "code": "RV057-3"
+      "code": "RV057-3",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-167",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-167.png",
+      "slug": "water-flow-control-valve",
+      "name": "Water flow control valve",
+      "labelled": true,
+      "src": "/cinema/parts/water-flow-control-valve.png",
       "width": 299,
       "height": 133,
       "category": "Water System",
-      "code": "RV057-4"
+      "code": "RV057-4",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-168",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-168.png",
+      "slug": "needle-valve-air-adjustable",
+      "name": "Needle valve, air, adjustable",
+      "labelled": true,
+      "src": "/cinema/parts/needle-valve-air-adjustable.png",
       "width": 376,
       "height": 153,
       "category": "Water System",
-      "code": "RV058"
+      "code": "RV058",
+      "named_by": "inferred",
+      "confidence": "high"
     },
     {
-      "slug": "part-169",
-      "name": null,
-      "labelled": false,
-      "src": "/cinema/parts/part-169.png",
+      "slug": "water-valve-brass-two-port-3",
+      "name": "Water valve, brass, two port",
+      "labelled": true,
+      "src": "/cinema/parts/water-valve-brass-two-port-3.png",
       "width": 182,
       "height": 248,
       "category": "Water System",
-      "code": "RV125"
+      "code": "RV125",
+      "named_by": "inferred",
+      "confidence": "high"
     }
   ]
 }
