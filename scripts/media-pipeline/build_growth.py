@@ -74,6 +74,19 @@ VIDEOS = [
     ("reel-11.mp4", "Attendees at the phantom head stations"),
     ("reel-12.mp4", "A lesson being delivered to the room"),
 ]
+# ☠️ A STRIP MANIFEST MUST DECLARE `stripUnsafe`, AND IT MUST COME FROM HERE.
+# growth-partner.json feeds the training beat's mixed marquee ALONGSIDE
+# training-media.json: same track, same tile size. training-media declared the key and
+# this did not, so half of one marquee was protected and half was not. Adding the key to
+# the JSON by hand would not survive, because this script, build_hd.py and vps_encode.py
+# all rewrite the file; it has to be emitted.
+#
+# It is COMPUTED, not hardcoded, so it cannot drift away from the truth: anything whose
+# long side is under STRIP_MIN is named with its measured size. Today that yields an empty
+# map, which IS the declaration ("checked, nothing here is too small"): the 19 photographs
+# are 1200 or longer, and the 8 clips sit at exactly 720 and rise to 1920 in the HD pass.
+STRIP_MIN = 720
+
 EXCLUDED = {
     "kb-01..kb-16, digi-01": "private knowledge base screenshots carrying a personal name, a portrait and patient case data",
     "reel-01": "speaker lineup graphic with names and headshots",
@@ -187,6 +200,13 @@ def main() -> int:
             "image too small to use."
         ),
         "excluded": EXCLUDED,
+        "stripUnsafe": {
+            Path(i["src"]).name:
+                f"{i.get('width')}x{i.get('height')}, long side under {STRIP_MIN}px: too "
+                "soft at strip tile size"
+            for i in items
+            if max(i.get("width") or 0, i.get("height") or 0) < STRIP_MIN
+        },
         "copy": page_copy(),
         "counts": {"images": sum(1 for i in items if i["type"] == "image"),
                    "videos": sum(1 for i in items if i["type"] == "video"),

@@ -2,7 +2,7 @@
   "version": 1,
   "source": "https://ffcdentalclinic.com/growth-partner/",
   "generated": "2026-09-06",
-  "notes": "Training Center photographs and footage from the growth partner page, re-encoded for the web. ALT TEXT IS ROLE ONLY, never a person. The page offers 37 images and 12 videos; 19 and 8 ship. Excluded by opening each file: 17 private knowledge base screenshots carrying a personal name, a portrait and patient case data; a speaker lineup graphic and a certificate handover reel, both carrying names; a promotional card, which is an ad render rather than footage; a reel of live procedures on patients; and one image too small to use.",
+  "notes": "Training Center photographs and footage from the growth partner page, re-encoded for the web. ALT TEXT IS ROLE ONLY, never a person. The page offers 37 images and 12 videos; 19 and 8 ship. Excluded by opening each file: 17 private knowledge base screenshots carrying a personal name, a portrait and patient case data; a speaker lineup graphic and a certificate handover reel, both carrying names; a promotional card, which is an ad render rather than footage; a reel of live procedures on patients; and one image too small to use. STRIP DECLARATION: this manifest feeds the training beat's mixed marquee alongside training-media.json, so it declares `stripUnsafe`. It is computed by build_growth.py from the measured long side, not hand written, because this file is rewritten by build_growth.py, build_hd.py and vps_encode.py and a hand edit would vanish on the next run. Empty IS the declaration: the 19 photographs are 1200px or longer and the 8 clips are 720 rising to 1920.",
   "excluded": {
     "kb-01..kb-16, digi-01": "private knowledge base screenshots carrying a personal name, a portrait and patient case data",
     "reel-01": "speaker lineup graphic with names and headshots",
@@ -11,6 +11,7 @@
     "reel-03": "close ups of live procedures on patients",
     "mini-18": "320 by 240, too small for the page"
   },
+  "stripUnsafe": {},
   "copy": {
     "headline": "Teach at a Training Center built for the way you teach.",
     "statements": [
