@@ -113,6 +113,17 @@ PICKS = {
 # 1.75, or a file the studio bars is not the file the generator bars.
 COVER_MIN = 1.75
 
+# ☠️ THE FIT DECIDES WHICH WAY THE RATIO GOES, AND GETTING IT BACKWARDS IS SILENT.
+# cover FILLS the box and crops the overflow, so the binding axis is the SMALLER ratio.
+# contain FITS the whole file inside the box, so it is scaled down to the tighter axis and
+# the effective resolution is the LARGER ratio. Same numbers, opposite operator.
+#
+# builder-room found the consequence in parts, which is contain: a 348x68 part covers a
+# 56x56 chip 1.21 times and CONTAINS it 6.21 times. Judged as cover it is refused from its
+# own grid; judged correctly it clears the floor five times over. The form is derived from
+# TILE_FIT rather than hardcoded, so the declared key and the arithmetic cannot drift.
+TILE_FIT = "cover"   # object-fit on the rendering element, read from home-cinema.css
+
 
 def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None:
     """Reason the file is too soft for this tile, or None if it is fine."""
@@ -121,10 +132,11 @@ def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None
                                # not evidence of a small file, and removing a photograph
                                # because a probe failed is a worse error than shipping one
                                # that is slightly soft. Same default builder-room uses.
-    ratio = min(src_w / tile_w, src_h / tile_h)
+    ratio = (max if TILE_FIT == "contain" else min)(src_w / tile_w, src_h / tile_h)
     if ratio >= COVER_MIN:
         return None
-    return (f"{src_w}x{src_h} into a {tile_w}x{tile_h} css tile: covers it "
+    verb = "fits inside" if TILE_FIT == "contain" else "covers"
+    return (f"{src_w}x{src_h} into a {tile_w}x{tile_h} css tile: {verb} it "
             f"{ratio:.2f} times, under the {COVER_MIN} floor")
 
 TILE_W, TILE_H = 384, 288   # .dsd-mixed .dsd-strip-track img, MEASURED on a 1440x900 production build
@@ -330,6 +342,7 @@ def main() -> int:
             + (" REMOVED AT THIS TILE SIZE: " + ", ".join(sorted(skipped)) + "."
                if skipped else "")
         ),
+        "tileFit": TILE_FIT,
         "tilePx": TILE_W,
         "tileHeightPx": TILE_H,
         "tileVideoPx": TILE_VIDEO_W,

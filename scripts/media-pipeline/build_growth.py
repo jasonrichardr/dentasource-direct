@@ -108,6 +108,17 @@ VIDEOS = [
 # 1.75, or a file the studio bars is not the file the generator bars.
 COVER_MIN = 1.75
 
+# ☠️ THE FIT DECIDES WHICH WAY THE RATIO GOES, AND GETTING IT BACKWARDS IS SILENT.
+# cover FILLS the box and crops the overflow, so the binding axis is the SMALLER ratio.
+# contain FITS the whole file inside the box, so it is scaled down to the tighter axis and
+# the effective resolution is the LARGER ratio. Same numbers, opposite operator.
+#
+# builder-room found the consequence in parts, which is contain: a 348x68 part covers a
+# 56x56 chip 1.21 times and CONTAINS it 6.21 times. Judged as cover it is refused from its
+# own grid; judged correctly it clears the floor five times over. The form is derived from
+# TILE_FIT rather than hardcoded, so the declared key and the arithmetic cannot drift.
+TILE_FIT = "cover"   # object-fit on the rendering element, read from home-cinema.css
+
 
 def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None:
     """Reason the file is too soft for this tile, or None if it is fine."""
@@ -116,10 +127,11 @@ def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None
                                # not evidence of a small file, and removing a photograph
                                # because a probe failed is a worse error than shipping one
                                # that is slightly soft. Same default builder-room uses.
-    ratio = min(src_w / tile_w, src_h / tile_h)
+    ratio = (max if TILE_FIT == "contain" else min)(src_w / tile_w, src_h / tile_h)
     if ratio >= COVER_MIN:
         return None
-    return (f"{src_w}x{src_h} into a {tile_w}x{tile_h} css tile: covers it "
+    verb = "fits inside" if TILE_FIT == "contain" else "covers"
+    return (f"{src_w}x{src_h} into a {tile_w}x{tile_h} css tile: {verb} it "
             f"{ratio:.2f} times, under the {COVER_MIN} floor")
 
 TILE_W, TILE_H = 384, 288   # the SAME .dsd-mixed track as training-media, measured
@@ -251,6 +263,7 @@ def refresh() -> int:
             continue
         items.append(it)
 
+    prev["tileFit"] = TILE_FIT
     prev["tilePx"], prev["tileHeightPx"] = TILE_W, TILE_H
     prev["tileVideoPx"], prev["tileVideoHeightPx"] = TILE_VIDEO_W, TILE_VIDEO_H
     prev["stripUnsafe"] = dict(sorted(refused.items()))
@@ -332,6 +345,7 @@ def main() -> int:
             "image too small to use. THE 8 CLIPS ARE THE ONLY THING OUT OF THE STRIP, and the cause is our own encode rather than a source ceiling: VIDEO_MAX caps the LONG side at 720, so a 9:16 clip lands 404 wide and covers a 384x288 tile only 1.05 times. Their sources are 720x1280 and 1920x1080, which cover it 1.88 and 3.75 times, so a cover targeted bead re-encode readmits ALL EIGHT with no edit here. The 9 photographs, 719 to 765 wide, were held at the old 2.0 floor and return at 1.75: they cover the tile 1.87 to 1.99 times. Re-fetching proved the page serves nothing larger, so 1.75 is what makes them usable rather than a bigger original."
         ),
         "excluded": EXCLUDED,
+        "tileFit": TILE_FIT,
         "tilePx": TILE_W,
         "tileHeightPx": TILE_H,
         "stripUnsafe": dict(sorted(refused.items())),

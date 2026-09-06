@@ -295,6 +295,15 @@ def main() -> int:
         # dropped into a 56px chip: every one clears a 112 device px tile many times over,
         # so a bar that can never fire would be decoration rather than a check. The strip
         # manifests declare it because theirs CAN fire and has.
+        # ☠️ contain, NOT cover: .dsd-part-img is object-fit: contain (home-cinema.css:547).
+        # The whole cutout is fitted INSIDE the 56px chip rather than filling it, so a
+        # consumer judging these must use max(w/tileW, h/tileH), not min. builder-room hit
+        # this from the other side: judged as cover, light-arm-2 at 348x68 scores 1.21 and
+        # is refused from its own grid, where contain scores 6.21. Four thumbnails were
+        # affected. This pipeline runs no size gate, but the key has to be here for anyone
+        # who does, and "a bar that cannot fire" stopped being true when the decision moved
+        # from a name list to a measurement.
+        "tileFit": "contain",
         "tilePx": 56,
         "tileHeightPx": 56,
         # null, not absent: "images only, measured" rather than "not measured yet".

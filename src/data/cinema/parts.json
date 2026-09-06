@@ -3,6 +3,7 @@
   "source": "https://dsd-servicehub-11edfd29b6df.vercel.app/spare-parts",
   "generated": "2026-09-06",
   "notes": "Every one of the 244 parts now carries a dental unit name. The 75 the catalogue named keep their wording (`named_by: source`); the other 169 were IDENTIFIED BY SIGHT from the photographs (`named_by: inferred`) using dental unit and pneumatic terminology. Where a photograph does not show enough to state a function the name is an honest generic and `confidence` is low, so it can be corrected in the studio. RV codes never appear in a name or a slug; `code` stays internal and the script asserts no code string reaches a name. Source named and inferred parts alternate in this list.",
+  "tileFit": "contain",
   "tilePx": 56,
   "tileHeightPx": 56,
   "tileVideoPx": null,

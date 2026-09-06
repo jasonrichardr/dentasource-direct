@@ -266,5 +266,6 @@
   ],
   "tileHeightPx": 288,
   "tileVideoPx": 162,
-  "tileVideoHeightPx": 288
+  "tileVideoHeightPx": 288,
+  "tileFit": "cover"
 }
