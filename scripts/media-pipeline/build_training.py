@@ -85,6 +85,16 @@ PICKS = {
 }
 
 
+# ☠️ TOO SMALL FOR A STRIP TILE, AND NOT SWAPPABLE. These frames are 360x640, which is
+# their source reel's native size: Facebook never published them larger, so there is
+# nothing to re-fetch. They are ALSO published article photographs whose alt text names
+# that exact scene ("The Crest instructor in loupes working a handpiece on a phantom
+# head"), so overwriting the file with a bigger frame from another course would caption
+# one event with a picture of another. The articles keep them, where 360 wide reads fine;
+# the strips drop them.
+STRIP_UNSAFE = {"v039-1.jpg", "v039-2.jpg", "v039-5.jpg", "v033-8.jpg", "v301-2.jpg"}
+
+
 def load_index() -> dict[int, Path]:
     out = {}
     for line in (SC / "train.txt").read_text().splitlines():
@@ -105,6 +115,9 @@ def main() -> int:
             continue
         if src.name.lower().startswith("og"):
             raise SystemExit(f"index {i} is a share card: {src.name}")
+        if src.name in STRIP_UNSAFE:
+            print(f"  skipped {src.name}: too small for a strip tile, see STRIP_UNSAFE")
+            continue
         with Image.open(src) as im:
             w, h = im.size
         images.append({"type": "image", "src": "/" + str(src.relative_to(REPO / "public")),

@@ -2,12 +2,12 @@
   "version": 1,
   "source": "public/images/news training articles, and reel-library.json for the footage",
   "generated": "2026-09-06",
-  "notes": "Photographs from the 15 training articles, picked by looking at a contact sheet, interleaved with every reel the library classified as training so the marquee alternates image, video, image. Videos reference the reel library by id; there is one copy of each clip on disk. ALT TEXT IS ROLE ONLY. Excluded: the live patient procedure frames, the course poster and Q and A card, which are promo graphics carrying speaker names, the certificate collages, and individual portraits.",
+  "notes": "Photographs from the 15 training articles, picked by looking at a contact sheet, interleaved with every reel the library classified as training so the marquee alternates image, video, image. Videos reference the reel library by id; there is one copy of each clip on disk. ALT TEXT IS ROLE ONLY. Excluded: the live patient procedure frames, the course poster and Q and A card, which are promo graphics carrying speaker names, the certificate collages, and individual portraits. REMOVED FROM THIS STRIP: v039-2.jpg, v039-5.jpg. 360x640 source, too soft at strip tile size. NOT swapped for a larger frame: each is a published article photograph whose alt text describes that exact scene, so repointing the file would caption one event with a picture of another. The articles keep them, where 360 wide reads correctly.",
   "counts": {
-    "images": 38,
+    "images": 36,
     "videos": 30,
-    "total": 68,
-    "missing": 0
+    "total": 66,
+    "removedTooSmall": 2
   },
   "items": [
     {
@@ -144,13 +144,6 @@
       "height": 1280
     },
     {
-      "type": "image",
-      "src": "/images/news/crest-hands-on-digital-designing-training/v039-2.jpg",
-      "alt": "Guiding a technique at the chair",
-      "width": 360,
-      "height": 640
-    },
-    {
       "type": "video",
       "src": "/cinema/reels/1464261549053843.mp4",
       "poster": "/cinema/reels/1464261549053843.jpg",
@@ -193,13 +186,6 @@
       "height": 720,
       "duration": 40.7,
       "reel_id": "2039690190757920"
-    },
-    {
-      "type": "image",
-      "src": "/images/news/crest-hands-on-digital-designing-training/v039-5.jpg",
-      "alt": "Close work at the station",
-      "width": 360,
-      "height": 640
     },
     {
       "type": "video",
@@ -576,5 +562,9 @@
       "width": 1080,
       "height": 1920
     }
-  ]
+  ],
+  "stripUnsafe": {
+    "v039-2.jpg": "360x640 source, too soft at strip tile size. NOT swapped for a larger frame: each is a published article photograph whose alt text describes that exact scene, so repointing the file would caption one event with a picture of another. The articles keep them, where 360 wide reads correctly.",
+    "v039-5.jpg": "360x640 source, too soft at strip tile size. NOT swapped for a larger frame: each is a published article photograph whose alt text describes that exact scene, so repointing the file would caption one event with a picture of another. The articles keep them, where 360 wide reads correctly."
+  }
 }
