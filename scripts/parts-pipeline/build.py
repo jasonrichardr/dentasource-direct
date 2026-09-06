@@ -188,16 +188,27 @@ def contact_sheet(entries, path: Path, cols: int = 12, cell: int = 130):
     """A dark ground on purpose: transparency only shows against something."""
     rows = (len(entries) + cols - 1) // cols
     sheet = Image.new("RGB", (cols * cell, rows * cell), (10, 14, 22))
+    # ☠️ A MISSING TILE USED TO VANISH FROM THIS SHEET IN SILENCE, and this sheet is what
+    # a HUMAN looks at to check the parts. A contact sheet with entries quietly absent
+    # looks exactly like a contact sheet where everything is present: the reader counts
+    # what is there, not what should have been. Same shape builder-room found in the
+    # studio and I found in strip_unsafe, on the one surface whose whole job is verifying.
+    absent = []
     for i, e in enumerate(entries):
         try:
             tile = Image.open(OUT_IMG / f"{e['slug']}.png").convert("RGBA")
         except OSError:
+            absent.append(e["slug"])
             continue
         tile.thumbnail((cell - 14, cell - 14), Image.LANCZOS)
         x = (i % cols) * cell + (cell - tile.width) // 2
         y = (i // cols) * cell + (cell - tile.height) // 2
         sheet.paste(tile, (x, y), tile)
     path.parent.mkdir(parents=True, exist_ok=True)
+    if absent:
+        print(f"  \u2620 CONTACT SHEET IS MISSING {len(absent)} TILES, so it is not a "
+              f"complete proof: {', '.join(absent[:8])}")
+
     sheet.save(path, optimize=True)
     return sheet.size
 
