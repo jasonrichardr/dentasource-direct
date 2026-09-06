@@ -8,7 +8,7 @@
 
 import { useCallback, useRef, useState } from 'react';
 
-import { COVER_MIN, READ_ONLY_FIELDS, isVideoPath, softnessReason } from '@/lib/studio/registry';
+import { COVER_MIN, READ_ONLY_FIELDS, floorText, isVideoPath, softnessReason } from '@/lib/studio/registry';
 import AssetPicker from './AssetPicker';
 import TransferPicker from './TransferPicker';
 
@@ -139,7 +139,7 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
             title={
               [
                 guard.pictures === 'measured'
-                  ? `Pictures render ${guard.tilePx}x${guard.tileHeightPx || guard.tilePx} css px here and must fill that at ${COVER_MIN}x or better.`
+                  ? `Pictures render ${guard.tilePx}x${guard.tileHeightPx || guard.tilePx} css px here and must ${guard.tileFit === 'contain' ? 'fit inside' : 'fill'} that at ${floorText(guard.floor)}x or better${guard.floor !== COVER_MIN ? `, a floor this list sets for itself rather than the house ${floorText(COVER_MIN)}x` : ''}.`
                   : guard.pictures === 'none'
                     ? 'This list renders no picture tile, so it takes video only.'
                     : 'No picture tile measured, so no picture is barred. Declare "tilePx" and "tileHeightPx" to judge them.',
@@ -162,6 +162,7 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
               : guard.clips === 'none'
                 ? ' · images only'
                 : ' · video tile not declared'}
+            {guard.pictures === 'measured' && guard.floor !== COVER_MIN ? ` · floor ${floorText(guard.floor)}x` : null}
             {guard.pictures === 'measured' ? `: ${guard.notedBarred} barred` : null}
           </span>
         ) : null}

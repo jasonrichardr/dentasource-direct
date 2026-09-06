@@ -150,6 +150,22 @@ export function basename(p) {
  *  frames, the ones that genuinely look soft, sit at 0.94 and still fail. */
 export const COVER_MIN = 1.75;
 
+/** ☠️ AND A LIST CAN SET ITS OWN FLOOR. `"coverMin": 1.0` on the manifest, for a
+ *  surface where the default is the wrong bar rather than a lenient one: the
+ *  marbles render inside glass, which forgives a 1.5x source that a flat strip
+ *  shows up, and Facebook's ceiling is 720 on the short side so 1.75 would empty
+ *  the library. Absent means the house floor above. */
+export function floorFor(tile) {
+  const own = Number(tile?.coverMin);
+  return Number.isFinite(own) && own > 0 ? own : COVER_MIN;
+}
+
+/** A floor as people write it: 1 is a ratio, "1x" reads like a typo next to
+ *  "1.75x", so an integer floor keeps its decimal. */
+export function floorText(floor) {
+  return Number.isInteger(floor) ? floor.toFixed(1) : String(floor);
+}
+
 /** ☠️ A LIST RENDERS A TILE PER KIND, and judging by the wrong one is the same
  *  failure as the crew row. In the mixed track a clip gets `aspect-ratio: 9/16`
  *  and a still `4/3` at a shared height, so the boxes are 162x288 and 384x288
@@ -226,11 +242,13 @@ export function softnessReason(tile, dims, kind = 'image') {
       ? 'this list takes images only, it renders no video tile'
       : 'this list takes video only, it renders no picture tile';
   }
+  const floor = floorFor(tile);
   const ratio = coverRatio(tile, dims, kind);
-  if (ratio === null || ratio >= COVER_MIN) return null;
+  if (ratio === null || ratio >= floor) return null;
   const named = box.square ? `${box.w} px wide` : `${box.w}x${box.h}`;
   const what = kind === 'video' ? 'clip' : 'picture';
-  return `a ${what} of ${dims.width}x${dims.height} fills a ${named} tile at ${ratio.toFixed(2)}x, under the ${COVER_MIN}x floor`;
+  const fits = tile?.tileFit === 'contain' ? 'fits inside' : 'fills';
+  return `a ${what} of ${dims.width}x${dims.height} ${fits} a ${named} tile at ${ratio.toFixed(2)}x, under this list's ${floorText(floor)}x floor`;
 }
 
 /** What this list says about a kind, for a label: 'measured', 'none' when the

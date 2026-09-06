@@ -33,7 +33,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { promisify } from 'node:util';
 
-import { ASSET_ROOTS, FILES, absolute, basename, isVideoPath, softnessReason, stripUnsafeOf, tileState } from './registry';
+import { ASSET_ROOTS, FILES, absolute, basename, floorFor, isVideoPath, softnessReason, stripUnsafeOf, tileState } from './registry';
 
 const run = promisify(execFile);
 
@@ -155,12 +155,14 @@ export async function tileGuards() {
       }
     }
     if (data?.tileFit === 'contain') tile.tileFit = 'contain';
+    if (Number(data?.coverMin) > 0) tile.coverMin = Number(data.coverMin);
     let notedBarred = 0;
     for (const info of Object.values(noted)) if (softnessReason(tile, info.dims, info.kind)) notedBarred += 1;
     byPath[f.path] = {
       ...tile,
       pictures: tileState(tile, 'image'),
       clips: tileState(tile, 'video'),
+      floor: floorFor(tile),
       declares: !!stripUnsafeOf(data),
       notedBarred,
     };

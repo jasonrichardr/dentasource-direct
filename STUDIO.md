@@ -193,10 +193,18 @@ is a claim about a photograph and this is the photograph.
 
 **1.75 rather than 2.** Two device pixels per css pixel is the retina ideal, and
 holding it banned most of the site's own footage: what Facebook and FFC serve
-natively is 720 wide, which covers a 384x288 tile at 1.875. The 360 wide crest
-frames, the ones that genuinely look soft, cover at 0.94 and still fail. The
+natively is 720 wide, which fills a 384x288 tile at 1.875. The 360 wide crest
+frames, the ones that genuinely look soft, fill it at 0.94 and still fail. The
 number is `COVER_MIN` in `src/lib/studio/registry.js`, one named constant, so it
 can be pushed back to 2 in one edit.
+
+**And a list may set its own floor** with `"coverMin"`. The marbles render
+inside glass, which forgives a source a flat strip shows up, and Facebook's
+ceiling is 720 on the short side, so `reel-library.json` declares `1.0` and a
+720x1280 clip fills its 482x482 bead at 1.49 instead of being refused. A list
+with no `coverMin` uses the house floor, and the studio prints a floor in the
+label only when it is not the house one, so an unusual bar cannot pass for the
+normal one.
 
 What the lists declare, from the CSS that renders them:
 
