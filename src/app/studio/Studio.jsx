@@ -6,7 +6,6 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { stripUnsafeOf } from '@/lib/studio/registry';
 
 import FieldEditor from './FieldEditor';
 import LogoDials from './LogoDials';
@@ -38,7 +37,7 @@ export default function Studio() {
   const [busy, setBusy] = useState('');
   const [note, setNote] = useState(null);
   const [dragFrom, setDragFrom] = useState(null);
-  const [unsafeUnion, setUnsafeUnion] = useState(null);
+
 
   const active = useMemo(() => files.find((f) => f.id === activeId) || null, [files, activeId]);
   const items = useMemo(() => {
@@ -56,7 +55,6 @@ export default function Studio() {
         // that EXISTS can be selected.
         const all = d.files || [];
         setFiles(all);
-        setUnsafeUnion(d.unsafeUnion || null);
         const first = all.find((f) => f.exists);
         if (first) setActiveId(first.id);
       })
@@ -134,7 +132,6 @@ export default function Studio() {
         .then((r) => r.json())
         .then((d) => {
           setFiles(d.files || []);
-          setUnsafeUnion(d.unsafeUnion || null);
         })
         .catch(() => {});
     },
@@ -340,11 +337,8 @@ export default function Studio() {
                 source={{ path: active.path, pointer: [active.collection] }}
                 dirty={dirty}
                 onTransferred={afterTransfer}
-                blocked={unsafeUnion || stripUnsafeOf(doc)}
-                guard={{
-                  declares: !!stripUnsafeOf(doc),
-                  count: Object.keys(unsafeUnion || stripUnsafeOf(doc) || {}).length,
-                }}
+                blocked={active.guard?.blocked || null}
+                guard={active.guard || null}
               />
               {/* ☠️ WHY SOMETHING IS MISSING IS EDITORIAL INFORMATION. The growth
                   partner set carries an `excluded` map of id range to reason,
@@ -376,7 +370,7 @@ export default function Studio() {
               filePath={active.path}
               dirty={dirty}
               onTransferred={afterTransfer}
-              blocked={stripUnsafeOf(doc)}
+              blocked={active.guard?.blocked || null}
             />
           )}
         </main>

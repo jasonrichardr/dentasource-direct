@@ -11,7 +11,8 @@
 
 import { readFile, writeFile, copyFile, appendFile } from 'node:fs/promises';
 
-import { FILES, LOG_FILE, absolute, basename, detectCollection, isVideoPath, isWritable, stripUnsafeOf, studioDisabled } from '@/lib/studio/registry';
+import { FILES, LOG_FILE, absolute, basename, detectCollection, isVideoPath, isWritable, studioDisabled } from '@/lib/studio/registry';
+import { computeUnsafe } from '@/lib/studio/unsafe';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -189,22 +190,11 @@ export async function POST(request) {
   // nothing about it being SENT there from a manifest that did not. Two of the
   // four manifests carrying stripUnsafe are hand maintained, with no build step
   // to catch a re-add, so both doors have to refuse or neither does.
-  // A strip target is judged against EVERY strip's map, for the reason in the
-  // files route: the softness belongs to the photograph, not to one manifest.
-  // A target that declares no map of its own is not a strip and is left alone.
-  let barred = stripUnsafeOf(targetDoc);
-  if (barred) {
-    barred = { ...barred };
-    for (const f of FILES) {
-      try {
-        const other = JSON.parse(await readFile(absolute(f.path), 'utf8'));
-        const m = stripUnsafeOf(other);
-        if (m) for (const [n, why] of Object.entries(m)) if (!barred[n]) barred[n] = why;
-      } catch {
-        /* absent or unreadable: nothing to add */
-      }
-    }
-  }
+  // The target's own bar, by size: see src/lib/studio/unsafe.js. A list that
+  // renders small tiles is not barred from a photograph it can display.
+  const { byPath } = await computeUnsafe();
+  const barred = byPath[to.path]?.blocked || null;
+
   if (barred) {
     const hit = picked.map((x) => basename(srcOf(x))).find((b) => barred[b]);
     if (hit) return bad(`${hit} was removed from that set on purpose: ${barred[hit]}`);

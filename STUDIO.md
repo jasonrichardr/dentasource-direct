@@ -174,28 +174,36 @@ This part is not for editing copy; it is for the next builder who adds a
 picture set. It lives here because STUDIO.md is what somebody reads before
 touching these files.
 
-A manifest may carry a `stripUnsafe` map of filename to reason. It means:
+A manifest may carry two fields that decide which photographs it can hold:
 
-> **a media list whose tiles render large enough for source resolution to
-> matter** — not "any strip".
+    "stripUnsafe": { "<filename>": "<reason>" },
+    "tilePx": 126
 
-The measurement that draws the line: a strip tile renders up to 384 css px,
-768 device px at DPR 2, where a 360px-wide source is visibly soft. A parts tile
-renders 56 css px, 112 device px, where the same photograph is fine. So
-`parts.json` is a strip and deliberately does **not** declare, and a beat's own
-pictures are left alone for the same reason.
+`stripUnsafe` names photographs found to be too small for somewhere. `tilePx` is
+the width in css px that this list renders a tile at. The rule is arithmetic:
 
-Two ways this goes wrong, so the key gets added for the right reason:
+> a list bars a file when **`tilePx * 2` exceeds the file's short side**.
 
-- a **small-tile** list that declares **over-bars**, banning photographs from a
-  place they still work;
-- a **large-tile** list that forgets **under-bars**, silently, which is worse
-  because nothing announces it.
+The doubling is DPR 2, the retina case. The short side rather than the long one,
+because a tile crops to fill: a 360x640 portrait in a 126x84 tile is limited by
+its 360. The file's size is **measured off the file on disk**, not copied into
+the JSON, because a number in a manifest is a claim about a photograph and this
+is the photograph.
 
-The studio cannot measure a tile, so it shows every picture set whether it has a
-guard, and an empty `{}` is a real declaration: it marks the list as one where
-resolution matters and pulls in every other list's bars. A new picture set
-should declare the key on the day it lands, even empty.
+So the same five 360px photographs are refused by a 384px strip (which needs
+768) and accepted by the 126px crew row (which needs 252). No exceptions to
+remember, and a list that lands next year is judged rather than guessed.
+
+- A list that declares **no** `stripUnsafe` is not resolution-sensitive at all
+  and bars nothing. That is right for `parts.json`, whose tiles are 56px, and
+  for a beat's own pictures, which render large.
+- A list that declares `stripUnsafe` but **no `tilePx`** bars everything, to
+  stay on the safe side. The studio labels it "tile size not declared" so the
+  gap is visible rather than silent.
+
+This replaced a rule that treated "declares a map" as "has big tiles". It
+over-barred the crew row for a week: two documentary photographs were removed
+from a 126px row for a softness they do not have there.
 
 ## Where it writes
 

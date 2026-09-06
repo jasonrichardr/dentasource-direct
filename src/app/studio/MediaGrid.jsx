@@ -131,12 +131,18 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
           <span
             className={`st-guard${guard.declares ? '' : ' none'}`}
             title={
-              guard.declares
-                ? 'This set rules out files that are too soft at its tile size. Barred files are greyed in the picker.'
-                : 'This set does not declare stripUnsafe, so nothing is barred from it. That is right for small tiles (the parts rows) and wrong for a strip. If tiles here render large, the set should declare the key, even empty.'
+              !guard.declares
+                ? 'This set does not declare stripUnsafe, so nothing is barred from it. Right for small tiles; wrong for a set whose tiles render large.'
+                : guard.tilePx
+                  ? `Tiles here render ${guard.tilePx}px, so a file needs ${guard.needPx}px on its short side at DPR 2. Anything smaller is greyed in the picker.`
+                  : 'This set declares stripUnsafe but no tilePx, so every barred file is refused to stay on the safe side. Add "tilePx": <css px> so it is judged by size instead.'
             }
           >
-            {guard.declares ? `resolution guard: ${guard.count} barred` : 'no resolution guard'}
+            {!guard.declares
+              ? 'no resolution guard'
+              : guard.tilePx
+                ? `${guard.tilePx}px tiles · ${Object.keys(guard.blocked || {}).length} barred`
+                : `tile size not declared · ${Object.keys(guard.blocked || {}).length} barred`}
           </span>
         ) : null}
         <span className="st-f-n">{rows.length} {rows.length === 1 ? 'file' : 'files'}</span>
