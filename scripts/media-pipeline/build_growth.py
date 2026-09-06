@@ -121,6 +121,29 @@ def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None
 
 TILE_W, TILE_H = 384, 288   # the SAME .dsd-mixed track as training-media, measured
 
+# ☠️ A MIXED TRACK HAS TWO TILES, NOT ONE, AND THEY SHARE A HEIGHT.
+# home-cinema.css gives `.dsd-mixed .dsd-strip-track video` AND `... img` the same
+# height, clamp(150px, 32vh, 300px), at aspect-ratio 9/16, then overrides the IMAGE alone
+# to 4/3. The stylesheet says it in words: "a still is landscape where a reel is portrait:
+# it keeps the same HEIGHT". So at 1440x900 the height is 288 for both and the widths part:
+#
+#   image   288 * 4/3  = 384x288      video   288 * 9/16 = 162x288
+#
+# 384x288 is builder-home's measurement of the rendered element. The video tile is the
+# SAME measured height down the other branch of the same rule, so it is measured too,
+# not guessed. It is NOT `.dsd-reel`, which is dead CSS: that class appears nowhere in
+# src/ outside the stylesheet and nothing renders it, so the ~190x338 it implies is not
+# any tile on the page.
+#
+# One tile cannot judge both. A 404x720 clip covers the image tile 1.05 times and the
+# video tile 2.49, and it is the video tile it actually lands in.
+TILE_VIDEO_W, TILE_VIDEO_H = 162, 288   # .dsd-mixed .dsd-strip-track video, 9/16 at 288
+
+
+def tile_for(kind: str) -> tuple[int, int]:
+    """The box this kind of file actually renders in."""
+    return (TILE_VIDEO_W, TILE_VIDEO_H) if kind == "video" else (TILE_W, TILE_H)
+
 
 EXCLUDED = {
     "kb-01..kb-16, digi-01": "private knowledge base screenshots carrying a personal name, a portrait and patient case data",
@@ -217,7 +240,8 @@ def refresh() -> int:
                 raise SystemExit(f"growth image missing from the repo: {it['src']}")
             with Image.open(f) as im:
                 it["width"], it["height"] = im.size
-        why = strip_unsafe(it.get("width") or 0, it.get("height") or 0, TILE_W, TILE_H)
+        why = strip_unsafe(it.get("width") or 0, it.get("height") or 0,
+                           *tile_for(it["type"]))
         if why:
             refused[Path(it["src"]).name] = why
             held.append(it)
@@ -225,6 +249,7 @@ def refresh() -> int:
         items.append(it)
 
     prev["tilePx"], prev["tileHeightPx"] = TILE_W, TILE_H
+    prev["tileVideoPx"], prev["tileVideoHeightPx"] = TILE_VIDEO_W, TILE_VIDEO_H
     prev["stripUnsafe"] = dict(sorted(refused.items()))
     prev["heldBack"] = held
     prev["counts"] = {"images": sum(1 for i in items if i["type"] == "image"),
@@ -263,7 +288,7 @@ def main() -> int:
         items.append({"type": "image", "src": f"/cinema/growth/{name}",
                       "width": im.width, "height": im.height, "alt": alt,
                       "source_url": PAGE_URL})
-        why = strip_unsafe(im.width, im.height, TILE_W, TILE_H)
+        why = strip_unsafe(im.width, im.height, *tile_for("image"))
         if why:
             refused[name] = why
             items.pop()
@@ -284,7 +309,7 @@ def main() -> int:
                       "poster": f"/cinema/growth/{poster_name}",
                       "width": w, "height": h, "duration": dur, "alt": alt,
                       "source_url": PAGE_URL})
-        why = strip_unsafe(w, h, TILE_W, TILE_H)
+        why = strip_unsafe(w, h, *tile_for("video"))
         if why:
             refused[name] = why
             items.pop()

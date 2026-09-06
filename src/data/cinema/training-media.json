@@ -5,6 +5,8 @@
   "notes": "Photographs from the 15 training articles, picked by looking at a contact sheet, interleaved with every reel the library classified as training so the marquee alternates image, video, image. Videos reference the reel library by id; there is one copy of each clip on disk. ALT TEXT IS ROLE ONLY. Excluded: the live patient procedure frames, the course poster and Q and A card, which are promo graphics carrying speaker names, the certificate collages, and individual portraits. REMOVED AT THIS TILE SIZE: v039-2.jpg, v039-3.jpg, v039-4.jpg, v039-5.jpg, v039-6.jpg.",
   "tilePx": 384,
   "tileHeightPx": 288,
+  "tileVideoPx": 162,
+  "tileVideoHeightPx": 288,
   "stripUnsafe": {
     "v039-2.jpg": "360x640 into a 384x288 css tile: covers it 0.94 times, under the 1.75 floor",
     "v039-3.jpg": "360x640 into a 384x288 css tile: covers it 0.94 times, under the 1.75 floor",

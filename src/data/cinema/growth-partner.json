@@ -12,14 +12,8 @@
     "mini-18": "320 by 240, too small for the page"
   },
   "stripUnsafe": {
-    "reel-02.mp4": "404x720 into a 384x288 css tile: covers it 1.05 times, under the 1.75 floor",
-    "reel-06.mp4": "404x720 into a 384x288 css tile: covers it 1.05 times, under the 1.75 floor",
-    "reel-07.mp4": "404x720 into a 384x288 css tile: covers it 1.05 times, under the 1.75 floor",
-    "reel-08.mp4": "404x720 into a 384x288 css tile: covers it 1.05 times, under the 1.75 floor",
-    "reel-09.mp4": "404x720 into a 384x288 css tile: covers it 1.05 times, under the 1.75 floor",
-    "reel-10.mp4": "404x720 into a 384x288 css tile: covers it 1.05 times, under the 1.75 floor",
-    "reel-11.mp4": "720x404 into a 384x288 css tile: covers it 1.40 times, under the 1.75 floor",
-    "reel-12.mp4": "720x404 into a 384x288 css tile: covers it 1.40 times, under the 1.75 floor"
+    "reel-11.mp4": "720x404 into a 162x288 css tile: covers it 1.40 times, under the 1.75 floor",
+    "reel-12.mp4": "720x404 into a 162x288 css tile: covers it 1.40 times, under the 1.75 floor"
   },
   "copy": {
     "headline": "Teach at a Training Center built for the way you teach.",
@@ -30,7 +24,7 @@
   },
   "counts": {
     "images": 19,
-    "videos": 0,
+    "videos": 6,
     "missing": 0
   },
   "items": [
@@ -185,10 +179,7 @@
       "height": 1200,
       "alt": "Filming a lesson on the Training Center floor",
       "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    }
-  ],
-  "tilePx": 384,
-  "heldBack": [
+    },
     {
       "type": "video",
       "src": "/cinema/growth/reel-02.mp4",
@@ -248,7 +239,10 @@
       "duration": 34.97,
       "alt": "A demonstration on the main screen",
       "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    },
+    }
+  ],
+  "tilePx": 384,
+  "heldBack": [
     {
       "type": "video",
       "src": "/cinema/growth/reel-11.mp4",
@@ -270,5 +264,7 @@
       "source_url": "https://ffcdentalclinic.com/growth-partner/"
     }
   ],
-  "tileHeightPx": 288
+  "tileHeightPx": 288,
+  "tileVideoPx": 162,
+  "tileVideoHeightPx": 288
 }

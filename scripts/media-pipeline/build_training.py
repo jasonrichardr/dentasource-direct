@@ -126,6 +126,29 @@ def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None
 
 TILE_W, TILE_H = 384, 288   # .dsd-mixed .dsd-strip-track img, MEASURED on a 1440x900 production build
 
+# ☠️ A MIXED TRACK HAS TWO TILES, NOT ONE, AND THEY SHARE A HEIGHT.
+# home-cinema.css gives `.dsd-mixed .dsd-strip-track video` AND `... img` the same
+# height, clamp(150px, 32vh, 300px), at aspect-ratio 9/16, then overrides the IMAGE alone
+# to 4/3. The stylesheet says it in words: "a still is landscape where a reel is portrait:
+# it keeps the same HEIGHT". So at 1440x900 the height is 288 for both and the widths part:
+#
+#   image   288 * 4/3  = 384x288      video   288 * 9/16 = 162x288
+#
+# 384x288 is builder-home's measurement of the rendered element. The video tile is the
+# SAME measured height down the other branch of the same rule, so it is measured too,
+# not guessed. It is NOT `.dsd-reel`, which is dead CSS: that class appears nowhere in
+# src/ outside the stylesheet and nothing renders it, so the ~190x338 it implies is not
+# any tile on the page.
+#
+# One tile cannot judge both. A 404x720 clip covers the image tile 1.05 times and the
+# video tile 2.49, and it is the video tile it actually lands in.
+TILE_VIDEO_W, TILE_VIDEO_H = 162, 288   # .dsd-mixed .dsd-strip-track video, 9/16 at 288
+
+
+def tile_for(kind: str) -> tuple[int, int]:
+    """The box this kind of file actually renders in."""
+    return (TILE_VIDEO_W, TILE_VIDEO_H) if kind == "video" else (TILE_W, TILE_H)
+
 
 # index on train.png -> alt
 PICKS = {
@@ -264,6 +287,11 @@ def main() -> int:
                                "alt": r.get("caption") or r.get("alt"),
                                "width": r.get("width"), "height": r.get("height"),
                                "duration": r.get("duration"), "reel_id": r["id"]})
+                why = strip_unsafe(r.get("width") or 0, r.get("height") or 0,
+                                   *tile_for("video"))
+                if why:
+                    skipped[Path(r["src"]).name] = why
+                    videos.pop()
     else:
         print("reel-library.json not found: run build_reels.py first, shipping images only")
 
@@ -301,6 +329,8 @@ def main() -> int:
         ),
         "tilePx": TILE_W,
         "tileHeightPx": TILE_H,
+        "tileVideoPx": TILE_VIDEO_W,
+        "tileVideoHeightPx": TILE_VIDEO_H,
         "stripUnsafe": dict(sorted(skipped.items())),
         "counts": {"images": len(images), "videos": len(videos),
                    "total": len(items), "removedTooSmall": len(skipped)},
