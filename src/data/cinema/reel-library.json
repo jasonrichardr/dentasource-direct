@@ -275,12 +275,12 @@
       "alt": "Chairside, mid procedure",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-01.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-02",
@@ -293,12 +293,12 @@
       "alt": "Meet the team",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 540,
+      "height": 960,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-02.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 540,
+      "hdHeight": 960
     },
     {
       "id": "wall-03",
@@ -311,12 +311,12 @@
       "alt": "At the convention showcase",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 540,
+      "height": 960,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-03.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 540,
+      "hdHeight": 960
     },
     {
       "id": "wall-04",
@@ -329,12 +329,12 @@
       "alt": "Pre delivery inspection",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 540,
+      "height": 960,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-04.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 540,
+      "hdHeight": 960
     },
     {
       "id": "wall-05",
@@ -347,12 +347,12 @@
       "alt": "Endodontics research and development",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-05.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-06",
@@ -365,12 +365,12 @@
       "alt": "Digital dentistry and surgery",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 540,
+      "height": 960,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-06.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 540,
+      "hdHeight": 960
     },
     {
       "id": "wall-07",
@@ -383,12 +383,12 @@
       "alt": "A sweep across the showroom floor",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 608,
+      "height": 1080,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-07.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "wall-08",
@@ -401,12 +401,12 @@
       "alt": "Hands on a live unit in the showroom",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-08.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-09",
@@ -419,12 +419,12 @@
       "alt": "Behind the scenes at a studio shoot",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-09.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-10",
@@ -437,12 +437,12 @@
       "alt": "A dentist at the chair",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-10.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-11",
@@ -455,12 +455,12 @@
       "alt": "Clinic preparation",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-11.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-12",
@@ -473,12 +473,12 @@
       "alt": "Chairside treatment",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-12.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-13",
@@ -491,12 +491,12 @@
       "alt": "A walk through the clinic",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-13.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-14",
@@ -509,12 +509,12 @@
       "alt": "A greeting at the door",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-14.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-15",
@@ -527,12 +527,12 @@
       "alt": "A patient talking about the work",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-15.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-16",
@@ -545,12 +545,12 @@
       "alt": "Treatment in close up",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-16.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-17",
@@ -563,12 +563,12 @@
       "alt": "A showroom event on the microphone",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-17.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-18",
@@ -581,12 +581,12 @@
       "alt": "Chairside dentistry",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-18.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-19",
@@ -599,12 +599,12 @@
       "alt": "A digital scan on the laptop",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-19.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-20",
@@ -617,12 +617,12 @@
       "alt": "Two clinicians walking the floor",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-20.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-21",
@@ -635,12 +635,12 @@
       "alt": "The operatory built at an expo",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-21.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-22",
@@ -653,12 +653,12 @@
       "alt": "The team over the equipment",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-22.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "wall-23",
@@ -671,8 +671,8 @@
       "alt": "A founder talking beside the simulator chairs",
       "meta_caption": null,
       "category": "wall",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-23.mp4",
       "hdWidth": 480,
@@ -689,8 +689,8 @@
       "alt": "An installation road trip",
       "meta_caption": null,
       "category": "wall",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-24.mp4",
       "hdWidth": 480,
@@ -707,8 +707,8 @@
       "alt": "Carrying units up the stairs by hand",
       "meta_caption": null,
       "category": "wall",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-25.mp4",
       "hdWidth": 480,
@@ -725,8 +725,8 @@
       "alt": "A provincial run, ferry then build",
       "meta_caption": null,
       "category": "wall",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-26.mp4",
       "hdWidth": 480,
@@ -743,8 +743,8 @@
       "alt": "The Training Center and its phantom heads",
       "meta_caption": null,
       "category": "wall",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-27.mp4",
       "hdWidth": 480,
@@ -761,8 +761,8 @@
       "alt": "A short skit about endodontics",
       "meta_caption": null,
       "category": "wall",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-28.mp4",
       "hdWidth": 480,
@@ -779,8 +779,8 @@
       "alt": "Arriving on an event night",
       "meta_caption": null,
       "category": "wall",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-29.mp4",
       "hdWidth": 480,
@@ -797,8 +797,8 @@
       "alt": "An autoclave demonstration at the booth",
       "meta_caption": null,
       "category": "wall",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-30.mp4",
       "hdWidth": 480,
@@ -815,8 +815,8 @@
       "alt": "Speaking from the stand",
       "meta_caption": null,
       "category": "wall",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-31.mp4",
       "hdWidth": 480,
@@ -833,8 +833,8 @@
       "alt": "The showroom at the end of the day",
       "meta_caption": null,
       "category": "wall",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-32.mp4",
       "hdWidth": 480,
@@ -851,12 +851,12 @@
       "alt": "A wave from the convention floor",
       "meta_caption": null,
       "category": "wall",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-33.mp4",
-      "hdWidth": 480,
-      "hdHeight": 854
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "field-01",
@@ -868,8 +868,8 @@
       "alt": "The team before a delivery run",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-01.mp4",
       "hdWidth": 480,
@@ -885,8 +885,8 @@
       "alt": "Fitting the operating light",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-03.mp4",
       "hdWidth": 480,
@@ -902,8 +902,8 @@
       "alt": "Unloading the van",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-04.mp4",
       "hdWidth": 480,
@@ -919,8 +919,8 @@
       "alt": "Working on the chair base",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-05.mp4",
       "hdWidth": 480,
@@ -936,8 +936,8 @@
       "alt": "Unwrapping the unit on site",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-06.mp4",
       "hdWidth": 480,
@@ -953,8 +953,8 @@
       "alt": "Carrying a component in",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-07.mp4",
       "hdWidth": 480,
@@ -970,8 +970,8 @@
       "alt": "Moving the unit to the clinic door",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-09.mp4",
       "hdWidth": 480,
@@ -987,8 +987,8 @@
       "alt": "Crated units in the warehouse",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-11.mp4",
       "hdWidth": 480,
@@ -1004,8 +1004,8 @@
       "alt": "Loading at the van",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-12.mp4",
       "hdWidth": 480,
@@ -1021,8 +1021,8 @@
       "alt": "Setting up at the clinic",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-17.mp4",
       "hdWidth": 480,
@@ -1038,8 +1038,8 @@
       "alt": "Bringing the unit up in the lift",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-19.mp4",
       "hdWidth": 480,
@@ -1055,8 +1055,8 @@
       "alt": "Carrying the unit through the building",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-20.mp4",
       "hdWidth": 480,
@@ -1072,8 +1072,8 @@
       "alt": "At the van on delivery day",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-21.mp4",
       "hdWidth": 480,
@@ -1089,8 +1089,8 @@
       "alt": "On the road with a delivery",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-23.mp4",
       "hdWidth": 480,
@@ -1106,8 +1106,8 @@
       "alt": "Wheeling the chair into the clinic",
       "meta_caption": null,
       "category": "field",
-      "width": null,
-      "height": null,
+      "width": 480,
+      "height": 854,
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-24.mp4",
       "hdWidth": 480,
@@ -1123,11 +1123,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "\u2728 PRECISION. EXPERTISE. EXCELLENCE. A new milestone in clinical education as DentaSource Direct Training Center brings an intensive Hands-On Training in Mini Screws / Temporary Anchorage Devices (TADs) to FFC Dental Clinic. Congratulations to the exceptional dentists of FFC Dental Clinic for investing in advanced clinical training and taking another step toward greater precision, confidence, and e",
       "category": "training",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/4101796030119234.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "1371313487964265",
@@ -1139,11 +1139,11 @@
       "alt": "From the DentaSource Direct floor",
       "meta_caption": "\u2728 Elevating Dental Excellence in Bataan \u2728 Another DX-S3 Dental Chair has officially found its new home in Bataan. Designed with a refined balance of premium aesthetics, advanced functionality, and exceptional patient comfort, the DX-S3 brings a new standard of sophistication to the modern dental practice. A sincere thank you to Doc Zabala for choosing DentaSource Direct and trusting us to be part ",
       "category": "other",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1371313487964265.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1538836214111500",
@@ -1155,11 +1155,11 @@
       "alt": "From the DentaSource Direct floor",
       "meta_caption": "\ud835\udc0d\ud835\udc28\ud835\udc2d \ud835\udc2c\ud835\udc2e\ud835\udc2b\ud835\udc1e \ud835\udc30\ud835\udc21\ud835\udc22\ud835\udc1c\ud835\udc21 \ud835\udc1d\ud835\udc1e\ud835\udc27\ud835\udc2d\ud835\udc1a\ud835\udc25 \ud835\udc29\ud835\udc2b\ud835\udc28\ud835\udc1d\ud835\udc2e\ud835\udc1c\ud835\udc2d\ud835\udc2c \ud835\udc1a\ud835\udc2b\ud835\udc1e \ud835\udc2b\ud835\udc22\ud835\udc20\ud835\udc21\ud835\udc2d \ud835\udc1f\ud835\udc28\ud835\udc2b \ud835\udc32\ud835\udc28\ud835\udc2e\ud835\udc2b \ud835\udc29\ud835\udc2b\ud835\udc1a\ud835\udc1c\ud835\udc2d\ud835\udc22\ud835\udc1c\ud835\udc1e? \ud83e\udd14 The right equipment doesn't just improve procedures, it gives you confidence in every patient you treat. At \ud835\udc03\ud835\udc1e\ud835\udc27\ud835\udc2d\ud835\udc1a\ud835\udc12\ud835\udc28\ud835\udc2e\ud835\udc2b\ud835\udc1c\ud835\udc1e \ud835\udc03\ud835\udc22\ud835\udc2b\ud835\udc1e\ud835\udc1c\ud835\udc2d \ud835\udc03\ud835\udc1e\ud835\udc27\ud835\udc2d\ud835\udc1a\ud835\udc25 \ud835\udc12\ud835\udc2e\ud835\udc29\ud835\udc29\ud835\udc25\ud835\udc32, we're here to help you make informed decisions. Explore a wide range of trusted dental supplies, ask our team your questions, and get expert guidance before you invest. Because choosing the right ",
       "category": "other",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1538836214111500.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1079638194648073",
@@ -1171,11 +1171,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "From learning to hands-on application! Congratulations to all our students on completing the training and earning your certificates! \ud83c\udfc6\ud83d\udcdc Ready to level up your skills? Join our next batch! \ud83d\udc69\u200d\u2695\ufe0f\ud83d\udc68\u200d\u2695\ufe0f Dm us for more information \u2757 DentaSource Direct Your Growth Partner in Dentistry #TADSTraining #TADSHansOn #DentalTraining #HandsOnLearning #Dentistry #DentalProfessionals #CertificateOfCompletion",
       "category": "training",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1079638194648073.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "3384789398370772",
@@ -1187,11 +1187,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Doc, paano mo ito haharapin sa actual clinical case? \ud83d\udc40\ud83e\uddb7 Here\u2019s a glimpse from our previous TADS Lecture & Workshop, where our participants raised real clinical questions\u2014and our lecturer answered them step-by-step. Because learning doesn\u2019t stop with the lecture. The right questions lead to better clinical decisions. TADS 2nd Batch \u2014 NOW ACCEPTING ENROLLEES! If you\u2019re a dentist who wants to deepen ",
       "category": "training",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/3384789398370772.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1591011049387871",
@@ -1203,11 +1203,11 @@
       "alt": "From the DentaSource Direct floor",
       "meta_caption": "\ud835\udc16\ud835\udc28\ud835\udc2b\ud835\udc2d\ud835\udc21 \ud835\udc22\ud835\udc2d \ud835\udc1b\ud835\udc1a \ud835\udc2d\ud835\udc1a\ud835\udc25\ud835\udc1a\ud835\udc20\ud835\udc1a? \ud83e\udd14 Don't just take our word for it, hear it from the dentists who use it every day. \"\ud835\udc7a\ud835\udc96\ud835\udc91\ud835\udc86\ud835\udc93 \ud835\udc84\ud835\udc90\ud835\udc8f\ud835\udc97\ud835\udc86\ud835\udc8f\ud835\udc8a\ud835\udc86\ud835\udc8f\ud835\udc95 \ud835\udc82\ud835\udc8f\ud835\udc85 \ud835\udc86\ud835\udc87\ud835\udc87\ud835\udc8a\ud835\udc84\ud835\udc8a\ud835\udc86\ud835\udc8f\ud835\udc95... \ud835\udc8e\ud835\udc82\ud835\udc8d\ud835\udc82\ud835\udc8c\ud835\udc8a\ud835\udc8f\ud835\udc88 \ud835\udc95\ud835\udc96\ud835\udc8d\ud835\udc90\ud835\udc8f\ud835\udc88 \ud835\udc94\ud835\udc82 \ud835\udc91\ud835\udc82\ud835\udc88-\ud835\udc94\ud835\udc91\ud835\udc86\ud835\udc86\ud835\udc85 \ud835\udc96\ud835\udc91 \ud835\udc8f\ud835\udc88 \ud835\udc91\ud835\udc93\ud835\udc90\ud835\udc84\ud835\udc86\ud835\udc85\ud835\udc96\ud835\udc93\ud835\udc86\ud835\udc94 \ud835\udc98\ud835\udc89\ud835\udc8a\ud835\udc8d\ud835\udc86 \ud835\udc8e\ud835\udc82\ud835\udc8a\ud835\udc8f\ud835\udc95\ud835\udc82\ud835\udc8a\ud835\udc8f\ud835\udc8a\ud835\udc8f\ud835\udc88 \ud835\udc89\ud835\udc8a\ud835\udc88\ud835\udc89-\ud835\udc92\ud835\udc96\ud835\udc82\ud835\udc8d\ud835\udc8a\ud835\udc95\ud835\udc9a \ud835\udc93\ud835\udc86\ud835\udc94\ud835\udc96\ud835\udc8d\ud835\udc95\ud835\udc94.\" When every minute matters in your clinic, having reliable equipment makes all the difference. Denjoy products are designed to help simplify your workflow, deliver consistent p",
       "category": "other",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1591011049387871.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "2537378053361272",
@@ -1219,11 +1219,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "\ud83e\uddb7\u2728 TAKE YOUR CLINICAL SKILLS TO THE NEXT LEVEL WITH TADS TRAINING! Another milestone for DentaSource Direct Training Center! \ud83c\udf93\ud83e\uddb7 We are proud to have successfully welcomed our 1st Batch of TADS Training, composed of dentists from FFC Dental Clinic, for an intensive and hands-on learning experience focused on improving their clinical knowledge, skills, and confidence in TADS procedures. The training",
       "category": "training",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/2537378053361272.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "910813408749291",
@@ -1235,11 +1235,11 @@
       "alt": "From the DentaSource Direct floor",
       "meta_caption": "Precision You Can See. Confidence You Can Deliver. \ud83e\uddb7\u2728 Take shade matching to the next level with the KOUNGSUN Digital Shade Matching Device\u2014designed to help dental professionals achieve more consistent and accurate shade selection for better aesthetic results. Say goodbye to guesswork and hello to a smarter, more efficient digital workflow. From shade analysis to treatment planning, bring precisio",
       "category": "other",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/910813408749291.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "857584583986288",
@@ -1251,11 +1251,11 @@
       "alt": "At the convention stand",
       "meta_caption": "DIGICON 2026 \u2014 What an Incredible Experience! \ud83c\udf89\ud83e\uddb7 DIGICON 2026 was truly a blast! \ud83d\ude80 A huge thank you to all the dentists and dental professionals who visited the DentaSource Direct booth, explored our products, and took the time to connect with our team. Your support and trust inspire us to keep bringing better solutions to the dental community. \ud83d\udc9a Missed us at DIGICON 2026? No worries! Our DentaSou",
       "category": "convention",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/857584583986288.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "845243108557084",
@@ -1267,11 +1267,11 @@
       "alt": "At the convention stand",
       "meta_caption": "\ud83d\udd25 DAY 2. FINAL DAY. LET\u2019S MAKE IT COUNT! \ud83e\uddb7\u2728 DentaSource Direct is LIVE at DIGICON 2026! \ud83d\ude80 Missed us yesterday? This is your last chance! \ud83d\udc40 Come visit our booth, meet the DentaSource Direct team, check out our dental equipment, and discover solutions that can help take your practice to the NEXT LEVEL. \ud83d\udc9a Whether you\u2019re upgrading your clinic, planning your next investment, or simply looking for bette",
       "category": "convention",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/845243108557084.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "1242061574685287",
@@ -1283,11 +1283,11 @@
       "alt": "From the DentaSource Direct floor",
       "meta_caption": "\ud835\udc13\ud835\udc21\ud835\udc1e \ud835\udc1e\ud835\udc2a\ud835\udc2e\ud835\udc22\ud835\udc29\ud835\udc26\ud835\udc1e\ud835\udc27\ud835\udc2d \ud835\udc32\ud835\udc28\ud835\udc2e \ud835\udc1c\ud835\udc21\ud835\udc28\ud835\udc28\ud835\udc2c\ud835\udc1e \ud835\udc2c\ud835\udc1a\ud835\udc32\ud835\udc2c \ud835\udc1a \ud835\udc25\ud835\udc28\ud835\udc2d \ud835\udc1a\ud835\udc1b\ud835\udc28\ud835\udc2e\ud835\udc2d \ud835\udc2d\ud835\udc21\ud835\udc1e \ud835\udc2c\ud835\udc2d\ud835\udc1a\ud835\udc27\ud835\udc1d\ud835\udc1a\ud835\udc2b\ud835\udc1d \ud835\udc28\ud835\udc1f \ud835\udc1c\ud835\udc1a\ud835\udc2b\ud835\udc1e \ud835\udc32\ud835\udc28\ud835\udc2e \ud835\udc29\ud835\udc2b\ud835\udc28\ud835\udc2f\ud835\udc22\ud835\udc1d\ud835\udc1e. Every successful endodontic procedure starts long before treatment begins, it starts with reliable technology. The \ud835\udc03\ud835\udc1e\ud835\udc27\ud835\udc23\ud835\udc28\ud835\udc32 \ud835\udc0c\ud835\udc1e\ud835\udc2d\ud835\udc1a \ud835\udc04\ud835\udc27\ud835\udc1d\ud835\udc28 \ud835\udc0f\ud835\udc2b\ud835\udc28 is built for clinics that value precision, efficiency, and a seamless workflow. With everything you need in one intelligent workstation, you can spend less time managing equipment and more",
       "category": "other",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1242061574685287.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "5553747924849593",
@@ -1299,11 +1299,11 @@
       "alt": "On the showroom floor",
       "meta_caption": "\ud83d\udd25 DIGICON 2026 IS WHERE THE FUTURE OF DENTISTRY COMES TO LIFE! \ud83e\uddb7\ud83d\ude80 And yes\u2014we\u2019re LIVE! \ud83d\udc4b DentaSource Direct is here at DIGICON 2026, and we\u2019re excited to meet the amazing dental professionals, innovators, and industry leaders shaping the future of dentistry. \u2728 Come visit us! Let\u2019s talk about your practice, discover new possibilities, explore innovative dental solutions, and find the right equipment",
       "category": "showroom",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/5553747924849593.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "2698777730518007",
@@ -1315,11 +1315,11 @@
       "alt": "From the DentaSource Direct floor",
       "meta_caption": "\ud83d\ude02 \u201cDOC, DENTAL CHAIR BA \u2019TO O BED?!\u201d \ud83e\uddb7\ud83d\ude34 Looking for a dental chair that delivers serious comfort, reliable durability, and long-term value? Because when your patient sits down and says\u2026 \u201cDoc\u2026 I think I can sleep here.\u201d \ud83d\ude02 That\u2019s when you know your dental chair is doing its job. \ud83d\udcba Exceptional Comfort \u2014 Keep your patients relaxed throughout the procedure. \ud83d\udcaa Built for Durability \u2014 Designed for everyda",
       "category": "other",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/2698777730518007.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1632766758415119",
@@ -1331,27 +1331,11 @@
       "alt": "On the showroom floor",
       "meta_caption": "\ud835\udc03\ud835\udc1e\ud835\udc27\ud835\udc2d\ud835\udc1a\ud835\udc25 \ud835\udc1c\ud835\udc25\ud835\udc22\ud835\udc27\ud835\udc22\ud835\udc1c \ud835\udc28\ud835\udc30\ud835\udc27\ud835\udc1e\ud835\udc2b\ud835\udc2c, \ud835\udc2d\ud835\udc21\ud835\udc22\ud835\udc2c \ud835\udc22\ud835\udc2c \ud835\udc28\ud835\udc27\ud835\udc1e \ud835\udc22\ud835\udc27\ud835\udc2f\ud835\udc1e\ud835\udc2c\ud835\udc2d\ud835\udc26\ud835\udc1e\ud835\udc27\ud835\udc2d \ud835\udc32\ud835\udc28\ud835\udc2e'\ud835\udc25\ud835\udc25 \ud835\udc2d\ud835\udc21\ud835\udc1a\ud835\udc27\ud835\udc24 \ud835\udc32\ud835\udc28\ud835\udc2e\ud835\udc2b\ud835\udc2c\ud835\udc1e\ud835\udc25\ud835\udc1f \ud835\udc1f\ud835\udc28\ud835\udc2b. \ud83d\udc9a Exceptional endodontic care doesn't happen by chance. It starts with the right technology behind every procedure. Meet the Denjoy Meta Endo Pro\u2014designed to help modern dental practices work smarter, stay organized, and deliver consistent results. \u2714\ufe0f Streamlined controls for a smoother workflow \u2714\ufe0f Complete endodontic solution",
       "category": "showroom",
-      "width": 404,
-      "height": 720,
-      "hd": "/cinema/reels/hd/1632766758415119.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
-    },
-    {
-      "id": "1027734110137342",
-      "src": "/cinema/reels/1027734110137342.mp4",
-      "poster": "/cinema/reels/1027734110137342.jpg",
-      "duration": 55.99,
-      "date": "2026-08-03",
-      "caption": "On the showroom floor",
-      "alt": "On the showroom floor",
-      "meta_caption": "\ud83c\udfa8 Your clinic deserves more than just a dental chair\u2014it deserves a statement. Introducing the Roson DX-A1 Fashion Model, where sophisticated design meets exceptional clinical performance. Now available in three stunning signature colors that perfectly complement your clinic's personality. \ud83c\udf38 Ballet Pink \u2013 Elegant, warm, and inviting. Create a relaxing atmosphere that puts every patient at ease. \ud83d\udc99 R",
-      "category": "showroom",
       "width": 720,
-      "height": 404,
-      "hd": "/cinema/reels/hd/1027734110137342.mp4",
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1632766758415119.mp4",
       "hdWidth": 1080,
-      "hdHeight": 608
+      "hdHeight": 1920
     },
     {
       "id": "880174031563895",
@@ -1363,11 +1347,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "\ud83d\ude80 Master the Future of Digital Dentistry! Take your dental workflow to the next level with our Digital CAD Designing Training at DentaSource Direct Training Center. Learn the fundamentals and advanced techniques of digital CAD design through hands-on training, guided by experienced professionals from Crest Study Group. Whether you're a dentist, dental technician, or aspiring digital dentistry prof",
       "category": "training",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/880174031563895.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1058866666938609",
@@ -1379,11 +1363,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Premium dental equipment. Crazy deals. All under one roof. \ud83d\udc9a DentaSource Direct brings you the best of Denjoy, Roson and other premium dental equipments trusted by top clinics nationwide now at prices that make upgrading your clinic easier than ever. \u2705 Premium dental technology at unbeatable value \u2705 Exclusive freebies on every valid purchase \u2705 FREE hands-on demo to experience it yourself \u2705 The tru",
       "category": "training",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1058866666938609.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1686392845807696",
@@ -1395,11 +1379,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "\ud83e\uddb7 Master the Art of Digital Smile Design! \u2728 Take your digital dentistry skills to the next level with our DIGITAL MANIPULATION \u2013 SMILE MOCKUP training, brought to you by Crest Study Group at the DentaSource Direct Training Center. Learn practical techniques in creating realistic digital smile mockups that enhance treatment planning, improve patient communication, and elevate clinical outcomes. \ud83c\udf93 E",
       "category": "training",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1686392845807696.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1968490167144330",
@@ -1411,11 +1395,11 @@
       "alt": "On the showroom floor",
       "meta_caption": "This is what a modern, upgraded clinic looks like. \u2728 Our partner clinic made the switch to Denjoy and the difference is instantly felt by both dentist and patient. \u2705 Precision engineering for confident, effortless procedures \u2705 Comfortable experience that keeps patients coming back \u2705 Sleek, intuitive design built for modern dental practices \u2705 Trusted by clinics that only settle for the best Join th",
       "category": "showroom",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1968490167144330.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1464261549053843",
@@ -1427,11 +1411,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Another meaningful milestone for our team. \ud83e\uddb7 We were honored to be part of the PDA Benguet Chapter Induction & Seminar in Baguio, where dental professionals gathered to celebrate leadership, share knowledge, and strengthen connections within the industry. Thank you for having us. We're grateful for every opportunity to support the dental community and look forward to seeing you again at future eve",
       "category": "training",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1464261549053843.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "27702237096105510",
@@ -1443,11 +1427,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Meet Dr. John Kennedy Manalo, the latest dentist to experience premium dental equipments done right. \u2728 He walked into our showroom, received a warm welcome from our friendly and accommodating staff, and got a FREE consultation and hands-on demo of our premium equipment lineup. His reaction? Pure amazement at the quality and precision the dental equipments brings to modern dentistry. \"This are next",
       "category": "training",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/27702237096105510.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1743007670459651",
@@ -1459,11 +1443,11 @@
       "alt": "On an installation",
       "meta_caption": "\u2728 Another Successful Delivery! \ud83d\ude9a\ud83e\uddb7 We're proud to deliver a brand-new DX-A3S Dental Chair to a valued dental clinic in Taguig City! \ud83d\udc99 Designed to combine comfort, functionality, and modern aesthetics, the DX-A3S helps elevate both the patient experience and the efficiency of your practice. Whether you're building a new clinic or upgrading your existing setup, DentaSource Direct is here to help brin",
       "category": "install",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1743007670459651.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "975185138892513",
@@ -1475,11 +1459,11 @@
       "alt": "On an installation",
       "meta_caption": "Another successful delivery! \ud83d\ude9a\ud83e\uddb7 Delivered our DX-A3 Dental Chair to Cabatuan, Isabela in a custom unique color! \ud83d\udc99 Hindi lang basic colors ang available sa amin. If you want your clinic to stand out, we also offer unique color options to match your style and branding. \ud83c\udfa8 Want a specific color? We can customize it for you! Because your dental chair should reflect your clinic's personality\u2014not just it",
       "category": "install",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/975185138892513.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1376969710960728",
@@ -1491,11 +1475,11 @@
       "alt": "On the showroom floor",
       "meta_caption": "Tired of unreliable dental equipment slowing down your clinic? Watch what's inside this box, genuine Denjoy products built for precision, durability, and results you can trust every single day. Every dentist deserves tools that match their skill. Elevate your practice. Elevate your patients' experience. DentaSource Direct \u2014 proudly the ONLY authorized Denjoy partner in the Philippines. ISO 13485 &",
       "category": "showroom",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1376969710960728.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1338636171113765",
@@ -1507,11 +1491,11 @@
       "alt": "On an installation",
       "meta_caption": "Out with the old, in with the new! \ud83e\uddb7\u2728 From dismantling your old dental chair to delivering and installing your brand-new DX-A3 Dental Chair, we've got you covered Doc. Thank you, Doc, for trusting us to be part of your clinic's upgrade. Here's to providing greater comfort, efficiency, and a better experience for every patient! DentaSource Direct \"Your Growth Partner in Dentistry\" #DXA3DentalChair ",
       "category": "install",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1338636171113765.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "2039690190757920",
@@ -1523,11 +1507,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "We extend our sincere appreciation to our valued business partner, Roson, for visiting us and conducting an inspiring management, sales, and technical training session. Your expertise, guidance, and continued support empower our team to grow, improve, and deliver even better service to our customers. We truly value our partnership and look forward to achieving more success together. Thank you for ",
       "category": "training",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/2039690190757920.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "2264046751080325",
@@ -1539,11 +1523,11 @@
       "alt": "On an installation",
       "meta_caption": "\ud83e\uddb7 Another Milestone Delivered! \ud83e\uddb7 Another successful delivery and installation of the DX-A3 Dental Chair at Dobles-Teylan Dental Care Center! At DentaSource Direct, we are proud to support dental professionals with dependable equipment designed for comfort, efficiency, and exceptional patient care. Thank you for your trust and confidence in our products and services. We look forward to being part o",
       "category": "install",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/2264046751080325.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1327978675477044",
@@ -1555,11 +1539,11 @@
       "alt": "On an installation",
       "meta_caption": "\ud83e\uddb7 Another Successful Delivery & Installation Completed! \u2728 DentaSource Direct is proud to announce the successful delivery and installation of two DX-S3 Dental Chairs at Ignacio Dental Clinic. We are grateful for the trust and confidence placed in us to support your practice with reliable, high-quality dental equipment designed for efficiency, comfort, and clinical excellence. Thank you, Ignacio De",
       "category": "install",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1327978675477044.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "2794952264198672",
@@ -1571,11 +1555,11 @@
       "alt": "On the showroom floor",
       "meta_caption": "Dental clinic owners \u2014 watch this reel twice. \ud83d\udc40 This is what your root canal treatments have been missing. \ud83e\uddb7 Denjoy, the world's leading endodontic...",
       "category": "showroom",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/2794952264198672.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1683481059462196",
@@ -1587,11 +1571,11 @@
       "alt": "A delivery going out",
       "meta_caption": "\ud83d\ude9a\u2728 FRESH ARRIVALS AT DENTASOURCE DIRECT! \u2728\ud83d\ude9a New stocks of our highly sought-after Dental Chairs and Dental Equipment have arrived and are now available for delivery! Designed to support efficiency, comfort, and clinical excellence, these latest arrivals are the perfect investment for modern dental practices looking to upgrade and grow. \u2714 Newly Arrived Stocks \u2714 Ready for Delivery \u2714 Trusted Quality ",
       "category": "delivery",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1683481059462196.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1917792168939952",
@@ -1603,11 +1587,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "The best dental clinic owners in the Philippines already know where to go. \ud83d\udc9a\ud83e\udde1 DentaSource Direct. One showroom. Endless upgrades. And a team that genuinely cares about helping your clinic win. Here's everything waiting for you: \u2705 Roson Dental Chairs \u2014 world-class patient comfort and clinical ergonomics \u2705 Denjoy Endodontic Systems \u2014 apex locators, endo motors & NiTi file systems trusted in 80+ coun",
       "category": "training",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1917792168939952.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1009011925184152",
@@ -1619,11 +1603,11 @@
       "alt": "A delivery going out",
       "meta_caption": "Dear Dental clinic owners, Your competition is already looking at this. \ud83d\udc40 Denjoy is now exclusively available in the Philippines through DentaSource Direct and stocks won't last long. The world's most trusted endodontic brand. Used in 80+ countries. Now at your doorstep. \ud83c\udfc6 Premium quality \u00b7 Precision-engineered \u00b7 Globally certified \ud83c\udfc6 The only authorized Denjoy supplier in the Philippines \ud83d\udccd 610 C. ",
       "category": "delivery",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1009011925184152.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "4528383437405302",
@@ -1635,11 +1619,11 @@
       "alt": "On an installation",
       "meta_caption": "\ud83e\uddb7 Another Successful Dental Chair Installation! \u2728 Congratulations to our valued client in Cabuyao, Laguna on the newest addition to their dental practice. At DentaSource Direct, we are committed to providing reliable dental solutions that help clinics enhance patient care, improve efficiency, and support long-term growth. Thank you, Doc, for trusting us as your partner in building a modern and suc",
       "category": "install",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/4528383437405302.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1783856553066745",
@@ -1651,11 +1635,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "A successful learning experience at the DentaSource Direct Training Center with Crest Study Group. \ud83e\uddb7 Live Surgical Demonstration: Guided Crown Lengthening for Esthetic Rehabilitation Participants had the opportunity to witness the complete workflow\u2014from treatment planning and case evaluation to the actual crown lengthening procedure\u2014providing valuable insights into achieving predictable esthetic o",
       "category": "training",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1783856553066745.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "2138686030401963",
@@ -1667,11 +1651,11 @@
       "alt": "A delivery going out",
       "meta_caption": "Elevate Every Root Canal Treatment with Denjoy Precision Attention dental clinic owners & dentists. \ud83e\uddb7 Are your root canal procedures taking too long? Are you worried about file breakage mid-treatment? Denjoy changes that. With intelligent torque control, a built-in apex locator, and NiTi rotary file systems designed to last, Denjoy gives you clinical confidence on every case. Your patients feel le",
       "category": "delivery",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/2138686030401963.mp4",
-      "hdWidth": 0,
-      "hdHeight": 0
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "4516217948704476",
@@ -1683,11 +1667,11 @@
       "alt": "At the convention stand",
       "meta_caption": "Another successful event in the books! \ud83c\udf89 Thank you to all the amazing doctors who visited the DentaSource Direct booth at PDA Quezon City in Seda Vertis North. Your overwhelming support, trust, and purchases made this event truly memorable. We're grateful for every conversation, every connection, and every opportunity to be part of your dental journey. See you at our next event\u2014bigger, better, and",
       "category": "convention",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/4516217948704476.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "27138017502476777",
@@ -1699,11 +1683,11 @@
       "alt": "On the showroom floor",
       "meta_caption": "Dentists & dental entrepreneurs, this is your last chance. \ud83e\uddb7\ud83d\udd25 Elevate your clinic with DentaSource Direct premium dental equipments and walk away with exclusive freebies on top of your investment. That's right, buy premium. Get rewarded. \ud83c\udf81 Freebies await every qualifying purchase \ud83d\udc8e World-class dental equipment \ud83d\udccd Visit us: 610 C. Raymundo, Maybunga, Pasig City \ud83d\udc49 DM us \"FREEBIE\" RIGHT NOW to reserve",
       "category": "showroom",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/27138017502476777.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "1655693562346487",
@@ -1715,11 +1699,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Transform smiles with precision, confidence, and digital innovation. \u2728 Join the advanced training on Smile Design & Digital Crown Lengthening conducted by Crest Study Group here at DentaSource Direct Training Center. Enhance your skills in modern digital workflows, esthetic treatment planning, and predictable smile transformation techniques designed for today\u2019s evolving dental practice. \ud83d\udccd Hands-on",
       "category": "training",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "hd": "/cinema/reels/hd/1655693562346487.mp4",
-      "hdWidth": 608,
-      "hdHeight": 1080
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1518637086604072",
@@ -1731,8 +1715,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Your next clinic upgrade is waiting for you. \ud83d\udc9a Come visit the DentaSource Direct Showroom and experience the Philippines' most premium dental equipment up close, hands-on, and personally guided by our specialists. FREE one-on-one consultation \ud83d\udccd 610 C. Raymundo, Maybunga, Pasig City \ud83d\udc49 DM us \"VISIT\" to book your FREE slot now. Slots are limited, don't miss yours. DentaSource Direct \u2014 Your Growth Par",
       "category": "training",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1518637086604072.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "976057335336507",
@@ -1744,8 +1731,11 @@
       "alt": "On the showroom floor",
       "meta_caption": "Your clinic reflects who you are as a dentist. \ud83e\uddb7 The best ones don't compromise. They invest. They elevate. They choose DentaSource Direct, the Philippines' most trusted premium dental equipment brand. If you're a dentist or dental entrepreneur who wants to make a real difference in your patients' lives, you already know that the right equipment changes everything. So we'll ask you just once: Are ",
       "category": "showroom",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/976057335336507.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1003522505429933",
@@ -1757,8 +1747,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Take your surgical skills to the next level with an exclusive hands-on training on Armamentarium & Instrumentation and the Management of Impacted Teeth, featuring Dr. Pocholo Loleng from Crest Study Group at DentaSource Direct Training Center. Learn proper surgical setup, instrument selection, handling techniques, and clinical approaches for impacted tooth procedures \u2014 designed to enhance your con",
       "category": "training",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1003522505429933.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1320731836605600",
@@ -1770,8 +1763,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Elevate your esthetic dentistry skills with the Digital Shade Matching & Stain Glazing Training by Crest Study Group here at DentaSource Direct Training Center \u2728\ud83e\uddb7 Gain hands-on experience in digital shade analysis, stain application, and glazing techniques designed to achieve natural, lifelike restorations with precision and confidence. Enhance your workflow. Refine your artistry. Deliver exceptio",
       "category": "training",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1320731836605600.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "27139759952285816",
@@ -1783,8 +1779,11 @@
       "alt": "At the convention stand",
       "meta_caption": "To every dentist, clinic owner, and dental entrepreneur who stopped by, THANK YOU. \ud83d\udc9a\ud83e\udde1 PDA 117 was more than a convention. It was a room full of passionate professionals who refused to settle and we were honored to be part of it. On behalf of the entire DentaSource Direct family, we extend our deepest gratitude to: \ud83d\udc9a The Philippine Dental Association for an extraordinary 117th Annual Convention \ud83e\udde1 E",
       "category": "convention",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/27139759952285816.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1633186301286255",
@@ -1796,8 +1795,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Didn't make it to PDA 2026? We've got you covered. \ud83e\uddb7\ud83d\udc9a The 117th PDA Annual Convention was incredible, but we know not everyone could be there. And honestly? Missing it doesn't mean missing out. The exclusive DentaSource deals don't stop at the convention hall. \ud83d\udccd Visit us at the DentaSource Showroom at 610 C. Raymundo, Maybunga, Pasig City Everything you would have seen at Booth 301-302 and more is",
       "category": "training",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1633186301286255.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "883855677447946",
@@ -1809,8 +1811,11 @@
       "alt": "At the convention stand",
       "meta_caption": "\ud83e\uddb7 PDA Convention Day 4\u2714\ufe0f A big thank you to all the Doctors who visited our booth today and trusted our products! \ud83d\udc99 It was a pleasure connecting with you and sharing solutions designed to make your workflow more efficient and convenient. If you haven\u2019t stopped by yet, don\u2019t miss out! We\u2019re still here until tomorrow, visit us at Booths 281, 282, 301, and 302 to explore our latest dental innovations",
       "category": "convention",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/883855677447946.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "858742606564517",
@@ -1822,8 +1827,11 @@
       "alt": "At the convention stand",
       "meta_caption": "The best dentists don't just practice, they invest. \ud83d\udc9a And the smartest investment you'll make this year starts at Booth 301-302. DentaSource Direct Dental Supply is officially at the 117th PDA Annual Convention & Scientific Sessions and we're not just showing equipment. We're showing you what your clinic looks like at its full potential. \ud83d\udccd SMX Convention Center, Pasay City \ud83d\udcc5 May 11\u201315, 2026 \ud83c\udff7\ufe0f Boo",
       "category": "convention",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/858742606564517.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "2074080823290283",
@@ -1835,8 +1843,11 @@
       "alt": "At the convention stand",
       "meta_caption": "Dentists & dental entrepreneurs, this is your sign!!! \ud83e\udd17 We're showing up at the 117th PDA Annual Convention & Scientific Sessions with the premium dental equipment your clinic has been waiting for. \ud83d\udccd Booth 301-302 | SMX Convention Center, Pasay City \ud83d\udcc5 May 11\u201315, 2026 \u2705 Top-of-the-line equipment built for professionals \u2705 Exclusive convention pricing (only at the event) \u2705 Talk 1-on-1 with our dental",
       "category": "convention",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/2074080823290283.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "952495344243881",
@@ -1848,8 +1859,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Elevate your dental practice with hands-on digital excellence. \ud83e\uddb7\u2728 Ongoing training at Dentasource Direct Training Center with Crest Study Group\u2014designed to enhance your skills in the complete digital workflow: Diagnosis \u2022 Treatment Planning \u2022 Scanning \u2022 Preparation \u2022 Design \u2022 Fabrication Join us and stay ahead in modern dentistry. Limited slots available\u2014secure yours today! #DigitalDentistry #Dent",
       "category": "training",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/952495344243881.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "3913817348922519",
@@ -1861,8 +1875,11 @@
       "alt": "On an installation",
       "meta_caption": "Another DX-S3 Dental Unit delivered and ready to use \ud83e\uddb7 Thank you Doc for trusting Dentasource Direct.\u2764\ufe0f #DXS3 #DentalUnit #DentalDeliveryPH #ClinicReady #DentalEquipment #ModernDentistry #DentalClinicPH #DentalSetup #ReadyToUse #SupplierPH",
       "category": "install",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/3913817348922519.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1275618868025503",
@@ -1874,8 +1891,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Today\u2019s Session at Dentasource Training Center \ud83e\uddb7 Hands-on 3D Printing: Nesting & Post Processing with Crest Study Group. Take your digital workflow to the next level precision, efficiency, and better outcomes. Enroll now and upgrade your practice! #3DPrinting #DigitalDentistry #Dentasource #DentalTrainingPH #CrestStudyGroup #DentistryPH",
       "category": "training",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1275618868025503.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "816383304860590",
@@ -1887,8 +1907,11 @@
       "alt": "On an installation",
       "meta_caption": "DX-N2PRO Dental Unit with Package B successfully delivered \u2764\ufe0f Complete setup\u2014perfect for startup clinics, with smooth performance and ready to elevate your practice. Message us for inquiries! \ud83d\udcac #DXN2PRO #DentalUnit #DentalDeliveryPH #ClinicReady #DentalEquipment #PackageB #DentalClinicPH #ModernDentistry #SupplierPH #ReadyToUse",
       "category": "install",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/816383304860590.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1701745900994914",
@@ -1900,8 +1923,11 @@
       "alt": "A delivery going out",
       "meta_caption": "Delivered Today\ud83d\ude9a\u2714\ufe0f Our DX-S3 Dental Unit has reached its new home \u2764\ufe0f Ready to support smoother procedures and better patient care every day. Thank you for trusting Dentasource Direct \ud83d\ude4c #DXS3 #DentalUnitPH #DeliveryDone #DentalEquipmentPH #ClinicUpgrade #DentistryPH #DentalSupplier #HappyClient #DentalLife",
       "category": "delivery",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1701745900994914.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "4465157690422797",
@@ -1913,8 +1939,11 @@
       "alt": "A delivery going out",
       "meta_caption": "Our new stocks have just arrived \u2757 Ready to serve all your orders\u2014fast and ready for dispatch \ud83d\udd25 What are you waiting for? Place your orders today or drop by our showroom before items run out \ud83d\udc40 #RestockAlert #Dentasourcedirect #FastDelivery #ShopNow",
       "category": "delivery",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/4465157690422797.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1305206541522895",
@@ -1926,8 +1955,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Ongoing CBCT Training with Crest Study Group led by Dr. Pocholo Loleng at Dentasource Direct Training Center \ud83e\uddb7 Enhancing diagnostic skills and advancing dental practice through CBCT technology. Continuing to elevate skills, share knowledge, and grow together in the field of dentistry. Interested in joining our upcoming trainings? Send us a message for more details! \ud83d\udcac #OralSurgeryTraining #CrestStu",
       "category": "training",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1305206541522895.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "982416134243105",
@@ -1939,8 +1971,11 @@
       "alt": "From the DentaSource Direct floor",
       "meta_caption": "Unboxing our newest arrivals from Denjoy! \ud83c\udf89 Excited to finally have these on hand\u2014built with the quality and performance you can rely on. We\u2019re now accepting orders! Send us a message for more details \ud83d\udcac\ud83d\udce6 #Denjoy #DentalEquipment #DentalSupplies #Unboxing #NewArrival #DentistryPH #DentalTools #ClinicReady #DentaSourceDirect",
       "category": "other",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/982416134243105.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "924087053827979",
@@ -1952,21 +1987,11 @@
       "alt": "On an installation",
       "meta_caption": "Successfully installed our DX-N2PRO Dental Unit! \ud83e\uddb7\ud83d\udcba Big thanks to Doc Jake for trusting Dentasource Direct , happy to be part of your clinic upgrade! \ud83d\ude4c Ready to elevate your practice? Send us a message today. \ud83d\udcac #DentalClinic #Dentista #DentalChair #DXN2PRO #ClinicUpgrade #DentistryPH #Dentasourcedirect",
       "category": "install",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1275898978018496",
-      "src": "/cinema/reels/1275898978018496.mp4",
-      "poster": "/cinema/reels/1275898978018496.jpg",
-      "duration": 46.99,
-      "date": "2026-04-12",
-      "caption": "Hands on training at the Training Center",
-      "alt": "Hands on training at the Training Center",
-      "meta_caption": "LIVE TODAY at Dentasource Training Center! \ud83d\udd25 Hands-on Digital Designing with Crest Study Group \ud83e\uddb7\ud83d\udcbb Level up your practice and go digital! Limited slots available , Enroll now! #GoDigital #DigitalDentistryPH #DentasourceTraining #DentalEducation #creststudygroup #Upskill",
-      "category": "training",
-      "width": 360,
-      "height": 640
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/924087053827979.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1298016768942445",
@@ -1978,21 +2003,11 @@
       "alt": "On an installation",
       "meta_caption": "Trusted by Dental Professionals Across the Philippines \ud83e\uddb7\u2728 Build your clinic with confidence with DentaSource Direct, your trusted supplier of high-quality dental equipment in the Philippines. From premium dental chairs to essential clinic cleaning and dental care equipment, we provide modern, reliable, and high-performance solutions designed to make your practice more efficient, comfortable, and p",
       "category": "install",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "34809738205339742",
-      "src": "/cinema/reels/34809738205339742.mp4",
-      "poster": "/cinema/reels/34809738205339742.jpg",
-      "duration": 55.1,
-      "date": "2026-03-29",
-      "caption": "A delivery going out",
-      "alt": "A delivery going out",
-      "meta_caption": "Your Clinic Deserves Nothing Less Than PERFECTION. \ud83e\uddb7\u2728 At DentaSource Direct, we make sure every dental chair that reaches your clinic is 100% ready, reliable, and built to perform. Before delivery, each unit goes through our strict Pre-Delivery Inspection because your practice deserves nothing less than excellence. \ud83d\udd0d Our Quality Assurance Checklist Includes: \u2714\ufe0f Visual & Structural Inspection \u2714\ufe0f El",
-      "category": "delivery",
-      "width": 360,
-      "height": 640
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1298016768942445.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "906655618875261",
@@ -2004,21 +2019,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Elevate Your Dental Practice with Next-Level Digital Training! \ud83e\uddb7 Welcome to the DentaSource Direct Training Center. Now open at Unit 307\u2013308, 3rd Floor, Mercedes Square Plaza, Mercedes Ave. cor. Luis St., San Miguel, Pasig City. Experience state-of-the-art facilities and high-end equipment designed for advanced digital dentistry training. Whether you're a dentist, dental assistant, or dental busin",
       "category": "training",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1420993635935467",
-      "src": "/cinema/reels/1420993635935467.mp4",
-      "poster": "/cinema/reels/1420993635935467.jpg",
-      "duration": 63.79,
-      "date": "2026-03-27",
-      "caption": "At the convention stand",
-      "alt": "At the convention stand",
-      "meta_caption": "Last day at NADTI\u2014what an amazing experience! Thank you to all the dentists who visited our booth and took the time to connect with us. We truly appreciate your support! \ud83d\udc99 See you again on our next trade exhibition! \ud83d\udc4b #NADTI2026 #DentalPH #ThankYouDocs #Grateful #EventHighlights #TradeExhibit #SeeYouAgain #DentaSourcePH",
-      "category": "convention",
-      "width": 360,
-      "height": 640
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/906655618875261.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "4424672977810350",
@@ -2030,8 +2035,11 @@
       "alt": "At the convention stand",
       "meta_caption": "Our Day 2 at NADTI Highlights \ud83d\ude4c Maraming salamat, Docs, sa pag-drop by sa booth namin today \ud83d\udc99 Today is our Last day \u2014habol na! Booth #224-225, see you! Doctors !\ud83d\ude0a #NADTI2026 #Day2Highlights #DentalEventPH #DentistsPH #Booth224225 #LastDay #SalamatDocs",
       "category": "convention",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/4424672977810350.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "802121262954212",
@@ -2043,8 +2051,11 @@
       "alt": "At the convention stand",
       "meta_caption": "Thank you for making our Day 1 at NADTI extra special, Docs \ud83d\udc99 Catch us We\u2019re still here at Booth #224-225 until March 26. Looking forward to seeing more of you! #NADTI2026 #DentalCommunityPH #DentistsPH #DentalExpo #Booth224225 #ProfessionalCare #DentalSolutions",
       "category": "convention",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/802121262954212.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "3312264415609418",
@@ -2056,8 +2067,11 @@
       "alt": "On an installation",
       "meta_caption": "Smiles Delivered All the Way to Mindoro! \ud83d\ude9a Successful delivery and installation in Occidental Mindoro! \ud83d\udcaa Maraming salamat po, Doc, for trusting Dentasource. We truly appreciate your support and we\u2019re happy to be part of your clinic journey! \ud83d\ude4f\ud83d\udc99 \ud83d\udccd We deliver nationwide! Message us for more details: 09625793024 Or visit our showroom: 610 C. Raymundo Ave, Maybunga, Pasig City #Dentasource #DentalChair",
       "category": "install",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/3312264415609418.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "857481130682886",
@@ -2069,8 +2083,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Dentists & Dental Technicians Are You Ready to Go Digital? \ud83e\uddb7\u2728 Join our 9-Day Digital Dentistry Course and master the workflow from Scanning \u2192 Designing \u2192 3D Printing with mentors Dr. Pocholo Loleng and Dr. Rajan Yraola. \ud83c\udfa5 Watch this video invitation and take the next step in modern dentistry. \ud83d\udcc5 March 15, 2026, 10:00 AM Onwards \ud83d\udccd Unit 307\u2013308, 3rd Floor, Mercedes Square Plaza Mercedes Ave. cor. Lui",
       "category": "training",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/857481130682886.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "id": "1579061633321894",
@@ -2082,8 +2099,11 @@
       "alt": "On an installation",
       "meta_caption": "Another successful Dental Chair Installation in Mandaluyong! \ud83d\udcba Maraming salamat po, Doc, for trusting us to be your partner and supplier of dental equipment. We\u2019re grateful to be part of your clinic journey and excited to support your growing practice! \ud83d\udce9 Planning to upgrade your clinic or start your own dental practice? Message us anytime for inquiries and quotations \u2014 we\u2019d love to help! #DentalCh",
       "category": "install",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1579061633321894.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1249814683272078",
@@ -2095,8 +2115,11 @@
       "alt": "On an installation",
       "meta_caption": "Another successful clinic upgrade in Cavite. Mga Doc, if you're planning to improve your workspace and patient experience, this is the perfect time. Hindi kailangang mahal para maging premium ang setup ng clinic mo. \ud83d\ude09 Quality Dental Equipment Without the Premium Price\ud83d\udc4c\ud83c\udffc \ud83d\udce9 Message us today for inquiries. #Dentasourcedirect #DentalUnitInstallation #DXA3S #DentalEquipmentPH #ModernDentalClinic #Denta",
       "category": "install",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1249814683272078.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1838737903502386",
@@ -2108,8 +2131,11 @@
       "alt": "At the convention stand",
       "meta_caption": "We\u2019re proud to share that our trusted partner, ROSON, is currently showcasing their latest innovations at the Dental South China International Dental Exhibition! As the official distributor of ROSON here in the Philippines, Dentasource Direct is honored to represent a brand that stands for global manufacturing excellence and innovation in dental technology. \ud83d\udccd Venue: Dental South China \ud83d\udcc5 March 3\u20136,",
       "category": "convention",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1838737903502386.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "3248225922025033",
@@ -2121,8 +2147,11 @@
       "alt": "On an installation",
       "meta_caption": "Another Satisfied Client from Pampanga! \ud83e\uddb7\ud83c\udf89 DX-A3S Dental Unit installed and clinic-ready! \ud83d\udcba\u2728 Thank you for choosing quality and performance! We\u2019re honored to be part of your clinic journey. \ud83d\ude4f Mga Doc, if you want a chair na hindi lang maganda tingnan pero smooth din gamitin everyday, this is your sign! Message us today or visit our showroom for inquiries! \ud83d\udce9 #DentalEquipmentPH #DXA3S #ClinicSetupPH",
       "category": "install",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/3248225922025033.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1600633247921603",
@@ -2134,8 +2163,11 @@
       "alt": "A delivery going out",
       "meta_caption": "Hindi basta deliver \u2014 we make sure it\u2019s PERFECT first! \ud83d\udc4c\u2728 All our dental units go through strict pre-inspection before delivery para sure na top quality ang matatanggap ninyo. \ud83d\udcba\ud83d\udd0d Because your clinic deserves nothing but the best! #QualityCheck #DentalChairPH #ClinicReady #Dentasource #PreDeliveryInspection #DentalEquipmentPH #ReliableSupplier",
       "category": "delivery",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1600633247921603.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "25872895762382044",
@@ -2147,8 +2179,11 @@
       "alt": "On an installation",
       "meta_caption": "Another successful chair installation! \ud83c\udf89\ud83e\uddb7 Thank you so much, Doc, for choosing our DX-S3 Dental Unit with Premium Package. We truly appreciate your trust in us! \ud83d\ude4f\u2728 Mga Doc, ano pang hinihintay ninyo? Upgrade your clinic today and experience comfort, efficiency, and premium performance in one unit! \ud83d\udcba Message us now \ud83d\udcde #DentalUnitPH #ClinicUpgrade #DentalEquipmentPH #DxS3 #PremiumDentalUnit #DentalCl",
       "category": "install",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/25872895762382044.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "734728242834618",
@@ -2160,8 +2195,11 @@
       "alt": "On an installation",
       "meta_caption": "Basic man o high-end \ud83d\udcba May dental chair kami para sa\u2019yo, Doc! \u2728 Pwede pang i-customize \u2014 kulay, features, at setup ayon sa clinic mo. Ano pang hinihintay mo? \ud83d\udc49 Visit our showroom & see it for yourself! Our showroom is located at: 610 C. Raymundo Ave, Maybunga Pasig City, Philippines. Pasig Showroom Hours: MONDAY to SUNDAY, 9 AM - 8 PM You can view the directions: https://maps.app.goo.gl/uCrwWNpfDL",
       "category": "install",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/734728242834618.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "873165588930729",
@@ -2173,8 +2211,11 @@
       "alt": "On an installation",
       "meta_caption": "Online specs are nice\u2026 pero iba pa rin kapag natry mo mismo. \ud83d\ude0c\ud83d\ude4f Ergonomics. Stability. Silent movement. Mga bagay na hindi mo talaga mararamdaman sa chat. Sa showroom namin, you can: \u2022 Compare multiple models side by side \u2022 Test comfort & chair movement \u2022 Subukan mismo ang bigat at stability \u2014 ramdam, hindi haka-haka \ud83d\ude0c Open kami everyday \u2014 9AM to 9PM \u2714\ufe0f Kahit gabi, pwede kang bumisita for your con",
       "category": "install",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/873165588930729.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1633561794664812",
@@ -2186,8 +2227,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "MINCON 2026 \ud83c\udf89 Daghang salamat kaayo to all the dentists and Dent Students who took time to visit and support us during 36th PDA Mindanao Area Convention & 3rd Davao Dental Trade Expo \ud83e\uddb7 We look forward to serving you again. #MINCON2026 #PDAMindanao #DentalProfessionals #SMXDavao",
       "category": "training",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1633561794664812.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "757436470293072",
@@ -2199,8 +2243,11 @@
       "alt": "At the convention stand",
       "meta_caption": "Last day at MINCON \ud83c\udf89 Thank you, Doctors, for stopping by our booth. Seeyou next time! \ud83d\udc4b\ud83e\uddb7 #MINCON #DentalExpoPH #DentalCommunity #DentistsOfPH #DavaoCity",
       "category": "convention",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/757436470293072.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "946975077912062",
@@ -2212,8 +2259,11 @@
       "alt": "At the convention stand",
       "meta_caption": "Day 2 at MINCON 2026 \u2728 Thank you to everyone who visited us yesterday! We\u2019re still here today at SMX Convention Center Davao\u2014come and check out our dental equipment offers \ud83e\uddb7\ud83d\ude4c See you, Dentists of Mindanao! #MINCON2026 #Day2AtMINCON #PDAMindanao #DentalTradeExpo #DentalCommunity #DentalSuppliesPH",
       "category": "convention",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/946975077912062.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "882722704614114",
@@ -2225,8 +2275,11 @@
       "alt": "At the convention stand",
       "meta_caption": "WE\u2019RE NOW LIVE AT MINCON 2026! We\u2019re excited to be part of the 36th PDA Mindanao Area Convention & 3rd Davao Dental Trade Expo \ud83e\uddb7\u2728 \ud83d\udccd SMX Convention Center Davao Drop by, and check out our dental equipment offers! Dentists of Mindanao\u2014see you here! \ud83d\ude4c #MINCON2026 #PDAMindanao #DavaoDentalTradeExpo #DentalConventionPH #DentalEquipmentPH #DentistsPH #SMXDavao #DentalSuppliesPH #DentalCommunity #LiveAtM",
       "category": "convention",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/882722704614114.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "769116215668843",
@@ -2238,8 +2291,11 @@
       "alt": "At the convention stand",
       "meta_caption": "\u2708\ufe0f Bound to Davao! The Dentasource Direct Team is on the way to Davao for the 3rd Davao Dental Trade Expo (MINCON) by PDA Davao City Chapter. Excited kami to see you tomorrow, our dear dentists! Visit us at SMX Convention Center Lanang booth #28 and check our dental products and services. \ud83e\uddb7 See you, Doc! #DentasourceDirect #MINCON #DavaoDentalExpo #PDADavao #DentalSuppliesPH #DentalExpo",
       "category": "convention",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/769116215668843.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1089983923204877",
@@ -2251,8 +2307,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "\ud83d\udccdCatch us at the PDA\u2013Quezon City Dental Chapter 3rd Scientific Seminar Create Studios, Ayala Malls Vertis North See you here! \ud83d\udc4b #PDASeminar2026 #PDAQCChapter #DentalSeminar #DentistsOfPH #DentalLife #VertisNorth",
       "category": "training",
-      "width": 598,
-      "height": 720
+      "width": 720,
+      "height": 864,
+      "hd": "/cinema/reels/hd/1089983923204877.mp4",
+      "hdWidth": 1076,
+      "hdHeight": 1292
     },
     {
       "id": "1193847869573475",
@@ -2264,8 +2323,11 @@
       "alt": "A delivery going out",
       "meta_caption": "Stocks are in and we\u2019re ready to deliver! \ud83d\ude9a\ud83d\udca8 Quality dental equipment at prices you can trust \ud83d\udcaf Salamat po, Doctors, for choosing Dentasource Direct! #DentasourceDirect #DentalEquipmentPH #DentalSupplies #DentalClinicPH #TrustedSupplier",
       "category": "delivery",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1193847869573475.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1453670749761290",
@@ -2277,8 +2339,11 @@
       "alt": "From the DentaSource Direct floor",
       "meta_caption": "Clinic renovation coming up? \ud83d\udee0\ufe0f We handle dental chair dismantling services \u2014 any brand, any unit. Reliable service by the Dentasource Team \ud83d\udcaf\ud83e\uddb7 \ud83d\udce9 DM us! #Dentasource #DentalChairService #DentalClinicSupport #ClinicRenovation #DentalPH",
       "category": "other",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1453670749761290.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1261406355829099",
@@ -2290,8 +2355,11 @@
       "alt": "From the DentaSource Direct floor",
       "meta_caption": "Hindi kailangang mahal para maging quality \ud83d\udcaf Trusted dental equipment now available at Dentasource Direct. #AffordableDentalEquipments #DentalLife #DentalClinic #DentalTools #DentasourceDirect",
       "category": "other",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1261406355829099.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "903299792221071",
@@ -2303,8 +2371,11 @@
       "alt": "On an installation",
       "meta_caption": "DentaSource Direct Team bound to Pangasinan #Delivery #installation #Roson #DentalChair #A3L #Pangasinan #DentaSourceDirect",
       "category": "install",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/903299792221071.mp4",
+      "hdWidth": 1076,
+      "hdHeight": 1914
     },
     {
       "id": "1933731330832312",
@@ -2316,8 +2387,11 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Off to a hot start in 2026 \ud83d\udd25 Stocks have arrived! \ud83d\udce6 Nationwide delivery? Yes doc we do po! \ud83d\ude0a Unloading day with the team \ud83d\udcaa #DentaSourceDirect #Restocking #TrainingCenterSoon #DentalSupplies #DentalEquipment #DentalClinicPH #NationwideDelivery #ClinicUpgrade #Dentalchair #2026Goals",
       "category": "training",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1933731330832312.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1948358382412256",
@@ -2329,8 +2403,11 @@
       "alt": "A delivery going out",
       "meta_caption": "Stocks are in! Ready for immediate delivery.\ud83d\ude0d Upgrade your clinic now while supplies last.! \u2714\ufe0f Quality dental equipments \u2714\ufe0f Fast processing \u2714\ufe0f Trusted supplier \ud83d\udccd Visit us: 610 C. Raymundo Ave. Maybunga, Pasig City \ud83d\udcde 09625793024 \ud83d\udcac Dentasource Direct",
       "category": "delivery",
-      "width": 404,
-      "height": 720
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1948358382412256.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "1873040906635560",
@@ -2342,8 +2419,11 @@
       "alt": "A delivery going out",
       "meta_caption": "Just in time before the Christmas break! \ud83c\udf84 \ud83d\ude0a 2 DX-A3 dental units delivered today! Don\u2019t miss out\u2014we have stocks available! \ud83d\ude80 Message us at 09625793024 or Visit our Showroom: 610 C. Raymundo Ave. Maybunga, Pasig City.",
       "category": "delivery",
-      "width": 540,
-      "height": 720
+      "width": 720,
+      "height": 960,
+      "hd": "/cinema/reels/hd/1873040906635560.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1440
     },
     {
       "id": "2356888671419841",
@@ -2356,7 +2436,10 @@
       "meta_caption": "The spirit of teamwork and the joy of Christmas season in one moment. \ud83c\udf84\u2728 Our heartfelt appreciation goes to Roson for gifting us this beautiful Christmas tree. It has brought warmth, joy, and festive spirit to our Showroom. Thank you for your generosity and for being a valued partner throughout the years. #DentasourceDirect #Roson #DentalIndustry #DentalSupplies #DentalCommunity #Christmas2025 #Ho",
       "category": "showroom",
       "width": 720,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/2356888671419841.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1080
     },
     {
       "id": "3204867693008642",
@@ -2369,7 +2452,10 @@
       "meta_caption": "\u2728Meet the Smart Fill G Obturation System, designed to make endodontic procedures faster, smoother, and more predictable for every clinician. \u2714\ufe0f Quick 12 second heating Begin immediately without delay, saving valuable chair time and keeping your workflow efficient. \u2714\ufe0f 360\u00b0 rotatable needle Allows effortless multi angle access, making canal filling easier even in more challenging cases. \u2714\ufe0f Four pres",
       "category": "showroom",
       "width": 720,
-      "height": 604
+      "height": 604,
+      "hd": "/cinema/reels/hd/3204867693008642.mp4",
+      "hdWidth": 940,
+      "hdHeight": 788
     },
     {
       "id": "829857039801456",
@@ -2381,21 +2467,11 @@
       "alt": "At the convention stand",
       "meta_caption": "\u2728 Philippine Dental Association Luzon Convention 2025 \u2013 Day 2 \u2728 We extend our appreciation to all delegates who have participated in our ongoing demonstrations and consultations. Your presence and engagement allow us to share relevant insights, clarify product details, and provide guidance tailored to the needs of dental practices. Thank you for taking the time to connect with us and for contribut",
       "category": "convention",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1386966919458021",
-      "src": "/cinema/reels/1386966919458021.mp4",
-      "poster": "/cinema/reels/1386966919458021.jpg",
-      "duration": 6.1,
-      "date": "2025-11-21",
-      "caption": "On the showroom floor",
-      "alt": "On the showroom floor",
-      "meta_caption": "Another DX-A3L heads to Quezon City \u2014 chosen by dental professionals who value quality and dependable support. We\u2019re proud to assist your clinic in delivering superior care.\ud83e\udd70 \u2728610 C. Raymundo, Maybunga, Pasig City \u2728dentasourcedirect@gmail.com \u27280962 579 3024",
-      "category": "showroom",
       "width": 720,
-      "height": 378
+      "height": 1280,
+      "hd": "/cinema/reels/hd/829857039801456.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     },
     {
       "id": "873022575298335",
@@ -2408,59 +2484,10 @@
       "meta_caption": "\ud83d\udce2 Announcement! Extended Hours Just for You! Our showroom now operates 9 AM to 9 PM daily, giving you more time and convenience. \ud83d\ude0a \ud83d\udccd Visit us at: 610 C. Raymundo, Maybunga, Pasig City \ud83d\udcde Contact us: 0962 579 3024 \ud83d\udce7 dentasourcedirect@gmail.com",
       "category": "showroom",
       "width": 720,
-      "height": 720
-    },
-    {
-      "id": "1945953162966315",
-      "src": "/cinema/reels/1945953162966315.mp4",
-      "poster": "/cinema/reels/1945953162966315.jpg",
-      "duration": 37.9,
-      "date": "2025-11-10",
-      "caption": "On the showroom floor",
-      "alt": "On the showroom floor",
-      "meta_caption": "\ud83d\ude80 Introducing the P&C Obturation System \u2014 Push & Cut in ONE device! Exclusively available at DentaSource Direct. Experience next-level performance during obturation with our ball-heating needle technology engineered for precision, speed, and efficiency. \u2728 Why dentists love it: \u2714\ufe0f Push & Cut 2-in-1 System \u2014 combines heating pen + GP cutter in one compact unit \u2714\ufe0f Ultra-fast heating \u2014 reaches 200\u00b0C i",
-      "category": "showroom",
-      "width": 720,
-      "height": 378
-    },
-    {
-      "id": "25171833779171048",
-      "src": "/cinema/reels/25171833779171048.mp4",
-      "poster": "/cinema/reels/25171833779171048.jpg",
-      "duration": 13.0,
-      "date": "2025-11-09",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "\u2728 HOLIDAY PROMO \u2014 0 DOWNPAYMENT ON ALL DENTAL CHAIRS \u2728 Upgrade your clinic without worrying about the upfront cost. For a limited time, you can now avail ANY dental chair \u2014 basic, standard, or premium unit \u2014 with \u20b10 downpayment and lots of exclusive FREEBIES included. Get full access to your chosen dental chair, even before you start paying. \ud83d\ude0a With our Holiday Promo, you\u2019ll enjoy: \u2705 0 Downpayment ",
-      "category": "install",
-      "width": 720,
-      "height": 378
-    },
-    {
-      "id": "1565486021556271",
-      "src": "/cinema/reels/1565486021556271.mp4",
-      "poster": "/cinema/reels/1565486021556271.jpg",
-      "duration": 39.4,
-      "date": "2025-11-08",
-      "caption": "At the convention stand",
-      "alt": "At the convention stand",
-      "meta_caption": "See more with precision and clarity. The MC-Ray II High-Frequency DC Portable X-Ray is engineered for dentists who demand accuracy in every shot. \ud83d\udd0d 0.4mm focus for high-definition images \u2014 capture fine details with confidence \u26a1 High-voltage, high-frequency technology reduces radiation exposure by over 30% while maximizing usable rays \ud83d\udd12 Stable and safe output through refined tube manufacturing \u2705 Co",
-      "category": "convention",
-      "width": 720,
-      "height": 378
-    },
-    {
-      "id": "1471156827301029",
-      "src": "/cinema/reels/1471156827301029.mp4",
-      "poster": "/cinema/reels/1471156827301029.jpg",
-      "duration": 109.72,
-      "date": "2025-11-07",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "Experience innovation with the ROSON DX-A3L Dental Chair \u2014 engineered to bring comfort, efficiency, and modern design to every dental procedure. This chair isn\u2019t just equipment \u2014 it\u2019s an upgrade in your daily workflow.\ud83d\ude0a \ud83d\udc49 Ergonomic layout Supports proper posture and reduces strain during long procedures, letting you work comfortably from every angle. \ud83d\udc49 Medical-grade color LCD display Full control ",
-      "category": "install",
-      "width": 720,
-      "height": 378
+      "height": 720,
+      "hd": "/cinema/reels/hd/873022575298335.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1080
     },
     {
       "id": "1134426865389864",
@@ -2473,7 +2500,677 @@
       "meta_caption": "Come visit us and experience our dental chairs up close \u2014 from standard units to high-performance, advanced models. Walk in anytime between 10AM \u2013 8PM. Our team will assist you. \ud83d\ude0a \ud83d\udccd 610 C. Raymundo Ave., Maybunga, Pasig City \ud83d\udcde 0962-579-3024 \ud83d\udce7 dentasourcedirect@gmail.com",
       "category": "showroom",
       "width": 720,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1134426865389864.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1080
+    },
+    {
+      "id": "3878460475778635",
+      "src": "/cinema/reels/3878460475778635.mp4",
+      "poster": "/cinema/reels/3878460475778635.jpg",
+      "duration": 80.57,
+      "date": "2025-10-05",
+      "caption": "On the showroom floor",
+      "alt": "On the showroom floor",
+      "meta_caption": "\u2728 MODERN LOOK. ADVANCED FUNCTION. SMART PRICE. \ud83d\ude0a \ud83d\ude80 Transform your dental clinic with our state-of-the-art dental chairs \u2014 engineered for precision, comfort, and durability. Every detail is crafted to support your workflow and enhance your patients\u2019 experience. Your clinic deserves innovation that works as hard as you do! With advanced technology, smooth controls, and ergonomic design, our chairs d",
+      "category": "showroom",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/3878460475778635.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "2946145478893926",
+      "src": "/cinema/reels/2946145478893926.mp4",
+      "poster": "/cinema/reels/2946145478893926.jpg",
+      "duration": 24.14,
+      "date": "2025-08-21",
+      "caption": "On the showroom floor",
+      "alt": "On the showroom floor",
+      "meta_caption": "\ud83e\uddb7 Upgrade your endodontic practice with precision, efficiency, and reliability! The Smart Fill-G & Smart Fill-P Obturation System by Mecco Korea is designed to: \u2705 Ensure optimal 3D canal filling \u2705 Save chair time with fast, accurate results \u2705 Provide consistent performance for every case Exclusively available at Dentasource Direct. \ud83d\ude80 \ud83d\udccd Pasig Showroom \u2013 610 C. Raymundo Ave. Pasig City \ud83d\udd58 Open Monday",
+      "category": "showroom",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/2946145478893926.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "1118092760255064",
+      "src": "/cinema/reels/1118092760255064.mp4",
+      "poster": "/cinema/reels/1118092760255064.jpg",
+      "duration": 19.27,
+      "date": "2025-08-20",
+      "caption": "At the convention stand",
+      "alt": "At the convention stand",
+      "meta_caption": "We sincerely appreciate the opportunity to be part of this two-day event hosted in Cebu City by Mandaue Dental chapter and PDA Cebu Dental Chapter. A heartfelt thank you to all our Cebuano Dental family for your warm welcome and for inviting us to be part of your memorable induction ceremonies. Your hospitality truly made us feel at home! To all Cebuano dentists, we invite you to experience the qu",
+      "category": "convention",
+      "width": 720,
+      "height": 1282,
+      "hd": "/cinema/reels/hd/1118092760255064.mp4",
+      "hdWidth": 1078,
+      "hdHeight": 1920
+    },
+    {
+      "id": "1443460116989456",
+      "src": "/cinema/reels/1443460116989456.mp4",
+      "poster": "/cinema/reels/1443460116989456.jpg",
+      "duration": 50.13,
+      "date": "2025-08-19",
+      "caption": "At the convention stand",
+      "alt": "At the convention stand",
+      "meta_caption": "Congratulations to the Philippine Dental Association Mandaue Chapter on a Successful Induction Ceremony!\ud83c\udf89 We are honored to have participated in the recent Induction Ceremony of the Philippine Dental Association Mandaue Chapter!\ud83e\uddb7 Thank you for inviting us to be part of this meaningful event. We look forward to strengthening our partnership and supporting the dental community in Mandaue and beyond.",
+      "category": "convention",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1443460116989456.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "1272202024302573",
+      "src": "/cinema/reels/1272202024302573.mp4",
+      "poster": "/cinema/reels/1272202024302573.jpg",
+      "duration": 24.02,
+      "date": "2025-08-10",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "\ud83d\udcba Upgrade Your Clinic, Upgrade Your Care! \ud83d\udcba Say hello to our best-selling DX-N1 Dental Chair \u2014 designed for comfort, durability, and style. \u2728 Promo Perks You\u2019ll Love: \ud83d\udcb0 BIG Cash Discount \ud83d\udcb3 Zero Downpayment on Installment \ud83c\udf81 Freebies Included \ud83d\udee1 2-Year Warranty \ud83d\ude9a FREE Delivery & Installation within Metro Manila \ud83d\udda5 FREE Ocular & Chair Layout Planning within Metro Manila Perfect for dentists expanding t",
+      "category": "install",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1272202024302573.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "1283876776542946",
+      "src": "/cinema/reels/1283876776542946.mp4",
+      "poster": "/cinema/reels/1283876776542946.jpg",
+      "duration": 15.88,
+      "date": "2025-08-06",
+      "caption": "A delivery going out",
+      "alt": "A delivery going out",
+      "meta_caption": "\ud83e\uddb7\u2728 UV Cabinets Are Back in Stock! \u2728\ud83e\uddb7 Say hello to cleaner, safer, and more organized instruments with our UV Dental Cabinets \u2013 now available in Single Door and Double Door options! \ud83d\udca1 Perfect for sterilization AND storage. \ud83d\udcbc Built for busy clinics that prioritize hygiene and efficiency. \u2705 Compact, modern, and reliable \u2013 a true essential in your workspace! \ud83d\udccd Grab yours now at Dentasource Direct \u2013 wh",
+      "category": "delivery",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1283876776542946.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "4158026097802753",
+      "src": "/cinema/reels/4158026097802753.mp4",
+      "poster": "/cinema/reels/4158026097802753.jpg",
+      "duration": 29.62,
+      "date": "2025-08-02",
+      "caption": "At the convention stand",
+      "alt": "At the convention stand",
+      "meta_caption": "\ud83d\udce3 We're thrilled to be part of Bioceramics in Endodontics: Advancements and Applications with the esteemed Dr. Muhannad Takruri! \ud83e\uddb7\u2728 A big thank you to the organizers for inviting DentaSource Direct to this insightful and inspiring event. \ud83d\ude4c \ud83d\udc4b Drop by our booth at Ibis Styles Araneta, Quezon City \u2014 we\u2019re here to showcase our latest dental supplies and exclusive event offers! Don\u2019t miss out! #DentaSo",
+      "category": "convention",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/4158026097802753.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "1450798059393421",
+      "src": "/cinema/reels/1450798059393421.mp4",
+      "poster": "/cinema/reels/1450798059393421.jpg",
+      "duration": 15.39,
+      "date": "2025-07-18",
+      "caption": "On the showroom floor",
+      "alt": "On the showroom floor",
+      "meta_caption": "\ud83e\uddb7 Upgrade Your Endo Game with the A7 Apex Locator! Small in size, BIG in precision. \ud83d\udd0d\ud83d\udcaf Say goodbye to bulky machines and hello to compact power \u2013 the A7 Apex Locator is your next must-have in the clinic: \u2705 Korean-Made Quality \u2705 Compact & Easy to Use \u2705 Reliable & Accurate Readings \u2705 Affordable Without Compromise \ud83d\udee1\ufe0f Trusted by professionals. Quality assured. Available ONLY at DentaSource Direct. \ud83d\udccd V",
+      "category": "showroom",
+      "width": 720,
+      "height": 1012,
+      "hd": "/cinema/reels/hd/1450798059393421.mp4",
+      "hdWidth": 1366,
+      "hdHeight": 1920
+    },
+    {
+      "id": "3064149127082720",
+      "src": "/cinema/reels/3064149127082720.mp4",
+      "poster": "/cinema/reels/3064149127082720.jpg",
+      "duration": 15.39,
+      "date": "2025-07-18",
+      "caption": "On the showroom floor",
+      "alt": "On the showroom floor",
+      "meta_caption": "\ud83e\uddb7 Upgrade Your Endo Game with the A7 Apex Locator! \ud83c\uddf0\ud83c\uddf7 Small in size, BIG in precision. \ud83d\udd0d\ud83d\udcaf Say goodbye to bulky machines and hello to compact power \u2013 the A7 Apex Locator is your next must-have in the clinic: \u2705 Korean-Made Quality \u2705 Compact & Easy to Use \u2705 Reliable & Accurate Readings \u2705 Affordable Without Compromise \ud83d\udee1\ufe0f Trusted by professionals. Quality assured. Available ONLY at DentaSource Direct. ",
+      "category": "showroom",
+      "width": 720,
+      "height": 1012,
+      "hd": "/cinema/reels/hd/3064149127082720.mp4",
+      "hdWidth": 1366,
+      "hdHeight": 1920
+    },
+    {
+      "id": "717603381065360",
+      "src": "/cinema/reels/717603381065360.mp4",
+      "poster": "/cinema/reels/717603381065360.jpg",
+      "duration": 30.48,
+      "date": "2025-07-17",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "\ud83e\uddb7 START YOUR DREAM CLINIC TODAY ! WITH ZERO DOWNPAYMENT! \ud83d\udcba\u2728 Looking for a reliable dental chair that fits your budget AND your dream clinic vision? We've got you covered! \ud83d\ude0d \u2705 \u20b10 Downpayment \u2705 FREE Delivery & Installation (within Metro Manila) \u2705 FREE Ocular Visit & Layout Help \u2705 2 YEARS WARRANTY \u2705 Trusted by Dentists Nationwide \u2705 Top-notch Quality & After-Sales Support \ud83d\udccd Visit Our Pasig Showroom! \ud83d\udd50",
+      "category": "install",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/717603381065360.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "746691007799985",
+      "src": "/cinema/reels/746691007799985.mp4",
+      "poster": "/cinema/reels/746691007799985.jpg",
+      "duration": 35.38,
+      "date": "2025-07-07",
+      "caption": "At the convention stand",
+      "alt": "At the convention stand",
+      "meta_caption": "DENTASOURCE IN PANGASINAN! We\u2019re proud to be part of PDA-Pangasinan Chapter\u2019s 100 Years Celebration! \ud83c\udf89 Thank you for the warm welcome, Pangasinan Doctors! \ud83e\udd17 #DentasourceDirect #PDA100Years #DentalMilestone",
+      "category": "convention",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/746691007799985.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
+    },
+    {
+      "id": "501984766310299",
+      "src": "/cinema/reels/501984766310299.mp4",
+      "poster": "/cinema/reels/501984766310299.jpg",
+      "duration": 33.6,
+      "date": "2025-07-02",
+      "caption": "Hands on training at the Training Center",
+      "alt": "Hands on training at the Training Center",
+      "meta_caption": "Huge thanks to Dr. Maureen Castillo for the warm welcome at Maureen Castillo Dentistry! \ud83d\ude4f\ud83d\udc99 We at Dentasource Direct are truly honored to be part of this learning-filled event. #dentasourcedirect #kclamps",
+      "category": "training",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/501984766310299.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
+    },
+    {
+      "id": "4261374460809316",
+      "src": "/cinema/reels/4261374460809316.mp4",
+      "poster": "/cinema/reels/4261374460809316.jpg",
+      "duration": 26.01,
+      "date": "2025-06-11",
+      "caption": "Hands on training at the Training Center",
+      "alt": "Hands on training at the Training Center",
+      "meta_caption": "Onsite at KADEBU\u2019s Scientific Seminar Today!\ud83d\udce3 We're excited to be part of the First Scientific Seminar and Induction of Officers of the Philippine Dental Association \u2013 Bulacan Chapter (KADEBU) \ud83c\udf89\ud83e\uddb7 As KADEBU celebrates its 62nd founding anniversary, we're here at the 7/F E-Library, Bulacan State University showcasing our trusted dental equipment and innovations that empower every dental professional",
+      "category": "training",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/4261374460809316.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "2101453593669620",
+      "src": "/cinema/reels/2101453593669620.mp4",
+      "poster": "/cinema/reels/2101453593669620.jpg",
+      "duration": 53.8,
+      "date": "2025-06-06",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "Another successful DX-N1 Dental Chair installation in Quezon City! \ud83d\udcba Thankyou for choosing Dentasource Direct \ud83d\ude4f \ud83e\uddb7 DentaSource Direct offers, 0% Downpayment. \ud83d\udccd Our showroom is located at: \ud83c\udfe5 Pasig Showroom Hours: MONDAY to SUNDAY, 1 PM - 9 PM Address: Unit 307-308, 3rd floor, Mercedes Square Plaza, Pasig, Philippines. You can view the directions:(https://maps.app.goo.gl/YQ6hwMHQqoqr1WgP6)",
+      "category": "install",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/2101453593669620.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
+    },
+    {
+      "id": "1202690954514209",
+      "src": "/cinema/reels/1202690954514209.mp4",
+      "poster": "/cinema/reels/1202690954514209.jpg",
+      "duration": 26.47,
+      "date": "2025-06-03",
+      "caption": "At the convention stand",
+      "alt": "At the convention stand",
+      "meta_caption": "\ud83c\udf89 Celebrating 74 Years of Excellence! \ud83e\uddb7 We\u2019re honored to be part of the Philippine Dental Society - Quezon City Dental Chapter Inc.\u2019s 74th Anniversary and Annual Convention! #PDSQCDCI74 #DentalExcellence #TeamDentasource #TogetherWeSmile",
+      "category": "convention",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1202690954514209.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "687390927218364",
+      "src": "/cinema/reels/687390927218364.mp4",
+      "poster": "/cinema/reels/687390927218364.jpg",
+      "duration": 29.05,
+      "date": "2025-05-15",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "All your needs available at a single supplier! Avoid the hassle and order all your dental eequipment and supplias now at Dentasource Direct! We also deliver and install! Order now! \ud83d\udccd Visit our showroom: 3rd Floor, Mercedes Square Plaza, Pasig City \u23f0 Open daily: 1:00 PM \u2013 9:00 PM \ud83d\udce9 Send us a message to inquire today! \ud83d\udcde: 0917-801-7583 #DentasourceDirect #DentalSupplies #dentalchair #directsupplier #",
+      "category": "install",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/687390927218364.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "1340525937239978",
+      "src": "/cinema/reels/1340525937239978.mp4",
+      "poster": "/cinema/reels/1340525937239978.jpg",
+      "duration": 61.18,
+      "date": "2025-04-29",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "Dentasource is now in Catanauan, Quezon! Delivery and installation done for our S900 Pro dental unit. Maraming salamat, Doc, for trusting Dentasource! We\u2019re happy to be part of your growing clinic. ZERO Downpayment available! \ud83d\udccd Visit our showroom: 3rd Floor, Mercedes Square Plaza, Pasig City Open daily from 1:00 PM to 9:00 PM. Have questions? Message us today! \ud83d\udcac #DentasourceDirect #S900Pro #Dental",
+      "category": "install",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1340525937239978.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
+    },
+    {
+      "id": "1360163231895400",
+      "src": "/cinema/reels/1360163231895400.mp4",
+      "poster": "/cinema/reels/1360163231895400.jpg",
+      "duration": 59.7,
+      "date": "2025-04-25",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "Another dental clinic in General Trias, Cavite is now equipped for success with our DX-N1 dental chair\u2014delivered and installed by DentaSource Direct! Worried about the budget? We got you! Ask us about our flexible payment plans\u2014including ZERO DOWNPAYMENT options! Message us today to upgrade your clinic! #DentaSourceDirect #DXN1 #DentalChairsPH #GeneralTriasCavite #PatientComfortFirst #ClinicUpgrad",
+      "category": "install",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1360163231895400.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
+    },
+    {
+      "id": "682494724272698",
+      "src": "/cinema/reels/682494724272698.mp4",
+      "poster": "/cinema/reels/682494724272698.jpg",
+      "duration": 76.0,
+      "date": "2025-04-11",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "\ud83e\uddb7 Another Happy Dentist! We\u2019ve just completed another smooth dental chair installation\u2014 ready to power up another growing dental clinic! Thinking of upgrading your setup? Now\u2019s the perfect time to invest in comfort, quality, and modern style. \u2728 Sleek, space-saving design \u2728 Built for durability and performance \u2728 Patient comfort guaranteed Worried about upfront costs? Enjoy flexible payment terms \u2014 ",
+      "category": "install",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/682494724272698.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "1165736618285530",
+      "src": "/cinema/reels/1165736618285530.mp4",
+      "poster": "/cinema/reels/1165736618285530.jpg",
+      "duration": 14.0,
+      "date": "2025-03-15",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "\ud83d\udea8 LIMITED-TIME PROMO (March-April 2025 only): Get the Top-of-the-Line DX-A3 Roson Dental Chair! \ud83d\udea8 \ud83d\udcb0 Special Cash Price: \u20b1232,650 \ud83d\udcb3 Installment: \u20b118,669/month for 18 months (No Downpayment!) \u2728 Why Choose the DX-A3? \u2714 Spare parts available \u2714 Top-of-the-line ergonomic design \u2013 Built for maximum patient comfort & dentist efficiency. \u2714 Advanced Electrolytic Oxidized Disinfection System \u2013 Ensures superi",
+      "category": "install",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1165736618285530.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "1584419828930942",
+      "src": "/cinema/reels/1584419828930942.mp4",
+      "poster": "/cinema/reels/1584419828930942.jpg",
+      "duration": 16.0,
+      "date": "2025-03-15",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "\ud83d\udea8 LIMITED-TIME PROMO (March-April 2025): No DP! \ud83e\udd73 Cash Price: \u20b1184,991 \ud83d\udcb3 Installment: \u20b114,485/month for 18 months (No Downpayment!) \u2728 Why Choose the DX-A3S? \u2714 Spare Parts Available \u2013 Easy maintenance and long-term reliability \ud83c\udf81 FREEBIES INCLUDED! \u2705 FREE Compressor \u2705 FREE High-Speed & Low-Speed Handpieces \u2705 FREE Light Cure \u2705 FREE Delivery & Installation in Metro Manila! \u2705 2-Year Warranty \ud83d\udccd Visit ou",
+      "category": "install",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1584419828930942.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "1862434721226777",
+      "src": "/cinema/reels/1862434721226777.mp4",
+      "poster": "/cinema/reels/1862434721226777.jpg",
+      "duration": 58.47,
+      "date": "2025-03-14",
+      "caption": "A delivery going out",
+      "alt": "A delivery going out",
+      "meta_caption": "\ud83e\uddb7 Another Happy Dentist! New Dental Chair Successfully Delivered! We just delivered two premium dental chair units! Are you next in line for an upgrade? \u2728 \u2705 Sleek, modern design \u2705 Maximum comfort for your patients \u2705 Durability you can trust \ud83d\udcb3 Flexible payment plans available! Get your new chair with 0 downpayment \u2013 because your clinic deserves the best without breaking the bank. \ud83d\udccd Visit our showro",
+      "category": "delivery",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1862434721226777.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "1061880969097993",
+      "src": "/cinema/reels/1061880969097993.mp4",
+      "poster": "/cinema/reels/1061880969097993.jpg",
+      "duration": 91.42,
+      "date": "2025-03-11",
+      "caption": "From the DentaSource Direct floor",
+      "alt": "From the DentaSource Direct floor",
+      "meta_caption": "\u2728 Thank You, Dr. Maureen Castillo! \u2728 A huge thank you to Dr. Maureen Castillo, owner of Maureen Castillo Dentistry, for choosing K-Clamps! \ud83e\uddb7\ud83d\udc99 Proudly MADE IN KOREA, K-Clamps are designed for precision, durability, and patient comfort\u2014trusted by top dentists worldwide. \ud83d\udd39 Outstanding Elasticity \u2013 Extremely durable and easy to handle. \ud83d\udd39 Soft Processed Edges \u2013 Prevents trauma to soft tissue for superi",
+      "category": "other",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1061880969097993.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
+    },
+    {
+      "id": "1585400655485928",
+      "src": "/cinema/reels/1585400655485928.mp4",
+      "poster": "/cinema/reels/1585400655485928.jpg",
+      "duration": 54.26,
+      "date": "2025-03-11",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "Thank You for Choosing Dentasource Direct! \ud83d\udc99\ud83e\uddb7 We are excited to share another successful dental chair installation! Every clinic deserves top-quality equipment to provide the best care possible, and we\u2019re here to make that happen. Thank you to our amazing client for trusting Dentasource Direct! Whether you\u2019re setting up a new clinic or upgrading your existing practice, we offer a wide range of aff",
+      "category": "install",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1585400655485928.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "1278774399878877",
+      "src": "/cinema/reels/1278774399878877.mp4",
+      "poster": "/cinema/reels/1278774399878877.jpg",
+      "duration": 30.8,
+      "date": "2025-03-09",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "\ud83c\udf1f Successful Installation! \ud83c\udf1f Thank you po Doc for trusting DentaSource Direct! \ud83d\ude4f\ud83d\ude0a\u2728 We\u2019re proud to provide high-quality dental chairs to support your practice. \ud83d\udd27 Need spare parts? We\u2019ve got you covered! \u2705 All our dental chairs come with a 2-year warranty for your peace of mind. \ud83d\udcb0 No Downpayment is REAL! Get the dental chair you need without upfront costs. Start your journey to a better practice tod",
+      "category": "install",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1278774399878877.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "1626266584740528",
+      "src": "/cinema/reels/1626266584740528.mp4",
+      "poster": "/cinema/reels/1626266584740528.jpg",
+      "duration": 33.77,
+      "date": "2025-03-02",
+      "caption": "On the showroom floor",
+      "alt": "On the showroom floor",
+      "meta_caption": "From chill walks to heavy lifts\u2014who needs a gym when you\u2019ve got dental chairs to deliver?!\" \ud83d\ude06\ud83d\udcaa\ud83d\ude9b For inquiries, feel free to reach out: \ud83d\udcac Facebook: Dentasource Direct \ud83d\udce7 Email: dentasourcedirect@gmail.com \ud83d\udccd Visit Us: 3rd Floor, Mercedes Square Plaza, Pasig City \u23f0 Operating Hours: Monday to Sunday, 1:00 PM \u2013 9:00 PM #dentasourcedirect #qualityservice",
+      "category": "showroom",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1626266584740528.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "1409901046658180",
+      "src": "/cinema/reels/1409901046658180.mp4",
+      "poster": "/cinema/reels/1409901046658180.jpg",
+      "duration": 19.17,
+      "date": "2025-02-23",
+      "caption": "From the DentaSource Direct floor",
+      "alt": "From the DentaSource Direct floor",
+      "meta_caption": "",
+      "category": "other",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/1409901046658180.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
+    },
+    {
+      "id": "633778149064866",
+      "src": "/cinema/reels/633778149064866.mp4",
+      "poster": "/cinema/reels/633778149064866.jpg",
+      "duration": 26.47,
+      "date": "2025-02-13",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "Seamless installations, exceptional results! \ud83d\udd27\u2728 Watch as we bring top-tier dental equipment to life, ensuring quality, precision, and efficiency in every setup. Ready to upgrade your clinic? We\u2019ve got you covered! \ud83e\uddb7\u2728 \ud83d\udce9 Inquire to learn more, or visit our Pasig showroom to experience this innovative chair firsthand. Transform your clinic with the latest dental chair technology, blending safety, com",
+      "category": "install",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/633778149064866.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "946148631003184",
+      "src": "/cinema/reels/946148631003184.mp4",
+      "poster": "/cinema/reels/946148631003184.jpg",
+      "duration": 26.47,
+      "date": "2025-02-13",
+      "caption": "From the DentaSource Direct floor",
+      "alt": "From the DentaSource Direct floor",
+      "meta_caption": "",
+      "category": "other",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/946148631003184.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "3939554666259608",
+      "src": "/cinema/reels/3939554666259608.mp4",
+      "poster": "/cinema/reels/3939554666259608.jpg",
+      "duration": 40.42,
+      "date": "2025-02-12",
+      "caption": "On the showroom floor",
+      "alt": "On the showroom floor",
+      "meta_caption": "New Arrival at Our Showroom! We\u2019re excited to introduce the A3L Dental Chair, designed for ultimate comfort, functionality, and efficiency. Whether you're upgrading your clinic or setting up a new practice, this state-of-the-art unit ensures a seamless experience for both dentists and patients. \u2705 Ergonomic design for maximum comfort \u2705 Advanced functionality for precise treatment \u2705 Durable and high",
+      "category": "showroom",
+      "width": 720,
+      "height": 1280,
+      "hd": "/cinema/reels/hd/3939554666259608.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
+    },
+    {
+      "id": "946982620834462",
+      "src": "/cinema/reels/946982620834462.mp4",
+      "poster": "/cinema/reels/946982620834462.jpg",
+      "duration": 76.2,
+      "date": "2025-02-08",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "From our Pasig showroom to Sta. Maria, Bulacan! \ud83d\ude9b\ud83e\uddb7 Another successful dental chair delivery and installation! A big thank you for choosing and trusting DentaSource Direct. Our dental chairs are equipped with imported tubings and motors from Italy, Japan, and the US, ensuring durability, reliability, and top-notch performance for your clinic. Looking to upgrade your clinic? Visit our showroom or me",
+      "category": "install",
+      "width": 576,
+      "height": 1024,
+      "hd": "/cinema/reels/hd/946982620834462.mp4",
+      "hdWidth": 576,
+      "hdHeight": 1024
+    }
+  ],
+  "tileFit": "cover",
+  "tilePx": 480,
+  "tileHeightPx": 480,
+  "tileVideoPx": 480,
+  "tileVideoHeightPx": 480,
+  "coverMin": 0.95,
+  "tileSource": "builder-home projected the LIVE three.js scene in a proof build: camera.position.z, camera.fov and canvas.clientHeight read off the running page, and each bead's radius off its cannon body after the shoal settled. Viewport and canvas 1440x900, z=7, fov=45. Hero bead (index 0) world radius 1.554 -> 482.4 css px diameter; smallest bead 161.7. Phone 390x844 at z=13 gives a 217.5 hero. Reproduced independently from source: baseR = 0.56 * beadScale(1.5) = 0.840, hero = baseR * 1.85 (marbleCluster.js:285), diameter 3.108 against a visible height of 2*7*tan(22.5) = 5.799, which is 0.536 of a 900px canvas = 482.4. Derivation and measurement agree to a tenth of a pixel. NOTE the video disc inside the bead is only 54% of it unmagnified (260.0 px) and the glass refracts that across the whole sphere, so 482 is the right quantity and 260 is a different one that happens to look plausible. A brightness scan of a frame CANNOT confirm this: the beads overlap. WHY THE DESKTOP NUMBER GOVERNS AND THE PHONE'S 217.5 IS ONLY ON RECORD: the wall serves the SAME clips to both viewports. REEL_SETS is built once at module scope from the library and sliced into fixed sets, and MarblesPanel picks by setIndex, never by device, so there is no phone set to judge separately. IF YOU GO TO CHECK THAT, THE OBVIOUS CHECK LOOKS LIKE IT REFUTES IT: MarblesPanel DOES branch on matchMedia('(min-width: 820px)') at panels.jsx:578, and a grep for matchMedia finds it and reads as device-dependent sets. It is not. That branch selects the FRAMING (cameraZ, spreadX, spreadY, beadScale) and never the content, so the device decides how big the beads are drawn and never which clips are in them. The same branch is why the desktop tile governs AND why the viewport spread is 2.22x. The strictest tile therefore has to govern, or a clip that is fine on a phone and soft on a desktop ships soft. That is what makes 480 correct rather than merely conservative, and it means every bar here is a DESKTOP bar: on the phone tile every shape in the library clears 0.95, 480x854 at 2.21 and 720x406 at 1.87, so nothing is ever held there. WHY THIS TILE ALONE SPREADS 2.22x ACROSS VIEWPORTS while every other tile on the arc varies about 1.10x: the phone was moved to cameraZ 13.0 two rounds ago to fit a portrait stage, a framing decision about the shoal's geometry that had nothing to do with resolution. The strictness is a side effect of that, not a deliberate choice, and a reader who does not know it will assume otherwise. THE COUPLING RUNS BOTH WAYS: cameraZ and beadScale in panels.jsx SET this tile, and this tile decides which clips may appear at all. Raise cameraZ and the beads shrink, the gate loosens, and clips judged too soft become admissible; lower it and clips already on the wall become barred. builder-home documented that at the call site in ec58d50; if this tile ever stops matching the wall, that comment is where the cause will be.; measured 482.4px, declared 480px (rounded down to a multiple of 10 so a few optimistic pixels cannot delete a whole shape). THIS TILE HAS NO ELEMENT: the beads are a texture sampled inside a three.js scene, so it cannot be re-measured in devtools the way every other tile can. To revise it, redo the derivation from marbleCluster.js or re-measure on a rendered canvas, and state which.",
+  "heldBack": [
+    {
+      "id": "1027734110137342",
+      "src": "/cinema/reels/1027734110137342.mp4",
+      "poster": "/cinema/reels/1027734110137342.jpg",
+      "duration": 55.99,
+      "date": "2026-08-03",
+      "caption": "On the showroom floor",
+      "alt": "On the showroom floor",
+      "meta_caption": "\ud83c\udfa8 Your clinic deserves more than just a dental chair\u2014it deserves a statement. Introducing the Roson DX-A1 Fashion Model, where sophisticated design meets exceptional clinical performance. Now available in three stunning signature colors that perfectly complement your clinic's personality. \ud83c\udf38 Ballet Pink \u2013 Elegant, warm, and inviting. Create a relaxing atmosphere that puts every patient at ease. \ud83d\udc99 R",
+      "category": "showroom",
+      "width": 720,
+      "height": 406,
+      "hd": "/cinema/reels/hd/1027734110137342.mp4",
+      "hdWidth": 1920,
+      "hdHeight": 1080,
+      "heldReason": "720x406 into a 480px bead: covers it 0.85 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1920x1080, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
+    },
+    {
+      "id": "1275898978018496",
+      "src": "/cinema/reels/1275898978018496.mp4",
+      "poster": "/cinema/reels/1275898978018496.jpg",
+      "duration": 46.99,
+      "date": "2026-04-12",
+      "caption": "Hands on training at the Training Center",
+      "alt": "Hands on training at the Training Center",
+      "meta_caption": "LIVE TODAY at Dentasource Training Center! \ud83d\udd25 Hands-on Digital Designing with Crest Study Group \ud83e\uddb7\ud83d\udcbb Level up your practice and go digital! Limited slots available , Enroll now! #GoDigital #DigitalDentistryPH #DentasourceTraining #DentalEducation #creststudygroup #Upskill",
+      "category": "training",
+      "width": 360,
+      "height": 640,
+      "hd": "/cinema/reels/hd/1275898978018496.mp4",
+      "hdWidth": 360,
+      "hdHeight": 640,
+      "heldReason": "360x640 into a 480px bead: covers it 0.75 times, under the 0.95 floor",
+      "heldRecoverable": false
+    },
+    {
+      "id": "34809738205339742",
+      "src": "/cinema/reels/34809738205339742.mp4",
+      "poster": "/cinema/reels/34809738205339742.jpg",
+      "duration": 55.1,
+      "date": "2026-03-29",
+      "caption": "A delivery going out",
+      "alt": "A delivery going out",
+      "meta_caption": "Your Clinic Deserves Nothing Less Than PERFECTION. \ud83e\uddb7\u2728 At DentaSource Direct, we make sure every dental chair that reaches your clinic is 100% ready, reliable, and built to perform. Before delivery, each unit goes through our strict Pre-Delivery Inspection because your practice deserves nothing less than excellence. \ud83d\udd0d Our Quality Assurance Checklist Includes: \u2714\ufe0f Visual & Structural Inspection \u2714\ufe0f El",
+      "category": "delivery",
+      "width": 360,
+      "height": 640,
+      "hd": "/cinema/reels/hd/34809738205339742.mp4",
+      "hdWidth": 360,
+      "hdHeight": 640,
+      "heldReason": "360x640 into a 480px bead: covers it 0.75 times, under the 0.95 floor",
+      "heldRecoverable": false
+    },
+    {
+      "id": "1420993635935467",
+      "src": "/cinema/reels/1420993635935467.mp4",
+      "poster": "/cinema/reels/1420993635935467.jpg",
+      "duration": 63.79,
+      "date": "2026-03-27",
+      "caption": "At the convention stand",
+      "alt": "At the convention stand",
+      "meta_caption": "Last day at NADTI\u2014what an amazing experience! Thank you to all the dentists who visited our booth and took the time to connect with us. We truly appreciate your support! \ud83d\udc99 See you again on our next trade exhibition! \ud83d\udc4b #NADTI2026 #DentalPH #ThankYouDocs #Grateful #EventHighlights #TradeExhibit #SeeYouAgain #DentaSourcePH",
+      "category": "convention",
+      "width": 360,
+      "height": 640,
+      "hd": "/cinema/reels/hd/1420993635935467.mp4",
+      "hdWidth": 360,
+      "hdHeight": 640,
+      "heldReason": "360x640 into a 480px bead: covers it 0.75 times, under the 0.95 floor",
+      "heldRecoverable": false
+    },
+    {
+      "id": "1386966919458021",
+      "src": "/cinema/reels/1386966919458021.mp4",
+      "poster": "/cinema/reels/1386966919458021.jpg",
+      "duration": 6.1,
+      "date": "2025-11-21",
+      "caption": "On the showroom floor",
+      "alt": "On the showroom floor",
+      "meta_caption": "Another DX-A3L heads to Quezon City \u2014 chosen by dental professionals who value quality and dependable support. We\u2019re proud to assist your clinic in delivering superior care.\ud83e\udd70 \u2728610 C. Raymundo, Maybunga, Pasig City \u2728dentasourcedirect@gmail.com \u27280962 579 3024",
+      "category": "showroom",
+      "width": 720,
+      "height": 378,
+      "hd": "/cinema/reels/hd/1386966919458021.mp4",
+      "hdWidth": 1200,
+      "hdHeight": 630,
+      "heldReason": "720x378 into a 480px bead: covers it 0.79 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1200x630, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
+    },
+    {
+      "id": "1945953162966315",
+      "src": "/cinema/reels/1945953162966315.mp4",
+      "poster": "/cinema/reels/1945953162966315.jpg",
+      "duration": 37.9,
+      "date": "2025-11-10",
+      "caption": "On the showroom floor",
+      "alt": "On the showroom floor",
+      "meta_caption": "\ud83d\ude80 Introducing the P&C Obturation System \u2014 Push & Cut in ONE device! Exclusively available at DentaSource Direct. Experience next-level performance during obturation with our ball-heating needle technology engineered for precision, speed, and efficiency. \u2728 Why dentists love it: \u2714\ufe0f Push & Cut 2-in-1 System \u2014 combines heating pen + GP cutter in one compact unit \u2714\ufe0f Ultra-fast heating \u2014 reaches 200\u00b0C i",
+      "category": "showroom",
+      "width": 720,
+      "height": 378,
+      "hd": "/cinema/reels/hd/1945953162966315.mp4",
+      "hdWidth": 1200,
+      "hdHeight": 630,
+      "heldReason": "720x378 into a 480px bead: covers it 0.79 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1200x630, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
+    },
+    {
+      "id": "25171833779171048",
+      "src": "/cinema/reels/25171833779171048.mp4",
+      "poster": "/cinema/reels/25171833779171048.jpg",
+      "duration": 13.0,
+      "date": "2025-11-09",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "\u2728 HOLIDAY PROMO \u2014 0 DOWNPAYMENT ON ALL DENTAL CHAIRS \u2728 Upgrade your clinic without worrying about the upfront cost. For a limited time, you can now avail ANY dental chair \u2014 basic, standard, or premium unit \u2014 with \u20b10 downpayment and lots of exclusive FREEBIES included. Get full access to your chosen dental chair, even before you start paying. \ud83d\ude0a With our Holiday Promo, you\u2019ll enjoy: \u2705 0 Downpayment ",
+      "category": "install",
+      "width": 720,
+      "height": 378,
+      "hd": "/cinema/reels/hd/25171833779171048.mp4",
+      "hdWidth": 1200,
+      "hdHeight": 630,
+      "heldReason": "720x378 into a 480px bead: covers it 0.79 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1200x630, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
+    },
+    {
+      "id": "1565486021556271",
+      "src": "/cinema/reels/1565486021556271.mp4",
+      "poster": "/cinema/reels/1565486021556271.jpg",
+      "duration": 39.4,
+      "date": "2025-11-08",
+      "caption": "At the convention stand",
+      "alt": "At the convention stand",
+      "meta_caption": "See more with precision and clarity. The MC-Ray II High-Frequency DC Portable X-Ray is engineered for dentists who demand accuracy in every shot. \ud83d\udd0d 0.4mm focus for high-definition images \u2014 capture fine details with confidence \u26a1 High-voltage, high-frequency technology reduces radiation exposure by over 30% while maximizing usable rays \ud83d\udd12 Stable and safe output through refined tube manufacturing \u2705 Co",
+      "category": "convention",
+      "width": 720,
+      "height": 378,
+      "hd": "/cinema/reels/hd/1565486021556271.mp4",
+      "hdWidth": 1200,
+      "hdHeight": 630,
+      "heldReason": "720x378 into a 480px bead: covers it 0.79 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1200x630, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
+    },
+    {
+      "id": "1471156827301029",
+      "src": "/cinema/reels/1471156827301029.mp4",
+      "poster": "/cinema/reels/1471156827301029.jpg",
+      "duration": 109.72,
+      "date": "2025-11-07",
+      "caption": "On an installation",
+      "alt": "On an installation",
+      "meta_caption": "Experience innovation with the ROSON DX-A3L Dental Chair \u2014 engineered to bring comfort, efficiency, and modern design to every dental procedure. This chair isn\u2019t just equipment \u2014 it\u2019s an upgrade in your daily workflow.\ud83d\ude0a \ud83d\udc49 Ergonomic layout Supports proper posture and reduces strain during long procedures, letting you work comfortably from every angle. \ud83d\udc49 Medical-grade color LCD display Full control ",
+      "category": "install",
+      "width": 720,
+      "height": 378,
+      "hd": "/cinema/reels/hd/1471156827301029.mp4",
+      "hdWidth": 1200,
+      "hdHeight": 630,
+      "heldReason": "720x378 into a 480px bead: covers it 0.79 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1200x630, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
     },
     {
       "id": "32340929335522108",
@@ -2486,7 +3183,12 @@
       "meta_caption": "DentaSource Direct makes it easy to bring comfort and elegance into your dental practice. \u263a\ufe0f Choose from a variety of high-end and basic dental units built for reliability, efficiency, and long-lasting use. Plus, personalize your space with custom upholstery colors and textures that suit your clinic\u2019s atmosphere. Because every patient deserves to be treated in a space that inspires confidence and ",
       "category": "install",
       "width": 720,
-      "height": 378
+      "height": 378,
+      "hd": "/cinema/reels/hd/32340929335522108.mp4",
+      "hdWidth": 1200,
+      "hdHeight": 630,
+      "heldReason": "720x378 into a 480px bead: covers it 0.79 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1200x630, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
     },
     {
       "id": "681192338374047",
@@ -2499,20 +3201,12 @@
       "meta_caption": "K-Clamp Rubber Dam\u2014 Precision That Holds, Quality That Lasts. \u2728 \u2714\ufe0fDesigned for professionals who value control and precision, the K-Clamp ensures excellent retention and stability throughout every procedure. Crafted from high-grade stainless steel, each clamp offers smooth, polished edges and consistent elasticity \u2014 reducing stress and maximizing efficiency during dental isolation. With a design b",
       "category": "other",
       "width": 720,
-      "height": 378
-    },
-    {
-      "id": "3878460475778635",
-      "src": "/cinema/reels/3878460475778635.mp4",
-      "poster": "/cinema/reels/3878460475778635.jpg",
-      "duration": 80.57,
-      "date": "2025-10-05",
-      "caption": "On the showroom floor",
-      "alt": "On the showroom floor",
-      "meta_caption": "\u2728 MODERN LOOK. ADVANCED FUNCTION. SMART PRICE. \ud83d\ude0a \ud83d\ude80 Transform your dental clinic with our state-of-the-art dental chairs \u2014 engineered for precision, comfort, and durability. Every detail is crafted to support your workflow and enhance your patients\u2019 experience. Your clinic deserves innovation that works as hard as you do! With advanced technology, smooth controls, and ergonomic design, our chairs d",
-      "category": "showroom",
-      "width": 404,
-      "height": 720
+      "height": 378,
+      "hd": "/cinema/reels/hd/681192338374047.mp4",
+      "hdWidth": 1200,
+      "hdHeight": 630,
+      "heldReason": "720x378 into a 480px bead: covers it 0.79 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1200x630, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
     },
     {
       "id": "665517763265837",
@@ -2525,7 +3219,12 @@
       "meta_caption": "Say hello to Team Dentasource at NADTI 2025, SMX Mall of Asia! We\u2019re here to meet you, share insights, and empower your dental journey. \u263a\ufe0f #DentalExpo #NADTI2025 #DentasourcePH #DentalCareSolutions #DentalTech #DentistryMatters #DentalPracticeGrowth #DentalEventsPH #DentistsPH #Roson #Mecco #Kclamp",
       "category": "convention",
       "width": 720,
-      "height": 404
+      "height": 406,
+      "hd": "/cinema/reels/hd/665517763265837.mp4",
+      "hdWidth": 1920,
+      "hdHeight": 1080,
+      "heldReason": "720x406 into a 480px bead: covers it 0.85 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1920x1080, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
     },
     {
       "id": "816849004201340",
@@ -2538,46 +3237,12 @@
       "meta_caption": "We are grateful to see and meet many dental professionals. Our booth is buzzing with energy at the FDI World Dental Congress! We are honored to be trusted in 100+ countries worldwide and to share our innovations with the global dental community. \ud83d\udcaf\u2728 \ud83d\udccd Visit us at ROSON Booth: 5.2 Hall \u2013 D71 September 9-12, 2025 Tuesday - Friday #DentaSourceDirect #ROSON #FDIWDC2025 #TrustedWorldwide",
       "category": "convention",
       "width": 720,
-      "height": 404
-    },
-    {
-      "id": "2946145478893926",
-      "src": "/cinema/reels/2946145478893926.mp4",
-      "poster": "/cinema/reels/2946145478893926.jpg",
-      "duration": 24.14,
-      "date": "2025-08-21",
-      "caption": "On the showroom floor",
-      "alt": "On the showroom floor",
-      "meta_caption": "\ud83e\uddb7 Upgrade your endodontic practice with precision, efficiency, and reliability! The Smart Fill-G & Smart Fill-P Obturation System by Mecco Korea is designed to: \u2705 Ensure optimal 3D canal filling \u2705 Save chair time with fast, accurate results \u2705 Provide consistent performance for every case Exclusively available at Dentasource Direct. \ud83d\ude80 \ud83d\udccd Pasig Showroom \u2013 610 C. Raymundo Ave. Pasig City \ud83d\udd58 Open Monday",
-      "category": "showroom",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1118092760255064",
-      "src": "/cinema/reels/1118092760255064.mp4",
-      "poster": "/cinema/reels/1118092760255064.jpg",
-      "duration": 19.27,
-      "date": "2025-08-20",
-      "caption": "At the convention stand",
-      "alt": "At the convention stand",
-      "meta_caption": "We sincerely appreciate the opportunity to be part of this two-day event hosted in Cebu City by Mandaue Dental chapter and PDA Cebu Dental Chapter. A heartfelt thank you to all our Cebuano Dental family for your warm welcome and for inviting us to be part of your memorable induction ceremonies. Your hospitality truly made us feel at home! To all Cebuano dentists, we invite you to experience the qu",
-      "category": "convention",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1443460116989456",
-      "src": "/cinema/reels/1443460116989456.mp4",
-      "poster": "/cinema/reels/1443460116989456.jpg",
-      "duration": 50.13,
-      "date": "2025-08-19",
-      "caption": "At the convention stand",
-      "alt": "At the convention stand",
-      "meta_caption": "Congratulations to the Philippine Dental Association Mandaue Chapter on a Successful Induction Ceremony!\ud83c\udf89 We are honored to have participated in the recent Induction Ceremony of the Philippine Dental Association Mandaue Chapter!\ud83e\uddb7 Thank you for inviting us to be part of this meaningful event. We look forward to strengthening our partnership and supporting the dental community in Mandaue and beyond.",
-      "category": "convention",
-      "width": 404,
-      "height": 720
+      "height": 406,
+      "hd": "/cinema/reels/hd/816849004201340.mp4",
+      "hdWidth": 1920,
+      "hdHeight": 1080,
+      "heldReason": "720x406 into a 480px bead: covers it 0.85 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1920x1080, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
     },
     {
       "id": "1267243785148122",
@@ -2590,7 +3255,12 @@
       "meta_caption": "\u2728 Make Root Canal Procedures Faster & Easier \u2728 With the Mecco P&C Obturation System, precision meets convenience! \ud83d\udd39 Ball Cut Tip Advantage \u2013 Unique ball heating needle melts and sticks gutta-percha all at once, making procedures smoother, quicker, and more efficient. \ud83d\udd39 Push Tip \u2013 Vertically heats & compacts for a perfect seal. \ud83c\udf00 6 Adjustable Angles \u2013 Work with ease in any position. \ud83d\udccd Pasig Showroo",
       "category": "showroom",
       "width": 720,
-      "height": 404
+      "height": 406,
+      "hd": "/cinema/reels/hd/1267243785148122.mp4",
+      "hdWidth": 1280,
+      "hdHeight": 720,
+      "heldReason": "720x406 into a 480px bead: covers it 0.85 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1280x720, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
     },
     {
       "id": "767748912569883",
@@ -2603,46 +3273,12 @@
       "meta_caption": "\u2728 Make Root Canal Procedures Faster & Easier \u2728 With the Mecco P&C Obturation System, precision meets convenience! \ud83d\udd39 Ball Cut Tip Advantage \u2013 Unique ball heating needle melts and sticks gutta-percha all at once, making procedures smoother, quicker, and more efficient. \ud83d\udd39 Push Tip \u2013 Vertically heats & compacts for a perfect seal. \ud83c\udf00 6 Adjustable Angles \u2013 Work with ease in any position. \ud83d\udccd Pasig Showroo",
       "category": "showroom",
       "width": 720,
-      "height": 404
-    },
-    {
-      "id": "1272202024302573",
-      "src": "/cinema/reels/1272202024302573.mp4",
-      "poster": "/cinema/reels/1272202024302573.jpg",
-      "duration": 24.02,
-      "date": "2025-08-10",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "\ud83d\udcba Upgrade Your Clinic, Upgrade Your Care! \ud83d\udcba Say hello to our best-selling DX-N1 Dental Chair \u2014 designed for comfort, durability, and style. \u2728 Promo Perks You\u2019ll Love: \ud83d\udcb0 BIG Cash Discount \ud83d\udcb3 Zero Downpayment on Installment \ud83c\udf81 Freebies Included \ud83d\udee1 2-Year Warranty \ud83d\ude9a FREE Delivery & Installation within Metro Manila \ud83d\udda5 FREE Ocular & Chair Layout Planning within Metro Manila Perfect for dentists expanding t",
-      "category": "install",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1283876776542946",
-      "src": "/cinema/reels/1283876776542946.mp4",
-      "poster": "/cinema/reels/1283876776542946.jpg",
-      "duration": 15.88,
-      "date": "2025-08-06",
-      "caption": "A delivery going out",
-      "alt": "A delivery going out",
-      "meta_caption": "\ud83e\uddb7\u2728 UV Cabinets Are Back in Stock! \u2728\ud83e\uddb7 Say hello to cleaner, safer, and more organized instruments with our UV Dental Cabinets \u2013 now available in Single Door and Double Door options! \ud83d\udca1 Perfect for sterilization AND storage. \ud83d\udcbc Built for busy clinics that prioritize hygiene and efficiency. \u2705 Compact, modern, and reliable \u2013 a true essential in your workspace! \ud83d\udccd Grab yours now at Dentasource Direct \u2013 wh",
-      "category": "delivery",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "4158026097802753",
-      "src": "/cinema/reels/4158026097802753.mp4",
-      "poster": "/cinema/reels/4158026097802753.jpg",
-      "duration": 29.62,
-      "date": "2025-08-02",
-      "caption": "At the convention stand",
-      "alt": "At the convention stand",
-      "meta_caption": "\ud83d\udce3 We're thrilled to be part of Bioceramics in Endodontics: Advancements and Applications with the esteemed Dr. Muhannad Takruri! \ud83e\uddb7\u2728 A big thank you to the organizers for inviting DentaSource Direct to this insightful and inspiring event. \ud83d\ude4c \ud83d\udc4b Drop by our booth at Ibis Styles Araneta, Quezon City \u2014 we\u2019re here to showcase our latest dental supplies and exclusive event offers! Don\u2019t miss out! #DentaSo",
-      "category": "convention",
-      "width": 404,
-      "height": 720
+      "height": 406,
+      "hd": "/cinema/reels/hd/767748912569883.mp4",
+      "hdWidth": 1280,
+      "hdHeight": 720,
+      "heldReason": "720x406 into a 480px bead: covers it 0.85 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1280x720, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
     },
     {
       "id": "1932366960885180",
@@ -2654,8 +3290,13 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "A Heartfelt Thank You to the Cavite Dental Chapter! We are truly honored to have been one of the sponsors at your recent 92nd induction and 1st scientific seminar. It was an inspiring event filled with knowledge, camaraderie, and professionalism. Congratulations on a successful event, and we look forward to more collaborations and meaningful events with you in the future! Here's to more partnershi",
       "category": "training",
-      "width": 404,
-      "height": 720
+      "width": 358,
+      "height": 638,
+      "hd": "/cinema/reels/hd/1932366960885180.mp4",
+      "hdWidth": 358,
+      "hdHeight": 638,
+      "heldReason": "358x638 into a 480px bead: covers it 0.75 times, under the 0.95 floor",
+      "heldRecoverable": false
     },
     {
       "id": "1079344027095374",
@@ -2667,47 +3308,13 @@
       "alt": "Hands on training at the Training Center",
       "meta_caption": "Dentasource Direct at Marco Polo Hotel Ortigas, Pasig City!\ud83e\uddb7 We would like to extend our heartfelt thanks to the Philippine Academy of General Dentistry for inviting us to be part of their 37th Annual Convention, 1st Scientific Seminar & Induction Ceremony and for allowing us to serve as one of their sponsors. It was a true honor to be part of such a meaningful event. We look forward to many more ",
       "category": "training",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1450798059393421",
-      "src": "/cinema/reels/1450798059393421.mp4",
-      "poster": "/cinema/reels/1450798059393421.jpg",
-      "duration": 15.39,
-      "date": "2025-07-18",
-      "caption": "On the showroom floor",
-      "alt": "On the showroom floor",
-      "meta_caption": "\ud83e\uddb7 Upgrade Your Endo Game with the A7 Apex Locator! Small in size, BIG in precision. \ud83d\udd0d\ud83d\udcaf Say goodbye to bulky machines and hello to compact power \u2013 the A7 Apex Locator is your next must-have in the clinic: \u2705 Korean-Made Quality \u2705 Compact & Easy to Use \u2705 Reliable & Accurate Readings \u2705 Affordable Without Compromise \ud83d\udee1\ufe0f Trusted by professionals. Quality assured. Available ONLY at DentaSource Direct. \ud83d\udccd V",
-      "category": "showroom",
-      "width": 512,
-      "height": 720
-    },
-    {
-      "id": "3064149127082720",
-      "src": "/cinema/reels/3064149127082720.mp4",
-      "poster": "/cinema/reels/3064149127082720.jpg",
-      "duration": 15.39,
-      "date": "2025-07-18",
-      "caption": "On the showroom floor",
-      "alt": "On the showroom floor",
-      "meta_caption": "\ud83e\uddb7 Upgrade Your Endo Game with the A7 Apex Locator! \ud83c\uddf0\ud83c\uddf7 Small in size, BIG in precision. \ud83d\udd0d\ud83d\udcaf Say goodbye to bulky machines and hello to compact power \u2013 the A7 Apex Locator is your next must-have in the clinic: \u2705 Korean-Made Quality \u2705 Compact & Easy to Use \u2705 Reliable & Accurate Readings \u2705 Affordable Without Compromise \ud83d\udee1\ufe0f Trusted by professionals. Quality assured. Available ONLY at DentaSource Direct. ",
-      "category": "showroom",
-      "width": 512,
-      "height": 720
-    },
-    {
-      "id": "717603381065360",
-      "src": "/cinema/reels/717603381065360.mp4",
-      "poster": "/cinema/reels/717603381065360.jpg",
-      "duration": 30.48,
-      "date": "2025-07-17",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "\ud83e\uddb7 START YOUR DREAM CLINIC TODAY ! WITH ZERO DOWNPAYMENT! \ud83d\udcba\u2728 Looking for a reliable dental chair that fits your budget AND your dream clinic vision? We've got you covered! \ud83d\ude0d \u2705 \u20b10 Downpayment \u2705 FREE Delivery & Installation (within Metro Manila) \u2705 FREE Ocular Visit & Layout Help \u2705 2 YEARS WARRANTY \u2705 Trusted by Dentists Nationwide \u2705 Top-notch Quality & After-Sales Support \ud83d\udccd Visit Our Pasig Showroom! \ud83d\udd50",
-      "category": "install",
-      "width": 404,
-      "height": 720
+      "width": 360,
+      "height": 640,
+      "hd": "/cinema/reels/hd/1079344027095374.mp4",
+      "hdWidth": 360,
+      "hdHeight": 640,
+      "heldReason": "360x640 into a 480px bead: covers it 0.75 times, under the 0.95 floor",
+      "heldRecoverable": false
     },
     {
       "id": "1996569887818210",
@@ -2719,73 +3326,13 @@
       "alt": "On the showroom floor",
       "meta_caption": "Say goodbye to overpriced dental supplies and hello to smarter sourcing with Dentasource Direct! \u2705 Top-notch quality \u2705 Durability \u2705 Affordability \u2705 Flexible payment terms \u2705 Excellent after sales service Start up your dental practice the right way with Dentasource Direct! \ud83d\udccd Visit our showroom: 3rd Floor, Mercedes Square Plaza, Pasig City \u23f0 Open daily: 1:00 PM \u2013 9:00 PM \ud83d\udce9 Send us a message to inquir",
       "category": "showroom",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "746691007799985",
-      "src": "/cinema/reels/746691007799985.mp4",
-      "poster": "/cinema/reels/746691007799985.jpg",
-      "duration": 35.38,
-      "date": "2025-07-07",
-      "caption": "At the convention stand",
-      "alt": "At the convention stand",
-      "meta_caption": "DENTASOURCE IN PANGASINAN! We\u2019re proud to be part of PDA-Pangasinan Chapter\u2019s 100 Years Celebration! \ud83c\udf89 Thank you for the warm welcome, Pangasinan Doctors! \ud83e\udd17 #DentasourceDirect #PDA100Years #DentalMilestone",
-      "category": "convention",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "501984766310299",
-      "src": "/cinema/reels/501984766310299.mp4",
-      "poster": "/cinema/reels/501984766310299.jpg",
-      "duration": 33.6,
-      "date": "2025-07-02",
-      "caption": "Hands on training at the Training Center",
-      "alt": "Hands on training at the Training Center",
-      "meta_caption": "Huge thanks to Dr. Maureen Castillo for the warm welcome at Maureen Castillo Dentistry! \ud83d\ude4f\ud83d\udc99 We at Dentasource Direct are truly honored to be part of this learning-filled event. #dentasourcedirect #kclamps",
-      "category": "training",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "4261374460809316",
-      "src": "/cinema/reels/4261374460809316.mp4",
-      "poster": "/cinema/reels/4261374460809316.jpg",
-      "duration": 26.01,
-      "date": "2025-06-11",
-      "caption": "Hands on training at the Training Center",
-      "alt": "Hands on training at the Training Center",
-      "meta_caption": "Onsite at KADEBU\u2019s Scientific Seminar Today!\ud83d\udce3 We're excited to be part of the First Scientific Seminar and Induction of Officers of the Philippine Dental Association \u2013 Bulacan Chapter (KADEBU) \ud83c\udf89\ud83e\uddb7 As KADEBU celebrates its 62nd founding anniversary, we're here at the 7/F E-Library, Bulacan State University showcasing our trusted dental equipment and innovations that empower every dental professional",
-      "category": "training",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "2101453593669620",
-      "src": "/cinema/reels/2101453593669620.mp4",
-      "poster": "/cinema/reels/2101453593669620.jpg",
-      "duration": 53.8,
-      "date": "2025-06-06",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "Another successful DX-N1 Dental Chair installation in Quezon City! \ud83d\udcba Thankyou for choosing Dentasource Direct \ud83d\ude4f \ud83e\uddb7 DentaSource Direct offers, 0% Downpayment. \ud83d\udccd Our showroom is located at: \ud83c\udfe5 Pasig Showroom Hours: MONDAY to SUNDAY, 1 PM - 9 PM Address: Unit 307-308, 3rd floor, Mercedes Square Plaza, Pasig, Philippines. You can view the directions:(https://maps.app.goo.gl/YQ6hwMHQqoqr1WgP6)",
-      "category": "install",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1202690954514209",
-      "src": "/cinema/reels/1202690954514209.mp4",
-      "poster": "/cinema/reels/1202690954514209.jpg",
-      "duration": 26.47,
-      "date": "2025-06-03",
-      "caption": "At the convention stand",
-      "alt": "At the convention stand",
-      "meta_caption": "\ud83c\udf89 Celebrating 74 Years of Excellence! \ud83e\uddb7 We\u2019re honored to be part of the Philippine Dental Society - Quezon City Dental Chapter Inc.\u2019s 74th Anniversary and Annual Convention! #PDSQCDCI74 #DentalExcellence #TeamDentasource #TogetherWeSmile",
-      "category": "convention",
-      "width": 404,
-      "height": 720
+      "width": 360,
+      "height": 640,
+      "hd": "/cinema/reels/hd/1996569887818210.mp4",
+      "hdWidth": 360,
+      "hdHeight": 640,
+      "heldReason": "360x640 into a 480px bead: covers it 0.75 times, under the 0.95 floor",
+      "heldRecoverable": false
     },
     {
       "id": "707688464960032",
@@ -2798,7 +3345,12 @@
       "meta_caption": "Upgrade to Precision with the NEW Endostar-S by MECCO Sleek. Smart. Powerful. \u2728 Insulated 6:1 Contra Angle \u2728 Quiet, brushless motor \u2728 360\u00b0 rotation for total control \u2728 Built-in Apex Locator \u2728 Auto start/stop + multiple working modes \ud83d\udd39 Ergonomic design that feels just right in your hand \ud83d\udd39 Engineered for comfort, crafted for performance Visit our showroom: \ud83d\udcde 09178017583 \ud83d\udccd Unit 307-308, 3rd Flr, Merc",
       "category": "showroom",
       "width": 720,
-      "height": 404
+      "height": 406,
+      "hd": "/cinema/reels/hd/707688464960032.mp4",
+      "hdWidth": 1920,
+      "hdHeight": 1080,
+      "heldReason": "720x406 into a 480px bead: covers it 0.85 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1920x1080, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
     },
     {
       "id": "1260722602089617",
@@ -2811,46 +3363,12 @@
       "meta_caption": "\ud83d\udd25 Level Up Your Root Canal Procedures with the Mecco Gutta Percha Cutter! \ud83d\udd25 \ud83c\uddf0\ud83c\uddf7 Korean-Made Precision Tool trusted by dental professionals! \u2728 Top Features You'll Love: \u2705 Ultra-fast heating \u2013 Reaches 200\u00b0C in just 3 seconds \u2705 6 Optional Angles \u2013 Perfect for various tooth positions \u2705 Ball Tip Function \u2013 Melts and gathers all gutta percha in one go, leaving a smooth, flat surface \u2705 Designed for comfor",
       "category": "showroom",
       "width": 720,
-      "height": 404
-    },
-    {
-      "id": "687390927218364",
-      "src": "/cinema/reels/687390927218364.mp4",
-      "poster": "/cinema/reels/687390927218364.jpg",
-      "duration": 29.05,
-      "date": "2025-05-15",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "All your needs available at a single supplier! Avoid the hassle and order all your dental eequipment and supplias now at Dentasource Direct! We also deliver and install! Order now! \ud83d\udccd Visit our showroom: 3rd Floor, Mercedes Square Plaza, Pasig City \u23f0 Open daily: 1:00 PM \u2013 9:00 PM \ud83d\udce9 Send us a message to inquire today! \ud83d\udcde: 0917-801-7583 #DentasourceDirect #DentalSupplies #dentalchair #directsupplier #",
-      "category": "install",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1340525937239978",
-      "src": "/cinema/reels/1340525937239978.mp4",
-      "poster": "/cinema/reels/1340525937239978.jpg",
-      "duration": 61.18,
-      "date": "2025-04-29",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "Dentasource is now in Catanauan, Quezon! Delivery and installation done for our S900 Pro dental unit. Maraming salamat, Doc, for trusting Dentasource! We\u2019re happy to be part of your growing clinic. ZERO Downpayment available! \ud83d\udccd Visit our showroom: 3rd Floor, Mercedes Square Plaza, Pasig City Open daily from 1:00 PM to 9:00 PM. Have questions? Message us today! \ud83d\udcac #DentasourceDirect #S900Pro #Dental",
-      "category": "install",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1360163231895400",
-      "src": "/cinema/reels/1360163231895400.mp4",
-      "poster": "/cinema/reels/1360163231895400.jpg",
-      "duration": 59.7,
-      "date": "2025-04-25",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "Another dental clinic in General Trias, Cavite is now equipped for success with our DX-N1 dental chair\u2014delivered and installed by DentaSource Direct! Worried about the budget? We got you! Ask us about our flexible payment plans\u2014including ZERO DOWNPAYMENT options! Message us today to upgrade your clinic! #DentaSourceDirect #DXN1 #DentalChairsPH #GeneralTriasCavite #PatientComfortFirst #ClinicUpgrad",
-      "category": "install",
-      "width": 404,
-      "height": 720
+      "height": 406,
+      "hd": "/cinema/reels/hd/1260722602089617.mp4",
+      "hdWidth": 1920,
+      "hdHeight": 1080,
+      "heldReason": "720x406 into a 480px bead: covers it 0.85 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1920x1080, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
     },
     {
       "id": "29182453744703497",
@@ -2862,8 +3380,13 @@
       "alt": "A delivery going out",
       "meta_caption": "\ud83d\udd25 Upgrade Your Precision \u2013 Discover the Power of the R7 Compact Apex Locator! \ud83d\udd25 Tired of bulky, outdated devices? Say hello to the future of root canal accuracy \u2013 sleek, smart, and built to perform. \u2705 Pinpoint accuracy with smart anti-interference tech \u2705 Vivid 3.51\u201d foldable TFT screen \u2013 see every detail in real-time \u2705 Ultra-thin 13mm design \u2013 fits perfectly in your hand and your workflow \u2705 Type-C",
       "category": "delivery",
-      "width": 720,
-      "height": 404
+      "width": 640,
+      "height": 360,
+      "hd": "/cinema/reels/hd/29182453744703497.mp4",
+      "hdWidth": 640,
+      "hdHeight": 360,
+      "heldReason": "640x360 into a 480px bead: covers it 0.75 times, under the 0.95 floor",
+      "heldRecoverable": false
     },
     {
       "id": "1327967478410847",
@@ -2876,46 +3399,12 @@
       "meta_caption": "\ud83e\uddb7 Portable Dental Periapical X-Ray \u2013 Anytime, Anywhere! Compact. Handheld. Powerful. Our portable X-ray machine makes dental imaging fast and easy with accurate, crystal-clear results \u2014 perfect for clinics and mobile dental setups! \u2705 Easy to use \u2705 Lightweight & handheld \u2705 Delivers sharp, reliable images \ud83d\udce6 Available now! Message us for pricing and delivery info. \ud83d\udccdVisit us at: DentaSource Direct Uni",
       "category": "install",
       "width": 720,
-      "height": 404
-    },
-    {
-      "id": "682494724272698",
-      "src": "/cinema/reels/682494724272698.mp4",
-      "poster": "/cinema/reels/682494724272698.jpg",
-      "duration": 76.0,
-      "date": "2025-04-11",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "\ud83e\uddb7 Another Happy Dentist! We\u2019ve just completed another smooth dental chair installation\u2014 ready to power up another growing dental clinic! Thinking of upgrading your setup? Now\u2019s the perfect time to invest in comfort, quality, and modern style. \u2728 Sleek, space-saving design \u2728 Built for durability and performance \u2728 Patient comfort guaranteed Worried about upfront costs? Enjoy flexible payment terms \u2014 ",
-      "category": "install",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1165736618285530",
-      "src": "/cinema/reels/1165736618285530.mp4",
-      "poster": "/cinema/reels/1165736618285530.jpg",
-      "duration": 14.0,
-      "date": "2025-03-15",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "\ud83d\udea8 LIMITED-TIME PROMO (March-April 2025 only): Get the Top-of-the-Line DX-A3 Roson Dental Chair! \ud83d\udea8 \ud83d\udcb0 Special Cash Price: \u20b1232,650 \ud83d\udcb3 Installment: \u20b118,669/month for 18 months (No Downpayment!) \u2728 Why Choose the DX-A3? \u2714 Spare parts available \u2714 Top-of-the-line ergonomic design \u2013 Built for maximum patient comfort & dentist efficiency. \u2714 Advanced Electrolytic Oxidized Disinfection System \u2013 Ensures superi",
-      "category": "install",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1584419828930942",
-      "src": "/cinema/reels/1584419828930942.mp4",
-      "poster": "/cinema/reels/1584419828930942.jpg",
-      "duration": 16.0,
-      "date": "2025-03-15",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "\ud83d\udea8 LIMITED-TIME PROMO (March-April 2025): No DP! \ud83e\udd73 Cash Price: \u20b1184,991 \ud83d\udcb3 Installment: \u20b114,485/month for 18 months (No Downpayment!) \u2728 Why Choose the DX-A3S? \u2714 Spare Parts Available \u2013 Easy maintenance and long-term reliability \ud83c\udf81 FREEBIES INCLUDED! \u2705 FREE Compressor \u2705 FREE High-Speed & Low-Speed Handpieces \u2705 FREE Light Cure \u2705 FREE Delivery & Installation in Metro Manila! \u2705 2-Year Warranty \ud83d\udccd Visit ou",
-      "category": "install",
-      "width": 404,
-      "height": 720
+      "height": 406,
+      "hd": "/cinema/reels/hd/1327967478410847.mp4",
+      "hdWidth": 1920,
+      "hdHeight": 1080,
+      "heldReason": "720x406 into a 480px bead: covers it 0.85 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1920x1080, so the source has the pixels and a cover targeted bead re-encode readmits it",
+      "heldRecoverable": true
     },
     {
       "id": "3799530666930860",
@@ -2928,124 +3417,12 @@
       "meta_caption": "",
       "category": "other",
       "width": 360,
-      "height": 640
-    },
-    {
-      "id": "1862434721226777",
-      "src": "/cinema/reels/1862434721226777.mp4",
-      "poster": "/cinema/reels/1862434721226777.jpg",
-      "duration": 58.47,
-      "date": "2025-03-14",
-      "caption": "A delivery going out",
-      "alt": "A delivery going out",
-      "meta_caption": "\ud83e\uddb7 Another Happy Dentist! New Dental Chair Successfully Delivered! We just delivered two premium dental chair units! Are you next in line for an upgrade? \u2728 \u2705 Sleek, modern design \u2705 Maximum comfort for your patients \u2705 Durability you can trust \ud83d\udcb3 Flexible payment plans available! Get your new chair with 0 downpayment \u2013 because your clinic deserves the best without breaking the bank. \ud83d\udccd Visit our showro",
-      "category": "delivery",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1061880969097993",
-      "src": "/cinema/reels/1061880969097993.mp4",
-      "poster": "/cinema/reels/1061880969097993.jpg",
-      "duration": 91.42,
-      "date": "2025-03-11",
-      "caption": "From the DentaSource Direct floor",
-      "alt": "From the DentaSource Direct floor",
-      "meta_caption": "\u2728 Thank You, Dr. Maureen Castillo! \u2728 A huge thank you to Dr. Maureen Castillo, owner of Maureen Castillo Dentistry, for choosing K-Clamps! \ud83e\uddb7\ud83d\udc99 Proudly MADE IN KOREA, K-Clamps are designed for precision, durability, and patient comfort\u2014trusted by top dentists worldwide. \ud83d\udd39 Outstanding Elasticity \u2013 Extremely durable and easy to handle. \ud83d\udd39 Soft Processed Edges \u2013 Prevents trauma to soft tissue for superi",
-      "category": "other",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1585400655485928",
-      "src": "/cinema/reels/1585400655485928.mp4",
-      "poster": "/cinema/reels/1585400655485928.jpg",
-      "duration": 54.26,
-      "date": "2025-03-11",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "Thank You for Choosing Dentasource Direct! \ud83d\udc99\ud83e\uddb7 We are excited to share another successful dental chair installation! Every clinic deserves top-quality equipment to provide the best care possible, and we\u2019re here to make that happen. Thank you to our amazing client for trusting Dentasource Direct! Whether you\u2019re setting up a new clinic or upgrading your existing practice, we offer a wide range of aff",
-      "category": "install",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1278774399878877",
-      "src": "/cinema/reels/1278774399878877.mp4",
-      "poster": "/cinema/reels/1278774399878877.jpg",
-      "duration": 30.8,
-      "date": "2025-03-09",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "\ud83c\udf1f Successful Installation! \ud83c\udf1f Thank you po Doc for trusting DentaSource Direct! \ud83d\ude4f\ud83d\ude0a\u2728 We\u2019re proud to provide high-quality dental chairs to support your practice. \ud83d\udd27 Need spare parts? We\u2019ve got you covered! \u2705 All our dental chairs come with a 2-year warranty for your peace of mind. \ud83d\udcb0 No Downpayment is REAL! Get the dental chair you need without upfront costs. Start your journey to a better practice tod",
-      "category": "install",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1626266584740528",
-      "src": "/cinema/reels/1626266584740528.mp4",
-      "poster": "/cinema/reels/1626266584740528.jpg",
-      "duration": 33.77,
-      "date": "2025-03-02",
-      "caption": "On the showroom floor",
-      "alt": "On the showroom floor",
-      "meta_caption": "From chill walks to heavy lifts\u2014who needs a gym when you\u2019ve got dental chairs to deliver?!\" \ud83d\ude06\ud83d\udcaa\ud83d\ude9b For inquiries, feel free to reach out: \ud83d\udcac Facebook: Dentasource Direct \ud83d\udce7 Email: dentasourcedirect@gmail.com \ud83d\udccd Visit Us: 3rd Floor, Mercedes Square Plaza, Pasig City \u23f0 Operating Hours: Monday to Sunday, 1:00 PM \u2013 9:00 PM #dentasourcedirect #qualityservice",
-      "category": "showroom",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "1409901046658180",
-      "src": "/cinema/reels/1409901046658180.mp4",
-      "poster": "/cinema/reels/1409901046658180.jpg",
-      "duration": 19.17,
-      "date": "2025-02-23",
-      "caption": "From the DentaSource Direct floor",
-      "alt": "From the DentaSource Direct floor",
-      "meta_caption": "",
-      "category": "other",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "633778149064866",
-      "src": "/cinema/reels/633778149064866.mp4",
-      "poster": "/cinema/reels/633778149064866.jpg",
-      "duration": 26.47,
-      "date": "2025-02-13",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "Seamless installations, exceptional results! \ud83d\udd27\u2728 Watch as we bring top-tier dental equipment to life, ensuring quality, precision, and efficiency in every setup. Ready to upgrade your clinic? We\u2019ve got you covered! \ud83e\uddb7\u2728 \ud83d\udce9 Inquire to learn more, or visit our Pasig showroom to experience this innovative chair firsthand. Transform your clinic with the latest dental chair technology, blending safety, com",
-      "category": "install",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "946148631003184",
-      "src": "/cinema/reels/946148631003184.mp4",
-      "poster": "/cinema/reels/946148631003184.jpg",
-      "duration": 26.47,
-      "date": "2025-02-13",
-      "caption": "From the DentaSource Direct floor",
-      "alt": "From the DentaSource Direct floor",
-      "meta_caption": "",
-      "category": "other",
-      "width": 404,
-      "height": 720
-    },
-    {
-      "id": "3939554666259608",
-      "src": "/cinema/reels/3939554666259608.mp4",
-      "poster": "/cinema/reels/3939554666259608.jpg",
-      "duration": 40.42,
-      "date": "2025-02-12",
-      "caption": "On the showroom floor",
-      "alt": "On the showroom floor",
-      "meta_caption": "New Arrival at Our Showroom! We\u2019re excited to introduce the A3L Dental Chair, designed for ultimate comfort, functionality, and efficiency. Whether you're upgrading your clinic or setting up a new practice, this state-of-the-art unit ensures a seamless experience for both dentists and patients. \u2705 Ergonomic design for maximum comfort \u2705 Advanced functionality for precise treatment \u2705 Durable and high",
-      "category": "showroom",
-      "width": 404,
-      "height": 720
+      "height": 640,
+      "hd": "/cinema/reels/hd/3799530666930860.mp4",
+      "hdWidth": 360,
+      "hdHeight": 640,
+      "heldReason": "360x640 into a 480px bead: covers it 0.75 times, under the 0.95 floor",
+      "heldRecoverable": false
     },
     {
       "id": "1350890952932206",
@@ -3058,20 +3435,12 @@
       "meta_caption": "",
       "category": "other",
       "width": 360,
-      "height": 640
-    },
-    {
-      "id": "946982620834462",
-      "src": "/cinema/reels/946982620834462.mp4",
-      "poster": "/cinema/reels/946982620834462.jpg",
-      "duration": 76.2,
-      "date": "2025-02-08",
-      "caption": "On an installation",
-      "alt": "On an installation",
-      "meta_caption": "From our Pasig showroom to Sta. Maria, Bulacan! \ud83d\ude9b\ud83e\uddb7 Another successful dental chair delivery and installation! A big thank you for choosing and trusting DentaSource Direct. Our dental chairs are equipped with imported tubings and motors from Italy, Japan, and the US, ensuring durability, reliability, and top-notch performance for your clinic. Looking to upgrade your clinic? Visit our showroom or me",
-      "category": "install",
-      "width": 404,
-      "height": 720
+      "height": 640,
+      "hd": "/cinema/reels/hd/1350890952932206.mp4",
+      "hdWidth": 360,
+      "hdHeight": 640,
+      "heldReason": "360x640 into a 480px bead: covers it 0.75 times, under the 0.95 floor",
+      "heldRecoverable": false
     },
     {
       "id": "823072469963325",
@@ -3084,7 +3453,12 @@
       "meta_caption": "",
       "category": "other",
       "width": 360,
-      "height": 640
+      "height": 640,
+      "hd": "/cinema/reels/hd/823072469963325.mp4",
+      "hdWidth": 360,
+      "hdHeight": 640,
+      "heldReason": "360x640 into a 480px bead: covers it 0.75 times, under the 0.95 floor",
+      "heldRecoverable": false
     },
     {
       "id": "960113272715912",
@@ -3096,8 +3470,13 @@
       "alt": "On the showroom floor",
       "meta_caption": "Build your dream dental office today! \ud83e\uddb7 Efficiency meets excellence\u2014 everything your dental office needs is right here at DentaSource Direct! From advanced sterilizers to cutting-edge dental tools, we\u2019ve got you covered. \u2705 \ud83d\udce9 Inquire to learn more, or visit our Pasig showroom to experience this innovative chair firsthand. Transform your clinic with the latest dental chair technology, blending safet",
       "category": "showroom",
-      "width": 404,
-      "height": 720
+      "width": 360,
+      "height": 640,
+      "hd": "/cinema/reels/hd/960113272715912.mp4",
+      "hdWidth": 360,
+      "hdHeight": 640,
+      "heldReason": "360x640 into a 480px bead: covers it 0.75 times, under the 0.95 floor",
+      "heldRecoverable": false
     }
   ]
 }

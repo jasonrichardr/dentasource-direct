@@ -64,6 +64,45 @@ def merge(base_path: Path, vps_path: Path, key, fields, extra_lists=()):
     return base, changed, before - after, matched, unmatched_src, unmatched_base
 
 
+def growth_beads(base_path: Path, beads_path: Path) -> int:
+    """Carry the re-encoded growth BEAD dimensions home, by field like everything else.
+
+    ☠️ WITHOUT THIS STEP THE BEAD PASS IS INVISIBLE AND SILENTLY UNDONE. growth_beads.py
+    writes the new files into the media root but does not touch the manifest, and
+    build_growth's refresh reads video sizes FROM the manifest, because those files are on
+    the origin and cannot be measured locally. So a re-judge straight after the pass would
+    compare the new files against their OLD 404x720 rows and hold them again, exactly as
+    if nothing had been encoded. The work would be done, paid for, and thrown away by the
+    next generator run.
+
+    vps_encode owns `hd` for growth; this owns `width` and `height`, which nothing owned
+    before because growth's beads had never been re-encoded.
+    """
+    if not beads_path.exists():
+        print("  growth-beads.json: not fetched, growth bead sizes NOT updated")
+        return 0
+    base = json.loads(base_path.read_text())
+    by_name = {r["clip"]: r for r in json.loads(beads_path.read_text()) if r.get("encoded")}
+    changed, seen = 0, set()
+    for item in list(base.get("items", [])) + list(base.get("heldBack", [])):
+        r = by_name.get(Path(item.get("src", "")).name)
+        if not r:
+            continue
+        w, h = (int(v) for v in r["encoded"].split("x"))
+        seen.add(r["clip"])
+        if (item.get("width"), item.get("height")) != (w, h):
+            item["width"], item["height"] = w, h
+            changed += 1
+    stranded = sorted(set(by_name) - seen)
+    print(f"  growth beads: {changed} rows resized, {len(seen)} of {len(by_name)} matched")
+    if stranded:
+        print(f"    \u2620 {len(stranded)} RE-ENCODED CLIPS HAVE NO ROW HERE: "
+              f"{', '.join(stranded)}")
+    if APPLY:
+        base_path.write_text(json.dumps(base, indent=2) + "\n", encoding="utf8")
+    return changed
+
+
 def main() -> int:
     print(f"{'APPLYING' if APPLY else 'DRY RUN'}, reading encode results from {VPS}\n")
     ok = True
@@ -99,6 +138,7 @@ def main() -> int:
             ok = False
         if APPLY:
             base_path.write_text(json.dumps(merged, indent=2) + "\n", encoding="utf8")
+    growth_beads(REPO / "src/data/cinema/growth-partner.json", VPS / "growth-beads.json")
     print("\n" + ("no keys lost" if ok else "REFUSING, keys would be lost"))
     return 0 if ok else 1
 

@@ -11,10 +11,7 @@
     "reel-03": "close ups of live procedures on patients",
     "mini-18": "320 by 240, too small for the page"
   },
-  "stripUnsafe": {
-    "reel-11.mp4": "720x404 into a 162x288 css tile: covers it 1.40 times, under the 1.75 floor",
-    "reel-12.mp4": "720x404 into a 162x288 css tile: covers it 1.40 times, under the 1.75 floor"
-  },
+  "stripUnsafe": {},
   "copy": {
     "headline": "Teach at a Training Center built for the way you teach.",
     "statements": [
@@ -24,7 +21,7 @@
   },
   "counts": {
     "images": 19,
-    "videos": 6,
+    "videos": 8,
     "missing": 0
   },
   "items": [
@@ -184,86 +181,109 @@
       "type": "video",
       "src": "/cinema/growth/reel-02.mp4",
       "poster": "/cinema/growth/reel-02-poster.jpg",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "duration": 44.9,
       "alt": "The teaching screen in the Training Center",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+      "source_url": "https://ffcdentalclinic.com/growth-partner/",
+      "hd": "/cinema/growth/hd/reel-02.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "type": "video",
       "src": "/cinema/growth/reel-06.mp4",
       "poster": "/cinema/growth/reel-06-poster.jpg",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "duration": 48.11,
       "alt": "A lecturer presenting beside the instrument wall",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+      "source_url": "https://ffcdentalclinic.com/growth-partner/",
+      "hd": "/cinema/growth/hd/reel-06.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "type": "video",
       "src": "/cinema/growth/reel-07.mp4",
       "poster": "/cinema/growth/reel-07-poster.jpg",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "duration": 40.94,
       "alt": "Hands on work at a phantom head station",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+      "source_url": "https://ffcdentalclinic.com/growth-partner/",
+      "hd": "/cinema/growth/hd/reel-07.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "type": "video",
       "src": "/cinema/growth/reel-08.mp4",
       "poster": "/cinema/growth/reel-08-poster.jpg",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "duration": 32.9,
       "alt": "A session in progress on the training floor",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+      "source_url": "https://ffcdentalclinic.com/growth-partner/",
+      "hd": "/cinema/growth/hd/reel-08.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "type": "video",
       "src": "/cinema/growth/reel-09.mp4",
       "poster": "/cinema/growth/reel-09-poster.jpg",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "duration": 27.49,
       "alt": "An instructor working through a case with attendees",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+      "source_url": "https://ffcdentalclinic.com/growth-partner/",
+      "hd": "/cinema/growth/hd/reel-09.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
     },
     {
       "type": "video",
       "src": "/cinema/growth/reel-10.mp4",
       "poster": "/cinema/growth/reel-10-poster.jpg",
-      "width": 404,
-      "height": 720,
+      "width": 720,
+      "height": 1280,
       "duration": 34.97,
       "alt": "A demonstration on the main screen",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    }
-  ],
-  "tilePx": 384,
-  "heldBack": [
+      "source_url": "https://ffcdentalclinic.com/growth-partner/",
+      "hd": "/cinema/growth/hd/reel-10.mp4",
+      "hdWidth": 720,
+      "hdHeight": 1280
+    },
     {
       "type": "video",
       "src": "/cinema/growth/reel-11.mp4",
       "poster": "/cinema/growth/reel-11-poster.jpg",
-      "width": 720,
-      "height": 404,
+      "width": 1024,
+      "height": 576,
       "duration": 48.02,
       "alt": "Attendees at the phantom head stations",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+      "source_url": "https://ffcdentalclinic.com/growth-partner/",
+      "hd": "/cinema/growth/hd/reel-11.mp4",
+      "hdWidth": 1920,
+      "hdHeight": 1080
     },
     {
       "type": "video",
       "src": "/cinema/growth/reel-12.mp4",
       "poster": "/cinema/growth/reel-12-poster.jpg",
-      "width": 720,
-      "height": 404,
+      "width": 1024,
+      "height": 576,
       "duration": 101.67,
       "alt": "A lesson being delivered to the room",
-      "source_url": "https://ffcdentalclinic.com/growth-partner/"
+      "source_url": "https://ffcdentalclinic.com/growth-partner/",
+      "hd": "/cinema/growth/hd/reel-12.mp4",
+      "hdWidth": 1920,
+      "hdHeight": 1080
     }
   ],
+  "tilePx": 384,
+  "heldBack": [],
   "tileHeightPx": 288,
   "tileVideoPx": 162,
   "tileVideoHeightPx": 288,

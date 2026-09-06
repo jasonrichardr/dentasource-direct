@@ -181,6 +181,22 @@ def main() -> int:
             r = dict(r)
             r["heldReason"] = (f"{r['width']}x{r['height']} into a {MARBLE_PX}px bead: "
                                f"covers it {ratio:.2f} times, under the {COVER_MIN} floor")
+            # ☠️ SAY WHICH KIND OF HELD THIS IS. A bead too small because the SOURCE is
+            # small can never be recovered; one too small because OUR bead encode capped
+            # the wrong axis can be, and recording both as one number asserts that 26
+            # clips are a fact about the material when 15 are a fact about the encoder.
+            # The hd theatre copy is the evidence, since it was made from the same source:
+            # if its short side clears the bar, the pixels exist and the bead threw them
+            # away. bead_vf caps WIDTH at 720, which is right for a 9:16 portrait and wrong
+            # for landscape, where it yields 720x406 against a bar of 456. Same mistake as
+            # growth's VIDEO_MAX long-side cap, third occurrence, first time on the wall.
+            hd_short = min(r.get("hdWidth") or 0, r.get("hdHeight") or 0)
+            r["heldRecoverable"] = hd_short >= COVER_MIN * MARBLE_PX
+            if r["heldRecoverable"]:
+                r["heldReason"] += (f". RECOVERABLE: its theatre copy is "
+                                    f"{r.get('hdWidth')}x{r.get('hdHeight')}, so the source "
+                                    "has the pixels and a cover targeted bead re-encode "
+                                    "readmits it")
             held.append(r)
 
     lib["tileFit"] = "cover"
@@ -199,7 +215,9 @@ def main() -> int:
     lib["heldBack"] = held
 
     print(f"marbles tile {MARBLE_PX}x{MARBLE_PX}, floor {COVER_MIN}")
-    print(f"  {len(keep)} clips on the wall, {len(held)} held")
+    rec = sum(1 for r in held if r.get("heldRecoverable"))
+    print(f"  {len(keep)} clips on the wall, {len(held)} held "
+          f"({rec} RECOVERABLE by a bead re-encode, {len(held) - rec} at a source ceiling)")
     for r in held[:8]:
         print("   ", r["id"], r["heldReason"])
     # the ruling's acceptance criteria, checked rather than assumed
