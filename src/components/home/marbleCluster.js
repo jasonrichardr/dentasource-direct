@@ -278,6 +278,8 @@ export function createMarbleCluster(container, {
       index: i, isFilled,
       url: isFilled ? videos[i] : null,
       // The manifest's own high definition copy for this reel, when it has one.
+      // Accepts a bare url or { src, w, h }; the dimensions let the theatre size its
+      // frame before the video loads, and more importantly tell it which way up the clip is.
       hd: isFilled ? (hdVideos[i] || null) : null,
     };
     shells.push(shell);
@@ -433,7 +435,15 @@ export function createMarbleCluster(container, {
     // the entry is asked first and the rewrite is kept only for the callers that have no
     // manifest behind them.
     const guessed = pick.url.replace(/\/reels\/(?:fb\/)?([^/]+)$/, "/reels/hd/$1");
-    const hdUrl = pick.hd || guessed;
+    const hdMeta = (pick.hd && typeof pick.hd === "object") ? pick.hd : null;
+    const hdUrl = (hdMeta ? hdMeta.src : pick.hd) || guessed;
+    // ☠️ THE THEATRE IS NOT ALWAYS PORTRAIT ANY MORE, AND THE STYLESHEET SAYS IT IS.
+    // .cp-theater-video pins aspect-ratio 9/16 with object-fit cover, which was right
+    // while every clip was a phone reel. The HD copies are source resolution and one of
+    // the first 86 is 1080x608 landscape: forcing 9/16 on that crops a wide frame down to
+    // a vertical sliver and throws away most of the picture, with nothing visibly wrong to
+    // say so. When the manifest gives the real dimensions the frame takes them.
+    if (hdMeta && hdMeta.w > 0 && hdMeta.h > 0) vid.style.aspectRatio = `${hdMeta.w} / ${hdMeta.h}`;
     let usedFallback = (hdUrl === pick.url);
     vid.addEventListener("error", () => { if (!usedFallback) { usedFallback = true; vid.src = pick.url; tryPlay(); } });
     vid.src = usedFallback ? pick.url : hdUrl;

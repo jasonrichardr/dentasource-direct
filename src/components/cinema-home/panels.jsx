@@ -629,7 +629,7 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
     cluster = createMarbleCluster(mount, {
       videos: shown.map((r) => r.src),
       // The theatre plays these, not the 480 bead loops, whenever the manifest has one.
-      hdVideos: shown.map((r) => r.hd || null),
+      hdVideos: shown.map((r) => (r.hd ? { src: r.hd, w: r.hdWidth, h: r.hdHeight } : null)),
       count: shown.length,          // exactly one bead per reel in THIS set
       ...shape,
       // ☠️ THE STAGE IS THE WHOLE SCREEN, NOT A BOX IN THE MIDDLE OF IT. See the note on

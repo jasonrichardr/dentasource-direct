@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { createMarbleCluster } from './marbleCluster';
+import reelLibrary from '@/data/cinema/reel-library.json';
+import { visible } from '@/lib/cinema/visible';
 
 // The FFC company-profile "glass marbles" — ported 1:1. Same cluster, same physics,
 // same press-and-hold theater.
@@ -58,6 +60,24 @@ const MARBLES = [
 ];
 const VIDEOS = MARBLES.map((m) => m.src);
 
+// ☠️ THE THEATRE CANNOT GUESS THIS PAGE'S HD PATHS, AND IT LOOKED LIKE IT COULD.
+// marbleCluster falls back to rewriting a bead's url into /reels/hd/<same name>, which is
+// what this page relied on. Measured against the library: for all 33 beads here that
+// rewrite disagrees with the real file, because the HD copies are named by reel ID and the
+// bead files are named by clip (bead /cinema/reels/wall-fb-11.mp4 has its HD at
+// /cinema/reels/hd/wall-01.mp4, not /cinema/reels/hd/wall-fb-11.mp4). Ten of the rewrites
+// happen to land on the OLD /reels/hd/ex-*.mp4 set and work; the other 23 request a file
+// that cannot exist, take the 404, and quietly play the muted 480 loop instead — with an
+// HD copy sitting right there in the library.
+// So this page looks its HD up by src in the manifest, exactly as the cinema wall does.
+// The rewrite stays in the cluster for callers that genuinely have no manifest.
+// Filtered like every other manifest read: a reel Jarich has hidden should not have its
+// high definition copy served from this page either. See src/lib/cinema/visible.js.
+const HD_BY_SRC = new Map(
+  visible(reelLibrary.reels).filter((r) => r.hd).map((r) => [r.src, { src: r.hd, w: r.hdWidth, h: r.hdHeight }]),
+);
+const HD_VIDEOS = MARBLES.map((m) => HD_BY_SRC.get(m.src) || null);
+
 export default function GlassMarbles() {
     const mountRef = useRef(null);
 
@@ -67,6 +87,7 @@ export default function GlassMarbles() {
         const isMobile = window.matchMedia('(max-width: 768px)').matches;
         const cluster = createMarbleCluster(mount, {
             videos: VIDEOS,
+            hdVideos: HD_VIDEOS,
             count: VIDEOS.length, // exactly one bead per reel — no empty marbles
             isMobile,
             faceZoomDefault: 0.55,
