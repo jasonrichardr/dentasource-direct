@@ -107,6 +107,33 @@ def main() -> int:
     every = list(lib["reels"]) + list(lib.get("heldBack", []))
     guard(every)
 
+    # ☠️ THE ROUNDING IS A SAFETY GUARD AND MUST NOT ITSELF DECIDE ANYTHING.
+    # builder-room found that rounding down is not order-preserving across a ten boundary:
+    # a raw of 428 declares 420, and at 420 the 720x406 landscape clips score 0.967 and
+    # pass, when the measurement itself would have held them at 0.949. The guard against a
+    # two pixel miss silently turns the gate into documentation.
+    #
+    # The fix is NOT to re-assert the acceptance criteria, which team-lead dropped as
+    # illustrations: the measurement decides, and if it decides nothing is held then
+    # nothing is held. The fix is that the ROUNDING must not change what the measurement
+    # decided. Rounding down can only raise a ratio, so it can only ADMIT what the raw
+    # would have held, and a verdict flips exactly for a short side in
+    # [COVER_MIN * declared, COVER_MIN * raw). For 482.4 -> 480 that band is
+    # [456.0, 458.28) and the library holds nothing in it. For 428 -> 420 it is
+    # [399.0, 406.6), which is where those landscape clips live.
+    flipped = [r for r in every
+               if judge(r["width"], r["height"], MARBLE_PX) >= COVER_MIN
+               > judge(r["width"], r["height"], MARBLE_PX_RAW)]
+    if flipped:
+        raise SystemExit(
+            f"REFUSING: rounding {MARBLE_PX_RAW} down to {MARBLE_PX} changes the verdict "
+            f"on {len(flipped)} clips, which the rounding is not allowed to do.\n"
+            f"  flip band is short side in "
+            f"[{COVER_MIN * MARBLE_PX:.1f}, {COVER_MIN * MARBLE_PX_RAW:.2f})\n"
+            f"  affected: {', '.join(r['id'] for r in flipped[:6])}\n"
+            "  Declare the raw measurement, or take the rounding to team-lead as a ruling."
+        )
+
     keep, held = [], []
     for r in every:
         ratio = judge(r["width"], r["height"], MARBLE_PX)
