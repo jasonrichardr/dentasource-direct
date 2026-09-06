@@ -2,16 +2,15 @@
   "version": 1,
   "source": "public/images/news, the published article archive",
   "generated": "2026-09-06",
-  "notes": "Technicians at a chair and sales staff with clients, chosen by looking at the frames rather than by filename. ALT TEXT IS ROLE ONLY, nobody is named. Real photographs only: the archive's PROOF OF DELIVERY cards, the How We Install promo graphics, the six model cards carrying prices, and the Denjoy product renders are all excluded. Items alternate technician and sales so a row never runs as one kind. REMOVED FROM THIS STRIP: v039-1.jpg, v039-2.jpg. 360x640 source, too soft at strip tile size. NOT swapped for a larger frame: each is a published article photograph whose alt text describes that exact scene, so repointing the file would caption one event with a picture of another. The articles keep them, where 360 wide reads correctly.",
-  "stripUnsafe": {
-    "v039-1.jpg": "360x640 source, too soft at strip tile size. NOT swapped for a larger frame: each is a published article photograph whose alt text describes that exact scene, so repointing the file would caption one event with a picture of another. The articles keep them, where 360 wide reads correctly.",
-    "v039-2.jpg": "360x640 source, too soft at strip tile size. NOT swapped for a larger frame: each is a published article photograph whose alt text describes that exact scene, so repointing the file would caption one event with a picture of another. The articles keep them, where 360 wide reads correctly."
-  },
+  "notes": "Technicians at a chair and sales staff with clients, chosen by looking at the frames rather than by filename. ALT TEXT IS ROLE ONLY, nobody is named. Real photographs only: the archive's PROOF OF DELIVERY cards, the How We Install promo graphics, the six model cards carrying prices, and the Denjoy product renders are all excluded. Items alternate technician and sales so a row never runs as one kind.",
+  "tilePx": 126,
+  "tileHeightPx": 84,
+  "stripUnsafe": {},
   "counts": {
-    "total": 34,
+    "total": 36,
     "technician": 20,
-    "sales": 14,
-    "removedTooSmall": 2
+    "sales": 16,
+    "removedTooSmall": 0
   },
   "items": [
     {
@@ -78,9 +77,23 @@
       "height": 640
     },
     {
+      "src": "/images/news/crest-hands-on-digital-designing-training/v039-1.jpg",
+      "alt": "A chairside demonstration for a visitor",
+      "kind": "sales",
+      "width": 360,
+      "height": 640
+    },
+    {
       "src": "/images/news/dental-chair-dismantling-service/v005-2.jpg",
       "alt": "Working through the delivery system",
       "kind": "technician",
+      "width": 360,
+      "height": 640
+    },
+    {
+      "src": "/images/news/crest-hands-on-digital-designing-training/v039-2.jpg",
+      "alt": "Visitors seated at the stand",
+      "kind": "sales",
       "width": 360,
       "height": 640
     },

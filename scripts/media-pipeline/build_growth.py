@@ -76,23 +76,35 @@ VIDEOS = [
 ]
 # ☠️ A STRIP MANIFEST MUST DECLARE `stripUnsafe`, AND IT MUST COME FROM HERE.
 # growth-partner.json feeds the training beat's mixed marquee ALONGSIDE
-# training-media.json: same track, same tile size. training-media declared the key and
-# this did not, so half of one marquee was protected and half was not. Adding the key to
-# the JSON by hand would not survive, because this script, build_hd.py and vps_encode.py
-# all rewrite the file; it has to be emitted.
+# training-media.json: HomeCinema.jsx concatenates GROWTH_ITEMS onto TRAINING_ITEMS into
+# ONE array on the `training-center` beat, rendered by one ActionPanel. Same track, same
+# tile. That is why the tile below is 320 and not the 384 an earlier draft carried: the
+# number is read off the element that renders these files, not off the manifest they
+# happen to live in. Adding the key to the JSON by hand would not survive, because this
+# script, build_hd.py and vps_encode.py all rewrite the file; it has to be emitted.
 #
-# It is COMPUTED, not hardcoded, so it cannot drift away from the truth: anything whose
-# long side is under STRIP_MIN is named with its measured size. Today that yields an empty
-# map, which IS the declaration ("checked, nothing here is too small"): the 19 photographs
-# are 1200 or longer, and the 8 clips sit at exactly 720 and rise to 1920 in the HD pass.
-STRIP_MIN = 720
+# ☠️ TILE SIZE DECIDES, NOT MANIFEST TYPE. Ruled a117e320 after builder-home's
+# counterexample: crew-shots' row is 126px, where a 360 wide photograph is fine, so a
+# blanket "strip manifest" ban removed frames from the one place they still worked.
+#
+# The comparison is min(srcW/tileW, srcH/tileH) >= DPR, NOT tileW*DPR vs the long side.
+# These tiles are object-fit: cover, which crops the excess, so the BINDING axis is the
+# smaller of the two ratios. The long side shorthand gets crew-shots right and this strip
+# wrong: a 360x640 frame has a long side of 640, which clears 320*2, yet only 360 pixels
+# cover a 640 device px width. Measured, not assumed.
+DPR = 2
+TILE_W, TILE_H = 320, 240   # .dsd-strip-track img, 24vh cap at 4/3, measured
 
-# The shared list every strip generator refuses, kept identical to build_crew.py and
-# build_training.py so the invariant is uniform: no strip generator can emit these.
-# It can never fire here, because growth media comes from the growth partner page and
-# these five are news photographs, but a set that is only present where it happens to be
-# needed is a set somebody forgets to add next time.
-STRIP_UNSAFE = {"v039-1.jpg", "v039-2.jpg", "v039-5.jpg", "v033-8.jpg", "v301-2.jpg"}
+
+def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None:
+    """Reason the file is too soft for this tile, or None if it is fine."""
+    if not src_w or not src_h:
+        return None
+    if min(src_w / tile_w, src_h / tile_h) >= DPR:
+        return None
+    return (f"{src_w}x{src_h} into a {tile_w}x{tile_h} css tile: needs "
+            f"{tile_w * DPR}x{tile_h * DPR} device px at DPR {DPR}")
+
 
 EXCLUDED = {
     "kb-01..kb-16, digi-01": "private knowledge base screenshots carrying a personal name, a portrait and patient case data",
@@ -154,19 +166,77 @@ def page_copy() -> dict:
     }
 
 
+def refresh() -> int:
+    """Recompute only the derived fields, from the files actually on disk.
+
+    ☠️ THIS EXISTS BECAUSE THE FULL PATH CANNOT RUN ANY MORE, AND PRETENDING OTHERWISE
+    DELETED 27 TRACKED FILES. The raws and the saved page live in the session scratchpad,
+    which is deleted after each round, and the encoded mp4s left the repo for the media
+    origin. The old main() wiped OUT before it had checked it could rebuild anything, so a
+    re-run without the scratchpad emptied public/cinema/growth and then died on the missing
+    page HTML. The 19 photographs and 8 posters it removed are exactly the files the
+    resolver keeps local so an unreachable origin degrades to a still image.
+
+    So: no download, no re-encode, no wipe. Image sizes are MEASURED off the jpgs in the
+    repo. Video sizes are carried from the manifest, because those files are on the origin
+    and re-encoding an already encoded clip would only lose a generation. `copy` and
+    `excluded` are carried forward unchanged; nothing this round touches them.
+    """
+    prev = json.loads(OUT_JSON.read_text())
+    # ☠️ READ BACK WHAT WAS HELD, OR THIS IS A RATCHET RATHER THAN A GENERATOR.
+    # refresh() reads the manifest it writes. The first cut dropped barred items out of the
+    # file entirely, so a second run had nothing to reconsider and a clip could leave the
+    # strip but never return, even once its pixels were fixed. Rejection has to be a VIEW
+    # over a complete list: everything ever produced stays in the payload, `items` is the
+    # part that passes today, `heldBack` is the part that does not, and both are recomputed
+    # from measurements on every run. Run it twice and the answer is the same; fix a clip
+    # and it comes back on its own.
+    every = list(prev["items"]) + list(prev.get("heldBack", []))
+    items, held, refused = [], [], {}
+    for it in every:
+        it = dict(it)
+        if it["type"] == "image":
+            f = REPO / "public" / it["src"].lstrip("/")
+            if not f.exists():
+                raise SystemExit(f"growth image missing from the repo: {it['src']}")
+            with Image.open(f) as im:
+                it["width"], it["height"] = im.size
+        why = strip_unsafe(it.get("width") or 0, it.get("height") or 0, TILE_W, TILE_H)
+        if why:
+            refused[Path(it["src"]).name] = why
+            held.append(it)
+            continue
+        items.append(it)
+
+    prev["tilePx"], prev["tileHeightPx"] = TILE_W, TILE_H
+    prev["stripUnsafe"] = dict(sorted(refused.items()))
+    prev["heldBack"] = held
+    prev["counts"] = {"images": sum(1 for i in items if i["type"] == "image"),
+                      "videos": sum(1 for i in items if i["type"] == "video"),
+                      "missing": 0}
+    prev["items"] = items
+    OUT_JSON.write_text(json.dumps(prev, indent=2) + "\n", encoding="utf8")
+    print("growth partner (refresh, no re-encode):", prev["counts"],
+          "removed too small:", len(refused))
+    return 0
+
+
 def main() -> int:
+    # ☠️ NEVER WIPE BEFORE PROVING THERE IS SOMETHING TO REBUILD FROM. See refresh().
+    if not DL.is_dir() or not any(DL.iterdir()):
+        if not OUT_JSON.exists():
+            raise SystemExit(f"no raws in {DL} and no manifest to refresh from")
+        return refresh()
+
     OUT.mkdir(parents=True, exist_ok=True)
     for stale in list(OUT.glob("*.jpg")) + list(OUT.glob("*.mp4")):
         stale.unlink()
 
-    items, missing, refused = [], [], []
+    items, missing, refused = [], [], {}
     for name, alt in IMAGES:
         src = DL / name
         if not src.exists():
             missing.append(name)
-            continue
-        if name in STRIP_UNSAFE:
-            refused.append(name)
             continue
         im = Image.open(src).convert("RGB")
         if max(im.size) > IMAGE_MAX:
@@ -177,14 +247,15 @@ def main() -> int:
         items.append({"type": "image", "src": f"/cinema/growth/{name}",
                       "width": im.width, "height": im.height, "alt": alt,
                       "source_url": PAGE_URL})
+        why = strip_unsafe(im.width, im.height, TILE_W, TILE_H)
+        if why:
+            refused[name] = why
+            items.pop()
 
     for name, alt in VIDEOS:
         src = DL / name
         if not src.exists():
             missing.append(name)
-            continue
-        if name in STRIP_UNSAFE:
-            refused.append(name)
             continue
         poster_name = name.replace(".mp4", "-poster.jpg")
         try:
@@ -197,6 +268,10 @@ def main() -> int:
                       "poster": f"/cinema/growth/{poster_name}",
                       "width": w, "height": h, "duration": dur, "alt": alt,
                       "source_url": PAGE_URL})
+        why = strip_unsafe(w, h, TILE_W, TILE_H)
+        if why:
+            refused[name] = why
+            items.pop()
 
     payload = {
         "version": 1,
@@ -210,16 +285,19 @@ def main() -> int:
             "portrait and patient case data; a speaker lineup graphic and a certificate "
             "handover reel, both carrying names; a promotional card, which is an ad "
             "render rather than footage; a reel of live procedures on patients; and one "
-            "image too small to use."
+            "image too small to use. THE 8 CLIPS ARE OUT OF THE STRIP FOR NOW, AND THE "
+            "CAUSE IS OUR OWN ENCODE, NOT THE SOURCE: VIDEO_MAX caps the LONG side at 720, "
+            "so a 9:16 clip lands 404 wide, and 404 cannot cover a 320px tile at DPR 2, "
+            "which needs 640. The originals are larger. The remedy is a 720 WIDE bead "
+            "re-encode, the same profile the reel beads get, after which they measure 720 "
+            "x 1280 and this generator readmits them with no edit here. They are barred "
+            "rather than left in because a 404 wide clip in a 640 device px tile is "
+            "exactly the softness that was complained about."
         ),
         "excluded": EXCLUDED,
-        "stripUnsafe": {
-            Path(i["src"]).name:
-                f"{i.get('width')}x{i.get('height')}, long side under {STRIP_MIN}px: too "
-                "soft at strip tile size"
-            for i in items
-            if max(i.get("width") or 0, i.get("height") or 0) < STRIP_MIN
-        } | {n: "on the shared STRIP_UNSAFE list" for n in refused},
+        "tilePx": TILE_W,
+        "tileHeightPx": TILE_H,
+        "stripUnsafe": dict(sorted(refused.items())),
         "copy": page_copy(),
         "counts": {"images": sum(1 for i in items if i["type"] == "image"),
                    "videos": sum(1 for i in items if i["type"] == "video"),

@@ -11,7 +11,16 @@
     "reel-03": "close ups of live procedures on patients",
     "mini-18": "320 by 240, too small for the page"
   },
-  "stripUnsafe": {},
+  "stripUnsafe": {
+    "reel-02.mp4": "404x720 into a 320x240 css tile: needs 640x480 device px at DPR 2",
+    "reel-06.mp4": "404x720 into a 320x240 css tile: needs 640x480 device px at DPR 2",
+    "reel-07.mp4": "404x720 into a 320x240 css tile: needs 640x480 device px at DPR 2",
+    "reel-08.mp4": "404x720 into a 320x240 css tile: needs 640x480 device px at DPR 2",
+    "reel-09.mp4": "404x720 into a 320x240 css tile: needs 640x480 device px at DPR 2",
+    "reel-10.mp4": "404x720 into a 320x240 css tile: needs 640x480 device px at DPR 2",
+    "reel-11.mp4": "720x404 into a 320x240 css tile: needs 640x480 device px at DPR 2",
+    "reel-12.mp4": "720x404 into a 320x240 css tile: needs 640x480 device px at DPR 2"
+  },
   "copy": {
     "headline": "Teach at a Training Center built for the way you teach.",
     "statements": [
@@ -21,7 +30,7 @@
   },
   "counts": {
     "images": 19,
-    "videos": 8,
+    "videos": 0,
     "missing": 0
   },
   "items": [
@@ -176,7 +185,11 @@
       "height": 1200,
       "alt": "Filming a lesson on the Training Center floor",
       "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    },
+    }
+  ],
+  "tilePx": 320,
+  "tileHeightPx": 240,
+  "heldBack": [
     {
       "type": "video",
       "src": "/cinema/growth/reel-02.mp4",

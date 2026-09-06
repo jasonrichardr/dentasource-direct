@@ -287,6 +287,15 @@ def main() -> int:
             "caption. No name has been invented. Order: named parts first, categories "
             "interleaved so the opening run reads as variety, unnamed photographs after."
         ),
+        # `.dsd-part-img` is 56x56 in home-cinema.css, measured, not assumed. Declared so a
+        # consumer can size a request without re-reading the stylesheet.
+        #
+        # NO `stripUnsafe` HERE, RULED. These are studio cutouts on transparency at 800px,
+        # dropped into a 56px chip: every one clears a 112 device px tile many times over,
+        # so a bar that can never fire would be decoration rather than a check. The strip
+        # manifests declare it because theirs CAN fire and has.
+        "tilePx": 56,
+        "tileHeightPx": 56,
         "counts": {
             "catalogue": len(parts),
             "produced": len(produced),

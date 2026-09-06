@@ -2,12 +2,21 @@
   "version": 1,
   "source": "public/images/news training articles, and reel-library.json for the footage",
   "generated": "2026-09-06",
-  "notes": "Photographs from the 15 training articles, picked by looking at a contact sheet, interleaved with every reel the library classified as training so the marquee alternates image, video, image. Videos reference the reel library by id; there is one copy of each clip on disk. ALT TEXT IS ROLE ONLY. Excluded: the live patient procedure frames, the course poster and Q and A card, which are promo graphics carrying speaker names, the certificate collages, and individual portraits. REMOVED FROM THIS STRIP: v039-2.jpg, v039-5.jpg. 360x640 source, too soft at strip tile size. NOT swapped for a larger frame: each is a published article photograph whose alt text describes that exact scene, so repointing the file would caption one event with a picture of another. The articles keep them, where 360 wide reads correctly.",
+  "notes": "Photographs from the 15 training articles, picked by looking at a contact sheet, interleaved with every reel the library classified as training so the marquee alternates image, video, image. Videos reference the reel library by id; there is one copy of each clip on disk. ALT TEXT IS ROLE ONLY. Excluded: the live patient procedure frames, the course poster and Q and A card, which are promo graphics carrying speaker names, the certificate collages, and individual portraits. REMOVED AT THIS TILE SIZE: v039-2.jpg, v039-3.jpg, v039-4.jpg, v039-5.jpg, v039-6.jpg.",
+  "tilePx": 320,
+  "tileHeightPx": 240,
+  "stripUnsafe": {
+    "v039-2.jpg": "360x640 into a 320x240 css tile: needs 640x480 device px at DPR 2",
+    "v039-3.jpg": "360x640 into a 320x240 css tile: needs 640x480 device px at DPR 2",
+    "v039-4.jpg": "360x640 into a 320x240 css tile: needs 640x480 device px at DPR 2",
+    "v039-5.jpg": "360x640 into a 320x240 css tile: needs 640x480 device px at DPR 2",
+    "v039-6.jpg": "360x640 into a 320x240 css tile: needs 640x480 device px at DPR 2"
+  },
   "counts": {
-    "images": 36,
+    "images": 33,
     "videos": 30,
-    "total": 66,
-    "removedTooSmall": 2
+    "total": 63,
+    "removedTooSmall": 5
   },
   "items": [
     {
@@ -86,13 +95,6 @@
       "height": 1920
     },
     {
-      "type": "image",
-      "src": "/images/news/dentasource-training-center-opens-pasig/v032-7.jpg",
-      "alt": "Stations ready for a hands on course",
-      "width": 1080,
-      "height": 1920
-    },
-    {
       "type": "video",
       "src": "/cinema/reels/880174031563895.mp4",
       "poster": "/cinema/reels/880174031563895.jpg",
@@ -104,10 +106,10 @@
     },
     {
       "type": "image",
-      "src": "/images/news/pda-quezon-city-3rd-scientific-seminar-2026/v006-1.jpg",
-      "alt": "The registration table before a course",
-      "width": 1076,
-      "height": 1292
+      "src": "/images/news/dentasource-training-center-opens-pasig/v032-7.jpg",
+      "alt": "Stations ready for a hands on course",
+      "width": 1080,
+      "height": 1920
     },
     {
       "type": "video",
@@ -121,10 +123,10 @@
     },
     {
       "type": "image",
-      "src": "/images/news/9-day-digital-dentistry-course-2026/v022-3.jpg",
-      "alt": "A session under way",
-      "width": 720,
-      "height": 1280
+      "src": "/images/news/pda-quezon-city-3rd-scientific-seminar-2026/v006-1.jpg",
+      "alt": "The registration table before a course",
+      "width": 1076,
+      "height": 1292
     },
     {
       "type": "video",
@@ -138,8 +140,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/9-day-digital-dentistry-course-2026/v022-4.jpg",
-      "alt": "Following the lesson at a station",
+      "src": "/images/news/9-day-digital-dentistry-course-2026/v022-3.jpg",
+      "alt": "A session under way",
       "width": 720,
       "height": 1280
     },
@@ -155,10 +157,10 @@
     },
     {
       "type": "image",
-      "src": "/images/news/crest-hands-on-digital-designing-training/v039-3.jpg",
-      "alt": "Attendees working through a case",
-      "width": 360,
-      "height": 640
+      "src": "/images/news/9-day-digital-dentistry-course-2026/v022-4.jpg",
+      "alt": "Following the lesson at a station",
+      "width": 720,
+      "height": 1280
     },
     {
       "type": "video",
@@ -172,10 +174,10 @@
     },
     {
       "type": "image",
-      "src": "/images/news/crest-hands-on-digital-designing-training/v039-4.jpg",
-      "alt": "Working under the operating light",
-      "width": 360,
-      "height": 640
+      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-2.jpg",
+      "alt": "The room during a hands on session",
+      "width": 1080,
+      "height": 1920
     },
     {
       "type": "video",
@@ -186,6 +188,20 @@
       "height": 720,
       "duration": 40.7,
       "reel_id": "2039690190757920"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-3.jpg",
+      "alt": "A station in use",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "image",
+      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-4.jpg",
+      "alt": "The teaching bay in use",
+      "width": 1080,
+      "height": 1920
     },
     {
       "type": "video",
@@ -199,15 +215,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/crest-hands-on-digital-designing-training/v039-6.jpg",
-      "alt": "Practising on the teaching model",
-      "width": 360,
-      "height": 640
-    },
-    {
-      "type": "image",
-      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-2.jpg",
-      "alt": "The room during a hands on session",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-1.jpg",
+      "alt": "Presenting from a tablet",
       "width": 1080,
       "height": 1920
     },
@@ -223,8 +232,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-3.jpg",
-      "alt": "A station in use",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-2.jpg",
+      "alt": "Reviewing a case at the screen",
       "width": 1080,
       "height": 1920
     },
@@ -240,8 +249,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-4.jpg",
-      "alt": "The teaching bay in use",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-4.jpg",
+      "alt": "The class at their stations",
       "width": 1080,
       "height": 1920
     },
@@ -257,8 +266,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-1.jpg",
-      "alt": "Presenting from a tablet",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-5.jpg",
+      "alt": "Working through a case together",
       "width": 1080,
       "height": 1920
     },
@@ -274,15 +283,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-2.jpg",
-      "alt": "Reviewing a case at the screen",
-      "width": 1080,
-      "height": 1920
-    },
-    {
-      "type": "image",
-      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-4.jpg",
-      "alt": "The class at their stations",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-6.jpg",
+      "alt": "A course in progress",
       "width": 1080,
       "height": 1920
     },
@@ -298,8 +300,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-5.jpg",
-      "alt": "Working through a case together",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-7.jpg",
+      "alt": "Using the microscope at the bench",
       "width": 1080,
       "height": 1920
     },
@@ -315,8 +317,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-6.jpg",
-      "alt": "A course in progress",
+      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-1.jpg",
+      "alt": "The lesson on the big screen",
       "width": 1080,
       "height": 1920
     },
@@ -332,8 +334,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-7.jpg",
-      "alt": "Using the microscope at the bench",
+      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-2.jpg",
+      "alt": "The room mid session",
       "width": 1080,
       "height": 1920
     },
@@ -349,15 +351,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-1.jpg",
-      "alt": "The lesson on the big screen",
-      "width": 1080,
-      "height": 1920
-    },
-    {
-      "type": "image",
-      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-2.jpg",
-      "alt": "The room mid session",
+      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-4.jpg",
+      "alt": "Talking a step through at the chair",
       "width": 1080,
       "height": 1920
     },
@@ -373,8 +368,15 @@
     },
     {
       "type": "image",
-      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-4.jpg",
-      "alt": "Talking a step through at the chair",
+      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-6.jpg",
+      "alt": "A group around a station",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "image",
+      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-8.jpg",
+      "alt": "The class watching a demonstration",
       "width": 1080,
       "height": 1920
     },
@@ -390,8 +392,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-6.jpg",
-      "alt": "A group around a station",
+      "src": "/images/news/smile-design-guided-crown-lengthening-training/v070-2.jpg",
+      "alt": "The room during a lecture",
       "width": 1080,
       "height": 1920
     },
@@ -407,15 +409,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-8.jpg",
-      "alt": "The class watching a demonstration",
-      "width": 1080,
-      "height": 1920
-    },
-    {
-      "type": "image",
-      "src": "/images/news/smile-design-guided-crown-lengthening-training/v070-2.jpg",
-      "alt": "The room during a lecture",
+      "src": "/images/news/smile-design-guided-crown-lengthening-training/v070-4.jpg",
+      "alt": "A lecture in the Training Center",
       "width": 1080,
       "height": 1920
     },
@@ -431,8 +426,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/smile-design-guided-crown-lengthening-training/v070-4.jpg",
-      "alt": "A lecture in the Training Center",
+      "src": "/images/news/smile-design-guided-crown-lengthening-training/v070-7.jpg",
+      "alt": "A demonstration at the chair",
       "width": 1080,
       "height": 1920
     },
@@ -448,8 +443,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/smile-design-guided-crown-lengthening-training/v070-7.jpg",
-      "alt": "A demonstration at the chair",
+      "src": "/images/news/smile-design-guided-crown-lengthening-training/v078-2.jpg",
+      "alt": "Attendees at the workstations",
       "width": 1080,
       "height": 1920
     },
@@ -465,8 +460,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/smile-design-guided-crown-lengthening-training/v078-2.jpg",
-      "alt": "Attendees at the workstations",
+      "src": "/images/news/pda-benguet-chapter-induction-baguio-2026/v106-1.jpg",
+      "alt": "The seminar floor",
       "width": 1080,
       "height": 1920
     },
@@ -479,13 +474,6 @@
       "height": 720,
       "duration": 17.39,
       "reel_id": "1933731330832312"
-    },
-    {
-      "type": "image",
-      "src": "/images/news/pda-benguet-chapter-induction-baguio-2026/v106-1.jpg",
-      "alt": "The seminar floor",
-      "width": 1080,
-      "height": 1920
     },
     {
       "type": "image",
@@ -562,9 +550,5 @@
       "width": 1080,
       "height": 1920
     }
-  ],
-  "stripUnsafe": {
-    "v039-2.jpg": "360x640 source, too soft at strip tile size. NOT swapped for a larger frame: each is a published article photograph whose alt text describes that exact scene, so repointing the file would caption one event with a picture of another. The articles keep them, where 360 wide reads correctly.",
-    "v039-5.jpg": "360x640 source, too soft at strip tile size. NOT swapped for a larger frame: each is a published article photograph whose alt text describes that exact scene, so repointing the file would caption one event with a picture of another. The articles keep them, where 360 wide reads correctly."
-  }
+  ]
 }

@@ -91,13 +91,32 @@ def is_share_card(path: Path) -> bool:
 # head"), so overwriting the file with a bigger frame from another course would caption
 # one event with a picture of another. The articles keep them, where 360 wide reads fine;
 # the strips drop them.
-REASON = (
-    "360x640 source, too soft at strip tile size. NOT swapped for a larger frame: "
-    "each is a published article photograph whose alt text describes that exact "
-    "scene, so repointing the file would caption one event with a picture of "
-    "another. The articles keep them, where 360 wide reads correctly."
-)
-STRIP_UNSAFE = {"v039-1.jpg", "v039-2.jpg", "v039-5.jpg", "v033-8.jpg", "v301-2.jpg"}
+# ☠️ TILE SIZE DECIDES, NOT MANIFEST TYPE. Ruled a117e320 after builder-home's
+# counterexample: crew-shots' row is 126px, where a 360 wide photograph is fine, so a
+# blanket "strip manifest" ban removed two frames from the one place they still worked.
+#
+# The comparison is min(srcW/tileW, srcH/tileH) >= DPR, NOT tileW*DPR vs the long side.
+# These tiles are object-fit: cover, which crops the excess, so the BINDING axis is the
+# smaller of the two ratios. The long side shorthand gets crew-shots right and
+# training-media wrong: a 360x640 frame in a 320x240 tile has a long side of 640, which
+# clears 320*2, yet only 360 pixels cover a 640 device px width. Measured, not assumed.
+#
+# The case that started it: v039-1, v039-2, v039-5, v033-8, v301-2, all 360x640 because
+# that is their source reel's native size. Under this rule they are barred where the tile
+# is large and kept where it is small, rather than banned everywhere by name.
+DPR = 2
+
+
+def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None:
+    """Reason the file is too soft for this tile, or None if it is fine."""
+    if not src_w or not src_h:
+        return None
+    if min(src_w / tile_w, src_h / tile_h) >= DPR:
+        return None
+    return (f"{src_w}x{src_h} into a {tile_w}x{tile_h} css tile: needs "
+            f"{tile_w * DPR}x{tile_h * DPR} device px at DPR {DPR}")
+
+TILE_W, TILE_H = 126, 84   # .dsd-crew-shot in home-cinema.css, measured
 
 
 # THE INDEX IS REBUILT FROM THE REPO, NOT READ FROM A SCRATCH FILE. The first version of
@@ -140,7 +159,7 @@ def build_index() -> dict[int, Path]:
 
 def main() -> int:
     idx = build_index()
-    items, missing, skipped = [], [], []
+    items, missing, skipped = [], [], {}
 
     def add(i: int, alt: str, kind: str):
         src = idx.get(i)
@@ -149,12 +168,13 @@ def main() -> int:
             return
         if is_share_card(src):
             raise SystemExit(f"index {i} is a share card, not a photograph: {src.name}")
-        if src.name in STRIP_UNSAFE:
-            print(f"  skipped {src.name}: too small for a strip tile, see STRIP_UNSAFE")
-            skipped.append(src.name)
-            return
+
         with Image.open(src) as im:
             w, h = im.size
+        why = strip_unsafe(w, h, TILE_W, TILE_H)
+        if why:
+            skipped[src.name] = why
+            return
         items.append({"src": "/" + str(src.relative_to(REPO / "public")),
                       "alt": alt, "kind": kind, "width": w, "height": h})
 
@@ -178,10 +198,12 @@ def main() -> int:
             "Install promo graphics, the six model cards carrying prices, and the Denjoy "
             "product renders are all excluded. Items alternate technician and sales so a "
             "row never runs as one kind."
-            + (" REMOVED FROM THIS STRIP: " + ", ".join(sorted(skipped)) + ". " + REASON
+            + (" REMOVED AT THIS TILE SIZE: " + ", ".join(sorted(skipped)) + "."
                if skipped else "")
         ),
-        "stripUnsafe": {n: REASON for n in sorted(skipped)},
+        "tilePx": TILE_W,
+        "tileHeightPx": TILE_H,
+        "stripUnsafe": dict(sorted(skipped.items())),
         "counts": {"total": len(items),
                    "technician": sum(1 for i in items if i["kind"] == "technician"),
                    "sales": sum(1 for i in items if i["kind"] == "sales"),
