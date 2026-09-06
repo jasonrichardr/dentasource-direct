@@ -40,7 +40,7 @@ LIBRARY = REPO / "src/data/cinema/reel-library.json"
 # canvas height, which is 261 css px at a 900px canvas and 464 at 1600px, and that
 # derivation ignores the refraction magnification it cannot compute. A guess here is worth
 # nothing: between 260 and 500 this rule either does nothing or holds a quarter of the wall.
-MARBLE_PX: int | None = None
+MARBLE_PX: int | None = 480
 COVER_MIN = 0.95
 
 # ☠️ RECORD HOW THE NUMBER WAS OBTAINED, BECAUSE NOBODY CAN RE-MEASURE IT.
@@ -50,8 +50,21 @@ COVER_MIN = 0.95
 # next person to confirm or refute this number without redoing the whole derivation.
 # The provenance therefore ships IN the manifest rather than living in a commit message.
 # Fill both fields when MARBLE_PX is set; the script refuses without them.
-MARBLE_PX_METHOD: str | None = None      # e.g. "measured on the rendered canvas at 1440x900"
-MARBLE_PX_RAW: int | None = None         # the measurement BEFORE rounding down
+MARBLE_PX_METHOD: str | None = (
+    "builder-home projected the LIVE three.js scene in a proof build: camera.position.z, "
+    "camera.fov and canvas.clientHeight read off the running page, and each bead's radius "
+    "off its cannon body after the shoal settled. Viewport and canvas 1440x900, z=7, "
+    "fov=45. Hero bead (index 0) world radius 1.554 -> 482.4 css px diameter; smallest "
+    "bead 161.7. Phone 390x844 at z=13 gives a 217.5 hero. Reproduced independently from "
+    "source: baseR = 0.56 * beadScale(1.5) = 0.840, hero = baseR * 1.85 "
+    "(marbleCluster.js:285), diameter 3.108 against a visible height of "
+    "2*7*tan(22.5) = 5.799, which is 0.536 of a 900px canvas = 482.4. Derivation and "
+    "measurement agree to a tenth of a pixel. NOTE the video disc inside the bead is only "
+    "54% of it unmagnified (260.0 px) and the glass refracts that across the whole sphere, "
+    "so 482 is the right quantity and 260 is a different one that happens to look "
+    "plausible. A brightness scan of a frame CANNOT confirm this: the beads overlap."
+)
+MARBLE_PX_RAW: float | None = 482.4      # the measurement BEFORE rounding down
 
 
 def judge(w: int, h: int, d: int) -> float:
