@@ -12,23 +12,14 @@
     "mini-18": "320 by 240, too small for the page"
   },
   "stripUnsafe": {
-    "reel-02.mp4": "404x720 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "reel-06.mp4": "404x720 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "reel-07.mp4": "404x720 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "reel-08.mp4": "404x720 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "reel-09.mp4": "404x720 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "reel-10.mp4": "404x720 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "reel-11.mp4": "720x404 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "reel-12.mp4": "720x404 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "scan-01.jpg": "742x1200 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "scan-02.jpg": "750x1200 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "studio-01.jpg": "757x1200 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "venue-01.jpg": "719x1200 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "venue-02.jpg": "740x1200 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "venue-03.jpg": "748x1200 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "venue-04.jpg": "733x1200 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "venue-05.jpg": "765x1200 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "venue-07.jpg": "748x1200 into a 384x288 css tile: needs 768x576 device px at DPR 2"
+    "reel-02.mp4": "404x720 into a 384x288 css tile: covers it 1.05 times, under the 1.75 floor",
+    "reel-06.mp4": "404x720 into a 384x288 css tile: covers it 1.05 times, under the 1.75 floor",
+    "reel-07.mp4": "404x720 into a 384x288 css tile: covers it 1.05 times, under the 1.75 floor",
+    "reel-08.mp4": "404x720 into a 384x288 css tile: covers it 1.05 times, under the 1.75 floor",
+    "reel-09.mp4": "404x720 into a 384x288 css tile: covers it 1.05 times, under the 1.75 floor",
+    "reel-10.mp4": "404x720 into a 384x288 css tile: covers it 1.05 times, under the 1.75 floor",
+    "reel-11.mp4": "720x404 into a 384x288 css tile: covers it 1.40 times, under the 1.75 floor",
+    "reel-12.mp4": "720x404 into a 384x288 css tile: covers it 1.40 times, under the 1.75 floor"
   },
   "copy": {
     "headline": "Teach at a Training Center built for the way you teach.",
@@ -38,7 +29,7 @@
     ]
   },
   "counts": {
-    "images": 10,
+    "images": 19,
     "videos": 0,
     "missing": 0
   },
@@ -122,10 +113,7 @@
       "height": 1050,
       "alt": "Digital scanning and planning at a workstation",
       "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    }
-  ],
-  "tilePx": 384,
-  "heldBack": [
+    },
     {
       "type": "image",
       "src": "/cinema/growth/venue-01.jpg",
@@ -197,7 +185,10 @@
       "height": 1200,
       "alt": "Filming a lesson on the Training Center floor",
       "source_url": "https://ffcdentalclinic.com/growth-partner/"
-    },
+    }
+  ],
+  "tilePx": 384,
+  "heldBack": [
     {
       "type": "video",
       "src": "/cinema/growth/reel-02.mp4",

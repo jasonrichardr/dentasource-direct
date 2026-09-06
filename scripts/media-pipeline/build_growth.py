@@ -89,32 +89,35 @@ VIDEOS = [
 # counterexample: crew-shots' row is 126px, where a 360 wide photograph is fine, so a
 # blanket "strip manifest" ban removed frames from the one place they still worked.
 #
-# THE TEST IS EXACT COVER: min(srcW/tileW, srcH/tileH) >= DPR. These tiles are
+# THE TEST IS EXACT COVER: min(srcW/tileW, srcH/tileH) >= COVER_MIN. These tiles are
 # object-fit: cover, which crops the excess, so the source has to satisfy BOTH axes and
-# the binding one is whichever ratio is smaller. Ruled form as of 2026-09-06.
+# the binding one is whichever ratio is smaller. It is NOT the long side, which would
+# compute 288*2 = 576 < 640 for installs and re-admit v301-2, undoing a correct removal.
+# It is not the width either.
 #
-# It is NOT the long side, which would compute 288*2 = 576 < 640 for installs and
-# re-admit v301-2, undoing a correct removal. It is not the width either.
+# ☠️ COVER_MIN IS 1.75, NOT 2.0, AND THAT IS A DELIBERATE RELAXATION. team-lead's call,
+# 2026-09-06, and Jarich can push it back to 2.0. 2.0 is the ideal: two source pixels per
+# css pixel on a DPR 2 screen. But Facebook and FFC natively serve 720 wide material, and
+# on a 384 tile that is 1.875, a 6 percent shortfall nobody can see. A hard 2.0 banned
+# most of the site's own footage over 48 pixels, which is a worse outcome than a marginal
+# softness. 1.75 readmits the whole 720 wide pile and still fails the 360 wide frames at
+# 0.94, which are the ones that genuinely look soft. The cliff moved; the test did not.
 #
-# THE SHORT SIDE SHORTHAND AGREES WITH IT ON EVERY FILE WE HOLD, checked rather than
-# assumed: 124 files across crew-shots, training-media and growth-partner, zero
-# disagreements. That matters because builder-room's studio (39093a8) compares short
-# sides, and a file the studio bars has to be the file the generator bars. The two forms
-# part company only for a landscape source in a non-square tile, an 800x600 into a
-# 384x288 being the shape: it has the 768x576 cover needs, so this admits it, while the
-# short side of 600 would bar it. Nothing we hold is shaped that way. If something ever
-# is, the studio is the copy that needs updating, because cover is the true condition.
-DPR = 2
+# THE SHORT SIDE SHORTHAND AGREED WITH THE EXACT FORM ON ALL 124 FILES WE HOLD, checked
+# at 2.0. builder-room's studio (39093a8) compares short sides and must carry the SAME
+# 1.75, or a file the studio bars is not the file the generator bars.
+COVER_MIN = 1.75
 
 
 def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None:
     """Reason the file is too soft for this tile, or None if it is fine."""
     if not src_w or not src_h:
         return None
-    if min(src_w / tile_w, src_h / tile_h) >= DPR:
+    ratio = min(src_w / tile_w, src_h / tile_h)
+    if ratio >= COVER_MIN:
         return None
-    return (f"{src_w}x{src_h} into a {tile_w}x{tile_h} css tile: needs "
-            f"{tile_w * DPR}x{tile_h * DPR} device px at DPR {DPR}")
+    return (f"{src_w}x{src_h} into a {tile_w}x{tile_h} css tile: covers it "
+            f"{ratio:.2f} times, under the {COVER_MIN} floor")
 
 TILE_W, TILE_H = 384, 288   # the SAME .dsd-mixed track as training-media, measured
 
@@ -298,16 +301,7 @@ def main() -> int:
             "portrait and patient case data; a speaker lineup graphic and a certificate "
             "handover reel, both carrying names; a promotional card, which is an ad "
             "render rather than footage; a reel of live procedures on patients; and one "
-            "image too small to use. 17 OF THE 27 ARE OUT OF THE STRIP AT THIS TILE, IN "
-            "TWO GROUPS. The 8 clips are our own encode, not a source ceiling: VIDEO_MAX "
-            "caps the LONG side at 720, so a 9:16 clip lands 404 wide against the 768 a "
-            "384px tile needs at DPR 2. The originals are larger, and a 720 WIDE bead "
-            "re-encode, the profile the reel beads already get, brings them back with no "
-            "edit here. The 9 photographs are a different case and a much closer call: "
-            "they are 719 to 765 wide against 768, missing by 3 to 49 pixels, under 7 "
-            "percent. That is the source's own size and not a downscale, so it cannot be "
-            "recovered by re-encoding. They are held, not deleted, and readmit themselves "
-            "if larger originals are ever fetched."
+            "image too small to use. THE 8 CLIPS ARE THE ONLY THING OUT OF THE STRIP, and the cause is our own encode rather than a source ceiling: VIDEO_MAX caps the LONG side at 720, so a 9:16 clip lands 404 wide and covers a 384x288 tile only 1.05 times. Their sources are 720x1280 and 1920x1080, which cover it 1.88 and 3.75 times, so a cover targeted bead re-encode readmits ALL EIGHT with no edit here. The 9 photographs, 719 to 765 wide, were held at the old 2.0 floor and return at 1.75: they cover the tile 1.87 to 1.99 times. Re-fetching proved the page serves nothing larger, so 1.75 is what makes them usable rather than a bigger original."
         ),
         "excluded": EXCLUDED,
         "tilePx": TILE_W,

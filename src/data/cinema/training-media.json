@@ -2,23 +2,21 @@
   "version": 1,
   "source": "public/images/news training articles, and reel-library.json for the footage",
   "generated": "2026-09-06",
-  "notes": "Photographs from the 15 training articles, picked by looking at a contact sheet, interleaved with every reel the library classified as training so the marquee alternates image, video, image. Videos reference the reel library by id; there is one copy of each clip on disk. ALT TEXT IS ROLE ONLY. Excluded: the live patient procedure frames, the course poster and Q and A card, which are promo graphics carrying speaker names, the certificate collages, and individual portraits. REMOVED AT THIS TILE SIZE: v022-3.jpg, v022-4.jpg, v039-2.jpg, v039-3.jpg, v039-4.jpg, v039-5.jpg, v039-6.jpg.",
+  "notes": "Photographs from the 15 training articles, picked by looking at a contact sheet, interleaved with every reel the library classified as training so the marquee alternates image, video, image. Videos reference the reel library by id; there is one copy of each clip on disk. ALT TEXT IS ROLE ONLY. Excluded: the live patient procedure frames, the course poster and Q and A card, which are promo graphics carrying speaker names, the certificate collages, and individual portraits. REMOVED AT THIS TILE SIZE: v039-2.jpg, v039-3.jpg, v039-4.jpg, v039-5.jpg, v039-6.jpg.",
   "tilePx": 384,
   "tileHeightPx": 288,
   "stripUnsafe": {
-    "v022-3.jpg": "720x1280 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "v022-4.jpg": "720x1280 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "v039-2.jpg": "360x640 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "v039-3.jpg": "360x640 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "v039-4.jpg": "360x640 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "v039-5.jpg": "360x640 into a 384x288 css tile: needs 768x576 device px at DPR 2",
-    "v039-6.jpg": "360x640 into a 384x288 css tile: needs 768x576 device px at DPR 2"
+    "v039-2.jpg": "360x640 into a 384x288 css tile: covers it 0.94 times, under the 1.75 floor",
+    "v039-3.jpg": "360x640 into a 384x288 css tile: covers it 0.94 times, under the 1.75 floor",
+    "v039-4.jpg": "360x640 into a 384x288 css tile: covers it 0.94 times, under the 1.75 floor",
+    "v039-5.jpg": "360x640 into a 384x288 css tile: covers it 0.94 times, under the 1.75 floor",
+    "v039-6.jpg": "360x640 into a 384x288 css tile: covers it 0.94 times, under the 1.75 floor"
   },
   "counts": {
-    "images": 31,
+    "images": 33,
     "videos": 30,
-    "total": 61,
-    "removedTooSmall": 7
+    "total": 63,
+    "removedTooSmall": 5
   },
   "items": [
     {
@@ -142,10 +140,10 @@
     },
     {
       "type": "image",
-      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-2.jpg",
-      "alt": "The room during a hands on session",
-      "width": 1080,
-      "height": 1920
+      "src": "/images/news/9-day-digital-dentistry-course-2026/v022-3.jpg",
+      "alt": "A session under way",
+      "width": 720,
+      "height": 1280
     },
     {
       "type": "video",
@@ -159,10 +157,10 @@
     },
     {
       "type": "image",
-      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-3.jpg",
-      "alt": "A station in use",
-      "width": 1080,
-      "height": 1920
+      "src": "/images/news/9-day-digital-dentistry-course-2026/v022-4.jpg",
+      "alt": "Following the lesson at a station",
+      "width": 720,
+      "height": 1280
     },
     {
       "type": "video",
@@ -176,8 +174,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-4.jpg",
-      "alt": "The teaching bay in use",
+      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-2.jpg",
+      "alt": "The room during a hands on session",
       "width": 1080,
       "height": 1920
     },
@@ -193,8 +191,15 @@
     },
     {
       "type": "image",
-      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-1.jpg",
-      "alt": "Presenting from a tablet",
+      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-3.jpg",
+      "alt": "A station in use",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "type": "image",
+      "src": "/images/news/cbct-training-crest-study-group-dr-loleng/v044-4.jpg",
+      "alt": "The teaching bay in use",
       "width": 1080,
       "height": 1920
     },
@@ -210,8 +215,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-2.jpg",
-      "alt": "Reviewing a case at the screen",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-1.jpg",
+      "alt": "Presenting from a tablet",
       "width": 1080,
       "height": 1920
     },
@@ -227,8 +232,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-4.jpg",
-      "alt": "The class at their stations",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-2.jpg",
+      "alt": "Reviewing a case at the screen",
       "width": 1080,
       "height": 1920
     },
@@ -244,8 +249,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-5.jpg",
-      "alt": "Working through a case together",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-4.jpg",
+      "alt": "The class at their stations",
       "width": 1080,
       "height": 1920
     },
@@ -261,8 +266,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-6.jpg",
-      "alt": "A course in progress",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-5.jpg",
+      "alt": "Working through a case together",
       "width": 1080,
       "height": 1920
     },
@@ -278,8 +283,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-7.jpg",
-      "alt": "Using the microscope at the bench",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-6.jpg",
+      "alt": "A course in progress",
       "width": 1080,
       "height": 1920
     },
@@ -295,8 +300,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-1.jpg",
-      "alt": "The lesson on the big screen",
+      "src": "/images/news/3d-printing-nesting-post-processing-training/v048-7.jpg",
+      "alt": "Using the microscope at the bench",
       "width": 1080,
       "height": 1920
     },
@@ -312,8 +317,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-2.jpg",
-      "alt": "The room mid session",
+      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-1.jpg",
+      "alt": "The lesson on the big screen",
       "width": 1080,
       "height": 1920
     },
@@ -329,8 +334,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-4.jpg",
-      "alt": "Talking a step through at the chair",
+      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-2.jpg",
+      "alt": "The room mid session",
       "width": 1080,
       "height": 1920
     },
@@ -346,8 +351,8 @@
     },
     {
       "type": "image",
-      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-6.jpg",
-      "alt": "A group around a station",
+      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-4.jpg",
+      "alt": "Talking a step through at the chair",
       "width": 1080,
       "height": 1920
     },
@@ -360,6 +365,13 @@
       "height": 720,
       "duration": 25.63,
       "reel_id": "1305206541522895"
+    },
+    {
+      "type": "image",
+      "src": "/images/news/digital-shade-matching-stain-glazing-training/v065-6.jpg",
+      "alt": "A group around a station",
+      "width": 1080,
+      "height": 1920
     },
     {
       "type": "image",
