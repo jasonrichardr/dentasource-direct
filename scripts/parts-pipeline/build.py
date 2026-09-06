@@ -297,6 +297,9 @@ def main() -> int:
         # manifests declare it because theirs CAN fire and has.
         "tilePx": 56,
         "tileHeightPx": 56,
+        # null, not absent: "images only, measured" rather than "not measured yet".
+        "tileVideoPx": None,
+        "tileVideoHeightPx": None,
         "counts": {
             "catalogue": len(parts),
             "produced": len(produced),

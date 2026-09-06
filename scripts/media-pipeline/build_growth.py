@@ -112,7 +112,10 @@ COVER_MIN = 1.75
 def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None:
     """Reason the file is too soft for this tile, or None if it is fine."""
     if not src_w or not src_h:
-        return None
+        return None            # NEVER BAR WHAT CANNOT BE MEASURED. An unreadable size is
+                               # not evidence of a small file, and removing a photograph
+                               # because a probe failed is a worse error than shipping one
+                               # that is slightly soft. Same default builder-room uses.
     ratio = min(src_w / tile_w, src_h / tile_h)
     if ratio >= COVER_MIN:
         return None

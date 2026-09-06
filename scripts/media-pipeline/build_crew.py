@@ -118,7 +118,10 @@ COVER_MIN = 1.75
 def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None:
     """Reason the file is too soft for this tile, or None if it is fine."""
     if not src_w or not src_h:
-        return None
+        return None            # NEVER BAR WHAT CANNOT BE MEASURED. An unreadable size is
+                               # not evidence of a small file, and removing a photograph
+                               # because a probe failed is a worse error than shipping one
+                               # that is slightly soft. Same default builder-room uses.
     ratio = min(src_w / tile_w, src_h / tile_h)
     if ratio >= COVER_MIN:
         return None
@@ -126,6 +129,11 @@ def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None
             f"{ratio:.2f} times, under the {COVER_MIN} floor")
 
 TILE_W, TILE_H = 126, 84   # .dsd-crew-shot in home-cinema.css, measured
+
+# NO VIDEO IN THIS LIST, AND null SAYS SO ON PURPOSE. null means "images only, measured";
+# an ABSENT key would mean "nobody has measured this yet". A consumer can tell the two
+# apart, which it cannot if a list that carries no video simply omits them.
+TILE_VIDEO_W = TILE_VIDEO_H = None
 
 
 # THE INDEX IS REBUILT FROM THE REPO, NOT READ FROM A SCRATCH FILE. The first version of
@@ -212,6 +220,8 @@ def main() -> int:
         ),
         "tilePx": TILE_W,
         "tileHeightPx": TILE_H,
+        "tileVideoPx": TILE_VIDEO_W,
+        "tileVideoHeightPx": TILE_VIDEO_H,
         "stripUnsafe": dict(sorted(skipped.items())),
         "counts": {"total": len(items),
                    "technician": sum(1 for i in items if i["kind"] == "technician"),
