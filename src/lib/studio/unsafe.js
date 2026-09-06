@@ -156,6 +156,12 @@ export async function tileGuards() {
     }
     if (data?.tileFit === 'contain') tile.tileFit = 'contain';
     if (Number(data?.coverMin) > 0) tile.coverMin = Number(data.coverMin);
+    // ☠️ PROVENANCE TRAVELS WITH THE NUMBER. A tile size is normally checkable by
+    // opening the page; the marbles' bead is a texture sample inside a three.js
+    // scene with no element to inspect, so its manifest says how the number was
+    // obtained. That belongs where the number is USED — on the set, in the
+    // studio — not only in the file somebody would have to go and read.
+    if (typeof data?.tileSource === 'string' && data.tileSource.trim()) tile.tileSource = data.tileSource.trim();
     let notedBarred = 0;
     for (const info of Object.values(noted)) if (softnessReason(tile, info.dims, info.kind)) notedBarred += 1;
     byPath[f.path] = {

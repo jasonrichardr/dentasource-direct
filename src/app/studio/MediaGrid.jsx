@@ -149,7 +149,8 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
                     ? 'It carries no video: "tileVideoPx" is declared null, so every clip is refused.'
                     : 'No video tile measured — the key is absent rather than null, so no clip is barred and nobody has said whether this list takes video.',
                 `The same test runs in the picker, in Send to… and on upload, whether or not a manifest ever flagged a file. ${guard.notedBarred} of the flagged files fail here.`,
-              ].join(' ')
+                guard.tileSource ? `Where the tile size comes from: ${guard.tileSource}` : '',
+              ].filter(Boolean).join(' ')
             }
           >
             {guard.pictures === 'measured'

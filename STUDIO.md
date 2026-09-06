@@ -257,6 +257,13 @@ its `tileHeightPx`.
 A list that declares **no `tilePx`** bars nothing, and the studio labels it "no
 tile size declared" rather than looking guarded.
 
+**Where a tile size came from** can travel with it, in `tileSource`, and the
+studio prints it in the hover on the set. Every other tile can be checked by
+opening the page and inspecting the element; the marbles' bead cannot, because
+it is a texture sample inside a three.js scene with no element to inspect. A
+number nobody can re-measure has to carry its own paper trail, and the place it
+is needed is where somebody is using the number.
+
 `stripUnsafe` maps stay in the manifests as generated documentation of what a
 pipeline found and why. They no longer decide anything. The header counts how
 many of those flagged files fail this list's budget, and the picker greys every
