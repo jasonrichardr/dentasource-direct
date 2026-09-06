@@ -81,6 +81,12 @@ file. Rewriting one here would only make it disagree with where it came from.
 **Left out on purpose** appears under a picture set that carries exclusions,
 with the reason for each. Most are privacy calls. It is read only.
 
+**Part names that were guessed** show who named them and how sure that was. A
+low-confidence tile is tinted amber. Read the name against the picture and press
+**Confirm name** when it is right; the tint goes and the name is marked
+confirmed. It is a quick way through a long list, and nothing is confirmed for
+you.
+
 ## Logo dials
 
 The **Logo dials** tab tunes the particle lockup live: vibrancy, brightness,
@@ -94,15 +100,26 @@ else sees them. When a setting looks right, the number has to be copied into
 
 ## Marquee speed
 
-The **Marquee speed** tab shows the four numbers every scrolling strip on the
-site runs at: FFC's own speeds, measured on the live site, one pair for
-photographs and video and one for a line of running text, each with a desktop
-and a phone value.
+Set it by feel. The **Marquee speed** tab has a slider per family and a strip of
+real photographs running under it at exactly that speed, so you can watch it
+rather than guess a number.
 
-It is read only. They live in `FFC_MARQUEE_PX_PER_S` in
-`src/lib/cinema/marquee.js`, which is code rather than content, so it sits
-outside the part of the repo this studio may write to. Changing one re-times
-every marquee on the site at once.
+- Two families, because FFC runs two: photographs and video, and a line of
+  running text. Each has a desktop and a phone value.
+- The strip in the panel is timed by the same code the site uses, so what you
+  feel there is what ships.
+- **Any site tab you have open re-times as you drag**, with no reload. If that
+  tab is behind this one it catches up the moment you look at it, because a
+  hidden tab does not paint.
+- **Reset to FFC** puts back the measured originals.
+- **Per marquee overrides** (behind the button) set one track differently from
+  its family, for when a single strip needs it. Leave a box empty to follow the
+  family. The track names are read out of the code, so the list is whatever the
+  site actually has.
+
+Nothing here changes what ships until you press **Save to settings.json**. Until
+then it is only your browser. Saved speeds live in `src/data/cinema/settings.json`
+and must be committed like any other content.
 
 ## Saving
 

@@ -15,6 +15,26 @@ import TransferPicker from './TransferPicker';
 const srcOf = (row) => (typeof row === 'string' ? row : row?.src || '');
 const withSrc = (row, src) => (typeof row === 'string' ? src : { ...row, src });
 
+// ── 🏷 INFERRED NAMES ────────────────────────────────────────────────────────
+// The parts manifest carries names worked out from the drawings rather than
+// read off a label, so each records WHO decided (named_by) and how sure that
+// was (confidence). A guess and a confirmed fact must not look the same in a
+// grid of 244 tiles: the shaky ones are tinted, and one click promotes a name
+// once a human has actually looked at it.
+//
+// ☠️ CONFIDENCE MAY BE A NUMBER OR A WORD. These fields are not written yet, so
+// this reads both a 0..1 score and a 'low'/'high' label rather than betting on
+// one and silently rendering nothing when the other arrives.
+const LOW = 0.6;
+function confidenceOf(row) {
+  if (!row || typeof row !== 'object' || row.confidence == null) return null;
+  const c = row.confidence;
+  if (typeof c === 'number') return { low: c < LOW, text: `${Math.round(c * 100)}%` };
+  const word = String(c).toLowerCase();
+  return { low: word === 'low' || word === 'guess', text: word };
+}
+const isConfirmed = (row) => String(row?.named_by || '').toLowerCase() === 'confirmed';
+
 function Thumb({ src }) {
   const [dur, setDur] = useState(null);
   if (!src) return <div className="st-thumb empty">no file</div>;
@@ -109,9 +129,11 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
         {rows.map((row, i) => {
           const src = srcOf(row);
           const needsAlt = objectMode && 'alt' in (row || {}) && !String(row.alt || '').trim();
+          const conf = confidenceOf(row);
+          const shaky = conf?.low && !isConfirmed(row);
           return (
             <div
-              className={`st-cell${drag === i ? ' dragging' : ''}${needsAlt ? ' warn' : ''}`}
+              className={`st-cell${drag === i ? ' dragging' : ''}${needsAlt ? ' warn' : ''}${shaky ? ' shaky' : ''}`}
               key={`${src}-${i}`}
               draggable
               onDragStart={() => setDrag(i)}
@@ -160,6 +182,24 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
                       </div>
                     ))}
                 </>
+              ) : null}
+              {conf || row?.named_by ? (
+                <div className={`st-named${shaky ? ' low' : ''}`}>
+                  <span className="st-named-by">
+                    {isConfirmed(row) ? '✓ confirmed' : `named by ${row.named_by || 'unknown'}`}
+                  </span>
+                  {conf ? <span className="st-named-c">{conf.text}</span> : null}
+                  {!isConfirmed(row) ? (
+                    <button
+                      type="button"
+                      className="st-confirm"
+                      title="The name looks right: mark it confirmed"
+                      onClick={() => patch(i, { ...row, named_by: 'confirmed' })}
+                    >
+                      Confirm name
+                    </button>
+                  ) : null}
+                </div>
               ) : null}
               <div className="st-cell-tools">
                 {!single && source ? (
