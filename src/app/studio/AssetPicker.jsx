@@ -6,9 +6,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { isVideoPath } from '@/lib/studio/registry';
+import { isVideoPath, softnessReason } from '@/lib/studio/registry';
 
-export default function AssetPicker({ onPick, onClose, needPx = null, tilePx = null }) {
+export default function AssetPicker({ onPick, onClose, tile = null }) {
   const [q, setQ] = useState('');
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
@@ -70,10 +70,7 @@ export default function AssetPicker({ onPick, onClose, needPx = null, tilePx = n
             // it covers every file in the library rather than the handful a
             // manifest happened to flag. A video has no width here and is never
             // barred by it.
-            const why =
-              needPx && it.kind !== 'video' && it.width != null && it.width < needPx
-                ? `${it.width}px wide. ${tilePx}px tiles need ${needPx}px at DPR 2.`
-                : null;
+            const why = softnessReason(tile, it);
             return (
             <button
               type="button"

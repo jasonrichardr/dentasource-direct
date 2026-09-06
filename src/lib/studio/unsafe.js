@@ -1,46 +1,42 @@
-// ── WHETHER A LIST CAN CARRY A FILE, DECIDED BY SIZE ────────────────────────
+// ── MEASURING A FILE, SO THE STUDIO BARS WHAT THE GENERATORS BAR ────────────
 //
-// ☠️ THIS FILE HAS BEEN WRONG TWICE. Both times the same way: a category
-// standing in for a measurement.
+// The test itself is softnessReason() in ./registry, because the picker runs in
+// the browser and this file reaches the disk. All this does is find a file and
+// measure it.
 //
-//   v1  "declares a stripUnsafe map" was read as "tiles here are big", and
-//       every declaring list was barred from every flagged file. crew-shots
-//       renders 126px tiles and was refusing 360px photographs it displays
-//       perfectly well (builder-home, 2026-09-06).
-//   v2  the comparison was tilePx * 2 against the file's SHORT side. Right for
-//       the portrait sources in hand, wrong in principle: the tiles are 4:3
-//       with object-fit cover and the sources are 360x640 portrait, so it is
-//       the WIDTH that gets scaled to fill and the width that goes soft.
+// ☠️ THIS RULE HAS BEEN WRONG THREE TIMES, always the same way: something
+// standing in for the measurement.
 //
-// The rule, ruled by team-lead and measured by builder-home (d74a964):
+//   v1  "declares a stripUnsafe map" read as "tiles here are big". Over-barred
+//       crew-shots, whose 126px row displays 360px photographs perfectly well.
+//   v2  the file's short side against tilePx * 2. Right for portrait sources.
+//   v3  the file's WIDTH against tilePx * 2. Right for portrait sources too, and
+//       wrong for a wide short landscape, which it lets through.
+//   now the ruled form, from the generators (983be5b): a tile uses object-fit
+//       cover, so a file needs tileW*DPR of width AND tileH*DPR of height.
 //
-//     a list bars a file when   fileWidth  <  tilePx * 2
+// stripUnsafe decides nothing. It is generated documentation of what a pipeline
+// found and why; the studio measures the file in hand against the target list's
+// declared tile, which catches files no map ever named.
 //
-// tilePx is the largest css width the list renders a tile at, declared by the
-// manifest. DPR 2 is the retina case. The width is MEASURED off the file on
-// disk, because a number copied into JSON is a claim about a photograph and
-// this is the photograph; a width declared in a manifest row is used only when
-// the file itself cannot be read.
-//
-// ☠️ AND stripUnsafe NO LONGER DECIDES ANYTHING. It stays in the manifests as
-// generated documentation of what a generator found and why, and both doors —
-// the picker and Send to… — evaluate the TARGET list's tilePx against the file
-// in hand. That way a photograph nobody ever flagged is still refused where it
-// would be soft, and a flagged one is offered where it is fine. A list that
-// declares no tilePx bars nothing: there is no budget to judge against, and the
-// studio says so on the set rather than guessing in either direction.
+// ☠️ VIDEOS ARE MEASURED TOO, with ffprobe. Eight of growth-partner's seventeen
+// barred entries are mp4s, and a studio that silently exempts video would put
+// back what the generator just removed. When neither pipeline is installed
+// nothing is barred and the studio reports the outage: greying out a whole
+// picker with no explanation is the worse failure.
 
+import { execFile } from 'node:child_process';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
+import { promisify } from 'node:util';
 
-import { ASSET_ROOTS, FILES, absolute, basename, isVideoPath, stripUnsafeOf } from './registry';
+import { ASSET_ROOTS, FILES, absolute, basename, isVideoPath, softnessReason, stripUnsafeOf } from './registry';
 
-/** DPR the tile budget is computed against. */
-export const TARGET_DPR = 2;
+const run = promisify(execFile);
 
 const dimsCache = new Map(); // basename -> {width, height} | null
 let indexed = null; // basename -> absolute path
-let pipelineBroken = null; // the error message, once, if sharp cannot load
+let pipelineBroken = null; // first failure message, surfaced to the studio
 
 async function walk(dir, out, depth = 0) {
   if (depth > 6) return;
@@ -68,8 +64,26 @@ async function assetIndex() {
   return found;
 }
 
-/** The file's pixel size, measured. null when it cannot be read: a video, an
- *  SVG, a file that is not there, or a machine without the image pipeline. */
+async function videoDims(file) {
+  const { stdout } = await run('ffprobe', [
+    '-v', 'error',
+    '-select_streams', 'v:0',
+    '-show_entries', 'stream=width,height',
+    '-of', 'json',
+    file,
+  ]);
+  const s = JSON.parse(stdout)?.streams?.[0];
+  return s?.width && s?.height ? { width: s.width, height: s.height } : null;
+}
+
+async function imageDims(file) {
+  const sharp = (await import('sharp')).default;
+  const m = await sharp(file).metadata();
+  return m.width && m.height ? { width: m.width, height: m.height } : null;
+}
+
+/** The file's pixel size, measured and cached. null when it cannot be read: an
+ *  SVG, a file that is not there, or a machine without the pipeline. */
 export async function measure(nameOrPath) {
   const key = basename(nameOrPath);
   if (dimsCache.has(key)) return dimsCache.get(key);
@@ -77,16 +91,8 @@ export async function measure(nameOrPath) {
   try {
     const idx = await assetIndex();
     const file = idx.get(key);
-    if (file && !isVideoPath(file)) {
-      const sharp = (await import('sharp')).default;
-      const m = await sharp(file).metadata();
-      if (m.width && m.height) value = { width: m.width, height: m.height };
-    }
+    if (file) value = isVideoPath(file) ? await videoDims(file) : await imageDims(file);
   } catch (e) {
-    // ☠️ NO PIPELINE MEANS NO OPINION, NOT A CLOSED DOOR. If sharp cannot load,
-    // measuring every file fails, and barring on "unknown" would grey out the
-    // entire picker with no explanation. The studio reports the outage on the
-    // set instead, so an editor sees why nothing is being judged.
     pipelineBroken = pipelineBroken || e.message;
     value = null;
   }
@@ -94,29 +100,20 @@ export async function measure(nameOrPath) {
   return value;
 }
 
-/** The width to judge a file by: what the file says it is, else what a manifest
- *  row claimed. Videos and unreadable files return null and are never barred by
- *  this rule — it is about photographs, and mp4 dimensions are not sharp's. */
-export async function widthOf(nameOrPath, declaredWidth = null) {
-  const m = await measure(nameOrPath);
-  if (m) return m.width;
-  return Number.isFinite(declaredWidth) && declaredWidth > 0 ? declaredWidth : null;
-}
-
-/** Is this file too small for a list whose tiles need `needPx` device px? */
-export function tooSmall(needPx, width) {
-  if (!needPx) return false; // no declared budget: nothing is barred
-  if (width == null) return false; // unmeasurable: no opinion, see measure()
-  return width < needPx;
+/** The reason this file is too small for that list, or null. The measurement is
+ *  the file itself; dimensions written into a manifest row are the fallback for
+ *  a file that cannot be read. */
+export async function refusalFor(tile, nameOrPath, declared = null) {
+  if (!tile?.tilePx) return null;
+  const dims = (await measure(nameOrPath)) || (declared?.width && declared?.height ? declared : null);
+  return softnessReason(tile, dims);
 }
 
 /**
- * The tile budget of every manifest, plus what its own flagged files do against
- * it — the number the media grid shows.
+ * What every manifest renders at, and how many of its own flagged files fail
+ * that budget — the number the media grid shows.
  *
  * @returns {{ byPath: object, noted: object, pipelineBroken: string|null }}
- *   byPath  manifest path -> { tilePx, needPx, declares, noted, notedBarred }
- *   noted   basename -> { reason, declaredBy, width }   the documentation union
  */
 export async function tileGuards() {
   const noted = {};
@@ -137,22 +134,19 @@ export async function tileGuards() {
     }
   }
 
-  for (const name of Object.keys(noted)) noted[name].width = await widthOf(name);
+  for (const name of Object.keys(noted)) noted[name].dims = await measure(name);
 
   const byPath = {};
   for (const { f, data } of docs) {
     const tilePx = Number(data?.tilePx);
-    const has = Number.isFinite(tilePx) && tilePx > 0;
-    const needPx = has ? tilePx * TARGET_DPR : null;
-    let notedBarred = 0;
-    for (const info of Object.values(noted)) if (tooSmall(needPx, info.width)) notedBarred += 1;
-    byPath[f.path] = {
-      tilePx: has ? tilePx : null,
-      needPx,
-      declares: !!stripUnsafeOf(data),
-      noted: stripUnsafeOf(data),
-      notedBarred,
+    const tileHeightPx = Number(data?.tileHeightPx);
+    const tile = {
+      tilePx: Number.isFinite(tilePx) && tilePx > 0 ? tilePx : null,
+      tileHeightPx: Number.isFinite(tileHeightPx) && tileHeightPx > 0 ? tileHeightPx : null,
     };
+    let notedBarred = 0;
+    for (const info of Object.values(noted)) if (softnessReason(tile, info.dims)) notedBarred += 1;
+    byPath[f.path] = { ...tile, declares: !!stripUnsafeOf(data), notedBarred };
   }
 
   return { byPath, noted, pipelineBroken };

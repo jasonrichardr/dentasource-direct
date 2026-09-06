@@ -174,49 +174,56 @@ This part is not for editing copy; it is for the next builder who adds a
 picture set. It lives here because STUDIO.md is what somebody reads before
 touching these files.
 
-Every media list may declare the width its tiles render at:
+Every media list may declare the size its tiles render at:
 
-    "tilePx": 126
+    "tilePx": 126,
+    "tileHeightPx": 84
 
-and the studio refuses a photograph for that list on one comparison:
+and the studio refuses a photograph for that list on the test the generators
+use:
 
-> a list bars a file when its **width is under `tilePx * 2`**.
+> a tile fills by **cover**, so the file needs `tilePx x 2` of width **and**
+> `tileHeightPx x 2` of height.
 
-The doubling is DPR 2, the retina case. Width rather than height because the
-tiles are 4:3 with `object-fit: cover` and the soft sources are 360x640
-portraits: the width is what gets scaled up to fill, so the width is what goes
-soft. The file's width is **measured off the file on disk**, not read from the
-JSON, because a number in a manifest is a claim about a photograph and this is
-the photograph.
+The doubling is DPR 2, the retina case. Both dimensions because `object-fit:
+cover` scales the source by whichever ratio is larger, so either side can be the
+one that goes soft. The file's size is **measured off the file on disk** — sharp
+for pictures, ffprobe for video — because a number in a manifest is a claim
+about a photograph and this is the photograph.
 
-The measured tile widths, from the CSS that renders them:
+What the lists declare, from the CSS that renders them:
 
-| list | tilePx | needs |
+| list | tile | needs |
 |---|---|---|
-| action-reels, growth-partner | 384 | 768 |
-| training-media | 320 | 640 |
-| installs | 288 | 576 |
-| crew-shots | 126 | 252 |
-| parts | 56 | 112 |
+| growth-partner, training-media | 384x288 | 768x576 |
+| action-reels | 384 wide | 768 |
+| installs | 288 wide | 576 |
+| crew-shots | 126x84 | 252x168 |
+| parts | 56x56 | 112x112 |
 
-So the same 360px photograph is refused by the installs strip and accepted by
-the crew row, with nothing to remember: three doors — the picker, "Send to…"
-and an upload — ask the target list the same question.
+So the same 360x640 photograph is refused by the installs strip and accepted by
+the crew row, with nothing to remember: four doors — the picker, "Send to…", an
+upload, and the generators themselves — ask the same question.
+
+A list that declares only `tilePx` is judged on the file's **short side**
+instead, which for a tile no taller than it is wide implies both conditions and
+errs toward barring. The two forms part company only for a landscape source in a
+non-square tile: an 800x600 has the 768x576 that a 384x288 tile needs, and a
+short side of 600 would refuse it. Nothing here is shaped that way; a list that
+acquires such a file should declare its `tileHeightPx`.
 
 A list that declares **no `tilePx`** bars nothing, and the studio labels it "no
-tile size declared" rather than looking guarded. A list with tiles big enough
-for resolution to matter should declare one the day it lands.
+tile size declared" rather than looking guarded.
 
 `stripUnsafe` maps stay in the manifests as generated documentation of what a
-generator found and why. They no longer decide anything. The header counts how
+pipeline found and why. They no longer decide anything. The header counts how
 many of those flagged files fail this list's budget, and the picker greys every
 other file that fails it too, whether or not anybody flagged it.
 
-This is the third version of this rule. The first read "declares a stripUnsafe
-map" as "tiles here are big" and over-barred the crew row for a week: two
-documentary photographs removed from a 126px row for a softness they do not have
-there. The second compared against the file's short side, which is right only
-while every soft source is portrait.
+This is the fourth version of the rule. The first read "declares a stripUnsafe
+map" as "tiles here are big" and over-barred the crew row for a week. The second
+and third compared one dimension — the short side, then the width — each right
+only while every soft source was portrait.
 
 ## Where it writes
 

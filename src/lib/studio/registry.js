@@ -141,6 +141,47 @@ export function basename(p) {
   return typeof p === 'string' ? p.split('?')[0].split('/').pop() : '';
 }
 
+/** DPR every tile budget is computed against. */
+export const TARGET_DPR = 2;
+
+/** ☠️ THE ONE TEST, SHARED BY THE SERVER AND THE BROWSER. Ruled 2026-09-06 and
+ *  implemented in the generators first (983be5b): a tile uses object-fit cover,
+ *  so the source is scaled by min(srcW/tileW, srcH/tileH) and is soft when that
+ *  is under the DPR. Equivalently it needs tileW*DPR of width AND tileH*DPR of
+ *  height.
+ *
+ *  This lives in registry.js rather than unsafe.js because unsafe.js reaches
+ *  the filesystem and the picker runs in the browser. The two doors calling one
+ *  function is the point: a file the studio bars must be the file the generator
+ *  bars, or the code and the data disagree about the same photograph.
+ *
+ *  A manifest that declares only `tilePx` gets the short side instead, which for
+ *  a tile no taller than it is wide implies both conditions and errs toward
+ *  barring. It parts company with cover only for a landscape source in a
+ *  non-square tile — an 800x600 into a 384x288 has the 768x576 cover needs, and
+ *  the short side of 600 would refuse it. Nothing here is shaped that way; a
+ *  list that acquires such a file should declare its tileHeightPx.
+ *
+ *  @param tile {{tilePx?: number, tileHeightPx?: number}} what the list renders
+ *  @param dims {{width: number, height: number}|null} the file, measured
+ *  @returns a reason string when the file is too small, else null
+ */
+export function softnessReason(tile, dims) {
+  const tw = Number(tile?.tilePx);
+  if (!Number.isFinite(tw) || tw <= 0) return null; // no declared budget: nothing is barred
+  if (!dims?.width || !dims?.height) return null; // unmeasurable: no opinion, see unsafe.js
+  const needW = tw * TARGET_DPR;
+  const th = Number(tile?.tileHeightPx);
+  if (Number.isFinite(th) && th > 0) {
+    const needH = th * TARGET_DPR;
+    if (dims.width >= needW && dims.height >= needH) return null;
+    return `${dims.width}x${dims.height} into a ${tw}x${th} css tile: needs ${needW}x${needH} device px at DPR 2`;
+  }
+  const short = Math.min(dims.width, dims.height);
+  if (short >= needW) return null;
+  return `${dims.width}x${dims.height}, short side ${short}: a ${tw}px tile needs ${needW} device px at DPR 2`;
+}
+
 /** ☠️ FILES A GENERATOR FOUND TOO SMALL FOR SOMEWHERE, AND WHY.
  *  A manifest may carry `stripUnsafe`: { "<filename>": "<reason>" }. These are
  *  photographs removed from that strip on purpose: 360px sources that read soft

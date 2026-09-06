@@ -15,10 +15,11 @@ export async function GET() {
 
   const out = [];
   // ☠️ WHAT A LIST MAY CARRY IS SIZE, NOT A CATEGORY AND NOT A LIST OF NAMES.
-  // Each manifest declares the css width its tiles render at; a file is barred
-  // where its own width is under tilePx * 2. See src/lib/studio/unsafe.js for
-  // the two wrong versions this replaced. stripUnsafe rides along as generated
-  // documentation and decides nothing.
+  // Each manifest declares the css size its tiles render at; a file is barred
+  // where object-fit cover would scale it past the DPR. The test is
+  // softnessReason() in the registry, shared with the picker; the measuring is
+  // src/lib/studio/unsafe.js, which also lists the three wrong versions this
+  // replaced. stripUnsafe rides along as documentation and decides nothing.
   const { byPath, noted, pipelineBroken } = await tileGuards();
   for (const f of FILES) {
     try {

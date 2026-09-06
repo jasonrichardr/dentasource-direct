@@ -12,7 +12,7 @@
 import { readFile, writeFile, copyFile, appendFile } from 'node:fs/promises';
 
 import { FILES, LOG_FILE, absolute, basename, detectCollection, isVideoPath, isWritable, studioDisabled } from '@/lib/studio/registry';
-import { tileGuards, tooSmall, widthOf } from '@/lib/studio/unsafe';
+import { refusalFor, tileGuards } from '@/lib/studio/unsafe';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -194,19 +194,14 @@ export async function POST(request) {
   // The target's own budget decides, by size: a list that renders small tiles
   // takes a photograph a large-tile strip cannot. See src/lib/studio/unsafe.js.
   const { byPath } = await tileGuards();
-  const needPx = byPath[to.path]?.needPx || null;
+  const tile = byPath[to.path] || null;
 
-  if (needPx) {
+  if (tile?.tilePx) {
     for (const entry of picked) {
       const src = srcOf(entry);
-      if (isVideoPath(src)) continue;
-      const declared = entry && typeof entry === 'object' ? Number(entry.width) : null;
-      const width = await widthOf(src, declared);
-      if (tooSmall(needPx, width)) {
-        return bad(
-          `${basename(src)} is ${width}px wide. That list renders ${byPath[to.path].tilePx}px tiles, which need ${needPx}px at DPR 2, so it would read soft there.`,
-        );
-      }
+      const declared = entry && typeof entry === 'object' ? { width: Number(entry.width), height: Number(entry.height) } : null;
+      const why = await refusalFor(tile, src, declared);
+      if (why) return bad(`${basename(src)} would read soft there. ${why}.`);
     }
   }
 
