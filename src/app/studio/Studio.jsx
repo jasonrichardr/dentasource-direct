@@ -341,6 +341,10 @@ export default function Studio() {
                 dirty={dirty}
                 onTransferred={afterTransfer}
                 blocked={unsafeUnion || stripUnsafeOf(doc)}
+                guard={{
+                  declares: !!stripUnsafeOf(doc),
+                  count: Object.keys(unsafeUnion || stripUnsafeOf(doc) || {}).length,
+                }}
               />
               {/* ☠️ WHY SOMETHING IS MISSING IS EDITORIAL INFORMATION. The growth
                   partner set carries an `excluded` map of id range to reason,

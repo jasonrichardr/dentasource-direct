@@ -63,7 +63,7 @@ function Thumb({ src }) {
   );
 }
 
-export default function MediaGrid({ k, value, onChange, single = false, source = null, dirty = false, onTransferred = null, blocked = null }) {
+export default function MediaGrid({ k, value, onChange, single = false, source = null, dirty = false, onTransferred = null, blocked = null, guard = null }) {
   const rows = Array.isArray(value) ? value : [];
   const objectMode = rows.some((r) => r && typeof r === 'object');
   const [picking, setPicking] = useState(null); // index being swapped, or 'add'
@@ -122,6 +122,23 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
     <div className="st-media">
       <div className="st-f-k">
         {k}
+        {/* ☠️ SAY WHETHER THIS SET HAS A RESOLUTION GUARD. The key's presence is
+            a proxy for "tiles here are big enough for source resolution to
+            matter", and the silent failure is a large-tile set that never
+            declared one. The studio cannot measure a tile, so it shows the
+            absence to the person editing the set, who can. */}
+        {guard ? (
+          <span
+            className={`st-guard${guard.declares ? '' : ' none'}`}
+            title={
+              guard.declares
+                ? 'This set rules out files that are too soft at its tile size. Barred files are greyed in the picker.'
+                : 'This set does not declare stripUnsafe, so nothing is barred from it. That is right for small tiles (the parts rows) and wrong for a strip. If tiles here render large, the set should declare the key, even empty.'
+            }
+          >
+            {guard.declares ? `resolution guard: ${guard.count} barred` : 'no resolution guard'}
+          </span>
+        ) : null}
         <span className="st-f-n">{rows.length} {rows.length === 1 ? 'file' : 'files'}</span>
       </div>
 

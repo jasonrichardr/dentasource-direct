@@ -497,3 +497,5 @@
 .st-pick.barred:hover { border-color: var(--warn); color: var(--ink-soft); }
 .st-pick.barred img, .st-pick.barred video { filter: grayscale(1); }
 .st-pick-x { font-size: 9.5px; color: var(--warn); }
+.st-guard { font-size: 9.5px; letter-spacing: 0.06em; color: var(--signal); border: 1px solid var(--signal-deep); border-radius: 999px; padding: 1px 8px; cursor: help; text-transform: none; }
+.st-guard.none { color: var(--ink-faint); border-color: var(--line); }

@@ -143,14 +143,33 @@ export function basename(p) {
 
 /** ☠️ FILES A MANIFEST HAS RULED OUT, AND WHY.
  *  A manifest may carry `stripUnsafe`: { "<filename>": "<reason>" }. These are
- *  photographs that were REMOVED from that strip on purpose and must not come
- *  back: 360px sources that read soft at tile size, most of them. They are not
- *  swapped and not upscaled, because each one's alt text describes that exact
- *  scene and repointing the file would caption one event with a picture of
- *  another. They stay in their articles, where 360 wide is right.
- *  Two of the four manifests carrying this are HAND MAINTAINED, with no build
- *  step that could refuse a re-add, so the studio is the only place the refusal
- *  can live. It is read generically: any manifest with the key, any picker. */
+ *  photographs REMOVED from that strip on purpose: 360px sources that read soft
+ *  at tile size. They are not swapped and not upscaled, because each one's alt
+ *  text describes that exact scene and repointing the file would caption one
+ *  event with a picture of another. They stay in their articles, where 360 wide
+ *  is right.
+ *
+ *  ☠️ WHAT THE KEY MEANS, agreed with builder-home and builder-products
+ *  (2026-09-06), because the obvious reading is the wrong one:
+ *
+ *      stripUnsafe means "a list whose tiles are large enough for source
+ *      resolution to matter", NOT "a list of tiles".
+ *
+ *  The measurement behind it: a strip tile renders up to 384 css px, 768 device
+ *  px at DPR 2, where a 360 wide source is visibly soft. A parts tile renders
+ *  56 css px, 112 device px, where the same photograph is fine. So parts.json
+ *  is a strip and deliberately does NOT declare: pulling it under the union
+ *  would ban five photographs from a place they still work, which is the same
+ *  failure avoided by keeping a beat's media list out.
+ *
+ *  ☠️ AND THE KNOWN WEAKNESS. Presence of the key is a PROXY for "resolution
+ *  matters here". Today the two coincide everywhere except parts. A small-tile
+ *  strip added later would over-bar; a large-tile list that forgets the key
+ *  would under-bar, silently, which is the worse direction. The studio cannot
+ *  measure a tile, so it does the next best thing and SAYS which sets have a
+ *  guard and which do not, in the media grid header, where somebody editing the
+ *  set will see it. Two of the declaring manifests are hand maintained with no
+ *  build step behind them, so a visible absence is the only alarm available. */
 export function stripUnsafeOf(doc) {
   const m = doc && typeof doc === 'object' ? doc.stripUnsafe : null;
   return m && typeof m === 'object' ? m : null;
