@@ -1,7 +1,7 @@
 {
   "version": 1,
   "generated": "2026-09-05",
-  "notes": "The mixed marquee for the beat that is now THE REAL DENTASOURCE, and it carries the candid team frames too: the separate Our people strip was removed on 2026-09-06 and its eighteen tiles were folded in here, so one marquee shows the crew and the work instead of two showing them apart. THIS FILE CHOOSES WHICH ITEMS, NOT WHAT ORDER THEY RUN IN. The interleave moved into mixOrder() in panels.jsx on 2026-09-06, because the training beat's strip is merged in code from two manifests and no single file can decide the order for it; two rules for the same marquee is how they drift apart. The rule is: open on a video, space the videos evenly through the whole run. Everything between the clips is a photograph. EXTENDABLE: append either type, the component re-spaces it.",
+  "notes": "The mixed marquee for the beat that is now THE REAL DENTASOURCE, and it carries the candid team frames too: the separate Our people strip was removed on 2026-09-06 and its eighteen tiles were folded in here, so one marquee shows the crew and the work instead of two showing them apart. THIS FILE CHOOSES WHICH ITEMS, NOT WHAT ORDER THEY RUN IN. The interleave moved into mixOrder() in panels.jsx on 2026-09-06, because the training beat's strip is merged in code from two manifests and no single file can decide the order for it; two rules for the same marquee is how they drift apart. The rule is: open on a video, space the videos evenly through the whole run. Everything between the clips is a photograph. EXTENDABLE: append either type, the component re-spaces it.\n☠️ FIVE FRAMES ARE DELIBERATELY ABSENT AND MUST NOT BE ADDED BACK AT TILE SIZE (ruled 2026-09-06). v033-8, v039-1, v039-2, v039-5 and v301-2 are 360 pixels wide at source with no larger copy anywhere. A tile on this strip renders up to 384 css px, which is 768 device px on a retina screen, so they would be served at less than half the resolution the tile needs and would sit visibly soft beside everything around them. They are documentary article photographs whose captions describe the exact frame, so they are never swapped for a lookalike and never upscaled. They keep their place IN the articles, where they render small; they only leave the large strips. If the studio picker offers one of these again, this is why it should be declined.",
   "eyebrow": "See us in action",
   "headline": "The real DentaSource.",
   "reels": [
@@ -76,11 +76,6 @@
     },
     {
       "type": "image",
-      "src": "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg",
-      "caption": "The inspection sheet being signed before anything ships"
-    },
-    {
-      "type": "image",
       "src": "/images/news/dental-chair-installation-cabuyao-laguna/v081-5.jpg",
       "caption": "The dentist with the finished unit"
     },
@@ -123,11 +118,6 @@
     },
     {
       "type": "image",
-      "src": "/images/news/crest-hands-on-digital-designing-training/v039-2.jpg",
-      "caption": "Heads together over a screen during a hands on session"
-    },
-    {
-      "type": "image",
       "src": "/images/news/two-roson-dx-s3-ignacio-dental-clinic/v089-5.jpg",
       "caption": "Our team with the clinic staff beside two new chairs"
     },
@@ -159,11 +149,6 @@
     },
     {
       "type": "image",
-      "src": "/images/news/crest-hands-on-digital-designing-training/v039-5.jpg",
-      "caption": "A study group working through a digital design exercise"
-    },
-    {
-      "type": "image",
       "src": "/images/news/117th-pda-annual-convention-2026/v062-4.jpg",
       "caption": "A quiet moment at the stand between conversations"
     },
@@ -182,11 +167,6 @@
       "type": "image",
       "src": "/images/news/dentasource-training-center-opens-pasig/v032-2.jpg",
       "caption": "The teaching board at the front of the Training Center room"
-    },
-    {
-      "type": "image",
-      "src": "/images/news/crest-hands-on-digital-designing-training/v039-1.jpg",
-      "caption": "A full room at a hands on training day"
     },
     {
       "type": "image",
