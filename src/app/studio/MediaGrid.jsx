@@ -135,20 +135,34 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
             tile size bars nothing, and says that rather than looking guarded. */}
         {guard ? (
           <span
-            className={`st-guard${guard.tilePx ? '' : ' none'}`}
+            className={`st-guard${guard.pictures === 'measured' ? '' : ' none'}`}
             title={
-              !guard.tilePx
-                ? 'No tile size declared, so nothing is barred from this set. Add "tilePx": <css px> to the manifest and every file is judged against it.'
-                : guard.tileHeightPx
-                  ? `Tiles here render ${guard.tilePx}x${guard.tileHeightPx} css px${guard.tileVideoPx ? `, and a clip ${guard.tileVideoPx}x${guard.tileVideoHeightPx || guard.tileVideoPx}` : ''}. A file must fill its tile at ${COVER_MIN}x or better or it is greyed in the picker, refused by Send to… and refused on upload, whether or not a manifest ever flagged it. ${guard.notedBarred} of the flagged files fail here.`
-                  : `Tiles here render ${guard.tilePx} css px wide and declare no height, so the tile is judged square and the file's short side decides: it must cover at ${COVER_MIN}x. Declaring "tileHeightPx" makes this the exact cover test. ${guard.notedBarred} of the flagged files fail here.`
+              [
+                guard.pictures === 'measured'
+                  ? `Pictures render ${guard.tilePx}x${guard.tileHeightPx || guard.tilePx} css px here and must fill that at ${COVER_MIN}x or better.`
+                  : guard.pictures === 'none'
+                    ? 'This list renders no picture tile, so it takes video only.'
+                    : 'No picture tile measured, so no picture is barred. Declare "tilePx" and "tileHeightPx" to judge them.',
+                guard.clips === 'measured'
+                  ? `Clips render ${guard.tileVideoPx}x${guard.tileVideoHeightPx || guard.tileVideoPx} and are judged against that, not against the picture tile.`
+                  : guard.clips === 'none'
+                    ? 'It carries no video: "tileVideoPx" is declared null, so every clip is refused.'
+                    : 'No video tile measured — the key is absent rather than null, so no clip is barred and nobody has said whether this list takes video.',
+                `The same test runs in the picker, in Send to… and on upload, whether or not a manifest ever flagged a file. ${guard.notedBarred} of the flagged files fail here.`,
+              ].join(' ')
             }
           >
-            {!guard.tilePx
-              ? 'no tile size declared'
-              : guard.tileHeightPx
-                ? `tiles ${guard.tilePx}x${guard.tileHeightPx}${guard.tileVideoPx ? ` · clips ${guard.tileVideoPx}x${guard.tileVideoHeightPx || guard.tileVideoPx}` : ''}: ${guard.notedBarred} barred`
-                : `tiles ${guard.tilePx} wide: ${guard.notedBarred} barred`}
+            {guard.pictures === 'measured'
+              ? `tiles ${guard.tilePx}x${guard.tileHeightPx || guard.tilePx}`
+              : guard.pictures === 'none'
+                ? 'no picture tile'
+                : 'no tile size declared'}
+            {guard.clips === 'measured'
+              ? ` · clips ${guard.tileVideoPx}x${guard.tileVideoHeightPx || guard.tileVideoPx}`
+              : guard.clips === 'none'
+                ? ' · images only'
+                : ' · video tile not declared'}
+            {guard.pictures === 'measured' ? `: ${guard.notedBarred} barred` : null}
           </span>
         ) : null}
         <span className="st-f-n">{rows.length} {rows.length === 1 ? 'file' : 'files'}</span>

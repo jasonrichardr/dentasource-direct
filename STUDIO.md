@@ -210,17 +210,32 @@ What the lists declare, from the CSS that renders them:
 and the 360x640 crest frames fill a 384x288 tile at 0.94 and the 126x84 crew row
 at 2.86 — refused by the first, offered by the second.
 
-**A list can render two tiles.** In the mixed track a clip gets
-`aspect-ratio: 9/16` and a picture `4/3` at the same height, so the boxes are
-162x288 and 384x288. A 404x720 reel fills its own clip tile at 2.49 and the
-picture tile at 1.05, so judging it by the picture tile refuses footage that is
-fine. `tileVideoPx` and `tileVideoHeightPx` name the clip tile; without them a
-clip is judged by the picture tile.
+**A list renders a tile per kind.** In the mixed track a clip gets
+`aspect-ratio: 9/16` and a picture `4/3` at a shared height, so the boxes are
+162x288 and 384x288 (measured off the rendered element, not read out of the
+stylesheet — `.dsd-reel` in `home-cinema.css` describes a layout that was
+replaced and renders nowhere). A 404x720 reel fills its own tile at 2.49 and the
+picture tile at 1.05, so a clip is judged by `tileVideoPx` /
+`tileVideoHeightPx` and a picture by `tilePx` / `tileHeightPx`.
+
+**A null is a declaration. A missing key is not.**
+
+| in the manifest | what it means | what the studio does |
+|---|---|---|
+| `"tileVideoPx": 162` | measured | judges every clip against it |
+| `"tileVideoPx": null` | this list carries no video | refuses every clip, "takes images only" |
+| no `tileVideoPx` key | nobody has measured it | bars nothing, labels "video tile not declared" |
+
+The same for the picture keys. This is the `stripUnsafe` proxy again in
+miniature: an absence cannot tell "not applicable" from "not measured", and the
+studio should not have to guess which one a silence is.
 
 **Not every tile crops.** `.dsd-part-img` is `object-fit: contain`, which fits
 the file inside the box rather than filling it, so the ratio is
 `max(w / tilePx, h / tileHeightPx)` — the other extreme. A manifest whose tiles
-contain says `"tileFit": "contain"`. The default is cover, which is every strip.
+contain says `"tileFit": "contain"`; `parts.json` does. Judged as cover it would
+refuse four of its own thumbnails: `light-arm-2.png` at 348x68 fills a 56x56 tile
+at 1.21 by cover and 6.21 by contain.
 
 Nothing to remember: four doors — the picker, "Send to…", an upload, and the
 generators themselves — run the same arithmetic.

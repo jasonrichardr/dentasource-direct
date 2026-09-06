@@ -33,7 +33,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { promisify } from 'node:util';
 
-import { ASSET_ROOTS, FILES, absolute, basename, isVideoPath, softnessReason, stripUnsafeOf } from './registry';
+import { ASSET_ROOTS, FILES, absolute, basename, isVideoPath, softnessReason, stripUnsafeOf, tileState } from './registry';
 
 const run = promisify(execFile);
 
@@ -107,7 +107,7 @@ export async function measure(nameOrPath) {
  *  the file itself; dimensions written into a manifest row are the fallback for
  *  a file that cannot be read. */
 export async function refusalFor(tile, nameOrPath, declared = null) {
-  if (!tile?.tilePx) return null;
+  if (!tile) return null;
   const dims = (await measure(nameOrPath)) || (declared?.width && declared?.height ? declared : null);
   return softnessReason(tile, dims, isVideoPath(nameOrPath) ? 'video' : 'image');
 }
@@ -144,19 +144,26 @@ export async function tileGuards() {
 
   const byPath = {};
   for (const { f, data } of docs) {
-    // every tile key the manifest declares, passed through as it stands: the
-    // shape belongs to the data and the test, not to this loop
-    const num = (v) => (Number.isFinite(Number(v)) && Number(v) > 0 ? Number(v) : null);
-    const tile = {
-      tilePx: num(data?.tilePx),
-      tileHeightPx: num(data?.tileHeightPx),
-      tileVideoPx: num(data?.tileVideoPx),
-      tileVideoHeightPx: num(data?.tileVideoHeightPx),
-      tileFit: data?.tileFit === 'contain' ? 'contain' : null,
-    };
+    // ☠️ COPY THE KEYS THE MANIFEST HAS, AND ONLY THOSE. A declared null means
+    // "this list carries none of that kind" and an absent key means "nobody has
+    // measured it": normalising both to null here would erase the distinction
+    // before the test ever sees it, which is the whole point of the convention.
+    const tile = {};
+    for (const k of ['tilePx', 'tileHeightPx', 'tileVideoPx', 'tileVideoHeightPx']) {
+      if (data && Object.prototype.hasOwnProperty.call(data, k)) {
+        tile[k] = data[k] === null ? null : Number(data[k]);
+      }
+    }
+    if (data?.tileFit === 'contain') tile.tileFit = 'contain';
     let notedBarred = 0;
     for (const info of Object.values(noted)) if (softnessReason(tile, info.dims, info.kind)) notedBarred += 1;
-    byPath[f.path] = { ...tile, declares: !!stripUnsafeOf(data), notedBarred };
+    byPath[f.path] = {
+      ...tile,
+      pictures: tileState(tile, 'image'),
+      clips: tileState(tile, 'video'),
+      declares: !!stripUnsafeOf(data),
+      notedBarred,
+    };
   }
 
   return { byPath, noted, pipelineBroken };

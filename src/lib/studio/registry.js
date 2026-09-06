@@ -150,40 +150,52 @@ export function basename(p) {
  *  frames, the ones that genuinely look soft, sit at 0.94 and still fail. */
 export const COVER_MIN = 1.75;
 
-/** ☠️ A LIST CAN RENDER TWO DIFFERENT TILES. The mixed track gives a video
- *  `aspect-ratio: 9/16` and an image `4/3` at the same height, so the boxes are
- *  162x288 and 384x288 (home-cinema.css:512-526). Judging a portrait clip
- *  against the landscape box refuses a 404x720 reel at 1.05 when it actually
- *  fills its own tile at 2.49. So the tile is chosen by what the file IS:
- *  `tileVideoPx` / `tileVideoHeightPx` when declared and the file is video,
- *  otherwise the picture tile.
+/** ☠️ A LIST RENDERS A TILE PER KIND, and judging by the wrong one is the same
+ *  failure as the crew row. In the mixed track a clip gets `aspect-ratio: 9/16`
+ *  and a still `4/3` at a shared height, so the boxes are 162x288 and 384x288
+ *  (builder-home, measured off the rendered element at ed8160c, not read out of
+ *  the stylesheet). A 404x720 reel fills its own tile at 2.49 and the picture
+ *  tile at 1.05, so one tile size cannot describe a mixed list.
+ *
+ *  ☠️ AND null IS NOT THE SAME AS ABSENT. Ruled 2026-09-06, because absence of a
+ *  key cannot tell "not applicable" from "not measured" and the studio was about
+ *  to read both as the same permission:
+ *
+ *      "tileVideoPx": null   the list carries no video. Refuse every clip.
+ *      key absent            nobody has measured it. Bar nothing, say so.
+ *
+ *  The same for the picture keys. This is the stripUnsafe proxy again in
+ *  miniature: a missing key is not a statement, and the fix is for the data to
+ *  make one.
  *
  *  ☠️ AND NOT EVERY TILE CROPS. `.dsd-part-img` is `object-fit: contain`
  *  (home-cinema.css:547): the file is fitted INSIDE the box, scaled by
  *  min(tileW/w, tileH/h), so the pixels it has per rendered css px are
  *  max(w/tileW, h/tileH) — the opposite extreme from cover. A manifest whose
- *  tiles contain says `"tileFit": "contain"`; the default is cover, which is
- *  every strip. */
+ *  tiles contain says `"tileFit": "contain"`; the default is cover.
+ *
+ *  @returns {{w, h, square}} a box | {excluded: true} | null when unmeasured
+ */
 function boxFor(tile, kind) {
-  const vw = Number(tile?.tileVideoPx);
-  const vh = Number(tile?.tileVideoHeightPx);
-  if (kind === 'video' && Number.isFinite(vw) && vw > 0) {
-    return { w: vw, h: Number.isFinite(vh) && vh > 0 ? vh : vw, square: !(Number.isFinite(vh) && vh > 0) };
-  }
-  const w = Number(tile?.tilePx);
+  const wKey = kind === 'video' ? 'tileVideoPx' : 'tilePx';
+  const hKey = kind === 'video' ? 'tileVideoHeightPx' : 'tileHeightPx';
+  if (!tile || !(wKey in tile)) return null; // not measured: no opinion
+  if (tile[wKey] === null) return { excluded: true }; // declared: carries none of this kind
+  const w = Number(tile[wKey]);
   if (!Number.isFinite(w) || w <= 0) return null;
-  const h = Number(tile?.tileHeightPx);
-  return { w, h: Number.isFinite(h) && h > 0 ? h : w, square: !(Number.isFinite(h) && h > 0) };
+  const h = Number(tile[hKey]);
+  const known = Number.isFinite(h) && h > 0;
+  return { w, h: known ? h : w, square: !known };
 }
 
 /** How many of the file's own pixels land on each css pixel of that tile once
  *  the browser has fitted it. Cover crops, so the smaller ratio decides; contain
- *  letterboxes, so the larger one does. A tile that declares no height is judged
- *  square, which under cover makes this min(w,h)/tileW — the short side form,
- *  and conservative for a wide landscape source. */
+ *  letterboxes, so the larger one does. A tile with a width and no height is
+ *  judged square, which under cover makes this min(w,h)/tileW — the short side
+ *  form, conservative for a wide landscape source. */
 export function coverRatio(tile, dims, kind = 'image') {
   const box = boxFor(tile, kind);
-  if (!box) return null; // no declared budget
+  if (!box || box.excluded) return null;
   if (!dims?.width || !dims?.height) return null; // unmeasurable: no opinion
   const byWidth = dims.width / box.w;
   const byHeight = dims.height / box.h;
@@ -200,18 +212,33 @@ export function coverRatio(tile, dims, kind = 'image') {
  *  filesystem and the picker runs in the browser.
  *
  *  @param tile  what the list renders: tilePx, tileHeightPx, tileVideoPx,
- *               tileVideoHeightPx, tileFit
+ *               tileVideoHeightPx, tileFit. A null value is a declaration; a
+ *               missing key is not.
  *  @param dims  {{width: number, height: number}|null} the file, measured
  *  @param kind  'video' or 'image'
- *  @returns a reason string when the file is too small, else null
+ *  @returns a reason string when the file cannot go in this list, else null
  */
 export function softnessReason(tile, dims, kind = 'image') {
+  const box = boxFor(tile, kind);
+  if (!box) return null; // unmeasured: never bar on an absence
+  if (box.excluded) {
+    return kind === 'video'
+      ? 'this list takes images only, it renders no video tile'
+      : 'this list takes video only, it renders no picture tile';
+  }
   const ratio = coverRatio(tile, dims, kind);
   if (ratio === null || ratio >= COVER_MIN) return null;
-  const box = boxFor(tile, kind);
   const named = box.square ? `${box.w} px wide` : `${box.w}x${box.h}`;
   const what = kind === 'video' ? 'clip' : 'picture';
   return `a ${what} of ${dims.width}x${dims.height} fills a ${named} tile at ${ratio.toFixed(2)}x, under the ${COVER_MIN}x floor`;
+}
+
+/** What this list says about a kind, for a label: 'measured', 'none' when the
+ *  key is an explicit null, or 'unmeasured' when it is simply not there. */
+export function tileState(tile, kind = 'image') {
+  const box = boxFor(tile, kind);
+  if (!box) return 'unmeasured';
+  return box.excluded ? 'none' : 'measured';
 }
 
 /** ☠️ FILES A GENERATOR FOUND TOO SMALL FOR SOMEWHERE, AND WHY.

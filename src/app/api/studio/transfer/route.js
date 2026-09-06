@@ -180,11 +180,6 @@ export async function POST(request) {
     .filter((x) => x !== undefined);
   if (!picked.length) return bad('nothing selected');
 
-  // the video rule, enforced server side so it cannot be clicked past
-  if (!acceptsVideo(targetList) && picked.some((x) => isVideoPath(srcOf(x)))) {
-    return bad('that list does not carry video. Pick a target that already holds one.');
-  }
-
   // ☠️ THE SAME BAR THE PICKER SHOWS, ON THE OTHER DOOR. Greying a file out of
   // the picker stops it being ADDED to a list whose tiles are too big for it,
   // and does nothing about it being SENT there from a list where it was fine.
@@ -196,13 +191,22 @@ export async function POST(request) {
   const { byPath } = await tileGuards();
   const tile = byPath[to.path] || null;
 
-  if (tile?.tilePx) {
+  if (tile) {
     for (const entry of picked) {
       const src = srcOf(entry);
       const declared = entry && typeof entry === 'object' ? { width: Number(entry.width), height: Number(entry.height) } : null;
       const why = await refusalFor(tile, src, declared);
-      if (why) return bad(`${basename(src)} would read soft there. ${why}.`);
+      // the reason reads as a sentence about the file, so it needs no preamble
+      if (why) return bad(`${basename(src)}: ${why}.`);
     }
+  }
+
+  // ☠️ THE INFERRED VIDEO RULE RUNS LAST, AFTER THE DECLARED ONE. A manifest
+  // that says "tileVideoPx": null has stated it takes no video and gets to say
+  // so in its own words; this is the fallback for a list that has declared
+  // nothing, where the only evidence is what the list already holds.
+  if (!acceptsVideo(targetList) && picked.some((x) => isVideoPath(srcOf(x)))) {
+    return bad('that list does not carry video. Pick a target that already holds one.');
   }
 
   const adapted = picked.map((e) => adapt(e, targetList));
