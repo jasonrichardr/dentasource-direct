@@ -35,10 +35,11 @@ def merge(base_path: Path, vps_path: Path, key, fields, extra_lists=()):
     base = json.loads(base_path.read_text())
     if not vps_path.exists():
         print(f"  {vps_path.name}: not fetched, skipped")
-        return None, 0, set()
+        return None, 0, set(), set(), [], []
     src = json.loads(vps_path.read_text())
     src_by = {key(i): i for i in src.get("reels", src.get("items", []))}
     changed = 0
+    matched: set = set()
     targets = list(base.get("reels", base.get("items", [])))
     for lst in extra_lists:
         targets += base.get(lst, [])
@@ -46,13 +47,21 @@ def merge(base_path: Path, vps_path: Path, key, fields, extra_lists=()):
         other = src_by.get(key(item))
         if not other:
             continue
+        matched.add(key(item))
         for f in fields:
             if f in other and other[f] not in (None, "") and item.get(f) != other[f]:
                 item[f] = other[f]
                 changed += 1
+    # ☠️ WHAT DOES THIS ASSERT BY OMISSION? builder-room's audit question, turned on this
+    # script. It reported "N field updates" and "no keys lost", and a reader takes that as
+    # "everything came home". It never said how many rows it FAILED to match, so a merge
+    # that silently skipped half the library printed the same clean line as a complete one.
+    # A count of what was done is not evidence about what was not done.
+    unmatched_src = sorted(set(src_by) - matched)
+    unmatched_base = sorted({key(i) for i in targets} - matched)
     before = set(json.loads(base_path.read_text()).keys())
     after = set(base.keys())
-    return base, changed, before - after
+    return base, changed, before - after, matched, unmatched_src, unmatched_base
 
 
 def main() -> int:
@@ -69,12 +78,21 @@ def main() -> int:
         ("growth-partner.json", lambda i: i.get("src"), GROWTH_FIELDS, ("heldBack",)),
     ):
         base_path = REPO / "src/data/cinema" / name
-        merged, changed, lost = merge(base_path, VPS / name, k, fields, extra)
+        merged, changed, lost, matched, un_src, un_base = merge(
+            base_path, VPS / name, k, fields, extra)
         if merged is None:
             continue
         keys = [key for key in ("tilePx", "tileHeightPx", "stripUnsafe", "heldBack",
                                 "excluded", "counts", "notes") if key in merged]
-        print(f"  {name}: {changed} field updates")
+        print(f"  {name}: {changed} field updates across {len(matched)} matched rows")
+        if un_src:
+            ok = False
+            print(f"    \u2620 {len(un_src)} ROWS ON THE BOX HAVE NO COUNTERPART HERE, so "
+                  f"their encode is stranded: {', '.join(map(str, un_src[:6]))}")
+        if un_base:
+            print(f"    {len(un_base)} rows here were not touched by the encode "
+                  f"(expected while it is still running): "
+                  f"{', '.join(map(str, un_base[:4]))}")
         print(f"    generator keys still present: {', '.join(keys) or 'NONE'}")
         if lost:
             print(f"    ☠️ TOP LEVEL KEYS LOST: {sorted(lost)}")
