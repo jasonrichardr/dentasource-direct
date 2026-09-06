@@ -59,7 +59,13 @@ def main() -> int:
     print(f"{'APPLYING' if APPLY else 'DRY RUN'}, reading encode results from {VPS}\n")
     ok = True
     for name, k, fields, extra in (
-        ("reel-library.json", lambda i: i.get("id"), REEL_FIELDS, ()),
+        # ☠️ heldBack FOR REELS TOO, EVEN THOUGH IT IS EMPTY TODAY. declare_marbles moves a
+        # clip that cannot carry the bead into heldBack, and a later encode still produces
+        # new dimensions for it. Searching only `reels` would leave those rows frozen at
+        # whatever they held the day they were set aside, so a clip could never measure its
+        # way back onto the wall. Growth already had this; reels did not, purely because
+        # nothing had moved yet.
+        ("reel-library.json", lambda i: i.get("id"), REEL_FIELDS, ("heldBack",)),
         ("growth-partner.json", lambda i: i.get("src"), GROWTH_FIELDS, ("heldBack",)),
     ):
         base_path = REPO / "src/data/cinema" / name
