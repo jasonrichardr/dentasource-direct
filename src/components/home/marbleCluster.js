@@ -61,12 +61,18 @@ const CURSOR_R = 0.9;    // kinematic cursor body radius (the "finger" that shov
 const FLING_SCALE = 0.3; // only a fraction of the finger's speed is imparted — soft nudge, not a launch
 const MAX_CURSOR = 4.5;  // cap the finger's effective speed so a quick press can't fling beads off-screen
 const MAX_DT = 1 / 30;
+// Downward accel applied ONLY to a bead that has been knocked out of the wall. The cannon
+// world has zero gravity so the shoal can float; a departing bead borrows some.
+const FALL_G = 9.0;
+const RAIN_EVERY_MS = 300;   // Jarich: "a marble glass one by one ... per 0.3 second"
+const RAIN_WAIT_MS = 1000;   // longest we hold a drop back waiting for its texture to decode
 
 export function createMarbleCluster(container, {
   videos = [], hdVideos = [], count = 18, isMobile = false, faceFocus = {}, faceZoom = {},
   faceZoomDefault = 1, cameraZ = 8, spreadX = NATURAL_R, spreadY = NATURAL_R,
-  stage = 'container', centerY = 0, centerPull = 1, beadScale = 1,
+  stage = 'container', centerY = 0, centerPull = 1, beadScale = 1, linDamp = LIN_DAMP,
 } = {}) {
+  const damping = Math.min(0.99, Math.max(0.1, linDamp));
   // ☠️ THE WELL'S CENTRE MOVES, THE WALL'S FREEDOM DOES NOT.
   // Jarich: the shoal was sitting across the headline. The fix is NOT a wall or a clamp,
   // both of which would undo the round before this one; it is moving where the centring
@@ -208,7 +214,7 @@ export function createMarbleCluster(container, {
 
   // ── shared video texture pool: ONE <video> decoder per unique clip (iOS hard-caps concurrent
   //    decoders), round-robined across the FILLED beads — the elva trick: few clips fill many marbles. ──
-  const texPool = videos.map((url, i) => {
+  function makeTex(url, i) {
     const el = document.createElement("video");
     el.src = mediaUrl(url);      // repo path in the manifest, media origin at run time
     el.muted = true; el.loop = true; el.playsInline = true; el.crossOrigin = "anonymous";
@@ -252,8 +258,12 @@ export function createMarbleCluster(container, {
     frameCrop();                              // in case metadata is already there
     const planeMat = new THREE.MeshBasicMaterial({ map: tex, toneMapped: false, side: THREE.DoubleSide });
     return { el, planeMat };
-  });
-  const vids = texPool.map((t) => t.el);
+  }
+  const texPool = videos.map(makeTex);
+  // ☠️ vids IS NOT A SNAPSHOT ANY MORE. The rain swap adds and removes decoders while the
+  // wall is running, so setActive and dispose have to walk the LIVE set rather than a list
+  // captured at build time. It is derived from units on demand instead of stored.
+  const vids = () => units.map((u) => u.tex && u.tex.el).filter(Boolean);
 
   // ── marbles ──
   const group = new THREE.Group();
@@ -279,67 +289,71 @@ export function createMarbleCluster(container, {
   // never pokes past the glass). refZoom = faceZoomDefault = the biggest bead's perfect zoom. (Jarich 2026-06-26)
   const rMax = baseR * 1.85;      // the hero bead (biggest)
   const ZOOM_CAP = 0.98;          // keep the inner disc inside the bead (no poke-out)
-  for (let i = 0; i < count; i++) {
-    const isFilled = i < nFilled;
+  /**
+   * Build ONE bead: glass, video face, physics body, and the record the loops walk.
+   *
+   * Extracted from the build loop so the rain swap can make a bead mid-flight. `slot` is
+   * the position in the wall, which decides the radius ladder (slot 0 is the hero, the
+   * last is the small one), so an incoming bead inherits the size of the bead it replaces
+   * and the wall keeps its shape across a swap.
+   */
+  function makeBead(slot, url, hd, tex, spawn) {
+    const isFilled = !!tex;
     const r = isFilled
-      ? (i === HERO_I ? baseR * 1.85                          // the big hero face (first clip)
-         : i === SMALL_I ? baseR * 0.62                       // the demoted small face (last clip)
-         : baseR * (0.95 + hash(i) * 0.55))                   // 0.95–1.50× — stable, varied, all < hero
-      : baseR * (0.5 + Math.pow(hash(i + 101), 1.4) * 1.35);  // (unused while count==videos)
+      ? (slot === HERO_I ? baseR * 1.85
+         : slot === SMALL_I ? baseR * 0.62
+         : baseR * (0.95 + hash(slot) * 0.55))
+      : baseR * (0.5 + Math.pow(hash(slot + 101), 1.4) * 1.35);
 
-    // glass shell — transmission refracts the black + neighbours; three shares ONE transmission pass.
-    // FILLED beads: clear glass over the face (low iridescence so the face stays true). CLEAR beads:
-    // heavy thin-film iridescence + tint → the colourful soap-bubble gems in the Elva reference.
     const glass = new THREE.MeshPhysicalMaterial({
       color: 0xffffff, metalness: 0, roughness: isFilled ? 0.05 : 0.04,
       transmission: 1, ior: 1.45, thickness: r * (isFilled ? 1.0 : 1.3),
-      attenuationColor: isFilled ? ATTEN : CLEAR_TINTS[i % CLEAR_TINTS.length], attenuationDistance: isFilled ? 1.6 : 0.85,
+      attenuationColor: isFilled ? ATTEN : CLEAR_TINTS[slot % CLEAR_TINTS.length],
+      attenuationDistance: isFilled ? 1.6 : 0.85,
       clearcoat: 1, clearcoatRoughness: 0.07,
       iridescence: isFilled ? 0.12 : 0.72,
       iridescenceIOR: 1.3,
       iridescenceThicknessRange: isFilled ? [100, 400] : [200, 950],
       envMapIntensity: 1.7,
     });
-    if ("dispersion" in glass) glass.dispersion = isFilled ? 0.7 : 1.5; // chromatic-aberration rainbow rim
+    if ("dispersion" in glass) glass.dispersion = isFilled ? 0.7 : 1.5;
     const shell = new THREE.Mesh(sphereGeo, glass);
     shell.scale.setScalar(r);
-    shell.userData = {
-      index: i, isFilled,
-      url: isFilled ? videos[i] : null,
-      // The manifest's own high definition copy for this reel, when it has one.
-      // Accepts a bare url or { src, w, h }; the dimensions let the theatre size its
-      // frame before the video loads, and more importantly tell it which way up the clip is.
-      hd: isFilled ? (hdVideos[i] || null) : null,
-    };
+    shell.userData = { index: slot, isFilled, url: isFilled ? url : null, hd: isFilled ? (hd || null) : null };
     shells.push(shell);
 
     const unit = new THREE.Group();
     unit.add(shell);
-
     if (isFilled) {
-      // inner UNLIT face — center-cropped portrait, sized to FILL the bead (fisheye via the glass)
-      const tp = texPool[i]; // unique clip per bead (i < nFilled) — no duplicates
-      const plane = new THREE.Mesh(planeGeo, tp.planeMat);
-      // zoom: <1 shrinks the inner video disc so the glass magnifies a SMALLER disc → you see MORE
-      // of the scene (the whole crop, faces and all) instead of a magnified central slice. Default 1.
-      const zoom = faceZoom[i] != null ? faceZoom[i] : Math.min(faceZoomDefault * rMax / r, ZOOM_CAP);
-      plane.scale.setScalar(r * 0.98 * zoom);   // disc just inside the bead; the glass magnifies it to fill
+      const plane = new THREE.Mesh(planeGeo, tex.planeMat);
+      const zoom = faceZoom[slot] != null ? faceZoom[slot] : Math.min(faceZoomDefault * rMax / r, ZOOM_CAP);
+      plane.scale.setScalar(r * 0.98 * zoom);
       unit.add(plane);
       unit.userData.plane = plane;
     }
     group.add(unit);
 
-    // physics body — mass ∝ r³ (big beads are heavier / statelier, like the reference)
+    const pos = spawn || new CANNON.Vec3(
+      (hash(slot + 1) - 0.5) * 3, (hash(slot + 7) - 0.5) * 3, (hash(slot + 13) - 0.5) * 1.2,
+    );
     const body = new CANNON.Body({
       mass: r * r * r,
       shape: new CANNON.Sphere(r),
       material: mat,
-      linearDamping: LIN_DAMP,
+      linearDamping: damping,
       angularDamping: 0.7,
-      position: new CANNON.Vec3((hash(i + 1) - 0.5) * 3, (hash(i + 7) - 0.5) * 3, (hash(i + 13) - 0.5) * 1.2),
+      position: pos,
     });
     world.addBody(body);
-    units.push({ unit, body });
+    // state: 'live' feels the centring spring; 'incoming' is still falling in and does not;
+    // 'falling' has been knocked out and is on its way off the bottom of the stage.
+    const rec = { unit, body, shell, tex, r, slot, state: 'live' };
+    units.push(rec);
+    return rec;
+  }
+
+  for (let i = 0; i < count; i++) {
+    makeBead(i, videos[i], hdVideos[i], i < nFilled ? texPool[i] : null, null);
   }
 
   // ── pointer → NDC relative to THIS canvas → raycast onto local z=0 plane ──
@@ -434,7 +448,7 @@ export function createMarbleCluster(container, {
     hintRetired = true; hideHint(); // they found it — stop showing the hint for good
     clearTimeout(holdTimer); holdTimer = 0; holdPick = null;
     ptr.engaged = false;
-    vids.forEach((el) => el.pause());
+    vids().forEach((el) => el.pause());
     if (navigator.vibrate) try { navigator.vibrate(12); } catch (_) {}
 
     const o = beadScreenRect(pick.index);
@@ -524,7 +538,7 @@ export function createMarbleCluster(container, {
       root.remove();
       document.body.style.overflow = "";
       frozen = false; focused = false; currentTheater = null;
-      if (active) vids.forEach((el, k) => setTimeout(() => { if (active && !focused) el.play().catch(() => {}); }, k * 40));
+      if (active) vids().forEach((el, k) => setTimeout(() => { if (active && !focused) el.play().catch(() => {}); }, k * 40));
     }, 430);
   }
 
@@ -601,16 +615,31 @@ export function createMarbleCluster(container, {
       cursorBody.velocity.set(0, 0, 0);
     }
 
-    // center spring (mass-normalised accel → all sizes feel the same pull); firmer on Z to keep it facing
-    for (const { body } of units) {
+    // ☠️ ONLY LIVE BEADS FEEL THE SPRING. A bead still raining in has not joined the wall
+    // yet, and a bead that has been knocked out must be allowed to leave: putting either
+    // under the centring force would drag the incoming one sideways on its way down and
+    // haul the outgoing one straight back into the shoal it was just displaced from.
+    for (const rec of units) {
+      const { body, state } = rec;
       const m = body.mass;
-      _f.set(
-        -kX * body.position.x * m,
-        -kY * (body.position.y - centreY) * m,   // pulls home to centreY, not to zero
-        -K_CENTER_Z * body.position.z * m,
-      );
-      body.applyForce(_f, body.position);
+      if (state === 'live') {
+        _f.set(
+          -kX * body.position.x * m,
+          -kY * (body.position.y - centreY) * m,   // pulls home to centreY, not to zero
+          -K_CENTER_Z * body.position.z * m,
+        );
+        body.applyForce(_f, body.position);
+      } else if (state === 'falling') {
+        // gravity for the departing bead only; the world itself stays weightless
+        _f.set(0, -FALL_G * m, -K_CENTER_Z * body.position.z * m);
+        body.applyForce(_f, body.position);
+      } else {
+        // incoming: keep it on its own z plane so it lands in the wall, not in front of it
+        _f.set(0, 0, -K_CENTER_Z * body.position.z * m);
+        body.applyForce(_f, body.position);
+      }
     }
+    stepSwap();
 
     world.step(1 / 60, dt, 3);
 
@@ -629,14 +658,14 @@ export function createMarbleCluster(container, {
     active = v;
     if (active) {
       // stagger the starts so 16 decoders don't all spin up in one frame (helps every reel actually play)
-      vids.forEach((el, k) => setTimeout(() => { if (active) el.play().catch(() => {}); }, k * 70));
+      vids().forEach((el, k) => setTimeout(() => { if (active) el.play().catch(() => {}); }, k * 70));
       clock.getDelta();
       rafId = requestAnimationFrame(frame);
       showHint(); // beat is live — invite the press-and-hold
     } else {
       closeTheaterNow(); // beat left while a marble was open — tear the theater down, unfreeze
       cancelAnimationFrame(rafId);
-      vids.forEach((el) => el.pause());
+      vids().forEach((el) => el.pause());
       hideHint();
     }
   }
@@ -671,10 +700,17 @@ export function createMarbleCluster(container, {
     // another 24 decoders and 24 GPU textures.
     // The video element needs BOTH halves: removing src alone leaves the decoder holding
     // the last buffer, and load() on a src-less element is what actually releases it.
-    for (const { el, planeMat } of texPool) {
-      try { el.pause(); el.removeAttribute("src"); el.load(); } catch (e) { /* already torn down */ }
-      planeMat.map?.dispose();
-      planeMat.dispose();
+    // ☠️ WALK THE LIVE SET, NOT THE BUILD-TIME POOL. After a rain swap the beads on screen
+    // are not the ones texPool was built from: those were retired one at a time and new
+    // ones took their place. Disposing texPool would free six decoders nobody is using and
+    // strand the ten that are.
+    if (swap) { swap.timers.forEach(clearTimeout); swap = null; }
+    queued = null;
+    for (const rec of units) {
+      if (!rec.tex) continue;
+      try { rec.tex.el.pause(); rec.tex.el.removeAttribute("src"); rec.tex.el.load(); } catch (e) { /* already torn down */ }
+      rec.tex.planeMat.map?.dispose();
+      rec.tex.planeMat.dispose();
     }
     for (const shell of shells) shell.material.dispose();
     sphereGeo.dispose(); planeGeo.dispose(); envRT.dispose();
@@ -688,6 +724,161 @@ export function createMarbleCluster(container, {
     canvas.remove();
   }
 
+  // ────────────────────────────────────────────────────────────────────────────────────
+  // THE RAIN SWAP
+  //
+  // Jarich: "they look heavy when i change sets, it takes too long to wait for them to
+  // subside. make it when the user change set a marble glass one by one will hit an
+  // existing ball per 0.3 second so we lose marble glass naturally ... make the glass
+  // marbles come from up above."
+  //
+  // ☠️ THE SCENE IS NEVER REBUILT. A set change used to dispose the whole cluster and
+  // construct the next one, which is why it read as heavy: the wall vanished, a fresh
+  // WebGL context came up, and ten decoders started from nothing while the new shoal
+  // converged from a random scatter. Now the wall stays live and the sets cross over
+  // inside it, one bead at a time.
+  // ────────────────────────────────────────────────────────────────────────────────────
+  let swap = null;          // the run in progress
+  let queued = null;        // one click banked while a run is going
+
+  const visTop = () => (camera.position.z * Math.tan((45 * Math.PI) / 180 / 2));
+
+  function releaseOutgoing(rec) {
+    if (!rec || rec.state !== 'live') return;
+    rec.state = 'falling';
+    // a shove down and a little spin, so it tumbles out rather than sinking on rails
+    rec.body.velocity.y -= 2.2;
+    rec.body.angularVelocity.set((Math.random() - 0.5) * 6, (Math.random() - 0.5) * 6, (Math.random() - 0.5) * 6);
+    rec.body.linearDamping = 0.05;   // let it actually fall
+  }
+
+  function retire(rec) {
+    const i = units.indexOf(rec);
+    if (i >= 0) units.splice(i, 1);
+    const si = shells.indexOf(rec.shell);
+    if (si >= 0) shells.splice(si, 1);
+    world.removeBody(rec.body);
+    group.remove(rec.unit);
+    rec.shell.material.dispose();
+    if (rec.tex) {
+      // ☠️ THE DECODER GOES WITH THE BEAD. Both halves: removing src alone leaves the
+      // decoder holding its last buffer, and load() on a src-less element frees it.
+      try { rec.tex.el.pause(); rec.tex.el.removeAttribute("src"); rec.tex.el.load(); } catch (e) { /* torn down */ }
+      rec.tex.planeMat.map?.dispose();
+      rec.tex.planeMat.dispose();
+    }
+  }
+
+  /** Nearest LIVE bead to x that has not already been claimed by this run. */
+  function pickTarget(x, claimed) {
+    let best = null, bestD = Infinity;
+    for (const rec of units) {
+      if (rec.state !== 'live' || claimed.has(rec)) continue;
+      const d = Math.abs(rec.body.position.x - x);
+      if (d < bestD) { bestD = d; best = rec; }
+    }
+    return best;
+  }
+
+  function stepSwap() {
+    // a departing bead is gone once it is a whole bead below the visible floor
+    for (let i = units.length - 1; i >= 0; i -= 1) {
+      const rec = units[i];
+      if (rec.state === 'falling' && rec.body.position.y < -visTop() - rec.r * 2) retire(rec);
+      // an incoming bead joins the wall the moment it is inside the stage
+      if (rec.state === 'incoming' && rec.body.position.y < visTop() - rec.r) {
+        rec.state = 'live';
+        rec.body.linearDamping = damping;
+      }
+    }
+    if (!swap) return;
+    const now = performance.now();
+    if (swap.done < swap.list.length && now >= swap.dropAt) {
+      // ☠️ NEVER DROP A BEAD AS BLACK GLASS, AND NEVER LET ONE SLOW CLIP STALL THE RAIN.
+      // The first build of this waited on each bead in turn, and measured 10.7s for ten
+      // beads instead of three: every clip is a cross-origin fetch, so each one spent most
+      // of its 1s grace period waiting and the whole queue sat behind it.
+      // Order is a PREFERENCE now, not a queue: take the next undropped bead whose first
+      // frame has decoded, and only fall back to the head of the line once that bead has
+      // used its full grace. Cadence holds at 0.3s, nothing falls in dark unless the
+      // network genuinely could not deliver it in a second.
+      let k = swap.order.find((j) => !swap.dropped[j] && swap.tex[j].el.readyState >= 2);
+      if (k === undefined) {
+        const head = swap.order.find((j) => !swap.dropped[j]);
+        if (head === undefined) return;
+        if (now - swap.dropAt < RAIN_WAIT_MS) return;   // still inside its grace, wait
+        k = head;                                        // grace spent: drop it dim
+      }
+      const entry = swap.list[k];
+      const tex = swap.tex[k];
+      swap.dropped[k] = true;
+      swap.done += 1;
+
+      const target = pickTarget(swap.xs[k], swap.claimed);
+      const x = target ? target.body.position.x : swap.xs[k];
+      const spawn = new CANNON.Vec3(x, visTop() + 1.2 + Math.random() * 0.6, 0);
+      const rec = makeBead(entry.slot, entry.url, entry.hd, tex, spawn);
+      rec.state = 'incoming';
+      rec.body.linearDamping = 0.02;          // fall cleanly, damping resumes on landing
+      rec.body.velocity.set(0, -4.2, 0);
+      tex.el.play().catch(() => {});
+      if (target) {
+        swap.claimed.add(target);
+        // contact releases the target; a timeout releases it anyway, because a near miss
+        // must not leave a bead that never leaves.
+        const onHit = (e) => { if (e.body === target.body) { releaseOutgoing(target); rec.body.removeEventListener('collide', onHit); } };
+        rec.body.addEventListener('collide', onHit);
+        swap.timers.push(setTimeout(() => { releaseOutgoing(target); rec.body.removeEventListener('collide', onHit); }, 1200));
+      }
+      swap.dropAt = now + RAIN_EVERY_MS;
+      return;
+    }
+    if (swap.done >= swap.list.length) {
+      const stillIn = units.some((u) => u.state === 'incoming');
+      if (!stillIn) {
+        const done = swap.onDone;
+        // ☠️ RELEASE BEFORE CLEARING, OR THE WALL GROWS TO TWENTY.
+        // Each drop arms a 1.2s fallback that knocks its target out if the collision was a
+        // near miss. The last drops' timers are still pending when the final bead lands, so
+        // clearing them here without firing them first would leave those outgoing beads
+        // live for ever: ten old plus ten new, and the next swap would claim against a
+        // shoal twice the size it should be. Found by reading this back rather than in the
+        // trace, because the first version stalled before it ever completed a swap.
+        for (const t of swap.claimed) releaseOutgoing(t);
+        swap.timers.forEach(clearTimeout);
+        swap = null;
+        if (done) done();
+        if (queued) { const q = queued; queued = null; swapTo(q.list, q.onDone); }
+      }
+    }
+  }
+
+  /**
+   * Cross the wall over to a new set, raining the incoming beads in one at a time.
+   * Returns false if the run was queued behind one already in progress.
+   */
+  function swapTo(list, onDone) {
+    if (swap) { queued = { list, onDone }; return false; }
+    if (!list || !list.length) return false;
+    const tex = list.map((e, k) => makeTex(e.url, k));
+    // preload in DROP ORDER so the first bead to fall is the first to have a frame
+    // every clip starts fetching immediately: they are cross-origin and the fetch, not the
+    // decode, is the slow part, so staggering the loads only delayed the first frame.
+    tex.forEach((t) => { t.el.preload = 'auto'; try { t.el.load(); } catch (e) { /* ignore */ } });
+    const halfW = visTop() * camera.aspect;
+    swap = {
+      list, tex, done: 0, dropped: list.map(() => false),
+      order: list.map((_, k) => k), dropAt: performance.now(),
+      xs: list.map((_, k) => (list.length === 1 ? 0 : (-halfW * 0.7 + (2 * halfW * 0.7) * (k / (list.length - 1)))),
+      ),
+      claimed: new Set(), timers: [], onDone,
+    };
+    return true;
+  }
+
+  /** True while a rain swap is running, so the caller can hold its label. */
+  function swapping() { return !!swap; }
+
   /** The shoal's own extent in world units, radii included, once the spring has settled.
    *  A caller can compare it against the visible height (2 * cameraZ * tan(22.5deg)) and
    *  know whether its framing actually clears the beads instead of guessing from a
@@ -700,8 +891,14 @@ export function createMarbleCluster(container, {
     // to whichever edge happens to be further from zero, and a caller asking "does the top
     // clear the copy" would get an answer about the bottom. top and bottom are the real
     // edges; halfH is kept as the half HEIGHT so existing fit checks still mean something.
-    let maxX = 0, top = -Infinity, bottom = Infinity, sumY = 0, sumX = 0;
-    for (const { unit, body } of units) {
+    // ☠️ LIVE BEADS ONLY. During a rain swap the array also holds beads still falling in
+    // from above the stage and beads on their way out below it. Counting those would report
+    // an extent several screens tall, and the panel's seating loop reads this number: it
+    // would haul the whole wall around chasing a bead that is leaving.
+    let maxX = 0, top = -Infinity, bottom = Infinity, sumY = 0, sumX = 0, n = 0;
+    for (const { unit, body, state } of units) {
+      if (state !== 'live') continue;
+      n += 1;
       const r = body.shapes[0]?.radius ?? 0;
       maxX = Math.max(maxX, Math.abs(unit.position.x) + r);
       top = Math.max(top, unit.position.y + r);
@@ -709,19 +906,19 @@ export function createMarbleCluster(container, {
       sumY += unit.position.y;
       sumX += unit.position.x;
     }
-    if (!units.length) { top = 0; bottom = 0; }
+    if (!n) { top = 0; bottom = 0; }
     // ☠️ meanY IS WHAT A CALLER SHOULD MEASURE THE SHOAL'S SHAPE AGAINST, NOT centreY.
     // The shoal's SPREAD about its own centre of mass settles in a second or two. The
     // journey of that centre of mass to the well's centre takes far longer, and after the
     // well is re-seated it is a slow slide. Measuring the shape against centreY during
     // that slide reads a shoal that is smaller than it will be, which is exactly how the
     // first seating attempt ended up parking the wall over the copy it was meant to clear.
-    const meanY = units.length ? sumY / units.length : 0;
+    const meanY = n ? sumY / n : 0;
     // ☠️ meanX IS THE SIGNAL FOR "DID IT COME BACK TO THE MIDDLE". The shoal's WIDTH is
     // not: beads rearrange when they are flung, so the extent settles near a different
     // number afterwards and a test watching it reads "never came home" on a wall that
     // plainly did. The centre of mass returns to the well's centre every time.
-    const meanX = units.length ? sumX / units.length : 0;
+    const meanX = n ? sumX / n : 0;
     const maxY = (top - bottom) / 2;
     // ☠️ READ LIVE OFF THE CAMERA, NOT OFF A STORED NUMBER. The fov is vertical and fixed,
     // so the visible HEIGHT only depends on the camera distance, but the visible WIDTH is
@@ -730,7 +927,7 @@ export function createMarbleCluster(container, {
     const visibleHalfH = camera.position.z * Math.tan((45 * Math.PI) / 180 / 2);
     const visibleHalfW = visibleHalfH * camera.aspect;
     return {
-      halfH: maxY, halfW: maxX,
+      halfH: maxY, halfW: maxX, live: n,
       top, bottom, centreY, meanY, meanX,
       visibleHalfH, visibleHalfW,
       fits: maxY <= visibleHalfH && maxX <= visibleHalfW,
@@ -741,5 +938,5 @@ export function createMarbleCluster(container, {
   /** Re-seat the well. The shoal slides to the new centre under its own spring. */
   function setCenterY(y) { if (Number.isFinite(y)) centreY = y; }
 
-  return { setActive, resize, dispose, canvas, bounds, setCenterY };
+  return { setActive, resize, dispose, canvas, bounds, setCenterY, swapTo, swapping };
 }

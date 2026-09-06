@@ -520,12 +520,39 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
   const near = useBeatNear(beatIndex, { margin: '80%' });
   const [reduced, setReduced] = useState(false);
   const [set, setSet] = useState(0);
+  // ☠️ THE LABEL LAGS THE CLICK ON PURPOSE. A rain swap takes about three seconds, and for
+  // those three seconds the wall genuinely holds both sets: beads from the old one are
+  // still being knocked out while the new ones fall in. Saying "Set 4 of 20" the instant
+  // the button is pressed would be describing a wall that is not there yet, so the label
+  // moves when the last incoming bead has landed.
+  const [landed, setLanded] = useState(0);
+  const clusterRef = useRef(null);
+  const heldRef = useRef(0);
 
   const setCount = Math.max(1, sets.length);
   // Clamp rather than modulo: a library that shrinks under the visitor should land on the
   // last real set, not wrap to the first.
   const setIndex = Math.min(set, setCount - 1);
-  const shown = useMemo(() => sets[setIndex] || [], [sets, setIndex]);
+  // the build effect reads the CURRENT set without taking it as a dependency
+  const setIndexRef = useRef(setIndex);
+  setIndexRef.current = setIndex;
+
+  // ☠️ A SET CHANGE IS A SWAP, NOT A REBUILD. The cluster keeps running and the incoming
+  // beads rain into it one every 0.3s, each knocking one of the outgoing beads out of the
+  // wall. Ten beads is about three seconds, and the wall is never empty during it.
+  // A click while a swap is running is QUEUED by the cluster and runs when this one ends,
+  // so holding Next does not interleave two rains into the same shoal.
+  useEffect(() => {
+    const cluster = clusterRef.current;
+    if (!cluster || reduced) return;
+    if (heldRef.current === setIndex) return;
+    const list = (sets[setIndex] || []).map((r, k) => ({
+      slot: k, url: r.src, hd: r.hd ? { src: r.hd, w: r.hdWidth, h: r.hdHeight } : null,
+    }));
+    if (!list.length) return;
+    heldRef.current = setIndex;
+    cluster.swapTo(list, () => setLanded(setIndex));
+  }, [setIndex, sets, reduced]);
 
   useEffect(() => {
     try { setReduced(matchMedia('(prefers-reduced-motion: reduce)').matches); } catch (e) { /* assume motion is fine */ }
@@ -538,7 +565,7 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
     // would be the opposite of what they asked for.
     if (!near || reduced) return undefined;
     const mount = mountRef.current;
-    if (!mount || !shown.length) return undefined;
+    if (!mount || !(sets[setIndexRef.current] || []).length) return undefined;
 
     // ☠️ THE CLUSTER AND ITS PHYSICS ENGINE ARRIVE WITH THE BEAT, NOT WITH THE PAGE.
     // marbleCluster pulls in cannon-es and its own several hundred lines, and a static
@@ -565,6 +592,7 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
       if (theaterOpen) window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on: false } }));
       cleanupSeat?.();
       delete mount._dsdCluster;
+      clusterRef.current = null;
       cluster?.dispose();
     };
 
@@ -603,6 +631,16 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
       // stage that it was asked to be, and spreadX is untouched.
       // Shoal height runs about 2 * (0.5 * spreadY + 1.04) on this bead set, so 1.4 gives
       // roughly 3.5 units and about 95px of room to spare under the wall.
+      // ☠️ linDamp 0.92, MEASURED, BECAUSE THE WALL READ AS HEAVY.
+      // Jarich: "it takes too long to wait for them to subside". The body damping was 0.72
+      // and the shoal took 5 to 17 seconds to stop moving depending on where it started.
+      // Swept on a production build against the same settled-bounds() method, and the
+      // trade is real in both directions:
+      //   0.72  settle 5.7s  fling +3.66     0.86  settle 3.0s  fling +2.75
+      //   0.92  settle 1.8s  fling +2.98     0.96  settle 3.6s  fling +2.71
+      // 0.92 is the knee: it hits the two seconds asked for and keeps the fling livelier
+      // than 0.86 does. Past it the wall stops settling FASTER, because an over-damped
+      // shoal creeps to rest instead of arriving.
       // ☠️ cameraZ AND beadScale SET A RESOLUTION GATE IN ANOTHER FILE. READ THIS BEFORE
       // CHANGING EITHER.
       // Together they decide the hero bead's rendered diameter, and that diameter is
@@ -627,7 +665,7 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
       //
       // If you change either number, re-measure the bead and tell whoever owns
       // reel-library.json. The frames alone will not show you what you moved.
-      ? { isMobile: false, cameraZ: 7.0, spreadX: 5.8, spreadY: 1.4, centerPull: 1.8, beadScale: 1.5 }
+      ? { isMobile: false, cameraZ: 7.0, spreadX: 5.8, spreadY: 1.4, centerPull: 1.8, beadScale: 1.5, linDamp: 0.92 }
       // ☠️ A PORTRAIT STAGE NEEDS A PORTRAIT WELL. The phone kept an isotropic shoal and a
       // near camera while its canvas was a 98vw by 52vh landscape box. The viewport stage
       // is the opposite shape: at 390x844 the aspect is 0.46, so the visible WIDTH in
@@ -640,7 +678,7 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
       // 55% of the height, both axes fitting. The height deliberately does NOT fill: the
       // copy sits above the beads and the pager below them, and the canvas now covers
       // both, so the band of glass has to leave them room.
-      : { isMobile: true, cameraZ: 13.0, spreadX: 2.4, spreadY: 4.2, centerPull: 1.8, beadScale: 1.5 };
+      : { isMobile: true, cameraZ: 13.0, spreadX: 2.4, spreadY: 4.2, centerPull: 1.8, beadScale: 1.5, linDamp: 0.92 };
     // ☠️ EVERY ONE OF THESE SIX NUMBERS IS A SETTLED bounds() READING, NOT AN EYE.
     // Swept at the real viewports against the real stage, nine seconds after the beat was
     // parked, because a shoal read while it is still converging reads small. Desktop was
@@ -652,10 +690,10 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
     // the box shape only ever changes how much is visible sideways. Both numbers above
     // were set by measuring bounds(), not by eye.
     cluster = createMarbleCluster(mount, {
-      videos: shown.map((r) => r.src),
+      videos: (sets[setIndexRef.current] || []).map((r) => r.src),
       // The theatre plays these, not the 480 bead loops, whenever the manifest has one.
-      hdVideos: shown.map((r) => (r.hd ? { src: r.hd, w: r.hdWidth, h: r.hdHeight } : null)),
-      count: shown.length,          // exactly one bead per reel in THIS set
+      hdVideos: (sets[setIndexRef.current] || []).map((r) => (r.hd ? { src: r.hd, w: r.hdWidth, h: r.hdHeight } : null)),
+      count: (sets[setIndexRef.current] || []).length,   // exactly one bead per reel in THIS set
       ...shape,
       // ☠️ THE STAGE IS THE WHOLE SCREEN, NOT A BOX IN THE MIDDLE OF IT. See the note on
       // .dsd-cluster: the canvas is pinned to the viewport and the mount stays in flow as
@@ -667,6 +705,8 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
     // the proof harness reads the shoal's real extent through this; nothing in the page
     // uses it, and it goes with the cluster on dispose
     mount._dsdCluster = cluster;
+    clusterRef.current = cluster;
+    heldRef.current = setIndexRef.current;
 
     // ☠️ THE WALL RESTS BELOW THE WORDS, AND IT IS MEASURED, NOT DIALLED.
     // Jarich: the shoal was sitting across the headline and body. The fix is to move where
@@ -804,7 +844,13 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
     // in place would avoid rebuilding the WebGL context, but it would also mean carrying a
     // second teardown path for the same objects, and the one that runs on every set change
     // is exactly the one that has to be right. One path, exercised constantly.
-  }, [near, reduced, shown, setIndex]);
+    // ☠️ setIndex IS DELIBERATELY NOT A DEPENDENCY ANY MORE. It used to be, and the teardown
+    // WAS the set change: dispose the cluster, build the next one. That is what read as
+    // heavy — the wall vanished, a new WebGL context came up, ten decoders started cold and
+    // the fresh shoal converged from a random scatter, which measured seven to fifteen
+    // seconds of "subsiding". The scene now lives across a set change and the beads cross
+    // over inside it, so this effect builds ONCE per visit to the beat.
+  }, [near, reduced, sets]);
 
   return (
     <div className="dsd-panel">
@@ -847,7 +893,7 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
           {/* aria-live so a screen reader is told the wall changed under it: the beads
               themselves announce nothing. */}
           <span className="dsd-pager-count" aria-live="polite">
-            {`Set ${setIndex + 1} of ${setCount}`}
+            {`Set ${Math.min(landed, setCount - 1) + 1} of ${setCount}`}
           </span>
           <button
             type="button"
