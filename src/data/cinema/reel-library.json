@@ -2,7 +2,7 @@
   "version": 1,
   "source": "facebook.com/dentasource reels, ids from builds/dentasource-news/fb2026/reel-ids-all.lst",
   "generated": "2026-09-06",
-  "notes": "Reels from DSD's own Facebook page, re-encoded for the web: long side 720, faststart, aac 96k, 480px poster. CAPTIONS ARE NEUTRAL DESCRIPTORS, NOT THE FACEBOOK COPY. The original captions carry superlatives, an unverified country count, price talk and a competitor jab, all of which the editorial rules ban, so the meta decides the category and the caption describes what the footage shows. No personal names, no emoji, no dashes. Sorted newest first; `sets` are groups of 24 for the marbles, each mixing categories.",
+  "notes": "Reels from DSD's own Facebook page, re-encoded for the web: long side 720, faststart, aac 96k, 480px poster. CAPTIONS ARE NEUTRAL DESCRIPTORS, NOT THE FACEBOOK COPY. The original captions carry superlatives, an unverified country count, price talk and a competitor jab, all of which the editorial rules ban, so the meta decides the category and the caption describes what the footage shows. No personal names, no emoji, no dashes. Sorted newest first; `sets` are groups of 24 for the marbles, each mixing categories. HD THEATRE COPIES: every entry carries `hd`, a source resolution encode capped at 1080 on the long side at crf 20, for the press and hold theatre; the small file in `src` stays the bead loop. NOTHING IS UPSCALED: where the only copy held is already web sized the HD encode is made from it at its own size, counted in hdFromWebCopy. `hd` IS PRESENT ON SOME ENTRIES AND ABSENT ON OTHERS while the set is being built out: an entry without `hd` has no theatre copy yet and the player should fall back to `src`, which is what it did for every entry before this field existed.",
   "counts": {
     "ids": 144,
     "fetchedProduced": 144,
@@ -12,7 +12,11 @@
     "wallLocaliseFailed": 0,
     "notFetched": 0,
     "transcodeFailed": 0,
-    "newBytesMB": 331.3
+    "newBytesMB": 331.3,
+    "hdEncoded": 86,
+    "hdPending": 106,
+    "hdFromWebCopy": 0,
+    "hdFailed": 0
   },
   "excluded": {
     "field-22": "a named clinician and their practice name are burned into the frame",
@@ -273,7 +277,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-01.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-02",
@@ -288,7 +295,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-02.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-03",
@@ -303,7 +313,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-03.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-04",
@@ -318,7 +331,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-04.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-05",
@@ -333,7 +349,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-05.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-06",
@@ -348,7 +367,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-06.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-07",
@@ -363,7 +385,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-07.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-08",
@@ -378,7 +403,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-08.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-09",
@@ -393,7 +421,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-09.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-10",
@@ -408,7 +439,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-10.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-11",
@@ -423,7 +457,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-11.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-12",
@@ -438,7 +475,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-12.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-13",
@@ -453,7 +493,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-13.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-14",
@@ -468,7 +511,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-14.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-15",
@@ -483,7 +529,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-15.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-16",
@@ -498,7 +547,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-16.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-17",
@@ -513,7 +565,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-17.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-18",
@@ -528,7 +583,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-18.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-19",
@@ -543,7 +601,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-19.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-20",
@@ -558,7 +619,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-20.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-21",
@@ -573,7 +637,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-21.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-22",
@@ -588,7 +655,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-22.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-23",
@@ -603,7 +673,10 @@
       "category": "wall",
       "width": null,
       "height": null,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-23.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-24",
@@ -618,7 +691,10 @@
       "category": "wall",
       "width": null,
       "height": null,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-24.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-25",
@@ -633,7 +709,10 @@
       "category": "wall",
       "width": null,
       "height": null,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-25.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-26",
@@ -648,7 +727,10 @@
       "category": "wall",
       "width": null,
       "height": null,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-26.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-27",
@@ -663,7 +745,10 @@
       "category": "wall",
       "width": null,
       "height": null,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-27.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-28",
@@ -678,7 +763,10 @@
       "category": "wall",
       "width": null,
       "height": null,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-28.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-29",
@@ -693,7 +781,10 @@
       "category": "wall",
       "width": null,
       "height": null,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-29.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-30",
@@ -708,7 +799,10 @@
       "category": "wall",
       "width": null,
       "height": null,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-30.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-31",
@@ -723,7 +817,10 @@
       "category": "wall",
       "width": null,
       "height": null,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-31.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-32",
@@ -738,7 +835,10 @@
       "category": "wall",
       "width": null,
       "height": null,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-32.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "wall-33",
@@ -753,7 +853,10 @@
       "category": "wall",
       "width": 404,
       "height": 720,
-      "note": "already on the wall before the library existed"
+      "note": "already on the wall before the library existed",
+      "hd": "/cinema/reels/hd/wall-33.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-01",
@@ -767,7 +870,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-01.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-03",
@@ -781,7 +887,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-03.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-04",
@@ -795,7 +904,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-04.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-05",
@@ -809,7 +921,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-05.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-06",
@@ -823,7 +938,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-06.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-07",
@@ -837,7 +955,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-07.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-09",
@@ -851,7 +972,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-09.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-11",
@@ -865,7 +989,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-11.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-12",
@@ -879,7 +1006,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-12.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-17",
@@ -893,7 +1023,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-17.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-19",
@@ -907,7 +1040,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-19.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-20",
@@ -921,7 +1057,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-20.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-21",
@@ -935,7 +1074,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-21.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-23",
@@ -949,7 +1091,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-23.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "field-24",
@@ -963,7 +1108,10 @@
       "category": "field",
       "width": null,
       "height": null,
-      "note": "already in the repo, watched and kept, not re-encoded"
+      "note": "already in the repo, watched and kept, not re-encoded",
+      "hd": "/cinema/reels/hd/field-24.mp4",
+      "hdWidth": 480,
+      "hdHeight": 854
     },
     {
       "id": "4101796030119234",
@@ -976,7 +1124,10 @@
       "meta_caption": "\u2728 PRECISION. EXPERTISE. EXCELLENCE. A new milestone in clinical education as DentaSource Direct Training Center brings an intensive Hands-On Training in Mini Screws / Temporary Anchorage Devices (TADs) to FFC Dental Clinic. Congratulations to the exceptional dentists of FFC Dental Clinic for investing in advanced clinical training and taking another step toward greater precision, confidence, and e",
       "category": "training",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/4101796030119234.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1371313487964265",
@@ -989,7 +1140,10 @@
       "meta_caption": "\u2728 Elevating Dental Excellence in Bataan \u2728 Another DX-S3 Dental Chair has officially found its new home in Bataan. Designed with a refined balance of premium aesthetics, advanced functionality, and exceptional patient comfort, the DX-S3 brings a new standard of sophistication to the modern dental practice. A sincere thank you to Doc Zabala for choosing DentaSource Direct and trusting us to be part ",
       "category": "other",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1371313487964265.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1538836214111500",
@@ -1002,7 +1156,10 @@
       "meta_caption": "\ud835\udc0d\ud835\udc28\ud835\udc2d \ud835\udc2c\ud835\udc2e\ud835\udc2b\ud835\udc1e \ud835\udc30\ud835\udc21\ud835\udc22\ud835\udc1c\ud835\udc21 \ud835\udc1d\ud835\udc1e\ud835\udc27\ud835\udc2d\ud835\udc1a\ud835\udc25 \ud835\udc29\ud835\udc2b\ud835\udc28\ud835\udc1d\ud835\udc2e\ud835\udc1c\ud835\udc2d\ud835\udc2c \ud835\udc1a\ud835\udc2b\ud835\udc1e \ud835\udc2b\ud835\udc22\ud835\udc20\ud835\udc21\ud835\udc2d \ud835\udc1f\ud835\udc28\ud835\udc2b \ud835\udc32\ud835\udc28\ud835\udc2e\ud835\udc2b \ud835\udc29\ud835\udc2b\ud835\udc1a\ud835\udc1c\ud835\udc2d\ud835\udc22\ud835\udc1c\ud835\udc1e? \ud83e\udd14 The right equipment doesn't just improve procedures, it gives you confidence in every patient you treat. At \ud835\udc03\ud835\udc1e\ud835\udc27\ud835\udc2d\ud835\udc1a\ud835\udc12\ud835\udc28\ud835\udc2e\ud835\udc2b\ud835\udc1c\ud835\udc1e \ud835\udc03\ud835\udc22\ud835\udc2b\ud835\udc1e\ud835\udc1c\ud835\udc2d \ud835\udc03\ud835\udc1e\ud835\udc27\ud835\udc2d\ud835\udc1a\ud835\udc25 \ud835\udc12\ud835\udc2e\ud835\udc29\ud835\udc29\ud835\udc25\ud835\udc32, we're here to help you make informed decisions. Explore a wide range of trusted dental supplies, ask our team your questions, and get expert guidance before you invest. Because choosing the right ",
       "category": "other",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1538836214111500.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1079638194648073",
@@ -1015,7 +1172,10 @@
       "meta_caption": "From learning to hands-on application! Congratulations to all our students on completing the training and earning your certificates! \ud83c\udfc6\ud83d\udcdc Ready to level up your skills? Join our next batch! \ud83d\udc69\u200d\u2695\ufe0f\ud83d\udc68\u200d\u2695\ufe0f Dm us for more information \u2757 DentaSource Direct Your Growth Partner in Dentistry #TADSTraining #TADSHansOn #DentalTraining #HandsOnLearning #Dentistry #DentalProfessionals #CertificateOfCompletion",
       "category": "training",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1079638194648073.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "3384789398370772",
@@ -1028,7 +1188,10 @@
       "meta_caption": "Doc, paano mo ito haharapin sa actual clinical case? \ud83d\udc40\ud83e\uddb7 Here\u2019s a glimpse from our previous TADS Lecture & Workshop, where our participants raised real clinical questions\u2014and our lecturer answered them step-by-step. Because learning doesn\u2019t stop with the lecture. The right questions lead to better clinical decisions. TADS 2nd Batch \u2014 NOW ACCEPTING ENROLLEES! If you\u2019re a dentist who wants to deepen ",
       "category": "training",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/3384789398370772.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1591011049387871",
@@ -1041,7 +1204,10 @@
       "meta_caption": "\ud835\udc16\ud835\udc28\ud835\udc2b\ud835\udc2d\ud835\udc21 \ud835\udc22\ud835\udc2d \ud835\udc1b\ud835\udc1a \ud835\udc2d\ud835\udc1a\ud835\udc25\ud835\udc1a\ud835\udc20\ud835\udc1a? \ud83e\udd14 Don't just take our word for it, hear it from the dentists who use it every day. \"\ud835\udc7a\ud835\udc96\ud835\udc91\ud835\udc86\ud835\udc93 \ud835\udc84\ud835\udc90\ud835\udc8f\ud835\udc97\ud835\udc86\ud835\udc8f\ud835\udc8a\ud835\udc86\ud835\udc8f\ud835\udc95 \ud835\udc82\ud835\udc8f\ud835\udc85 \ud835\udc86\ud835\udc87\ud835\udc87\ud835\udc8a\ud835\udc84\ud835\udc8a\ud835\udc86\ud835\udc8f\ud835\udc95... \ud835\udc8e\ud835\udc82\ud835\udc8d\ud835\udc82\ud835\udc8c\ud835\udc8a\ud835\udc8f\ud835\udc88 \ud835\udc95\ud835\udc96\ud835\udc8d\ud835\udc90\ud835\udc8f\ud835\udc88 \ud835\udc94\ud835\udc82 \ud835\udc91\ud835\udc82\ud835\udc88-\ud835\udc94\ud835\udc91\ud835\udc86\ud835\udc86\ud835\udc85 \ud835\udc96\ud835\udc91 \ud835\udc8f\ud835\udc88 \ud835\udc91\ud835\udc93\ud835\udc90\ud835\udc84\ud835\udc86\ud835\udc85\ud835\udc96\ud835\udc93\ud835\udc86\ud835\udc94 \ud835\udc98\ud835\udc89\ud835\udc8a\ud835\udc8d\ud835\udc86 \ud835\udc8e\ud835\udc82\ud835\udc8a\ud835\udc8f\ud835\udc95\ud835\udc82\ud835\udc8a\ud835\udc8f\ud835\udc8a\ud835\udc8f\ud835\udc88 \ud835\udc89\ud835\udc8a\ud835\udc88\ud835\udc89-\ud835\udc92\ud835\udc96\ud835\udc82\ud835\udc8d\ud835\udc8a\ud835\udc95\ud835\udc9a \ud835\udc93\ud835\udc86\ud835\udc94\ud835\udc96\ud835\udc8d\ud835\udc95\ud835\udc94.\" When every minute matters in your clinic, having reliable equipment makes all the difference. Denjoy products are designed to help simplify your workflow, deliver consistent p",
       "category": "other",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1591011049387871.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "2537378053361272",
@@ -1054,7 +1220,10 @@
       "meta_caption": "\ud83e\uddb7\u2728 TAKE YOUR CLINICAL SKILLS TO THE NEXT LEVEL WITH TADS TRAINING! Another milestone for DentaSource Direct Training Center! \ud83c\udf93\ud83e\uddb7 We are proud to have successfully welcomed our 1st Batch of TADS Training, composed of dentists from FFC Dental Clinic, for an intensive and hands-on learning experience focused on improving their clinical knowledge, skills, and confidence in TADS procedures. The training",
       "category": "training",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/2537378053361272.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "910813408749291",
@@ -1067,7 +1236,10 @@
       "meta_caption": "Precision You Can See. Confidence You Can Deliver. \ud83e\uddb7\u2728 Take shade matching to the next level with the KOUNGSUN Digital Shade Matching Device\u2014designed to help dental professionals achieve more consistent and accurate shade selection for better aesthetic results. Say goodbye to guesswork and hello to a smarter, more efficient digital workflow. From shade analysis to treatment planning, bring precisio",
       "category": "other",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/910813408749291.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "857584583986288",
@@ -1080,7 +1252,10 @@
       "meta_caption": "DIGICON 2026 \u2014 What an Incredible Experience! \ud83c\udf89\ud83e\uddb7 DIGICON 2026 was truly a blast! \ud83d\ude80 A huge thank you to all the dentists and dental professionals who visited the DentaSource Direct booth, explored our products, and took the time to connect with our team. Your support and trust inspire us to keep bringing better solutions to the dental community. \ud83d\udc9a Missed us at DIGICON 2026? No worries! Our DentaSou",
       "category": "convention",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/857584583986288.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "845243108557084",
@@ -1093,7 +1268,10 @@
       "meta_caption": "\ud83d\udd25 DAY 2. FINAL DAY. LET\u2019S MAKE IT COUNT! \ud83e\uddb7\u2728 DentaSource Direct is LIVE at DIGICON 2026! \ud83d\ude80 Missed us yesterday? This is your last chance! \ud83d\udc40 Come visit our booth, meet the DentaSource Direct team, check out our dental equipment, and discover solutions that can help take your practice to the NEXT LEVEL. \ud83d\udc9a Whether you\u2019re upgrading your clinic, planning your next investment, or simply looking for bette",
       "category": "convention",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/845243108557084.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1242061574685287",
@@ -1106,7 +1284,10 @@
       "meta_caption": "\ud835\udc13\ud835\udc21\ud835\udc1e \ud835\udc1e\ud835\udc2a\ud835\udc2e\ud835\udc22\ud835\udc29\ud835\udc26\ud835\udc1e\ud835\udc27\ud835\udc2d \ud835\udc32\ud835\udc28\ud835\udc2e \ud835\udc1c\ud835\udc21\ud835\udc28\ud835\udc28\ud835\udc2c\ud835\udc1e \ud835\udc2c\ud835\udc1a\ud835\udc32\ud835\udc2c \ud835\udc1a \ud835\udc25\ud835\udc28\ud835\udc2d \ud835\udc1a\ud835\udc1b\ud835\udc28\ud835\udc2e\ud835\udc2d \ud835\udc2d\ud835\udc21\ud835\udc1e \ud835\udc2c\ud835\udc2d\ud835\udc1a\ud835\udc27\ud835\udc1d\ud835\udc1a\ud835\udc2b\ud835\udc1d \ud835\udc28\ud835\udc1f \ud835\udc1c\ud835\udc1a\ud835\udc2b\ud835\udc1e \ud835\udc32\ud835\udc28\ud835\udc2e \ud835\udc29\ud835\udc2b\ud835\udc28\ud835\udc2f\ud835\udc22\ud835\udc1d\ud835\udc1e. Every successful endodontic procedure starts long before treatment begins, it starts with reliable technology. The \ud835\udc03\ud835\udc1e\ud835\udc27\ud835\udc23\ud835\udc28\ud835\udc32 \ud835\udc0c\ud835\udc1e\ud835\udc2d\ud835\udc1a \ud835\udc04\ud835\udc27\ud835\udc1d\ud835\udc28 \ud835\udc0f\ud835\udc2b\ud835\udc28 is built for clinics that value precision, efficiency, and a seamless workflow. With everything you need in one intelligent workstation, you can spend less time managing equipment and more",
       "category": "other",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1242061574685287.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "5553747924849593",
@@ -1119,7 +1300,10 @@
       "meta_caption": "\ud83d\udd25 DIGICON 2026 IS WHERE THE FUTURE OF DENTISTRY COMES TO LIFE! \ud83e\uddb7\ud83d\ude80 And yes\u2014we\u2019re LIVE! \ud83d\udc4b DentaSource Direct is here at DIGICON 2026, and we\u2019re excited to meet the amazing dental professionals, innovators, and industry leaders shaping the future of dentistry. \u2728 Come visit us! Let\u2019s talk about your practice, discover new possibilities, explore innovative dental solutions, and find the right equipment",
       "category": "showroom",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/5553747924849593.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "2698777730518007",
@@ -1132,7 +1316,10 @@
       "meta_caption": "\ud83d\ude02 \u201cDOC, DENTAL CHAIR BA \u2019TO O BED?!\u201d \ud83e\uddb7\ud83d\ude34 Looking for a dental chair that delivers serious comfort, reliable durability, and long-term value? Because when your patient sits down and says\u2026 \u201cDoc\u2026 I think I can sleep here.\u201d \ud83d\ude02 That\u2019s when you know your dental chair is doing its job. \ud83d\udcba Exceptional Comfort \u2014 Keep your patients relaxed throughout the procedure. \ud83d\udcaa Built for Durability \u2014 Designed for everyda",
       "category": "other",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/2698777730518007.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1632766758415119",
@@ -1145,7 +1332,10 @@
       "meta_caption": "\ud835\udc03\ud835\udc1e\ud835\udc27\ud835\udc2d\ud835\udc1a\ud835\udc25 \ud835\udc1c\ud835\udc25\ud835\udc22\ud835\udc27\ud835\udc22\ud835\udc1c \ud835\udc28\ud835\udc30\ud835\udc27\ud835\udc1e\ud835\udc2b\ud835\udc2c, \ud835\udc2d\ud835\udc21\ud835\udc22\ud835\udc2c \ud835\udc22\ud835\udc2c \ud835\udc28\ud835\udc27\ud835\udc1e \ud835\udc22\ud835\udc27\ud835\udc2f\ud835\udc1e\ud835\udc2c\ud835\udc2d\ud835\udc26\ud835\udc1e\ud835\udc27\ud835\udc2d \ud835\udc32\ud835\udc28\ud835\udc2e'\ud835\udc25\ud835\udc25 \ud835\udc2d\ud835\udc21\ud835\udc1a\ud835\udc27\ud835\udc24 \ud835\udc32\ud835\udc28\ud835\udc2e\ud835\udc2b\ud835\udc2c\ud835\udc1e\ud835\udc25\ud835\udc1f \ud835\udc1f\ud835\udc28\ud835\udc2b. \ud83d\udc9a Exceptional endodontic care doesn't happen by chance. It starts with the right technology behind every procedure. Meet the Denjoy Meta Endo Pro\u2014designed to help modern dental practices work smarter, stay organized, and deliver consistent results. \u2714\ufe0f Streamlined controls for a smoother workflow \u2714\ufe0f Complete endodontic solution",
       "category": "showroom",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1632766758415119.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1027734110137342",
@@ -1158,7 +1348,10 @@
       "meta_caption": "\ud83c\udfa8 Your clinic deserves more than just a dental chair\u2014it deserves a statement. Introducing the Roson DX-A1 Fashion Model, where sophisticated design meets exceptional clinical performance. Now available in three stunning signature colors that perfectly complement your clinic's personality. \ud83c\udf38 Ballet Pink \u2013 Elegant, warm, and inviting. Create a relaxing atmosphere that puts every patient at ease. \ud83d\udc99 R",
       "category": "showroom",
       "width": 720,
-      "height": 404
+      "height": 404,
+      "hd": "/cinema/reels/hd/1027734110137342.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 608
     },
     {
       "id": "880174031563895",
@@ -1171,7 +1364,10 @@
       "meta_caption": "\ud83d\ude80 Master the Future of Digital Dentistry! Take your dental workflow to the next level with our Digital CAD Designing Training at DentaSource Direct Training Center. Learn the fundamentals and advanced techniques of digital CAD design through hands-on training, guided by experienced professionals from Crest Study Group. Whether you're a dentist, dental technician, or aspiring digital dentistry prof",
       "category": "training",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/880174031563895.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1058866666938609",
@@ -1184,7 +1380,10 @@
       "meta_caption": "Premium dental equipment. Crazy deals. All under one roof. \ud83d\udc9a DentaSource Direct brings you the best of Denjoy, Roson and other premium dental equipments trusted by top clinics nationwide now at prices that make upgrading your clinic easier than ever. \u2705 Premium dental technology at unbeatable value \u2705 Exclusive freebies on every valid purchase \u2705 FREE hands-on demo to experience it yourself \u2705 The tru",
       "category": "training",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1058866666938609.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1686392845807696",
@@ -1197,7 +1396,10 @@
       "meta_caption": "\ud83e\uddb7 Master the Art of Digital Smile Design! \u2728 Take your digital dentistry skills to the next level with our DIGITAL MANIPULATION \u2013 SMILE MOCKUP training, brought to you by Crest Study Group at the DentaSource Direct Training Center. Learn practical techniques in creating realistic digital smile mockups that enhance treatment planning, improve patient communication, and elevate clinical outcomes. \ud83c\udf93 E",
       "category": "training",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1686392845807696.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1968490167144330",
@@ -1210,7 +1412,10 @@
       "meta_caption": "This is what a modern, upgraded clinic looks like. \u2728 Our partner clinic made the switch to Denjoy and the difference is instantly felt by both dentist and patient. \u2705 Precision engineering for confident, effortless procedures \u2705 Comfortable experience that keeps patients coming back \u2705 Sleek, intuitive design built for modern dental practices \u2705 Trusted by clinics that only settle for the best Join th",
       "category": "showroom",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1968490167144330.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1464261549053843",
@@ -1223,7 +1428,10 @@
       "meta_caption": "Another meaningful milestone for our team. \ud83e\uddb7 We were honored to be part of the PDA Benguet Chapter Induction & Seminar in Baguio, where dental professionals gathered to celebrate leadership, share knowledge, and strengthen connections within the industry. Thank you for having us. We're grateful for every opportunity to support the dental community and look forward to seeing you again at future eve",
       "category": "training",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1464261549053843.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "27702237096105510",
@@ -1236,7 +1444,10 @@
       "meta_caption": "Meet Dr. John Kennedy Manalo, the latest dentist to experience premium dental equipments done right. \u2728 He walked into our showroom, received a warm welcome from our friendly and accommodating staff, and got a FREE consultation and hands-on demo of our premium equipment lineup. His reaction? Pure amazement at the quality and precision the dental equipments brings to modern dentistry. \"This are next",
       "category": "training",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/27702237096105510.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1743007670459651",
@@ -1249,7 +1460,10 @@
       "meta_caption": "\u2728 Another Successful Delivery! \ud83d\ude9a\ud83e\uddb7 We're proud to deliver a brand-new DX-A3S Dental Chair to a valued dental clinic in Taguig City! \ud83d\udc99 Designed to combine comfort, functionality, and modern aesthetics, the DX-A3S helps elevate both the patient experience and the efficiency of your practice. Whether you're building a new clinic or upgrading your existing setup, DentaSource Direct is here to help brin",
       "category": "install",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1743007670459651.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "975185138892513",
@@ -1262,7 +1476,10 @@
       "meta_caption": "Another successful delivery! \ud83d\ude9a\ud83e\uddb7 Delivered our DX-A3 Dental Chair to Cabatuan, Isabela in a custom unique color! \ud83d\udc99 Hindi lang basic colors ang available sa amin. If you want your clinic to stand out, we also offer unique color options to match your style and branding. \ud83c\udfa8 Want a specific color? We can customize it for you! Because your dental chair should reflect your clinic's personality\u2014not just it",
       "category": "install",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/975185138892513.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1376969710960728",
@@ -1275,7 +1492,10 @@
       "meta_caption": "Tired of unreliable dental equipment slowing down your clinic? Watch what's inside this box, genuine Denjoy products built for precision, durability, and results you can trust every single day. Every dentist deserves tools that match their skill. Elevate your practice. Elevate your patients' experience. DentaSource Direct \u2014 proudly the ONLY authorized Denjoy partner in the Philippines. ISO 13485 &",
       "category": "showroom",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1376969710960728.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1338636171113765",
@@ -1288,7 +1508,10 @@
       "meta_caption": "Out with the old, in with the new! \ud83e\uddb7\u2728 From dismantling your old dental chair to delivering and installing your brand-new DX-A3 Dental Chair, we've got you covered Doc. Thank you, Doc, for trusting us to be part of your clinic's upgrade. Here's to providing greater comfort, efficiency, and a better experience for every patient! DentaSource Direct \"Your Growth Partner in Dentistry\" #DXA3DentalChair ",
       "category": "install",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1338636171113765.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "2039690190757920",
@@ -1301,7 +1524,10 @@
       "meta_caption": "We extend our sincere appreciation to our valued business partner, Roson, for visiting us and conducting an inspiring management, sales, and technical training session. Your expertise, guidance, and continued support empower our team to grow, improve, and deliver even better service to our customers. We truly value our partnership and look forward to achieving more success together. Thank you for ",
       "category": "training",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/2039690190757920.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "2264046751080325",
@@ -1314,7 +1540,10 @@
       "meta_caption": "\ud83e\uddb7 Another Milestone Delivered! \ud83e\uddb7 Another successful delivery and installation of the DX-A3 Dental Chair at Dobles-Teylan Dental Care Center! At DentaSource Direct, we are proud to support dental professionals with dependable equipment designed for comfort, efficiency, and exceptional patient care. Thank you for your trust and confidence in our products and services. We look forward to being part o",
       "category": "install",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/2264046751080325.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1327978675477044",
@@ -1327,7 +1556,10 @@
       "meta_caption": "\ud83e\uddb7 Another Successful Delivery & Installation Completed! \u2728 DentaSource Direct is proud to announce the successful delivery and installation of two DX-S3 Dental Chairs at Ignacio Dental Clinic. We are grateful for the trust and confidence placed in us to support your practice with reliable, high-quality dental equipment designed for efficiency, comfort, and clinical excellence. Thank you, Ignacio De",
       "category": "install",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1327978675477044.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "2794952264198672",
@@ -1340,7 +1572,10 @@
       "meta_caption": "Dental clinic owners \u2014 watch this reel twice. \ud83d\udc40 This is what your root canal treatments have been missing. \ud83e\uddb7 Denjoy, the world's leading endodontic...",
       "category": "showroom",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/2794952264198672.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1683481059462196",
@@ -1353,7 +1588,10 @@
       "meta_caption": "\ud83d\ude9a\u2728 FRESH ARRIVALS AT DENTASOURCE DIRECT! \u2728\ud83d\ude9a New stocks of our highly sought-after Dental Chairs and Dental Equipment have arrived and are now available for delivery! Designed to support efficiency, comfort, and clinical excellence, these latest arrivals are the perfect investment for modern dental practices looking to upgrade and grow. \u2714 Newly Arrived Stocks \u2714 Ready for Delivery \u2714 Trusted Quality ",
       "category": "delivery",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1683481059462196.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1917792168939952",
@@ -1366,7 +1604,10 @@
       "meta_caption": "The best dental clinic owners in the Philippines already know where to go. \ud83d\udc9a\ud83e\udde1 DentaSource Direct. One showroom. Endless upgrades. And a team that genuinely cares about helping your clinic win. Here's everything waiting for you: \u2705 Roson Dental Chairs \u2014 world-class patient comfort and clinical ergonomics \u2705 Denjoy Endodontic Systems \u2014 apex locators, endo motors & NiTi file systems trusted in 80+ coun",
       "category": "training",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1917792168939952.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1009011925184152",
@@ -1379,7 +1620,10 @@
       "meta_caption": "Dear Dental clinic owners, Your competition is already looking at this. \ud83d\udc40 Denjoy is now exclusively available in the Philippines through DentaSource Direct and stocks won't last long. The world's most trusted endodontic brand. Used in 80+ countries. Now at your doorstep. \ud83c\udfc6 Premium quality \u00b7 Precision-engineered \u00b7 Globally certified \ud83c\udfc6 The only authorized Denjoy supplier in the Philippines \ud83d\udccd 610 C. ",
       "category": "delivery",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1009011925184152.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "4528383437405302",
@@ -1392,7 +1636,10 @@
       "meta_caption": "\ud83e\uddb7 Another Successful Dental Chair Installation! \u2728 Congratulations to our valued client in Cabuyao, Laguna on the newest addition to their dental practice. At DentaSource Direct, we are committed to providing reliable dental solutions that help clinics enhance patient care, improve efficiency, and support long-term growth. Thank you, Doc, for trusting us as your partner in building a modern and suc",
       "category": "install",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/4528383437405302.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1783856553066745",
@@ -1405,7 +1652,10 @@
       "meta_caption": "A successful learning experience at the DentaSource Direct Training Center with Crest Study Group. \ud83e\uddb7 Live Surgical Demonstration: Guided Crown Lengthening for Esthetic Rehabilitation Participants had the opportunity to witness the complete workflow\u2014from treatment planning and case evaluation to the actual crown lengthening procedure\u2014providing valuable insights into achieving predictable esthetic o",
       "category": "training",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1783856553066745.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "2138686030401963",
@@ -1418,7 +1668,10 @@
       "meta_caption": "Elevate Every Root Canal Treatment with Denjoy Precision Attention dental clinic owners & dentists. \ud83e\uddb7 Are your root canal procedures taking too long? Are you worried about file breakage mid-treatment? Denjoy changes that. With intelligent torque control, a built-in apex locator, and NiTi rotary file systems designed to last, Denjoy gives you clinical confidence on every case. Your patients feel le",
       "category": "delivery",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/2138686030401963.mp4",
+      "hdWidth": 0,
+      "hdHeight": 0
     },
     {
       "id": "4516217948704476",
@@ -1431,7 +1684,10 @@
       "meta_caption": "Another successful event in the books! \ud83c\udf89 Thank you to all the amazing doctors who visited the DentaSource Direct booth at PDA Quezon City in Seda Vertis North. Your overwhelming support, trust, and purchases made this event truly memorable. We're grateful for every conversation, every connection, and every opportunity to be part of your dental journey. See you at our next event\u2014bigger, better, and",
       "category": "convention",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/4516217948704476.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "27138017502476777",
@@ -1444,7 +1700,10 @@
       "meta_caption": "Dentists & dental entrepreneurs, this is your last chance. \ud83e\uddb7\ud83d\udd25 Elevate your clinic with DentaSource Direct premium dental equipments and walk away with exclusive freebies on top of your investment. That's right, buy premium. Get rewarded. \ud83c\udf81 Freebies await every qualifying purchase \ud83d\udc8e World-class dental equipment \ud83d\udccd Visit us: 610 C. Raymundo, Maybunga, Pasig City \ud83d\udc49 DM us \"FREEBIE\" RIGHT NOW to reserve",
       "category": "showroom",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/27138017502476777.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1655693562346487",
@@ -1457,7 +1716,10 @@
       "meta_caption": "Transform smiles with precision, confidence, and digital innovation. \u2728 Join the advanced training on Smile Design & Digital Crown Lengthening conducted by Crest Study Group here at DentaSource Direct Training Center. Enhance your skills in modern digital workflows, esthetic treatment planning, and predictable smile transformation techniques designed for today\u2019s evolving dental practice. \ud83d\udccd Hands-on",
       "category": "training",
       "width": 404,
-      "height": 720
+      "height": 720,
+      "hd": "/cinema/reels/hd/1655693562346487.mp4",
+      "hdWidth": 608,
+      "hdHeight": 1080
     },
     {
       "id": "1518637086604072",
