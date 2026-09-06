@@ -189,7 +189,22 @@ export async function POST(request) {
   // nothing about it being SENT there from a manifest that did not. Two of the
   // four manifests carrying stripUnsafe are hand maintained, with no build step
   // to catch a re-add, so both doors have to refuse or neither does.
-  const barred = stripUnsafeOf(targetDoc);
+  // A strip target is judged against EVERY strip's map, for the reason in the
+  // files route: the softness belongs to the photograph, not to one manifest.
+  // A target that declares no map of its own is not a strip and is left alone.
+  let barred = stripUnsafeOf(targetDoc);
+  if (barred) {
+    barred = { ...barred };
+    for (const f of FILES) {
+      try {
+        const other = JSON.parse(await readFile(absolute(f.path), 'utf8'));
+        const m = stripUnsafeOf(other);
+        if (m) for (const [n, why] of Object.entries(m)) if (!barred[n]) barred[n] = why;
+      } catch {
+        /* absent or unreadable: nothing to add */
+      }
+    }
+  }
   if (barred) {
     const hit = picked.map((x) => basename(srcOf(x))).find((b) => barred[b]);
     if (hit) return bad(`${hit} was removed from that set on purpose: ${barred[hit]}`);

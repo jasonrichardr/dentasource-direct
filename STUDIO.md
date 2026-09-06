@@ -72,7 +72,10 @@ reason on hover. Those were taken out of that strip on purpose, usually because
 the original photograph is only 360px wide and reads soft at tile size. They are
 not swapped or enlarged, because each one's caption describes that exact scene.
 They keep their place in the articles. The studio will not let one back in
-through the picker or through Send to…
+through the picker or through Send to…, and a picture ruled out of ANY strip is
+ruled out of all of them, because the reason is the photograph rather than the
+particular strip. A beat's own pictures are not a strip and are left alone:
+those render large, which is where a small original is fine.
 
 **Open beat** opens that beat on the running site in a new tab.
 

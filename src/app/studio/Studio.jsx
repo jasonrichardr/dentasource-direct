@@ -38,6 +38,7 @@ export default function Studio() {
   const [busy, setBusy] = useState('');
   const [note, setNote] = useState(null);
   const [dragFrom, setDragFrom] = useState(null);
+  const [unsafeUnion, setUnsafeUnion] = useState(null);
 
   const active = useMemo(() => files.find((f) => f.id === activeId) || null, [files, activeId]);
   const items = useMemo(() => {
@@ -55,6 +56,7 @@ export default function Studio() {
         // that EXISTS can be selected.
         const all = d.files || [];
         setFiles(all);
+        setUnsafeUnion(d.unsafeUnion || null);
         const first = all.find((f) => f.exists);
         if (first) setActiveId(first.id);
       })
@@ -130,7 +132,10 @@ export default function Studio() {
       setNote({ text: `${verb} ${n} into ${res.label}. Both files were written, each with a .bak.` });
       fetch('/api/studio/files')
         .then((r) => r.json())
-        .then((d) => setFiles(d.files || []))
+        .then((d) => {
+          setFiles(d.files || []);
+          setUnsafeUnion(d.unsafeUnion || null);
+        })
         .catch(() => {});
     },
     [active],
@@ -335,7 +340,7 @@ export default function Studio() {
                 source={{ path: active.path, pointer: [active.collection] }}
                 dirty={dirty}
                 onTransferred={afterTransfer}
-                blocked={stripUnsafeOf(doc)}
+                blocked={unsafeUnion || stripUnsafeOf(doc)}
               />
               {/* ☠️ WHY SOMETHING IS MISSING IS EDITORIAL INFORMATION. The growth
                   partner set carries an `excluded` map of id range to reason,
