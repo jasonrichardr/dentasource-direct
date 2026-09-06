@@ -141,38 +141,28 @@ export function basename(p) {
   return typeof p === 'string' ? p.split('?')[0].split('/').pop() : '';
 }
 
-/** ☠️ FILES A MANIFEST HAS RULED OUT, AND WHY.
+/** ☠️ FILES A GENERATOR FOUND TOO SMALL FOR SOMEWHERE, AND WHY.
  *  A manifest may carry `stripUnsafe`: { "<filename>": "<reason>" }. These are
- *  photographs REMOVED from that strip on purpose: 360px sources that read soft
+ *  photographs removed from that strip on purpose: 360px sources that read soft
  *  at tile size. They are not swapped and not upscaled, because each one's alt
  *  text describes that exact scene and repointing the file would caption one
  *  event with a picture of another. They stay in their articles, where 360 wide
  *  is right.
  *
- *  ☠️ THE KEY ALONE DOES NOT DECIDE ANYTHING. It used to: presence of the map
- *  was read as "tiles here are big", and every declaring list was barred from
- *  every barred file. builder-home found the exception on 2026-09-06 —
- *  crew-shots renders 126px tiles and needs 252 device px, so 360px sources are
- *  comfortably sufficient there, and two documentary photographs had been taken
- *  out of a row where they were never soft.
+ *  ☠️ THIS MAP IS DOCUMENTATION AND DECIDES NOTHING (ruled 2026-09-06, after it
+ *  decided things twice and was wrong both times). What a list may carry is
+ *  arithmetic, in ./unsafe.js, on the `tilePx` it declares and the width of the
+ *  file in hand:
  *
- *  The rule is now arithmetic, in ./unsafe.js, over this map and a `tilePx`
- *  the manifest declares:
+ *      a list bars a file when   fileWidth  <  tilePx * 2
  *
- *      a list bars a file when   tilePx * 2  >  the file's short side
- *
- *  measured off the file on disk rather than trusted from the data. A list that
- *  declares this map but no `tilePx` bars everything, deliberately, and the
- *  studio labels that state rather than defaulting silently. */
+ *  measured off the file rather than trusted from the data. So a photograph
+ *  nobody flagged is still refused where it would be soft, a flagged one is
+ *  offered where it is fine, and a list that declares no tilePx bars nothing
+ *  and says so on screen. */
 export function stripUnsafeOf(doc) {
   const m = doc && typeof doc === 'object' ? doc.stripUnsafe : null;
   return m && typeof m === 'object' ? m : null;
-}
-
-/** The reason this file is barred from that manifest, or null. */
-export function unsafeReason(blocked, src) {
-  if (!blocked) return null;
-  return blocked[basename(src)] || null;
 }
 
 export function isVideoPath(p) {

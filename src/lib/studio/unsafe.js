@@ -1,46 +1,46 @@
-// ── WHICH FILES A LIST CANNOT CARRY, MEASURED RATHER THAN GUESSED ───────────
+// ── WHETHER A LIST CAN CARRY A FILE, DECIDED BY SIZE ────────────────────────
 //
-// ☠️ THIS REPLACES A PROXY THAT BIT. The first version treated "declares a
-// stripUnsafe map" as meaning "tiles here are big", and barred every declaring
-// list from every barred file. builder-home applied the rule back across the
-// surfaces they render and found the exception (2026-09-06):
+// ☠️ THIS FILE HAS BEEN WRONG TWICE. Both times the same way: a category
+// standing in for a measurement.
 //
-//   action-reels, installs, training-media, growth-partner   384 css px tiles
-//   crew-shots        the parts beat's THIRD row, .dsd-crew-shot   126 css px
-//   parts             the parts beat's first two rows                56 css px
+//   v1  "declares a stripUnsafe map" was read as "tiles here are big", and
+//       every declaring list was barred from every flagged file. crew-shots
+//       renders 126px tiles and was refusing 360px photographs it displays
+//       perfectly well (builder-home, 2026-09-06).
+//   v2  the comparison was tilePx * 2 against the file's SHORT side. Right for
+//       the portrait sources in hand, wrong in principle: the tiles are 4:3
+//       with object-fit cover and the sources are 360x640 portrait, so it is
+//       the WIDTH that gets scaled to fill and the width that goes soft.
 //
-// crew-shots was under the union and should not have been. Its row needs 252
-// device px at DPR 2; the five barred photographs are 360x640, so 360 against
-// 252 is comfortably sufficient. Two documentary photographs had been taken out
-// of a row where they were never soft, and the union then refused the other
-// three. The old comment justifying the union even said the three "would be
-// exactly as soft" in crew-shots, which was true of the four 384px strips and
-// false of the only manifest it named.
+// The rule, ruled by team-lead and measured by builder-home (d74a964):
 //
-// So the rule is now arithmetic on two numbers, with no exceptions to remember:
+//     a list bars a file when   fileWidth  <  tilePx * 2
 //
-//     a list bars a file when   tilePx * 2  >  the file's short side
+// tilePx is the largest css width the list renders a tile at, declared by the
+// manifest. DPR 2 is the retina case. The width is MEASURED off the file on
+// disk, because a number copied into JSON is a claim about a photograph and
+// this is the photograph; a width declared in a manifest row is used only when
+// the file itself cannot be read.
 //
-// tilePx is what the manifest declares it renders at. The short side is
-// MEASURED off the file on disk, not copied into the data, because a number
-// copied into JSON is a claim about a file and this is the file itself. DPR 2
-// is the retina case; a 1x screen is covered by the same bar.
-//
-// The short side rather than the long one, because a tile crops to fill: a
-// 360x640 portrait in a 126x84 landscape tile is limited by its 360, not its
-// 640. Being wrong in this direction bans a photograph from somewhere it works,
-// which is the failure this file exists to stop.
+// ☠️ AND stripUnsafe NO LONGER DECIDES ANYTHING. It stays in the manifests as
+// generated documentation of what a generator found and why, and both doors —
+// the picker and Send to… — evaluate the TARGET list's tilePx against the file
+// in hand. That way a photograph nobody ever flagged is still refused where it
+// would be soft, and a flagged one is offered where it is fine. A list that
+// declares no tilePx bars nothing: there is no budget to judge against, and the
+// studio says so on the set rather than guessing in either direction.
 
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 
-import { ASSET_ROOTS, FILES, absolute, basename, stripUnsafeOf } from './registry';
+import { ASSET_ROOTS, FILES, absolute, basename, isVideoPath, stripUnsafeOf } from './registry';
 
 /** DPR the tile budget is computed against. */
 export const TARGET_DPR = 2;
 
-const dimsCache = new Map(); // basename -> short side in px, or null
+const dimsCache = new Map(); // basename -> {width, height} | null
 let indexed = null; // basename -> absolute path
+let pipelineBroken = null; // the error message, once, if sharp cannot load
 
 async function walk(dir, out, depth = 0) {
   if (depth > 6) return;
@@ -68,36 +68,58 @@ async function assetIndex() {
   return found;
 }
 
-/** The file's short side, measured. null when it cannot be determined, which is
- *  treated as "cannot prove it is big enough" and therefore barred. */
-export async function shortSideOf(name) {
-  const key = basename(name);
+/** The file's pixel size, measured. null when it cannot be read: a video, an
+ *  SVG, a file that is not there, or a machine without the image pipeline. */
+export async function measure(nameOrPath) {
+  const key = basename(nameOrPath);
   if (dimsCache.has(key)) return dimsCache.get(key);
   let value = null;
   try {
     const idx = await assetIndex();
     const file = idx.get(key);
-    if (file) {
+    if (file && !isVideoPath(file)) {
       const sharp = (await import('sharp')).default;
       const m = await sharp(file).metadata();
-      if (m.width && m.height) value = Math.min(m.width, m.height);
+      if (m.width && m.height) value = { width: m.width, height: m.height };
     }
-  } catch {
-    value = null; // no sharp, or an unreadable file: stay conservative
+  } catch (e) {
+    // ☠️ NO PIPELINE MEANS NO OPINION, NOT A CLOSED DOOR. If sharp cannot load,
+    // measuring every file fails, and barring on "unknown" would grey out the
+    // entire picker with no explanation. The studio reports the outage on the
+    // set instead, so an editor sees why nothing is being judged.
+    pipelineBroken = pipelineBroken || e.message;
+    value = null;
   }
   dimsCache.set(key, value);
   return value;
 }
 
+/** The width to judge a file by: what the file says it is, else what a manifest
+ *  row claimed. Videos and unreadable files return null and are never barred by
+ *  this rule — it is about photographs, and mp4 dimensions are not sharp's. */
+export async function widthOf(nameOrPath, declaredWidth = null) {
+  const m = await measure(nameOrPath);
+  if (m) return m.width;
+  return Number.isFinite(declaredWidth) && declaredWidth > 0 ? declaredWidth : null;
+}
+
+/** Is this file too small for a list whose tiles need `needPx` device px? */
+export function tooSmall(needPx, width) {
+  if (!needPx) return false; // no declared budget: nothing is barred
+  if (width == null) return false; // unmeasurable: no opinion, see measure()
+  return width < needPx;
+}
+
 /**
- * Read every manifest once and work out what each may not carry.
+ * The tile budget of every manifest, plus what its own flagged files do against
+ * it — the number the media grid shows.
  *
- * @returns {{ union: object, byPath: object }}
- *   union   basename -> { reason, shortSide, declaredBy }
- *   byPath  manifest path -> { declares, tilePx, needPx, blocked: {name: reason} }
+ * @returns {{ byPath: object, noted: object, pipelineBroken: string|null }}
+ *   byPath  manifest path -> { tilePx, needPx, declares, noted, notedBarred }
+ *   noted   basename -> { reason, declaredBy, width }   the documentation union
  */
-export async function computeUnsafe() {
-  const union = {};
+export async function tileGuards() {
+  const noted = {};
   const docs = [];
 
   for (const f of FILES) {
@@ -111,38 +133,27 @@ export async function computeUnsafe() {
     const map = stripUnsafeOf(data);
     if (!map) continue;
     for (const [name, reason] of Object.entries(map)) {
-      if (!union[name]) union[name] = { reason, declaredBy: f.id };
+      if (!noted[name]) noted[name] = { reason, declaredBy: f.id };
     }
   }
 
-  for (const name of Object.keys(union)) {
-    union[name].shortSide = await shortSideOf(name);
-  }
+  for (const name of Object.keys(noted)) noted[name].width = await widthOf(name);
 
   const byPath = {};
   for (const { f, data } of docs) {
-    const declares = !!stripUnsafeOf(data);
     const tilePx = Number(data?.tilePx);
-    const hasTile = Number.isFinite(tilePx) && tilePx > 0;
-    const needPx = hasTile ? tilePx * TARGET_DPR : null;
-    const blocked = {};
-
-    if (declares) {
-      for (const [name, info] of Object.entries(union)) {
-        // ☠️ AN UNDECLARED TILE SIZE STAYS CONSERVATIVE. Without a number there
-        // is no way to know the tiles are small, and under-barring is the
-        // failure that ships a soft photograph. The studio says which lists are
-        // in this state so it is a visible gap rather than a silent default.
-        if (!hasTile) {
-          blocked[name] = info.reason;
-          continue;
-        }
-        // unknown dimensions: cannot prove the file is big enough, so bar it
-        if (info.shortSide == null || needPx > info.shortSide) blocked[name] = info.reason;
-      }
-    }
-    byPath[f.path] = { declares, tilePx: hasTile ? tilePx : null, needPx, blocked };
+    const has = Number.isFinite(tilePx) && tilePx > 0;
+    const needPx = has ? tilePx * TARGET_DPR : null;
+    let notedBarred = 0;
+    for (const info of Object.values(noted)) if (tooSmall(needPx, info.width)) notedBarred += 1;
+    byPath[f.path] = {
+      tilePx: has ? tilePx : null,
+      needPx,
+      declares: !!stripUnsafeOf(data),
+      noted: stripUnsafeOf(data),
+      notedBarred,
+    };
   }
 
-  return { union, byPath };
+  return { byPath, noted, pipelineBroken };
 }

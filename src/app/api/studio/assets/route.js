@@ -7,6 +7,7 @@ import { readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 
 import { ASSET_ROOTS, absolute, isImagePath, isVideoPath, studioDisabled } from '@/lib/studio/registry';
+import { measure } from '@/lib/studio/unsafe';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -59,6 +60,12 @@ export async function GET(request) {
   const page = items.slice(0, limit);
   // Size is only fetched for what is actually returned: stat-ing four thousand
   // files to render forty of them is how a picker becomes slow.
+  //
+  // ☠️ PIXEL WIDTH TRAVELS WITH EACH FILE, because the picker's bar is now
+  // arithmetic on it: a target list needing 768 device px greys anything under
+  // that, whether or not a manifest ever flagged it. Reading the header of one
+  // page of images is cheap and cached across requests; the alternative is the
+  // client asking per file, which is the same walk done forty times.
   await Promise.all(
     page.map(async (it) => {
       try {
@@ -66,6 +73,9 @@ export async function GET(request) {
       } catch {
         it.bytes = null;
       }
+      const m = await measure(it.src);
+      it.width = m ? m.width : null;
+      it.height = m ? m.height : null;
     }),
   );
 

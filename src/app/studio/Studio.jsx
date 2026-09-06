@@ -337,7 +337,7 @@ export default function Studio() {
                 source={{ path: active.path, pointer: [active.collection] }}
                 dirty={dirty}
                 onTransferred={afterTransfer}
-                blocked={active.guard?.blocked || null}
+                guard={active.guard || null}
                 guard={active.guard || null}
               />
               {/* ☠️ WHY SOMETHING IS MISSING IS EDITORIAL INFORMATION. The growth
@@ -370,7 +370,7 @@ export default function Studio() {
               filePath={active.path}
               dirty={dirty}
               onTransferred={afterTransfer}
-              blocked={active.guard?.blocked || null}
+              guard={active.guard || null}
             />
           )}
         </main>

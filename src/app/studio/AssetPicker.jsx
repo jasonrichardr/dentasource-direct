@@ -6,9 +6,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { isVideoPath, unsafeReason } from '@/lib/studio/registry';
+import { isVideoPath } from '@/lib/studio/registry';
 
-export default function AssetPicker({ onPick, onClose, blocked = null }) {
+export default function AssetPicker({ onPick, onClose, needPx = null, tilePx = null }) {
   const [q, setQ] = useState('');
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
@@ -61,11 +61,19 @@ export default function AssetPicker({ onPick, onClose, blocked = null }) {
         </div>
         <div className="st-picker">
           {items.map((it) => {
-            // ☠️ A FILE THIS MANIFEST HAS RULED OUT IS SHOWN AND REFUSED, NOT
+            // ☠️ A FILE THIS LIST CANNOT SHOW IS GREYED AND REFUSED, NOT
             // HIDDEN. Hiding it would leave somebody hunting for a photograph
             // they can see in the articles, with no way to learn why it is not
-            // offered. Greyed, with the reason on hover, teaches instead.
-            const why = unsafeReason(blocked, it.src);
+            // offered. Greyed, with its own width in the reason, teaches.
+            //
+            // The bar is the target list's budget against this file's width, so
+            // it covers every file in the library rather than the handful a
+            // manifest happened to flag. A video has no width here and is never
+            // barred by it.
+            const why =
+              needPx && it.kind !== 'video' && it.width != null && it.width < needPx
+                ? `${it.width}px wide. ${tilePx}px tiles need ${needPx}px at DPR 2.`
+                : null;
             return (
             <button
               type="button"
@@ -73,7 +81,7 @@ export default function AssetPicker({ onPick, onClose, blocked = null }) {
               key={it.src}
               disabled={!!why}
               onClick={() => !why && onPick(it)}
-              title={why ? `Not for this set. ${why}` : it.src}
+              title={why ? `Too small for this set: ${why}` : it.src}
             >
               {isVideoPath(it.src) ? (
                 // eslint-disable-next-line jsx-a11y/media-has-caption
@@ -84,7 +92,7 @@ export default function AssetPicker({ onPick, onClose, blocked = null }) {
               )}
               <span className="st-pick-n">{it.name}</span>
               {why ? (
-                <span className="st-pick-x">ruled out here</span>
+                <span className="st-pick-x">too small here</span>
               ) : it.bytes ? (
                 <span className="st-pick-b">{Math.round(it.bytes / 1024)} KB</span>
               ) : null}

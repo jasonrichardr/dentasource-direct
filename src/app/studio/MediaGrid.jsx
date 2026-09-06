@@ -63,7 +63,7 @@ function Thumb({ src }) {
   );
 }
 
-export default function MediaGrid({ k, value, onChange, single = false, source = null, dirty = false, onTransferred = null, blocked = null, guard = null }) {
+export default function MediaGrid({ k, value, onChange, single = false, source = null, dirty = false, onTransferred = null, guard = null }) {
   const rows = Array.isArray(value) ? value : [];
   const objectMode = rows.some((r) => r && typeof r === 'object');
   const [picking, setPicking] = useState(null); // index being swapped, or 'add'
@@ -110,6 +110,16 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
       const r = await fetch('/api/studio/upload', { method: 'POST', body: fd });
       const d = await r.json();
       if (!r.ok) throw new Error(d.error || 'upload failed');
+      // ☠️ THE THIRD DOOR. The picker and Send to… both judge a file against
+      // this list's tile budget; an upload lands in the same list without
+      // passing either. The file stays on disk — it is saved and can go
+      // somewhere it fits — but it is not added here.
+      const w = d.dimensions?.width;
+      if (guard?.needPx && d.kind !== 'video' && w != null && w < guard.needPx) {
+        throw new Error(
+          `Saved to ${d.src}, but not added: it is ${w}px wide and these ${guard.tilePx}px tiles need ${guard.needPx}px at DPR 2.`,
+        );
+      }
       set([...rows, objectMode ? { src: d.src, alt: pending.alt } : d.src]);
       setPending(d.warnings?.length ? { file: null, alt: '', warnings: d.warnings } : null);
       if (fileInput.current) fileInput.current.value = '';
@@ -122,27 +132,21 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
     <div className="st-media">
       <div className="st-f-k">
         {k}
-        {/* ☠️ SAY WHETHER THIS SET HAS A RESOLUTION GUARD. The key's presence is
-            a proxy for "tiles here are big enough for source resolution to
-            matter", and the silent failure is a large-tile set that never
-            declared one. The studio cannot measure a tile, so it shows the
-            absence to the person editing the set, who can. */}
+        {/* ☠️ SAY WHAT THIS SET CAN HOLD, IN ITS OWN NUMBERS. The bar is
+            arithmetic on two of them — the tile width the manifest declares and
+            the pixel width of the file — so the header shows the first and the
+            picker greys anything failing against it. A set with no declared
+            tile size bars nothing, and says that rather than looking guarded. */}
         {guard ? (
           <span
-            className={`st-guard${guard.declares ? '' : ' none'}`}
+            className={`st-guard${guard.tilePx ? '' : ' none'}`}
             title={
-              !guard.declares
-                ? 'This set does not declare stripUnsafe, so nothing is barred from it. Right for small tiles; wrong for a set whose tiles render large.'
-                : guard.tilePx
-                  ? `Tiles here render ${guard.tilePx}px, so a file needs ${guard.needPx}px on its short side at DPR 2. Anything smaller is greyed in the picker.`
-                  : 'This set declares stripUnsafe but no tilePx, so every barred file is refused to stay on the safe side. Add "tilePx": <css px> so it is judged by size instead.'
+              guard.tilePx
+                ? `Tiles here render ${guard.tilePx} css px, so a file needs ${guard.needPx}px of its own width at DPR 2. Anything narrower is greyed in the picker and refused by Send to…, whether or not a manifest ever flagged it. ${guard.notedBarred} of the flagged files fail here.`
+                : 'No tile size declared, so nothing is barred from this set. Add "tilePx": <css px> to the manifest and every file is judged against it.'
             }
           >
-            {!guard.declares
-              ? 'no resolution guard'
-              : guard.tilePx
-                ? `${guard.tilePx}px tiles · ${Object.keys(guard.blocked || {}).length} barred`
-                : `tile size not declared · ${Object.keys(guard.blocked || {}).length} barred`}
+            {guard.tilePx ? `tiles ${guard.tilePx} px: ${guard.notedBarred} barred` : 'no tile size declared'}
           </span>
         ) : null}
         <span className="st-f-n">{rows.length} {rows.length === 1 ? 'file' : 'files'}</span>
@@ -308,7 +312,7 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
         </div>
       )}
 
-      {picking !== null ? <AssetPicker onPick={chose} onClose={() => setPicking(null)} blocked={blocked} /> : null}
+      {picking !== null ? <AssetPicker onPick={chose} onClose={() => setPicking(null)} needPx={guard?.needPx || null} tilePx={guard?.tilePx || null} /> : null}
       {sending ? (
         <TransferPicker
           source={source}

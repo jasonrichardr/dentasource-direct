@@ -12,7 +12,7 @@
 import { readFile, writeFile, copyFile, appendFile } from 'node:fs/promises';
 
 import { FILES, LOG_FILE, absolute, basename, detectCollection, isVideoPath, isWritable, studioDisabled } from '@/lib/studio/registry';
-import { computeUnsafe } from '@/lib/studio/unsafe';
+import { tileGuards, tooSmall, widthOf } from '@/lib/studio/unsafe';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -186,18 +186,28 @@ export async function POST(request) {
   }
 
   // ☠️ THE SAME BAR THE PICKER SHOWS, ON THE OTHER DOOR. Greying a file out of
-  // the picker stops it being ADDED to a manifest that ruled it out, and does
-  // nothing about it being SENT there from a manifest that did not. Two of the
-  // four manifests carrying stripUnsafe are hand maintained, with no build step
-  // to catch a re-add, so both doors have to refuse or neither does.
-  // The target's own bar, by size: see src/lib/studio/unsafe.js. A list that
-  // renders small tiles is not barred from a photograph it can display.
-  const { byPath } = await computeUnsafe();
-  const barred = byPath[to.path]?.blocked || null;
+  // the picker stops it being ADDED to a list whose tiles are too big for it,
+  // and does nothing about it being SENT there from a list where it was fine.
+  // Several of these manifests are hand maintained with no build step to catch
+  // a re-add, so both doors refuse or neither does.
+  //
+  // The target's own budget decides, by size: a list that renders small tiles
+  // takes a photograph a large-tile strip cannot. See src/lib/studio/unsafe.js.
+  const { byPath } = await tileGuards();
+  const needPx = byPath[to.path]?.needPx || null;
 
-  if (barred) {
-    const hit = picked.map((x) => basename(srcOf(x))).find((b) => barred[b]);
-    if (hit) return bad(`${hit} was removed from that set on purpose: ${barred[hit]}`);
+  if (needPx) {
+    for (const entry of picked) {
+      const src = srcOf(entry);
+      if (isVideoPath(src)) continue;
+      const declared = entry && typeof entry === 'object' ? Number(entry.width) : null;
+      const width = await widthOf(src, declared);
+      if (tooSmall(needPx, width)) {
+        return bad(
+          `${basename(src)} is ${width}px wide. That list renders ${byPath[to.path].tilePx}px tiles, which need ${needPx}px at DPR 2, so it would read soft there.`,
+        );
+      }
+    }
   }
 
   const adapted = picked.map((e) => adapt(e, targetList));

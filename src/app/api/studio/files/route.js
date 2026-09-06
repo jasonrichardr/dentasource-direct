@@ -5,7 +5,7 @@
 import { readFile, stat } from 'node:fs/promises';
 
 import { FILES, absolute, detectCollection, studioDisabled } from '@/lib/studio/registry';
-import { computeUnsafe } from '@/lib/studio/unsafe';
+import { tileGuards } from '@/lib/studio/unsafe';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -14,13 +14,12 @@ export async function GET() {
   if (studioDisabled()) return new Response(null, { status: 404 });
 
   const out = [];
-  // ☠️ WHAT MAY NOT GO IN A LIST IS ARITHMETIC NOW, NOT A CATEGORY.
-  // See src/lib/studio/unsafe.js for the rule and the measurement that forced
-  // it: a list bars a file when tilePx * 2 exceeds the file's short side. The
-  // previous version treated "declares a map" as "has big tiles" and over-barred
-  // crew-shots, whose row is 126px and was refusing 360px photographs it renders
-  // perfectly well.
-  const { union: unsafeUnion, byPath } = await computeUnsafe();
+  // ☠️ WHAT A LIST MAY CARRY IS SIZE, NOT A CATEGORY AND NOT A LIST OF NAMES.
+  // Each manifest declares the css width its tiles render at; a file is barred
+  // where its own width is under tilePx * 2. See src/lib/studio/unsafe.js for
+  // the two wrong versions this replaced. stripUnsafe rides along as generated
+  // documentation and decides nothing.
+  const { byPath, noted, pipelineBroken } = await tileGuards();
   for (const f of FILES) {
     try {
       const [raw, s] = await Promise.all([readFile(absolute(f.path), 'utf8'), stat(absolute(f.path))]);
@@ -55,5 +54,5 @@ export async function GET() {
       });
     }
   }
-  return Response.json({ files: out, unsafeUnion });
+  return Response.json({ files: out, noted, pipelineBroken });
 }
