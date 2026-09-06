@@ -54,37 +54,11 @@ export default function Footer() {
     <footer className="dsd-footer pt-24 pb-8 relative overflow-hidden">
       <div className="dsd-footer-glow absolute top-0 right-1/4 w-[500px] h-[500px] blur-[120px] rounded-full pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* CTA */}
-        <div className="dsd-footer-rule flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-10 border-b pb-16">
-          <div className="max-w-xl">
-            <h2 className="dsd-footer-head text-3xl md:text-5xl font-semibold tracking-tight mb-6">
-              Ready to see it <br />
-              <span className="dsd-footer-faint">in person?</span>
-            </h2>
-            <p className="dsd-footer-muted text-lg leading-relaxed">
-              Walk into our Pasig showroom any day, 9 AM to 8 PM, no appointment needed. Or message us; we usually
-              reply the same day.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row shrink-0 gap-3">
-            <Link
-              href="/contact"
-              prefetch={false}
-              className="dsd-footer-cta rounded-full px-8 py-4 text-center font-semibold"
-            >
-              Book a Free Consultation
-            </Link>
-            <a
-              href={MESSENGER}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="dsd-footer-ghost rounded-full px-8 py-4 text-center font-semibold"
-            >
-              Message on Messenger
-            </a>
-          </div>
-        </div>
-
+        {/* ☠️ THE CLOSING CARD IS GONE. Jarich, 2026-09-07: after the arc a card came up
+            saying "Ready to see it in person?" with two buttons, and he asked for it to be
+            removed. The arc's own door beat already makes that invitation. The footer is
+            now the site's navigation and its address, nothing more. The trade-in program
+            he wanted kept from this end of the page lives in the after-sales beat. */}
         {/* Nav columns */}
         <div className="grid grid-cols-2 gap-10 md:grid-cols-4 mb-16">
           {columns.map((col) => (

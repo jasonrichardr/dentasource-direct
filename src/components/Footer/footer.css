@@ -20,8 +20,8 @@
    The scroll track is one full-height section per beat and the footer follows it in
    NORMAL FLOW, so the last stretch of the arc and the top of the footer share the
    viewport. The copy panels are position:fixed, so without a rank the door beat's
-   headline and the footer's own "Ready to see it in person?" print straight through each
-   other, and the footer's buttons swallow taps meant for the door's. Raising the opaque
+   headline and the footer's own nav columns print straight through each other, and the
+   footer's links swallow taps meant for the door's button. Raising the opaque
    footer makes the ending a clean hand-off: the arc plays, then the footer rises over it
    and takes the screen. */
 .dsd-footer {

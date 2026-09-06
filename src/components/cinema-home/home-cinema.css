@@ -678,3 +678,74 @@
   .dsd-photos img, .dsd-strip-track img { transition: none; }
   .dsd-cta:hover { transform: none; }
 }
+
+/* ---- the trade-in program, seated between after sales and the parts rows ----------
+   Jarich, 2026-09-07: the closing card at the foot of the page is gone and this is the
+   one thing from it he wanted kept, moved up here. One plate, copy on the left, the news
+   desk's own photographs of older chairs on the right. The frames are portrait phone
+   video stills (360x640 and 1080x1920), so the tiles are portrait too and object-fit
+   cover keeps the row level. */
+.dsd-tradein {
+  width: min(98vw, 1280px);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 2px 0 10px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  text-align: left;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--paper) 84%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+}
+.dsd-tradein-copy { flex: 1 1 auto; min-width: 0; }
+.dsd-tradein-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--dsd-green);
+}
+.dsd-tradein-head {
+  margin: 4px 0 6px;
+  font-size: clamp(17px, 1.7vw, 22px);
+  line-height: 1.15;
+  font-weight: 700;
+}
+.dsd-tradein-body {
+  margin: 0 0 10px;
+  max-width: 52ch;
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: .86;
+}
+.dsd-tradein-cta { padding: 9px 18px; font-size: 13px; }
+.dsd-tradein-shots { display: flex; gap: 8px; flex: 0 0 auto; }
+.dsd-tradein-shot {
+  display: block;
+  width: 92px;
+  height: 122px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+@media (max-width: 700px) {
+  .dsd-tradein { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px; }
+  .dsd-tradein-body { max-width: none; }
+  .dsd-tradein-shots { justify-content: space-between; }
+  .dsd-tradein-shot { width: 23%; height: 96px; }
+}
+
+/* ---- the marbles beat: headline at the top, the wall gets the middle ---------------
+   Jarich, 2026-09-07: "place headline more up top so we have space for marbles". The
+   engine centres a beat's copy in the viewport, so on this beat the words sat a third of
+   the way down and the seating loop had to push the wall into the bottom band. Top-anchor
+   this panel only, and let the cluster sentinel take the free height: the copy starts
+   under the marquee, the pager and the button stay at the foot, and the seating loop,
+   which measures from the copy's real bottom edge, hands the wall everything between.
+   Scoped with :has(.dsd-cluster) so the reduced-motion still wall keeps the engine's
+   centred layout. */
+.cinema-panel:has(.dsd-cluster) { justify-content: flex-start; }
+.cinema-panel:has(.dsd-cluster) .dsd-panel { height: 100%; }
+.cinema-panel:has(.dsd-cluster) .dsd-cluster { flex: 1 1 auto; height: auto; min-height: 220px; }
+.cinema-panel:has(.dsd-cluster) .cinema-sub { max-width: 60ch; }

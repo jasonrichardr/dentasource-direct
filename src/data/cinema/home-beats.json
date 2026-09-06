@@ -132,7 +132,46 @@
         "/images/news/dental-chair-dismantling-service/v005-3.jpg",
         "/images/news/two-roson-dx-s3-ignacio-dental-clinic/v089-6.jpg",
         "/images/news/three-deliveries-one-week-dx-s3-dx-n2-pro/v047-4.jpg"
-      ]
+      ],
+      "tradeIn": {
+        "eyebrow": "Trade-in program",
+        "headline": "Your old chair has value here",
+        "body": "Almost any make or model counts toward a new ROSON chair, working or not. We appraise it, we collect it, and the new chair goes in the same day the old one comes out.",
+        "cta": {
+          "label": "Get a trade-in estimate",
+          "href": "/trade-in"
+        },
+        "media": [
+          {
+            "src": "/images/news/dental-chair-dismantling-service/v005-1.jpg",
+            "alt": "An older dental chair being prepared for removal",
+            "w": 360,
+            "h": 640
+          },
+          {
+            "src": "/images/news/old-chair-out-roson-dx-a3-in/v098-1.jpg",
+            "alt": "A technician working on an older dental chair",
+            "w": 1080,
+            "h": 1920
+          },
+          {
+            "src": "/images/news/dental-chair-dismantling-service/v005-2.jpg",
+            "alt": "A technician dismantling a dental chair",
+            "w": 360,
+            "h": 640
+          },
+          {
+            "src": "/images/news/old-chair-out-roson-dx-a3-in/v098-3.jpg",
+            "alt": "A technician working under a dental chair",
+            "w": 1080,
+            "h": 1920
+          }
+        ],
+        "sources": [
+          "dental-chair-dismantling-service",
+          "old-chair-out-roson-dx-a3-in"
+        ]
+      }
     },
     {
       "key": "news",

@@ -315,6 +315,47 @@ export function PartsPanel({ beat, beatIndex, parts = [], crew = [] }) {
   return (
     <div className="dsd-panel">
       <Copy beat={beat} />
+      {/* ☠️ THE TRADE-IN PROGRAM LIVES HERE NOW, BETWEEN AFTER SALES AND THE PARTS.
+          Jarich, 2026-09-07: the closing card at the foot of the page is gone and the
+          trade-in program was the one thing from it he wanted kept, placed between after
+          sales and parts. The pictures are the news desk's own: an older chair on its way
+          out and technicians working on one, from the dismantling and old-chair-out
+          articles. No share cards, no customers, no patients: every candidate frame was
+          looked at and the ones with a phone number, a QR code or a person in the chair
+          were left out. Photos only render when the beat is near, like the crew row. */}
+      {beat.tradeIn ? (
+        <div className="dsd-tradein">
+          <div className="dsd-tradein-copy">
+            {beat.tradeIn.eyebrow ? <div className="dsd-tradein-kicker">{beat.tradeIn.eyebrow}</div> : null}
+            <h3 className="dsd-tradein-head">{beat.tradeIn.headline}</h3>
+            {beat.tradeIn.body ? <p className="dsd-tradein-body">{beat.tradeIn.body}</p> : null}
+            {beat.tradeIn.cta ? (
+              <Link href={beat.tradeIn.cta.href} prefetch={false} className="cinema-cta dsd-cta dsd-cta-solid dsd-tradein-cta">
+                {beat.tradeIn.cta.label}
+              </Link>
+            ) : null}
+          </div>
+          <div className="dsd-tradein-shots" aria-hidden={near ? undefined : 'true'}>
+            {(beat.tradeIn.media || []).map((m) => (
+              near ? (
+                <Image
+                  key={m.src}
+                  className="dsd-tradein-shot"
+                  src={m.src}
+                  alt={m.alt || ''}
+                  width={m.w || 360}
+                  height={m.h || 640}
+                  sizes="(max-width: 700px) 25vw, 92px"
+                  quality={85}
+                  loading="lazy"
+                />
+              ) : (
+                <span className="dsd-tradein-shot" key={m.src} aria-hidden="true" />
+              )
+            ))}
+          </div>
+        </div>
+      ) : null}
       <div className="dsd-news">
         {rows.map((row, r) => (
           <div className="dsd-news-row" key={r}>
