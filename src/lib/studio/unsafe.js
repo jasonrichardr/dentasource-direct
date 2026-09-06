@@ -12,8 +12,11 @@
 //   v2  the file's short side against tilePx * 2. Right for portrait sources.
 //   v3  the file's WIDTH against tilePx * 2. Right for portrait sources too, and
 //       wrong for a wide short landscape, which it lets through.
-//   now the ruled form, from the generators (983be5b): a tile uses object-fit
-//       cover, so a file needs tileW*DPR of width AND tileH*DPR of height.
+//   v4  exact cover against a hard 2.0, from the generators (983be5b).
+//   now the same cover ratio against a 1.75 floor (5ccf5af). 2.0 was the retina
+//       ideal and banned most of the site's own footage: 720 wide material on a
+//       384x288 tile covers at 1.875. The 360 wide crest frames sit at 0.94 and
+//       still fail, which is the pile the whole rule exists for.
 //
 // stripUnsafe decides nothing. It is generated documentation of what a pipeline
 // found and why; the studio measures the file in hand against the target list's
@@ -106,7 +109,7 @@ export async function measure(nameOrPath) {
 export async function refusalFor(tile, nameOrPath, declared = null) {
   if (!tile?.tilePx) return null;
   const dims = (await measure(nameOrPath)) || (declared?.width && declared?.height ? declared : null);
-  return softnessReason(tile, dims);
+  return softnessReason(tile, dims, isVideoPath(nameOrPath) ? 'video' : 'image');
 }
 
 /**
@@ -134,18 +137,25 @@ export async function tileGuards() {
     }
   }
 
-  for (const name of Object.keys(noted)) noted[name].dims = await measure(name);
+  for (const name of Object.keys(noted)) {
+    noted[name].dims = await measure(name);
+    noted[name].kind = isVideoPath(name) ? 'video' : 'image';
+  }
 
   const byPath = {};
   for (const { f, data } of docs) {
-    const tilePx = Number(data?.tilePx);
-    const tileHeightPx = Number(data?.tileHeightPx);
+    // every tile key the manifest declares, passed through as it stands: the
+    // shape belongs to the data and the test, not to this loop
+    const num = (v) => (Number.isFinite(Number(v)) && Number(v) > 0 ? Number(v) : null);
     const tile = {
-      tilePx: Number.isFinite(tilePx) && tilePx > 0 ? tilePx : null,
-      tileHeightPx: Number.isFinite(tileHeightPx) && tileHeightPx > 0 ? tileHeightPx : null,
+      tilePx: num(data?.tilePx),
+      tileHeightPx: num(data?.tileHeightPx),
+      tileVideoPx: num(data?.tileVideoPx),
+      tileVideoHeightPx: num(data?.tileVideoHeightPx),
+      tileFit: data?.tileFit === 'contain' ? 'contain' : null,
     };
     let notedBarred = 0;
-    for (const info of Object.values(noted)) if (softnessReason(tile, info.dims)) notedBarred += 1;
+    for (const info of Object.values(noted)) if (softnessReason(tile, info.dims, info.kind)) notedBarred += 1;
     byPath[f.path] = { ...tile, declares: !!stripUnsafeOf(data), notedBarred };
   }
 

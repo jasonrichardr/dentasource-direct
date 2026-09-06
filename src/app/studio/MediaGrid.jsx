@@ -8,7 +8,7 @@
 
 import { useCallback, useRef, useState } from 'react';
 
-import { READ_ONLY_FIELDS, isVideoPath, softnessReason } from '@/lib/studio/registry';
+import { COVER_MIN, READ_ONLY_FIELDS, isVideoPath, softnessReason } from '@/lib/studio/registry';
 import AssetPicker from './AssetPicker';
 import TransferPicker from './TransferPicker';
 
@@ -114,7 +114,7 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
       // this list's tile budget; an upload lands in the same list without
       // passing either. The file stays on disk — it is saved and can go
       // somewhere it fits — but it is not added here.
-      const why = softnessReason(guard, d.dimensions);
+      const why = softnessReason(guard, d.dimensions, d.kind);
       if (why) throw new Error(`Saved to ${d.src}, but not added here. ${why}.`);
       set([...rows, objectMode ? { src: d.src, alt: pending.alt } : d.src]);
       setPending(d.warnings?.length ? { file: null, alt: '', warnings: d.warnings } : null);
@@ -140,15 +140,15 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
               !guard.tilePx
                 ? 'No tile size declared, so nothing is barred from this set. Add "tilePx": <css px> to the manifest and every file is judged against it.'
                 : guard.tileHeightPx
-                  ? `Tiles here render ${guard.tilePx}x${guard.tileHeightPx} css px, so a file needs ${guard.tilePx * 2}x${guard.tileHeightPx * 2} device px at DPR 2 to fill one without softening. Anything smaller is greyed in the picker, refused by Send to… and refused on upload, whether or not a manifest ever flagged it. ${guard.notedBarred} of the flagged files fail here.`
-                  : `Tiles here render ${guard.tilePx} css px wide and no height is declared, so the file's short side stands in and needs ${guard.tilePx * 2}px at DPR 2. Declaring "tileHeightPx" makes this the exact cover test. ${guard.notedBarred} of the flagged files fail here.`
+                  ? `Tiles here render ${guard.tilePx}x${guard.tileHeightPx} css px${guard.tileVideoPx ? `, and a clip ${guard.tileVideoPx}x${guard.tileVideoHeightPx || guard.tileVideoPx}` : ''}. A file must fill its tile at ${COVER_MIN}x or better or it is greyed in the picker, refused by Send to… and refused on upload, whether or not a manifest ever flagged it. ${guard.notedBarred} of the flagged files fail here.`
+                  : `Tiles here render ${guard.tilePx} css px wide and declare no height, so the tile is judged square and the file's short side decides: it must cover at ${COVER_MIN}x. Declaring "tileHeightPx" makes this the exact cover test. ${guard.notedBarred} of the flagged files fail here.`
             }
           >
             {!guard.tilePx
               ? 'no tile size declared'
               : guard.tileHeightPx
-                ? `tiles ${guard.tilePx}x${guard.tileHeightPx} px: ${guard.notedBarred} barred`
-                : `tiles ${guard.tilePx} px: ${guard.notedBarred} barred`}
+                ? `tiles ${guard.tilePx}x${guard.tileHeightPx}${guard.tileVideoPx ? ` · clips ${guard.tileVideoPx}x${guard.tileVideoHeightPx || guard.tileVideoPx}` : ''}: ${guard.notedBarred} barred`
+                : `tiles ${guard.tilePx} wide: ${guard.notedBarred} barred`}
           </span>
         ) : null}
         <span className="st-f-n">{rows.length} {rows.length === 1 ? 'file' : 'files'}</span>

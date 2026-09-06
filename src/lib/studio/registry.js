@@ -141,45 +141,77 @@ export function basename(p) {
   return typeof p === 'string' ? p.split('?')[0].split('/').pop() : '';
 }
 
-/** DPR every tile budget is computed against. */
-export const TARGET_DPR = 2;
+/** ☠️ THE COVER FLOOR, ONE NAMED NUMBER. Ruled down from a hard 2.0 on
+ *  2026-09-06 and kept in a constant on purpose: Jarich can push it back.
+ *
+ *  2.0 was the retina ideal and it banned most of the site's own footage. What
+ *  Facebook and FFC serve natively is 720 wide, which on the 384x288 mixed tile
+ *  is 1.875 — a six percent shortfall nobody can see — while the 360 wide crest
+ *  frames, the ones that genuinely look soft, sit at 0.94 and still fail. */
+export const COVER_MIN = 1.75;
 
-/** ☠️ THE ONE TEST, SHARED BY THE SERVER AND THE BROWSER. Ruled 2026-09-06 and
- *  implemented in the generators first (983be5b): a tile uses object-fit cover,
- *  so the source is scaled by min(srcW/tileW, srcH/tileH) and is soft when that
- *  is under the DPR. Equivalently it needs tileW*DPR of width AND tileH*DPR of
- *  height.
+/** ☠️ A LIST CAN RENDER TWO DIFFERENT TILES. The mixed track gives a video
+ *  `aspect-ratio: 9/16` and an image `4/3` at the same height, so the boxes are
+ *  162x288 and 384x288 (home-cinema.css:512-526). Judging a portrait clip
+ *  against the landscape box refuses a 404x720 reel at 1.05 when it actually
+ *  fills its own tile at 2.49. So the tile is chosen by what the file IS:
+ *  `tileVideoPx` / `tileVideoHeightPx` when declared and the file is video,
+ *  otherwise the picture tile.
  *
- *  This lives in registry.js rather than unsafe.js because unsafe.js reaches
- *  the filesystem and the picker runs in the browser. The two doors calling one
- *  function is the point: a file the studio bars must be the file the generator
- *  bars, or the code and the data disagree about the same photograph.
+ *  ☠️ AND NOT EVERY TILE CROPS. `.dsd-part-img` is `object-fit: contain`
+ *  (home-cinema.css:547): the file is fitted INSIDE the box, scaled by
+ *  min(tileW/w, tileH/h), so the pixels it has per rendered css px are
+ *  max(w/tileW, h/tileH) — the opposite extreme from cover. A manifest whose
+ *  tiles contain says `"tileFit": "contain"`; the default is cover, which is
+ *  every strip. */
+function boxFor(tile, kind) {
+  const vw = Number(tile?.tileVideoPx);
+  const vh = Number(tile?.tileVideoHeightPx);
+  if (kind === 'video' && Number.isFinite(vw) && vw > 0) {
+    return { w: vw, h: Number.isFinite(vh) && vh > 0 ? vh : vw, square: !(Number.isFinite(vh) && vh > 0) };
+  }
+  const w = Number(tile?.tilePx);
+  if (!Number.isFinite(w) || w <= 0) return null;
+  const h = Number(tile?.tileHeightPx);
+  return { w, h: Number.isFinite(h) && h > 0 ? h : w, square: !(Number.isFinite(h) && h > 0) };
+}
+
+/** How many of the file's own pixels land on each css pixel of that tile once
+ *  the browser has fitted it. Cover crops, so the smaller ratio decides; contain
+ *  letterboxes, so the larger one does. A tile that declares no height is judged
+ *  square, which under cover makes this min(w,h)/tileW — the short side form,
+ *  and conservative for a wide landscape source. */
+export function coverRatio(tile, dims, kind = 'image') {
+  const box = boxFor(tile, kind);
+  if (!box) return null; // no declared budget
+  if (!dims?.width || !dims?.height) return null; // unmeasurable: no opinion
+  const byWidth = dims.width / box.w;
+  const byHeight = dims.height / box.h;
+  return tile?.tileFit === 'contain' ? Math.max(byWidth, byHeight) : Math.min(byWidth, byHeight);
+}
+
+/** ☠️ THE ONE TEST, SHARED BY THE SERVER, THE BROWSER AND THE GENERATORS.
+ *  builder-products ships the identical arithmetic in the media pipelines
+ *  (5ccf5af): the ratio above, barred below COVER_MIN. A file the studio bars
+ *  has to be the file the generator bars, or the code and the data disagree
+ *  about the same photograph.
  *
- *  A manifest that declares only `tilePx` gets the short side instead, which for
- *  a tile no taller than it is wide implies both conditions and errs toward
- *  barring. It parts company with cover only for a landscape source in a
- *  non-square tile — an 800x600 into a 384x288 has the 768x576 cover needs, and
- *  the short side of 600 would refuse it. Nothing here is shaped that way; a
- *  list that acquires such a file should declare its tileHeightPx.
+ *  This lives in registry.js rather than unsafe.js because unsafe.js reaches the
+ *  filesystem and the picker runs in the browser.
  *
- *  @param tile {{tilePx?: number, tileHeightPx?: number}} what the list renders
- *  @param dims {{width: number, height: number}|null} the file, measured
+ *  @param tile  what the list renders: tilePx, tileHeightPx, tileVideoPx,
+ *               tileVideoHeightPx, tileFit
+ *  @param dims  {{width: number, height: number}|null} the file, measured
+ *  @param kind  'video' or 'image'
  *  @returns a reason string when the file is too small, else null
  */
-export function softnessReason(tile, dims) {
-  const tw = Number(tile?.tilePx);
-  if (!Number.isFinite(tw) || tw <= 0) return null; // no declared budget: nothing is barred
-  if (!dims?.width || !dims?.height) return null; // unmeasurable: no opinion, see unsafe.js
-  const needW = tw * TARGET_DPR;
-  const th = Number(tile?.tileHeightPx);
-  if (Number.isFinite(th) && th > 0) {
-    const needH = th * TARGET_DPR;
-    if (dims.width >= needW && dims.height >= needH) return null;
-    return `${dims.width}x${dims.height} into a ${tw}x${th} css tile: needs ${needW}x${needH} device px at DPR 2`;
-  }
-  const short = Math.min(dims.width, dims.height);
-  if (short >= needW) return null;
-  return `${dims.width}x${dims.height}, short side ${short}: a ${tw}px tile needs ${needW} device px at DPR 2`;
+export function softnessReason(tile, dims, kind = 'image') {
+  const ratio = coverRatio(tile, dims, kind);
+  if (ratio === null || ratio >= COVER_MIN) return null;
+  const box = boxFor(tile, kind);
+  const named = box.square ? `${box.w} px wide` : `${box.w}x${box.h}`;
+  const what = kind === 'video' ? 'clip' : 'picture';
+  return `a ${what} of ${dims.width}x${dims.height} fills a ${named} tile at ${ratio.toFixed(2)}x, under the ${COVER_MIN}x floor`;
 }
 
 /** ☠️ FILES A GENERATOR FOUND TOO SMALL FOR SOMEWHERE, AND WHY.

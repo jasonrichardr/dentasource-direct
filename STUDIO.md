@@ -182,35 +182,54 @@ Every media list may declare the size its tiles render at:
 and the studio refuses a photograph for that list on the test the generators
 use:
 
-> a tile fills by **cover**, so the file needs `tilePx x 2` of width **and**
-> `tileHeightPx x 2` of height.
+> a tile fills by **cover**, so the file covers it at
+> `min(width / tilePx, height / tileHeightPx)`, and anything under **1.75** is
+> refused.
 
-The doubling is DPR 2, the retina case. Both dimensions because `object-fit:
-cover` scales the source by whichever ratio is larger, so either side can be the
-one that goes soft. The file's size is **measured off the file on disk** — sharp
-for pictures, ffprobe for video — because a number in a manifest is a claim
-about a photograph and this is the photograph.
+Cover means the source is scaled by whichever ratio is larger, so either side
+can be the one that goes soft. The file's size is **measured off the file on
+disk** — sharp for pictures, ffprobe for video — because a number in a manifest
+is a claim about a photograph and this is the photograph.
+
+**1.75 rather than 2.** Two device pixels per css pixel is the retina ideal, and
+holding it banned most of the site's own footage: what Facebook and FFC serve
+natively is 720 wide, which covers a 384x288 tile at 1.875. The 360 wide crest
+frames, the ones that genuinely look soft, cover at 0.94 and still fail. The
+number is `COVER_MIN` in `src/lib/studio/registry.js`, one named constant, so it
+can be pushed back to 2 in one edit.
 
 What the lists declare, from the CSS that renders them:
 
-| list | tile | needs |
-|---|---|---|
-| growth-partner, training-media | 384x288 | 768x576 |
-| action-reels | 384 wide | 768 |
-| installs | 288 wide | 576 |
-| crew-shots | 126x84 | 252x168 |
-| parts | 56x56 | 112x112 |
+| list | pictures | clips | a 720x1280 file fills the picture tile at |
+|---|---|---|---|
+| action-reels, growth-partner, training-media | 384x288 | 162x288 | 1.88, offered |
+| installs | 288x216 | — | 2.50, offered |
+| crew-shots | 126x84 | — | 5.71, offered |
+| parts | 56x56 | — | 12.9, offered |
 
-So the same 360x640 photograph is refused by the installs strip and accepted by
-the crew row, with nothing to remember: four doors — the picker, "Send to…", an
-upload, and the generators themselves — ask the same question.
+and the 360x640 crest frames fill a 384x288 tile at 0.94 and the 126x84 crew row
+at 2.86 — refused by the first, offered by the second.
 
-A list that declares only `tilePx` is judged on the file's **short side**
-instead, which for a tile no taller than it is wide implies both conditions and
-errs toward barring. The two forms part company only for a landscape source in a
-non-square tile: an 800x600 has the 768x576 that a 384x288 tile needs, and a
-short side of 600 would refuse it. Nothing here is shaped that way; a list that
-acquires such a file should declare its `tileHeightPx`.
+**A list can render two tiles.** In the mixed track a clip gets
+`aspect-ratio: 9/16` and a picture `4/3` at the same height, so the boxes are
+162x288 and 384x288. A 404x720 reel fills its own clip tile at 2.49 and the
+picture tile at 1.05, so judging it by the picture tile refuses footage that is
+fine. `tileVideoPx` and `tileVideoHeightPx` name the clip tile; without them a
+clip is judged by the picture tile.
+
+**Not every tile crops.** `.dsd-part-img` is `object-fit: contain`, which fits
+the file inside the box rather than filling it, so the ratio is
+`max(w / tilePx, h / tileHeightPx)` — the other extreme. A manifest whose tiles
+contain says `"tileFit": "contain"`. The default is cover, which is every strip.
+
+Nothing to remember: four doors — the picker, "Send to…", an upload, and the
+generators themselves — run the same arithmetic.
+
+A list that declares only `tilePx` is judged as though its tile were square,
+which makes the test the file's **short side** over that width. It is
+conservative for a wide landscape source: an 800x600 covers a 384x288 tile at
+2.08 but a square 384 at 1.56. A list holding landscape material should declare
+its `tileHeightPx`.
 
 A list that declares **no `tilePx`** bars nothing, and the studio labels it "no
 tile size declared" rather than looking guarded.
@@ -220,10 +239,12 @@ pipeline found and why. They no longer decide anything. The header counts how
 many of those flagged files fail this list's budget, and the picker greys every
 other file that fails it too, whether or not anybody flagged it.
 
-This is the fourth version of the rule. The first read "declares a stripUnsafe
-map" as "tiles here are big" and over-barred the crew row for a week. The second
-and third compared one dimension — the short side, then the width — each right
-only while every soft source was portrait.
+This is the fifth version of the rule, and the first four are worth knowing
+because each looked settled. "Declares a stripUnsafe map" read as "tiles here
+are big" over-barred the crew row for a week. The short side, then the width,
+were each right only while every soft source was portrait. Exact cover against a
+hard 2.0 was geometrically correct and still wrong in practice, because it
+banned the 720 wide material the site is made of.
 
 ## Where it writes
 

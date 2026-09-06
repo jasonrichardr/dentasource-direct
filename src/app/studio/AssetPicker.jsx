@@ -70,7 +70,7 @@ export default function AssetPicker({ onPick, onClose, tile = null }) {
             // it covers every file in the library rather than the handful a
             // manifest happened to flag. A video has no width here and is never
             // barred by it.
-            const why = softnessReason(tile, it);
+            const why = softnessReason(tile, it, it.kind);
             return (
             <button
               type="button"
