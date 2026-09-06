@@ -87,6 +87,13 @@ VIDEOS = [
 # are 1200 or longer, and the 8 clips sit at exactly 720 and rise to 1920 in the HD pass.
 STRIP_MIN = 720
 
+# The shared list every strip generator refuses, kept identical to build_crew.py and
+# build_training.py so the invariant is uniform: no strip generator can emit these.
+# It can never fire here, because growth media comes from the growth partner page and
+# these five are news photographs, but a set that is only present where it happens to be
+# needed is a set somebody forgets to add next time.
+STRIP_UNSAFE = {"v039-1.jpg", "v039-2.jpg", "v039-5.jpg", "v033-8.jpg", "v301-2.jpg"}
+
 EXCLUDED = {
     "kb-01..kb-16, digi-01": "private knowledge base screenshots carrying a personal name, a portrait and patient case data",
     "reel-01": "speaker lineup graphic with names and headshots",
@@ -152,11 +159,14 @@ def main() -> int:
     for stale in list(OUT.glob("*.jpg")) + list(OUT.glob("*.mp4")):
         stale.unlink()
 
-    items, missing = [], []
+    items, missing, refused = [], [], []
     for name, alt in IMAGES:
         src = DL / name
         if not src.exists():
             missing.append(name)
+            continue
+        if name in STRIP_UNSAFE:
+            refused.append(name)
             continue
         im = Image.open(src).convert("RGB")
         if max(im.size) > IMAGE_MAX:
@@ -172,6 +182,9 @@ def main() -> int:
         src = DL / name
         if not src.exists():
             missing.append(name)
+            continue
+        if name in STRIP_UNSAFE:
+            refused.append(name)
             continue
         poster_name = name.replace(".mp4", "-poster.jpg")
         try:
@@ -206,7 +219,7 @@ def main() -> int:
                 "soft at strip tile size"
             for i in items
             if max(i.get("width") or 0, i.get("height") or 0) < STRIP_MIN
-        },
+        } | {n: "on the shared STRIP_UNSAFE list" for n in refused},
         "copy": page_copy(),
         "counts": {"images": sum(1 for i in items if i["type"] == "image"),
                    "videos": sum(1 for i in items if i["type"] == "video"),
