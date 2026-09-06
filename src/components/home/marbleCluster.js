@@ -216,12 +216,40 @@ export function createMarbleCluster(container, {
     const tex = new THREE.VideoTexture(el);
     tex.colorSpace = THREE.SRGBColorSpace;
     tex.center.set(0.5, 0.5);
-    tex.repeat.set(1, PORTRAIT_AR);          // cover-crop the portrait into the bead's square
-    // VERTICAL FRAMING: center faceFocus[i] (0 = top … 1 = bottom of the portrait) in the bead.
-    // Default 0.5 = middle (unchanged). Lower the value to LIFT faces into view (the visible square
-    // slides toward the top of the frame). offset=(1-AR/2)-focusY reduces to 0.219 at focusY=0.5.
     const focusY = faceFocus[i] != null ? faceFocus[i] : 0.5;
+
+    // ☠️ THE SQUARE CROP IS COMPUTED FROM THE CLIP'S OWN SHAPE, NOT ASSUMED.
+    // This used to be a flat repeat.set(1, 9/16): take the full WIDTH and nine sixteenths
+    // of the HEIGHT, which is a square crop only if the clip really is 9:16 portrait.
+    // Measured against the library, 24 of 192 bead loops are not: 17 are LANDSCAPE (720x404
+    // and the like) and 7 are portrait at some other ratio. On a landscape clip that rule
+    // takes the full width and 9/16 of an already-short height, so a wide letterbox strip
+    // gets stretched into the bead's circle. Nothing errors; the marble just shows a
+    // squashed slice, which is easy to mistake for the clip being framed badly.
+    //
+    // A square crop is min(w,h) on a side, so repeat is min/w by min/h. That reduces to
+    // exactly (1, 9/16) for a true 9:16 portrait, so every correctly shaped clip is
+    // untouched. Dimensions are only known once metadata arrives, so the 9:16 guess stands
+    // until then and is corrected in place when the real numbers land.
+    const frameCrop = () => {
+      const w = el.videoWidth, h = el.videoHeight;
+      if (!w || !h) return;
+      const side = Math.min(w, h);
+      const rx = side / w, ry = side / h;
+      tex.repeat.set(rx, ry);
+      // The focus dial slides the crop along the LONG axis, which is the only one with
+      // room to move: vertically on a portrait clip, horizontally on a landscape one.
+      if (h >= w) {
+        tex.offset.set(0, THREE.MathUtils.clamp((1 - ry / 2) - focusY, 0, 1 - ry));
+      } else {
+        tex.offset.set(THREE.MathUtils.clamp(focusY - rx / 2, 0, 1 - rx), 0);
+      }
+      tex.needsUpdate = true;
+    };
+    tex.repeat.set(1, PORTRAIT_AR);          // the 9:16 guess, until metadata says otherwise
     tex.offset.set(0, THREE.MathUtils.clamp((1 - PORTRAIT_AR / 2) - focusY, 0, 1 - PORTRAIT_AR));
+    el.addEventListener("loadedmetadata", frameCrop);
+    frameCrop();                              // in case metadata is already there
     const planeMat = new THREE.MeshBasicMaterial({ map: tex, toneMapped: false, side: THREE.DoubleSide });
     return { el, planeMat };
   });
