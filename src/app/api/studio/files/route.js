@@ -13,14 +13,34 @@ export async function GET() {
   if (studioDisabled()) return new Response(null, { status: 404 });
 
   const out = [];
-  // ☠️ THE UNION, AND WHY IT IS NOT PER MANIFEST. The reason a file is barred is
-  // "too soft at STRIP TILE SIZE": that is a property of the photograph and of
-  // how a strip renders it, not of one manifest. installs bars five, crew-shots
-  // bars two. Read per manifest, the three that crew-shots does not name could
-  // be added to crew-shots, where they would be exactly as soft. So every strip
-  // is judged against every strip's map. A beat's own media list is NOT a strip
-  // and is left alone: those photographs render large, which is where 360 wide
-  // is fine and where the articles keep using them.
+  // ☠️ THE UNION, AND WHAT DECLARING THE KEY ACTUALLY MEANS.
+  //
+  //     stripUnsafe means "a media list whose tiles render large enough for
+  //     source resolution to matter", NOT "any strip".
+  //
+  // Ruled 2026-09-06 with builder-home and builder-products. The reason a file
+  // is barred is that it reads soft at TILE SIZE, which is a property of the
+  // photograph and of how big the tile is, not of the manifest that noticed.
+  // installs bars five, crew-shots bars two; read per manifest, the three
+  // crew-shots does not name could be added there, where they would be exactly
+  // as soft. So every declaring list is judged against every declaring list.
+  //
+  // The measurement that draws the line: a strip tile renders up to 384 css px,
+  // 768 device px at DPR 2, where a 360 wide source is visibly soft. A parts
+  // tile renders 56 css px, 112 device px, where the same photograph is fine.
+  // So parts.json is a strip and deliberately does NOT declare, and a beat's own
+  // media list is left alone for the same reason: those render large, which is
+  // where 360 wide still works and where the articles keep using them.
+  //
+  // ☠️ TWO WAYS THIS GOES WRONG, so the next person adds the key for the right
+  // reason rather than because the list looks like a strip:
+  //   a SMALL-TILE list that declares    over-bars, banning photographs from a
+  //                                      place they still work;
+  //   a LARGE-TILE list that forgets     under-bars, silently, which is worse
+  //                                      because nothing announces it.
+  // The studio cannot measure a tile, so it shows every media set whether it
+  // has a guard, and an empty {} is a real declaration: it marks the list as
+  // one where resolution matters and pulls in the whole union.
   const unsafeUnion = {};
   for (const f of FILES) {
     try {

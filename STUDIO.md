@@ -168,6 +168,35 @@ which costs more than it is worth: nothing sensitive is in it, no served page
 loads it, and `/studio` and every `/api/studio` route return a hard 404 in
 production from `src/proxy.ts`, so there is nothing for it to talk to.
 
+## For whoever maintains the manifests
+
+This part is not for editing copy; it is for the next builder who adds a
+picture set. It lives here because STUDIO.md is what somebody reads before
+touching these files.
+
+A manifest may carry a `stripUnsafe` map of filename to reason. It means:
+
+> **a media list whose tiles render large enough for source resolution to
+> matter** — not "any strip".
+
+The measurement that draws the line: a strip tile renders up to 384 css px,
+768 device px at DPR 2, where a 360px-wide source is visibly soft. A parts tile
+renders 56 css px, 112 device px, where the same photograph is fine. So
+`parts.json` is a strip and deliberately does **not** declare, and a beat's own
+pictures are left alone for the same reason.
+
+Two ways this goes wrong, so the key gets added for the right reason:
+
+- a **small-tile** list that declares **over-bars**, banning photographs from a
+  place they still work;
+- a **large-tile** list that forgets **under-bars**, silently, which is worse
+  because nothing announces it.
+
+The studio cannot measure a tile, so it shows every picture set whether it has a
+guard, and an empty `{}` is a real declaration: it marks the list as one where
+resolution matters and pulls in every other list's bars. A new picture set
+should declare the key on the day it lands, even empty.
+
 ## Where it writes
 
 The studio refuses to write anywhere except these three places:
