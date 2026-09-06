@@ -172,6 +172,13 @@ export default function MarqueeSpeed() {
     }
   };
 
+  /** ☠️ A PATTERN IS NOT A TRACK ID. The discovery route reads data-marquee out
+   *  of the source, and a track written as data-marquee={`parts-${r + 1}`}
+   *  comes back as "parts-N". Writing an override under that key would store a
+   *  number that matches nothing, for ever, silently. So pattern rows cannot be
+   *  typed into, and there is one field for entering a real id instead. */
+  const [newId, setNewId] = useState('');
+
   const setOverride = (id, band, v) => {
     const overrides = { ...(marquee.overrides || {}) };
     const cur = { ...(overrides[id] || {}) };
@@ -213,8 +220,8 @@ export default function MarqueeSpeed() {
               </span>
               <input
                 type="range"
-                min={20}
-                max={300}
+                min={10}
+                max={400}
                 step={0.1}
                 value={marquee[f.key][b.key]}
                 onChange={(e) => push({ ...marquee, [f.key]: { ...marquee[f.key], [b.key]: Number(e.target.value) } })}
@@ -222,12 +229,12 @@ export default function MarqueeSpeed() {
               <input
                 className="st-dial-n"
                 type="number"
-                min={20}
-                max={300}
+                min={10}
+                max={400}
                 step={0.1}
                 value={marquee[f.key][b.key]}
                 onChange={(e) => {
-                  const n = Math.min(300, Math.max(20, Number(e.target.value)));
+                  const n = Math.min(400, Math.max(10, Number(e.target.value)));
                   if (Number.isFinite(n)) push({ ...marquee, [f.key]: { ...marquee[f.key], [b.key]: n } });
                 }}
               />
@@ -246,43 +253,71 @@ export default function MarqueeSpeed() {
         {showOverrides ? (
           <>
             <p className="st-hint" style={{ marginTop: 10 }}>
-              One track at a time, when a single strip needs to differ from its family. Leave a box empty to let it
-              follow the family speed. Track names are read out of the components, so this list is whatever the site
-              actually has.
+              ☠️ Use this sparingly. A track set on its own has to be kept in step by hand for ever after, and the
+              family sliders above stop applying to it. It is here for the one strip that genuinely needs to differ,
+              not for tuning the site a row at a time. Leave a box empty to let a track follow its family again.
             </p>
-            {tracks.map((t) => {
+            {[...tracks.filter((t) => !t.pattern), ...Object.keys(marquee.overrides || {})
+              .filter((id) => !tracks.some((t) => t.id === id))
+              .map((id) => ({ id, file: 'set here', pattern: false }))].map((t) => {
               const o = marquee.overrides?.[t.id] || {};
+              const kind = /parts|news|trust/.test(t.id) ? 'text' : 'media';
               return (
                 <div className="st-ovr" key={t.id}>
-                  <span className="st-ovr-id" title={t.file}>
-                    {t.id}
-                    {t.pattern ? <em> one per row</em> : null}
-                  </span>
+                  <span className="st-ovr-id" title={t.file}>{t.id}</span>
                   {BANDS.map((b) => (
                     <label className="st-ovr-b" key={b.key}>
                       <span>{b.label}</span>
                       <input
                         type="number"
-                        min={20}
-                        max={300}
+                        min={10}
+                        max={400}
                         step={0.1}
-                        placeholder={String(marquee[/parts|news|trust/.test(t.id) ? 'text' : 'media'][b.key])}
+                        placeholder={String(marquee[kind][b.key])}
                         value={o[b.key] ?? ''}
                         onChange={(e) => {
                           const raw = e.target.value;
                           if (raw === '') return setOverride(t.id, b.key, null);
-                          const n = Math.min(300, Math.max(20, Number(raw)));
+                          const n = Math.min(400, Math.max(10, Number(raw)));
                           if (Number.isFinite(n)) setOverride(t.id, b.key, n);
                         }}
                       />
                     </label>
                   ))}
-                  {samples.length && !t.pattern ? (
-                    <PreviewStrip srcs={samples.slice(0, 6)} kind={/parts|news|trust/.test(t.id) ? 'text' : 'media'} id={t.id} tick={tick} />
+                  {samples.length ? (
+                    <PreviewStrip srcs={samples.slice(0, 6)} kind={kind} id={t.id} tick={tick} />
                   ) : null}
                 </div>
               );
             })}
+
+            {tracks.some((t) => t.pattern) ? (
+              <p className="st-hint">
+                Some beats build one track per row, so their ids are numbered rather than fixed:{' '}
+                {tracks.filter((t) => t.pattern).map((t) => t.id.replace('N', '1, ') + t.id.replace('N', '2')).join(', ')}
+                . They cannot be listed automatically, so type the exact id below to set one.
+              </p>
+            ) : null}
+
+            <div className="st-ovr">
+              <input
+                className="st-ovr-new"
+                placeholder="add an override by id, e.g. parts-1"
+                value={newId}
+                onChange={(e) => setNewId(e.target.value.trim())}
+              />
+              <button
+                type="button"
+                className="st-btn ghost sm"
+                disabled={!newId || !!marquee.overrides?.[newId]}
+                onClick={() => {
+                  setOverride(newId, 'wide', marquee[/parts|news|trust/.test(newId) ? 'text' : 'media'].wide);
+                  setNewId('');
+                }}
+              >
+                Add
+              </button>
+            </div>
             {!tracks.length ? <p className="st-empty">No tracks found in the components.</p> : null}
           </>
         ) : null}

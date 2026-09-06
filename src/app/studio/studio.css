@@ -492,3 +492,4 @@
 .st-ovr-b { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--ink-faint); }
 .st-ovr-b input { width: 5.5em; text-align: right; }
 .st-ovr .st-mq { grid-column: 1 / -1; }
+.st-ovr-new { grid-column: 1 / 2; }
