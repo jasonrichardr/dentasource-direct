@@ -6,9 +6,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { isVideoPath } from '@/lib/studio/registry';
+import { isVideoPath, unsafeReason } from '@/lib/studio/registry';
 
-export default function AssetPicker({ onPick, onClose }) {
+export default function AssetPicker({ onPick, onClose, blocked = null }) {
   const [q, setQ] = useState('');
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
@@ -60,8 +60,21 @@ export default function AssetPicker({ onPick, onClose }) {
           <button type="button" className="st-btn ghost sm" onClick={onClose}>Close</button>
         </div>
         <div className="st-picker">
-          {items.map((it) => (
-            <button type="button" className="st-pick" key={it.src} onClick={() => onPick(it)} title={it.src}>
+          {items.map((it) => {
+            // ☠️ A FILE THIS MANIFEST HAS RULED OUT IS SHOWN AND REFUSED, NOT
+            // HIDDEN. Hiding it would leave somebody hunting for a photograph
+            // they can see in the articles, with no way to learn why it is not
+            // offered. Greyed, with the reason on hover, teaches instead.
+            const why = unsafeReason(blocked, it.src);
+            return (
+            <button
+              type="button"
+              className={`st-pick${why ? ' barred' : ''}`}
+              key={it.src}
+              disabled={!!why}
+              onClick={() => !why && onPick(it)}
+              title={why ? `Not for this set. ${why}` : it.src}
+            >
               {isVideoPath(it.src) ? (
                 // eslint-disable-next-line jsx-a11y/media-has-caption
                 <video src={it.src} muted playsInline preload="metadata" />
@@ -70,9 +83,14 @@ export default function AssetPicker({ onPick, onClose }) {
                 <img src={it.src} alt="" loading="lazy" />
               )}
               <span className="st-pick-n">{it.name}</span>
-              {it.bytes ? <span className="st-pick-b">{Math.round(it.bytes / 1024)} KB</span> : null}
+              {why ? (
+                <span className="st-pick-x">ruled out here</span>
+              ) : it.bytes ? (
+                <span className="st-pick-b">{Math.round(it.bytes / 1024)} KB</span>
+              ) : null}
             </button>
-          ))}
+            );
+          })}
           {!busy && !items.length ? <p className="st-empty">Nothing matches that.</p> : null}
         </div>
       </div>

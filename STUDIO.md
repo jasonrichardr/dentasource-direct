@@ -67,6 +67,13 @@ to match whatever the target set uses.
 
 **Duplicate** copies a picture again inside the same set, next to itself.
 
+**Some pictures are greyed out in the picker** for a particular set, with the
+reason on hover. Those were taken out of that strip on purpose, usually because
+the original photograph is only 360px wide and reads soft at tile size. They are
+not swapped or enlarged, because each one's caption describes that exact scene.
+They keep their place in the articles. The studio will not let one back in
+through the picker or through Send to…
+
 **Open beat** opens that beat on the running site in a new tab.
 
 **A greyed out arc** means that file is not in the repo right now. These

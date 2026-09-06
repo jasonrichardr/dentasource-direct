@@ -6,6 +6,8 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
+import { stripUnsafeOf } from '@/lib/studio/registry';
+
 import FieldEditor from './FieldEditor';
 import LogoDials from './LogoDials';
 import MarqueeSpeed from './MarqueeSpeed';
@@ -333,6 +335,7 @@ export default function Studio() {
                 source={{ path: active.path, pointer: [active.collection] }}
                 dirty={dirty}
                 onTransferred={afterTransfer}
+                blocked={stripUnsafeOf(doc)}
               />
               {/* ☠️ WHY SOMETHING IS MISSING IS EDITORIAL INFORMATION. The growth
                   partner set carries an `excluded` map of id range to reason,
@@ -364,6 +367,7 @@ export default function Studio() {
               filePath={active.path}
               dirty={dirty}
               onTransferred={afterTransfer}
+              blocked={stripUnsafeOf(doc)}
             />
           )}
         </main>

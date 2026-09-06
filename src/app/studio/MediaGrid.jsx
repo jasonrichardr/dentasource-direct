@@ -63,7 +63,7 @@ function Thumb({ src }) {
   );
 }
 
-export default function MediaGrid({ k, value, onChange, single = false, source = null, dirty = false, onTransferred = null }) {
+export default function MediaGrid({ k, value, onChange, single = false, source = null, dirty = false, onTransferred = null, blocked = null }) {
   const rows = Array.isArray(value) ? value : [];
   const objectMode = rows.some((r) => r && typeof r === 'object');
   const [picking, setPicking] = useState(null); // index being swapped, or 'add'
@@ -285,7 +285,7 @@ export default function MediaGrid({ k, value, onChange, single = false, source =
         </div>
       )}
 
-      {picking !== null ? <AssetPicker onPick={chose} onClose={() => setPicking(null)} /> : null}
+      {picking !== null ? <AssetPicker onPick={chose} onClose={() => setPicking(null)} blocked={blocked} /> : null}
       {sending ? (
         <TransferPicker
           source={source}

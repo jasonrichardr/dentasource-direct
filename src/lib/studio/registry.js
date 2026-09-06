@@ -135,6 +135,33 @@ export function redLines(text) {
 export const MEDIA_KEYS = new Set(['src', 'poster', 'heroImage', 'image', 'video', 'thumb']);
 export const MEDIA_ARRAY_KEYS = new Set(['media', 'tiles', 'reels', 'items', 'images']);
 
+/** The filename, which is what a stripUnsafe map is keyed by: the same photo
+ *  lives under several article folders, so a full path would miss it. */
+export function basename(p) {
+  return typeof p === 'string' ? p.split('?')[0].split('/').pop() : '';
+}
+
+/** ☠️ FILES A MANIFEST HAS RULED OUT, AND WHY.
+ *  A manifest may carry `stripUnsafe`: { "<filename>": "<reason>" }. These are
+ *  photographs that were REMOVED from that strip on purpose and must not come
+ *  back: 360px sources that read soft at tile size, most of them. They are not
+ *  swapped and not upscaled, because each one's alt text describes that exact
+ *  scene and repointing the file would caption one event with a picture of
+ *  another. They stay in their articles, where 360 wide is right.
+ *  Two of the four manifests carrying this are HAND MAINTAINED, with no build
+ *  step that could refuse a re-add, so the studio is the only place the refusal
+ *  can live. It is read generically: any manifest with the key, any picker. */
+export function stripUnsafeOf(doc) {
+  const m = doc && typeof doc === 'object' ? doc.stripUnsafe : null;
+  return m && typeof m === 'object' ? m : null;
+}
+
+/** The reason this file is barred from that manifest, or null. */
+export function unsafeReason(blocked, src) {
+  if (!blocked) return null;
+  return blocked[basename(src)] || null;
+}
+
 export function isVideoPath(p) {
   return typeof p === 'string' && /\.(mp4|webm|mov|m4v)(\?|$)/i.test(p);
 }

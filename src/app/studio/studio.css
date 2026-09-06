@@ -493,3 +493,7 @@
 .st-ovr-b input { width: 5.5em; text-align: right; }
 .st-ovr .st-mq { grid-column: 1 / -1; }
 .st-ovr-new { grid-column: 1 / 2; }
+.st-pick.barred { opacity: 0.45; cursor: not-allowed; border-style: dashed; }
+.st-pick.barred:hover { border-color: var(--warn); color: var(--ink-soft); }
+.st-pick.barred img, .st-pick.barred video { filter: grayscale(1); }
+.st-pick-x { font-size: 9.5px; color: var(--warn); }

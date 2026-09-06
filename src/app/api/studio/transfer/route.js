@@ -11,7 +11,7 @@
 
 import { readFile, writeFile, copyFile, appendFile } from 'node:fs/promises';
 
-import { FILES, LOG_FILE, absolute, detectCollection, isVideoPath, isWritable, studioDisabled } from '@/lib/studio/registry';
+import { FILES, LOG_FILE, absolute, basename, detectCollection, isVideoPath, isWritable, stripUnsafeOf, studioDisabled } from '@/lib/studio/registry';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -182,6 +182,17 @@ export async function POST(request) {
   // the video rule, enforced server side so it cannot be clicked past
   if (!acceptsVideo(targetList) && picked.some((x) => isVideoPath(srcOf(x)))) {
     return bad('that list does not carry video. Pick a target that already holds one.');
+  }
+
+  // ☠️ THE SAME BAR THE PICKER SHOWS, ON THE OTHER DOOR. Greying a file out of
+  // the picker stops it being ADDED to a manifest that ruled it out, and does
+  // nothing about it being SENT there from a manifest that did not. Two of the
+  // four manifests carrying stripUnsafe are hand maintained, with no build step
+  // to catch a re-add, so both doors have to refuse or neither does.
+  const barred = stripUnsafeOf(targetDoc);
+  if (barred) {
+    const hit = picked.map((x) => basename(srcOf(x))).find((b) => barred[b]);
+    if (hit) return bad(`${hit} was removed from that set on purpose: ${barred[hit]}`);
   }
 
   const adapted = picked.map((e) => adapt(e, targetList));
