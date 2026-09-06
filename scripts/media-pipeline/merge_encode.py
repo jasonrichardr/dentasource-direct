@@ -103,6 +103,38 @@ def growth_beads(base_path: Path, beads_path: Path) -> int:
     return changed
 
 
+def wall_beads(base_path: Path, beads_path: Path) -> int:
+    """Carry the re-encoded landscape WALL bead dimensions home, by field.
+
+    Same reason as growth_beads(): wall_beads.py writes files and not manifests, and
+    nothing else measures a file that lives on the origin. Without this the 15 clips stay
+    held at their old 720x406 rows and the re-encode is thrown away.
+    """
+    if not beads_path.exists():
+        print("  wall-beads.json: not fetched, wall bead sizes NOT updated")
+        return 0
+    base = json.loads(base_path.read_text())
+    by_id = {r["id"]: r for r in json.loads(beads_path.read_text()) if r.get("bead")}
+    changed, seen = 0, set()
+    for item in list(base.get("reels", [])) + list(base.get("heldBack", [])):
+        r = by_id.get(item.get("id"))
+        if not r:
+            continue
+        w, h = (int(v) for v in r["bead"].split("x"))
+        seen.add(r["id"])
+        if (item.get("width"), item.get("height")) != (w, h):
+            item["width"], item["height"] = w, h
+            changed += 1
+    stranded = sorted(set(by_id) - seen)
+    print(f"  wall beads: {changed} rows resized, {len(seen)} of {len(by_id)} matched")
+    if stranded:
+        print(f"    \u2620 {len(stranded)} RE-ENCODED CLIPS HAVE NO ROW HERE: "
+              f"{', '.join(stranded)}")
+    if APPLY:
+        base_path.write_text(json.dumps(base, indent=2) + "\n", encoding="utf8")
+    return changed
+
+
 def main() -> int:
     print(f"{'APPLYING' if APPLY else 'DRY RUN'}, reading encode results from {VPS}\n")
     ok = True
@@ -139,6 +171,7 @@ def main() -> int:
         if APPLY:
             base_path.write_text(json.dumps(merged, indent=2) + "\n", encoding="utf8")
     growth_beads(REPO / "src/data/cinema/growth-partner.json", VPS / "growth-beads.json")
+    wall_beads(REPO / "src/data/cinema/reel-library.json", VPS / "wall-beads.json")
     print("\n" + ("no keys lost" if ok else "REFUSING, keys would be lost"))
     return 0 if ok else 1
 

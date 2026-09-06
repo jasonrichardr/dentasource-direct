@@ -115,8 +115,20 @@ def theatre_vf():
 
 
 def bead_vf():
-    # 720 WIDE, never up: min() against the source width, height follows the aspect
-    return f"scale='min({BEAD_W},iw)':-2"
+    # ☠️ THE SHORT SIDE, NOT THE WIDTH. This capped WIDTH at 720, which is right for a 9:16
+    # portrait and wrong for landscape: a 1920x1080 source became a 720x406 bead. The bead
+    # samples a SQUARE crop against a 480px marble, so 406 bound at 0.85 against a 0.95
+    # floor and 15 wall clips were held for pixels the source had all along.
+    #
+    # THIRD OCCURRENCE OF THIS MISTAKE, after growth's VIDEO_MAX long-side cap and
+    # growth_beads. Every time a single dimension was used to answer a two dimensional
+    # question. Targeting the short side gives landscape the same square resolution
+    # portrait already had: 1280x720 and 720x1280 are the same pixel budget.
+    #
+    # min() on BOTH branches so nothing is ever upscaled: a source shorter than the target
+    # keeps its own size, which is why a 1200x630 clip stays 1200x630 and still clears.
+    return (f"scale='if(gt(iw,ih),-2,min({BEAD_W},iw))'"
+            f":'if(gt(iw,ih),min({BEAD_W},ih),-2)'")
 
 
 def source_for(r: dict) -> tuple[Path | None, bool]:
