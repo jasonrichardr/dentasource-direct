@@ -63,18 +63,22 @@ const MAX_CURSOR = 4.5;  // cap the finger's effective speed so a quick press ca
 const MAX_DT = 1 / 30;
 // Downward accel applied ONLY to a bead that has been knocked out of the wall. The cannon
 // world has zero gravity so the shoal can float; a departing bead borrows some.
-const FALL_G = 9.0;
-// ☠️ AN INCOMING BEAD NEEDS A PULL OF ITS OWN, OR IT CAN HOVER FOR EVER. It is dropped with
-// a velocity and nothing else, and when it hits a target that sits near the top of the
-// wall it simply stops, resting on the shoal with its centre still above the landing
-// line. No spring (it is not live yet), no gravity (that was only for departing beads):
-// three of ten sat there for the whole trace and the swap could not complete. This keeps
-// it moving down until it is inside the stage, gentler than FALL_G so the hit does not
-// scatter the wall.
-const DROP_G = 4.0;
+const FALL_G = 6.0;
+// ☠️ THE NEW SET ARRIVES FROM RANDOM DIRECTIONS AND HITS, IT DOES NOT RAIN.
+// Jarich, on the first build: "the marbles doesnt drop from the top or even better from
+// random directions ... drop and hit and fling away other marbles naturally using
+// physics". So an incoming bead is spawned on a ring just outside the visible stage at a
+// random angle and thrown at one live bead at ENTRY_SPEED. The collision is the knock:
+// cannon's own impulse sends the struck bead off, and it keeps that velocity once it is
+// released from the spring. Nothing scripts the fling.
+// ☠️ AN INCOMING BEAD STILL NEEDS A PULL OF ITS OWN, OR A MISS HOVERS FOR EVER. It has
+// no spring until it lands, so a near miss would sail past and stop. A fraction of the
+// centring spring keeps it coming home without braking it before the hit.
+const ENTRY_SPEED = 7.0;
+const INCOMING_PULL = 0.3;
 const RAIN_EVERY_MS = 300;   // Jarich: "a marble glass one by one ... per 0.3 second"
 const RAIN_WAIT_MS = 1000;   // longest we hold a drop back waiting for its texture to decode
-const LAND_BY_MS = 1500;     // an incoming bead still not landed by then is declared landed
+const LAND_BY_MS = 2000;     // an incoming bead still not landed by then is declared landed
 
 export function createMarbleCluster(container, {
   videos = [], hdVideos = [], count = 18, isMobile = false, faceFocus = {}, faceZoom = {},
@@ -643,9 +647,13 @@ export function createMarbleCluster(container, {
         _f.set(0, -FALL_G * m, -K_CENTER_Z * body.position.z * m);
         body.applyForce(_f, body.position);
       } else {
-        // incoming: a gentle pull down so it keeps coming until it is inside the stage,
-        // and the z spring so it lands in the wall, not in front of it
-        _f.set(0, -DROP_G * m, -K_CENTER_Z * body.position.z * m);
+        // incoming: a fraction of the centring spring so a miss still comes home, and the
+        // full z spring so it strikes the wall, not the air in front of it
+        _f.set(
+          -kX * body.position.x * m * INCOMING_PULL,
+          -kY * (body.position.y - centreY) * m * INCOMING_PULL,
+          -K_CENTER_Z * body.position.z * m,
+        );
         body.applyForce(_f, body.position);
       }
     }
@@ -810,10 +818,16 @@ export function createMarbleCluster(container, {
   function releaseOutgoing(rec) {
     if (!rec || rec.state !== 'live') return;
     rec.state = 'falling';
-    // a shove down and a little spin, so it tumbles out rather than sinking on rails
-    rec.body.velocity.y -= 2.2;
+    // The impact velocity is the fling: the bead keeps whatever the collision gave it and
+    // leaves under a little gravity. Only a bead that was released by the fallback timer
+    // (a near miss, so it is barely moving) gets a kick of its own, outward at random.
+    const v = rec.body.velocity;
+    if (v.length() < 1.5) {
+      const a = Math.random() * Math.PI * 2;
+      v.set(Math.cos(a) * 5, Math.sin(a) * 5, 0);
+    }
     rec.body.angularVelocity.set((Math.random() - 0.5) * 6, (Math.random() - 0.5) * 6, (Math.random() - 0.5) * 6);
-    rec.body.linearDamping = 0.05;   // let it actually fall
+    rec.body.linearDamping = 0.02;   // let it actually fly
   }
 
   /** Drop a bead's landing listener. Only ever called from stepSwap, never from a handler. */
@@ -841,27 +855,29 @@ export function createMarbleCluster(container, {
     }
   }
 
-  /** Nearest LIVE bead to x that has not already been claimed by this run. */
-  function pickTarget(x, claimed) {
-    let best = null, bestD = Infinity;
-    for (const rec of units) {
-      if (rec.state !== 'live' || claimed.has(rec)) continue;
-      const d = Math.abs(rec.body.position.x - x);
-      if (d < bestD) { bestD = d; best = rec; }
-    }
-    return best;
+  /** A random LIVE bead that has not already been claimed by this run. */
+  function pickTarget(claimed) {
+    const open = units.filter((rec) => rec.state === 'live' && !claimed.has(rec));
+    if (!open.length) return null;
+    return open[Math.floor(Math.random() * open.length)];
+  }
+
+  /** True once a bead is a whole bead outside the visible stage on ANY side. */
+  function offStage(rec) {
+    const halfH = visTop(), halfW = halfH * camera.aspect;
+    const { x, y } = rec.body.position;
+    return Math.abs(x) > halfW + rec.r * 2 || Math.abs(y) > halfH + rec.r * 2;
   }
 
   function stepSwap() {
-    // a departing bead is gone once it is a whole bead below the visible floor
+    // a struck bead is gone once it is a whole bead outside the stage, whichever way it flew
     const tNow = performance.now();
     for (let i = units.length - 1; i >= 0; i -= 1) {
       const rec = units[i];
-      if (rec.state === 'falling' && rec.body.position.y < -visTop() - rec.r * 2) retire(rec);
-      // an incoming bead joins the wall the moment it is inside the stage, or once it has
-      // plainly arrived and is resting on the shoal above the line: from there the spring
-      // pulls it in, and a swap can never be left waiting on a bead that is already home
-      if (rec.state === 'incoming' && (rec.body.position.y < visTop() - rec.r || tNow - rec.droppedAt > LAND_BY_MS)) land(rec);
+      if (rec.state === 'falling' && offStage(rec)) retire(rec);
+      // an incoming bead joins the wall on first contact (the collide listener), or once
+      // it has plainly arrived: a swap can never be left waiting on a bead already home
+      if (rec.state === 'incoming' && tNow - rec.droppedAt > LAND_BY_MS) land(rec);
     }
     if (!swap) return;
     const now = performance.now();
@@ -890,20 +906,26 @@ export function createMarbleCluster(container, {
       swap.dropped[k] = true;
       swap.done += 1;
 
-      const target = pickTarget(swap.xs[k], swap.claimed);
-      const x = target ? target.body.position.x : swap.xs[k];
-      const spawn = new CANNON.Vec3(x, visTop() + 1.2 + Math.random() * 0.6, 0);
+      const target = pickTarget(swap.claimed);
+      // spawn on a ring just outside the visible stage, at a random angle, and throw it
+      // at the target (or the well's centre when nothing is left to hit)
+      const halfH = visTop(), halfW = halfH * camera.aspect;
+      const ang = Math.random() * Math.PI * 2;
+      const spawn = new CANNON.Vec3(Math.cos(ang) * (halfW + 1.6), Math.sin(ang) * (halfH + 1.6), 0);
+      const aimX = target ? target.body.position.x : 0;
+      const aimY = target ? target.body.position.y : centreY;
+      const dx = aimX - spawn.x, dy = aimY - spawn.y;
+      const len = Math.hypot(dx, dy) || 1;
       const rec = makeBead(entry.slot, entry.url, entry.hd, tex, spawn);
       rec.state = 'incoming';
       rec.droppedAt = now;
-      rec.body.linearDamping = 0.02;          // fall cleanly, damping resumes on landing
-      rec.body.velocity.set(0, -4.2, 0);
+      rec.body.linearDamping = 0.02;          // fly cleanly, damping resumes on landing
+      rec.body.velocity.set((dx / len) * ENTRY_SPEED, (dy / len) * ENTRY_SPEED, 0);
       tex.el.play().catch(() => {});
-      // ☠️ TOUCHING THE WALL IS LANDING. The line test alone (centre inside the stage) left
-      // beads resting on top of the shoal for the whole grace: the wall's top edge sits
-      // near the stage's top, so a bead that has plainly arrived can still be above the
-      // line. Measured at 3.8 to 6.2 s a swap, which is the 2.7 s of drops plus the cap.
-      // First contact with anything in the world hands it to the spring on the spot.
+      // ☠️ TOUCHING THE WALL IS LANDING. First contact with a bead that is already part
+      // of the wall (live, or one on its way out) hands the newcomer to the spring on the
+      // spot. Contact with another newcomer in flight does not count, or two beads that
+      // clip each other on the way in would both stop short and hover.
       // ☠️ ONE LISTENER, AND IT IS NEVER REMOVED FROM INSIDE ITS OWN DISPATCH. cannon-es
       // walks the listener array by index; a listener that splices itself out while a
       // second one is queued behind it leaves the loop reading past the end, the throw
@@ -912,7 +934,10 @@ export function createMarbleCluster(container, {
       // Flags make it idempotent; stepSwap detaches it at completion, outside any event.
       const hit = { landed: false, released: !target };
       const onCollide = (e) => {
-        if (!hit.landed) { hit.landed = true; land(rec); }
+        if (!hit.landed) {
+          const other = units.find((u) => u.body === e.body);
+          if (other && other.state !== 'incoming') { hit.landed = true; land(rec); }
+        }
         if (!hit.released && e.body === target.body) { hit.released = true; releaseOutgoing(target); }
       };
       rec.body.addEventListener('collide', onCollide);
@@ -922,7 +947,7 @@ export function createMarbleCluster(container, {
         swap.claimed.add(target);
         // contact releases the target; a timeout releases it anyway, because a near miss
         // must not leave a bead that never leaves.
-        swap.timers.push(setTimeout(() => { if (!hit.released) { hit.released = true; releaseOutgoing(target); } }, 1200));
+        swap.timers.push(setTimeout(() => { if (!hit.released) { hit.released = true; releaseOutgoing(target); } }, 1600));
       }
       return;
     }
@@ -962,12 +987,9 @@ export function createMarbleCluster(container, {
       if (w) { warmed.delete(key); return w; }
       return openTex(e);
     });
-    const halfW = visTop() * camera.aspect;
     swap = {
       list, tex, done: 0, dropped: list.map(() => false),
       order: list.map((_, k) => k), t0: performance.now(),
-      xs: list.map((_, k) => (list.length === 1 ? 0 : (-halfW * 0.7 + (2 * halfW * 0.7) * (k / (list.length - 1)))),
-      ),
       claimed: new Set(), timers: [], beads: [], onDone,
     };
     return true;
