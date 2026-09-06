@@ -8,6 +8,7 @@ import { articleGraph } from '@/lib/schemas/article';
 import ArticleMarbles from './ArticleMarbles';
 import styles from './page.module.css';
 import '../news-theme.css';
+import { mediaUrl } from '@/lib/cinema/media';
 
 export default function ArticleContent({ article }) {
     return (
@@ -153,7 +154,7 @@ export default function ArticleContent({ article }) {
                                     return (
                                         <div key={idx} className={styles.inlineImageWrapper}>
                                             <video
-                                                src={match[2]}
+                                                src={mediaUrl(match[2])}
                                                 controls
                                                 muted
                                                 playsInline

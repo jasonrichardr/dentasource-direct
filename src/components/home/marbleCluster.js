@@ -18,6 +18,7 @@
 
 import * as THREE from "three";
 import * as CANNON from "cannon-es";
+import { mediaUrl } from "@/lib/cinema/media";
 
 // A colourful "studio" environment painted on a canvas (equirect) → PMREM. This is what makes CLEAR
 // glass read as vibrant gems on black: the beads reflect/refract these coloured lights even when there's
@@ -209,7 +210,7 @@ export function createMarbleCluster(container, {
   //    decoders), round-robined across the FILLED beads — the elva trick: few clips fill many marbles. ──
   const texPool = videos.map((url, i) => {
     const el = document.createElement("video");
-    el.src = url;
+    el.src = mediaUrl(url);      // repo path in the manifest, media origin at run time
     el.muted = true; el.loop = true; el.playsInline = true; el.crossOrigin = "anonymous";
     el.preload = "none"; el.setAttribute("playsinline", ""); el.setAttribute("muted", "");
     const tex = new THREE.VideoTexture(el);
@@ -415,7 +416,7 @@ export function createMarbleCluster(container, {
       '<div class="cp-theater-scrim"></div>' +
       '<button class="cp-theater-back" type="button" aria-label="Back to the marbles">‹ Back</button>' +
       '<button class="cp-theater-sound" type="button" aria-label="Toggle sound">🔊</button>' +
-      '<video class="cp-theater-video" playsinline loop preload="auto"></video>';
+      '<video class="cp-theater-video" playsinline loop preload="auto" crossorigin="anonymous"></video>';
     document.body.appendChild(root);
     document.body.style.overflow = "hidden";
 
@@ -436,7 +437,7 @@ export function createMarbleCluster(container, {
     // manifest behind them.
     const guessed = pick.url.replace(/\/reels\/(?:fb\/)?([^/]+)$/, "/reels/hd/$1");
     const hdMeta = (pick.hd && typeof pick.hd === "object") ? pick.hd : null;
-    const hdUrl = (hdMeta ? hdMeta.src : pick.hd) || guessed;
+    const hdUrl = mediaUrl((hdMeta ? hdMeta.src : pick.hd) || guessed);
     // ☠️ THE THEATRE IS NOT ALWAYS PORTRAIT ANY MORE, AND THE STYLESHEET SAYS IT IS.
     // .cp-theater-video pins aspect-ratio 9/16 with object-fit cover, which was right
     // while every clip was a phone reel. The HD copies are source resolution and one of
@@ -444,9 +445,9 @@ export function createMarbleCluster(container, {
     // a vertical sliver and throws away most of the picture, with nothing visibly wrong to
     // say so. When the manifest gives the real dimensions the frame takes them.
     if (hdMeta && hdMeta.w > 0 && hdMeta.h > 0) vid.style.aspectRatio = `${hdMeta.w} / ${hdMeta.h}`;
-    let usedFallback = (hdUrl === pick.url);
-    vid.addEventListener("error", () => { if (!usedFallback) { usedFallback = true; vid.src = pick.url; tryPlay(); } });
-    vid.src = usedFallback ? pick.url : hdUrl;
+    let usedFallback = (hdUrl === mediaUrl(pick.url));
+    vid.addEventListener("error", () => { if (!usedFallback) { usedFallback = true; vid.src = mediaUrl(pick.url); tryPlay(); } });
+    vid.src = usedFallback ? mediaUrl(pick.url) : hdUrl;
     tryPlay();
     const syncSound = () => { soundBtn.textContent = vid.muted ? "🔇" : "🔊"; };
     vid.addEventListener("volumechange", syncSound);

@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import { m as motion } from 'framer-motion';
+import { mediaUrl } from '@/lib/cinema/media';
 
 const videos = [
     { src: '/videos/dsd-showcase-4.mp4', poster: '/videos/dsd-showcase-4-poster.jpg', label: 'Meet the team — Stay vibrant ✨❤️' },
@@ -151,7 +152,7 @@ export default function VideoShowcase() {
                                     preload="metadata"
                                     poster={v.poster}
                                 >
-                                    <source src={v.src} type="video/mp4" />
+                                    <source src={mediaUrl(v.src)} type="video/mp4" />
                                     Your browser doesn&apos;t support embedded video.
                                 </video>
                             </div>

@@ -11,6 +11,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import useBeatNear from './useBeatNear';
+import { mediaUrl } from '@/lib/cinema/media';
 
 /* ── the shared copy block ─────────────────────────────────────────────────── */
 
@@ -944,7 +945,9 @@ export function ActionPanel({ beat, beatIndex, items = [] }) {
               return (
                 <video
                   key={key}
-                  src={near ? it.src : undefined}
+                  // the clip moves to the media origin; the poster stays in the repo,
+                  // so an unreachable origin shows a still rather than a black tile
+                  src={near ? mediaUrl(it.src) : undefined}
                   poster={near ? optimised(it.poster, 384) : undefined}
                   aria-hidden={echo ? 'true' : undefined}
                   muted
