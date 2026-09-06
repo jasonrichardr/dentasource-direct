@@ -16,6 +16,12 @@ import MediaGrid from './MediaGrid';
  *  breakable in the first case and wrong in the second. */
 const LOCKED = new Set([
   'key', 'kind', 'slug', 'route', 'version', 'generated', 'isIndex',
+  // ☠️ THE RESOLUTION GUARD IS NOT COPY. `tilePx` and `stripUnsafe` decide
+  // which photographs a list may hold. Typed casually they fail silently in
+  // both directions: 126 -> 1260 bans every picture from a row where they are
+  // fine, 288 -> 20 admits the soft ones nobody will notice until print. They
+  // are shown here so the rule is visible, and changed in the JSON on purpose.
+  'tilePx', 'stripUnsafe',
   ...READ_ONLY_FIELDS,
 ]);
 /** Keys whose copy runs long enough to want a textarea. */
@@ -104,6 +110,31 @@ function StringList({ k, value, onChange }) {
   );
 }
 
+/** A locked map shown whole rather than recursed into: `stripUnsafe` is a
+ *  filename -> reason map, and recursing would offer the reasons as free text
+ *  under labels that are filenames. Reading it is the point; editing it is not. */
+function LockedMap({ k, value }) {
+  const rows = Object.entries(value);
+  return (
+    <div className="st-f locked">
+      <span className="st-f-k">
+        {title(k)}
+        <em> guard, read only</em>
+        <span className="st-f-n">{rows.length}</span>
+      </span>
+      {rows.length ? (
+        rows.map(([name, why]) => (
+          <div className="st-locked-row" key={name}>
+            <code>{name}</code> {String(why)}
+          </div>
+        ))
+      ) : (
+        <div className="st-locked-row">declared, and nothing is barred from this set</div>
+      )}
+    </div>
+  );
+}
+
 /** Does this array hold media rather than prose? */
 function isMediaArray(k, arr) {
   if (MEDIA_ARRAY_KEYS.has(k)) return true;
@@ -130,13 +161,31 @@ export default function FieldEditor({ value, path, onChange, heading, depth = 0,
 
   if (typeof value === 'number' || typeof value === 'boolean') {
     const k = path[path.length - 1];
+    // ☠️ LOCKED APPLIED HERE TOO. This branch used to ignore it, so every
+    // read-only field that happens to be a NUMBER — width, height, duration,
+    // and now tilePx — was declared structural and editable anyway. A lock that
+    // only covers the string case is not a lock.
+    const locked = LOCKED.has(k);
     return (
-      <label className="st-f inline">
-        <span className="st-f-k">{title(k)}</span>
+      <label className={`st-f inline${locked ? ' locked' : ''}`}>
+        <span className="st-f-k">
+          {title(k)}
+          {locked ? <em> structural, read only</em> : null}
+        </span>
         {typeof value === 'boolean' ? (
-          <input type="checkbox" checked={value} onChange={(e) => onChange(path, e.target.checked)} />
+          <input
+            type="checkbox"
+            checked={value}
+            disabled={locked}
+            onChange={(e) => !locked && onChange(path, e.target.checked)}
+          />
         ) : (
-          <input type="number" value={value} onChange={(e) => onChange(path, Number(e.target.value))} />
+          <input
+            type="number"
+            value={value}
+            readOnly={locked}
+            onChange={(e) => !locked && onChange(path, Number(e.target.value))}
+          />
         )}
       </label>
     );
@@ -185,7 +234,9 @@ export default function FieldEditor({ value, path, onChange, heading, depth = 0,
         if (v === null || v === undefined) return null;
         return (
           <div className="st-field" key={k}>
-            {(typeof v === 'object' && !Array.isArray(v)) || (Array.isArray(v) && !isMediaArray(k, v) && !v.every((x) => typeof x === 'string')) ? (
+            {LOCKED.has(k) && typeof v === 'object' && !Array.isArray(v) ? (
+              <LockedMap k={k} value={v} />
+            ) : (typeof v === 'object' && !Array.isArray(v)) || (Array.isArray(v) && !isMediaArray(k, v) && !v.every((x) => typeof x === 'string')) ? (
               <div className="st-nest">
                 <div className="st-nest-h">{title(k)}</div>
                 <FieldEditor value={v} path={[...path, k]} onChange={onChange} depth={depth + 1} filePath={filePath} dirty={dirty} onTransferred={onTransferred} blocked={blocked} />

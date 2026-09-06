@@ -149,27 +149,21 @@ export function basename(p) {
  *  event with a picture of another. They stay in their articles, where 360 wide
  *  is right.
  *
- *  ☠️ WHAT THE KEY MEANS, agreed with builder-home and builder-products
- *  (2026-09-06), because the obvious reading is the wrong one:
+ *  ☠️ THE KEY ALONE DOES NOT DECIDE ANYTHING. It used to: presence of the map
+ *  was read as "tiles here are big", and every declaring list was barred from
+ *  every barred file. builder-home found the exception on 2026-09-06 —
+ *  crew-shots renders 126px tiles and needs 252 device px, so 360px sources are
+ *  comfortably sufficient there, and two documentary photographs had been taken
+ *  out of a row where they were never soft.
  *
- *      stripUnsafe means "a list whose tiles are large enough for source
- *      resolution to matter", NOT "a list of tiles".
+ *  The rule is now arithmetic, in ./unsafe.js, over this map and a `tilePx`
+ *  the manifest declares:
  *
- *  The measurement behind it: a strip tile renders up to 384 css px, 768 device
- *  px at DPR 2, where a 360 wide source is visibly soft. A parts tile renders
- *  56 css px, 112 device px, where the same photograph is fine. So parts.json
- *  is a strip and deliberately does NOT declare: pulling it under the union
- *  would ban five photographs from a place they still work, which is the same
- *  failure avoided by keeping a beat's media list out.
+ *      a list bars a file when   tilePx * 2  >  the file's short side
  *
- *  ☠️ AND THE KNOWN WEAKNESS. Presence of the key is a PROXY for "resolution
- *  matters here". Today the two coincide everywhere except parts. A small-tile
- *  strip added later would over-bar; a large-tile list that forgets the key
- *  would under-bar, silently, which is the worse direction. The studio cannot
- *  measure a tile, so it does the next best thing and SAYS which sets have a
- *  guard and which do not, in the media grid header, where somebody editing the
- *  set will see it. Two of the declaring manifests are hand maintained with no
- *  build step behind them, so a visible absence is the only alarm available. */
+ *  measured off the file on disk rather than trusted from the data. A list that
+ *  declares this map but no `tilePx` bars everything, deliberately, and the
+ *  studio labels that state rather than defaulting silently. */
 export function stripUnsafeOf(doc) {
   const m = doc && typeof doc === 'object' ? doc.stripUnsafe : null;
   return m && typeof m === 'object' ? m : null;

@@ -259,10 +259,10 @@ export default function Studio() {
                 type="button"
                 className={`st-tab${showMarquee ? ' on' : ''}`}
                 onClick={() => setActiveId('__marquee')}
-                title="FFC's measured marquee speeds. Read only: they live in code, not content."
+                title="FFC's measured marquee speeds. Save writes settings.json, which ships with the site."
               >
                 <span>Marquee speed</span>
-                <span className="st-count">read only</span>
+                <span className="st-count">editable</span>
               </button>
             </div>
           </div>

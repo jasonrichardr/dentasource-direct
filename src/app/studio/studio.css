@@ -197,6 +197,12 @@
 .st textarea { font-size: 13px; }
 .st input:focus, .st textarea:focus { outline: 2px solid var(--signal-deep); outline-offset: 1px; }
 .st .locked input, .st .locked textarea { color: var(--ink-faint); background: transparent; }
+.st .st-locked-row {
+  font: 500 11px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--ink-faint);
+  padding: 3px 0 0;
+}
+.st .st-locked-row code { color: var(--ink-soft); }
 .st input.bad { border-color: var(--bad); }
 
 .st-flags { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
