@@ -85,9 +85,22 @@ MARBLE_PX_METHOD: str | None = (
 MARBLE_PX_RAW: float | None = 482.4      # the measurement BEFORE rounding down
 
 
-def judge(w: int, h: int, d: int) -> float:
-    """Cover ratio for a square tile. The bead samples a square, so both axes bind."""
-    return min(w / d, h / d)
+def judge(w: int, h: int, tw: float, th: float | None = None) -> float:
+    """Cover ratio. Two axes on purpose, even though the bead is square.
+
+    ☠️ TAKES BOTH AXES SO THE GUARD BELOW SURVIVES BEING COPIED. builder-room's caution:
+    on a rectangular tile whose axes round independently, a flip is per-axis and a test
+    written on the file's SHORT SIDE cannot see it. Their example, a mixed image tile
+    measured 384.4x288.3 and declared 380x280 at the 1.75 floor: a 700x500 file goes from
+    1.734 held to 1.786 passing, driven entirely by the HEIGHT axis, and its short side of
+    500 sits nowhere near the short-side band of [665.0, 672.70). Reproduced before
+    accepting it.
+
+    For a square tile the ratio form and the short-side band are the same statement, so
+    marbles needs neither the generality nor loses anything by having it. The next list to
+    copy this guard will be one of the mixed ones, and those are rectangles.
+    """
+    return min(w / tw, h / (th if th is not None else tw))
 
 
 def guard(reels: list[dict]) -> None:
@@ -139,9 +152,10 @@ def main() -> int:
     # [COVER_MIN * declared, COVER_MIN * raw). For 482.4 -> 480 that band is
     # [456.0, 458.28) and the library holds nothing in it. For 428 -> 420 it is
     # [399.0, 406.6), which is where those landscape clips live.
+    # per-axis, not per-short-side: min(w/twRaw, h/thRaw) < floor <= min(w/twDec, h/thDec)
     flipped = [r for r in every
-               if judge(r["width"], r["height"], MARBLE_PX) >= COVER_MIN
-               > judge(r["width"], r["height"], MARBLE_PX_RAW)]
+               if judge(r["width"], r["height"], MARBLE_PX, MARBLE_PX) >= COVER_MIN
+               > judge(r["width"], r["height"], MARBLE_PX_RAW, MARBLE_PX_RAW)]
     if flipped:
         raise SystemExit(
             f"REFUSING: rounding {MARBLE_PX_RAW} down to {MARBLE_PX} changes the verdict "
@@ -154,7 +168,7 @@ def main() -> int:
 
     keep, held = [], []
     for r in every:
-        ratio = judge(r["width"], r["height"], MARBLE_PX)
+        ratio = judge(r["width"], r["height"], MARBLE_PX, MARBLE_PX)
         if ratio >= COVER_MIN:
             keep.append(r)
         else:
@@ -185,9 +199,9 @@ def main() -> int:
     # the ruling's acceptance criteria, checked rather than assumed
     shapes = {(r["width"], r["height"]) for r in every}
     if (480, 854) in shapes:
-        print(f"  ACCEPTANCE 480x854 passes: {judge(480, 854, MARBLE_PX) >= COVER_MIN}")
+        print(f"  ACCEPTANCE 480x854 passes: {judge(480, 854, MARBLE_PX, MARBLE_PX) >= COVER_MIN}")
     if (720, 406) in shapes:
-        print(f"  ACCEPTANCE 720x406 held:   {judge(720, 406, MARBLE_PX) < COVER_MIN}")
+        print(f"  ACCEPTANCE 720x406 held:   {judge(720, 406, MARBLE_PX, MARBLE_PX) < COVER_MIN}")
     if apply:
         LIBRARY.write_text(json.dumps(lib, indent=2) + "\n", encoding="utf8")
         print("  written")
