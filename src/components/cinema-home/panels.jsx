@@ -7,7 +7,7 @@
 // the JSON, never from this file. The only strings written here are the two door CTAs and
 // the Ask DSD intro, which the JSON also carries. No names, no prices, no warranty terms.
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import useBeatNear from './useBeatNear';
@@ -542,17 +542,32 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
   // wall. Ten beads is about three seconds, and the wall is never empty during it.
   // A click while a swap is running is QUEUED by the cluster and runs when this one ends,
   // so holding Next does not interleave two rains into the same shoal.
+  // ☠️ THE NEXT SET'S DECODERS ARE OPENED WHILE THE WALL IS AT REST, NOT ON THE CLICK.
+  // Every bead clip is a cross-origin fetch, and a swap that has to open its ten decoders
+  // at click time measured seven to thirteen seconds: each drop sat out its grace period
+  // waiting for a first frame. The pager only ever moves one step, so warming the set on
+  // either side of the one on screen is enough for every click a visitor can make.
+  const listFor = useCallback((i) => (sets[i] || []).map((r, k) => ({
+    slot: k, url: r.src, hd: r.hd ? { src: r.hd, w: r.hdWidth, h: r.hdHeight } : null,
+  })), [sets]);
+  const warmNeighbours = useCallback((cluster, i) => {
+    if (!cluster) return;
+    // next first: it is the click a visitor makes far more often than prev
+    cluster.prefetch(i + 1 < sets.length ? listFor(i + 1) : [], i - 1 >= 0 ? listFor(i - 1) : []);
+  }, [sets, listFor]);
+
   useEffect(() => {
     const cluster = clusterRef.current;
     if (!cluster || reduced) return;
     if (heldRef.current === setIndex) return;
-    const list = (sets[setIndex] || []).map((r, k) => ({
-      slot: k, url: r.src, hd: r.hd ? { src: r.hd, w: r.hdWidth, h: r.hdHeight } : null,
-    }));
+    const list = listFor(setIndex);
     if (!list.length) return;
     heldRef.current = setIndex;
-    cluster.swapTo(list, () => setLanded(setIndex));
-  }, [setIndex, sets, reduced]);
+    cluster.swapTo(list, () => {
+      setLanded(setIndex);
+      warmNeighbours(cluster, setIndex);
+    });
+  }, [setIndex, sets, reduced, listFor, warmNeighbours]);
 
   useEffect(() => {
     try { setReduced(matchMedia('(prefers-reduced-motion: reduce)').matches); } catch (e) { /* assume motion is fine */ }
@@ -707,6 +722,7 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
     mount._dsdCluster = cluster;
     clusterRef.current = cluster;
     heldRef.current = setIndexRef.current;
+    warmNeighbours(cluster, setIndexRef.current);
 
     // ☠️ THE WALL RESTS BELOW THE WORDS, AND IT IS MEASURED, NOT DIALLED.
     // Jarich: the shoal was sitting across the headline and body. The fix is to move where
@@ -850,7 +866,7 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
     // the fresh shoal converged from a random scatter, which measured seven to fifteen
     // seconds of "subsiding". The scene now lives across a set change and the beads cross
     // over inside it, so this effect builds ONCE per visit to the beat.
-  }, [near, reduced, sets]);
+  }, [near, reduced, sets, warmNeighbours]);
 
   return (
     <div className="dsd-panel">

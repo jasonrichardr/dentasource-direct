@@ -64,8 +64,17 @@ const MAX_DT = 1 / 30;
 // Downward accel applied ONLY to a bead that has been knocked out of the wall. The cannon
 // world has zero gravity so the shoal can float; a departing bead borrows some.
 const FALL_G = 9.0;
+// ☠️ AN INCOMING BEAD NEEDS A PULL OF ITS OWN, OR IT CAN HOVER FOR EVER. It is dropped with
+// a velocity and nothing else, and when it hits a target that sits near the top of the
+// wall it simply stops, resting on the shoal with its centre still above the landing
+// line. No spring (it is not live yet), no gravity (that was only for departing beads):
+// three of ten sat there for the whole trace and the swap could not complete. This keeps
+// it moving down until it is inside the stage, gentler than FALL_G so the hit does not
+// scatter the wall.
+const DROP_G = 4.0;
 const RAIN_EVERY_MS = 300;   // Jarich: "a marble glass one by one ... per 0.3 second"
 const RAIN_WAIT_MS = 1000;   // longest we hold a drop back waiting for its texture to decode
+const LAND_BY_MS = 1500;     // an incoming bead still not landed by then is declared landed
 
 export function createMarbleCluster(container, {
   videos = [], hdVideos = [], count = 18, isMobile = false, faceFocus = {}, faceZoom = {},
@@ -634,8 +643,9 @@ export function createMarbleCluster(container, {
         _f.set(0, -FALL_G * m, -K_CENTER_Z * body.position.z * m);
         body.applyForce(_f, body.position);
       } else {
-        // incoming: keep it on its own z plane so it lands in the wall, not in front of it
-        _f.set(0, 0, -K_CENTER_Z * body.position.z * m);
+        // incoming: a gentle pull down so it keeps coming until it is inside the stage,
+        // and the z spring so it lands in the wall, not in front of it
+        _f.set(0, -DROP_G * m, -K_CENTER_Z * body.position.z * m);
         body.applyForce(_f, body.position);
       }
     }
@@ -704,8 +714,11 @@ export function createMarbleCluster(container, {
     // are not the ones texPool was built from: those were retired one at a time and new
     // ones took their place. Disposing texPool would free six decoders nobody is using and
     // strand the ten that are.
-    if (swap) { swap.timers.forEach(clearTimeout); swap = null; }
+    if (swap) { swap.timers.forEach(clearTimeout); swap.beads.forEach(detachCollide); swap = null; }
     queued = null;
+    // the decoders warmed for the neighbouring sets are nobody's once the wall is gone
+    for (const t of warmed.values()) dropWarm(t);
+    warmed.clear();
     for (const rec of units) {
       if (!rec.tex) continue;
       try { rec.tex.el.pause(); rec.tex.el.removeAttribute("src"); rec.tex.el.load(); } catch (e) { /* already torn down */ }
@@ -743,6 +756,57 @@ export function createMarbleCluster(container, {
 
   const visTop = () => (camera.position.z * Math.tan((45 * Math.PI) / 180 / 2));
 
+  // ☠️ THE RAIN IS ONLY AS FAST AS ITS FIRST FRAMES, SO THE FETCH HAS TO START BEFORE THE
+  // CLICK. Every bead clip is a cross-origin fetch from the media origin. A decoder opened
+  // at click time needs the better part of a second before it holds a frame, and a bead
+  // must never fall in as black glass, so each drop sat out its grace period waiting: the
+  // measured swap was seven to thirteen seconds for a run that should take three.
+  // The wall is at rest far longer than it is swapping, so the sets either side of the one
+  // on screen are fetched during that quiet time and swapTo takes a decoder that already
+  // has a frame. Keyed by slot AND url because the slot picks the crop focus.
+  const warmed = new Map();
+  const WARM_CAP = 24;      // the two neighbouring sets of ten, with room to spare
+  const warmKey = (e) => `${e.slot}|${e.url}`;
+  function openTex(e) {
+    const t = makeTex(e.url, e.slot);
+    t.el.preload = "auto";
+    try { t.el.load(); } catch (err) { /* torn down */ }
+    return t;
+  }
+  function dropWarm(t) {
+    try { t.el.pause(); t.el.removeAttribute("src"); t.el.load(); } catch (e) { /* torn down */ }
+    t.planeMat.map?.dispose();
+    t.planeMat.dispose();
+  }
+  /**
+   * Open decoders for the sets a click could reach next, so a later swapTo on one of them
+   * drops at full cadence. `lists` is every set to keep warm; anything warmed earlier that
+   * is not in them is dropped, so the pool is exactly the neighbours and never grows.
+   * The heap proof depends on that: a pool that only evicts at a cap drifts upward with
+   * every page and reads as a leak.
+   */
+  function prefetch(...lists) {
+    const keep = new Set();
+    for (const list of lists) for (const e of list || []) keep.add(warmKey(e));
+    for (const [key, t] of warmed) {
+      if (!keep.has(key)) { dropWarm(t); warmed.delete(key); }
+    }
+    for (const list of lists) {
+      for (const e of list || []) {
+        const key = warmKey(e);
+        if (warmed.has(key) || warmed.size >= WARM_CAP) continue;
+        warmed.set(key, openTex(e));
+      }
+    }
+  }
+
+  /** An incoming bead becomes part of the wall: it feels the spring from here on. */
+  function land(rec) {
+    if (rec.state !== 'incoming') return;
+    rec.state = 'live';
+    rec.body.linearDamping = damping;
+  }
+
   function releaseOutgoing(rec) {
     if (!rec || rec.state !== 'live') return;
     rec.state = 'falling';
@@ -752,7 +816,15 @@ export function createMarbleCluster(container, {
     rec.body.linearDamping = 0.05;   // let it actually fall
   }
 
+  /** Drop a bead's landing listener. Only ever called from stepSwap, never from a handler. */
+  function detachCollide(rec) {
+    if (!rec.onCollide) return;
+    rec.body.removeEventListener('collide', rec.onCollide);
+    rec.onCollide = null;
+  }
+
   function retire(rec) {
+    detachCollide(rec);
     const i = units.indexOf(rec);
     if (i >= 0) units.splice(i, 1);
     const si = shells.indexOf(rec.shell);
@@ -782,32 +854,36 @@ export function createMarbleCluster(container, {
 
   function stepSwap() {
     // a departing bead is gone once it is a whole bead below the visible floor
+    const tNow = performance.now();
     for (let i = units.length - 1; i >= 0; i -= 1) {
       const rec = units[i];
       if (rec.state === 'falling' && rec.body.position.y < -visTop() - rec.r * 2) retire(rec);
-      // an incoming bead joins the wall the moment it is inside the stage
-      if (rec.state === 'incoming' && rec.body.position.y < visTop() - rec.r) {
-        rec.state = 'live';
-        rec.body.linearDamping = damping;
-      }
+      // an incoming bead joins the wall the moment it is inside the stage, or once it has
+      // plainly arrived and is resting on the shoal above the line: from there the spring
+      // pulls it in, and a swap can never be left waiting on a bead that is already home
+      if (rec.state === 'incoming' && (rec.body.position.y < visTop() - rec.r || tNow - rec.droppedAt > LAND_BY_MS)) land(rec);
     }
     if (!swap) return;
     const now = performance.now();
-    if (swap.done < swap.list.length && now >= swap.dropAt) {
+    // ☠️ DUE TIMES ARE ABSOLUTE, NOT "0.3s AFTER THE LAST ONE ACTUALLY FELL".
+    // The first build re-based the clock on each real drop, so a bead that spent its full
+    // grace waiting for a frame pushed every later bead back by that second as well: ten
+    // cold beads came to 1.3s each, thirteen seconds for a run meant to take three. Slot n
+    // is due at t0 + n*0.3s whatever happened before it, so a slow clip costs its own delay
+    // and nothing more, and a run that starts warm lands on an exact 0.3s cadence.
+    const dueAt = swap.t0 + swap.done * RAIN_EVERY_MS;
+    if (swap.done < swap.list.length && now >= dueAt) {
       // ☠️ NEVER DROP A BEAD AS BLACK GLASS, AND NEVER LET ONE SLOW CLIP STALL THE RAIN.
-      // The first build of this waited on each bead in turn, and measured 10.7s for ten
-      // beads instead of three: every clip is a cross-origin fetch, so each one spent most
-      // of its 1s grace period waiting and the whole queue sat behind it.
-      // Order is a PREFERENCE now, not a queue: take the next undropped bead whose first
-      // frame has decoded, and only fall back to the head of the line once that bead has
-      // used its full grace. Cadence holds at 0.3s, nothing falls in dark unless the
-      // network genuinely could not deliver it in a second.
+      // Order is a PREFERENCE, not a queue: take the next undropped bead whose first frame
+      // has decoded, and only fall back to the head of the line once that bead has used its
+      // full grace. With the warm pool filled ahead of the click this is the ready path
+      // every time; the grace is the safety net for a cold cache or a slow network.
       let k = swap.order.find((j) => !swap.dropped[j] && swap.tex[j].el.readyState >= 2);
       if (k === undefined) {
         const head = swap.order.find((j) => !swap.dropped[j]);
         if (head === undefined) return;
-        if (now - swap.dropAt < RAIN_WAIT_MS) return;   // still inside its grace, wait
-        k = head;                                        // grace spent: drop it dim
+        if (now - dueAt < RAIN_WAIT_MS) return;   // still inside its grace, wait
+        k = head;                                  // grace spent: drop it dim
       }
       const entry = swap.list[k];
       const tex = swap.tex[k];
@@ -819,18 +895,35 @@ export function createMarbleCluster(container, {
       const spawn = new CANNON.Vec3(x, visTop() + 1.2 + Math.random() * 0.6, 0);
       const rec = makeBead(entry.slot, entry.url, entry.hd, tex, spawn);
       rec.state = 'incoming';
+      rec.droppedAt = now;
       rec.body.linearDamping = 0.02;          // fall cleanly, damping resumes on landing
       rec.body.velocity.set(0, -4.2, 0);
       tex.el.play().catch(() => {});
+      // ☠️ TOUCHING THE WALL IS LANDING. The line test alone (centre inside the stage) left
+      // beads resting on top of the shoal for the whole grace: the wall's top edge sits
+      // near the stage's top, so a bead that has plainly arrived can still be above the
+      // line. Measured at 3.8 to 6.2 s a swap, which is the 2.7 s of drops plus the cap.
+      // First contact with anything in the world hands it to the spring on the spot.
+      // ☠️ ONE LISTENER, AND IT IS NEVER REMOVED FROM INSIDE ITS OWN DISPATCH. cannon-es
+      // walks the listener array by index; a listener that splices itself out while a
+      // second one is queued behind it leaves the loop reading past the end, the throw
+      // escapes world.step, and the animation frame is never re-armed. The page froze on
+      // the first landing with "Cannot read properties of undefined (reading 'call')".
+      // Flags make it idempotent; stepSwap detaches it at completion, outside any event.
+      const hit = { landed: false, released: !target };
+      const onCollide = (e) => {
+        if (!hit.landed) { hit.landed = true; land(rec); }
+        if (!hit.released && e.body === target.body) { hit.released = true; releaseOutgoing(target); }
+      };
+      rec.body.addEventListener('collide', onCollide);
+      rec.onCollide = onCollide;
+      swap.beads.push(rec);
       if (target) {
         swap.claimed.add(target);
         // contact releases the target; a timeout releases it anyway, because a near miss
         // must not leave a bead that never leaves.
-        const onHit = (e) => { if (e.body === target.body) { releaseOutgoing(target); rec.body.removeEventListener('collide', onHit); } };
-        rec.body.addEventListener('collide', onHit);
-        swap.timers.push(setTimeout(() => { releaseOutgoing(target); rec.body.removeEventListener('collide', onHit); }, 1200));
+        swap.timers.push(setTimeout(() => { if (!hit.released) { hit.released = true; releaseOutgoing(target); } }, 1200));
       }
-      swap.dropAt = now + RAIN_EVERY_MS;
       return;
     }
     if (swap.done >= swap.list.length) {
@@ -846,6 +939,7 @@ export function createMarbleCluster(container, {
         // trace, because the first version stalled before it ever completed a swap.
         for (const t of swap.claimed) releaseOutgoing(t);
         swap.timers.forEach(clearTimeout);
+        for (const b of swap.beads) detachCollide(b);
         swap = null;
         if (done) done();
         if (queued) { const q = queued; queued = null; swapTo(q.list, q.onDone); }
@@ -860,18 +954,21 @@ export function createMarbleCluster(container, {
   function swapTo(list, onDone) {
     if (swap) { queued = { list, onDone }; return false; }
     if (!list || !list.length) return false;
-    const tex = list.map((e, k) => makeTex(e.url, k));
-    // preload in DROP ORDER so the first bead to fall is the first to have a frame
-    // every clip starts fetching immediately: they are cross-origin and the fetch, not the
-    // decode, is the slow part, so staggering the loads only delayed the first frame.
-    tex.forEach((t) => { t.el.preload = 'auto'; try { t.el.load(); } catch (e) { /* ignore */ } });
+    // a decoder the panel warmed while the wall was at rest is taken as it stands;
+    // anything not warmed starts fetching now and rides the grace path if it must
+    const tex = list.map((e) => {
+      const key = warmKey(e);
+      const w = warmed.get(key);
+      if (w) { warmed.delete(key); return w; }
+      return openTex(e);
+    });
     const halfW = visTop() * camera.aspect;
     swap = {
       list, tex, done: 0, dropped: list.map(() => false),
-      order: list.map((_, k) => k), dropAt: performance.now(),
+      order: list.map((_, k) => k), t0: performance.now(),
       xs: list.map((_, k) => (list.length === 1 ? 0 : (-halfW * 0.7 + (2 * halfW * 0.7) * (k / (list.length - 1)))),
       ),
-      claimed: new Set(), timers: [], onDone,
+      claimed: new Set(), timers: [], beads: [], onDone,
     };
     return true;
   }
@@ -896,7 +993,10 @@ export function createMarbleCluster(container, {
     // an extent several screens tall, and the panel's seating loop reads this number: it
     // would haul the whole wall around chasing a bead that is leaving.
     let maxX = 0, top = -Infinity, bottom = Infinity, sumY = 0, sumX = 0, n = 0;
+    let incoming = 0, falling = 0;
     for (const { unit, body, state } of units) {
+      if (state === 'incoming') incoming += 1;
+      if (state === 'falling') falling += 1;
       if (state !== 'live') continue;
       n += 1;
       const r = body.shapes[0]?.radius ?? 0;
@@ -927,7 +1027,7 @@ export function createMarbleCluster(container, {
     const visibleHalfH = camera.position.z * Math.tan((45 * Math.PI) / 180 / 2);
     const visibleHalfW = visibleHalfH * camera.aspect;
     return {
-      halfH: maxY, halfW: maxX, live: n,
+      halfH: maxY, halfW: maxX, live: n, incoming, falling, warm: warmed.size,
       top, bottom, centreY, meanY, meanX,
       visibleHalfH, visibleHalfW,
       fits: maxY <= visibleHalfH && maxX <= visibleHalfW,
@@ -938,5 +1038,5 @@ export function createMarbleCluster(container, {
   /** Re-seat the well. The shoal slides to the new centre under its own spring. */
   function setCenterY(y) { if (Number.isFinite(y)) centreY = y; }
 
-  return { setActive, resize, dispose, canvas, bounds, setCenterY, swapTo, swapping };
+  return { setActive, resize, dispose, canvas, bounds, setCenterY, swapTo, swapping, prefetch };
 }
