@@ -107,6 +107,7 @@ VIDEOS = [
 # at 2.0. builder-room's studio (39093a8) compares short sides and must carry the SAME
 # 1.75, or a file the studio bars is not the file the generator bars.
 COVER_MIN = 1.75
+UNMEASURED: list[str] = []   # files admitted because their size could not be read
 
 # ☠️ THE FIT DECIDES WHICH WAY THE RATIO GOES, AND GETTING IT BACKWARDS IS SILENT.
 # cover FILLS the box and crops the overflow, so the binding axis is the SMALLER ratio.
@@ -120,13 +121,29 @@ COVER_MIN = 1.75
 TILE_FIT = "cover"   # object-fit on the rendering element, read from home-cinema.css
 
 
+def report_unmeasured() -> None:
+    """A non-zero count must be impossible to miss. Print it, do not merely emit it."""
+    if UNMEASURED:
+        print(f"  \u2620 ADMITTED {len(UNMEASURED)} FILES WHOSE SIZE COULD NOT BE READ: "
+              f"{', '.join(UNMEASURED[:8])}. They are NOT barred, by policy, but this run "
+              "is not a clean run: a size gate that cannot measure reports the same silence "
+              "as a size gate that found nothing wrong.")
+
+
 def strip_unsafe(src_w: int, src_h: int, tile_w: int, tile_h: int) -> str | None:
     """Reason the file is too soft for this tile, or None if it is fine."""
     if not src_w or not src_h:
-        return None            # NEVER BAR WHAT CANNOT BE MEASURED. An unreadable size is
-                               # not evidence of a small file, and removing a photograph
-                               # because a probe failed is a worse error than shipping one
-                               # that is slightly soft. Same default builder-room uses.
+        # NEVER BAR WHAT CANNOT BE MEASURED. An unreadable size is not evidence of a small
+        # file, and removing a photograph because a probe failed is a worse error than
+        # shipping one that is slightly soft. Same default builder-room uses.
+        #
+        # ☠️ BUT SAY SO, LOUDLY. builder-room found this exact shape in their own surface
+        # (3add9b0): a guard that fails OPEN renders identically to a guard that found
+        # nothing wrong, so a pipeline whose measurement had stopped would report a clean
+        # run. Admitting unmeasured files silently is how "the method itself expired" hides.
+        # Every one is recorded and printed; a run with a non-zero count is not a clean run.
+        UNMEASURED.append(f"{src_w or '?'}x{src_h or '?'}")
+        return None
     ratio = (max if TILE_FIT == "contain" else min)(src_w / tile_w, src_h / tile_h)
     if ratio >= COVER_MIN:
         return None
@@ -263,6 +280,7 @@ def refresh() -> int:
             continue
         items.append(it)
 
+    prev["admittedUnmeasured"] = len(UNMEASURED)
     prev["tileFit"] = TILE_FIT
     prev["tilePx"], prev["tileHeightPx"] = TILE_W, TILE_H
     prev["tileVideoPx"], prev["tileVideoHeightPx"] = TILE_VIDEO_W, TILE_VIDEO_H
@@ -272,6 +290,7 @@ def refresh() -> int:
                       "videos": sum(1 for i in items if i["type"] == "video"),
                       "missing": 0}
     prev["items"] = items
+    report_unmeasured()
     OUT_JSON.write_text(json.dumps(prev, indent=2) + "\n", encoding="utf8")
     print("growth partner (refresh, no re-encode):", prev["counts"],
           "removed too small:", len(refused))
