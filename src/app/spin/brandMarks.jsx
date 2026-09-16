@@ -74,3 +74,14 @@ export function WindowsMark({ size = 18 }) {
     </svg>
   );
 }
+
+/** Messenger: the lightning bolt in a gradient bubble. */
+export function MessengerMark({ size = 22 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden>
+      <defs><linearGradient id="msgr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#00b2ff" /><stop offset="1" stopColor="#006aff" /></linearGradient></defs>
+      <path fill="url(#msgr)" d="M12 2C6.5 2 2 6.1 2 11.3c0 2.9 1.4 5.5 3.7 7.2V22l3.4-1.9c.9.3 1.9.4 2.9.4 5.5 0 10-4.1 10-9.3S17.5 2 12 2z" />
+      <path fill="#fff" d="M6.4 14.2l3.2-5.1a1 1 0 0 1 1.5-.3l2.6 1.9 3.3-1.9a.5.5 0 0 1 .7.7l-3.2 5.1a1 1 0 0 1-1.5.3l-2.6-1.9-3.3 1.9a.5.5 0 0 1-.7-.7z" />
+    </svg>
+  );
+}

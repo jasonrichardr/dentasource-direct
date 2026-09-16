@@ -118,7 +118,7 @@ function VisitorRow({ r, busy, onClaim, onLink, onNote }) {
       ) : null}
       {msg ? <p className="row-msg">{msg}</p> : null}
       <div className="row-act">
-        {r.claimed ? <span className="row-claimed">Claimed {r.claimed}</span> : (
+        {r.reserved ? <span className="row-claimed">Reserved · not spun yet</span> : r.claimed ? <span className="row-claimed">Claimed {r.claimed}</span> : (
           r.prizeId === 'spinagain'
             ? <span className="row-claimed">Still spinning</span>
             : <button className="cta small" onClick={() => onClaim(r.leadId)} disabled={busy}>Claimed</button>
@@ -154,6 +154,8 @@ export default function Desk() {
       try { navigator.vibrate?.(80); } catch { /* no haptics */ }
     } else if (r?.already) {
       setScanResult({ tone: 'warn', title: 'Already claimed', sub: `${r.row.name} · ${r.row.prizeLabel} · ${r.row.claimed}` });
+    } else if (r?.reserved) {
+      setScanResult({ tone: 'warn', title: 'Reserved spin, not spun yet', sub: `${r.row.name} · ${r.row.clinic} · ask them to open dentasourcedirect.com/spin` });
     } else {
       setScanResult({ tone: 'bad', title: r?.error || 'Could not read that QR', sub: r?.row ? `${r.row.name} · ${r.row.prizeLabel}` : '' });
     }
@@ -209,6 +211,7 @@ export default function Desk() {
           <div className="stat"><span className="stat-n">{tally.today}</span><span className="stat-l">spins today</span></div>
           <div className="stat"><span className="stat-n">{tally.total}</span><span className="stat-l">spins total</span></div>
           <div className="stat stat-claimed"><span className="stat-n">{tally.claimedTotal}</span><span className="stat-l">prizes handed over</span></div>
+          <div className="stat"><span className="stat-n">{tally.reserved}</span><span className="stat-l">pre-registered</span></div>
           <div className={`stat status-${tally.status}`}>
             <span className="stat-n"><i className="pulse" aria-hidden />{tally.status === 'open' ? 'OPEN' : 'CLOSED'}</span>
             <span className="stat-l">wheel · {tally.override}{tally.rehearsal ? ' · rehearsal' : ''}</span>

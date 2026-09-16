@@ -4,6 +4,7 @@ import {
   normalizePhone, splitName, makeCode, isValidCode, isValidEmail, eventStatus,
   messageFor, parseMessage, claimedMessage, CODE_ALPHABET,
 } from './format.js';
+import { reservedMessage, parseReserved, countdownParts, WINDOW_START_MS } from './format.js';
 
 test('normalizePhone accepts PH mobile formats', () => {
   assert.equal(normalizePhone('0917 123 4567'), '+639171234567');
@@ -70,4 +71,19 @@ test('message round trip and claim stamp', () => {
   assert.equal(c, 'Prize: 10% off · Code: AB7K · Claimed: 2026-09-22 14:03 by desk');
   assert.equal(parseMessage(c).claimed, '2026-09-22 14:03 by desk');
   assert.equal(parseMessage('hello'), null);
+});
+
+test('reserved message round trip and never parses as a prize', () => {
+  const m = reservedMessage('ABCD234');
+  assert.equal(m, 'Reserved spin · Code: ABCD234 · Spun: no');
+  assert.deepEqual(parseReserved(m), { code: 'ABCD234' });
+  assert.equal(parseMessage(m), null);
+  assert.equal(parseReserved('Prize: Ballpen · Code: ABCD234 · Claimed: no'), null);
+});
+
+test('countdown parts split the gap and flag done at the target', () => {
+  const t = WINDOW_START_MS;
+  assert.deepEqual(countdownParts(t, t - (2 * 86400 + 3 * 3600 + 4 * 60 + 5) * 1000), { done: false, days: 2, hours: 3, minutes: 4, seconds: 5 });
+  assert.equal(countdownParts(t, t).done, true);
+  assert.equal(countdownParts(t, t + 1000).days, 0);
 });

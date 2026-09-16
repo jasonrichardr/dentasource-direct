@@ -8,12 +8,14 @@ import {
 } from '@/lib/spin/tokens';
 import { PRIZES, PRIZE_BY_ID, pickPrize, wedgeIndexFor, effectivePrizes, effectiveChances } from '@/lib/spin/prizes';
 import {
-  INTEREST_REAL, INTEREST_TEST, normalizePhone, splitName, makeCode, isValidCode,
-  isValidEmail, eventStatus, prizePrefix, messageFor, parseMessage, claimedMessage, manilaStamp,
+  INTEREST_REAL, INTEREST_TEST, INTEREST_PRE, INTEREST_PRE_TEST, normalizePhone, splitName, makeCode, isValidCode,
+  isValidEmail, eventStatus, prizePrefix, messageFor, parseMessage, claimedMessage, manilaStamp, reservedMessage, parseReserved,
 } from '@/lib/spin/format';
 import { callConvex, normalizeSocial } from '@/lib/spin/console';
 
 const BOOTH_INTERESTS = [INTEREST_REAL, INTEREST_TEST];
+const PRE_INTERESTS = [INTEREST_PRE, INTEREST_PRE_TEST];
+const ALL_INTERESTS = [...BOOTH_INTERESTS, ...PRE_INTERESTS];
 const CONSOLE_KEY = () => process.env.NADTI_INTAKE_KEY || '';
 
 // The console handoff never blocks the visitor: any failure is logged and swallowed.
@@ -66,7 +68,10 @@ async function status() {
 }
 
 function shapeLead(lead) {
-  const parsed = parseMessage(lead.message) || { prizeLabel: '', code: '', claimed: null };
+  const reserved = PRE_INTERESTS.includes(lead.interest) ? parseReserved(lead.message) : null;
+  const parsed = reserved
+    ? { prizeLabel: 'Reserved spin', code: reserved.code, claimed: null }
+    : (parseMessage(lead.message) || { prizeLabel: '', code: '', claimed: null });
   const prize = PRIZES.find((p) => p.label === parsed.prizeLabel) || null;
   return {
     leadId: lead.id,
@@ -78,7 +83,8 @@ function shapeLead(lead) {
     prizeLabel: parsed.prizeLabel,
     code: parsed.code,
     claimed: parsed.claimed,
-    test: lead.interest === INTEREST_TEST,
+    reserved: !!reserved,
+    test: lead.interest === INTEREST_TEST || lead.interest === INTEREST_PRE_TEST,
     createdAt: lead.createdAt instanceof Date ? lead.createdAt.toISOString() : String(lead.createdAt),
   };
 }
@@ -94,7 +100,7 @@ async function uniqueCode() {
   for (let i = 0; i < 25; i++) {
     const code = makeCode();
     const hit = await prisma.lead.findFirst({
-      where: { interest: { in: BOOTH_INTERESTS }, message: { contains: `Code: ${code}` } },
+      where: { interest: { in: ALL_INTERESTS }, message: { contains: `Code: ${code}` } },
       select: { id: true },
     });
     if (!hit) return code;
@@ -139,12 +145,21 @@ export async function submitSpin(formData) {
   const hasGeo = placeId && Number.isFinite(placeLat) && Number.isFinite(placeLng) && (placeLat !== 0 || placeLng !== 0);
 
   const fields = {};
-  if (name.length < 2) fields.name = 'Please enter your full name.';
-  if (clinic.length < 2) fields.clinic = 'Please enter your dental clinic.';
-  if (!isValidEmail(email)) fields.email = 'Please enter a valid email address.';
   const phone = normalizePhone(phoneRaw);
   if (!phone) fields.phone = 'Please enter a Philippine mobile number, like 0917 123 4567.';
-  if (!consent) fields.consent = 'Please tick the box so we can contact you.';
+  if (Object.keys(fields).length) return { error: 'Please check the form.', fields };
+
+  // Pre-registered before the event: their reserved row fills whatever the form left blank
+  // (the welcome-back path sends the number only), and their consent was given at registration.
+  const pre = await prisma.lead.findFirst({ where: { phone, interest: { in: PRE_INTERESTS } }, orderBy: { createdAt: 'desc' } });
+  const preName = pre ? `${pre.firstName} ${pre.lastName}`.replace(/ -$/, '') : '';
+  const fullName = name || preName;
+  const fullClinic = clinic || pre?.clinicName || '';
+  const fullEmail = email || (pre?.email || '').toLowerCase();
+  if (fullName.length < 2) fields.name = 'Please enter your full name.';
+  if (fullClinic.length < 2) fields.clinic = 'Please enter your dental clinic.';
+  if (!isValidEmail(fullEmail)) fields.email = 'Please enter a valid email address.';
+  if (!consent && !pre) fields.consent = 'Please tick the box so we can contact you.';
   if (Object.keys(fields).length) return { error: 'Please check the form.', fields };
 
   if ((await status()) === 'closed') return { closed: true };
@@ -164,28 +179,102 @@ export async function submitSpin(formData) {
   const counts = await prizeCounts(interest, overrides);
   const pick = pickPrize({ counts, overrides });
   const prize = PRIZE_BY_ID[pick.id];
-  const code = await uniqueCode();
-  const { firstName, lastName } = splitName(name);
+  const { firstName, lastName } = splitName(fullName);
+  const reservedCode = pre ? parseReserved(pre.message)?.code : null;
+  const code = reservedCode || await uniqueCode();
 
-  const lead = await prisma.lead.create({
-    data: {
-      firstName, lastName, email, phone,
-      clinicName: clinic,
-      interest,
-      message: messageFor({ label: prize.label, code }),
-      status: 'NEW',
-    },
-  });
+  // A reserved row becomes the spin row: same code, so the console pin upgrades in place.
+  const lead = pre
+    ? await prisma.lead.update({
+      where: { id: pre.id },
+      data: { firstName, lastName, email: fullEmail, clinicName: fullClinic, interest, message: messageFor({ label: prize.label, code }) },
+    })
+    : await prisma.lead.create({
+      data: {
+        firstName, lastName, email: fullEmail, phone,
+        clinicName: fullClinic,
+        interest,
+        message: messageFor({ label: prize.label, code }),
+        status: 'NEW',
+      },
+    });
 
   if (interest === INTEREST_REAL) {
     await intakeSafe({
-      contactName: name, clinic, email, phone,
+      contactName: fullName, clinic: fullClinic, email: fullEmail, phone,
       ...(hasGeo ? { placeId, placeName: placeName || undefined, address: placeAddress || undefined, lat: placeLat, lng: placeLng } : {}),
       prizeLabel: prize.label, code, test: false,
     });
   }
 
-  return { ok: true, leadId: lead.id, prizeId: pick.id, code, qr: qrTokenFor(code), wedgeIndex: pick.wedgeIndex, placeId: hasGeo ? placeId : null };
+  return { ok: true, leadId: lead.id, prizeId: pick.id, code, qr: qrTokenFor(code), wedgeIndex: pick.wedgeIndex, placeId: hasGeo ? placeId : null, clinic: fullClinic, reserved: !!pre };
+}
+
+/**
+ * Pre-registration before the wheel opens: same four fields, a reserved spin with its own code and
+ * backup QR. Rehearsal devices write TEST rows that never reach the console. Once the wheel is open
+ * (and this is not a rehearsal preview) the visitor is sent to the live gate instead.
+ */
+export async function preRegister(formData) {
+  const name = String(formData.get('name') || '').trim();
+  const clinic = String(formData.get('clinic') || '').trim();
+  const email = String(formData.get('email') || '').trim().toLowerCase();
+  const phoneRaw = String(formData.get('phone') || '').trim();
+  const consent = formData.get('consent') === 'on';
+  const placeId = String(formData.get('placeId') || '').trim() || null;
+  const placeName = String(formData.get('placeName') || '').trim() || null;
+  const placeAddress = String(formData.get('placeAddress') || '').trim() || null;
+  const placeLat = Number(formData.get('placeLat'));
+  const placeLng = Number(formData.get('placeLng'));
+  const hasGeo = placeId && Number.isFinite(placeLat) && Number.isFinite(placeLng) && (placeLat !== 0 || placeLng !== 0);
+
+  const fields = {};
+  if (name.length < 2) fields.name = 'Please enter your full name.';
+  if (clinic.length < 2) fields.clinic = 'Please enter your dental clinic.';
+  if (!isValidEmail(email)) fields.email = 'Please enter a valid email address.';
+  const phone = normalizePhone(phoneRaw);
+  if (!phone) fields.phone = 'Please enter a Philippine mobile number, like 0917 123 4567.';
+  if (!consent) fields.consent = 'Please tick the box so we can contact you.';
+  if (Object.keys(fields).length) return { error: 'Please check the form.', fields };
+
+  const rehearsal = await isRehearsal();
+  if (!rehearsal && (await status()) === 'open') return { open: true };
+  const interest = rehearsal ? INTEREST_PRE_TEST : INTEREST_PRE;
+
+  const spun = await prisma.lead.findFirst({ where: { phone, interest: { in: BOOTH_INTERESTS } }, select: { id: true } });
+  if (spun) return { error: 'This number already spun the wheel.' };
+  const existing = await prisma.lead.findFirst({ where: { phone, interest: { in: PRE_INTERESTS } }, orderBy: { createdAt: 'desc' } });
+  if (existing) {
+    const s = shapeLead(existing);
+    return { ok: true, already: true, leadId: s.leadId, code: s.code, qr: qrTokenFor(s.code), firstName: existing.firstName, name: s.name, clinic: s.clinic, email: s.email, phone };
+  }
+
+  const code = await uniqueCode();
+  const { firstName, lastName } = splitName(name);
+  const lead = await prisma.lead.create({
+    data: { firstName, lastName, email, phone, clinicName: clinic, interest, message: reservedMessage(code), status: 'NEW' },
+  });
+
+  if (interest === INTEREST_PRE) {
+    await intakeSafe({
+      contactName: name, clinic, email, phone,
+      ...(hasGeo ? { placeId, placeName: placeName || undefined, address: placeAddress || undefined, lat: placeLat, lng: placeLng } : {}),
+      prizeLabel: 'reserved spin', code, test: false, kind: 'prereg',
+    });
+  }
+
+  return { ok: true, leadId: lead.id, code, qr: qrTokenFor(code), firstName, name, clinic, email, phone };
+}
+
+/** "Pre-registered? Enter your number": first name + clinic only, so the welcome-back card can greet them. */
+export async function lookupReservation(phoneRaw) {
+  const phone = normalizePhone(phoneRaw);
+  if (!phone) return { error: 'Please enter a Philippine mobile number, like 0917 123 4567.' };
+  const spun = await prisma.lead.findFirst({ where: { phone, interest: { in: BOOTH_INTERESTS } }, select: { id: true } });
+  if (spun) return { spun: true };
+  const pre = await prisma.lead.findFirst({ where: { phone, interest: { in: PRE_INTERESTS } }, orderBy: { createdAt: 'desc' } });
+  if (!pre) return { found: false };
+  return { found: true, firstName: pre.firstName, clinic: pre.clinicName || '', phone };
 }
 
 /** Google Places matches for the clinic the visitor typed. Empty on any failure. */
@@ -279,11 +368,12 @@ export async function deskTally() {
   await requireDesk();
   const todayYmd = manilaStamp().slice(0, 10);
   const dayStart = new Date(`${todayYmd}T00:00:00+08:00`);
-  const [total, today, testCount, claimedTotal, ...per] = await Promise.all([
+  const [total, today, testCount, claimedTotal, reserved, ...per] = await Promise.all([
     prisma.lead.count({ where: { interest: INTEREST_REAL } }),
     prisma.lead.count({ where: { interest: INTEREST_REAL, createdAt: { gte: dayStart } } }),
-    prisma.lead.count({ where: { interest: INTEREST_TEST } }),
+    prisma.lead.count({ where: { interest: { in: [INTEREST_TEST, INTEREST_PRE_TEST] } } }),
     prisma.lead.count({ where: { interest: INTEREST_REAL, message: { startsWith: 'Prize: ' }, NOT: { message: { contains: 'Claimed: no' } } } }),
+    prisma.lead.count({ where: { interest: INTEREST_PRE } }),
     ...PRIZES.map((p) => prisma.lead.count({ where: { interest: INTEREST_REAL, message: { startsWith: prizePrefix(p.label) } } })),
     ...PRIZES.map((p) => prisma.lead.count({ where: { interest: INTEREST_REAL, message: { startsWith: prizePrefix(p.label) }, NOT: { message: { contains: 'Claimed: no' } } } })),
   ]);
@@ -294,7 +384,7 @@ export async function deskTally() {
   const chances = effectiveChances(countsReal, overrides);
   const byPrize = Object.fromEntries(eff.map((p, i) => [p.id, { count: per[i], claimed: per[n + i], cap: p.cap, label: p.label, active: p.active, weight: p.weight, defaultWeight: PRIZES[i].weight, defaultCap: PRIZES[i].cap, chance: chances[p.id] ?? 0, kind: p.kind }]));
   return {
-    total, today, testCount, claimedTotal, byPrize,
+    total, today, testCount, claimedTotal, reserved, byPrize,
     status: await status(),
     rehearsal: await isRehearsal(),
     override: process.env.SPIN_STATUS || 'auto',
@@ -304,7 +394,7 @@ export async function deskTally() {
 export async function deskSearch(q) {
   await requireDesk();
   const raw = String(q || '').trim();
-  let where = { interest: { in: BOOTH_INTERESTS } };
+  let where = { interest: { in: ALL_INTERESTS } };
   if (raw) {
     const up = raw.toUpperCase();
     const phone = normalizePhone(raw);
@@ -326,6 +416,7 @@ export async function deskSearch(q) {
 }
 
 async function claimLead(lead) {
+  if (PRE_INTERESTS.includes(lead.interest)) return { error: 'Reserved spin, not spun yet. Ask them to open dentasourcedirect.com/spin on their phone.', row: shapeLead(lead), reserved: true };
   const parsed = parseMessage(lead.message);
   if (!parsed) return { error: 'Row is not a spin.' };
   if (parsed.claimed) return { error: `Already claimed ${parsed.claimed}.`, row: shapeLead(lead), already: true };
@@ -349,7 +440,7 @@ export async function deskClaimByCode(code) {
   await requireDesk();
   const c = String(code || '').trim().toUpperCase();
   if (!isValidCode(c)) return { error: 'That is not a claim code.' };
-  const lead = await prisma.lead.findFirst({ where: { interest: { in: BOOTH_INTERESTS }, message: { contains: `Code: ${c} ` } } });
+  const lead = await prisma.lead.findFirst({ where: { interest: { in: ALL_INTERESTS }, message: { contains: `Code: ${c} ` } } });
   if (!lead) return { error: `No spin found for ${c}.` };
   return claimLead(lead);
 }
@@ -359,16 +450,16 @@ export async function deskClaimByQr(token) {
   await requireDesk();
   const code = codeFromQrToken(token);
   if (!code) return { error: 'Not a DentaSource booth QR.' };
-  const lead = await prisma.lead.findFirst({ where: { interest: { in: BOOTH_INTERESTS }, message: { contains: `Code: ${code} ` } } });
+  const lead = await prisma.lead.findFirst({ where: { interest: { in: ALL_INTERESTS }, message: { contains: `Code: ${code} ` } } });
   if (!lead) return { error: `No spin found for ${code}.` };
   return claimLead(lead);
 }
 
 export async function deskDeleteTests(confirm) {
   await requireDesk();
-  const count = await prisma.lead.count({ where: { interest: INTEREST_TEST } });
+  const count = await prisma.lead.count({ where: { interest: { in: [INTEREST_TEST, INTEREST_PRE_TEST] } } });
   if (!confirm) return { count };
-  const res = await prisma.lead.deleteMany({ where: { interest: INTEREST_TEST } });
+  const res = await prisma.lead.deleteMany({ where: { interest: { in: [INTEREST_TEST, INTEREST_PRE_TEST] } } });
   return { deleted: res.count };
 }
 
