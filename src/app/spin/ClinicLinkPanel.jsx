@@ -1,14 +1,16 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { searchUrl } from '@/lib/spin/console';
-import { MARK } from './brandMarks';
+import { MARK, AppleMark, AndroidMark, WindowsMark } from './brandMarks';
+
+const PENDING = 'nadti-pending-link';
 
 const OFFERS = [
   { t: 'Digital Dentistry courses', s: 'Scanners, CAD and CAM, guided workflows.' },
   { t: 'Dental Assistant training', s: 'Chairside skills your team can certify in.' },
   { t: 'Member promos', s: 'First dibs on chairs and consumables.' },
-  { t: 'DentaDesk, free', s: 'Your own clinic app on Mac, Windows, iOS, and Android.' },
+  { t: 'DentaDesk, free', s: 'Your own clinic app on every platform.', platforms: true },
 ];
 
 const PLATFORMS = [
@@ -30,11 +32,28 @@ export default function ClinicLinkPanel({ clinic, linked = {}, googleLinked = fa
 
   const isLinked = (id) => !!linked[id] || (id === 'google' && googleLinked);
 
+  // Coming back from the app (or the browser back button): reopen the paste box for the platform they left for.
+  useEffect(() => {
+    const restore = () => {
+      try {
+        const p = sessionStorage.getItem(PENDING);
+        if (p) { sessionStorage.removeItem(PENDING); setOpen(p); setDraft(''); setError(''); }
+      } catch { /* ignore */ }
+    };
+    restore();
+    window.addEventListener('pageshow', restore);
+    return () => window.removeEventListener('pageshow', restore);
+  }, []);
+
+  // Same tab on purpose: on a phone the universal link hands off to the installed app and this page
+  // stays underneath; the visitor comes straight back to the paste box. No new tab to lose.
   const tap = (id) => {
     if (isLinked(id)) return;
+    if (open === id) { setOpen(null); return; }
     const url = searchUrl(id, clinic);
-    try { window.open(url, '_blank', 'noopener'); } catch { /* popup blocked, the paste box still works */ }
+    try { sessionStorage.setItem(PENDING, id); } catch { /* ignore */ }
     setOpen(id); setDraft(''); setError('');
+    window.setTimeout(() => { window.location.href = url; }, 60);
   };
 
   const save = (e) => {
@@ -57,6 +76,12 @@ export default function ClinicLinkPanel({ clinic, linked = {}, googleLinked = fa
           <li key={o.t} className="offer">
             <span className="offer-t">{o.t}</span>
             <span className="offer-s">{o.s}</span>
+            {o.platforms ? (
+              <span className="platforms" aria-label="Mac, Windows, iOS, and Android">
+                <AppleMark size={16} /><WindowsMark size={16} /><AndroidMark size={16} />
+                <span className="platforms-t">Mac · Windows · iOS · Android</span>
+              </span>
+            ) : null}
           </li>
         ))}
       </ul>
@@ -81,7 +106,7 @@ export default function ClinicLinkPanel({ clinic, linked = {}, googleLinked = fa
       </div>
       {open ? (
         <form className="paste" onSubmit={save}>
-          <p className="paste-hint">A new tab opened with {clinic || 'your clinic'} on {PLATFORMS.find((p) => p.id === open)?.label}. Copy your page link and paste it here.</p>
+          <p className="paste-hint">Find {clinic || 'your clinic'} on {PLATFORMS.find((p) => p.id === open)?.label}, copy your page link, then come back here and paste it.</p>
           <div className="paste-row">
             <input
               value={draft}

@@ -54,3 +54,20 @@ export function pinMatches(pin) {
   if (!expected || given.length !== expected.length) return false;
   try { return timingSafeEqual(Buffer.from(expected), Buffer.from(given)); } catch { return false; }
 }
+
+// QR payload for the prize card: "<code>.<10 hex of HMAC>". Only the desk (which knows the PIN-derived key) can verify it,
+// so a QR typed up by hand or screenshotted from another phone fails the check.
+export function qrTokenFor(code) {
+  const c = String(code || '').toUpperCase();
+  if (!c || !process.env.SPIN_DESK_PIN) return null;
+  return `${c}.${createHmac('sha256', key()).update(`qr:${c}`).digest('hex').slice(0, 10)}`;
+}
+
+/** Returns the code when the token verifies, else null. */
+export function codeFromQrToken(token) {
+  const m = /^([A-Z0-9]{4,8})\.([0-9a-f]{10})$/i.exec(String(token || '').trim());
+  if (!m) return null;
+  const expected = qrTokenFor(m[1].toUpperCase());
+  if (!expected) return null;
+  try { return timingSafeEqual(Buffer.from(expected), Buffer.from(`${m[1].toUpperCase()}.${m[2].toLowerCase()}`)) ? m[1].toUpperCase() : null; } catch { return null; }
+}
