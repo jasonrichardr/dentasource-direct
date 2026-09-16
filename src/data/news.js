@@ -869,11 +869,13 @@ The same page carries DentaSource Direct's own openings. A **Dental Chair Techni
         slug: "nadti-2026-smx-manila-complete-guide",
         title: "NADTI 2026 at SMX Manila, September 22 to 24: Every Lecture, Every Speaker, and Booth 034",
         date: "September 16, 2026",
-        image: "/images/news/nadti-2026-smx-manila-complete-guide/hero-a1-pro.jpg",
+        image: "/images/news/nadti-2026-smx-manila-complete-guide/hero-speakers-a1-pro.jpg",
         ogImage: "/images/news/nadti-2026-smx-manila-complete-guide/og-speakers-degrees.jpg",
         hideHeroImage: false,
-        abstract: "The complete guide to the 26th NADTI Trade Exhibit and Scientific Sessions: three days, ten lectures, speakers from six countries, 10 CPD points, the first Student Forum, the raffles, how to register, how to get there, and where to find DentaSource Direct at Booth 034 and 035 in Halls 1 to 3.",
-        content: `## The Event at a Glance
+        abstract: "The complete guide to the 26th NADTI Trade Exhibit and Scientific Sessions: three days, ten lectures, speakers from six countries, 10 CPD points, the first Student Forum, the raffles, how to register, how to get there, and where to find DentaSource Direct at Booth 034 and 035 in Halls 1 to 3, where every visitor spins the wheel at dentasourcedirect.com/spin.",
+        content: `[Spin the wheel at Booth 034 and 035: dentasourcedirect.com/spin](/spin)
+
+## The Event at a Glance
 
 The **26th NADTI Trade Exhibit and Scientific Sessions** runs from **Tuesday, September 22 to Thursday, September 24, 2026** at the **SMX Convention Center Manila**, Seashell Lane, Mall of Asia Complex, Pasay City, in **Halls 1 to 3**. The floor opens at **10:30 AM** and closes at **7:30 PM** each day.
 
