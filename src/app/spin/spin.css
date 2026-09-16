@@ -89,7 +89,8 @@
 }
 .cta:active { transform: translateY(1px) scale(0.99); }
 .cta:disabled { filter: saturate(0.4) brightness(0.8); cursor: wait; }
-.ghost { margin-top: 12px; background: none; border: 0; color: rgba(245, 245, 247, 0.5); font-size: 12.5px; text-decoration: underline; cursor: pointer; }
+.ghost { margin-top: 4px; background: none; border: 0; color: rgba(245, 245, 247, 0.5); font-size: 12.5px; text-decoration: underline; cursor: pointer; min-height: 44px; padding: 8px 10px; border-radius: 10px; }
+.ghost:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
 /* wheel */
 .wheel-stage { position: relative; z-index: 2; width: min(100%, 420px); display: grid; justify-items: center; gap: 14px; }
