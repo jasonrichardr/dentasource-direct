@@ -16,6 +16,7 @@ import { unlockAudio, winChord } from './audio';
 const STORE = 'nadti-spin-2026';
 const FB = 'https://facebook.com/dentasource';
 const MESSENGER = 'https://m.me/dentasource';
+const GUIDE = '/news/nadti-2026-smx-manila-complete-guide';
 
 const fade = {
   initial: { opacity: 0, y: 18, scale: 0.98 },
@@ -43,6 +44,7 @@ function Doors() {
         <span className="roson-pill"><img src="/images/brand/roson-logo-final.png" alt="ROSON" /></span>
         <span>Browse our ROSON Dental Chairs</span>
       </a>
+      <a className="door door-news" href={GUIDE}>Read our NADTI 2026 guide</a>
       <a className="door door-fb" href={FB} target="_blank" rel="noopener">Like us on Facebook</a>
       <a className="door door-msg" href={MESSENGER} target="_blank" rel="noopener">Message us</a>
     </div>

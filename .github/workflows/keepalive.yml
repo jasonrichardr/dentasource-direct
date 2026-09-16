@@ -1,11 +1,13 @@
 name: keepalive
 
 # Pings the site's /api/health endpoint, which runs a trivial DB query, so the
-# free-tier Supabase project never idles into a pause. Runs every ~3 days
-# (Supabase pauses after ~7 days of inactivity).
+# free-tier Supabase project never idles into a pause (it pauses after ~7 days
+# of inactivity). Runs daily. A paused project cannot be woken by a ping, so a
+# failure is reported to Jarich on Telegram at once instead of failing silently
+# (it failed on every run from 2026-09-10 to 09-16 and nobody saw it).
 on:
   schedule:
-    - cron: '17 3 */3 * *'
+    - cron: '17 3 * * *'
   workflow_dispatch: {}
 
 jobs:
@@ -13,6 +15,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Keep the database awake
+        id: ping
+        continue-on-error: true
         run: |
-          echo "Pinging health endpoint..."
-          curl -fsS --max-time 30 https://dentasourcedirect.com/api/health
+          for i in 1 2 3; do
+            if curl -fsS --max-time 30 https://dentasourcedirect.com/api/health; then
+              echo "ok on attempt $i"; exit 0
+            fi
+            echo "attempt $i failed"; sleep 60
+          done
+          exit 1
+      - name: Alert on Telegram
+        if: steps.ping.outcome == 'failure'
+        env:
+          TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          MSG="DentaSource Direct lead database keepalive FAILED (3 attempts, /api/health not 200). The Supabase project may be paused. Restore it at https://supabase.com/dashboard then re-run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          curl -sS -F "chat_id=$CHAT" -F "text=$MSG" "https://api.telegram.org/bot$TOKEN/sendMessage" | grep -q '"ok":true'
+      - name: Fail the run if the ping failed
+        if: steps.ping.outcome == 'failure'
+        run: exit 1
