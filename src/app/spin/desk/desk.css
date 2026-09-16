@@ -119,3 +119,13 @@
 .desk-brand > div { min-width: 0; }
 .desk-brand b, .desk-brand small { overflow: hidden; text-overflow: ellipsis; }
 .desk-head-actions { flex: 0 0 auto; }
+/* Phone widths: tighten the bar so the full wordmark fits beside Scan QR + Lock. */
+@media (max-width: 420px) {
+  .desk-bar { padding-left: 12px; padding-right: 12px; gap: 8px; }
+  .desk-brand { gap: 8px; }
+  .desk-brand img { width: 34px; height: 34px; }
+  .desk-brand b { font-size: 13px; letter-spacing: 0; }
+  .desk-head-actions { gap: 6px; }
+  .scan-btn { padding: 0 10px; }
+  .desk-head-actions .ghost { padding: 0 6px; }
+}
