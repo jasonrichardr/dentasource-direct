@@ -100,3 +100,13 @@
 .row-sub a { color: inherit; }
 .row-msg { margin: 0; font-size: 12.5px; color: #86efac; }
 .typed-row a.ghost { display: inline-flex; align-items: center; }
+/* phone-width fixes: rows must never grow past the viewport */
+.prizes, .prow, .prow-top, .prow-ctl, .prow-ctl label { min-width: 0; }
+.prow { overflow: hidden; }
+.prow-ctl label { flex: 1 1 0; }
+.prow-ctl input { width: 100%; min-width: 0; }
+.prow-count { white-space: nowrap; }
+.scan-btn { white-space: nowrap; padding: 0 14px; }
+.desk-brand b { white-space: nowrap; }
+.desk-brand small { white-space: normal; }
+@media (max-width: 420px) { .desk-brand small { font-size: 9.5px; letter-spacing: 0.1em; } .scan-btn { font-size: 12px; height: 38px; } }
