@@ -23,18 +23,21 @@ export function clearReserved() { try { localStorage.removeItem(RESERVED_STORE);
 const pad = (n) => String(n).padStart(2, '0');
 
 export function Countdown({ target = WINDOW_START_MS, onDone }) {
-  const [parts, setParts] = useState(() => countdownParts(target, Date.now()));
+  // Null until mounted: the server cannot know the phone's clock, and a seconds mismatch would break hydration.
+  const [parts, setParts] = useState(null);
   useEffect(() => {
-    const t = setInterval(() => setParts(countdownParts(target, Date.now())), 1000);
-    return () => clearInterval(t);
+    const tick = () => setParts(countdownParts(target, Date.now()));
+    const t = setInterval(tick, 1000);
+    const first = setTimeout(tick, 0);
+    return () => { clearInterval(t); clearTimeout(first); };
   }, [target]);
-  useEffect(() => { if (parts.done && onDone) onDone(); }, [parts.done, onDone]);
+  useEffect(() => { if (parts?.done && onDone) onDone(); }, [parts?.done, onDone]);
   return (
     <div>
       <p className="cd-caption">The wheel opens in</p>
       <div className="countdown" role="timer" aria-live="off">
-        {[['days', parts.days], ['hours', parts.hours], ['min', parts.minutes], ['sec', parts.seconds]].map(([l, n]) => (
-          <div className="cd-cell" key={l}><span className="cd-n">{pad(n)}</span><span className="cd-l">{l}</span></div>
+        {[['days', parts?.days], ['hours', parts?.hours], ['min', parts?.minutes], ['sec', parts?.seconds]].map(([l, n]) => (
+          <div className="cd-cell" key={l}><span className="cd-n">{n == null ? '--' : pad(n)}</span><span className="cd-l">{l}</span></div>
         ))}
       </div>
     </div>
