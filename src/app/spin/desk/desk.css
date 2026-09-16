@@ -2,7 +2,9 @@
 .desk-card { margin: 40px auto 0; }
 .desk-head { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: flex-end; }
 .desk-head .title { margin: 0; }
-.desk-grid { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.desk-grid { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+@media (min-width: 560px) { .desk-grid { grid-template-columns: repeat(4, 1fr); } }
+.stat-claimed .stat-n { color: #fff3b0; }
 .stat { display: grid; gap: 2px; padding: 12px; border-radius: 14px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; }
 .stat-n { font-size: 24px; font-weight: 900; letter-spacing: -0.02em; }
 .stat-l { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(245, 245, 247, 0.55); }
@@ -33,3 +35,22 @@
 .tool-row { display: flex; gap: 12px; align-items: center; }
 .ghost.danger { color: #fca5a5; }
 .desk-root .fineprint { text-align: left; }
+
+.desk-head-actions { display: flex; align-items: center; gap: 12px; }
+.scan-btn { height: 40px; padding: 0 16px; }
+.scan-sheet { position: relative; z-index: 2; display: grid; gap: 10px; padding: 10px; border-radius: 16px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(212, 175, 55, 0.5); }
+.scanner { position: relative; width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: #000; }
+.scanner-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.scanner-frame { position: absolute; inset: 14%; border: 3px solid rgba(255, 243, 176, 0.9); border-radius: 18px; box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.35); pointer-events: none; }
+.scanner-msg { position: absolute; left: 0; right: 0; bottom: 8px; margin: 0; text-align: center; font-size: 13px; color: #fff; }
+.scanner-msg.error { color: #fca5a5; background: rgba(0, 0, 0, 0.6); padding: 6px; }
+.scanner-hint { margin: 0; font-size: 12.5px; color: rgba(245, 245, 247, 0.7); }
+.scan-result { display: grid; gap: 2px; padding: 12px 14px; border-radius: 12px; font-size: 14px; border: 1px solid; }
+.scan-result strong { font-size: 18px; }
+.scan-result.ok { background: rgba(16, 185, 129, 0.2); border-color: #34d399; }
+.scan-result.warn { background: rgba(245, 165, 36, 0.2); border-color: #f5a524; }
+.scan-result.bad { background: rgba(248, 113, 113, 0.2); border-color: #f87171; }
+.tally-head { display: flex; justify-content: space-between; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(245, 245, 247, 0.5); padding: 0 12px; }
+.tally-n b { color: #fff3b0; }
+.typed-row { display: flex; gap: 8px; }
+.typed-row input { flex: 1; min-width: 0; height: 44px; padding: 0 12px; border-radius: 12px; font-size: 15px; letter-spacing: 0.12em; color: #fff; background: rgba(10, 20, 16, 0.7); border: 1px solid rgba(255, 255, 255, 0.14); font-family: var(--font-plex-mono), ui-monospace, monospace; }

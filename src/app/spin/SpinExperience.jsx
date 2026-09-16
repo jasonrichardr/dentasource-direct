@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { PRIZE_BY_ID } from '@/lib/spin/prizes';
 import { submitSpin, respin, enterRehearsal, lookupClinic, linkClinicSocial } from '@/actions/spin';
 import ClinicLinkPanel from './ClinicLinkPanel';
+import GoogleEmailButton from './GoogleEmailButton';
 import { GoogleMapsMark } from './brandMarks';
 import Wheel from './Wheel';
 import Stage from './Stage';
@@ -37,7 +38,10 @@ function Wordmark() {
 function Doors() {
   return (
     <div className="doors">
-      <a className="door" href="/products">Browse the pricelist</a>
+      <a className="door door-roson" href="/dentalchairs">
+        <span className="roson-pill"><img src="/images/brand/roson-logo-final.png" alt="ROSON" /></span>
+        <span>Browse our ROSON Dental Chairs</span>
+      </a>
       <a className="door door-fb" href={FB} target="_blank" rel="noopener">Like us on Facebook</a>
       <a className="door door-msg" href={MESSENGER} target="_blank" rel="noopener">Message us</a>
     </div>
@@ -71,6 +75,21 @@ export default function SpinExperience({ status, rehearsal }) {
   const [place, setPlace] = useState(null);
   const [lookingUp, setLookingUp] = useState(false);
   const [noneOfThese, setNoneOfThese] = useState(false);
+  const [nameV, setNameV] = useState('');
+  const [emailV, setEmailV] = useState('');
+  const [fromGoogle, setFromGoogle] = useState(false);
+  const [qrUrl, setQrUrl] = useState('');
+
+  // Prize QR: generated on the phone from the signed token the server returned.
+  useEffect(() => {
+    const token = result?.qr;
+    if (!token) { setQrUrl(''); return; }
+    let live = true;
+    import('qrcode').then((m) => m.toDataURL(token, { errorCorrectionLevel: 'M', margin: 1, width: 440, color: { dark: '#06110c', light: '#ffffff' } }))
+      .then((u) => { if (live) setQrUrl(u); })
+      .catch(() => { if (live) setQrUrl(''); });
+    return () => { live = false; };
+  }, [result?.qr]);
 
   useEffect(() => {
     const q = clinicQ.trim();
@@ -178,6 +197,7 @@ export default function SpinExperience({ status, rehearsal }) {
     try { localStorage.removeItem(STORE); } catch { /* ignore */ }
     setResult(null); setAlready(false); setPhase('gate');
     setClinicQ(''); setMatches([]); setPlace(null); setNoneOfThese(false);
+    setNameV(''); setEmailV(''); setFromGoogle(false);
   };
 
   const prize = result ? PRIZE_BY_ID[result.prizeId] : null;
@@ -223,7 +243,8 @@ export default function SpinExperience({ status, rehearsal }) {
             <h1 className="title">Sign up to spin</h1>
             <p className="lede">Four quick details, then the wheel is yours. Every spin wins something.</p>
             <form onSubmit={onSubmit} className="gate-form" noValidate>
-              <Field id="name" label="Full name" autoComplete="name" error={errors.name} required />
+              <GoogleEmailButton onIdentity={({ email, name }) => { setEmailV(email); if (name && !nameV) setNameV(name); setFromGoogle(true); }} />
+              <Field id="name" label="Full name" autoComplete="name" error={errors.name} required value={nameV} onChange={(e) => setNameV(e.target.value)} />
               <Field id="clinic" label="Dental clinic" autoComplete="organization" error={errors.clinic} required value={clinicQ} onChange={(e) => { setClinicQ(e.target.value); setPlace(null); setNoneOfThese(false); }} />
               {place ? (
                 <div className="match picked">
@@ -248,7 +269,7 @@ export default function SpinExperience({ status, rehearsal }) {
                   <button type="button" className="ghost" onClick={() => setNoneOfThese(true)}>None of these</button>
                 </div>
               ) : lookingUp ? <p className="match-q">Looking up your clinic on Google</p> : null}
-              <Field id="email" label="Email" type="email" autoComplete="email" inputMode="email" error={errors.email} required />
+              <Field id="email" label={fromGoogle ? 'Email (from Google)' : 'Email'} type="email" autoComplete="email" inputMode="email" error={errors.email} required value={emailV} onChange={(e) => { setEmailV(e.target.value); setFromGoogle(false); }} />
               <Field id="phone" label="Mobile number" type="tel" autoComplete="tel" inputMode="tel" placeholder="0917 123 4567" error={errors.phone} required />
               <label className={`consent ${errors.consent ? 'has-error' : ''}`}>
                 <input type="checkbox" name="consent" />
@@ -311,9 +332,10 @@ export default function SpinExperience({ status, rehearsal }) {
                       <p className="lede">Pick it up at the booth. Show this screen to our team.</p>
                     ) : null}
                     <div className="code-box">
-                      <span className="code-label">Claim code</span>
-                      <span className="code">{result.code}</span>
-                      <span className="code-hint">Show this screen at the DentaSource Direct booth to claim.</span>
+                      <span className="code-label">Your claim QR</span>
+                      {qrUrl ? <img src={qrUrl} alt="Claim QR code" className="qr" /> : <span className="qr qr-pending" aria-hidden />}
+                      <span className="code-hint">Show this QR at the DentaSource Direct booth. Our team scans it to hand over your prize.</span>
+                      <span className="code-subtle">{result.code}</span>
                     </div>
                     <ClinicLinkPanel clinic={result.clinic || ''} linked={result.linked || {}} googleLinked={!!result.placeId} onLink={onLink} />
                     <Doors />

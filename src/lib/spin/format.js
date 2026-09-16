@@ -26,16 +26,17 @@ export function splitName(full) {
   return { firstName: parts.slice(0, -1).join(' '), lastName: parts[parts.length - 1] };
 }
 
-export function makeCode(random = Math.random) {
+export const CODE_LENGTH = 7;
+export function makeCode(random = Math.random, length = CODE_LENGTH) {
   let s = '';
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < length; i++) {
     s += CODE_ALPHABET[Math.min(CODE_ALPHABET.length - 1, Math.floor(random() * CODE_ALPHABET.length))];
   }
   return s;
 }
 
 export function isValidCode(s) {
-  return typeof s === 'string' && /^[A-HJ-NP-Z2-9]{4}$/.test(s);
+  return typeof s === 'string' && /^[A-HJ-NP-Z2-9]{4,8}$/.test(s);
 }
 
 export function isValidEmail(s) {
@@ -60,7 +61,7 @@ export function messageFor({ label, code }) {
 }
 
 export function parseMessage(msg) {
-  const m = /^Prize: (.+?) · Code: ([A-Z0-9]{4}) · Claimed: (.+)$/.exec(String(msg || ''));
+  const m = /^Prize: (.+?) · Code: ([A-Z0-9]{4,8}) · Claimed: (.+)$/.exec(String(msg || ''));
   if (!m) return null;
   return { prizeLabel: m[1], code: m[2], claimed: m[3] === 'no' ? null : m[3] };
 }

@@ -3,7 +3,8 @@
 import { useCallback, useEffect, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { PRIZES } from '@/lib/spin/prizes';
-import { deskTally, deskSearch, deskClaim, deskDeleteTests, deskLogout, deskRehearsal } from '@/actions/spin';
+import { deskTally, deskSearch, deskClaim, deskClaimByQr, deskClaimByCode, deskDeleteTests, deskLogout, deskRehearsal } from '@/actions/spin';
+import QrScanner from './QrScanner';
 
 const ORDER = ['credits30k', 'off10', 'off5', 'ecobag', 'ballpen', 'fogfree', 'spinagain'];
 
@@ -20,7 +21,35 @@ export default function Desk() {
   const [q, setQ] = useState('');
   const [msg, setMsg] = useState('');
   const [pendingDelete, setPendingDelete] = useState(null);
+  const [scanning, setScanning] = useState(false);
+  const [scanResult, setScanResult] = useState(null); // { tone: 'ok'|'warn'|'bad', title, sub }
   const [busy, start] = useTransition();
+
+  const [typed, setTyped] = useState('');
+  const showClaim = (r) => {
+    if (r?.ok) {
+      setScanResult({ tone: 'ok', title: `${r.row.prizeLabel} · hand it over`, sub: `${r.row.name} · ${r.row.clinic} · ${r.row.code}` });
+      try { navigator.vibrate?.(80); } catch { /* no haptics */ }
+    } else if (r?.already) {
+      setScanResult({ tone: 'warn', title: 'Already claimed', sub: `${r.row.name} · ${r.row.prizeLabel} · ${r.row.claimed}` });
+    } else {
+      setScanResult({ tone: 'bad', title: r?.error || 'Could not read that QR', sub: r?.row ? `${r.row.name} · ${r.row.prizeLabel}` : '' });
+    }
+  };
+  const onTyped = (e) => { e.preventDefault(); const c = typed; start(async () => { showClaim(await deskClaimByCode(c)); setTyped(''); await refresh(q); }); };
+
+  const onToken = (token) => start(async () => {
+    const r = await deskClaimByQr(token);
+    if (r?.ok) {
+      setScanResult({ tone: 'ok', title: `${r.row.prizeLabel} · hand it over`, sub: `${r.row.name} · ${r.row.clinic} · ${r.row.code}` });
+      try { navigator.vibrate?.(80); } catch { /* no haptics */ }
+    } else if (r?.already) {
+      setScanResult({ tone: 'warn', title: 'Already claimed', sub: `${r.row.name} · ${r.row.prizeLabel} · ${r.row.claimed}` });
+    } else {
+      setScanResult({ tone: 'bad', title: r?.error || 'Could not read that QR', sub: r?.row ? `${r.row.name} · ${r.row.prizeLabel}` : '' });
+    }
+    await refresh(q);
+  });
 
   const refresh = useCallback(async (query = q) => {
     const [t, r] = await Promise.all([deskTally(), deskSearch(query)]);
@@ -60,13 +89,33 @@ export default function Desk() {
           <p className="eyebrow">DentaSource Direct · NADTI 2026</p>
           <h1 className="title">Booth desk</h1>
         </div>
-        <button className="ghost" onClick={logout} disabled={busy}>Lock</button>
+        <div className="desk-head-actions">
+          <button type="button" className="cta small scan-btn" onClick={() => { setScanResult(null); setScanning((v) => !v); }}>{scanning ? 'Close scanner' : 'Scan QR'}</button>
+          <button className="ghost" onClick={logout} disabled={busy}>Lock</button>
+        </div>
       </header>
+
+      {scanning ? (
+        <section className="scan-sheet">
+          <QrScanner onToken={onToken} paused={busy} />
+          {scanResult ? (
+            <div className={`scan-result ${scanResult.tone}`}>
+              <strong>{scanResult.title}</strong>
+              {scanResult.sub ? <span>{scanResult.sub}</span> : null}
+            </div>
+          ) : <p className="scanner-hint">Point the camera at the visitor's claim QR. A claim is recorded the moment it reads.</p>}
+          <form className="typed-row" onSubmit={onTyped}>
+            <input value={typed} onChange={(e) => setTyped(e.target.value.toUpperCase())} placeholder="No camera? Type the code under the QR" autoCapitalize="characters" autoCorrect="off" maxLength={8} />
+            <button type="submit" className="cta small" disabled={busy || typed.trim().length < 4}>Claim</button>
+          </form>
+        </section>
+      ) : null}
 
       {tally ? (
         <section className="desk-grid">
           <div className="stat"><span className="stat-n">{tally.today}</span><span className="stat-l">spins today</span></div>
           <div className="stat"><span className="stat-n">{tally.total}</span><span className="stat-l">spins total</span></div>
+          <div className="stat stat-claimed"><span className="stat-n">{tally.claimedTotal}</span><span className="stat-l">prizes handed over</span></div>
           <div className={`stat status-${tally.status}`}>
             <span className="stat-n">{tally.status === 'open' ? 'OPEN' : 'CLOSED'}</span>
             <span className="stat-l">wheel · {tally.override}{tally.rehearsal ? ' · rehearsal' : ''}</span>
@@ -76,6 +125,7 @@ export default function Desk() {
 
       {tally ? (
         <section className="prize-tally">
+          <div className="tally-head"><span>Prize</span><span>handed over / won · cap</span></div>
           {ORDER.map((id) => {
             const p = PRIZES.find((x) => x.id === id);
             const t = tally.byPrize[id];
@@ -83,7 +133,7 @@ export default function Desk() {
             return (
               <div key={id} className={`tally-row kind-${p.kind} ${full ? 'full' : ''}`}>
                 <span className="tally-label">{p.label}</span>
-                <span className="tally-n">{t.count}{t.cap != null ? ` / ${t.cap}` : ''}</span>
+                <span className="tally-n"><b>{t.claimed}</b> / {t.count}{t.cap != null ? ` · cap ${t.cap}` : ''}</span>
               </div>
             );
           })}

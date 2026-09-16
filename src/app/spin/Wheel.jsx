@@ -79,12 +79,12 @@ export default function Wheel({ wedgeIndex, spinning, onDone, spinKey = 0 }) {
     const jitter = (Math.random() * 2 - 1) * WEDGE * 0.38;
     const mod = ((current % 360) + 360) % 360;
     const delta = (((360 - centre) - mod) % 360 + 360) % 360;
-    const target = current + 360 * 6 + delta + jitter;
+    const target = current + 360 * 14 + delta + jitter; // ~15 s: fast start, long glide
 
     let lastSector = Math.floor(current / WEDGE);
     const controls = animate(rotate, target, {
-      duration: reduced ? 0.6 : 5.6,
-      ease: [0.12, 0.78, 0.16, 1],
+      duration: reduced ? 0.8 : 15,
+      ease: [0.08, 0.82, 0.12, 1],
       onUpdate: (v) => {
         const sector = Math.floor(v / WEDGE);
         if (sector !== lastSector) {

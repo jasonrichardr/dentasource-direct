@@ -4,7 +4,7 @@ import prisma from '@/lib/prisma';
 import { cookies, headers } from 'next/headers';
 import {
   DESK_COOKIE, REHEARSAL_COOKIE, tokenFor, isDeskCookie, isRehearsalCookie,
-  pinLocked, pinFailed, pinSucceeded, pinMatches,
+  pinLocked, pinFailed, pinSucceeded, pinMatches, qrTokenFor, codeFromQrToken,
 } from '@/lib/spin/tokens';
 import { PRIZES, PRIZE_BY_ID, pickPrize, wedgeIndexFor } from '@/lib/spin/prizes';
 import {
@@ -134,7 +134,7 @@ export async function submitSpin(formData) {
   });
   if (existing) {
     const s = shapeLead(existing);
-    return { already: true, leadId: s.leadId, prizeId: s.prizeId, code: s.code, wedgeIndex: s.prizeId ? wedgeIndexFor(s.prizeId) : 0 };
+    return { already: true, leadId: s.leadId, prizeId: s.prizeId, code: s.code, qr: qrTokenFor(s.code), wedgeIndex: s.prizeId ? wedgeIndexFor(s.prizeId) : 0 };
   }
 
   const counts = await prizeCounts(interest);
@@ -161,7 +161,7 @@ export async function submitSpin(formData) {
     });
   }
 
-  return { ok: true, leadId: lead.id, prizeId: pick.id, code, wedgeIndex: pick.wedgeIndex, placeId: hasGeo ? placeId : null };
+  return { ok: true, leadId: lead.id, prizeId: pick.id, code, qr: qrTokenFor(code), wedgeIndex: pick.wedgeIndex, placeId: hasGeo ? placeId : null };
 }
 
 /** Google Places matches for the clinic the visitor typed. Empty on any failure. */
@@ -212,7 +212,7 @@ export async function respin(leadId, code) {
     where: { id: lead.id },
     data: { message: messageFor({ label: prize.label, code: parsed.code }) },
   });
-  return { ok: true, leadId: lead.id, prizeId: pick.id, code: parsed.code, wedgeIndex: pick.wedgeIndex };
+  return { ok: true, leadId: lead.id, prizeId: pick.id, code: parsed.code, qr: qrTokenFor(parsed.code), wedgeIndex: pick.wedgeIndex };
 }
 
 export async function enterRehearsal(pin) {
@@ -254,15 +254,18 @@ export async function deskTally() {
   await requireDesk();
   const todayYmd = manilaStamp().slice(0, 10);
   const dayStart = new Date(`${todayYmd}T00:00:00+08:00`);
-  const [total, today, testCount, ...per] = await Promise.all([
+  const [total, today, testCount, claimedTotal, ...per] = await Promise.all([
     prisma.lead.count({ where: { interest: INTEREST_REAL } }),
     prisma.lead.count({ where: { interest: INTEREST_REAL, createdAt: { gte: dayStart } } }),
     prisma.lead.count({ where: { interest: INTEREST_TEST } }),
+    prisma.lead.count({ where: { interest: INTEREST_REAL, message: { startsWith: 'Prize: ' }, NOT: { message: { contains: 'Claimed: no' } } } }),
     ...PRIZES.map((p) => prisma.lead.count({ where: { interest: INTEREST_REAL, message: { startsWith: prizePrefix(p.label) } } })),
+    ...PRIZES.map((p) => prisma.lead.count({ where: { interest: INTEREST_REAL, message: { startsWith: prizePrefix(p.label) }, NOT: { message: { contains: 'Claimed: no' } } } })),
   ]);
-  const byPrize = Object.fromEntries(PRIZES.map((p, i) => [p.id, { count: per[i], cap: p.cap, label: p.label }]));
+  const n = PRIZES.length;
+  const byPrize = Object.fromEntries(PRIZES.map((p, i) => [p.id, { count: per[i], claimed: per[n + i], cap: p.cap, label: p.label }]));
   return {
-    total, today, testCount, byPrize,
+    total, today, testCount, claimedTotal, byPrize,
     status: await status(),
     rehearsal: await isRehearsal(),
     override: process.env.SPIN_STATUS || 'auto',
@@ -291,19 +294,43 @@ export async function deskSearch(q) {
   return rows.map(shapeLead);
 }
 
-export async function deskClaim(leadId) {
-  await requireDesk();
-  const lead = await prisma.lead.findUnique({ where: { id: String(leadId) } });
-  if (!lead || !BOOTH_INTERESTS.includes(lead.interest)) return { error: 'Spin not found.' };
+async function claimLead(lead) {
   const parsed = parseMessage(lead.message);
   if (!parsed) return { error: 'Row is not a spin.' };
-  if (parsed.claimed) return { error: `Already claimed ${parsed.claimed}.` };
-  if (parsed.prizeLabel === 'Spin again') return { error: 'Visitor still has to spin again.' };
+  if (parsed.claimed) return { error: `Already claimed ${parsed.claimed}.`, row: shapeLead(lead), already: true };
+  if (parsed.prizeLabel === 'Spin again') return { error: 'Visitor still has to spin again.', row: shapeLead(lead) };
   const updated = await prisma.lead.update({
     where: { id: lead.id },
     data: { message: claimedMessage(lead.message, manilaStamp()) },
   });
   return { ok: true, row: shapeLead(updated) };
+}
+
+export async function deskClaim(leadId) {
+  await requireDesk();
+  const lead = await prisma.lead.findUnique({ where: { id: String(leadId) } });
+  if (!lead || !BOOTH_INTERESTS.includes(lead.interest)) return { error: 'Spin not found.' };
+  return claimLead(lead);
+}
+
+/** Typed code fallback for a desk tablet without a camera. Desk-only, same claim path. */
+export async function deskClaimByCode(code) {
+  await requireDesk();
+  const c = String(code || '').trim().toUpperCase();
+  if (!isValidCode(c)) return { error: 'That is not a claim code.' };
+  const lead = await prisma.lead.findFirst({ where: { interest: { in: BOOTH_INTERESTS }, message: { contains: `Code: ${c} ` } } });
+  if (!lead) return { error: `No spin found for ${c}.` };
+  return claimLead(lead);
+}
+
+/** Scanned QR → verify the signature → claim. Only the desk can call it; a forged or screenshotted QR from another phone still carries a valid token, which is why the desk also sees the name. */
+export async function deskClaimByQr(token) {
+  await requireDesk();
+  const code = codeFromQrToken(token);
+  if (!code) return { error: 'Not a DentaSource booth QR.' };
+  const lead = await prisma.lead.findFirst({ where: { interest: { in: BOOTH_INTERESTS }, message: { contains: `Code: ${code} ` } } });
+  if (!lead) return { error: `No spin found for ${code}.` };
+  return claimLead(lead);
 }
 
 export async function deskDeleteTests(confirm) {

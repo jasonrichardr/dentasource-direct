@@ -50,3 +50,27 @@ export function GoogleMapsMark({ size = 22 }) {
 }
 
 export const MARK = { facebook: FacebookMark, instagram: InstagramMark, tiktok: TikTokMark, google: GoogleMapsMark };
+
+export function AppleMark({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden fill="currentColor">
+      <path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.8 3-.8s1.8.8 3 .7c1.3 0 2-1.1 2.8-2.2.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3.8zM14.1 5.8c.6-.8 1.1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.1-.5 2.8-1.3z" />
+    </svg>
+  );
+}
+
+export function AndroidMark({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden fill="#3ddc84">
+      <path d="M17.5 10.3H6.5v7.2c0 .7.5 1.2 1.2 1.2h1v2.6c0 .7.5 1.2 1.2 1.2s1.2-.5 1.2-1.2v-2.6h1.8v2.6c0 .7.5 1.2 1.2 1.2s1.2-.5 1.2-1.2v-2.6h1c.7 0 1.2-.5 1.2-1.2v-7.2zM3.9 10.3c-.7 0-1.2.5-1.2 1.2v5.1c0 .7.5 1.2 1.2 1.2s1.2-.5 1.2-1.2v-5.1c0-.7-.5-1.2-1.2-1.2zm16.2 0c-.7 0-1.2.5-1.2 1.2v5.1c0 .7.5 1.2 1.2 1.2s1.2-.5 1.2-1.2v-5.1c0-.7-.5-1.2-1.2-1.2zM15.6 4.3l1-1.6c.1-.1 0-.3-.1-.3-.1-.1-.3 0-.3.1l-1 1.7c-.9-.4-2-.7-3.2-.7s-2.3.2-3.2.7l-1-1.7c-.1-.1-.2-.2-.3-.1-.1 0-.2.2-.1.3l1 1.6C6.6 5.2 5.5 6.9 5.5 8.9v.6h13v-.6c0-2-1.2-3.7-2.9-4.6zM9.3 7.2c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7zm5.4 0c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7z" />
+    </svg>
+  );
+}
+
+export function WindowsMark({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden fill="#00a4ef">
+      <path d="M3 5.5l7.3-1v7H3zM11.3 4.3L21 3v8.5h-9.7zM3 12.5h7.3v7L3 18.5zM11.3 12.5H21V21l-9.7-1.3z" />
+    </svg>
+  );
+}

@@ -30,11 +30,14 @@ test('claim codes use the unambiguous alphabet', () => {
   assert.ok(!/[0O1I]/.test(CODE_ALPHABET));
   assert.equal(CODE_ALPHABET.length, 32);
   const c = makeCode();
-  assert.equal(c.length, 4);
+  assert.equal(c.length, 7);
   assert.ok(isValidCode(c));
-  assert.equal(makeCode(() => 0), 'AAAA');
-  assert.equal(makeCode(() => 0.999), '9999');
+  assert.equal(makeCode(() => 0), 'AAAAAAA');
+  assert.equal(makeCode(() => 0.999), '9999999');
+  assert.equal(makeCode(() => 0, 4), 'AAAA');
+  assert.ok(isValidCode('AB7K'));
   assert.ok(!isValidCode('AB0I'));
+  assert.ok(!isValidCode('ABCDEFGHJ'));
 });
 
 test('email check', () => {
@@ -62,6 +65,7 @@ test('message round trip and claim stamp', () => {
   const m = messageFor({ label: '10% off', code: 'AB7K' });
   assert.equal(m, 'Prize: 10% off · Code: AB7K · Claimed: no');
   assert.deepEqual(parseMessage(m), { prizeLabel: '10% off', code: 'AB7K', claimed: null });
+  assert.deepEqual(parseMessage(messageFor({ label: 'Ecobag', code: 'K7M2P9X' })), { prizeLabel: 'Ecobag', code: 'K7M2P9X', claimed: null });
   const c = claimedMessage(m, '2026-09-22 14:03');
   assert.equal(c, 'Prize: 10% off · Code: AB7K · Claimed: 2026-09-22 14:03 by desk');
   assert.equal(parseMessage(c).claimed, '2026-09-22 14:03 by desk');
