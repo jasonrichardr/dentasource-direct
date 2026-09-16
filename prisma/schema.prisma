@@ -162,3 +162,10 @@ model TeamSession {
   expiresAt    DateTime
   createdAt    DateTime   @default(now())
 }
+
+// NADTI Spin (2026-09-16): live booth controls edited from /spin/desk (prize on/off, chance, cap).
+model BoothSetting {
+  key       String   @id
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+}
