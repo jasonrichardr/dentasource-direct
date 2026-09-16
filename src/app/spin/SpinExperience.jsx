@@ -140,7 +140,9 @@ export default function SpinExperience({ status, rehearsal }) {
     if (status === 'closed') return;
     try {
       const saved = JSON.parse(localStorage.getItem(STORE) || 'null');
-      if (saved?.code && saved?.prizeId) { setResult(saved); setAlready(true); setPhase('result'); }
+      // A record from before the QR rollout has no signed token: drop it, the server returns a fresh one on re-sign-up.
+      if (saved?.code && saved?.prizeId && saved?.qr) { setResult(saved); setAlready(true); setPhase('result'); }
+      else if (saved) localStorage.removeItem(STORE);
     } catch { /* ignore */ }
   }, [status]);
 
