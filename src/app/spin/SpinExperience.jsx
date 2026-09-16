@@ -25,7 +25,7 @@ function Wordmark() {
     <div className="wordmark">
       <img src="/images/brand/dsd-mark.png" alt="" className="wordmark-mark" />
       <div className="wordmark-text">
-        <span className="wm-a">DENTA</span><span className="wm-b">SOURCE</span>
+        <span className="wm-line"><span className="wm-a">DENTA</span><span className="wm-b">SOURCE</span></span>
         <span className="wm-c">DIRECT</span>
       </div>
     </div>
@@ -64,12 +64,30 @@ export default function SpinExperience({ status, rehearsal }) {
   const [burst, setBurst] = useState(0);
   const [already, setAlready] = useState(false);
 
-  // ?rehearsal=<PIN> puts this phone in rehearsal mode (TEST leads, window bypass).
+  // ?rehearsal=1 shows a PIN prompt; the PIN itself never travels in the URL.
+  const [askPin, setAskPin] = useState(false);
+  const [pinError, setPinError] = useState('');
+  useEffect(() => { if (params.get('rehearsal')) setAskPin(true); }, [params]);
+  const onPin = useCallback((e) => {
+    e.preventDefault();
+    const pin = new FormData(e.currentTarget).get('pin');
+    start(async () => {
+      const r = await enterRehearsal(pin);
+      if (r?.error) { setPinError(r.error); return; }
+      setAskPin(false);
+      router.replace('/spin');
+      router.refresh();
+    });
+  }, [router]);
+
+  // Server status can flip after router.refresh() (rehearsal cookie, window opening).
   useEffect(() => {
-    const pin = params.get('rehearsal');
-    if (!pin) return;
-    enterRehearsal(pin).then((r) => { if (r?.ok) router.replace('/spin'); router.refresh(); });
-  }, [params, router]);
+    setPhase((ph) => {
+      if (status === 'open' && ph === 'closed') return 'gate';
+      if (status === 'closed' && ph === 'gate') return 'closed';
+      return ph;
+    });
+  }, [status]);
 
   // Soft guard: this phone already has a prize saved.
   useEffect(() => {
@@ -146,8 +164,24 @@ export default function SpinExperience({ status, rehearsal }) {
         <p className="event-line">NADTI 2026 · September 22 to 24</p>
       </header>
 
+      {askPin ? (
+        <section className="card">
+          <p className="eyebrow">Staff only</p>
+          <h1 className="title">Rehearsal mode</h1>
+          <form onSubmit={onPin} className="gate-form">
+            <label className="field" htmlFor="pin">
+              <span className="field-label">Booth PIN</span>
+              <input id="pin" name="pin" type="password" inputMode="numeric" autoComplete="one-time-code" />
+            </label>
+            {pinError ? <p className="field-error">{pinError}</p> : null}
+            <button type="submit" className="cta" disabled={pending}>{pending ? 'Checking' : 'Enter rehearsal'}</button>
+            <button type="button" className="ghost" onClick={() => { setAskPin(false); router.replace('/spin'); }}>Cancel</button>
+          </form>
+        </section>
+      ) : null}
+
       <AnimatePresence mode="wait">
-        {phase === 'closed' && (
+        {phase === 'closed' && !askPin && (
           <motion.section key="closed" className="card" {...fade}>
             <h1 className="title">The wheel opens at NADTI</h1>
             <p className="lede">Visit the DentaSource Direct booth on September 22 to 24, 2026 to sign up and spin.</p>
@@ -155,7 +189,7 @@ export default function SpinExperience({ status, rehearsal }) {
           </motion.section>
         )}
 
-        {phase === 'gate' && (
+        {phase === 'gate' && !askPin && (
           <motion.section key="gate" className="card" {...fade}>
             <h1 className="title">Sign up to spin</h1>
             <p className="lede">Four quick details, then the wheel is yours. Every spin wins something.</p>

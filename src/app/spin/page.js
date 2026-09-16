@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { cookies } from 'next/headers';
 import { eventStatus } from '@/lib/spin/format';
+import { isRehearsalCookie } from '@/lib/spin/tokens';
 import SpinExperience from './SpinExperience';
 import './spin.css';
 
@@ -14,7 +15,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function SpinPage() {
   const c = await cookies();
-  const rehearsal = c.get('spin_rehearsal')?.value === '1';
+  const rehearsal = isRehearsalCookie(c.get('spin_rehearsal')?.value);
   const status = eventStatus({ override: process.env.SPIN_STATUS || 'auto', rehearsal });
   return (
     <Suspense fallback={null}>

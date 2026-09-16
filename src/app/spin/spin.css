@@ -41,11 +41,11 @@
 
 .spin-head { position: relative; z-index: 2; text-align: center; margin-top: 6px; }
 .wordmark { display: flex; align-items: center; justify-content: center; gap: 10px; }
-.wordmark-mark { width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.5)); }
+.wordmark-mark { width: 44px; height: 44px; object-fit: cover; border-radius: 50%; filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.5)); }
 .wordmark-text { display: grid; line-height: 0.95; text-align: left; font-weight: 900; letter-spacing: -0.02em; }
 .wm-a { color: #16a34a; font-size: 24px; }
 .wm-b { color: #86efac; font-size: 24px; }
-.wm-a, .wm-b { display: inline; }
+.wm-line { display: block; white-space: nowrap; }
 .wm-c { color: #fff; font-size: 15px; letter-spacing: 0.22em; font-style: italic; }
 .event-line { margin-top: 8px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245, 245, 247, 0.6); }
 

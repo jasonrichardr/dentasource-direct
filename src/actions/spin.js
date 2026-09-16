@@ -1,15 +1,17 @@
 'use server';
 
 import prisma from '@/lib/prisma';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
+import {
+  DESK_COOKIE, REHEARSAL_COOKIE, tokenFor, isDeskCookie, isRehearsalCookie,
+  pinLocked, pinFailed, pinSucceeded, pinMatches,
+} from '@/lib/spin/tokens';
 import { PRIZES, PRIZE_BY_ID, pickPrize, wedgeIndexFor } from '@/lib/spin/prizes';
 import {
   INTEREST_REAL, INTEREST_TEST, normalizePhone, splitName, makeCode, isValidCode,
   isValidEmail, eventStatus, prizePrefix, messageFor, parseMessage, claimedMessage, manilaStamp,
 } from '@/lib/spin/format';
 
-const DESK_COOKIE = 'spin_desk';
-const REHEARSAL_COOKIE = 'spin_rehearsal';
 const BOOTH_INTERESTS = [INTEREST_REAL, INTEREST_TEST];
 
 const cookieOpts = (maxAge) => ({
@@ -18,7 +20,26 @@ const cookieOpts = (maxAge) => ({
 
 async function isRehearsal() {
   const c = await cookies();
-  return c.get(REHEARSAL_COOKIE)?.value === '1';
+  return isRehearsalCookie(c.get(REHEARSAL_COOKIE)?.value);
+}
+
+async function clientIp() {
+  const h = await headers();
+  return (h.get('x-forwarded-for') || h.get('x-real-ip') || 'local').split(',')[0].trim();
+}
+
+// Shared PIN check with a per-IP failure counter and a slow path on failure.
+async function checkPin(pin) {
+  const ip = await clientIp();
+  if (pinLocked(ip)) return { error: 'Too many attempts. Try again in 15 minutes.' };
+  if (!process.env.SPIN_DESK_PIN) return { error: 'Desk PIN is not configured on the server.' };
+  if (!pinMatches(pin)) {
+    pinFailed(ip);
+    await new Promise((r) => setTimeout(r, 700));
+    return { error: 'Wrong PIN.' };
+  }
+  pinSucceeded(ip);
+  return { ok: true };
 }
 
 async function currentInterest() {
@@ -134,9 +155,10 @@ export async function respin(leadId, code) {
 }
 
 export async function enterRehearsal(pin) {
-  if (!process.env.SPIN_DESK_PIN || String(pin) !== process.env.SPIN_DESK_PIN) return { error: 'Wrong PIN.' };
+  const r = await checkPin(pin);
+  if (r.error) return r;
   const c = await cookies();
-  c.set(REHEARSAL_COOKIE, '1', cookieOpts(60 * 60 * 24));
+  c.set(REHEARSAL_COOKIE, tokenFor('rehearsal'), cookieOpts(60 * 60 * 24));
   return { ok: true };
 }
 
@@ -150,14 +172,14 @@ export async function leaveRehearsal() {
 
 async function requireDesk() {
   const c = await cookies();
-  if (c.get(DESK_COOKIE)?.value !== '1') throw new Error('Unauthorized');
+  if (!isDeskCookie(c.get(DESK_COOKIE)?.value)) throw new Error('Unauthorized');
 }
 
 export async function deskLogin(pin) {
-  if (!process.env.SPIN_DESK_PIN) return { error: 'Desk PIN is not configured on the server.' };
-  if (String(pin) !== process.env.SPIN_DESK_PIN) return { error: 'Wrong PIN.' };
+  const r = await checkPin(pin);
+  if (r.error) return r;
   const c = await cookies();
-  c.set(DESK_COOKIE, '1', cookieOpts(60 * 60 * 12));
+  c.set(DESK_COOKIE, tokenFor('desk'), cookieOpts(60 * 60 * 12));
   return { ok: true };
 }
 
@@ -234,6 +256,6 @@ export async function deskDeleteTests(confirm) {
 export async function deskRehearsal(on) {
   await requireDesk();
   const c = await cookies();
-  c.set(REHEARSAL_COOKIE, on ? '1' : '', cookieOpts(on ? 60 * 60 * 24 : 0));
+  c.set(REHEARSAL_COOKIE, on ? tokenFor('rehearsal') : '', cookieOpts(on ? 60 * 60 * 24 : 0));
   return { ok: true };
 }
