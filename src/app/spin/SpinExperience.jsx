@@ -4,11 +4,12 @@ import { useCallback, useEffect, useState, useTransition } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { PRIZE_BY_ID } from '@/lib/spin/prizes';
-import { submitSpin, respin, enterRehearsal, lookupClinic, linkClinicSocial } from '@/actions/spin';
+import { submitSpin, respin, enterRehearsal, lookupClinic, linkClinicSocial, lookupReservation } from '@/actions/spin';
 import ClinicLinkPanel from './ClinicLinkPanel';
 import GoogleEmailButton from './GoogleEmailButton';
 import OffersSheet from './OffersSheet';
-import { GoogleMapsMark } from './brandMarks';
+import { GoogleMapsMark, FacebookMark, InstagramMark, TikTokMark, MessengerMark } from './brandMarks';
+import PreEvent, { loadReserved, saveReserved, clearReserved } from './PreEvent';
 import Wheel from './Wheel';
 import Stage from './Stage';
 import { unlockAudio, winChord } from './audio';
@@ -16,6 +17,8 @@ import { unlockAudio, winChord } from './audio';
 const STORE = 'nadti-spin-2026';
 const FB = 'https://facebook.com/dentasource';
 const MESSENGER = 'https://m.me/dentasource';
+const INSTAGRAM = 'https://instagram.com/dentasourcedirect';
+const TIKTOK = 'https://tiktok.com/@dentasourcedirect';
 const GUIDE = '/news/nadti-2026-smx-manila-complete-guide';
 
 const fade = {
@@ -49,8 +52,12 @@ function Doors() {
         <span>Explore our Denjoy Endo Line</span>
       </a>
       <a className="door door-news" href={GUIDE}>Read our NADTI 2026 guide</a>
-      <a className="door door-fb" href={FB} target="_blank" rel="noopener">Like us on Facebook</a>
-      <a className="door door-msg" href={MESSENGER} target="_blank" rel="noopener">Message us</a>
+      <div className="doors-social">
+        <a className="door door-fb door-social" href={FB} target="_blank" rel="noopener"><span className="door-mark"><FacebookMark size={20} /></span>Facebook</a>
+        <a className="door door-ig door-social" href={INSTAGRAM} target="_blank" rel="noopener"><span className="door-mark"><InstagramMark size={20} /></span>Instagram</a>
+        <a className="door door-tt door-social" href={TIKTOK} target="_blank" rel="noopener"><span className="door-mark"><TikTokMark size={20} /></span>TikTok</a>
+        <a className="door door-msg door-social" href={MESSENGER} target="_blank" rel="noopener"><span className="door-mark"><MessengerMark size={20} /></span>Message us</a>
+      </div>
     </div>
   );
 }
@@ -68,7 +75,12 @@ function Field({ id, label, type = 'text', error, ...rest }) {
 export default function SpinExperience({ status, rehearsal }) {
   const router = useRouter();
   const params = useSearchParams();
-  const [phase, setPhase] = useState(status === 'closed' ? 'closed' : 'gate');
+  // ?preview=closed on a rehearsal device shows the pre-event page even while the wheel is open.
+  const forceClosed = rehearsal && params.get('preview') === 'closed';
+  const [phase, setPhase] = useState(status === 'closed' || forceClosed ? 'closed' : 'gate');
+  const [reserved, setReserved] = useState(null); // pre-registration record on this phone (or looked up by number)
+  const [askNumber, setAskNumber] = useState(false);
+  const [numberMsg, setNumberMsg] = useState('');
   const [result, setResult] = useState(null);
   const [errors, setErrors] = useState({});
   const [pending, start] = useTransition();
@@ -136,12 +148,16 @@ export default function SpinExperience({ status, rehearsal }) {
 
   // Server status can flip after router.refresh() (rehearsal cookie, window opening).
   useEffect(() => {
+    if (forceClosed) return;
     setPhase((ph) => {
       if (status === 'open' && ph === 'closed') return 'gate';
       if (status === 'closed' && ph === 'gate') return 'closed';
       return ph;
     });
-  }, [status]);
+  }, [status, forceClosed]);
+
+  // Pre-registered on this phone: the gate becomes a welcome-back card.
+  useEffect(() => { if (status === 'open') setReserved(loadReserved()); }, [status]);
 
   // Soft guard: this phone already has a prize saved.
   useEffect(() => {
@@ -154,9 +170,7 @@ export default function SpinExperience({ status, rehearsal }) {
     } catch { /* ignore */ }
   }, [status]);
 
-  const onSubmit = useCallback((e) => {
-    e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+  const submitFd = useCallback((fd) => {
     unlockAudio();
     start(async () => {
       const r = await submitSpin(fd);
@@ -164,8 +178,9 @@ export default function SpinExperience({ status, rehearsal }) {
       if (r?.closed) { setPhase('closed'); return; }
       if (r?.error) { setErrors({ form: r.error }); return; }
       setErrors({});
-      const merged = { ...r, clinic: String(fd.get('clinic') || '').trim(), placeId: r.placeId || (place?.placeId ?? null), linked: {} };
+      const merged = { ...r, clinic: String(fd.get('clinic') || '').trim() || r.clinic || '', placeId: r.placeId || (place?.placeId ?? null), linked: {} };
       setResult(merged);
+      if (r.reserved) clearReserved();
       if (r.already) {
         setAlready(true);
         saveResult(merged);
@@ -173,6 +188,35 @@ export default function SpinExperience({ status, rehearsal }) {
         return;
       }
       setPhase('wheel');
+    });
+  }, [place]);
+
+  const onSubmit = useCallback((e) => {
+    e.preventDefault();
+    submitFd(new FormData(e.currentTarget));
+  }, [submitFd]);
+
+  // Welcome-back: the reserved record (or the number they typed) is all the server needs.
+  const onReservedSpin = useCallback(() => {
+    if (!reserved) return;
+    const fd = new FormData();
+    fd.set('phone', reserved.phone);
+    if (reserved.name) fd.set('name', reserved.name);
+    if (reserved.clinic) fd.set('clinic', reserved.clinic);
+    if (reserved.email) fd.set('email', reserved.email);
+    submitFd(fd);
+  }, [reserved, submitFd]);
+
+  const onLookup = useCallback((e) => {
+    e.preventDefault();
+    const phone = new FormData(e.currentTarget).get('phone');
+    start(async () => {
+      const r = await lookupReservation(phone);
+      if (r?.error) { setNumberMsg(r.error); return; }
+      if (r?.spun) { setNumberMsg('This number already spun. Sign up below only if that was not you.'); return; }
+      if (!r?.found) { setNumberMsg('No reservation for that number. Sign up below, it takes a minute.'); return; }
+      const rec = { firstName: r.firstName, clinic: r.clinic, phone: r.phone };
+      saveReserved(rec); setReserved(rec); setAskNumber(false); setNumberMsg('');
     });
   }, []);
 
@@ -242,14 +286,24 @@ export default function SpinExperience({ status, rehearsal }) {
 
       <AnimatePresence mode="wait">
         {phase === 'closed' && !askPin && (
-          <motion.section key="closed" className="card" {...fade}>
-            <h1 className="title">The wheel opens at NADTI</h1>
-            <p className="lede">Visit the DentaSource Direct booth on September 22 to 24, 2026 to sign up and spin.</p>
-            <Doors />
+          <motion.div key="closed" className="pre-stack" {...fade}>
+            <PreEvent onOpen={() => { if (!forceClosed) router.refresh(); }} doors={<Doors />} />
+          </motion.div>
+        )}
+
+        {phase === 'gate' && !askPin && reserved && (
+          <motion.section key="welcome" className="card welcome-back" {...fade}>
+            <p className="eyebrow">Spin reserved</p>
+            <h1 className="title">Welcome back, Dr {reserved.firstName || reserved.name}.</h1>
+            <p className="lede">{reserved.clinic ? `${reserved.clinic} · ` : ''}Your reserved spin is ready. No re-typing.</p>
+            {errors.form ? <p className="field-error">{errors.form}</p> : null}
+            {errors.phone || errors.name || errors.email || errors.clinic ? <p className="field-error">We could not find your reservation. Please sign up below.</p> : null}
+            <button type="button" className="cta spin-cta" onClick={onReservedSpin} disabled={pending}>{pending ? 'Getting the wheel ready' : 'Spin'}</button>
+            <button type="button" className="ghost" onClick={() => { clearReserved(); setReserved(null); setErrors({}); }}>Not you? Sign up with your own number</button>
           </motion.section>
         )}
 
-        {phase === 'gate' && !askPin && (
+        {phase === 'gate' && !askPin && !reserved && (
           <motion.section key="gate" className="card" {...fade}>
             <h1 className="title">Sign up to spin</h1>
             <p className="lede">Four quick details, then the wheel is yours. Every spin wins something.</p>
@@ -293,6 +347,14 @@ export default function SpinExperience({ status, rehearsal }) {
               </button>
               <p className="fineprint">One spin per mobile number. Prizes are claimed at the booth.</p>
             </form>
+            {askNumber ? (
+              <form className="phone-row" onSubmit={onLookup}>
+                <Field id="lookup-phone" label="Mobile number you registered with" type="tel" inputMode="tel" placeholder="0917 123 4567" name="phone" required />
+                <button type="submit" className="cta" disabled={pending}>Find</button>
+              </form>
+            ) : null}
+            {numberMsg ? <p className="field-error">{numberMsg}</p> : null}
+            <div className="pre-link"><button type="button" className="ghost" onClick={() => { setAskNumber((v) => !v); setNumberMsg(''); }}>{askNumber ? 'Never mind' : 'Pre-registered? Enter your mobile number'}</button></div>
           </motion.section>
         )}
       </AnimatePresence>

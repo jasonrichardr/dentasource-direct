@@ -154,7 +154,14 @@
 }
 .door-news { background: rgba(212, 175, 55, 0.14); border-color: rgba(212, 175, 55, 0.55); color: #fde68a; }
 .door-fb { background: #1877f2; border-color: #1877f2; }
+.door-ig { background: linear-gradient(90deg, #f58529, #dd2a7b 55%, #8134af); border-color: rgba(255, 255, 255, 0.25); }
+.door-tt { background: #0f0f0f; border-color: rgba(255, 255, 255, 0.3); }
 .door-msg { background: rgba(16, 185, 129, 0.2); border-color: rgba(52, 211, 153, 0.5); color: #86efac; }
+.door-social { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.door-social svg { flex: none; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35)); }
+.door-mark { display: inline-flex; width: 26px; height: 26px; border-radius: 7px; background: #fff; align-items: center; justify-content: center; flex: none; }
+.doors-social { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.doors-social .door { padding: 0 8px; font-size: 14px; }
 
 @media (prefers-reduced-motion: reduce) {
   .led, .wheel-glow, .spin-cta, .wheel-pointer { animation: none !important; }
@@ -244,3 +251,35 @@
 .t-body { display: grid; } .t-body b { font-size: 14px; } .t-body small { font-size: 12px; color: rgba(245, 245, 247, 0.65); line-height: 1.3; }
 .sheet .cta { display: flex; align-items: center; justify-content: center; text-decoration: none; margin-top: 6px; }
 .sheet .ghost { display: block; margin: 10px auto 0; }
+
+/* ───────── pre-event: countdown, idle wheel, prizes, pre-registration ───────── */
+.pre-card { text-align: center; }
+.booth-line { margin: -6px 0 12px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+.countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 10px 0 6px; }
+.cd-cell { display: grid; gap: 2px; padding: 10px 4px 8px; border-radius: 14px; background: rgba(10, 20, 16, 0.75); border: 1px solid rgba(212, 175, 55, 0.35); }
+.cd-n { font-family: var(--font-plex-mono), ui-monospace, monospace; font-size: 30px; font-weight: 700; line-height: 1; color: #fff3b0; font-variant-numeric: tabular-nums; text-shadow: 0 0 18px rgba(212, 175, 55, 0.5); }
+.cd-l { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245, 245, 247, 0.55); }
+.cd-caption { margin: 0 0 4px; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245, 245, 247, 0.6); }
+.pre-wheel { width: min(100%, 420px); display: grid; justify-items: center; position: relative; z-index: 2; }
+.pre-wheel .wheel-wrap { width: min(70vw, 300px); }
+.pre-wheel .wheel-disc { animation: idle-turn 48s linear infinite; }
+@keyframes idle-turn { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.prize-list { display: grid; gap: 6px; margin: 0 0 4px; padding: 0; list-style: none; text-align: left; }
+.prize-list li { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 14px; }
+.prize-list li.hi { border-color: rgba(212, 175, 55, 0.6); background: rgba(212, 175, 55, 0.12); }
+.prize-list li.hi b { background: linear-gradient(90deg, #fff3b0, #d4af37); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.prize-list li.disc b { color: #86efac; }
+.prize-list small { margin-left: auto; font-size: 11px; color: rgba(245, 245, 247, 0.5); text-align: right; }
+.prize-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--neon); flex: none; box-shadow: 0 0 8px var(--neon); }
+.prize-list li.hi .prize-dot { background: var(--gold-hi); box-shadow: 0 0 10px var(--gold); }
+.pre-form { text-align: left; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.pre-form .title { font-size: 22px; }
+.reserved-name { font-size: 26px; font-weight: 900; letter-spacing: -0.02em; margin: 4px 0 6px; }
+.welcome-back { text-align: center; }
+.welcome-back .cta { margin-top: 6px; }
+.pre-link { margin-top: 6px; text-align: center; }
+.phone-row { display: flex; gap: 8px; }
+.phone-row .field { flex: 1; }
+.phone-row .cta { width: auto; padding: 0 18px; height: 48px; align-self: end; font-size: 14px; }
+.pre-stack { position: relative; z-index: 2; width: min(100%, 420px); display: grid; gap: 18px; justify-items: center; }
+.pre-stack .card { width: 100%; }

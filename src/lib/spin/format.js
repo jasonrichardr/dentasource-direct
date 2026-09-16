@@ -3,6 +3,9 @@
 export const CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 export const INTEREST_REAL = 'NADTI 2026 booth';
 export const INTEREST_TEST = 'NADTI 2026 booth (TEST)';
+// Pre-registration before the event: a reserved spin, no prize yet. Same code carries over to the spin.
+export const INTEREST_PRE = 'NADTI 2026 pre-registered';
+export const INTEREST_PRE_TEST = 'NADTI 2026 pre-registered (TEST)';
 
 // Event window in Asia/Manila (+08:00, no DST): Sept 22 00:00 → Sept 24 23:59:59.999
 export const WINDOW_START_MS = Date.UTC(2026, 8, 21, 16, 0, 0, 0);
@@ -77,4 +80,25 @@ export function manilaStamp(d = new Date()) {
   }).formatToParts(d);
   const g = (t) => p.find((x) => x.type === t)?.value;
   return `${g('year')}-${g('month')}-${g('day')} ${g('hour')}:${g('minute')}`;
+}
+
+export function reservedMessage(code) {
+  return `Reserved spin · Code: ${code} · Spun: no`;
+}
+
+export function parseReserved(msg) {
+  const m = /^Reserved spin · Code: ([A-Z0-9]{4,8}) · Spun: (.+)$/.exec(String(msg || ''));
+  return m ? { code: m[1] } : null;
+}
+
+/** Whole days/hours/minutes/seconds until targetMs. done=true at or after the target. */
+export function countdownParts(targetMs, nowMs = Date.now()) {
+  const left = Math.max(0, Math.floor((targetMs - nowMs) / 1000));
+  return {
+    done: nowMs >= targetMs,
+    days: Math.floor(left / 86400),
+    hours: Math.floor((left % 86400) / 3600),
+    minutes: Math.floor((left % 3600) / 60),
+    seconds: left % 60,
+  };
 }

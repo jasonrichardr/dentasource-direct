@@ -3,7 +3,9 @@
 .desk-head { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: flex-end; }
 .desk-head .title { margin: 0; }
 .desk-grid { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-@media (min-width: 560px) { .desk-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 560px) { .desk-grid { grid-template-columns: repeat(5, 1fr); } }
+.desk-grid > .stat:last-child:nth-child(odd) { grid-column: span 2; }
+@media (min-width: 560px) { .desk-grid > .stat:last-child:nth-child(odd) { grid-column: auto; } }
 .stat-claimed .stat-n { color: #fff3b0; }
 .stat { display: grid; gap: 2px; padding: 12px; border-radius: 14px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; }
 .stat-n { font-size: 24px; font-weight: 900; letter-spacing: -0.02em; }
