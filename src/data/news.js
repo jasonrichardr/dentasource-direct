@@ -869,7 +869,7 @@ The same page carries DentaSource Direct's own openings. A **Dental Chair Techni
         slug: "nadti-2026-smx-manila-complete-guide",
         title: "NADTI 2026 at SMX Manila, September 22 to 24: Every Lecture, Every Speaker, and Booth 034",
         date: "September 16, 2026",
-        image: "/images/news/nadti-2026-smx-manila-complete-guide/hero-speakers-a1-pro.jpg",
+        image: "/images/news/nadti-2026-smx-manila-complete-guide/og-speakers-degrees.jpg",
         ogImage: "/images/news/nadti-2026-smx-manila-complete-guide/og-speakers-degrees.jpg",
         hideHeroImage: false,
         abstract: "The complete guide to the 26th NADTI Trade Exhibit and Scientific Sessions: three days, ten lectures, speakers from six countries, 10 CPD points, the first Student Forum, the raffles, how to register, how to get there, and where to find DentaSource Direct at Booth 034 and 035 in Halls 1 to 3, where every visitor spins the wheel at dentasourcedirect.com/spin.",
@@ -1012,7 +1012,13 @@ We will be in **Halls 1 to 3 at Booth 034 and 035** all three days, and the chai
 ![ROSON A1 Pro in Signature Ballet Pink](/images/news/nadti-2026-smx-manila-complete-guide/a1-pro-ballet-pink.jpg)
 ![ROSON A1 Pro in Signature ROSON Blue](/images/news/nadti-2026-smx-manila-complete-guide/a1-pro-roson-blue.jpg)
 
-Beside it, the **A3 family** and the **S6**, set up to be sat in, not just looked at. Our technicians run the chairs through their positions, the light and the delivery unit for every visitor, and the handpiece and small-equipment counter is open the whole time. Denjoy endodontic motors, apex locators and curing lights are on the counter too.
+Beside it, the **A3 family** and the **S6**, set up to be sat in, not just looked at. Our technicians run the chairs through their positions, the light and the delivery unit for every visitor, and the handpiece and small-equipment counter is open the whole time.
+
+The endodontic counter is **Denjoy**, the brand DentaSource Direct distributes exclusively in the Philippines, and it lands in the same week two endodontists lecture upstairs on persistent infections and bioceramic obturation. On the counter: the **Meta Endo Pro I** and **Meet Endo** integrated systems that put apex locator, motor and obturation in one touchscreen unit, the **FREE PEX** benchtop apex locator and the phone-sized **i-Pexo**, the cordless **i-Moto** motor with programmable torque, the **iUe1** ultrasonic irrigator, the **iCure** light that does six jobs at 103 grams, and the **iPack** and **Meta Pack** for warm gutta-percha. Every unit is powered on, so you can run a file, read an apex, and feel the torque control yourself. The [Denjoy page](/denjoy) has each one in detail.
+
+![The Denjoy endodontic set at the DentaSource Direct showroom: FREE PEX, i-Moto, i-Pexo](/images/denjoy/ensemble-hero-1.jpg)
+![Denjoy Meta Endo Pro I integrated endodontic system](/images/denjoy/meta-endo-pro-i/hero.jpg)
+![The i-Moto cordless endo motor on its stand](/images/denjoy/ensemble-hero-2.jpg)
 
 This year the booth has a wheel. Scan the QR code at the booth, sign up with your name, clinic and mobile number, and spin at **dentasourcedirect.com/spin**. Every spin wins something. The wheel carries **₱30,000 in Training Credits** at the DentaSource Direct Training Center for selected partner clinics, **10% off** and **5% off** any purchase or deposit made at the booth from September 22 to 24, a spin-again wedge, and DentaSource gifts. One spin per mobile number; you claim at the booth by showing the screen to our team. The wheel opens on the morning of September 22 and closes with the show.
 
