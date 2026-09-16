@@ -29,9 +29,12 @@ function Label({ i, id }) {
   const parts = p.short.split(' ');
   const two = parts.length > 1 && p.short.length > 7;
   const ink = INK[i % 3];
+  const centre = i * WEDGE + WEDGE / 2;
+  // Left half reads inward so no label is upside down for the viewer.
+  const flip = centre > 90 && centre < 270;
   return (
     <text
-      transform={`rotate(${i * WEDGE + WEDGE / 2}) translate(0,-62) rotate(-90)`}
+      transform={`rotate(${centre}) translate(0,-62) rotate(${flip ? 90 : -90})`}
       textAnchor="middle"
       fill={ink}
       fontSize={two ? 9 : 10.5}
