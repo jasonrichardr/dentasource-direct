@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 // Routes with their own immersive chrome (design-DNA pages) — global footer stays out.
-const CHROME_FREE_ROUTES = ['/denjoy'];
+const CHROME_FREE_ROUTES = ['/denjoy', '/spin', '/spin/desk'];
 
 const PHONE = '+63 962 579 3024';
 const PHONE_HREF = 'tel:+639625793024';
