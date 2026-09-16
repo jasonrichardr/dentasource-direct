@@ -238,7 +238,10 @@
 /* Training Center sheet (rendered at main level) */
 .sheet-back { position: fixed; inset: 0; z-index: 50; background: rgba(3, 8, 6, 0.72); display: grid; align-items: end; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
 .sheet { max-height: 90dvh; overflow-y: auto; border-radius: 24px 24px 0 0; padding: 12px 18px max(20px, env(safe-area-inset-bottom)); background: linear-gradient(180deg, #0f1f18, #08130e); border-top: 1px solid rgba(212, 175, 55, 0.5); box-shadow: 0 -30px 60px -30px rgba(0, 0, 0, 0.9); text-align: left; }
+.sheet { position: relative; }
 .sheet-grab { width: 44px; height: 5px; border-radius: 999px; background: rgba(255, 255, 255, 0.25); margin: 0 auto 12px; }
+.sheet-x { position: absolute; top: 10px; right: 12px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.08); color: #fff; font-size: 26px; line-height: 1; cursor: pointer; display: grid; place-items: center; }
+.sheet-x:active { background: rgba(255, 255, 255, 0.16); }
 .sheet-title { margin: 4px 0 6px; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
 .sheet-reels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 6px 0 12px; }
 .sheet-reels video { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 12px; background: #000; }
