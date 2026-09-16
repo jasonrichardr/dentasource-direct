@@ -11,8 +11,21 @@ import {
   INTEREST_REAL, INTEREST_TEST, normalizePhone, splitName, makeCode, isValidCode,
   isValidEmail, eventStatus, prizePrefix, messageFor, parseMessage, claimedMessage, manilaStamp,
 } from '@/lib/spin/format';
+import { callConvex, normalizeSocial } from '@/lib/spin/console';
 
 const BOOTH_INTERESTS = [INTEREST_REAL, INTEREST_TEST];
+const CONSOLE_KEY = () => process.env.NADTI_INTAKE_KEY || '';
+
+// The console handoff never blocks the visitor: any failure is logged and swallowed.
+async function intakeSafe(payload) {
+  if (!CONSOLE_KEY()) return null;
+  try {
+    return await callConvex('mutation', 'consoleNadti:intake', { key: CONSOLE_KEY(), ...payload }, { timeoutMs: 5000 });
+  } catch (e) {
+    console.error('[spin] console intake failed:', e?.message || e);
+    return null;
+  }
+}
 
 const cookieOpts = (maxAge) => ({
   httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production', path: '/spin', maxAge,
@@ -95,6 +108,12 @@ export async function submitSpin(formData) {
   const email = String(formData.get('email') || '').trim().toLowerCase();
   const phoneRaw = String(formData.get('phone') || '').trim();
   const consent = formData.get('consent') === 'on';
+  const placeId = String(formData.get('placeId') || '').trim() || null;
+  const placeName = String(formData.get('placeName') || '').trim() || null;
+  const placeAddress = String(formData.get('placeAddress') || '').trim() || null;
+  const placeLat = Number(formData.get('placeLat'));
+  const placeLng = Number(formData.get('placeLng'));
+  const hasGeo = placeId && Number.isFinite(placeLat) && Number.isFinite(placeLng) && (placeLat !== 0 || placeLng !== 0);
 
   const fields = {};
   if (name.length < 2) fields.name = 'Please enter your full name.';
@@ -134,7 +153,49 @@ export async function submitSpin(formData) {
     },
   });
 
-  return { ok: true, leadId: lead.id, prizeId: pick.id, code, wedgeIndex: pick.wedgeIndex };
+  if (interest === INTEREST_REAL) {
+    await intakeSafe({
+      contactName: name, clinic, email, phone,
+      ...(hasGeo ? { placeId, placeName: placeName || undefined, address: placeAddress || undefined, lat: placeLat, lng: placeLng } : {}),
+      prizeLabel: prize.label, code, test: false,
+    });
+  }
+
+  return { ok: true, leadId: lead.id, prizeId: pick.id, code, wedgeIndex: pick.wedgeIndex, placeId: hasGeo ? placeId : null };
+}
+
+/** Google Places matches for the clinic the visitor typed. Empty on any failure. */
+export async function lookupClinic(q) {
+  const query = String(q || '').trim();
+  if (query.length < 3 || !CONSOLE_KEY()) return [];
+  try {
+    const rows = await callConvex('action', 'consoleNadti:searchClinic', { key: CONSOLE_KEY(), q: query }, { timeoutMs: 6000 });
+    return Array.isArray(rows) ? rows.slice(0, 3) : [];
+  } catch (e) {
+    console.error('[spin] lookupClinic failed:', e?.message || e);
+    return [];
+  }
+}
+
+/** Saves a social link on the visitor's console prospect. Rehearsal spins report ok without touching the console. */
+export async function linkClinicSocial(leadId, code, platform, value) {
+  const lead = await prisma.lead.findUnique({ where: { id: String(leadId) } });
+  if (!lead || !BOOTH_INTERESTS.includes(lead.interest)) return { error: 'Spin not found.' };
+  const parsed = parseMessage(lead.message);
+  if (!parsed || parsed.code !== String(code).toUpperCase()) return { error: 'Spin not found.' };
+  const url = normalizeSocial(platform, value);
+  if (!url) return { error: platform === 'google' ? 'Paste a Google Maps link.' : 'Paste your page link or type your @handle.' };
+  if (lead.interest === INTEREST_TEST) return { ok: true, url, skipped: 'test' };
+  if (!CONSOLE_KEY()) return { ok: true, url, skipped: 'nokey' };
+  try {
+    const r = await callConvex('mutation', 'consoleNadti:linkSocial', { key: CONSOLE_KEY(), code: parsed.code, platform, value }, { timeoutMs: 5000 });
+    if (r?.ok) return { ok: true, url: r.url };
+    if (r?.reason === 'no_prospect') return { ok: true, url, skipped: 'no_prospect' };
+    return { error: 'That link does not look right.' };
+  } catch (e) {
+    console.error('[spin] linkClinicSocial failed:', e?.message || e);
+    return { ok: true, url, skipped: 'offline' };
+  }
 }
 
 export async function respin(leadId, code) {

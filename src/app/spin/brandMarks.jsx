@@ -1,0 +1,52 @@
+// Inline brand marks so nothing loads from a third party on the booth Wi-Fi.
+// Simplified glyphs, sized by the parent, coloured by currentColor unless the mark carries its own brand colour.
+
+export function FacebookMark({ size = 22 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden>
+      <circle cx="12" cy="12" r="12" fill="#1877f2" />
+      <path d="M13.4 19.5v-6h2l.3-2.4h-2.3V9.6c0-.7.2-1.2 1.2-1.2h1.2V6.3c-.2 0-1-.1-1.8-.1-1.8 0-3 1.1-3 3.1v1.8H9v2.4h2v6h2.4z" fill="#fff" />
+    </svg>
+  );
+}
+
+export function InstagramMark({ size = 22 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden>
+      <defs>
+        <linearGradient id="igg" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stopColor="#f9ce34" /><stop offset="0.5" stopColor="#ee2a7b" /><stop offset="1" stopColor="#6228d7" />
+        </linearGradient>
+      </defs>
+      <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#igg)" />
+      <rect x="6" y="6" width="12" height="12" rx="3.5" fill="none" stroke="#fff" strokeWidth="1.8" />
+      <circle cx="12" cy="12" r="3" fill="none" stroke="#fff" strokeWidth="1.8" />
+      <circle cx="15.6" cy="8.4" r="1" fill="#fff" />
+    </svg>
+  );
+}
+
+export function TikTokMark({ size = 22 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden>
+      <rect width="24" height="24" rx="6" fill="#000" />
+      <path d="M13.2 5h2.3c.2 1.6 1.2 2.8 2.9 3v2.3c-1.1 0-2.1-.3-2.9-.9v4.9a3.9 3.9 0 1 1-3.9-3.9c.2 0 .5 0 .7.1v2.4a1.6 1.6 0 1 0 .9 1.4V5z" fill="#25f4ee" transform="translate(-.5 -.4)" />
+      <path d="M13.2 5h2.3c.2 1.6 1.2 2.8 2.9 3v2.3c-1.1 0-2.1-.3-2.9-.9v4.9a3.9 3.9 0 1 1-3.9-3.9c.2 0 .5 0 .7.1v2.4a1.6 1.6 0 1 0 .9 1.4V5z" fill="#fe2c55" transform="translate(.5 .4)" />
+      <path d="M13.2 5h2.3c.2 1.6 1.2 2.8 2.9 3v2.3c-1.1 0-2.1-.3-2.9-.9v4.9a3.9 3.9 0 1 1-3.9-3.9c.2 0 .5 0 .7.1v2.4a1.6 1.6 0 1 0 .9 1.4V5z" fill="#fff" />
+    </svg>
+  );
+}
+
+export function GoogleMapsMark({ size = 22 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden>
+      <path d="M12 22s-7-7.6-7-12.4A7 7 0 0 1 19 9.6C19 14.4 12 22 12 22z" fill="#ea4335" />
+      <path d="M12 22s-7-7.6-7-12.4c0-1.6.5-3 1.4-4.2L12 12z" fill="#4285f4" />
+      <path d="M6.4 5.4A7 7 0 0 1 12 2.6l-3.5 4.7z" fill="#fbbc04" />
+      <path d="M12 2.6c2 0 3.8.8 5 2.2L12 12 8.5 7.3z" fill="#34a853" />
+      <circle cx="12" cy="9.6" r="2.6" fill="#fff" />
+    </svg>
+  );
+}
+
+export const MARK = { facebook: FacebookMark, instagram: InstagramMark, tiktok: TikTokMark, google: GoogleMapsMark };
