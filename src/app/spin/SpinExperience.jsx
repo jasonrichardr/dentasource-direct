@@ -10,6 +10,7 @@ import GoogleEmailButton from './GoogleEmailButton';
 import OffersSheet from './OffersSheet';
 import { GoogleMapsMark, FacebookMark, InstagramMark, TikTokMark, MessengerMark } from './brandMarks';
 import PreEvent, { loadReserved, saveReserved, clearReserved } from './PreEvent';
+import LoungeRoom from './LoungeRoom';
 import Wheel from './Wheel';
 import Stage from './Stage';
 import { unlockAudio, winChord } from './audio';
@@ -258,6 +259,7 @@ export default function SpinExperience({ status, rehearsal }) {
   const showWheel = phase === 'wheel' || phase === 'spinning' || phase === 'result';
 
   return (
+    <>
     <main className={`spin-root phase-${phase}`}>
       <Stage burst={burst} big={prize?.kind === 'credits' || prize?.kind === 'discount'} />
       <OffersSheet open={!!offer} focus={offer} onClose={() => setOffer(null)} />
@@ -421,5 +423,7 @@ export default function SpinExperience({ status, rehearsal }) {
         </motion.section>
       )}
     </main>
+    <LoungeRoom />
+    </>
   );
 }

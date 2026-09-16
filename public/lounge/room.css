@@ -1,0 +1,686 @@
+/* THE ROOM — ported 1:1 from ffcdentalclinic.com/growth-partner (fork-thanks-cinema.ts block) on 2026-09-17.
+   Only the variables below and the asset paths differ; the thought stream lives in room.js. */
+:root{--serif:var(--font-playfair),Georgia,'Times New Roman',serif;--sans:var(--font-instrument),var(--font-inter),system-ui,sans-serif;--gold:#d4af37}
+    /* The cinema's TOUCH LAW sets its panels to pointer-events:none so only live
+       CTAs are tappable. Everything here opts back in, explicitly. */
+    #tx-dock,#tx-room{pointer-events:auto;font-family:var(--sans)}
+    .tx-chip-phone{display:none}
+    @media (pointer:coarse){.tx-chip-master{display:none}.tx-chip-phone{display:inline}}
+    /* 🔇 THE CINEMA'S OWN AMBIENT DOCK IS RETIRED ON THIS PAGE (2026-08-12).
+       /sign-in ships #ambient-dock — a 60-track shuffle player at
+       bottom:16px right:16px, z-index 9999. On the thank-you page it is a
+       three-way collision, all three proven in a real browser before this rule
+       was written: (1) it sits in the SAME corner as our dock and, being 999
+       z-indexes higher, physically swallows the taps meant for it — Playwright
+       reported "<button id=amb-invite> … intercepts pointer events"; (2) tapping
+       it starts a SECOND stream over "Thank you.", because the two players know
+       nothing about each other; (3) its toast prints real track names, which
+       would shatter the one rule this page has — the song is only ever called
+       "Thank you." The node is also removed in JS below, so it cannot be
+       reached by keyboard either. /sign-in keeps its player, untouched. */
+    #ambient-dock{display:none!important}
+    /* ☠️ THE DOCK IS NEVER GATED ON PLAYBACK (2026-08-12, Jarich scanned a real
+       receipt on his phone: "the dock is NOT there"). It used to mount only
+       inside the 'playing' handler, so on any device that REJECTS autoplay — which
+       is every phone, by platform law — the patient got no dock, no room, no
+       music and no way to ask for any of it. Reproduced live at 390×844: 20
+       seconds, zero gestures, display:none throughout while the page was
+       otherwise perfectly alive (beat 1 personalised, marquee running).
+       So the door renders the instant the script does, and simply says what it
+       is waiting for. z-index clears the cinema's own 9999 dock as well. */
+    /* ── 🫧 LIQUID GLASS (2026-08-13 — Jarich, with Apple's WWDC25 player beside
+       a shot of the old pill: "instead of grey i want it liquid glass design like
+       apple like glass effect").
+       ☠️ THE HARD PART IS NOT THE BLUR, IT IS THE SUBSTRATE FLIP. The old pill was
+       DARK glass — rgba(10,12,18,.72) — carrying WHITE text. Apple's glass over
+       this page is LIGHT, and the instant the body goes light every glyph that was
+       white becomes invisible. So the whole ink of this dock is re-cut below:
+       hint, ❙❙, ♪, the EQ bars and the serif all move into deep gold. Change the
+       fill back toward dark and you MUST re-cut the ink with it.
+       ☠️ THE STAGE UNDER THIS PILL IS NOT ONE COLOUR, AND DOM-SAMPLING LIES ABOUT
+       IT. Walking elementFromPoint + backgroundColor down all 11,816px of the
+       cinema reported cream — rgb(251,248,241) — at ten depths out of ten. The
+       SCREENSHOTS disagree: the leadership beat is a full-bleed near-black marble
+       scene, and the dock sits right on it. The dark beats are painted (media and
+       canvas), so no getComputedStyle walk will ever see them. If you need to know
+       what is behind something on this page, capture pixels; do not ask the DOM.
+       That is why the pane below is opaque enough to be its OWN background: the
+       pill crosses cream and near-black in the same scroll, so it can never borrow
+       contrast from the page. The ink sits on the pane, and the pane is constant.
+       ✨ Over the cream beats, blur alone cannot read as glass — there is nothing
+       behind it to smear, and a first pass at rgba(255,255,255,.30) measured as
+       very nearly invisible on cream. Apple's grammar carries it there with a
+       top-lit fill, a crisp inner rim light and a soft lift shadow, which is what
+       the three layers below are; the blur then earns its keep the moment the
+       pill crosses the marbles or a photo edge. */
+    #tx-dock{
+      position:fixed;z-index:10000;right:calc(14px + env(safe-area-inset-right,0px));
+      bottom:calc(14px + env(safe-area-inset-bottom,0px));
+      display:flex;align-items:center;gap:9px;padding:9px 14px 9px 12px;
+      /* A sticky BAR, never a floating bubble (house decree) — fully rounded ends
+         now, which is the shape Apple's glass wants. */
+      border-radius:999px;border:1px solid rgba(154,123,30,.45);
+      /* the body: a top-lit pane, not a flat wash */
+      background:linear-gradient(160deg,rgba(255,255,255,.78),rgba(255,255,255,.55) 46%,rgba(255,247,230,.6));
+      -webkit-backdrop-filter:blur(20px) saturate(1.75);backdrop-filter:blur(20px) saturate(1.75);
+      /* rim light INSIDE, lift OUTSIDE — the two shadows that make it a solid of
+         glass rather than a translucent rectangle */
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 0 1px rgba(255,255,255,.55),
+        0 10px 28px rgba(74,60,26,.26),0 2px 6px rgba(74,60,26,.16);
+      cursor:pointer;user-select:none;
+      transition:transform .18s ease,border-color .18s ease}
+    /* ☠️ THE FALLBACK IS A LIGHT SOLID, NOT THE OLD DARK ONE. Restoring the former
+       background here would put the newly-darkened ink on a near-black pill and
+       hand the no-backdrop-filter engines the one outcome the fallback exists to
+       prevent. Same reasoning for reduced transparency: opacity goes, the polarity
+       must not. */
+    @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+      #tx-dock{background:#fdfbf6;border-color:rgba(154,123,30,.5)}
+    }
+    @media (prefers-reduced-transparency:reduce){
+      #tx-dock{background:#fdfbf6;-webkit-backdrop-filter:none;backdrop-filter:none;
+        border-color:rgba(154,123,30,.5)}
+    }
+    /* IDLE = the music has not started yet. Same bar, different affordance:
+       a ♪ and a quiet instruction instead of the live equaliser. */
+    /* 💛 THE INVITATION HAS TO BE UNMISSABLE. On iOS a scroll can never start
+       sound — that is platform law, not a bug we can code around — so the tap has
+       to be the obvious thing to do. A slow gold breath on the pill and one
+       shimmer crossing the words every few seconds: enough to catch the eye at
+       the edge of vision, nowhere near a flashing banner. */
+    #tx-dock.idle{animation:tx-invite 3.4s ease-in-out infinite}
+    /* The breath is re-tuned for cream: a PALE gold rim vanishes on a light pane,
+       so the pulse now runs toward the DEEP gold and the glow does the lifting. */
+    @keyframes tx-invite{
+      0%,100%{border-color:rgba(154,123,30,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 0 1px rgba(255,255,255,.55),0 10px 28px rgba(74,60,26,.26)}
+      50%{border-color:rgba(154,123,30,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 0 1px rgba(255,255,255,.65),0 10px 28px rgba(74,60,26,.28),0 0 20px rgba(184,147,46,.5)}
+    }
+    /* ☠️ A SHIMMER MUST TRAVEL TOWARD THE LIGHT, AND THE LIGHT MOVED. The old
+       sweep ran white→#fff6d8 across white letters, which on a pale pane is
+       invisible ink glinting invisibly. Inverted: deep-gold letters with a
+       brighter gold glint crossing them. */
+    #tx-dock.idle .tx-hint{position:relative;overflow:hidden;
+      background:linear-gradient(100deg,#6f5a1e 0%,#6f5a1e 38%,#c9a227 50%,#6f5a1e 62%,#6f5a1e 100%);
+      background-size:280% 100%;-webkit-background-clip:text;background-clip:text;
+      color:transparent;-webkit-text-fill-color:transparent;
+      animation:tx-shimmer 3.4s ease-in-out infinite}
+    @keyframes tx-shimmer{0%,72%{background-position:120% 0}100%{background-position:-40% 0}}
+    @supports not ((-webkit-background-clip:text) or (background-clip:text)){
+      #tx-dock.idle .tx-hint{color:#6f5a1e;-webkit-text-fill-color:#6f5a1e}
+    }
+    @media (prefers-reduced-motion:reduce){
+      #tx-dock.idle,#tx-dock.idle .tx-hint{animation:none}
+      #tx-dock.idle{border-color:rgba(154,123,30,.8)}
+    }
+    #tx-dock.idle .tx-eq{display:none}
+    #tx-dock:not(.idle) .tx-note,#tx-dock:not(.idle) .tx-hint{display:none}
+    /* ── the ink, re-cut for a light pane ──────────────────────────────────
+       Contrast measured against the glass body over cream (~#fcfaf5):
+       #7d6316 ≈ 5.5:1 (AA for small text) · #6f5a1e ≈ 6.6:1 · #9a7b1e ≈ 3.9:1,
+       used only for the ♪ and the EQ's bright stop, which are icons, not copy.
+       Nothing in this pill is white any more. */
+    .tx-note{color:#9a7b1e;font-size:15px;line-height:1;flex:none}
+    .tx-hint{color:#6f5a1e;font-size:10.5px;letter-spacing:.08em;flex:none}
+    #tx-dock:hover{transform:translateY(-1px);border-color:rgba(154,123,30,.75)}
+    #tx-dock:focus-visible{outline:2px solid #9a7b1e;outline-offset:3px}
+    .tx-eq{display:flex;align-items:flex-end;gap:2.5px;height:15px;flex:none}
+    .tx-eq i{width:2.5px;height:3px;border-radius:1.5px;background:linear-gradient(180deg,#b8932e,#7d6316);transition:height 90ms linear}
+    .tx-dt{
+      font-family:var(--serif);font-size:14.5px;letter-spacing:.045em;font-style:italic;
+      /* Deepened from #b8932e→#e6c76a→#b8932e: the old foil's bright stops were
+         pale gold, which on glass over cream is gold-on-gold. The dark stops now
+         carry the legibility and the bright middle is only the specular sweep. */
+      background:linear-gradient(92deg,#7d6316,#b8932e 50%,#7d6316);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      /* Fallback for engines that drop background-clip:text — gold, never invisible. */
+      -webkit-text-fill-color:transparent}
+    @supports not ((-webkit-background-clip:text) or (background-clip:text)){.tx-dt{color:#7d6316;-webkit-text-fill-color:#7d6316}}
+    .tx-dp{color:rgba(90,74,26,.8);font-size:12px;letter-spacing:.06em;flex:none}
+
+    /* ══ 🌙 THE DOCK AT NIGHT (2026-08-15 — Jarich: "the words in thank you
+       button cant be seen in dark mode"). ☠️ THE INK WAS CUT FOR CREAM. Every
+       glyph in this pill was deliberately moved into DEEP gold (#6f5a1e /
+       #7d6316) so it would carry on a pale glass pane over a cream page — and
+       the pane is translucent, so on the night page it fills with black and
+       deep gold on black is deep gold on black. The whole ink inverts here, the
+       same way it inverted the first time: light gold, and a pane dark enough to
+       own its own contrast. Change the fill back toward pale and you MUST
+       re-cut the ink with it, again. */
+    :root[data-theme="dark"] #tx-dock{
+      border-color:rgba(230,199,106,.45);
+      background:linear-gradient(160deg,rgba(58,64,84,.55),rgba(12,15,25,.66) 46%,rgba(26,31,48,.6));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 0 0 1px rgba(255,255,255,.06),
+        0 10px 28px rgba(0,0,0,.6),0 0 22px rgba(184,147,46,.14)}
+    :root[data-theme="dark"] .tx-note{color:#f2dc9a}
+    :root[data-theme="dark"] .tx-hint{color:#ecdca8}
+    :root[data-theme="dark"] .tx-dp{color:rgba(242,236,214,.88)}
+    :root[data-theme="dark"] .tx-dt{background:linear-gradient(92deg,#e6c76a,#fff6da 50%,#e6c76a);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    @supports not ((-webkit-background-clip:text) or (background-clip:text)){
+      :root[data-theme="dark"] .tx-dt{color:#f0dca4;-webkit-text-fill-color:#f0dca4}
+    }
+    :root[data-theme="dark"] .tx-eq i{background:linear-gradient(180deg,#ffe9a8,#c9a227)}
+    /* the idle shimmer travels toward the light, and at night the light is pale */
+    :root[data-theme="dark"] #tx-dock.idle .tx-hint{
+      background:linear-gradient(100deg,#dcc98d 0%,#dcc98d 38%,#fff8e2 50%,#dcc98d 62%,#dcc98d 100%);
+      background-size:280% 100%;-webkit-background-clip:text;background-clip:text;
+      -webkit-text-fill-color:transparent}
+    @supports not ((-webkit-background-clip:text) or (background-clip:text)){
+      :root[data-theme="dark"] #tx-dock.idle .tx-hint{color:#dcc98d;-webkit-text-fill-color:#dcc98d}
+    }
+    :root[data-theme="dark"] @keyframes tx-invite{}
+    /* the gold breath also has to lift, or the pulse disappears into the night */
+    :root[data-theme="dark"] #tx-dock.idle{animation:tx-invite-night 3.4s ease-in-out infinite}
+    @keyframes tx-invite-night{
+      0%,100%{border-color:rgba(230,199,106,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 10px 28px rgba(0,0,0,.6)}
+      50%{border-color:rgba(255,233,168,.95);box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 10px 28px rgba(0,0,0,.6),0 0 26px rgba(230,199,106,.5)}
+    }
+    @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+      :root[data-theme="dark"] #tx-dock{background:#141a28}
+    }
+    @media (prefers-reduced-transparency:reduce){
+      :root[data-theme="dark"] #tx-dock{background:#141a28;-webkit-backdrop-filter:none;backdrop-filter:none}
+    }
+
+    #tx-room{position:fixed;inset:0;z-index:10010;background:#000;display:none;overflow-y:auto;-webkit-overflow-scrolling:touch}
+    /* 🌗 TWO STAGES (2026-08-16 v2, Jarich: "the light mode this glassmorphic…
+       then a dark mode that has exactly the moon the sun… 1:1"):
+       LIGHT — a smoked-glass pane; the bright page glows through the blur.
+       DARK — the sky IS the stage: a near-clear veil, NO blur (blur would
+       smear the stars), and the page's CONTENT steps aside while the room is
+       open (main + #gl on the cinema pages, #root on /checkin) so only the
+       night sky — stars, galaxy, moon, shooting stars — remains behind the
+       music, exactly the page's own sky, 1:1. No-blur engines and
+       reduced-transparency keep the solid stage (room law). */
+    :root[data-theme="light"] #tx-room{background:rgba(10,13,22,.55);
+      -webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4)}
+    :root[data-theme="dark"] #tx-room{background:rgba(3,6,13,.25)}
+    :root[data-theme="dark"].tx-open main{visibility:hidden}
+    /* ☠️ #sky lives INSIDE <main> on the cinema pages — visibility (unlike
+       display) can be RESTORED on a descendant of a hidden parent, which is
+       exactly how the stars stay lit while every beat panel around them goes
+       dark (found 2026-08-16 after Jarich saw a starless room: the hide-main
+       rule was eating the sky with it). */
+    :root[data-theme="dark"].tx-open #sky{visibility:visible}
+    :root[data-theme="dark"].tx-open #gl{visibility:hidden}
+    :root[data-theme="dark"].tx-open #root{visibility:hidden}
+    @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+      :root[data-theme="light"] #tx-room{background:#000}
+    }
+    @media (prefers-reduced-transparency:reduce){
+      :root[data-theme="light"] #tx-room{background:#000;-webkit-backdrop-filter:none;backdrop-filter:none}
+      :root[data-theme="dark"] #tx-room{background:rgba(3,6,13,.6)}
+    }
+    #tx-room.on{display:block}
+    /* The bottom padding is what keeps the thought stream clear of the fixed ✕
+       in the corner below it — the stream is the last thing on the page, so
+       without this it would sit under the button on a short phone. */
+    .tx-in{max-width:760px;margin:0 auto;padding:calc(52px + env(safe-area-inset-top,0px)) 20px calc(124px + env(safe-area-inset-bottom,0px));text-align:center}
+    /* ✕ LIVES AT THE THUMB (2026-08-12, Jarich): lower-LEFT, so closing the room
+       one-handed is effortless and they carry on browsing with the music on. The
+       dock is lower-RIGHT, so the two can never meet; the room is opaque and
+       covers the dock anyway, and .tx-open hides it outright to make that a
+       guarantee rather than a coincidence. 52px clears the 44px minimum. */
+    /* 🫧 The same Liquid Glass grammar as the dock, in its DARK register — this
+       one lives inside the black room, so the pane is a whisper of white and the
+       rim light is what gives it an edge. Its ink was always light and stays
+       light; the substrate never flipped here, which is exactly why this button
+       needed no re-inking and the dock needed all of it. */
+    #tx-x{display:none;position:fixed;z-index:10020;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:calc(16px + env(safe-area-inset-left,0px));
+      width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.16);
+      background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.06) 60%,rgba(255,255,255,.09));
+      -webkit-backdrop-filter:blur(20px) saturate(1.7);backdrop-filter:blur(20px) saturate(1.7);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 0 0 1px rgba(255,255,255,.1),0 8px 24px rgba(0,0,0,.5);
+      color:rgba(255,255,255,.86);font-size:20px;line-height:1;cursor:pointer}
+    #tx-x:hover{background:linear-gradient(160deg,rgba(255,255,255,.24),rgba(255,255,255,.12) 60%,rgba(255,255,255,.15))}
+    @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+      #tx-x{background:rgba(28,28,32,.92)}
+    }
+    @media (prefers-reduced-transparency:reduce){
+      #tx-x{background:rgba(28,28,32,.94);-webkit-backdrop-filter:none;backdrop-filter:none}
+    }
+    /* 🌗 the room's own mode switch — the ✕'s recipe, mirrored to the right */
+    #tx-theme{display:none;position:fixed;z-index:10020;bottom:calc(16px + env(safe-area-inset-bottom,0px));right:calc(16px + env(safe-area-inset-right,0px));
+      width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.16);
+      background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.06) 60%,rgba(255,255,255,.09));
+      -webkit-backdrop-filter:blur(20px) saturate(1.7);backdrop-filter:blur(20px) saturate(1.7);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 0 0 1px rgba(255,255,255,.1),0 8px 24px rgba(0,0,0,.5);
+      color:rgba(255,233,168,.9);font-size:19px;line-height:1;cursor:pointer}
+    #tx-theme:hover{background:linear-gradient(160deg,rgba(255,255,255,.24),rgba(255,255,255,.12) 60%,rgba(255,255,255,.15))}
+    @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+      #tx-theme{background:rgba(28,28,32,.92)}
+    }
+    @media (prefers-reduced-transparency:reduce){
+      #tx-theme{background:rgba(28,28,32,.94);-webkit-backdrop-filter:none;backdrop-filter:none}
+    }
+    .tx-open #tx-dock{display:none!important}
+    .tx-open #tx-x,.tx-open #tx-theme{display:block}
+    .tx-h{
+      /* THE DESCENDER MUST BREATHE. At line-height 1.02 the italic serif y was
+         sliced off by its own text box — and background-clip:text clips to that
+         box exactly, so the gradient took the tail with it. */
+      font-family:var(--serif);font-weight:400;font-style:italic;margin:0 0 4px;
+      padding-bottom:.14em;overflow:visible;
+      font-size:clamp(40px,12vw,74px);line-height:1.22;letter-spacing:.012em;
+      background:linear-gradient(96deg,#8e6f18 2%,#e6c76a 34%,#fff3cf 50%,#e6c76a 66%,#8e6f18 98%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+      filter:drop-shadow(0 6px 26px rgba(184,147,46,.32))}
+    @supports not ((-webkit-background-clip:text) or (background-clip:text)){.tx-h{color:#e6c76a;-webkit-text-fill-color:#e6c76a}}
+    .tx-sub{color:rgba(255,255,255,.56);font-size:14.5px;line-height:1.62;margin:14px auto 26px;max-width:33em}
+    /* ☠️ THE BIG PAUSE RING IS GONE (2026-08-13 — Jarich: "the pause button remove
+       it in the equalizer make it in the slider brother add it there so it looks
+       like youtube where the users are familiar"). It used to stand here, 74px of
+       gold between the sub-line and the wall. The transport now rides at the LEFT
+       of the chapter rail, in YouTube's grammar — see #tx-play. Do not re-add a
+       second play control: there is exactly one, and it lives on the rail.
+       ── 👑 AND THE CLINIC STANDS IN ITS PLACE ────────────────────────────────
+       Jarich, pointing at the ring: "the pause button here since we are removing
+       it here in the equalizer. replace it for FFC Dental Clinic logo."
+       So the spot is not emptied, it is INHERITED — the crown mark takes exactly
+       the ring's 74px footprint and its 26px of air underneath, which is why the
+       whole column below and the wall's headroom keep the numbers they were
+       measured at. Change this size and you must re-derive #tx-spec's height.
+       ☠️ IT IS NOT A BUTTON. Decorative, aria-hidden, no handler, no tabindex:
+       playback lives on the rail and the dock, and a logo that looked pressable
+       but did nothing would be the cruellest control in the room.
+       🎨 THE WHITE DISC IS CSS, NOT THE FILE (2026-08-13 — Jarich, pointing at
+       the /desk masthead: "i want the logo that has whit background so it the
+       logo can be seen there"). Two facts are true at once and it matters which
+       is which: the PNG was alpha-probed and its corners AND its whole interior
+       are TRANSPARENT (0,0,0,0) — only the gold strokes carry pixels. So the
+       white circle he is pointing at is NOT baked into the asset; the desk
+       SUPPLIES it (src/components/desk/gilded.tsx, stampLogoWrap, backgroundColor
+       '#ffffff'). "Use the logo with the white background" is therefore an
+       instruction to port the LOCKUP, not to hunt for a different file.
+       This is that lockup at 74px — same fill, same 1.5px gold ring, same
+       struck-coin shadow — plus one soft glow, because this room lights
+       everything standing in it.
+       A first pass shipped the mark BARE, reasoning that it "brings its own ring,
+       so a second would read as a double rule". True of the file, wrong for the
+       stage: on black, a drawn ring has nothing to enclose and the crown floats.
+       ☠️ THE WRAPPER AND THE IMAGE ARE BOTH ROUNDED, and that is not belt-and-
+       braces — it is gilded.tsx's scar, kept: iOS Safari leaks SQUARE corners
+       when only the wrapper carries the radius. */
+    #tx-logo{width:74px;height:74px;margin:0 auto 26px;border-radius:50%;overflow:hidden;
+      background:#fff;border:1.5px solid rgba(184,147,46,.5);
+      box-shadow:0 2px 8px rgba(154,123,30,.5),0 0 26px rgba(184,147,46,.22);
+      position:relative;z-index:1}
+    #tx-logo img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover}
+    /* 📐 THE WALL KEEPS ITS ORIGINAL SIZE AND PLACE (2026-08-13 rollback —
+       Jarich: "put back the old equalizer size brother and their positioning...
+       its just the box that looks like the equalizer is inside. just remove
+       that"). Full-bleed drowned the band strips, the chip and the orb, so the
+       canvas is back in the flow at exactly the size it was. The BOX he means is
+       not CSS — there is no border here and never was. It is the canvas RECT
+       itself showing: the ambient wash tints every pixel out to the edges, so its
+       bounds read as a lighter rectangle sitting on the black stage. The cure is
+       in the drawing, not the layout — see the edge dissolve in draw(). */
+    /* 🌄 HEADROOM FOR THE HUE (2026-08-13 — Jarich: "make the hue reach until
+       below the 'Playing when you leave this room'"). The middle ground between
+       the 260px box and the rejected full-bleed.
+       THE LAYOUT BOX IS UNCHANGED: .tx-specwrap is exactly the old canvas — 260px
+       tall, same margin, same place in the flow — so nothing below it moves by a
+       pixel. The canvas inside is ABSOLUTE and anchored to that box's BOTTOM,
+       overdrawing upward into the empty air above it. The baseline and the bars
+       are computed from the box, not the canvas, so they do not move either (see
+       the 'head' term in draw()).
+       260 + 118 = 378. The 118 is the exact gap the layout leaves above the box —
+       sub-line margin 26 + the mark 74 + the mark's margin 26 = 126 — minus 8px
+       of air, so the hue stops just short of the sub-line and never touches text.
+       That gap depends only on fixed heights, so it holds at any width.
+       ♻️ These are the ORIGINAL numbers, and they survive the ring's removal only
+       because the crown mark inherited its exact 74 + 26. A cautionary tale from
+       the hour the spot was briefly EMPTY: folding the ring's air into this rule
+       as a top margin looks like 26 + 74 = 100, but adjacent sibling margins
+       COLLAPSE rather than add — it measured 74 and drove 18px of hue straight
+       through the sub-line's text. If this spot ever empties again, measure the
+       gap in a browser; do not add the margins up. */
+    .tx-specwrap{position:relative;height:260px;margin:0 0 18px}
+    #tx-spec{position:absolute;left:0;right:0;bottom:0;display:block;width:100%;height:378px;z-index:0;pointer-events:none}
+    /* The mark is lifted so the shafts pass BEHIND it rather than over it. */
+    /* Legibility is sacred and the wall is now BEHIND the words. The ray alphas
+       are already capped low for exactly this reason; these shadows are the
+       second belt, so a bright passage can never take a sentence with it. */
+    .tx-h{text-shadow:0 2px 22px rgba(0,0,0,.6)}
+    .tx-sub,#tx-th span,#tx-ph,#tx-cap{text-shadow:0 1px 14px rgba(0,0,0,.75)}
+    #tx-bands{display:flex;gap:4px;margin:0 0 16px}
+    .tx-b{flex:1;min-width:0}
+    .tx-bm{height:56px;border-radius:5px;position:relative;overflow:hidden;background:rgba(255,255,255,.045)}
+    .tx-bf{position:absolute;left:0;right:0;bottom:0;height:0;transition:height 80ms linear}
+    /* 8 names across a 390px phone leaves ~41px a column, and BRILLIANCE alone is
+       wider than that — in the first capture PRESENCE/BRILLIANCE/AIR ran into one
+       another. Let the long ones wrap instead of shortening the names. */
+    .tx-bn{margin-top:6px;font-size:7.2px;letter-spacing:0;line-height:1.2;overflow-wrap:anywhere;color:rgba(255,255,255,.5)}
+    .tx-bz{font-size:8px;color:rgba(255,255,255,.28)}
+    /* ── 📖 THE CHAPTER RAIL ────────────────────────────────────────────────
+       Jarich, pointing at YouTube's chaptered scrubber: "please part the songs…
+       we can like name parts… put like a circle so the user can tap it to start
+       there… under the equalizer… auto hide if the user did not touch any in it
+       for 2 seconds".
+       It sits between the band strips and the headphones chip, which is the only
+       gap in this column with room for it. */
+    /* 28px, not 18: the bar's invisible touch band reaches 19px past the ribbon,
+       and at 18px the chip's box started 1px INSIDE it (measured at 390×844).
+       Nothing looked wrong, but the rail's hit area was overlapping the chip. */
+    #tx-ch{margin:0 0 28px;transition:opacity .42s ease}
+    /* ☠️ AUTO-HIDE IS OPACITY, NEVER display:none. The rail lives in the middle
+       of a fixed-height column; removing it from flow would jump the chip, the
+       audiophile panel and the whole breath section up by ~46px every two
+       seconds. It goes invisible and untouchable, and takes exactly as much
+       space as before. */
+    #tx-ch.tx-hid{opacity:0;pointer-events:none}
+    @media (prefers-reduced-motion:reduce){#tx-ch{transition:none}}
+    /* ── ▶ THE CONTROL STRIP — YOUTUBE'S GRAMMAR ────────────────────────────
+       [▶/❙❙] [0:41 / 1:05:12] [Smooth Drift], then the segmented bar underneath.
+       That is the order every phone owner already knows, so nothing here has to
+       be learned. ☠️ z-index:1 IS LOAD-BEARING: #tx-chb's 44px touch band reaches
+       19px ABOVE its ribbon, which is up inside this row — without a stacking
+       lift the bar would swallow taps aimed at the bottom of the play button. */
+    .tx-chh{position:relative;z-index:1;display:flex;align-items:center;gap:9px;margin:0 0 12px}
+    /* The transport. 44×44 of real target around a small glyph, pulled left by its
+       own padding so the GLYPH — not the invisible box — lines up with the rail's
+       left edge, exactly as a player's play button does. */
+    #tx-play{flex:none;width:44px;height:44px;margin:0 -4px 0 -13px;padding:0;
+      display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;
+      background:none;color:#e6c76a;font-size:15px;line-height:1;cursor:pointer;
+      touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    #tx-play:hover{background:rgba(184,147,46,.14)}
+    #tx-play:focus-visible{outline:2px solid #e6c76a;outline-offset:-4px}
+    /* The running title takes the gold serif register the room uses for anything
+       that is a NAME rather than a number. It comes LAST and takes the slack, so a
+       long chapter name ellipsises instead of pushing the clock off the row. */
+    #tx-cht{font-family:var(--serif);font-style:italic;color:#e6c76a;font-size:14.5px;
+      letter-spacing:.05em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+      min-width:0;flex:1 1 auto}
+    #tx-chn{font-size:10.5px;letter-spacing:.07em;color:rgba(255,255,255,.44);
+      font-variant-numeric:tabular-nums;flex:none}
+    /* A 6px ribbon to look at, a 44px band to hit. ☠️ HEIGHT IS THE FULL 44 AND
+       THE PADDING SITS INSIDE IT: the cinema sets box-sizing:border-box, so the
+       obvious 'height:6px;padding:19px 0' MEASURED 38px, not 44 — border-box
+       swallows the padding rather than adding to it, and the touch target came
+       out 6px short of the accessible minimum. The equal negative margin still
+       gives the layout its 6px back, so column spacing is untouched. */
+    #tx-chb{position:relative;height:44px;padding:19px 0;margin:-19px 0;cursor:pointer;
+      touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    #tx-chb:focus-visible{outline:2px solid #e6c76a;outline-offset:8px;border-radius:4px}
+    .tx-cwrap{position:absolute;left:0;right:0;top:19px;height:6px}
+    /* Each chapter is its own little track, so the GAPS between them are real
+       gaps — that is what makes a chaptered bar read as chaptered. */
+    .tx-cs{position:absolute;top:0;height:6px;border-radius:3px;
+      background:rgba(255,255,255,.13);overflow:hidden}
+    .tx-cs.on{background:rgba(255,255,255,.22)}
+    .tx-cs i{position:absolute;left:0;top:0;bottom:0;width:0;display:block;
+      background:linear-gradient(90deg,#a8842a,#e6c76a)}
+    /* The tappable circle at every chapter's opening. ☠️ KEPT DELIBERATELY SMALL.
+       Fourteen chapters across a 350px bar leaves ~25px between openings, and the
+       first cut at 9px + a 2px ring measured 13px of visual weight each — the rail
+       read as a dotted line and the segments underneath disappeared. At 6px the
+       bar reads as a chaptered bar again and the circle is still an obvious
+       target; the hit area was never the dot's size anyway, it is the 44px band. */
+    .tx-cdot{position:absolute;top:3px;width:6px;height:6px;margin:-3px 0 0 -3px;
+      border-radius:50%;background:rgba(255,255,255,.28);
+      box-shadow:0 0 0 1.5px rgba(6,8,12,.92);
+      transition:background .2s ease,box-shadow .2s ease,transform .2s ease}
+    /* Only the chapter you are IN is gold, and it is the one that grows. */
+    .tx-cdot.on{background:#e6c76a;transform:scale(1.45);
+      box-shadow:0 0 0 1.5px rgba(6,8,12,.92),0 0 10px rgba(230,199,106,.9)}
+    /* ── 💛 THE HEART ────────────────────────────────────────────────────────
+       ONE chapter — Smooth Drift — wears a heart instead of a circle. Nobody is
+       told; you find it. It is the same marker in every other respect: same
+       absolute placement on the rail, same aria-hidden, and the same hit target,
+       because the target was never the marker — it is #tx-chb's 44px band.
+       ☠️ THE SELECTORS ARE DOUBLED (.tx-cdot.tx-heart) ON PURPOSE. The gold '.on'
+       state above is .tx-cdot.on — two classes — so a single .tx-heart could not
+       out-specify it and the circle's background and ring would bleed back
+       through the heart as a gold blob. */
+    .tx-cdot.tx-heart{width:12px;height:11px;margin:-5.5px 0 0 -6px;
+      border-radius:0;background:none;box-shadow:none;line-height:0}
+    .tx-cdot.tx-heart svg{display:block;width:100%;height:100%;transform-origin:50% 55%}
+    .tx-cdot.tx-heart path{fill:rgba(230,199,106,.55);
+      stroke:rgba(6,8,12,.92);stroke-width:2.2;paint-order:stroke}
+    .tx-cdot.tx-heart.on{background:none;box-shadow:none;transform:scale(1.28)}
+    .tx-cdot.tx-heart.on path{fill:#e6c76a;filter:drop-shadow(0 0 7px rgba(230,199,106,.85))}
+    /* The faintest beat, and only on the INNER svg — the outer span already owns
+       transform for the .on scale, and an animation there would win and freeze it
+       at 1. Reduced motion never opts in: the rule only exists inside the
+       no-preference query. */
+    @media (prefers-reduced-motion:no-preference){
+      .tx-cdot.tx-heart svg{animation:tx-beat 4.2s ease-in-out infinite}
+    }
+    @keyframes tx-beat{0%,86%,100%{transform:scale(1)}90%{transform:scale(1.17)}94%{transform:scale(1.05)}}
+    .tx-chip{display:inline-block;margin:0 0 20px;padding:7px 15px;border-radius:999px;
+      border:1px solid rgba(184,147,46,.42);color:#c9a227;font-size:11.5px;letter-spacing:.075em}
+    .tx-au{margin:0 auto 26px;max-width:36em;text-align:left}
+    .tx-au summary{cursor:pointer;list-style:none;color:rgba(184,147,46,.86);font-size:11px;letter-spacing:.16em;text-align:center}
+    .tx-au summary::-webkit-details-marker{display:none}
+    .tx-au p{color:rgba(255,255,255,.4);font-size:12.5px;line-height:1.7;margin:12px 0 0}
+    /* the readout — small-caps gold labels left, live values right */
+    #tx-stats{margin-top:14px}
+    .tx-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+      padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+    .tx-k{font-size:9.5px;letter-spacing:.17em;color:rgba(255,255,255,.42);flex:none}
+    .tx-v{font-size:11.5px;letter-spacing:.03em;color:#c9a227;text-align:right;
+      font-variant-numeric:tabular-nums}
+    /* ── THE BREATH — a peer of the equaliser, not a decoration ──
+       The orb is drawn on canvas by the SAME rAF loop as the wall, so the two are
+       literally one instrument: its hue travels the same red→violet sweep the bars
+       use, and it leans on the same bass term. */
+    .tx-brh{margin:8px 0 30px;position:relative}
+    #tx-orb{display:block;width:210px;height:210px;margin:0 auto}
+    #tx-ph{font-family:var(--serif);font-style:italic;font-size:clamp(19px,5.6vw,25px);
+      letter-spacing:.16em;margin:2px 0 4px;transition:color 1.1s ease;color:rgba(246,239,221,.8)}
+    #tx-cd{font-size:11px;letter-spacing:.22em;color:rgba(255,255,255,.3);margin:0 0 16px;min-height:1.2em}
+    /* The resting state is the orb and one quiet line. That is all. */
+    #tx-cap{font-size:11.5px;letter-spacing:.13em;color:rgba(255,255,255,.34);margin:14px 0 30px}
+    #tx-cap b{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:.05em;color:#e6c76a;font-size:14px}
+    #tx-orb{cursor:pointer}
+    #tx-orb:focus-visible{outline:2px solid #e6c76a;outline-offset:6px;border-radius:50%}
+    /* ◷ ONE QUIET MINUTE (2026-08-14 — Jarich: "let the user set a timer for
+       1 minute … i dont know where to put it decide for me surprise me").
+       It lives under the orb because the minute BELONGS to the breath — a small
+       glass pill in the thought-stream's own voice. Three states, one element:
+       idle invitation → soft countdown → "that was a minute. well done."
+       No alarm, no sound, no modal: the reward for finishing a quiet minute
+       must never be a loud thing. */
+    #tx-min{display:inline-block;margin:10px auto 0;padding:8px 16px;border-radius:999px;
+      border:1px solid rgba(184,147,46,.4);
+      background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.05) 60%,rgba(255,255,255,.08));
+      -webkit-backdrop-filter:blur(20px) saturate(1.7);backdrop-filter:blur(20px) saturate(1.7);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 0 0 1px rgba(255,255,255,.08);
+      color:#e6c76a;font-size:11.5px;letter-spacing:.12em;cursor:pointer;
+      font-variant-numeric:tabular-nums;transition:border-color .2s ease,background .2s ease}
+    #tx-min:hover{border-color:rgba(201,162,39,.7);
+      background:linear-gradient(160deg,rgba(255,255,255,.19),rgba(255,255,255,.08) 60%,rgba(255,255,255,.11))}
+    #tx-min:focus-visible{outline:2px solid #e6c76a;outline-offset:3px}
+    #tx-min.run{border-color:rgba(201,162,39,.7)}
+    /* the finish is serif italic — the whisper voice, not the button voice */
+    #tx-min.done{font-family:var(--serif);font-style:italic;letter-spacing:.05em;font-size:13px;
+      color:#f0dfa8;border-color:rgba(201,162,39,.8);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 0 0 1px rgba(255,255,255,.08),
+        0 0 18px rgba(184,147,46,.3)}
+    @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+      #tx-min{background:rgba(28,28,32,.92)}
+    }
+    @media (prefers-reduced-transparency:reduce){
+      #tx-min{background:rgba(28,28,32,.94);-webkit-backdrop-filter:none;backdrop-filter:none}
+    }
+    /* ── ✨ THE AFTERGLOW (2026-08-14 — Jarich: "after the 1 minute mention the
+       results… a deep insight what they just gave their bodies for free…
+       different for each breathes… design it well brother"). When the clock
+       reaches zero the pill does not announce anything — a card BLOOMS in its
+       place: dark liquid glass, a gold-foil serif headline, then three small
+       chapters — you may feel · what just happened · spend this clarity on —
+       each written per pattern. The card is the reward; it must feel like a
+       page from a beautiful book, not a notification. Tap folds it away. */
+    #tx-after{margin:18px auto 6px;max-width:34em;text-align:left;border-radius:20px;
+      position:relative;overflow:hidden;cursor:pointer;
+      border:1px solid rgba(201,162,39,.5);
+      background:linear-gradient(165deg,rgba(44,46,56,.55),rgba(12,13,18,.66) 50%,rgba(24,25,32,.6));
+      -webkit-backdrop-filter:blur(30px) saturate(1.7);backdrop-filter:blur(30px) saturate(1.7);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.06),
+        0 18px 50px rgba(0,0,0,.55),0 0 30px rgba(184,147,46,.18);
+      padding:20px 22px 16px;animation:tx-bloom .5s cubic-bezier(.2,.8,.3,1)}
+    #tx-after[hidden]{display:none}
+    #tx-after::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+      background:linear-gradient(170deg,rgba(255,255,255,.12),rgba(255,255,255,.02) 24%,transparent 40%)}
+    @keyframes tx-bloom{from{transform:translateY(10px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+    @media (prefers-reduced-motion:reduce){#tx-after{animation:none}}
+    .tx-af-h{font-family:var(--serif);font-style:italic;font-weight:400;margin:0 0 4px;
+      font-size:clamp(20px,5.4vw,26px);line-height:1.3;padding-bottom:.1em;
+      background:linear-gradient(96deg,#8e6f18 2%,#e6c76a 40%,#fff3cf 52%,#e6c76a 64%,#8e6f18 98%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+    @supports not ((-webkit-background-clip:text) or (background-clip:text)){
+      .tx-af-h{color:#e6c76a;-webkit-text-fill-color:#e6c76a}
+    }
+    .tx-af-k{font-size:9.5px;letter-spacing:.22em;color:#c9a227;margin:14px 0 5px;font-weight:700}
+    .tx-af-p{font-size:13px;line-height:1.65;color:rgba(255,255,255,.88);margin:0}
+    .tx-af-f{margin:16px 0 0;font-size:10.5px;letter-spacing:.14em;color:rgba(255,255,255,.5);text-align:center}
+
+    /* THE PICKER — a bottom sheet over the black stage, not a permanent band.
+       🫧 LIQUID GLASS, DARK REGISTER (2026-08-14 — Jarich, pointing at this very
+       sheet: "make it liquid glass like apple design brother so it brands with
+       our thank you button"). Same grammar as #tx-x above: a whisper-of-white
+       top-lit pane, an inner rim light, and the blur+saturate doing the lifting.
+       The pane went from .96 solid to a .68–.74 gradient — the ink inside is
+       white-on-black-stage either way, so translucency costs no legibility. */
+    #tx-scrim{position:fixed;inset:0;z-index:3;background:rgba(0,0,0,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+    /* "as glass as much as possible" (Jarich, 2026-08-14): the pane fell from
+       ~.7 to ~.42 and the blur rose to 40px — the room's gold glow and the orb
+       now genuinely shine through the sheet. The ink below went WHITE in the
+       same stroke; at this translucency the old .4-alpha greys would drown. */
+    #tx-sheet{position:fixed;z-index:4;left:0;right:0;bottom:0;max-height:76%;
+      display:flex;flex-direction:column;border-top:1px solid rgba(184,147,46,.55);
+      border-radius:20px 20px 0 0;
+      background:linear-gradient(168deg,rgba(44,46,56,.4),rgba(14,15,20,.48) 48%,rgba(24,25,32,.44));
+      -webkit-backdrop-filter:blur(40px) saturate(1.8);backdrop-filter:blur(40px) saturate(1.8);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.07),
+        0 -22px 60px rgba(0,0,0,.6);animation:tx-rise .28s cubic-bezier(.2,.8,.3,1)}
+    /* ☠️ Same fallback law as the dock: no backdrop-filter (or reduced
+       transparency) = the old near-solid pane, because a .7 gradient with
+       nothing blurring behind it is just a dim window onto whatever scrolled
+       under the sheet. */
+    @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+      #tx-sheet{background:rgba(8,9,12,.96)}
+    }
+    @media (prefers-reduced-transparency:reduce){
+      #tx-sheet{background:rgba(8,9,12,.96);-webkit-backdrop-filter:none;backdrop-filter:none}
+    }
+    @keyframes tx-rise{from{transform:translateY(14%);opacity:.4}to{transform:translateY(0);opacity:1}}
+    /* ☠️ display:flex BEATS the hidden attribute — [hidden] is only a UA rule
+       of display:none, so any display declaration silently un-hides the element.
+       Caught locally: the "hidden" sheet was still laid out over the orb and
+       swallowing the tap meant to open it. Any element given a display here MUST
+       be given its hidden state back explicitly. */
+    #tx-sheet[hidden],#tx-scrim[hidden]{display:none}
+    .tx-sh-top{display:flex;align-items:center;justify-content:space-between;
+      padding:16px 18px 10px;flex:none}
+    .tx-sh-t{font-family:var(--serif);font-style:italic;font-size:17px;color:#e6c76a;letter-spacing:.04em}
+    /* the ✕ is #tx-x's recipe at 38px — one grammar, two sizes */
+    #tx-sh-x{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.16);
+      background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.06) 60%,rgba(255,255,255,.09));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 0 0 1px rgba(255,255,255,.1);
+      color:rgba(255,255,255,.72);font-size:15px;line-height:1;cursor:pointer}
+    #tx-sh-list{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:2px 14px calc(20px + env(safe-area-inset-bottom,0px))}
+    /* Each breath is its own small pane: top-lit gradient + rim light, NO
+       backdrop-filter of its own — eight nested blurs over an already-blurred
+       sheet is pure compositor cost, and over this near-uniform pane the blur
+       would be invisible anyway (the dock's own painted-stage lesson). */
+    .tx-mode{display:block;width:100%;text-align:left;border-radius:15px;position:relative;overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.045) 55%,rgba(255,255,255,.08));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 0 0 1px rgba(255,255,255,.05);
+      padding:13px 16px;margin-bottom:9px;cursor:pointer;
+      transition:border-color .2s ease,background .2s ease}
+    /* a specular sweep across each pane's top — the glint that says GLASS even
+       where a nested backdrop-filter would only burn the compositor */
+    .tx-mode::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+      background:linear-gradient(170deg,rgba(255,255,255,.14),rgba(255,255,255,.03) 22%,transparent 38%)}
+    .tx-mode:hover{background:linear-gradient(160deg,rgba(255,255,255,.17),rgba(255,255,255,.08) 55%,rgba(255,255,255,.11));border-color:rgba(255,255,255,.26)}
+    /* the chosen breath: the same pane, gold-TINTED — Apple's tinted glass, in
+       the house metal */
+    .tx-mode.sel{border-color:rgba(201,162,39,.65);
+      background:linear-gradient(160deg,rgba(201,162,39,.26),rgba(184,147,46,.1) 55%,rgba(154,123,30,.16));
+      box-shadow:inset 0 1px 0 rgba(255,224,140,.32),0 0 18px rgba(184,147,46,.22)}
+    .tx-mn{font-family:var(--serif);font-style:italic;font-size:18px;color:#e6c76a;
+      display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+    /* WHITE INK (2026-08-14, with the max-glass pass): on a .42 pane the old
+       .4-alpha greys sank into whatever scrolled behind the sheet. The breath
+       NAMES stay gold — they are the brand's voice; everything read stays white. */
+    .tx-mp{font-size:10.5px;letter-spacing:.14em;color:rgba(255,255,255,.8);font-family:var(--sans);font-style:normal;flex:none}
+    .tx-md{font-size:12.5px;line-height:1.55;color:rgba(255,255,255,.92);margin-top:5px;display:block}
+    /* the daily-life insight — one quiet white line under each pattern's note */
+    .tx-mb{font-size:11.5px;line-height:1.6;color:rgba(255,255,255,.78);margin-top:6px;display:block}
+    @media (prefers-reduced-motion:reduce){#tx-sheet{animation:none}}
+    @media (prefers-reduced-motion:reduce){
+      .tx-eq i{transition:none}
+      #tx-th span{transition:opacity .3s ease}
+    }
+    /* THE ✕ CAN NEVER REACH THIS LINE. The button is fixed at the lower-left and
+       spans x 16..68, so the stream is inset symmetrically past it — 76px both
+       sides keeps the whisper centred while making the clearance GEOMETRIC
+       rather than a matter of where the room happens to be scrolled. */
+    /* ☠️ TWO SPANS, STACKED — the iPhone fix (2026-08-14, Jarich: "in my iphone
+       the thought stream somewhat overlaps"). The old single span swapped its
+       textContent on a 1500ms timer — the exact length of the fade — and iOS
+       Safari fires throttled timers LATE, so the text changed while the old
+       line was still on screen; WebKit's text-shadow rastering then ghosted
+       both lines at once. Now the stream double-buffers: the next thought is
+       written to the HIDDEN span and the two cross-fade — text never changes
+       on a visible node, so there is nothing left to ghost. grid-area 1/1
+       stacks them in the same cell; translateZ pins each to its own layer. */
+    #tx-th{position:absolute;top:0;left:50%;width:330px;height:210px;margin-left:-165px;padding:0 8px;box-sizing:border-box;display:grid;place-items:center;pointer-events:none}
+    #tx-th span{grid-area:1/1;-webkit-transform:translateZ(0);transform:translateZ(0);
+      font-family:var(--serif);font-style:italic;color:rgba(246,239,221,.72);
+      font-size:17px;line-height:1.4;max-width:100%;text-align:center;color:rgba(255,252,244,.95);opacity:0;transition:opacity 1.5s ease}
+    #tx-th span.on{opacity:1}
+
+    /* ══ 🫧 LIQUID GLASS UNIFICATION (2026-08-14 — Jarich: "make it liquid
+       glass like apple design brother so it brands with our thank you button").
+       The dock set the grammar; these rules extend it to the cinema furniture
+       the patient actually touches on THIS page — the door buttons and the
+       photo frames. Injected here means THANKS-ONLY: /sign-in keeps its own
+       paint, and cascade order (this block sits after the head styles) is what
+       lets these win without a single !important. ══ */
+    /* The door keeps its hierarchy: Register speaks first as gold-TINTED glass
+       (Apple's tinted register, in the house metal, white ink kept from the
+       solid original); Branch near me is the clear pane — the dock's exact
+       body, border and deep-gold ink. */
+    .door-actions .primary{
+      background:linear-gradient(160deg,rgba(214,177,64,.92),rgba(184,147,46,.8) 46%,rgba(154,123,30,.88));
+      border:1px solid rgba(255,255,255,.5);color:#fff;
+      -webkit-backdrop-filter:blur(20px) saturate(1.75);backdrop-filter:blur(20px) saturate(1.75);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 0 0 1px rgba(255,255,255,.18),
+        0 10px 28px rgba(122,95,22,.32),0 2px 6px rgba(74,60,26,.2);
+      text-shadow:0 1px 2px rgba(90,70,10,.3)}
+    .door-actions .primary:hover{
+      background:linear-gradient(160deg,rgba(201,162,39,.95),rgba(154,123,30,.9) 55%,rgba(125,99,22,.92));
+      transform:translateY(-1px)}
+    .door-actions .secondary{
+      background:linear-gradient(160deg,rgba(255,255,255,.78),rgba(255,255,255,.55) 46%,rgba(255,247,230,.6));
+      border:1px solid rgba(154,123,30,.45);color:#6f5a1e;
+      -webkit-backdrop-filter:blur(20px) saturate(1.75);backdrop-filter:blur(20px) saturate(1.75);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 0 1px rgba(255,255,255,.55),
+        0 10px 28px rgba(74,60,26,.26),0 2px 6px rgba(74,60,26,.16)}
+    .door-actions .secondary:hover{border-color:rgba(154,123,30,.75);
+      background:linear-gradient(160deg,rgba(255,255,255,.88),rgba(255,255,255,.66) 46%,rgba(255,247,230,.7));
+      transform:translateY(-1px)}
+    /* The photo frames: glass is a MAT here, not a blur — the picture fills the
+       pane, so backdrop-filter has nothing behind it to smear (an <img> is its
+       own backdrop). The glass reads through a specular sheen falling from the
+       top-left and a white inner rim over the existing gold hairline. The sheen
+       must stay a whisper: at .3 it washes the photograph it is framing. */
+    .frame{box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 0 0 1px rgba(255,255,255,.28),
+      0 30px 66px rgba(19,35,63,.26),0 6px 18px rgba(19,35,63,.15)}
+    .frame::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+      background:linear-gradient(165deg,rgba(255,255,255,.22),rgba(255,255,255,.06) 24%,transparent 40%)}
+    /* Same fallback law as the dock: engines without backdrop-filter (and
+       reduced-transparency users) get the door back as SOLIDS — gold and
+       near-paper — never a faint wash floating over the marble beats. */
+    @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+      .door-actions .primary{background:var(--gold)}
+      .door-actions .secondary{background:#fdfbf6}
+    }
+    @media (prefers-reduced-transparency:reduce){
+      .door-actions .primary{background:var(--gold);-webkit-backdrop-filter:none;backdrop-filter:none}
+      .door-actions .secondary{background:#fdfbf6;-webkit-backdrop-filter:none;backdrop-filter:none}
+    }
