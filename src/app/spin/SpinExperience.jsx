@@ -7,6 +7,7 @@ import { PRIZE_BY_ID } from '@/lib/spin/prizes';
 import { submitSpin, respin, enterRehearsal, lookupClinic, linkClinicSocial } from '@/actions/spin';
 import ClinicLinkPanel from './ClinicLinkPanel';
 import GoogleEmailButton from './GoogleEmailButton';
+import OffersSheet from './OffersSheet';
 import { GoogleMapsMark } from './brandMarks';
 import Wheel from './Wheel';
 import Stage from './Stage';
@@ -79,6 +80,7 @@ export default function SpinExperience({ status, rehearsal }) {
   const [emailV, setEmailV] = useState('');
   const [fromGoogle, setFromGoogle] = useState(false);
   const [qrUrl, setQrUrl] = useState('');
+  const [offer, setOffer] = useState(null); // track id when the Training Center sheet is open
 
   // Prize QR: generated on the phone from the signed token the server returned.
   useEffect(() => {
@@ -208,6 +210,7 @@ export default function SpinExperience({ status, rehearsal }) {
   return (
     <main className={`spin-root phase-${phase}`}>
       <Stage burst={burst} big={prize?.kind === 'credits' || prize?.kind === 'discount'} />
+      <OffersSheet open={!!offer} focus={offer} onClose={() => setOffer(null)} />
       {rehearsal ? <div className="rehearsal-badge">Rehearsal mode. Spins are tagged TEST.</div> : null}
 
       <header className="spin-head">
@@ -339,7 +342,7 @@ export default function SpinExperience({ status, rehearsal }) {
                       <span className="code-hint">Show this QR at the DentaSource Direct booth. Our team scans it to hand over your prize.</span>
                       <span className="code-subtle">{result.code}</span>
                     </div>
-                    <ClinicLinkPanel clinic={result.clinic || ''} linked={result.linked || {}} googleLinked={!!result.placeId} onLink={onLink} />
+                    <ClinicLinkPanel clinic={result.clinic || ''} linked={result.linked || {}} googleLinked={!!result.placeId} onLink={onLink} onOffer={(f) => setOffer(f || 'digital')} />
                     <Doors />
                     <button type="button" className="ghost" onClick={reset}>Not you? Sign up with your own number</button>
                   </>

@@ -7,10 +7,10 @@ import { MARK, AppleMark, AndroidMark, WindowsMark } from './brandMarks';
 const PENDING = 'nadti-pending-link';
 
 const OFFERS = [
-  { t: 'Digital Dentistry courses', s: 'Scanners, CAD and CAM, guided workflows.' },
-  { t: 'Dental Assistant training', s: 'Chairside skills your team can certify in.' },
-  { t: 'Member promos', s: 'First dibs on chairs and consumables.' },
-  { t: 'DentaDesk, free', s: 'Your own clinic app on every platform.', platforms: true },
+  { t: 'Digital Dentistry courses', s: 'Scanners, CAD and CAM, guided workflows.', focus: 'digital' },
+  { t: 'Dental Assistant training', s: 'Chairside skills your team can certify in.', focus: 'assistant' },
+  { t: 'Member promos', s: 'First dibs on chairs and consumables.', focus: 'business' },
+  { t: 'DentaDesk, free', s: 'Your own clinic app on every platform.', platforms: true, focus: 'business' },
 ];
 
 const PLATFORMS = [
@@ -24,7 +24,7 @@ const PLATFORMS = [
  * Props: clinic (string), linked ({ [platform]: url }), googleLinked (bool),
  * onLink(platform, value) -> Promise<{ ok, url } | { error }>.
  */
-export default function ClinicLinkPanel({ clinic, linked = {}, googleLinked = false, onLink }) {
+export default function ClinicLinkPanel({ clinic, linked = {}, googleLinked = false, onLink, onOffer }) {
   const [open, setOpen] = useState(null);
   const [draft, setDraft] = useState('');
   const [error, setError] = useState('');
@@ -74,7 +74,8 @@ export default function ClinicLinkPanel({ clinic, linked = {}, googleLinked = fa
       <ul className="offers">
         {OFFERS.map((o) => (
           <li key={o.t} className="offer">
-            <span className="offer-t">{o.t}</span>
+            <button type="button" className="offer-tap" onClick={() => onOffer?.(o.focus)} aria-label={`${o.t}, see the Training Center offer`} />
+            <span className="offer-t">{o.t} <span className="offer-more" aria-hidden>›</span></span>
             <span className="offer-s">{o.s}</span>
             {o.platforms ? (
               <span className="platforms" aria-label="Mac, Windows, iOS, and Android">
