@@ -91,7 +91,9 @@
 .track p { margin: 6px 0 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
 .track .with { display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 12px; color: var(--gold); }
 .track .with img { height: 18px; width: auto; background: #fff; border-radius: 6px; padding: 2px 6px; }
-.track .plat { display: flex; gap: 8px; align-items: center; margin-top: 8px; color: #fff; font-size: 12px; }
+.track .plat { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 8px; color: #fff; font-size: 12px; }
+.track .plat span { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; line-height: 1; }
+.track .plat svg { flex: none; display: block; }
 
 /* partners */
 .partners { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 22px; }

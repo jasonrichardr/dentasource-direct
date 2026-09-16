@@ -180,7 +180,7 @@ export default function Desk() {
       <header className="desk-bar">
         <div className="desk-brand">
           <img src="/images/brand/dsd-mark.png" alt="" />
-          <div><b>DentaSource Direct</b><small>Booth desk · NADTI 2026</small></div>
+          <div><b>DentaSource Direct</b><small>Booth desk · NADTI</small></div>
         </div>
         <div className="desk-head-actions">
           <button type="button" className={`cta small scan-btn ${scanning ? 'active' : ''}`} onClick={() => { setScanResult(null); setScanning((v) => !v); }}>
@@ -218,7 +218,7 @@ export default function Desk() {
 
       <nav className="desk-tabs" aria-label="Desk sections">
         <button type="button" className={tab === 'visitors' ? 'on' : ''} onClick={() => setTab('visitors')}>Visitors</button>
-        <button type="button" className={tab === 'prizes' ? 'on' : ''} onClick={() => setTab('prizes')}>Prizes · {active}/{ORDER.length} on</button>
+        <button type="button" className={tab === 'prizes' ? 'on' : ''} onClick={() => setTab('prizes')}>{tally ? `Prizes · ${active}/${ORDER.length} on` : 'Prizes'}</button>
       </nav>
 
       {msg ? <p className="desk-msg">{msg}</p> : null}
