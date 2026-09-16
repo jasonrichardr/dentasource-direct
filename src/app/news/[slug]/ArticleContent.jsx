@@ -9,6 +9,31 @@ import FocusMusic from './FocusMusic';
 import ArticleMarbles from './ArticleMarbles';
 import styles from './page.module.css';
 
+// Inline grammar shared by paragraphs and avatar rows: **bold** and [text](url).
+function renderInline(text) {
+    const parts = text.split(/(\*\*.*?\*\*|\[[^\]]+\]\([^)]+\))/g);
+    return parts.map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+            return <strong key={i}>{part.slice(2, -2)}</strong>;
+        }
+        const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        if (linkMatch) {
+            const isExternal = linkMatch[2].startsWith('http');
+            return (
+                <a
+                    key={i}
+                    href={linkMatch[2]}
+                    target={isExternal ? '_blank' : undefined}
+                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                >
+                    {linkMatch[1]}
+                </a>
+            );
+        }
+        return part;
+    });
+}
+
 export default function ArticleContent({ article }) {
     const readMinutes = Math.max(1, Math.round(article.content.split(/\s+/).length / 200));
     return (
@@ -191,32 +216,23 @@ export default function ArticleContent({ article }) {
                                 </div>
                             );
                         }
+                        // An avatar row: a paragraph that starts with @avatar(src) renders a small round
+                        // portrait beside the text — used for schedules and speaker lists.
+                        const avatarMatch = trimmed.match(/^@avatar\(([^)]+)\)\s*([\s\S]+)$/);
+                        if (avatarMatch) {
+                            return (
+                                <div key={idx} className={styles.avatarRow}>
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={avatarMatch[1]} alt="" className={styles.avatarImg} loading="lazy" />
+                                    <p className={styles.paragraph}>{renderInline(avatarMatch[2])}</p>
+                                </div>
+                            );
+                        }
                         // Text paragraphs (with basic bold and link rendering)
                         if (trimmed.length > 0) {
-                            // Split by ** for bold text and [text](url) for links
-                            const parts = trimmed.split(/(\*\*.*?\*\*|\[[^\]]+\]\([^)]+\))/g);
                             return (
                                 <p key={idx} className={styles.paragraph}>
-                                    {parts.map((part, i) => {
-                                        if (part.startsWith('**') && part.endsWith('**')) {
-                                            return <strong key={i}>{part.slice(2, -2)}</strong>;
-                                        }
-                                        const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-                                        if (linkMatch) {
-                                            const isExternal = linkMatch[2].startsWith('http');
-                                            return (
-                                                <a
-                                                    key={i}
-                                                    href={linkMatch[2]}
-                                                    target={isExternal ? '_blank' : undefined}
-                                                    rel={isExternal ? 'noopener noreferrer' : undefined}
-                                                >
-                                                    {linkMatch[1]}
-                                                </a>
-                                            );
-                                        }
-                                        return part;
-                                    })}
+                                    {renderInline(trimmed)}
                                 </p>
                             );
                         }

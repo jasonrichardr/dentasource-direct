@@ -869,7 +869,7 @@ The same page carries DentaSource Direct's own openings. A **Dental Chair Techni
         slug: "nadti-2026-smx-manila-complete-guide",
         title: "NADTI 2026 at SMX Manila, September 22 to 24: Every Lecture, Every Speaker, and Booth 034",
         date: "September 16, 2026",
-        image: "/images/news/nadti-2026-smx-manila-complete-guide/poster-scientific-sessions-grid.jpg",
+        image: "/images/news/nadti-2026-smx-manila-complete-guide/hero-a1-pro.jpg",
         ogImage: "/images/news/nadti-2026-smx-manila-complete-guide/og.jpg",
         hideHeroImage: false,
         abstract: "The complete guide to the 26th NADTI Trade Exhibit and Scientific Sessions: three days, ten lectures, speakers from six countries, 10 CPD points, the first Student Forum, the raffles, how to register, how to get there, and where to find DentaSource Direct at Booth 034 and 035 in Halls 1 to 3.",
@@ -891,29 +891,29 @@ All lectures are inside the Scientific Sessions program at SMX. Times are as pos
 
 **Tuesday, September 22**
 
-**10:00 to 11:00 AM.** Mr. Ryan San, Singapore. "Practical Lessons from Implementing AI-assisted Dental Workflows."
+@avatar(/images/news/nadti-2026-smx-manila-complete-guide/avatar-ryan-san.jpg) **10:00 to 11:00 AM.** Mr. Ryan San, Singapore. "Practical Lessons from Implementing AI-assisted Dental Workflows."
 
-**1:30 to 3:00 PM.** Dr. Noor Addeen Abo Arsheed, MAHSA University, Malaysia. "Breaking the Rules: Why Endocrowns are Changing the Way We Restore Teeth. The Biomimetic Revolution."
+@avatar(/images/news/nadti-2026-smx-manila-complete-guide/avatar-noor-addeen-abo-arsheed.jpg) **1:30 to 3:00 PM.** Dr. Noor Addeen Abo Arsheed, MAHSA University, Malaysia. "Breaking the Rules: Why Endocrowns are Changing the Way We Restore Teeth. The Biomimetic Revolution."
 
-**4:00 to 5:00 PM.** Dr. Felylou Altura Fernandez, Philippines. "Legal Foundations of Dentistry: Mastering the Code of Ethics for Dentists, Dental Hygienists and Dental Technologists."
+@avatar(/images/news/nadti-2026-smx-manila-complete-guide/avatar-felylou-altura-fernandez.jpg) **4:00 to 5:00 PM.** Dr. Felylou Altura Fernandez, Philippines. "Legal Foundations of Dentistry: Mastering the Code of Ethics for Dentists, Dental Hygienists and Dental Technologists."
 
 **Wednesday, September 23**
 
-**10:30 to 11:30 AM.** Dr. Nazatul Sabariah Bt. Ahmad, Malaysia. "Molar Incisor Hypomineralisation: Navigating Diagnosis, Prevention and Clinical Management."
+@avatar(/images/news/nadti-2026-smx-manila-complete-guide/avatar-nazatul-sabariah-ahmad.jpg) **10:30 to 11:30 AM.** Dr. Nazatul Sabariah Bt. Ahmad, Malaysia. "Molar Incisor Hypomineralisation: Navigating Diagnosis, Prevention and Clinical Management."
 
-**1:00 to 2:00 PM.** Dr. Johnah C. Galicia, Philippines. "Persistent Endodontic Infections: From Biological Causes to Clinical Solutions."
+@avatar(/images/news/nadti-2026-smx-manila-complete-guide/avatar-johnah-galicia.jpg) **1:00 to 2:00 PM.** Dr. Johnah C. Galicia, Philippines. "Persistent Endodontic Infections: From Biological Causes to Clinical Solutions."
 
-**2:30 to 3:30 PM.** Dr. Karla Marrie L. Manaloto, Philippines. "The One Archwire Revolution: Leveraging Low Hysteresis Technology for Efficient and Predictable Orthodontic Treatment."
+@avatar(/images/news/nadti-2026-smx-manila-complete-guide/avatar-karla-marrie-manaloto.jpg) **2:30 to 3:30 PM.** Dr. Karla Marrie L. Manaloto, Philippines. "The One Archwire Revolution: Leveraging Low Hysteresis Technology for Efficient and Predictable Orthodontic Treatment."
 
 **Thursday, September 24**
 
-**9:00 to 10:00 AM, Student Forum.** Dr. Noor Addeen Abo Arsheed. "When to Restore, When to Replace: Clinical Decision-Making for Future Dentists."
+@avatar(/images/news/nadti-2026-smx-manila-complete-guide/avatar-noor-addeen-abo-arsheed.jpg) **9:00 to 10:00 AM, Student Forum.** Dr. Noor Addeen Abo Arsheed. "When to Restore, When to Replace: Clinical Decision-Making for Future Dentists."
 
-**10:30 to 11:30 AM.** Dr. Kullanant Pansrimangkorn, Thailand. "Transform Patient Oral Hygiene Education with iTOP: Empowering Patients for Lifelong Oral Health."
+@avatar(/images/news/nadti-2026-smx-manila-complete-guide/avatar-kullanant-pansrimangkorn.jpg) **10:30 to 11:30 AM.** Dr. Kullanant Pansrimangkorn, Thailand. "Transform Patient Oral Hygiene Education with iTOP: Empowering Patients for Lifelong Oral Health."
 
-**1:00 to 2:30 PM.** Dr. Chung Hua Chen, Taiwan. "Bioceramic Obturation: The Contemporary Solution for Minimally Invasive Endodontics."
+@avatar(/images/news/nadti-2026-smx-manila-complete-guide/avatar-chung-hua-chen.jpg) **1:00 to 2:30 PM.** Dr. Chung Hua Chen, Taiwan. "Bioceramic Obturation: The Contemporary Solution for Minimally Invasive Endodontics."
 
-**3:00 to 4:00 PM.** Dr. Renoir S. Amba, Philippines. "Metal Free: All-Ceramic Conservative Approach to Posterior Single Tooth Replacement."
+@avatar(/images/news/nadti-2026-smx-manila-complete-guide/avatar-renoir-amba.jpg) **3:00 to 4:00 PM.** Dr. Renoir S. Amba, Philippines. "Metal Free: All-Ceramic Conservative Approach to Posterior Single Tooth Replacement."
 
 ![The Scientific Sessions schedule as posted by NADTI](/images/news/nadti-2026-smx-manila-complete-guide/poster-scientific-sessions-grid.jpg)
 
@@ -923,21 +923,39 @@ NADTI's posts give each speaker a name, a flag and a title. We went further and 
 
 ![The ten lectures, nine speakers: Ryan San, Noor Addeen Abo Arsheed, Felylou Altura Fernandez, Nazatul Sabariah Ahmad, Johnah Galicia, Karla Marrie Manaloto, Kullanant Pansrimangkorn, Chung Hua Chen and Renoir Amba](/images/news/nadti-2026-smx-manila-complete-guide/speakers-strip.jpg)
 
+![Mr. Ryan San](/images/news/nadti-2026-smx-manila-complete-guide/card-ryan-san.jpg)
+
 **Mr. Ryan San, Singapore.** Ryan San Yi Leong is the chief executive and co-founder of **EM2AI**, the artificial-intelligence subsidiary of Q&M Dental Group, a dental chain listed on the Singapore Exchange. EM2AI builds software that reads radiographs, flags pathology, charts automatically and drafts treatment plans; it runs across more than 150 Q&M clinics in Singapore and Malaysia, its accuracy has been checked by University of Malaya staff, and in May 2026 it was granted a Singapore patent for dental treatment planning methods. He is not a dentist, which is the point of his hour: this is the operator's view of what happens when a clinic group actually switches AI on, what broke, and what stuck. If you have been wondering whether AI charting is real or a brochure, this is the session for you.
+
+![Dr. Noor Addeen Abo Arsheed](/images/news/nadti-2026-smx-manila-complete-guide/card-noor-addeen-abo-arsheed.jpg)
 
 **Dr. Noor Addeen Abo Arsheed, MAHSA University, Malaysia.** An Associate Professor and certified maxillofacial prosthodontist who heads the Restorative Dentistry Department of the Faculty of Dentistry at MAHSA University in Selangor. He previously served as Deputy Dean and head of clinical teaching at Lincoln University College, and he is a co-author of a systematic review and meta-analysis on the Biologically Oriented Preparation Technique. He speaks twice at NADTI: on Tuesday afternoon he makes the case for the **endocrown**, the single-piece ceramic restoration that anchors in the pulp chamber instead of a post and core, as part of the biomimetic movement in restorative dentistry; on Thursday morning he opens the Student Forum on the judgment every clinician makes daily, whether a compromised tooth is worth saving. NADTI notes this is his second visit to the Philippines.
 
+![Dr. Felylou Altura Fernandez](/images/news/nadti-2026-smx-manila-complete-guide/card-felylou-altura-fernandez.jpg)
+
 **Dr. Felylou Altura Fernandez, Philippines.** A dentist, a lawyer and a nurse in one person. The Professional Regulation Commission's own CPD records list her as JD (LLB), DMD, RN, USRN, and she has delivered this same lecture on the PDA circuit under a PRC-accredited program. Her hour covers whether the PRC Code of Ethics under Board Resolution No. 14, series of 2008 is binding on you, the gray zones between dentistry as a profession and dentistry as a business, and how the code applies to social-media conduct. Practical, and increasingly relevant for every clinic with a Facebook page.
+
+![Dr. Nazatul Sabariah Bt. Ahmad](/images/news/nadti-2026-smx-manila-complete-guide/card-nazatul-sabariah-ahmad.jpg)
 
 **Dr. Nazatul Sabariah Bt. Ahmad, Malaysia.** A paediatric dentist who earned her DDS at Universiti Kebangsaan Malaysia in 2004 and her Doctor in Dentistry in Paediatric Dentistry at the UCL Eastman Dental Institute in London in 2012. She started in Malaysia's Ministry of Health, spent about a decade as a university academic, and now leads the Dental Valet group of paediatric clinics as CEO of DV Group Berhad while consulting at Avisena Women's and Children's Specialist Hospital. She sits on the editorial board of the Ministry of Health's Clinical Practice Guidelines. Her lecture is on **Molar Incisor Hypomineralisation**, the chalky, sensitive, fracture-prone first molars and incisors that general dentists see far more often than they diagnose. Diagnosis, prevention, and what to do when a child sits in your chair with one.
 
+![Dr. Johnah C. Galicia](/images/news/nadti-2026-smx-manila-complete-guide/card-johnah-galicia.jpg)
+
 **Dr. Johnah C. Galicia, Philippines.** One of the most credentialed endodontists in the country. DMD from Manila Central University in 1996, a clinical dentistry diploma from the University of Rennes 1 in France, a PhD in Oral Biology from Niigata University in Japan, and endodontic specialty training at the University of North Carolina at Chapel Hill as an AAE Foundation Educator Scholar. He is a Diplomate of the American Board of Endodontics, formerly directed graduate endodontology programs at the University of the Pacific in California and at UCL Eastman in London, served as a trustee of the AAE Foundation, and is now Professor and Associate Dean at the MCU College of Dentistry. His topic is the case every practitioner dreads: the root canal that will not heal. Why persistent infections persist, biologically, and what actually resolves them.
+
+![Dr. Karla Marrie L. Manaloto](/images/news/nadti-2026-smx-manila-complete-guide/card-karla-marrie-manaloto.jpg)
 
 **Dr. Karla Marrie L. Manaloto, Philippines.** An orthodontist with a Master of Science in Orthodontics from 2012, fellowship training in temporomandibular disorders and orofacial pain, and further training in tongue and lip tie. She consults at Landayan Dental Clinic and belongs to the Orofacial Pain Association of the Philippines, the Philippine Association of Functional Joint Orthopedic TMJ and the Philippine Dental Association, with affiliate membership in the World Federation of Orthodontists. Her lecture is on **low-hysteresis archwires**, wires that deliver a steadier, gentler force across a wider range of deflection, and the claim in the title, that one wire can carry a case further than a conventional sequence.
 
+![Dr. Kullanant Pansrimangkorn](/images/news/nadti-2026-smx-manila-complete-guide/card-kullanant-pansrimangkorn.jpg)
+
 **Dr. Kullanant Pansrimangkorn, Thailand.** Listed on Curaden Academy's roster of certified **iTOP** lecturers, the individually trained oral prophylaxis program that teaches clinicians to teach patients, hands in mouth, until brushing and interdental cleaning are done properly. A Bangkok clinician with hospital practice and published research on caries in Thai preschool children. His session is for anyone who has watched a patient nod through hygiene instructions and come back six months later with the same plaque.
 
+![Dr. Chung Hua Chen](/images/news/nadti-2026-smx-manila-complete-guide/card-chung-hua-chen.jpg)
+
 **Dr. Chung Hua Chen, Taiwan.** An endodontist presenting **bioceramic obturation**, the shift from gutta-percha and resin sealers to calcium-silicate bioceramic sealers and the hydraulic, single-cone technique that comes with them. It pairs naturally with Dr. Galicia's session the day before. NADTI's post lists his name, country and topic; we could not locate an independent profile to add here.
+
+![Dr. Renoir S. Amba](/images/news/nadti-2026-smx-manila-complete-guide/card-renoir-amba.jpg)
 
 **Dr. Renoir S. Amba, Philippines.** A prosthodontist with more than thirty years in practice, based at his own clinic in BF Homes, Parañaque. His hour is on **metal-free, all-ceramic** conservative options for replacing a single missing back tooth, the decision between a resin-bonded bridge, a conventional bridge and an implant, and how far modern ceramics have pushed the conservative end of that choice.
 
@@ -986,7 +1004,13 @@ SMX Convention Center Manila sits on Seashell Lane in the Mall of Asia Complex, 
 
 ## DentaSource Direct at Booth 034 and 035
 
-We will be in **Halls 1 to 3 at Booth 034 and 035** all three days, with the ROSON lineup on the floor: the **A1 Pro**, the **A3 family** and the **S6**, set up to be sat in, not just looked at. Our technicians run the chairs through their positions, the light and the delivery unit for every visitor, and the handpiece and small-equipment counter is open the whole time. Denjoy endodontic motors, apex locators and curing lights are on the counter too.
+We will be in **Halls 1 to 3 at Booth 034 and 035** all three days, and the chair at the front of the booth is the **ROSON A1 Pro**, the color-led treatment chair ROSON built for the new generation of dentists. It comes in three signature colors, ROSON Blue, Ballet Pink and Mint Green, with twelve silicone-leather and twenty-one PU-leather options beyond those, on a 12 mm carbon-structural-steel frame rated for 150 kg, with sleep-grade soft start and stop, the Rolight S eight-LED tri-mode light with hands-free infrared control, intelligent chair memory, a Smart Clean button, and the RS-07 dentist stool as standard. NADTI is the first trade floor where you can sit in one in all three colors. The [A1 Pro page](/a1-pro) has the full walk-through.
+
+![ROSON A1 Pro in the three signature colors](/images/products/a1-pro/three-signature-colors-showcase.png)
+![The A1 Pro touchscreen control](/images/products/a1-pro/view-3-touchscreen.jpg)
+![The Rolight S light head](/images/products/a1-pro/view-5-light.jpg)
+
+Beside it, the **A3 family** and the **S6**, set up to be sat in, not just looked at. Our technicians run the chairs through their positions, the light and the delivery unit for every visitor, and the handpiece and small-equipment counter is open the whole time. Denjoy endodontic motors, apex locators and curing lights are on the counter too.
 
 This year the booth has a wheel. Scan the QR code at the booth, sign up with your name, clinic and mobile number, and spin at **dentasourcedirect.com/spin**. Every spin wins something. The wheel carries **₱30,000 in Training Credits** at the DentaSource Direct Training Center for selected partner clinics, **10% off** and **5% off** any purchase or deposit made at the booth from September 22 to 24, a spin-again wedge, and DentaSource gifts. One spin per mobile number; you claim at the booth by showing the screen to our team. The wheel opens on the morning of September 22 and closes with the show.
 

@@ -109,6 +109,28 @@
     border-radius: 14px;
 }
 
+/* Avatar rows: small round portrait beside a paragraph (schedules, speaker lists) */
+.avatarRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.avatarImg {
+    flex: 0 0 68px;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #f1f3f2;
+    box-shadow: 0 0 0 3px #fff, 0 6px 16px rgba(20, 40, 80, 0.16);
+}
+
+.avatarRow .paragraph {
+    margin-bottom: 0;
+}
+
 /* Portrait frame grids (reel stills) */
 .imageGrid {
     display: grid;
@@ -571,6 +593,17 @@
 
     .inlineImageWrapper {
         margin: 1.4rem 0;
+    }
+
+    .avatarRow {
+        gap: 0.7rem;
+        margin-bottom: 1.1rem;
+    }
+
+    .avatarImg {
+        flex-basis: 52px;
+        width: 52px;
+        height: 52px;
     }
 
     .imageGrid,
