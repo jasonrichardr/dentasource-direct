@@ -4,7 +4,9 @@ import { useCallback, useEffect, useState, useTransition } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { PRIZE_BY_ID } from '@/lib/spin/prizes';
-import { submitSpin, respin, enterRehearsal } from '@/actions/spin';
+import { submitSpin, respin, enterRehearsal, lookupClinic, linkClinicSocial } from '@/actions/spin';
+import ClinicLinkPanel from './ClinicLinkPanel';
+import { GoogleMapsMark } from './brandMarks';
 import Wheel from './Wheel';
 import Stage from './Stage';
 import { unlockAudio, winChord } from './audio';
@@ -63,6 +65,31 @@ export default function SpinExperience({ status, rehearsal }) {
   const [spinning, setSpinning] = useState(false);
   const [burst, setBurst] = useState(0);
   const [already, setAlready] = useState(false);
+  // Google clinic match under the clinic field
+  const [clinicQ, setClinicQ] = useState('');
+  const [matches, setMatches] = useState([]);
+  const [place, setPlace] = useState(null);
+  const [lookingUp, setLookingUp] = useState(false);
+  const [noneOfThese, setNoneOfThese] = useState(false);
+
+  useEffect(() => {
+    const q = clinicQ.trim();
+    if (q.length < 3 || place || noneOfThese) { if (q.length < 3) setMatches([]); return; }
+    const t = setTimeout(() => {
+      setLookingUp(true);
+      lookupClinic(q).then((rows) => { setMatches(rows || []); }).finally(() => setLookingUp(false));
+    }, 600);
+    return () => clearTimeout(t);
+  }, [clinicQ, place, noneOfThese]);
+
+  const saveResult = (r) => { try { localStorage.setItem(STORE, JSON.stringify(r)); } catch { /* ignore */ } };
+  const onLink = useCallback(async (platform, value) => {
+    const r = await linkClinicSocial(result.leadId, result.code, platform, value);
+    if (r?.ok) {
+      setResult((prev) => { const next = { ...prev, linked: { ...(prev?.linked || {}), [platform]: r.url } }; saveResult(next); return next; });
+    }
+    return r;
+  }, [result]);
 
   // ?rehearsal=1 shows a PIN prompt; the PIN itself never travels in the URL.
   const [askPin, setAskPin] = useState(false);
@@ -108,10 +135,11 @@ export default function SpinExperience({ status, rehearsal }) {
       if (r?.closed) { setPhase('closed'); return; }
       if (r?.error) { setErrors({ form: r.error }); return; }
       setErrors({});
-      setResult(r);
+      const merged = { ...r, clinic: String(fd.get('clinic') || '').trim(), placeId: r.placeId || (place?.placeId ?? null), linked: {} };
+      setResult(merged);
       if (r.already) {
         setAlready(true);
-        try { localStorage.setItem(STORE, JSON.stringify(r)); } catch { /* ignore */ }
+        saveResult(merged);
         setPhase('result');
         return;
       }
@@ -132,7 +160,7 @@ export default function SpinExperience({ status, rehearsal }) {
     if (prize && prize.kind !== 'respin') {
       setBurst((b) => b + 1);
       winChord(prize.kind === 'credits' || prize.kind === 'discount');
-      try { localStorage.setItem(STORE, JSON.stringify(result)); } catch { /* ignore */ }
+      saveResult(result);
     }
     setTimeout(() => setPhase('result'), 650);
   }, [result]);
@@ -141,7 +169,7 @@ export default function SpinExperience({ status, rehearsal }) {
     start(async () => {
       const r = await respin(result.leadId, result.code);
       if (r?.error) { setErrors({ form: r.error }); return; }
-      setResult(r);
+      setResult((prev) => ({ ...prev, ...r }));
       setPhase('wheel');
     });
   }, [result]);
@@ -149,6 +177,7 @@ export default function SpinExperience({ status, rehearsal }) {
   const reset = () => {
     try { localStorage.removeItem(STORE); } catch { /* ignore */ }
     setResult(null); setAlready(false); setPhase('gate');
+    setClinicQ(''); setMatches([]); setPlace(null); setNoneOfThese(false);
   };
 
   const prize = result ? PRIZE_BY_ID[result.prizeId] : null;
@@ -195,7 +224,30 @@ export default function SpinExperience({ status, rehearsal }) {
             <p className="lede">Four quick details, then the wheel is yours. Every spin wins something.</p>
             <form onSubmit={onSubmit} className="gate-form" noValidate>
               <Field id="name" label="Full name" autoComplete="name" error={errors.name} required />
-              <Field id="clinic" label="Dental clinic" autoComplete="organization" error={errors.clinic} required />
+              <Field id="clinic" label="Dental clinic" autoComplete="organization" error={errors.clinic} required value={clinicQ} onChange={(e) => { setClinicQ(e.target.value); setPlace(null); setNoneOfThese(false); }} />
+              {place ? (
+                <div className="match picked">
+                  <GoogleMapsMark size={20} />
+                  <div className="match-body"><span className="match-name">{place.name}</span><span className="match-addr">{place.address}</span></div>
+                  <button type="button" className="match-x" onClick={() => { setPlace(null); setMatches([]); }} aria-label="Change clinic">Change</button>
+                  <input type="hidden" name="placeId" value={place.placeId} />
+                  <input type="hidden" name="placeName" value={place.name} />
+                  <input type="hidden" name="placeAddress" value={place.address || ''} />
+                  <input type="hidden" name="placeLat" value={place.lat} />
+                  <input type="hidden" name="placeLng" value={place.lng} />
+                </div>
+              ) : matches.length > 0 && !noneOfThese ? (
+                <div className="matches" role="group" aria-label="Is this your clinic?">
+                  <p className="match-q">Is this your clinic?</p>
+                  {matches.map((m) => (
+                    <button type="button" key={m.placeId} className="match" onClick={() => { setPlace(m); setMatches([]); }}>
+                      <GoogleMapsMark size={20} />
+                      <div className="match-body"><span className="match-name">{m.name}</span><span className="match-addr">{m.address}</span></div>
+                    </button>
+                  ))}
+                  <button type="button" className="ghost" onClick={() => setNoneOfThese(true)}>None of these</button>
+                </div>
+              ) : lookingUp ? <p className="match-q">Looking up your clinic on Google</p> : null}
               <Field id="email" label="Email" type="email" autoComplete="email" inputMode="email" error={errors.email} required />
               <Field id="phone" label="Mobile number" type="tel" autoComplete="tel" inputMode="tel" placeholder="0917 123 4567" error={errors.phone} required />
               <label className={`consent ${errors.consent ? 'has-error' : ''}`}>
@@ -263,6 +315,7 @@ export default function SpinExperience({ status, rehearsal }) {
                       <span className="code">{result.code}</span>
                       <span className="code-hint">Show this screen at the DentaSource Direct booth to claim.</span>
                     </div>
+                    <ClinicLinkPanel clinic={result.clinic || ''} linked={result.linked || {}} googleLinked={!!result.placeId} onLink={onLink} />
                     <Doors />
                     <button type="button" className="ghost" onClick={reset}>Not you? Sign up with your own number</button>
                   </>
