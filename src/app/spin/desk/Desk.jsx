@@ -180,7 +180,7 @@ export default function Desk() {
       <header className="desk-bar">
         <div className="desk-brand">
           <img src="/images/brand/dsd-mark.png" alt="" />
-          <div><b>DentaSource Direct</b><small>Booth desk · NADTI 2026</small></div>
+          <div><b>DentaSource Direct</b><small>Booth desk · NADTI</small></div>
         </div>
         <div className="desk-head-actions">
           <button type="button" className={`cta small scan-btn ${scanning ? 'active' : ''}`} onClick={() => { setScanResult(null); setScanning((v) => !v); }}>
