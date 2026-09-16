@@ -215,7 +215,7 @@ export default function SpinExperience({ status, rehearsal }) {
       if (r?.error) { setNumberMsg(r.error); return; }
       if (r?.spun) { setNumberMsg('This number already spun. Sign up below only if that was not you.'); return; }
       if (!r?.found) { setNumberMsg('No reservation for that number. Sign up below, it takes a minute.'); return; }
-      const rec = { firstName: r.firstName, clinic: r.clinic, phone: r.phone };
+      const rec = { firstName: r.firstName, phone: r.phone };
       saveReserved(rec); setReserved(rec); setAskNumber(false); setNumberMsg('');
     });
   }, []);

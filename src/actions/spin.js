@@ -245,8 +245,10 @@ export async function preRegister(formData) {
   if (spun) return { error: 'This number already spun the wheel.' };
   const existing = await prisma.lead.findFirst({ where: { phone, interest: { in: PRE_INTERESTS } }, orderBy: { createdAt: 'desc' } });
   if (existing) {
+    // Same number again: acknowledge the reservation without echoing the stored name, clinic or email
+    // (a stranger typing a number must not learn who registered with it). The server fills the rest at spin time.
     const s = shapeLead(existing);
-    return { ok: true, already: true, leadId: s.leadId, code: s.code, qr: qrTokenFor(s.code), firstName: existing.firstName, name: s.name, clinic: s.clinic, email: s.email, phone };
+    return { ok: true, already: true, leadId: s.leadId, code: s.code, qr: qrTokenFor(s.code), firstName: existing.firstName, phone };
   }
 
   const code = await uniqueCode();
@@ -266,15 +268,29 @@ export async function preRegister(formData) {
   return { ok: true, leadId: lead.id, code, qr: qrTokenFor(code), firstName, name, clinic, email, phone };
 }
 
-/** "Pre-registered? Enter your number": first name + clinic only, so the welcome-back card can greet them. */
+// "Pre-registered? Enter your number" is answered with the first name only, and no more than
+// LOOKUP_MAX times per IP per window, so the form cannot be used to enumerate who registered.
+const LOOKUP_MAX = 12;
+const LOOKUP_WINDOW_MS = 15 * 60 * 1000;
+const lookups = new Map();
+function lookupAllowed(ip) {
+  const now = Date.now();
+  const cur = lookups.get(ip);
+  if (!cur || now - cur.at > LOOKUP_WINDOW_MS) { lookups.set(ip, { n: 1, at: now }); return true; }
+  cur.n += 1;
+  return cur.n <= LOOKUP_MAX;
+}
+
+/** "Pre-registered? Enter your number": first name only, so the welcome-back card can greet them. */
 export async function lookupReservation(phoneRaw) {
   const phone = normalizePhone(phoneRaw);
   if (!phone) return { error: 'Please enter a Philippine mobile number, like 0917 123 4567.' };
+  if (!lookupAllowed(await clientIp())) return { error: 'Too many tries. Please sign up below instead.' };
   const spun = await prisma.lead.findFirst({ where: { phone, interest: { in: BOOTH_INTERESTS } }, select: { id: true } });
   if (spun) return { spun: true };
-  const pre = await prisma.lead.findFirst({ where: { phone, interest: { in: PRE_INTERESTS } }, orderBy: { createdAt: 'desc' } });
+  const pre = await prisma.lead.findFirst({ where: { phone, interest: { in: PRE_INTERESTS } }, select: { firstName: true }, orderBy: { createdAt: 'desc' } });
   if (!pre) return { found: false };
-  return { found: true, firstName: pre.firstName, clinic: pre.clinicName || '', phone };
+  return { found: true, firstName: pre.firstName, phone };
 }
 
 /** Google Places matches for the clinic the visitor typed. Empty on any failure. */
