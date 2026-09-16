@@ -214,6 +214,8 @@
 .door-roson { display: flex; align-items: center; justify-content: center; gap: 10px; line-height: 1.2; height: auto; padding: 8px 12px; border-color: rgba(212, 175, 55, 0.5); }
 .roson-pill { display: inline-flex; align-items: center; background: #fff; border-radius: 999px; padding: 4px 10px; }
 .roson-pill img { height: 22px; width: auto; display: block; }
+.denjoy-pill { padding: 3px 8px; }
+.denjoy-pill img { height: 28px; }
 
 /* platform marks on the DentaDesk tile */
 .platforms { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 8px; color: #fff; }

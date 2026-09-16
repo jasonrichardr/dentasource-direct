@@ -44,6 +44,10 @@ function Doors() {
         <span className="roson-pill"><img src="/images/brand/roson-logo-final.png" alt="ROSON" /></span>
         <span>Browse our ROSON Dental Chairs</span>
       </a>
+      <a className="door door-roson door-denjoy" href="/denjoy">
+        <span className="roson-pill denjoy-pill"><img src="/images/brand/denjoy-logo-final.png" alt="Denjoy" /></span>
+        <span>Explore our Denjoy Endo Line</span>
+      </a>
       <a className="door door-news" href={GUIDE}>Read our NADTI 2026 guide</a>
       <a className="door door-fb" href={FB} target="_blank" rel="noopener">Like us on Facebook</a>
       <a className="door door-msg" href={MESSENGER} target="_blank" rel="noopener">Message us</a>
