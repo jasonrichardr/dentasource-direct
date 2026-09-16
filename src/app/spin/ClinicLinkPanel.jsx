@@ -79,8 +79,10 @@ export default function ClinicLinkPanel({ clinic, linked = {}, googleLinked = fa
             <span className="offer-s">{o.s}</span>
             {o.platforms ? (
               <span className="platforms" aria-label="Mac, Windows, iOS, and Android">
-                <AppleMark size={16} /><WindowsMark size={16} /><AndroidMark size={16} />
-                <span className="platforms-t">Mac · Windows · iOS · Android</span>
+                <span className="plat"><AppleMark size={14} />Mac</span>
+                <span className="plat"><WindowsMark size={14} />Windows</span>
+                <span className="plat"><AppleMark size={14} />iOS</span>
+                <span className="plat"><AndroidMark size={14} />Android</span>
               </span>
             ) : null}
           </li>

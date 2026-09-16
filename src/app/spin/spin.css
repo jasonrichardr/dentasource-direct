@@ -214,8 +214,9 @@
 .roson-pill img { height: 22px; width: auto; display: block; }
 
 /* platform marks on the DentaDesk tile */
-.platforms { display: flex; align-items: center; gap: 6px; margin-top: 6px; color: #fff; }
-.platforms-t { font-size: 10.5px; color: rgba(245, 245, 247, 0.6); letter-spacing: 0.02em; }
+.platforms { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 8px; color: #fff; }
+.plat { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: rgba(245, 245, 247, 0.8); white-space: nowrap; line-height: 1; }
+.plat svg { flex: none; display: block; }
 
 /* tappable offer tiles */
 .offer { position: relative; }

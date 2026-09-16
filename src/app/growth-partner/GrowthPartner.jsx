@@ -114,7 +114,7 @@ export default function GrowthPartner({ news = [] }) {
                 <p>{t.promise}</p>
                 <p><em>{t.leave}</em></p>
                 {t.with ? <div className="with"><span>with</span><img src={t.with.logo} alt={t.with.name} /><span>{t.with.name}</span></div> : null}
-                {t.platforms ? <div className="plat"><AppleMark size={16} /><WindowsMark size={16} /><AndroidMark size={16} /><span>Mac · Windows · iOS · Android</span></div> : null}
+                {t.platforms ? <div className="plat"><span><AppleMark size={14} />Mac</span><span><WindowsMark size={14} />Windows</span><span><AppleMark size={14} />iOS</span><span><AndroidMark size={14} />Android</span></div> : null}
               </div>
             </article>
           ))}
