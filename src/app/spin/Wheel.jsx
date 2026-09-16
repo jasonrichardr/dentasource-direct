@@ -30,8 +30,8 @@ function Label({ i, id }) {
   const two = parts.length > 1 && p.short.length > 7;
   const ink = INK[i % 3];
   const centre = i * WEDGE + WEDGE / 2;
-  // Left half reads inward so no label is upside down for the viewer.
-  const flip = centre > 90 && centre < 270;
+  // Past 6 o'clock the outward reading direction points left, so read inward instead.
+  const flip = centre > 180;
   return (
     <text
       transform={`rotate(${centre}) translate(0,-62) rotate(${flip ? 90 : -90})`}
