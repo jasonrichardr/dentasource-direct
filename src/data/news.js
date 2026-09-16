@@ -870,7 +870,7 @@ The same page carries DentaSource Direct's own openings. A **Dental Chair Techni
         title: "NADTI 2026 at SMX Manila, September 22 to 24: Every Lecture, Every Speaker, and Booth 034",
         date: "September 16, 2026",
         image: "/images/news/nadti-2026-smx-manila-complete-guide/hero-a1-pro.jpg",
-        ogImage: "/images/news/nadti-2026-smx-manila-complete-guide/og.jpg",
+        ogImage: "/images/news/nadti-2026-smx-manila-complete-guide/og-speakers-degrees.jpg",
         hideHeroImage: false,
         abstract: "The complete guide to the 26th NADTI Trade Exhibit and Scientific Sessions: three days, ten lectures, speakers from six countries, 10 CPD points, the first Student Forum, the raffles, how to register, how to get there, and where to find DentaSource Direct at Booth 034 and 035 in Halls 1 to 3.",
         content: `## The Event at a Glance
