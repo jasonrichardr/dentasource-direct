@@ -61,7 +61,7 @@ export default function GrowthPartner({ news = [] }) {
   const wall = [];
   const rs = [...REELS]; const ps = [...PHOTOS];
   // interleave: reel, reel, photo(wide), photo, reel, photo ...
-  const order = ['r', 'r', 'p', 'p', 'r', 'p', 'r', 'p', 'p', 'r', 'p', 'r', 'p', 'r', 'p', 'r', 'p', 'p', 'p', 'p', 'p', 'p'];
+  const order = ['r', 'p', 'p', 'r', 'p', 'p', 'r', 'p', 'p', 'r', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'];
   for (const k of order) { const it = k === 'r' ? rs.shift() : ps.shift(); if (it) wall.push({ kind: k, it }); }
 
   return (
@@ -72,7 +72,7 @@ export default function GrowthPartner({ news = [] }) {
       </header>
 
       <section className="gp-hero">
-        <video src="/gp/reels/reel-11.mp4" poster="/gp/reels/reel-11.jpg" autoPlay muted loop playsInline preload="metadata" aria-hidden />
+        <video src="/gp/reels/reel-07.mp4" poster="/gp/reels/reel-07.jpg" autoPlay muted loop playsInline preload="metadata" aria-hidden />
         <div className="gp-hero-inner">
           <p className="gp-kicker rv">DentaSource Direct Training Center · Pasig</p>
           <h1 className="gp-h1 rv">Your growth partner <span className="gp-gold">in dentistry.</span></h1>

@@ -22,14 +22,10 @@ export const PARTNERS = [
 ];
 
 export const REELS = [
-  { src: '/gp/reels/reel-11.mp4', poster: '/gp/reels/reel-11.jpg', cap: 'The simulator lab, every station with a scanner and a screen' },
-  { src: '/gp/reels/reel-12.mp4', poster: '/gp/reels/reel-12.jpg', cap: 'Reading the scan together on the lecture screen' },
-  { src: '/gp/reels/reel-07.mp4', poster: '/gp/reels/reel-07.jpg', cap: 'Scanner workstation, live design' },
-  { src: '/gp/reels/reel-09.mp4', poster: '/gp/reels/reel-09.jpg', cap: 'Mentor at your shoulder while you work' },
-  { src: '/gp/reels/reel-06.mp4', poster: '/gp/reels/reel-06.jpg', cap: 'Instrument board walkthrough' },
-  { src: '/gp/reels/reel-08.mp4', poster: '/gp/reels/reel-08.jpg', cap: 'Lecture, then hands on' },
+  { src: '/gp/reels/reel-07.mp4', poster: '/gp/reels/reel-07.jpg', cap: 'Scanner workstation, live design on the screen' },
+  { src: '/gp/reels/reel-09.mp4', poster: '/gp/reels/reel-09.jpg', cap: 'Mentor at your shoulder while you work on the simulator' },
+  { src: '/gp/reels/reel-12.mp4', poster: '/gp/reels/reel-12.jpg', cap: 'TADs lecture and workshop, batch one' },
   { src: '/gp/reels/reel-10.mp4', poster: '/gp/reels/reel-10.jpg', cap: 'Shade matching with the device, not the eye' },
-  { src: '/gp/reels/reel-02.mp4', poster: '/gp/reels/reel-02.jpg', cap: 'The software behind the chair' },
 ];
 
 export const PHOTOS = [
