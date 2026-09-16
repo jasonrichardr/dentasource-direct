@@ -38,7 +38,11 @@ export default function GoogleEmailButton({ onIdentity }) {
           itp_support: true,
         });
         window.google.accounts.id.renderButton(host.current, { theme: 'filled_black', size: 'large', shape: 'pill', text: 'continue_with', width: 300 });
-        setReady(true);
+        // Google refuses unauthorized origins by serving an empty iframe: hide the whole thing rather than show a blank pill.
+        window.setTimeout(() => {
+          const f = host.current?.querySelector('iframe');
+          if (!f || f.offsetHeight < 20) setFailed(true); else setReady(true);
+        }, 2500);
       } catch { setFailed(true); }
     };
     if (window.google?.accounts?.id) { init(); return; }
