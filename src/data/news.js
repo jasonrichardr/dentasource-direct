@@ -921,15 +921,7 @@ All lectures are inside the Scientific Sessions program at SMX. Times are as pos
 
 NADTI's posts give each speaker a name, a flag and a title. We went further and checked who they are, so you know whose hour you are sitting in. Where we could not confirm a detail from a reliable source, we left it out.
 
-![Ryan San](/images/news/nadti-2026-smx-manila-complete-guide/face-ryan-san.jpg)
-![Noor Addeen Abo Arsheed](/images/news/nadti-2026-smx-manila-complete-guide/face-noor-addeen-abo-arsheed.jpg)
-![Felylou Altura Fernandez](/images/news/nadti-2026-smx-manila-complete-guide/face-felylou-altura-fernandez.jpg)
-![Nazatul Sabariah Ahmad](/images/news/nadti-2026-smx-manila-complete-guide/face-nazatul-sabariah-ahmad.jpg)
-![Johnah Galicia](/images/news/nadti-2026-smx-manila-complete-guide/face-johnah-galicia.jpg)
-![Karla Marrie Manaloto](/images/news/nadti-2026-smx-manila-complete-guide/face-karla-marrie-manaloto.jpg)
-![Kullanant Pansrimangkorn](/images/news/nadti-2026-smx-manila-complete-guide/face-kullanant-pansrimangkorn.jpg)
-![Chung Hua Chen](/images/news/nadti-2026-smx-manila-complete-guide/face-chung-hua-chen.jpg)
-![Renoir Amba](/images/news/nadti-2026-smx-manila-complete-guide/face-renoir-amba.jpg)
+![The ten lectures, nine speakers: Ryan San, Noor Addeen Abo Arsheed, Felylou Altura Fernandez, Nazatul Sabariah Ahmad, Johnah Galicia, Karla Marrie Manaloto, Kullanant Pansrimangkorn, Chung Hua Chen and Renoir Amba](/images/news/nadti-2026-smx-manila-complete-guide/speakers-strip.jpg)
 
 **Mr. Ryan San, Singapore.** Ryan San Yi Leong is the chief executive and co-founder of **EM2AI**, the artificial-intelligence subsidiary of Q&M Dental Group, a dental chain listed on the Singapore Exchange. EM2AI builds software that reads radiographs, flags pathology, charts automatically and drafts treatment plans; it runs across more than 150 Q&M clinics in Singapore and Malaysia, its accuracy has been checked by University of Malaya staff, and in May 2026 it was granted a Singapore patent for dental treatment planning methods. He is not a dentist, which is the point of his hour: this is the operator's view of what happens when a clinic group actually switches AI on, what broke, and what stuck. If you have been wondering whether AI charting is real or a brochure, this is the session for you.
 
