@@ -112,3 +112,5 @@
 @media (max-width: 420px) { .desk-brand small { font-size: 9.5px; letter-spacing: 0.1em; } .scan-btn { font-size: 12px; height: 38px; } }
 .ghost.tiny { min-height: 32px; padding: 4px 8px; }
 .desk-head-actions .ghost { min-height: 40px; padding: 0 10px; margin: 0; }
+.desk-bar { margin-bottom: 4px; }
+.desk-brand small { white-space: nowrap; }
