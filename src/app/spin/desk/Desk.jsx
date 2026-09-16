@@ -218,7 +218,7 @@ export default function Desk() {
 
       <nav className="desk-tabs" aria-label="Desk sections">
         <button type="button" className={tab === 'visitors' ? 'on' : ''} onClick={() => setTab('visitors')}>Visitors</button>
-        <button type="button" className={tab === 'prizes' ? 'on' : ''} onClick={() => setTab('prizes')}>Prizes · {active}/{ORDER.length} on</button>
+        <button type="button" className={tab === 'prizes' ? 'on' : ''} onClick={() => setTab('prizes')}>{tally ? `Prizes · ${active}/${ORDER.length} on` : 'Prizes'}</button>
       </nav>
 
       {msg ? <p className="desk-msg">{msg}</p> : null}
