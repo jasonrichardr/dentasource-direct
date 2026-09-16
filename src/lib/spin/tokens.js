@@ -48,8 +48,8 @@ export function pinFailed(ip) {
 
 export function pinSucceeded(ip) { attempts.delete(ip); }
 
-export function pinMatches(pin) {
-  const expected = process.env.SPIN_DESK_PIN || '';
+export function pinMatches(pin, expectedPin = process.env.SPIN_DESK_PIN) {
+  const expected = expectedPin || '';
   const given = String(pin || '');
   if (!expected || given.length !== expected.length) return false;
   try { return timingSafeEqual(Buffer.from(expected), Buffer.from(given)); } catch { return false; }

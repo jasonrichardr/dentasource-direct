@@ -6,7 +6,7 @@ import {
   DESK_COOKIE, REHEARSAL_COOKIE, tokenFor, isDeskCookie, isRehearsalCookie,
   pinLocked, pinFailed, pinSucceeded, pinMatches, qrTokenFor, codeFromQrToken,
 } from '@/lib/spin/tokens';
-import { PRIZES, PRIZE_BY_ID, pickPrize, wedgeIndexFor } from '@/lib/spin/prizes';
+import { PRIZES, PRIZE_BY_ID, pickPrize, wedgeIndexFor, effectivePrizes, effectiveChances } from '@/lib/spin/prizes';
 import {
   INTEREST_REAL, INTEREST_TEST, normalizePhone, splitName, makeCode, isValidCode,
   isValidEmail, eventStatus, prizePrefix, messageFor, parseMessage, claimedMessage, manilaStamp,
@@ -42,11 +42,13 @@ async function clientIp() {
 }
 
 // Shared PIN check with a per-IP failure counter and a slow path on failure.
-async function checkPin(pin) {
+// which = 'desk' (SPIN_DESK_PIN) | 'rehearsal' (SPIN_REHEARSAL_PIN, falls back to the desk PIN).
+async function checkPin(pin, which = 'desk') {
   const ip = await clientIp();
   if (pinLocked(ip)) return { error: 'Too many attempts. Try again in 15 minutes.' };
   if (!process.env.SPIN_DESK_PIN) return { error: 'Desk PIN is not configured on the server.' };
-  if (!pinMatches(pin)) {
+  const expected = which === 'rehearsal' ? (process.env.SPIN_REHEARSAL_PIN || process.env.SPIN_DESK_PIN) : process.env.SPIN_DESK_PIN;
+  if (!pinMatches(pin, expected)) {
     pinFailed(ip);
     await new Promise((r) => setTimeout(r, 700));
     return { error: 'Wrong PIN.' };
@@ -81,8 +83,8 @@ function shapeLead(lead) {
   };
 }
 
-async function prizeCounts(interest) {
-  const capped = PRIZES.filter((p) => p.cap != null);
+async function prizeCounts(interest, overrides = {}) {
+  const capped = effectivePrizes(overrides).filter((p) => p.cap != null);
   const nums = await Promise.all(capped.map((p) =>
     prisma.lead.count({ where: { interest, message: { startsWith: prizePrefix(p.label) } } })));
   return Object.fromEntries(capped.map((p, i) => [p.id, nums[i]]));
@@ -98,6 +100,27 @@ async function uniqueCode() {
     if (!hit) return code;
   }
   throw new Error('Could not allocate a claim code');
+}
+
+// ───────────── live booth controls (BoothSetting) ─────────────
+
+const CONFIG_KEY = 'prizes';
+
+/** { [prizeId]: { active?, weight?, cap? } } as saved from the desk. Empty when untouched. */
+async function loadOverrides() {
+  try {
+    const row = await prisma.boothSetting.findUnique({ where: { key: CONFIG_KEY } });
+    const o = row ? JSON.parse(row.value) : {};
+    return o && typeof o === 'object' ? o : {};
+  } catch (e) {
+    console.error('[spin] loadOverrides failed:', e?.message || e);
+    return {};
+  }
+}
+
+async function saveOverrides(overrides) {
+  const value = JSON.stringify(overrides);
+  await prisma.boothSetting.upsert({ where: { key: CONFIG_KEY }, update: { value }, create: { key: CONFIG_KEY, value } });
 }
 
 // ───────────── visitor ─────────────
@@ -137,8 +160,9 @@ export async function submitSpin(formData) {
     return { already: true, leadId: s.leadId, prizeId: s.prizeId, code: s.code, qr: qrTokenFor(s.code), wedgeIndex: s.prizeId ? wedgeIndexFor(s.prizeId) : 0 };
   }
 
-  const counts = await prizeCounts(interest);
-  const pick = pickPrize({ counts });
+  const overrides = await loadOverrides();
+  const counts = await prizeCounts(interest, overrides);
+  const pick = pickPrize({ counts, overrides });
   const prize = PRIZE_BY_ID[pick.id];
   const code = await uniqueCode();
   const { firstName, lastName } = splitName(name);
@@ -205,8 +229,9 @@ export async function respin(leadId, code) {
   if (!parsed || parsed.code !== String(code).toUpperCase() || parsed.prizeLabel !== 'Spin again') {
     return { error: 'This spin cannot be repeated.' };
   }
-  const counts = await prizeCounts(lead.interest);
-  const pick = pickPrize({ counts, excludeSpinAgain: true });
+  const overrides = await loadOverrides();
+  const counts = await prizeCounts(lead.interest, overrides);
+  const pick = pickPrize({ counts, excludeSpinAgain: true, overrides });
   const prize = PRIZE_BY_ID[pick.id];
   await prisma.lead.update({
     where: { id: lead.id },
@@ -216,7 +241,7 @@ export async function respin(leadId, code) {
 }
 
 export async function enterRehearsal(pin) {
-  const r = await checkPin(pin);
+  const r = await checkPin(pin, 'rehearsal');
   if (r.error) return r;
   const c = await cookies();
   c.set(REHEARSAL_COOKIE, tokenFor('rehearsal'), cookieOpts(60 * 60 * 24));
@@ -263,7 +288,11 @@ export async function deskTally() {
     ...PRIZES.map((p) => prisma.lead.count({ where: { interest: INTEREST_REAL, message: { startsWith: prizePrefix(p.label) }, NOT: { message: { contains: 'Claimed: no' } } } })),
   ]);
   const n = PRIZES.length;
-  const byPrize = Object.fromEntries(PRIZES.map((p, i) => [p.id, { count: per[i], claimed: per[n + i], cap: p.cap, label: p.label }]));
+  const overrides = await loadOverrides();
+  const eff = effectivePrizes(overrides);
+  const countsReal = Object.fromEntries(PRIZES.map((p, i) => [p.id, per[i]]));
+  const chances = effectiveChances(countsReal, overrides);
+  const byPrize = Object.fromEntries(eff.map((p, i) => [p.id, { count: per[i], claimed: per[n + i], cap: p.cap, label: p.label, active: p.active, weight: p.weight, defaultWeight: PRIZES[i].weight, defaultCap: PRIZES[i].cap, chance: chances[p.id] ?? 0, kind: p.kind }]));
   return {
     total, today, testCount, claimedTotal, byPrize,
     status: await status(),
@@ -291,7 +320,9 @@ export async function deskSearch(q) {
     };
   }
   const rows = await prisma.lead.findMany({ where, orderBy: { createdAt: 'desc' }, take: 50 });
-  return rows.map(shapeLead);
+  const shaped = rows.map(shapeLead);
+  const socials = await consoleSocials(shaped.filter((r) => !r.test && r.code).map((r) => r.code));
+  return shaped.map((r) => ({ ...r, socials: socials[r.code] || null }));
 }
 
 async function claimLead(lead) {
@@ -339,6 +370,88 @@ export async function deskDeleteTests(confirm) {
   if (!confirm) return { count };
   const res = await prisma.lead.deleteMany({ where: { interest: INTEREST_TEST } });
   return { deleted: res.count };
+}
+
+/** Live prize control from the desk: on/off, chance weight, cap. Takes effect on the next spin. */
+export async function deskSetPrize(id, patch) {
+  await requireDesk();
+  if (!PRIZE_BY_ID[id]) return { error: 'Unknown prize.' };
+  const overrides = await loadOverrides();
+  const cur = overrides[id] || {};
+  const next = { ...cur };
+  if (typeof patch?.active === 'boolean') next.active = patch.active;
+  if (patch?.weight !== undefined) {
+    const w = Number(patch.weight);
+    if (!Number.isFinite(w) || w < 0 || w > 1000) return { error: 'Chance must be a number from 0 to 1000.' };
+    next.weight = w;
+  }
+  if (patch?.cap !== undefined) {
+    if (patch.cap === null || patch.cap === '') next.cap = null;
+    else {
+      const c = Math.floor(Number(patch.cap));
+      if (!Number.isFinite(c) || c < 0) return { error: 'Cap must be 0 or more.' };
+      next.cap = c;
+    }
+  }
+  overrides[id] = next;
+  await saveOverrides(overrides);
+  return { ok: true, overrides };
+}
+
+export async function deskResetPrizes() {
+  await requireDesk();
+  await saveOverrides({});
+  return { ok: true };
+}
+
+const consoleKey = () => process.env.NADTI_INTAKE_KEY || '';
+
+/** Socials + console note for a list of claim codes (desk rows). Never throws. */
+async function consoleSocials(codes) {
+  if (!consoleKey() || !codes.length) return {};
+  try {
+    return (await callConvex('query', 'consoleNadti:byCodes', { key: consoleKey(), codes }, { timeoutMs: 5000 })) || {};
+  } catch (e) {
+    console.error('[spin] consoleSocials failed:', e?.message || e);
+    return {};
+  }
+}
+
+/** Desk staff link a visitor's social from the booth. TEST rows never touch the console. */
+export async function deskLinkSocial(leadId, platform, value) {
+  await requireDesk();
+  const lead = await prisma.lead.findUnique({ where: { id: String(leadId) } });
+  if (!lead || !BOOTH_INTERESTS.includes(lead.interest)) return { error: 'Spin not found.' };
+  const parsed = parseMessage(lead.message);
+  if (!parsed) return { error: 'Row is not a spin.' };
+  const url = normalizeSocial(platform, value);
+  if (!url) return { error: platform === 'google' ? 'Paste a Google Maps link.' : 'Paste the page link or type the @handle.' };
+  if (lead.interest === INTEREST_TEST || !consoleKey()) return { ok: true, url, skipped: true };
+  try {
+    const r = await callConvex('mutation', 'consoleNadti:linkSocial', { key: consoleKey(), code: parsed.code, platform, value }, { timeoutMs: 5000 });
+    return r?.ok ? { ok: true, url: r.url } : { error: r?.reason === 'no_prospect' ? 'This visitor is not in the console yet.' : 'That link does not look right.' };
+  } catch (e) {
+    console.error('[spin] deskLinkSocial failed:', e?.message || e);
+    return { error: 'Console did not answer. Try again.' };
+  }
+}
+
+/** Desk staff add a note line to the visitor's console prospect. */
+export async function deskNote(leadId, line) {
+  await requireDesk();
+  const lead = await prisma.lead.findUnique({ where: { id: String(leadId) } });
+  if (!lead || !BOOTH_INTERESTS.includes(lead.interest)) return { error: 'Spin not found.' };
+  const parsed = parseMessage(lead.message);
+  const text = String(line || '').trim();
+  if (!parsed || !text) return { error: 'Write something first.' };
+  if (lead.interest === INTEREST_TEST || !consoleKey()) return { ok: true, skipped: true };
+  try {
+    const r = await callConvex('mutation', 'consoleNadti:appendNote', { key: consoleKey(), code: parsed.code, line: text, by: 'booth desk' }, { timeoutMs: 5000 });
+    return r?.ok ? { ok: true } : { error: 'This visitor is not in the console yet.' };
+  } catch (e) {
+    console.error('[spin] deskNote failed:', e?.message || e);
+    return { error: 'Console did not answer. Try again.' };
+  }
 }
 
 export async function deskRehearsal(on) {

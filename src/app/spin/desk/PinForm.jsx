@@ -22,7 +22,7 @@ export default function PinForm() {
   return (
     <main className="spin-root desk-root">
       <section className="card desk-card">
-        <p className="eyebrow">DentaSource Direct</p>
+        <div className="desk-brand pin-brand"><img src="/images/brand/dsd-mark.png" alt="" /><div><b>DentaSource Direct</b><small>NADTI 2026</small></div></div>
         <h1 className="title">Booth desk</h1>
         <p className="lede">Enter the booth PIN to see spins and claim prizes.</p>
         <form onSubmit={submit} className="gate-form">

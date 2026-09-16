@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { PRIZES, WEDGES, pickPrize, resolveWeights, wedgeIndexFor } from './prizes.js';
+import { PRIZES, WEDGES, pickPrize, resolveWeights, wedgeIndexFor, effectivePrizes, effectiveChances } from './prizes.js';
 
 const seq = (...vals) => { let i = 0; return () => vals[Math.min(i++, vals.length - 1)]; };
 
@@ -27,14 +27,44 @@ test('random 0 with no counts lands on credits30k and its only wedge', () => {
   assert.equal(WEDGES[r.wedgeIndex], 'credits30k');
 });
 
-test('credits30k at cap falls to off10', () => {
-  const r = pickPrize({ counts: { credits30k: 3 }, random: seq(0, 0) });
+test('credits30k default cap is 1 and at cap falls to off10', () => {
+  assert.equal(PRIZES.find((p) => p.id === 'credits30k').cap, 1);
+  const r = pickPrize({ counts: { credits30k: 1 }, random: seq(0, 0) });
   assert.equal(r.id, 'off10');
 });
 
 test('credits30k and off10 at cap fall through to off5', () => {
-  const r = pickPrize({ counts: { credits30k: 3, off10: 10 }, random: seq(0, 0) });
+  const r = pickPrize({ counts: { credits30k: 1, off10: 10 }, random: seq(0, 0) });
   assert.equal(r.id, 'off5');
+});
+
+test('desk overrides: inactive prize flows to its fallback', () => {
+  const w = resolveWeights({}, { overrides: { credits30k: { active: false } } });
+  assert.equal(w.credits30k, 0);
+  assert.equal(w.off10, 2 + 1);
+  assert.equal(pickPrize({ random: seq(0, 0), overrides: { credits30k: { active: false } } }).id, 'off10');
+});
+
+test('desk overrides: weight and cap replace defaults', () => {
+  const list = effectivePrizes({ ballpen: { weight: 10 }, ecobag: { cap: 5 }, off5: { cap: null } });
+  assert.equal(list.find((p) => p.id === 'ballpen').weight, 10);
+  assert.equal(list.find((p) => p.id === 'ecobag').cap, 5);
+  assert.equal(list.find((p) => p.id === 'off5').cap, null);
+  const w = resolveWeights({ ecobag: 5 }, { overrides: { ecobag: { cap: 5 } } });
+  assert.equal(w.ecobag, 0);
+  assert.equal(w.fogfree, 18 + 24);
+});
+
+test('effectiveChances sums to about 100 and respects an off switch', () => {
+  const c = effectiveChances({}, { spinagain: { active: false } });
+  const sum = Object.values(c).reduce((a, b) => a + b, 0);
+  assert.ok(Math.abs(sum - 100) < 0.6, String(sum));
+  assert.equal(c.spinagain, 0);
+});
+
+test('everything off still yields a prize', () => {
+  const off = Object.fromEntries(PRIZES.map((p) => [p.id, { active: false }]));
+  assert.equal(pickPrize({ random: seq(0, 0), overrides: off }).id, 'fogfree');
 });
 
 test('ecobag stock exhausted flows to fogfree', () => {

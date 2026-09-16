@@ -3,7 +3,7 @@
 // (or physical stock). When a prize is exhausted its weight flows to `fallback`.
 
 export const PRIZES = [
-  { id: 'credits30k', label: '₱30,000 Training Credits', short: '₱30K CREDITS', weight: 1, cap: 3, fallback: 'off10', kind: 'credits' },
+  { id: 'credits30k', label: '₱30,000 Training Credits', short: '₱30K CREDITS', weight: 1, cap: 1, fallback: 'off10', kind: 'credits' },
   { id: 'off10', label: '10% off', short: '10% OFF', weight: 2, cap: 10, fallback: 'off5', kind: 'discount' },
   { id: 'off5', label: '5% off', short: '5% OFF', weight: 3, cap: 15, fallback: 'fogfree', kind: 'discount' },
   { id: 'spinagain', label: 'Spin again', short: 'SPIN AGAIN', weight: 6, cap: null, fallback: null, kind: 'respin' },
@@ -24,21 +24,44 @@ export function prizeById(id) {
   return PRIZE_BY_ID[id] || null;
 }
 
-// Effective weights after caps/stock and the spin-again exclusion.
-export function resolveWeights(counts = {}, { excludeSpinAgain = false } = {}) {
-  const w = Object.fromEntries(PRIZES.map((p) => [p.id, p.weight]));
+// Live booth overrides from the desk: { [id]: { active?: boolean, weight?: number, cap?: number|null } }.
+// Merge with the defaults; nothing here touches PRIZES itself.
+export function effectivePrizes(overrides = {}) {
+  return PRIZES.map((p) => {
+    const o = overrides[p.id] || {};
+    const weight = typeof o.weight === 'number' && o.weight >= 0 ? o.weight : p.weight;
+    const cap = o.cap === null ? null : typeof o.cap === 'number' && o.cap >= 0 ? o.cap : p.cap;
+    return { ...p, weight, cap, active: o.active !== false };
+  });
+}
+
+// Effective weights after on/off, caps/stock, and the spin-again exclusion.
+// An inactive prize is treated like an exhausted one: its weight flows to the
+// fallback. PRIZES order processes each fallback after its source (credits →
+// off10 → off5 → fogfree), and a final pass zeroes anything switched off that
+// received inflow later in the list (ecobag/ballpen → fogfree).
+export function resolveWeights(counts = {}, { excludeSpinAgain = false, overrides = {} } = {}) {
+  const list = effectivePrizes(overrides);
+  const w = Object.fromEntries(list.map((p) => [p.id, p.weight]));
   if (excludeSpinAgain) w.spinagain = 0;
-  // PRIZES order guarantees every fallback is processed after its source
-  // or is never capped (fogfree), so one pass is enough.
-  for (const p of PRIZES) {
-    if (p.cap == null) continue;
-    const used = counts[p.id] || 0;
-    if (used >= p.cap && w[p.id] > 0) {
-      w[p.fallback] += w[p.id];
+  for (const p of list) {
+    const exhausted = p.cap != null && (counts[p.id] || 0) >= p.cap;
+    if ((!p.active || exhausted) && w[p.id] > 0) {
+      if (p.fallback) w[p.fallback] += w[p.id];
       w[p.id] = 0;
     }
   }
+  for (const p of list) if (!p.active) w[p.id] = 0;
+  // Guard: if everything is off, fall back to Fog Free so the wheel never stalls.
+  if (Object.values(w).every((x) => x <= 0)) w.fogfree = 1;
   return w;
+}
+
+/** Chance per prize as a percentage of the effective total, for the desk to show what visitors really face. */
+export function effectiveChances(counts = {}, overrides = {}) {
+  const w = resolveWeights(counts, { overrides });
+  const total = Object.values(w).reduce((a, b) => a + b, 0) || 1;
+  return Object.fromEntries(Object.entries(w).map(([id, x]) => [id, Math.round((x / total) * 1000) / 10]));
 }
 
 export function wedgeIndexFor(id, random = Math.random) {
@@ -47,8 +70,8 @@ export function wedgeIndexFor(id, random = Math.random) {
   return slots[Math.min(slots.length - 1, Math.floor(random() * slots.length))];
 }
 
-export function pickPrize({ counts = {}, random = Math.random, excludeSpinAgain = false } = {}) {
-  const w = resolveWeights(counts, { excludeSpinAgain });
+export function pickPrize({ counts = {}, random = Math.random, excludeSpinAgain = false, overrides = {} } = {}) {
+  const w = resolveWeights(counts, { excludeSpinAgain, overrides });
   const total = Object.values(w).reduce((a, b) => a + b, 0);
   let r = random() * total;
   let chosen = PRIZES[PRIZES.length - 1].id;
