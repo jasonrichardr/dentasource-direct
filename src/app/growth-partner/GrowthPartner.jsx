@@ -24,7 +24,10 @@ function useReveal() {
     if (!('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('in')); return; }
     const io = new IntersectionObserver((ents) => ents.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -8% 0px' });
     els.forEach((e) => io.observe(e));
-    return () => io.disconnect();
+    // iOS Low Power Mode blocks autoplay until a gesture: the first touch kicks every on-screen video (round 7).
+    const kick = () => { document.querySelectorAll('video').forEach((v) => { const r = v.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) v.play().catch(() => {}); }); };
+    window.addEventListener('touchstart', kick, { once: true, passive: true });
+    return () => { io.disconnect(); window.removeEventListener('touchstart', kick); };
   }, []);
 }
 

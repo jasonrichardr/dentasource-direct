@@ -69,8 +69,8 @@ export const CHAPTERS = [
     fb: 'https://www.facebook.com/profile.php?id=61554687195243',
     body: 'CREST teaches the digital chair end to end, and then the surgery that goes with it. Small batches, a station per person, and the same scanners, mills and printers you will use in your own clinic. Their digital batches run at the DentaSource Direct Training Center.',
     people: [
-      { name: 'Dr. Pocholo Loleng', title: 'DMD · Digital dentistry', photo: '/gp/people/pocholo.png' },
-      { name: 'Dr. Najar', title: 'DMD · Oral surgery', photo: '/gp/people/najar.png' },
+      { name: 'Dr. Rajan Yraola', title: 'DMD, DT · Digital dentistry', photo: '/gp/people/rajan.png' },
+      { name: 'Dr. Pocholo Loleng', title: 'DMD · Oral surgery', photo: '/gp/people/pocholo.png' },
     ],
     offers: [
       'CREST Digital Course: intraoral scanning, CAD-CAM design, digital sculpting and crown build-up, 3D printing and milling, stain and glazing, shade matching, smile design, treatment planning, CBCT hands-on',

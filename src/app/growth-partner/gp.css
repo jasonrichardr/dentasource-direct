@@ -202,7 +202,8 @@ html[data-theme="light"] .gp-theme { background: rgba(20, 25, 43, 0.06); color: 
 .marquee-track { display: flex; gap: 8px; width: max-content; animation: gp-mq 60s linear infinite; }
 .marquee.reverse .marquee-track { animation-direction: reverse; animation-duration: 75s; }
 @keyframes gp-mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } .marquee { overflow-x: auto; } }
+/* reduced motion (iOS "Reduce Motion" is common): the marquees keep drifting, only slower; nothing else spins */
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation-duration: 150s; } .marquee.reverse .marquee-track { animation-duration: 180s; } }
 .courtesy { margin: 12px 0 0; font-size: 12.5px; color: var(--muted); }
 .courtesy a { color: var(--gold); }
 
@@ -464,3 +465,28 @@ html[data-theme="light"] .person-chip img { box-shadow: 0 0 0 3px rgba(255, 252,
 .person-chip small { display: block; font-size: 11.5px; letter-spacing: 0.06em; color: var(--gold); margin-top: 2px; }
 
 .chapter-head img.bare { background: none; padding: 0; border-radius: 8px; }
+
+/* ───────── round 7 (2026-09-17): banner unclipped, iPhone fit ───────── */
+.gp-brand img.lockup { width: auto; height: 46px; border-radius: 0; object-fit: contain; }
+@media (max-width: 400px) { .gp-brand img.lockup { height: 40px; } }
+
+/* iPhone fit: no Safari text inflation, the header never spills, the pill shrinks before the logo does */
+.gp { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+.gp-top { min-width: 0; }
+.gp-brand { min-width: 0; flex: 1 1 auto; }
+.gp-brand img.lockup { max-width: min(46vw, 190px); }
+.gp-top-actions { flex: 0 1 auto; min-width: 0; }
+.gp-top .gp-btn { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 430px) { .gp-top .gp-btn { font-size: 12px; padding: 0 12px; height: 38px; } .gp-theme { width: 38px; height: 38px; } }
+.gp-hero-cta .gp-btn { max-width: 100%; }
+/* nothing spills on a narrow phone: form columns and chapter heads shrink instead of overflowing (audit at 360 px) */
+.gp-form { grid-template-columns: minmax(0, 1fr); }
+.gp-form > *, .gp-field, .chk-grid, .consent-row { min-width: 0; }
+.gp-field input { width: 100%; box-sizing: border-box; min-width: 0; }
+.gp-form .google-btn, .gp-form .google-btn > * { max-width: 100%; overflow: hidden; }
+.chapter-head > div { min-width: 0; flex: 1 1 auto; }
+.chapter-head img { max-width: 42%; }
+.gp-sec { min-width: 0; }
+.chk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.chk { min-width: 0; } .chk span { min-width: 0; overflow-wrap: anywhere; }
+.gp-top, html[data-theme="light"] .gp-top { background: #fff; }
