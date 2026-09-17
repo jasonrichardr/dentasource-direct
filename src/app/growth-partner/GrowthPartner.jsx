@@ -170,8 +170,8 @@ export default function GrowthPartner({ news = [] }) {
 
       <section className="gp-sec" id="tracks">
         <p className="gp-kicker rv">What you can learn</p>
-        <h2 className="gp-h2 rv">Eight tracks. <span className="gp-gold">One promise.</span></h2>
-        <p className="gp-lead rv">You leave able to do the thing, not just describe it. Tap a track for its modules.</p>
+        <h2 className="gp-h2 rv">Eight courses. <span className="gp-gold">One promise.</span></h2>
+        <p className="gp-lead rv">You leave able to do the thing, not just describe it. Tap a course for its modules.</p>
         <div className="tracks">
           {TRACKS.map((t) => (
             <article key={t.id} className="track rv" role="button" tabIndex={0} aria-haspopup="dialog" onClick={() => openSheet({ kind: 'track', id: t.id })} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSheet({ kind: 'track', id: t.id }); } }}>
@@ -181,6 +181,7 @@ export default function GrowthPartner({ news = [] }) {
                 <p>{t.promise}</p>
                 <p><em>{t.leave}</em></p>
                 {t.with ? <div className="with"><span>with</span><img src={t.with.logo} alt={t.with.name} /><span>{t.with.name}</span></div> : null}
+                {t.people?.length ? <div className="faces">{t.people.map((d) => <img key={d.name} src={d.photo} alt={d.name} title={`${d.name} · ${d.title}`} decoding="async" />)}<span>{t.people.length === 1 ? t.people[0].name : `${t.people[0].name} and team`}</span></div> : null}
                 {t.platforms ? <div className="plat"><span><AppleMark size={14} />Mac</span><span><WindowsMark size={14} />Windows</span><span><AppleMark size={14} />iOS</span><span><AndroidMark size={14} />Android</span></div> : null}
                 <span className="open">{TRACK_MODULES[t.id]?.modules.length || 0} modules</span>
               </div>
@@ -234,7 +235,7 @@ export default function GrowthPartner({ news = [] }) {
         <h2 className="gp-h2 rv">With <span className="gp-gold">JDev Studio.</span></h2>
         <div className="jdev-head rv"><img className="jdev-logo-white" src="/images/brand/jdev-logo-white.png" alt="JDev Studio" /><img className="jdev-logo-coral" src="/images/brand/jdev-logo-coral.png" alt="JDev Studio" /></div>
         <div className="people-row rv"><div className="person-chip"><img src={JDEV.person.photo} alt={JDEV.person.name} decoding="async" /><span><b>{JDEV.person.name}</b><small>{JDEV.person.title}</small></span></div></div>
-        <p className="gp-lead rv">{JDEV.line} Tap a track to open it.</p>
+        <p className="gp-lead rv">{JDEV.line} Tap a course to open it.</p>
         <div className="jdev-grid">
           {JDEV_MODULES.map((m) => (
             <button key={m.id} type="button" className="jdev-card rv" aria-haspopup="dialog" onClick={() => openSheet({ kind: 'jdev', id: m.id })}>
@@ -320,10 +321,10 @@ export default function GrowthPartner({ news = [] }) {
             <label className="gp-field"><span>Dental clinic</span><input name="clinic" autoComplete="organization" required />{errors.clinic ? <p className="gp-err">{errors.clinic}</p> : null}</label>
             <label className="gp-field"><span>Email</span><input name="email" type="email" inputMode="email" autoComplete="email" value={emailV} onChange={(e) => setEmailV(e.target.value)} required />{errors.email ? <p className="gp-err">{errors.email}</p> : null}</label>
             <label className="gp-field"><span>Mobile number</span><input name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="0917 123 4567" required />{errors.phone ? <p className="gp-err">{errors.phone}</p> : null}</label>
-            <div className="gp-field"><span>Tracks you want</span>
-              <div className="chk-grid">
-                {TRACKS.map((t) => <label key={t.id} className="chk"><input type="checkbox" name={`track_${t.id}`} /><span>{t.label}</span></label>)}
-                {JDEV_MODULES.map((m) => <label key={m.id} className="chk"><input type="checkbox" name={`jdev_${m.id}`} /><span>JDev · {m.label}</span></label>)}
+            <div className="gp-field"><span>Courses you want</span>
+              <div className="course-pick">
+                {TRACKS.map((t) => <label key={t.id} className="cp"><input type="checkbox" name={`track_${t.id}`} /><img src={t.icon} alt="" className={t.plate ? 'plate' : ''} /><span>{t.label}</span><i aria-hidden>✓</i></label>)}
+                {JDEV_MODULES.map((m) => <label key={m.id} className="cp jd"><input type="checkbox" name={`jdev_${m.id}`} /><img src="/gp/logos/cred-jdev-round.png" alt="" /><span>{m.label}</span><i aria-hidden>✓</i></label>)}
               </div>
               {errors.tracks ? <p className="gp-err">{errors.tracks}</p> : null}
             </div>
@@ -367,10 +368,11 @@ export default function GrowthPartner({ news = [] }) {
     {/* the room (dock + sky + music) lives OUTSIDE main, like /spin: .gp > * is a z-index 1 stacking context that trapped it */}
     <GpSky />
 
-    <GpSheet open={!!track} onClose={closeSheet} kicker="Track" title={track?.label}>
+    <GpSheet open={!!track} onClose={closeSheet} kicker="Course" title={track?.label}>
       {track && trackMods ? (
         <>
           {track.with ? <p className="gp-sheet-lead" style={{ marginTop: 6 }}>with {track.with.name}</p> : null}
+          {track.people?.length ? <div className="people-row" style={{ marginTop: 12 }}>{track.people.map((d) => <div key={d.name} className="person-chip"><img src={d.photo} alt={d.name} decoding="async" /><span><b>{d.name}</b><small>{d.title}</small></span></div>)}</div> : null}
           <ModuleList lead={trackMods.lead} modules={trackMods.modules} />
           <p className="leave">{track.leave}</p>
           <div className="gp-doors" style={{ justifyContent: 'flex-start', marginTop: 18 }}><a className="gp-btn" href="#reserve" onClick={goAfterClose('reserve')}>Reserve my seat</a></div>
