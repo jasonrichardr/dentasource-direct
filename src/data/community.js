@@ -9,7 +9,7 @@ export const MANIFESTO = [
 ];
 
 export const SAMPLE_BOARD = {
-  href: 'https://dentasourcedirect.com/orthostrategy/dremil/sample/',
+  href: 'https://dentasourcedirect.com/orthostrategy/dremil/sample',
   lead: 'Every course leaves you with a board of your own: the modules, the protocols, the photos from your batch, the decks, all linked, searchable, with a graph you can wander. Not a PDF in an email. A place you come back to.',
   note: 'The sample opens two of Dr. Emil\'s five TADs modules. The rest, the decks and the live-patient day belong to the people who sat the course.',
 };
