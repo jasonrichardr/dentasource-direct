@@ -64,7 +64,7 @@ export default function GrowthPartner({ news = [] }) {
   // App-like sheets (round 6): opening pushes a history entry so the phone's back gesture closes the sheet instead
   // of leaving the page; closing pops it. Any return to the page (bfcache, app switch) clears a stuck sheet-open state
   // so the room's dock can never be left unpressable.
-  const openSheet = useCallback((next) => { try { history.pushState({ gpSheet: true }, ''); } catch { /* ignore */ } setSheet(next); }, []);
+  const openSheet = useCallback((next) => { try { history.pushState({ ...(history.state || {}), gpSheet: true }, ''); } catch { /* ignore */ } setSheet(next); }, []);
   const closeSheet = useCallback(() => {
     if (typeof history !== 'undefined' && history.state && history.state.gpSheet) { history.back(); return; }
     setSheet(null);
