@@ -15,6 +15,7 @@ const navLinks = [
   { name: 'News', href: '/news' },
   { name: 'Trade-In', href: '/trade-in' },
   { name: 'Showroom', href: '/contact' },
+  { name: 'Training Center', href: '/growth-partner' },
   { name: 'About', href: '/about' },
 ];
 

@@ -5,14 +5,15 @@ import { TRACKS, PARTNERS, REELS, PHOTOS, LIVE, CHAPTERS } from '@/data/growth';
 import { JDEV, JDEV_MODULES } from '@/data/jdev';
 import { PRIVACY } from '@/data/ffcmodules';
 import { TRACK_MODULES } from '@/data/trackmodules';
-import { KB, MANIFESTO, SAMPLE_BOARD, ABOUT, WHERE } from '@/data/community';
+import { KB, GUIDELINES, SAMPLE_BOARD, ABOUT, WHERE } from '@/data/community';
 import { applySpeaker } from '@/actions/speaker';
 import GpSky, { ThemeSwitch } from './GpSky';
 import GpSheet, { ModuleList } from './GpSheet';
+import { GlassSheet, PrivacySheet } from './FfcSheets';
 import { TokenRow, NetworkMap, MarketCapChart, TradingCharts, EcosystemGraph } from './JdevVisuals';
 import { reserveSeat } from '@/actions/growth';
 import GoogleEmailButton from '../spin/GoogleEmailButton';
-import { AppleMark, AndroidMark, WindowsMark } from '../spin/brandMarks';
+import { AppleMark, AndroidMark, WindowsMark, FacebookMark, MessengerMark } from '../spin/brandMarks';
 
 const MESSENGER = 'https://m.me/dentasource';
 const FB = 'https://facebook.com/dentasource';
@@ -40,16 +41,6 @@ function Reel({ r, wide }) {
     <div className={`tile ${wide ? 'wide' : ''}`}>
       <video ref={v} src={r.src} poster={r.poster} muted loop playsInline preload="metadata" />
       <div className="cap">{r.cap}</div>
-    </div>
-  );
-}
-
-function Person({ p, bio }) {
-  return (
-    <div className="person">
-      {p.photo ? <img className="face" src={p.photo} alt={p.name} /> : <span className="mono" aria-hidden>{p.initials}</span>}
-      <b>{p.name}</b><small>{p.role}</small>
-      {bio ? <p>{p.bio}</p> : null}
     </div>
   );
 }
@@ -129,7 +120,7 @@ export default function GrowthPartner({ news = [] }) {
             <span className="pill"><img src="/images/brand/roson-logo-final.png" alt="ROSON" /></span>
             <img className="logo-bare denjoy" src="/images/brand/denjoy-logo-final.png" alt="Denjoy" />
             <img className="logo-bare ortho" src="/gp/logos/orthostrategy-clear.png" alt="Orthostrategy Study Group" />
-            <img className="logo-bare crest" src="/gp/logos/crest-clear.png" alt="Crest Study Group" />
+            <img className="logo-bare crest" src="/gp/logos/cred-creststudy-round.png" alt="Crest Study Group" />
           </div>
         </div>
       </section>
@@ -255,8 +246,9 @@ export default function GrowthPartner({ news = [] }) {
 
       <section className="gp-sec" id="teach-with-us">
         <p className="gp-kicker rv">Teach with us</p>
-        <h2 className="gp-h2 rv">A community of learners. <span className="gp-gold">Not an audience.</span></h2>
-        <ul className="creed rv">{MANIFESTO.map((l) => <li key={l}>{l}</li>)}</ul>
+        <h2 className="gp-h2 rv">A community of learners. <span className="gp-gold">Not entertainers.</span></h2>
+        <p className="gp-lead rv">Speakers, partners and members learn side by side. Education first, evidence always, no politics. Read the guidelines before you ask to teach.</p>
+        <button type="button" className="about-door rv" aria-haspopup="dialog" onClick={() => setSheet({ kind: 'rules' })}>✦ Community guidelines</button>
         {spoke ? (
           <div className="thanks rv in">
             <p className="gp-kicker">Received</p>
@@ -284,13 +276,8 @@ export default function GrowthPartner({ news = [] }) {
         )}
       </section>
 
-      <section className="gp-sec" id="about">
-        <p className="gp-kicker rv">{ABOUT.kicker}</p>
-        <h2 className="gp-h2 rv">{ABOUT.title}</h2>
-        <div className="about-card rv">
-          <div className="people">{ABOUT.people.map((p) => <Person key={p.name} p={p} />)}</div>
-          <div className="gp-doors"><button type="button" className="gp-btn ghost" aria-haspopup="dialog" onClick={() => setSheet({ kind: 'about' })}>About us</button></div>
-        </div>
+      <section className="gp-sec" id="about" style={{ paddingTop: 0, textAlign: 'center' }}>
+        <button type="button" className="about-door rv" aria-haspopup="dialog" onClick={() => setSheet({ kind: 'about' })}>✦ About us</button>
       </section>
 
       <section className="gp-sec" id="reserve">
@@ -346,7 +333,11 @@ export default function GrowthPartner({ news = [] }) {
       ) : null}
 
       <footer className="gp-foot">
-        <div className="gp-doors"><a className="gp-btn ghost" href={MESSENGER}>Message us</a><a className="gp-btn ghost" href={FB}>Facebook</a><a className="gp-btn ghost" href="/dentalchairs">ROSON Dental Chairs</a><button type="button" className="gp-btn ghost" onClick={() => setSheet({ kind: 'privacy' })}>How we handle your details</button></div>
+        <div className="gp-doors">
+          <a className="brand-pill messenger" href={MESSENGER} target="_blank" rel="noopener"><MessengerMark size={22} />Message us</a>
+          <a className="brand-pill facebook" href={FB} target="_blank" rel="noopener"><FacebookMark size={22} />Facebook</a>
+          <a className="brand-pill roson" href="/dentalchairs"><img src="/images/brand/roson-logo-final.png" alt="" />ROSON Dental Chairs</a>
+        </div>
         <p style={{ marginTop: 16 }}>DentaSource Direct · Pasig, Metro Manila · dentasourcedirect.com</p>
       </footer>
     </main>
@@ -379,19 +370,31 @@ export default function GrowthPartner({ news = [] }) {
       ) : null}
     </GpSheet>
 
-    <GpSheet open={sheet?.kind === 'about'} onClose={closeSheet} kicker={ABOUT.kicker} title={ABOUT.title}>
-      <div className="about-sheet">
-        {ABOUT.paras.map((p) => <p key={p}>{p}</p>)}
-        <div className="people">{ABOUT.people.map((p) => <Person key={p.name} p={p} bio />)}</div>
-      </div>
-    </GpSheet>
+    <GlassSheet open={sheet?.kind === 'about'} onClose={closeSheet} label="About DentaSource Direct">
+      <img className="as-logo" src={ABOUT.logo} alt="" decoding="async" />
+      <div className="as-kicker">{ABOUT.kicker}</div>
+      <h3 className="as-head">{ABOUT.head}</h3>
+      {ABOUT.paras.map((t) => <p key={t} className="as-p">{t}</p>)}
+      <div className="as-kicker">{ABOUT.pillarsKicker}</div>
+      {ABOUT.pillars.map((pl) => pl.href
+        ? <a key={pl.name} className="as-pillar as-pillar-link" href={pl.href} target="_blank" rel="noopener"><img className="as-face" src={pl.logo} alt="" decoding="async" /><span><b>{pl.name}</b>{pl.text}</span></a>
+        : <div key={pl.name} className="as-pillar"><img className="as-face" src={pl.logo} alt="" decoding="async" /><span><b>{pl.name}</b>{pl.text}</span></div>)}
+      <div className="as-kicker">{ABOUT.peopleKicker}</div>
+      {ABOUT.people.map((pp) => <div key={pp.name} className="as-pillar"><img className="as-face as-face-person" src={pp.photo} alt={pp.name} decoding="async" /><span><b>{pp.name} · {pp.role}</b>{pp.bio}</span></div>)}
+      <a className="about-door as-join" href="#reserve" onClick={closeSheet}>✦ Reserve my seat</a>
+    </GlassSheet>
 
-    <GpSheet open={sheet?.kind === 'privacy'} onClose={closeSheet} kicker="Your privacy" title="How we handle your details">
-      <div className="pv-sheet">
-        <p className="gp-sheet-lead">{PRIVACY.lead}</p>
-        <div className="privacy">{PRIVACY.items.map((it) => <div key={it.title}><h4>{it.title}</h4><p>{it.text}</p></div>)}</div>
-      </div>
-    </GpSheet>
+    <GlassSheet open={sheet?.kind === 'rules'} onClose={closeSheet} label="Community guidelines">
+      <img className="as-logo" src={ABOUT.logo} alt="" decoding="async" />
+      <div className="as-kicker">{GUIDELINES.kicker}</div>
+      <h3 className="as-head">{GUIDELINES.head}</h3>
+      <p className="as-p">{GUIDELINES.lead}</p>
+      {GUIDELINES.items.map((g) => <div key={g.title} className="as-rule"><b>{g.title}</b><p>{g.text}</p></div>)}
+      <p className="as-foot">{GUIDELINES.foot}</p>
+      <a className="about-door as-join" href="#teach-with-us" onClick={closeSheet}>✦ Ask to teach with us</a>
+    </GlassSheet>
+
+    <PrivacySheet open={sheet?.kind === 'privacy'} onClose={closeSheet} privacy={PRIVACY} crest={ABOUT.logo} title="How we handle your details" foot="DentaSource Direct · Data Privacy Notice · version 1 · September 2026" />
     </>
   );
 }

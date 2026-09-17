@@ -363,3 +363,80 @@ html[data-theme="light"] .pv-i { color: #6f5a1e; }
 .pv-sheet .privacy { margin-top: 16px; grid-template-columns: 1fr; }
 .pv-sheet .privacy p { color: inherit; opacity: 0.8; }
 .pv-sheet .privacy h4 { color: inherit; }
+
+/* ───────── round 5 (2026-09-17): white header, FFC about/guidelines/privacy sheets 1:1, door pills, brand pills ───────── */
+/* header: white like dentasourcedirect.com, original lockup in both themes */
+.gp-top, html[data-theme="light"] .gp-top { background: rgba(255, 255, 255, 0.96); border-bottom: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); }
+.gp-brand .lockup-dark { display: none !important; } .gp-brand .lockup-light { display: block !important; }
+.gp-brand .lockup { height: 44px; }
+@media (max-width: 400px) { .gp-brand .lockup { height: 38px; } }
+.gp-brand .wm-tc { color: #1a3c34; }
+.gp-theme, html[data-theme="light"] .gp-theme { background: #f3f4f6; color: #1a3c34; border-color: rgba(0, 0, 0, 0.12); }
+.gp-top .gp-btn { background: #1a3c34; color: #fff; animation: none; box-shadow: none; }
+.gp-top .gp-btn:hover { background: #234e44; }
+
+/* hero: crest as its round mark; partners: orthostrategy bare (no white plate) */
+.gp-logos .logo-bare.crest { height: 48px; width: 48px; border-radius: 50%; }
+@media (min-width: 640px) { .gp-logos .logo-bare.crest { height: 58px; width: 58px; } }
+.partner img.bare { background: none; padding: 0; border-radius: 8px; }
+
+/* the door pill, 1:1 ffcdentalclinic.com #about-door */
+.about-door { display: block; width: max-content; margin: clamp(14px, 2.4vh, 24px) auto 0; font: 700 11.5px/1 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #f0d98a; background: rgba(16, 12, 8, 0.55); border: 1px solid rgba(216, 178, 74, 0.65); border-radius: 999px; padding: 11px 22px; cursor: pointer; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: 0 0 22px rgba(216, 178, 74, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.12); }
+html[data-theme="light"] .about-door { color: #6b5a2e; background: rgba(255, 252, 244, 0.6); border-color: rgba(184, 147, 46, 0.5); }
+.about-door.as-join { margin: 28px auto 6px; padding: 14px 28px; font-size: 12px; text-decoration: none; }
+
+/* the FFC about sheet: bs-card glass + as-* */
+.ffc-as { position: fixed; inset: 0; z-index: 11500; display: flex; align-items: center; justify-content: center; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; --serif: Georgia, "Times New Roman", "Iowan Old Style", serif; --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+.ffc-as .as-scrim { position: absolute; inset: 0; background: rgba(3, 5, 10, 0.55); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.ffc-as .bs-card { position: relative; z-index: 1; width: min(560px, calc(100vw - 24px)); max-height: 82vh; margin-bottom: max(14px, env(safe-area-inset-bottom)); border-radius: 26px; color: #f2ead2; background: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03) 38%, rgba(216, 178, 74, 0.05)), rgba(13, 17, 30, 0.96); border: 1px solid rgba(216, 178, 74, 0.45); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 0 44px rgba(216, 178, 74, 0.10), 0 24px 70px rgba(0, 0, 0, 0.5); overflow: hidden; padding: 0; text-align: center; }
+html[data-theme="light"] .ffc-as .bs-card { color: #22314f; background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.26) 40%, rgba(216, 178, 74, 0.10)), rgba(250, 246, 236, 0.96); border-color: rgba(184, 147, 46, 0.55); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 0 44px rgba(216, 178, 74, 0.14), 0 24px 70px rgba(31, 41, 66, 0.28); }
+.ffc-as .as-scroll { overflow-y: auto; max-height: 82vh; padding: 26px 24px 24px; overscroll-behavior: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.ffc-as .as-scroll::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.ffc-as .as-x { position: absolute; right: 12px; top: 12px; z-index: 2; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.08); color: inherit; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.ffc-as .as-logo { display: block; width: 84px; height: 84px; margin: 2px auto 12px; border-radius: 50%; }
+.ffc-as .as-kicker { font: 700 10px/1 var(--sans); letter-spacing: 0.2em; text-transform: uppercase; color: #c9a227; margin: 18px 0 8px; }
+.ffc-as .as-head { font-family: var(--serif); font-weight: 500; font-size: clamp(22px, 5.4vw, 30px); line-height: 1.2; margin: 0 0 12px; white-space: pre-line; }
+.ffc-as .as-p { font-size: 13.5px; line-height: 1.65; margin: 0 0 10px; text-align: left; opacity: 0.92; }
+.ffc-as .as-pillar { display: flex; align-items: center; gap: 12px; text-align: left; font-size: 12.5px; line-height: 1.55; opacity: 0.9; padding: 9px 0; border-bottom: 1px solid rgba(201, 162, 39, 0.18); color: inherit; text-decoration: none; }
+.ffc-as .as-pillar b { display: block; font-family: var(--serif); font-size: 15px; margin-bottom: 2px; opacity: 1; font-weight: 500; }
+.ffc-as .as-face { width: 46px; height: 46px; flex: none; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1px rgba(201, 162, 39, 0.35); }
+.ffc-as .as-face-person { width: 54px; height: 54px; border: 1px solid rgba(216, 178, 74, 0.75); box-shadow: 0 0 0 3px rgba(16, 12, 8, 0.35), 0 8px 20px rgba(0, 0, 0, 0.45); }
+html[data-theme="light"] .ffc-as .as-face-person { box-shadow: 0 0 0 3px rgba(255, 252, 244, 0.6), 0 8px 20px rgba(19, 35, 63, 0.22); }
+.ffc-as .as-rule { display: grid; gap: 4px; text-align: left; padding: 10px 0; border-bottom: 1px solid rgba(201, 162, 39, 0.18); }
+.ffc-as .as-rule b { font-family: var(--serif); font-weight: 500; font-size: 15px; }
+.ffc-as .as-rule p { margin: 0; font-size: 13px; line-height: 1.55; opacity: 0.88; }
+.ffc-as .as-foot { margin-top: 14px; font-size: 11px; letter-spacing: 0.04em; opacity: 0.7; }
+
+/* the FFC /careers privacy sheet, 1:1 (pv-*), with the tokens the careers page uses */
+.ffc-pv { position: fixed; inset: 0; z-index: 12000; display: flex; align-items: center; justify-content: center; padding: 16px; --pane: rgba(14, 19, 32, 0.42); --pane-line: rgba(216, 178, 74, 0.32); --gold-deep: #e6c76a; --gold: #d8b24d; --ink: #f1ece1; --slate: #a7b2c9; --field: rgba(10, 15, 28, 0.55); --serif: Georgia, "Times New Roman", "Iowan Old Style", serif; --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); font-family: var(--sans); }
+html[data-theme="light"] .ffc-pv { --pane: rgba(255, 255, 255, 0.62); --pane-line: rgba(184, 147, 46, 0.38); --gold-deep: #9a7b1e; --gold: #b8932e; --ink: #13233f; --slate: #5a6781; --field: rgba(255, 255, 255, 0.78); }
+.ffc-pv .pv-scrim { position: absolute; inset: 0; background: rgba(6, 9, 18, 0.45); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.ffc-pv .pv-card { position: relative; width: min(560px, 100%); max-height: 86vh; border-radius: 22px; border: 1px solid var(--pane-line); background: rgba(12, 17, 30, 0.82); -webkit-backdrop-filter: blur(22px) saturate(1.5); backdrop-filter: blur(22px) saturate(1.5); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 30px 80px rgba(0, 0, 0, 0.45); overflow: hidden; }
+html[data-theme="light"] .ffc-pv .pv-card { background: rgba(255, 252, 246, 0.92); }
+.ffc-pv .pv-scroll { overflow-y: auto; max-height: 86vh; padding: 26px 22px calc(24px + env(safe-area-inset-bottom, 0px)); scrollbar-width: none; }
+.ffc-pv .pv-scroll::-webkit-scrollbar { display: none; }
+.ffc-pv .pv-x { position: absolute; right: 12px; top: 12px; z-index: 2; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--pane-line); background: var(--field); color: var(--ink); font-size: 14px; cursor: pointer; }
+.ffc-pv .pv-crest { display: block; width: 58px; height: auto; margin: 0 auto 8px; border-radius: 50%; }
+html[data-theme="light"] .ffc-pv .pv-crest { mix-blend-mode: multiply; }
+.ffc-pv .pv-kicker { font: 700 10px/1 var(--sans); letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-deep); text-align: center; margin-bottom: 8px; }
+.ffc-pv .pv-title { font-family: var(--serif); font-weight: 500; font-size: clamp(21px, 5.2vw, 26px); line-height: 1.2; text-align: center; margin: 0; }
+.ffc-pv .pv-lead { text-align: center; font-size: 13.5px; line-height: 1.5; color: var(--slate); margin: 8px 0 14px; }
+.ffc-pv .pv-sec { padding: 11px 0; border-top: 1px solid rgba(184, 147, 46, 0.18); }
+.ffc-pv .pv-sec h3 { font-family: var(--serif); font-weight: 500; font-size: 16px; margin: 0 0 4px; }
+.ffc-pv .pv-sec p { font-size: 13.5px; line-height: 1.55; color: var(--slate); margin: 0; }
+.ffc-pv .pv-foot { margin-top: 12px; text-align: center; font-size: 11px; letter-spacing: 0.04em; color: var(--slate); }
+.ffc-btn { display: block; width: 100%; margin-top: 22px; font: 700 13px/1 var(--sans); letter-spacing: 0.14em; text-transform: uppercase; color: #f0d98a; background: linear-gradient(160deg, rgba(19, 35, 63, 0.92), rgba(19, 35, 63, 0.78)); border: 1px solid rgba(216, 178, 74, 0.7); border-radius: 999px; padding: 16px 22px; cursor: pointer; transition: transform 0.15s, opacity 0.2s; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12); }
+.ffc-btn.pv-ok { margin-top: 14px; }
+/* the (i), 1:1 careers: 22px, serif italic */
+.pv-i { width: 22px; height: 22px; margin-top: 2px; border: 1px solid rgba(216, 178, 74, 0.32); background: transparent; color: #e6c76a; font: italic 700 12px/20px Georgia, "Times New Roman", serif; }
+html[data-theme="light"] .pv-i { border-color: rgba(184, 147, 46, 0.38); color: #9a7b1e; }
+.pv-i:hover, .pv-i:focus-visible { border-color: #d8b24d; box-shadow: 0 0 0 2px rgba(184, 147, 46, 0.25); outline: none; }
+
+/* footer pills coloured for where they lead, with their marks */
+.gp-foot .gp-doors { gap: 12px; }
+.brand-pill { display: inline-flex; align-items: center; gap: 9px; height: 48px; padding: 0 20px 0 14px; border-radius: 999px; font-weight: 800; font-size: 14px; letter-spacing: 0.02em; text-decoration: none; border: 0; }
+.brand-pill svg, .brand-pill img { flex: none; display: block; }
+.brand-pill.messenger { color: #fff; background: linear-gradient(135deg, #00b2ff 0%, #006aff 45%, #a033ff 100%); box-shadow: 0 10px 24px -12px rgba(0, 106, 255, 0.7); }
+.brand-pill.facebook { color: #fff; background: #1877f2; box-shadow: 0 10px 24px -12px rgba(24, 119, 242, 0.7); }
+.brand-pill.roson { color: #14192b; background: #fff; border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.35); }
+.brand-pill.roson img { height: 22px; width: auto; }
