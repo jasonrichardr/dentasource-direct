@@ -8,13 +8,17 @@ import { articleGraph } from '@/lib/schemas/article';
 import FocusMusic from './FocusMusic';
 import ArticleMarbles from './ArticleMarbles';
 import styles from './page.module.css';
+import { NadtiSpeakerCard, NadtiSchedule } from './NadtiCards';
 
-// Inline grammar shared by paragraphs and avatar rows: **bold** and [text](url).
+// Inline grammar shared by paragraphs and avatar rows: **bold**, ==highlight== and [text](url).
 function renderInline(text) {
-    const parts = text.split(/(\*\*.*?\*\*|\[[^\]]+\]\([^)]+\))/g);
+    const parts = text.split(/(\*\*.*?\*\*|==.*?==|\[[^\]]+\]\([^)]+\))/g);
     return parts.map((part, i) => {
         if (part.startsWith('**') && part.endsWith('**')) {
             return <strong key={i}>{part.slice(2, -2)}</strong>;
+        }
+        if (part.startsWith('==') && part.endsWith('==') && part.length > 4) {
+            return <mark key={i} className={styles.mark}>{part.slice(2, -2)}</mark>;
         }
         const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
         if (linkMatch) {
@@ -215,6 +219,15 @@ export default function ArticleContent({ article }) {
                                     </a>
                                 </div>
                             );
+                        }
+                        // NADTI 2026 blocks: @speaker(id) renders a speaker card with calendar buttons,
+                        // @schedule renders the three-day programme with one button per lecture.
+                        const speakerMatch = trimmed.match(/^@speaker\(([a-z0-9-]+)\)$/);
+                        if (speakerMatch) {
+                            return <NadtiSpeakerCard key={idx} id={speakerMatch[1]} />;
+                        }
+                        if (trimmed === '@schedule') {
+                            return <NadtiSchedule key={idx} />;
                         }
                         // An avatar row: a paragraph that starts with @avatar(src) renders a small round
                         // portrait beside the text — used for schedules and speaker lists.
