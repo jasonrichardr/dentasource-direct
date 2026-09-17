@@ -322,3 +322,21 @@
 .gifts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .gifts li { display: grid; gap: 6px; justify-items: center; padding: 8px 6px 10px; border-radius: 14px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); font-size: 13px; font-weight: 700; text-align: center; }
 .gifts img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.9); }
+
+/* Grand Prize tap + sheet marquee (2026-09-17) */
+.podium-row.tappable { padding: 0; }
+.podium-btn { all: unset; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; width: 100%; box-sizing: border-box; padding: 12px 14px; cursor: pointer; color: inherit; }
+.podium-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 16px; }
+.p-go { font-size: 28px; color: #fde68a; line-height: 1; }
+.credits-sheet .credits-title { background: linear-gradient(90deg, #fff3b0, #d4af37); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 28px; }
+.marquee { position: relative; overflow: hidden; margin: 8px -18px; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.marquee-track { display: flex; gap: 8px; width: max-content; animation: mq 48s linear infinite; }
+.marquee.reverse .marquee-track { animation-direction: reverse; animation-duration: 60s; }
+@keyframes mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.mq-item { margin: 0; flex: none; width: 128px; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid rgba(255, 255, 255, 0.1); }
+.mq-item img, .mq-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.marquee.reverse .mq-item { width: 150px; aspect-ratio: 4 / 3; }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } .marquee { overflow-x: auto; } }
+.credits-facts { list-style: none; margin: 10px 0 12px; padding: 0; display: grid; gap: 6px; }
+.credits-facts li { display: grid; grid-template-columns: 52px 1fr; gap: 8px; font-size: 13px; color: rgba(245, 245, 247, 0.78); line-height: 1.35; }
+.credits-facts b { color: var(--gold); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding-top: 2px; }

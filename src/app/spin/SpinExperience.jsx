@@ -8,6 +8,7 @@ import { submitSpin, respin, enterRehearsal, lookupClinic, linkClinicSocial, loo
 import ClinicLinkPanel from './ClinicLinkPanel';
 import GoogleEmailButton from './GoogleEmailButton';
 import OffersSheet from './OffersSheet';
+import CreditsSheet from './CreditsSheet';
 import { GoogleMapsMark, FacebookMark, TikTokMark, MessengerMark } from './brandMarks';
 import PreEvent, { loadReserved, saveReserved, clearReserved } from './PreEvent';
 import LoungeRoom from './LoungeRoom';
@@ -98,6 +99,7 @@ export default function SpinExperience({ status, rehearsal }) {
   const [fromGoogle, setFromGoogle] = useState(false);
   const [qrUrl, setQrUrl] = useState('');
   const [offer, setOffer] = useState(null); // track id when the Training Center sheet is open
+  const [credits, setCredits] = useState(false); // Grand Prize sheet
 
   // Prize QR: generated on the phone from the signed token the server returned.
   useEffect(() => {
@@ -261,6 +263,7 @@ export default function SpinExperience({ status, rehearsal }) {
     <main className={`spin-root phase-${phase}`}>
       <Stage burst={burst} big={prize?.kind === 'credits' || prize?.kind === 'discount'} />
       <OffersSheet open={!!offer} focus={offer} onClose={() => setOffer(null)} />
+      <CreditsSheet open={credits} onClose={() => setCredits(false)} />
       {rehearsal ? <div className="rehearsal-badge">Rehearsal mode. Spins are tagged TEST.</div> : null}
 
       <header className="spin-head">
@@ -287,7 +290,7 @@ export default function SpinExperience({ status, rehearsal }) {
       <AnimatePresence mode="wait">
         {phase === 'closed' && !askPin && (
           <motion.div key="closed" className="pre-stack" {...fade}>
-            <PreEvent onOpen={() => { if (!forceClosed) router.refresh(); }} doors={<Doors />} />
+            <PreEvent onOpen={() => { if (!forceClosed) router.refresh(); }} doors={<Doors />} onCredits={() => setCredits(true)} />
           </motion.div>
         )}
 

@@ -61,16 +61,26 @@ const PODIUM = {
 };
 const GIFT_IMG = { fogfree: '/images/spin/fogfree.jpg', ballpen: '/images/spin/ballpen.jpg', ecobag: '/images/spin/ecobag.jpg' };
 
-export function PrizeList() {
+export function PrizeList({ onCredits }) {
   const podium = PRIZES.filter((p) => PODIUM[p.id]);
   const gifts = PRIZES.filter((p) => p.kind === 'gift');
   return (
     <div className="prizes" aria-label="What you can win">
       <ul className="podium">
-        {podium.map((p) => { const d = PODIUM[p.id]; return (
-          <li key={p.id} className={`podium-row ${d.cls}`}>
-            <span className="badge">{d.badge}</span>
-            <span className="p-body"><b className="p-title">{d.title}</b><small>{d.sub}</small></span>
+        {podium.map((p) => { const d = PODIUM[p.id]; const tap = p.id === 'credits30k' && onCredits; return (
+          <li key={p.id} className={`podium-row ${d.cls} ${tap ? 'tappable' : ''}`}>
+            {tap ? (
+              <button type="button" className="podium-btn" onClick={onCredits} aria-label="See what ₱30,000 Training Credits buys">
+                <span className="badge">{d.badge}</span>
+                <span className="p-body"><b className="p-title">{d.title}</b><small>{d.sub} · tap to see</small></span>
+                <span className="p-go" aria-hidden>›</span>
+              </button>
+            ) : (
+              <>
+                <span className="badge">{d.badge}</span>
+                <span className="p-body"><b className="p-title">{d.title}</b><small>{d.sub}</small></span>
+              </>
+            )}
             <span className="p-shine" aria-hidden />
           </li>
         ); })}
@@ -208,7 +218,7 @@ export function PreRegisterForm({ onReserved, onOpen }) {
   );
 }
 
-export default function PreEvent({ onOpen, doors }) {
+export default function PreEvent({ onOpen, doors, onCredits }) {
   const [reserved, setReserved] = useState(null);
   useEffect(() => { setReserved(loadReserved()); }, []);
   const reset = () => { clearReserved(); setReserved(null); };
@@ -223,7 +233,7 @@ export default function PreEvent({ onOpen, doors }) {
       <section className="card pre-card">
         <p className="eyebrow">What you can win</p>
         <p className="lede" style={{ marginTop: 6 }}>Every spin wins something. Prizes are claimed at the booth.</p>
-        <PrizeList />
+        <PrizeList onCredits={onCredits} />
         {reserved ? <ReservedCard r={reserved} onReset={reset} /> : <PreRegisterForm onReserved={setReserved} onOpen={onOpen} />}
       </section>
       <section className="card">{doors}</section>
