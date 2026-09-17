@@ -109,6 +109,14 @@
     border-radius: 14px;
 }
 
+.mark {
+    background: linear-gradient(180deg, transparent 55%, #ffe66d 55%);
+    color: inherit;
+    padding: 0 0.12em;
+    border-radius: 3px;
+    font-weight: 700;
+}
+
 /* Avatar rows: small round portrait beside a paragraph (schedules, speaker lists) */
 .avatarRow {
     display: flex;
