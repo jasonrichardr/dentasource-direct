@@ -48,6 +48,23 @@ function Reel({ r, wide }) {
   );
 }
 
+// One face at a time, big, crossfading (round 9: "play their avatar as marquee so they see one at a time").
+function FaceLoop({ people, every = 2600 }) {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    if (people.length < 2) return undefined;
+    const id = setInterval(() => setI((k) => (k + 1) % people.length), every);
+    return () => clearInterval(id);
+  }, [people.length, every]);
+  const d = people[i];
+  return (
+    <div className="faceloop" aria-label={people.map((x) => x.name).join(', ')}>
+      <div className="faceloop-stack">{people.map((x, k) => <img key={x.name} src={x.photo} alt={x.name} decoding="async" className={k === i ? 'on' : ''} />)}</div>
+      <span key={d.name} className="faceloop-name"><b>{d.name}</b><small>{d.title}</small></span>
+    </div>
+  );
+}
+
 function PrivacyButton({ onOpen }) {
   return <button type="button" className="pv-i" aria-label="How we handle your details" aria-haspopup="dialog" onClick={onOpen}>i</button>;
 }
@@ -181,7 +198,7 @@ export default function GrowthPartner({ news = [] }) {
                 <p>{t.promise}</p>
                 <p><em>{t.leave}</em></p>
                 {t.with ? <div className="with"><span>with</span><img src={t.with.logo} alt={t.with.name} /><span>{t.with.name}</span></div> : null}
-                {t.people?.length ? <div className="faces">{t.people.map((d) => <img key={d.name} src={d.photo} alt={d.name} title={`${d.name} · ${d.title}`} decoding="async" />)}<span>{t.people.length === 1 ? t.people[0].name : `${t.people[0].name} and team`}</span></div> : null}
+                {t.people?.length ? <FaceLoop people={t.people} /> : null}
                 {t.platforms ? <div className="plat"><span><AppleMark size={14} />Mac</span><span><WindowsMark size={14} />Windows</span><span><AppleMark size={14} />iOS</span><span><AndroidMark size={14} />Android</span></div> : null}
                 <span className="open">{TRACK_MODULES[t.id]?.modules.length || 0} modules</span>
               </div>
@@ -225,7 +242,7 @@ export default function GrowthPartner({ news = [] }) {
                 {[...c.photos, ...c.photos].map((ph, i) => <figure key={`${ph.src}-${i}`} className="mq-item"><img src={ph.src} alt={ph.cap || ''} loading={i < 8 ? 'eager' : 'lazy'} decoding="async" /></figure>)}
               </div></div>
             ) : null}
-            <p className="courtesy">Photos and video courtesy of <a href={c.fb} target="_blank" rel="noopener">{c.name}</a>.</p>
+            {c.videos?.length || c.photos?.length ? <p className="courtesy">Photos and video courtesy of <a href={c.fb} target="_blank" rel="noopener">{c.name}</a>.</p> : <p className="courtesy"><a href={c.fb} target="_blank" rel="noopener">{c.name}</a></p>}
           </article>
         ))}
       </section>
@@ -323,7 +340,7 @@ export default function GrowthPartner({ news = [] }) {
             <label className="gp-field"><span>Mobile number</span><input name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="0917 123 4567" required />{errors.phone ? <p className="gp-err">{errors.phone}</p> : null}</label>
             <div className="gp-field"><span>Courses you want</span>
               <div className="course-pick">
-                {TRACKS.map((t) => <label key={t.id} className="cp"><input type="checkbox" name={`track_${t.id}`} /><img src={t.icon} alt="" className={t.plate ? 'plate' : ''} /><span>{t.label}</span><i aria-hidden>✓</i></label>)}
+                {TRACKS.map((t) => <label key={t.id} className="cp"><input type="checkbox" name={`track_${t.id}`} /><img src={t.people?.[0]?.photo || t.icon} alt="" className={t.people?.length ? 'face' : t.plate ? 'plate' : ''} /><span>{t.label}</span><i aria-hidden>✓</i></label>)}
                 {JDEV_MODULES.map((m) => <label key={m.id} className="cp jd"><input type="checkbox" name={`jdev_${m.id}`} /><img src="/gp/logos/cred-jdev-round.png" alt="" /><span>{m.label}</span><i aria-hidden>✓</i></label>)}
               </div>
               {errors.tracks ? <p className="gp-err">{errors.tracks}</p> : null}
@@ -371,7 +388,7 @@ export default function GrowthPartner({ news = [] }) {
     <GpSheet open={!!track} onClose={closeSheet} kicker="Course" title={track?.label}>
       {track && trackMods ? (
         <>
-          {track.with ? <p className="gp-sheet-lead" style={{ marginTop: 6 }}>with {track.with.name}</p> : null}
+          {track.with ? <p className="gp-sheet-lead with-logo" style={{ marginTop: 6 }}>with <img src={track.with.logo} alt="" /> {track.with.name}</p> : null}
           {track.people?.length ? <div className="people-row" style={{ marginTop: 12 }}>{track.people.map((d) => <div key={d.name} className="person-chip"><img src={d.photo} alt={d.name} decoding="async" /><span><b>{d.name}</b><small>{d.title}</small></span></div>)}</div> : null}
           <ModuleList lead={trackMods.lead} modules={trackMods.modules} />
           <p className="leave">{track.leave}</p>
