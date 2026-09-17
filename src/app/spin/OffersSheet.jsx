@@ -10,7 +10,8 @@ export default function OffersSheet({ open, focus, onClose }) {
     const onKey = (e) => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
-    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
+    document.documentElement.classList.add('sheet-open');
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = ''; document.documentElement.classList.remove('sheet-open'); };
   }, [open, onClose]);
   if (!open) return null;
   const first = TRACKS.find((t) => t.id === focus);
