@@ -8,7 +8,7 @@ import { submitSpin, respin, enterRehearsal, lookupClinic, linkClinicSocial, loo
 import ClinicLinkPanel from './ClinicLinkPanel';
 import GoogleEmailButton from './GoogleEmailButton';
 import OffersSheet from './OffersSheet';
-import { GoogleMapsMark, FacebookMark, InstagramMark, TikTokMark, MessengerMark } from './brandMarks';
+import { GoogleMapsMark, FacebookMark, TikTokMark, MessengerMark } from './brandMarks';
 import PreEvent, { loadReserved, saveReserved, clearReserved } from './PreEvent';
 import LoungeRoom from './LoungeRoom';
 import Wheel from './Wheel';
@@ -18,7 +18,6 @@ import { unlockAudio, winChord } from './audio';
 const STORE = 'nadti-spin-2026';
 const FB = 'https://facebook.com/dentasource';
 const MESSENGER = 'https://m.me/dentasource';
-const INSTAGRAM = 'https://instagram.com/dentasourcedirect';
 const TIKTOK = 'https://tiktok.com/@dentasourcedirect';
 const GUIDE = '/news/nadti-2026-smx-manila-complete-guide';
 
@@ -55,7 +54,6 @@ function Doors() {
       <a className="door door-news" href={GUIDE}>Read our NADTI 2026 guide</a>
       <div className="doors-social">
         <a className="door door-fb door-social" href={FB} target="_blank" rel="noopener"><span className="door-mark"><FacebookMark size={20} /></span>Facebook</a>
-        <a className="door door-ig door-social" href={INSTAGRAM} target="_blank" rel="noopener"><span className="door-mark"><InstagramMark size={20} /></span>Instagram</a>
         <a className="door door-tt door-social" href={TIKTOK} target="_blank" rel="noopener"><span className="door-mark"><TikTokMark size={20} /></span>TikTok</a>
         <a className="door door-msg door-social" href={MESSENGER} target="_blank" rel="noopener"><span className="door-mark"><MessengerMark size={20} /></span>Message us</a>
       </div>

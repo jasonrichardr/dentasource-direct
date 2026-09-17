@@ -471,6 +471,19 @@ export async function deskClaimByQr(token) {
   return claimLead(lead);
 }
 
+/** Removes ONE reserved (pre-registration) row, real or test, and its console pin if it has one. Spins can never be removed here. */
+export async function deskDeleteReserved(leadId) {
+  await requireDesk();
+  const lead = await prisma.lead.findUnique({ where: { id: String(leadId) } });
+  if (!lead || !PRE_INTERESTS.includes(lead.interest)) return { error: 'Only a reservation can be removed here.' };
+  const code = parseReserved(lead.message)?.code;
+  await prisma.lead.delete({ where: { id: lead.id } });
+  if (lead.interest === INTEREST_PRE && code && consoleKey()) {
+    try { await callConvex('mutation', 'consoleNadti:removeReserved', { key: consoleKey(), code }, { timeoutMs: 5000 }); } catch (e) { console.error('[spin] removeReserved failed:', e?.message || e); }
+  }
+  return { ok: true };
+}
+
 export async function deskDeleteTests(confirm) {
   await requireDesk();
   const count = await prisma.lead.count({ where: { interest: { in: [INTEREST_TEST, INTEREST_PRE_TEST] } } });

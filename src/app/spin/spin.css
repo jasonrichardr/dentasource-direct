@@ -162,6 +162,7 @@
 .door-mark { display: inline-flex; width: 26px; height: 26px; border-radius: 7px; background: #fff; align-items: center; justify-content: center; flex: none; }
 .doors-social { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .doors-social .door { padding: 0 8px; font-size: 14px; }
+.doors-social .door-msg { grid-column: 1 / -1; }
 
 @media (prefers-reduced-motion: reduce) {
   .led, .wheel-glow, .spin-cta, .wheel-pointer { animation: none !important; }
