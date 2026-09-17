@@ -9,6 +9,7 @@ const M = (title, points) => ({ title, points });
 export const JDEV = {
   name: 'JDev Studio',
   logo: '/images/brand/jdev-mark.png',
+  person: { name: 'Jason Richard Ramirez', title: 'Founder · JDev Studio and DentaSource Direct', photo: '/gp/people/jarich.png' },
   line: 'The studio that builds DentaSource Direct\'s software teaches what it knows: the internet of money, the discipline of reading a chart, how software gets built now, and how a clinic runs as a business.',
 };
 

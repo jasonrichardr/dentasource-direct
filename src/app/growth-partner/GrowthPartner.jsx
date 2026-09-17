@@ -60,7 +60,25 @@ export default function GrowthPartner({ news = [] }) {
   const [sErr, setSErr] = useState({});
   // one sheet at a time: { kind: 'track'|'jdev'|'about'|'privacy', id }
   const [sheet, setSheet] = useState(null);
-  const closeSheet = useCallback(() => setSheet(null), []);
+  const sheetRef = useRef(null); sheetRef.current = sheet;
+  // App-like sheets (round 6): opening pushes a history entry so the phone's back gesture closes the sheet instead
+  // of leaving the page; closing pops it. Any return to the page (bfcache, app switch) clears a stuck sheet-open state
+  // so the room's dock can never be left unpressable.
+  const openSheet = useCallback((next) => { try { history.pushState({ gpSheet: true }, ''); } catch { /* ignore */ } setSheet(next); }, []);
+  const closeSheet = useCallback(() => {
+    if (typeof history !== 'undefined' && history.state && history.state.gpSheet) { history.back(); return; }
+    setSheet(null);
+  }, []);
+  useEffect(() => {
+    const onPop = () => { if (sheetRef.current) setSheet(null); };
+    const heal = () => { if (!sheetRef.current) { const html = document.documentElement; html.classList.remove('sheet-open'); if (html.style.overflow === 'hidden' && !document.getElementById('tx-room')?.classList.contains('on')) html.style.overflow = ''; } };
+    const onShow = () => { if (sheetRef.current && !(history.state && history.state.gpSheet)) setSheet(null); heal(); };
+    window.addEventListener('popstate', onPop);
+    window.addEventListener('pageshow', onShow);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) heal(); });
+    return () => { window.removeEventListener('popstate', onPop); window.removeEventListener('pageshow', onShow); };
+  }, []);
+  const goAfterClose = (id) => (e) => { e.preventDefault(); closeSheet(); setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80); };
 
   const submitSpeaker = (e) => {
     e.preventDefault();
@@ -99,11 +117,9 @@ export default function GrowthPartner({ news = [] }) {
     <main className="gp">
       <header className="gp-top">
         <a className="gp-brand" href="/" aria-label="DentaSource Direct Training Center">
-          <img className="lockup lockup-dark" src="/images/brand/dsd-lockup-dark.png" alt="DentaSource Direct" />
-          <img className="lockup lockup-light" src="/images/brand/dsd-lockup.png" alt="" aria-hidden />
-          <span className="wm-tc">Training Center</span>
+          <img className="lockup lockup-light" src="/images/brand/logo-banner.png" alt="DentaSource Direct" />
         </a>
-        <div className="gp-top-actions"><ThemeSwitch /><a className="gp-btn" href="#reserve">Reserve my seat</a></div>
+        <div className="gp-top-actions"><ThemeSwitch /><a className="gp-btn gold" href="#reserve">Reserve my seat</a></div>
       </header>
 
       <section className="gp-hero">
@@ -111,16 +127,17 @@ export default function GrowthPartner({ news = [] }) {
         <div className="gp-hero-inner">
           <p className="gp-kicker rv">DentaSource Direct Training Center · Pasig</p>
           <h1 className="gp-h1 rv">Your growth partner <span className="gp-gold">in dentistry.</span></h1>
-          <p className="gp-lead rv">We sell the chairs, the scanners, and the x-rays. We would rather teach you to make the most of them. The Training Center sits inside the largest dental showroom in the country, so every lecture is a hands-on session and every tool is within reach.</p>
+          <p className="gp-lead rv">We sell the chairs, the scanners, and the x-rays. We would rather teach you to make the most of them. The Training Center sits inside the largest dental showroom in the Philippines, so every lecture is a hands-on session and every tool is within reach.</p>
           <div className="gp-hero-cta rv">
             <a className="gp-btn" href="#reserve">Reserve my seat</a>
-            <a className="gp-btn ghost" href="#teach">See how we teach</a>
           </div>
           <div className="gp-logos rv" aria-label="With our partners">
             <span className="pill"><img src="/images/brand/roson-logo-final.png" alt="ROSON" /></span>
             <img className="logo-bare denjoy" src="/images/brand/denjoy-logo-final.png" alt="Denjoy" />
             <img className="logo-bare ortho" src="/gp/logos/orthostrategy-clear.png" alt="Orthostrategy Study Group" />
             <img className="logo-bare crest" src="/gp/logos/cred-creststudy-round.png" alt="Crest Study Group" />
+            <img className="logo-bare round" src="/gp/logos/ffc-ring-clean.png" alt="FFC Dental Clinic" />
+            <img className="logo-bare round" src="/gp/logos/cred-jdev-round.png" alt="JDev Studio" />
           </div>
         </div>
       </section>
@@ -154,7 +171,7 @@ export default function GrowthPartner({ news = [] }) {
         <p className="gp-lead rv">You leave able to do the thing, not just describe it. Tap a track for its modules.</p>
         <div className="tracks">
           {TRACKS.map((t) => (
-            <article key={t.id} className="track rv" role="button" tabIndex={0} aria-haspopup="dialog" onClick={() => setSheet({ kind: 'track', id: t.id })} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSheet({ kind: 'track', id: t.id }); } }}>
+            <article key={t.id} className="track rv" role="button" tabIndex={0} aria-haspopup="dialog" onClick={() => openSheet({ kind: 'track', id: t.id })} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSheet({ kind: 'track', id: t.id }); } }}>
               <div className={`track-ic ${t.plate ? 'plate' : ''}`}><img src={t.icon} alt="" /></div>
               <div>
                 <h3>{t.label}</h3>
@@ -191,6 +208,7 @@ export default function GrowthPartner({ news = [] }) {
         {CHAPTERS.map((c) => (
           <article key={c.id} className="chapter rv" id={`partner-${c.id}`}>
             <div className="chapter-head"><img className={c.shape || ''} src={c.logo} alt="" /><div><h3>{c.name}</h3><small>{c.sub}</small></div></div>
+            {c.people?.length ? <div className="people-row">{c.people.map((d) => <div key={d.name} className="person-chip"><img src={d.photo} alt={d.name} decoding="async" /><span><b>{d.name}</b><small>{d.title}</small></span></div>)}</div> : null}
             <p className="chapter-body">{c.body}</p>
             <ul className="offers">{c.offers.map((o) => <li key={o}>{o}</li>)}</ul>
             {c.videos?.length ? (
@@ -212,10 +230,11 @@ export default function GrowthPartner({ news = [] }) {
         <p className="gp-kicker rv">Beyond the chair</p>
         <h2 className="gp-h2 rv">With <span className="gp-gold">JDev Studio.</span></h2>
         <div className="jdev-head rv"><img className="jdev-logo-white" src="/images/brand/jdev-logo-white.png" alt="JDev Studio" /><img className="jdev-logo-coral" src="/images/brand/jdev-logo-coral.png" alt="JDev Studio" /></div>
+        <div className="people-row rv"><div className="person-chip"><img src={JDEV.person.photo} alt={JDEV.person.name} decoding="async" /><span><b>{JDEV.person.name}</b><small>{JDEV.person.title}</small></span></div></div>
         <p className="gp-lead rv">{JDEV.line} Tap a track to open it.</p>
         <div className="jdev-grid">
           {JDEV_MODULES.map((m) => (
-            <button key={m.id} type="button" className="jdev-card rv" aria-haspopup="dialog" onClick={() => setSheet({ kind: 'jdev', id: m.id })}>
+            <button key={m.id} type="button" className="jdev-card rv" aria-haspopup="dialog" onClick={() => openSheet({ kind: 'jdev', id: m.id })}>
               <small>{m.modules.length} modules</small>
               <h3>{m.label}</h3>
               <p>{m.promise}</p>
@@ -248,7 +267,7 @@ export default function GrowthPartner({ news = [] }) {
         <p className="gp-kicker rv">Teach with us</p>
         <h2 className="gp-h2 rv">A community of learners. <span className="gp-gold">Not entertainers.</span></h2>
         <p className="gp-lead rv">Speakers, partners and members learn side by side. Education first, evidence always, no politics. Read the guidelines before you ask to teach.</p>
-        <button type="button" className="about-door rv" aria-haspopup="dialog" onClick={() => setSheet({ kind: 'rules' })}>✦ Community guidelines</button>
+        <button type="button" className="about-door rv" aria-haspopup="dialog" onClick={() => openSheet({ kind: 'rules' })}>✦ Community guidelines</button>
         {spoke ? (
           <div className="thanks rv in">
             <p className="gp-kicker">Received</p>
@@ -267,7 +286,7 @@ export default function GrowthPartner({ news = [] }) {
             {sErr.rules ? <p className="gp-err">{sErr.rules}</p> : null}
             <div className="consent-row">
               <label className="consent"><input type="checkbox" name="consent" /><span>DentaSource Direct may contact me about teaching at the Training Center.</span></label>
-              <PrivacyButton onOpen={() => setSheet({ kind: 'privacy' })} />
+              <PrivacyButton onOpen={() => openSheet({ kind: 'privacy' })} />
             </div>
             {sErr.consent ? <p className="gp-err">{sErr.consent}</p> : null}
             {sErr.form ? <p className="gp-err">{sErr.form}</p> : null}
@@ -277,7 +296,7 @@ export default function GrowthPartner({ news = [] }) {
       </section>
 
       <section className="gp-sec" id="about" style={{ paddingTop: 0, textAlign: 'center' }}>
-        <button type="button" className="about-door rv" aria-haspopup="dialog" onClick={() => setSheet({ kind: 'about' })}>✦ About us</button>
+        <button type="button" className="about-door rv" aria-haspopup="dialog" onClick={() => openSheet({ kind: 'about' })}>✦ About us</button>
       </section>
 
       <section className="gp-sec" id="reserve">
@@ -307,7 +326,7 @@ export default function GrowthPartner({ news = [] }) {
             </div>
             <div className="consent-row">
               <label className="consent"><input type="checkbox" name="consent" /><span>I agree that DentaSource Direct may contact me about the Training Center, products, and promos.</span></label>
-              <PrivacyButton onOpen={() => setSheet({ kind: 'privacy' })} />
+              <PrivacyButton onOpen={() => openSheet({ kind: 'privacy' })} />
             </div>
             {errors.consent ? <p className="gp-err">{errors.consent}</p> : null}
             {errors.form ? <p className="gp-err">{errors.form}</p> : null}
@@ -351,7 +370,7 @@ export default function GrowthPartner({ news = [] }) {
           {track.with ? <p className="gp-sheet-lead" style={{ marginTop: 6 }}>with {track.with.name}</p> : null}
           <ModuleList lead={trackMods.lead} modules={trackMods.modules} />
           <p className="leave">{track.leave}</p>
-          <div className="gp-doors" style={{ justifyContent: 'flex-start', marginTop: 18 }}><a className="gp-btn" href="#reserve" onClick={closeSheet}>Reserve my seat</a></div>
+          <div className="gp-doors" style={{ justifyContent: 'flex-start', marginTop: 18 }}><a className="gp-btn" href="#reserve" onClick={goAfterClose('reserve')}>Reserve my seat</a></div>
         </>
       ) : null}
     </GpSheet>
@@ -365,7 +384,7 @@ export default function GrowthPartner({ news = [] }) {
           {jd.id === 'trading' ? <TradingCharts /> : null}
           <ModuleList modules={jd.modules} idPrefix={`jdev-${jd.id}`} />
           <p className="leave">{jd.leave}</p>
-          <div className="gp-doors" style={{ justifyContent: 'flex-start', marginTop: 18 }}><a className="gp-btn" href="#reserve" onClick={closeSheet}>Reserve my seat</a></div>
+          <div className="gp-doors" style={{ justifyContent: 'flex-start', marginTop: 18 }}><a className="gp-btn" href="#reserve" onClick={goAfterClose('reserve')}>Reserve my seat</a></div>
         </>
       ) : null}
     </GpSheet>
@@ -381,7 +400,7 @@ export default function GrowthPartner({ news = [] }) {
         : <div key={pl.name} className="as-pillar"><img className="as-face" src={pl.logo} alt="" decoding="async" /><span><b>{pl.name}</b>{pl.text}</span></div>)}
       <div className="as-kicker">{ABOUT.peopleKicker}</div>
       {ABOUT.people.map((pp) => <div key={pp.name} className="as-pillar"><img className="as-face as-face-person" src={pp.photo} alt={pp.name} decoding="async" /><span><b>{pp.name} · {pp.role}</b>{pp.bio}</span></div>)}
-      <a className="about-door as-join" href="#reserve" onClick={closeSheet}>✦ Reserve my seat</a>
+      <a className="about-door as-join" href="#reserve" onClick={goAfterClose('reserve')}>✦ Reserve my seat</a>
     </GlassSheet>
 
     <GlassSheet open={sheet?.kind === 'rules'} onClose={closeSheet} label="Community guidelines">
@@ -391,7 +410,7 @@ export default function GrowthPartner({ news = [] }) {
       <p className="as-p">{GUIDELINES.lead}</p>
       {GUIDELINES.items.map((g) => <div key={g.title} className="as-rule"><b>{g.title}</b><p>{g.text}</p></div>)}
       <p className="as-foot">{GUIDELINES.foot}</p>
-      <a className="about-door as-join" href="#teach-with-us" onClick={closeSheet}>✦ Ask to teach with us</a>
+      <a className="about-door as-join" href="#teach-with-us" onClick={goAfterClose('teach-with-us')}>✦ Ask to teach with us</a>
     </GlassSheet>
 
     <PrivacySheet open={sheet?.kind === 'privacy'} onClose={closeSheet} privacy={PRIVACY} crest={ABOUT.logo} title="How we handle your details" foot="DentaSource Direct · Data Privacy Notice · version 1 · September 2026" />

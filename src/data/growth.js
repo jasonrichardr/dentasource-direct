@@ -68,6 +68,10 @@ export const CHAPTERS = [
     logo: '/gp/logos/cred-creststudy-round.png', shape: 'round',
     fb: 'https://www.facebook.com/profile.php?id=61554687195243',
     body: 'CREST teaches the digital chair end to end, and then the surgery that goes with it. Small batches, a station per person, and the same scanners, mills and printers you will use in your own clinic. Their digital batches run at the DentaSource Direct Training Center.',
+    people: [
+      { name: 'Dr. Pocholo Loleng', title: 'DMD · Digital dentistry', photo: '/gp/people/pocholo.png' },
+      { name: 'Dr. Najar', title: 'DMD · Oral surgery', photo: '/gp/people/najar.png' },
+    ],
     offers: [
       'CREST Digital Course: intraoral scanning, CAD-CAM design, digital sculpting and crown build-up, 3D printing and milling, stain and glazing, shade matching, smile design, treatment planning, CBCT hands-on',
       'CREST Surgery: basic oral surgery course, know, practice, perform, with supervised live sessions',
@@ -167,9 +171,12 @@ export const CHAPTERS = [
     id: 'ortho',
     name: 'Orthostrategy Study Group',
     sub: 'Essential concepts and strong fundamentals for orthodontic practitioners · Dr. Emil · Manila',
-    logo: '/gp/logos/cred-orthostrategy.png',
+    logo: '/gp/logos/orthostrategy-clear.png', shape: 'bare',
     fb: 'https://www.facebook.com/profile.php?id=61589326045030',
     body: 'A structured study group for dentists new to orthodontics, or those who want a refreshing update. Batches run in Manila, and the TADs lectures and hands-on run at the DentaSource Direct Training Center.',
+    people: [
+      { name: 'Dr. Emil Angelo D. Santos', title: 'DMD · MSD Orthodontics', photo: '/gp/people/emil.png' },
+    ],
     offers: [
       'Orthodontics Study Group, Manila batches: diagnosis, treatment planning and mechanics, taught in order',
       'Armamentarium and biomaterials: brackets, wires, what to buy and why',
