@@ -4,6 +4,7 @@ import prisma from '@/lib/prisma';
 import { normalizePhone, splitName, isValidEmail, makeCode } from '@/lib/spin/format';
 import { callConvex } from '@/lib/spin/console';
 import { TRACKS } from '@/data/growth';
+import { JDEV_MODULES } from '@/data/jdev';
 
 const INTEREST = 'Training interest 2026';
 const KEY = () => process.env.NADTI_INTAKE_KEY || '';
@@ -15,7 +16,10 @@ export async function reserveSeat(formData) {
   const email = String(formData.get('email') || '').trim().toLowerCase();
   const phone = normalizePhone(String(formData.get('phone') || ''));
   const consent = formData.get('consent') === 'on';
-  const picked = TRACKS.filter((t) => formData.get(`track_${t.id}`) === 'on').map((t) => t.label);
+  const picked = [
+    ...TRACKS.filter((t) => formData.get(`track_${t.id}`) === 'on').map((t) => t.label),
+    ...JDEV_MODULES.filter((m) => formData.get(`jdev_${m.id}`) === 'on').map((m) => `JDev: ${m.label}`),
+  ];
 
   const fields = {};
   if (name.length < 2) fields.name = 'Please enter your full name.';

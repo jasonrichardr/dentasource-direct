@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState, useTransition } from 'react';
-import { TRACKS, PARTNERS, REELS, PHOTOS } from '@/data/growth';
+import { TRACKS, PARTNERS, REELS, PHOTOS, LIVE, CHAPTERS } from '@/data/growth';
+import { JDEV, JDEV_MODULES } from '@/data/jdev';
+import GpSky, { ThemeSwitch } from './GpSky';
 import { reserveSeat } from '@/actions/growth';
 import GoogleEmailButton from '../spin/GoogleEmailButton';
 import { AppleMark, AndroidMark, WindowsMark } from '../spin/brandMarks';
@@ -67,8 +69,11 @@ export default function GrowthPartner({ news = [] }) {
   return (
     <main className="gp">
       <header className="gp-top">
-        <a className="gp-brand" href="/"><img src="/images/brand/dsd-mark.png" alt="" /><span><b>DentaSource Direct</b><small>Training Center</small></span></a>
-        <a className="gp-btn" href="#reserve">Reserve my seat</a>
+        <a className="gp-brand" href="/" aria-label="DentaSource Direct Training Center">
+          <img className="wm-mark" src="/images/brand/dsd-mark.png" alt="" />
+          <span className="wm"><span className="wm-line"><span className="wm-a">DENTA</span><span className="wm-b">SOURCE</span></span><span className="wm-c">DIRECT</span><span className="wm-tc">Training Center</span></span>
+        </a>
+        <div className="gp-top-actions"><ThemeSwitch /><a className="gp-btn" href="#reserve">Reserve my seat</a></div>
       </header>
 
       <section className="gp-hero">
@@ -85,10 +90,22 @@ export default function GrowthPartner({ news = [] }) {
             <span className="pill"><img src="/images/brand/roson-logo-final.png" alt="ROSON" /></span>
             <span className="pill"><img src="/images/brand/denjoy-logo-final.png" alt="Denjoy" /></span>
             <span className="pill"><img src="/gp/logos/cred-orthostrategy.png" alt="Orthostrategy Study Group" /></span>
-            <span className="pill"><img src="/gp/logos/cred-creststudy-round.png" alt="Crest Study Group" /></span>
+            <span className="pill round"><img src="/gp/logos/cred-creststudy-round.png" alt="Crest Study Group" /></span>
           </div>
         </div>
       </section>
+
+      {LIVE.length ? (
+        <section className="gp-sec" id="live">
+          <p className="gp-kicker rv">Live at the chair</p>
+          <h2 className="gp-h2 rv">Real hands. <span className="gp-gold">Real mouths.</span></h2>
+          <p className="gp-lead rv">Not a slide deck. This is a hands-on workshop the way we run it, scan to manufacture in a day, with the mentor beside you.</p>
+          <div className="live-grid">
+            {LIVE.map((v) => <Reel key={v.src} r={v} wide={false} />)}
+          </div>
+          <p className="credit-line rv">Filmed at the DentaSource Direct Training Center and FFC Dental Clinic, with consent. Sound is off until you tap it.</p>
+        </section>
+      ) : null}
 
       <section className="gp-sec" id="teach">
         <p className="gp-kicker rv">See how we teach</p>
@@ -129,6 +146,42 @@ export default function GrowthPartner({ news = [] }) {
             <div key={p.name} className="partner rv"><img className={p.shape} src={p.logo} alt="" /><b>{p.name}</b><small>{p.sub}</small></div>
           ))}
         </div>
+        {CHAPTERS.map((c) => (
+          <article key={c.id} className="chapter rv" id={`partner-${c.id}`}>
+            <div className="chapter-head"><img className={c.shape || ''} src={c.logo} alt="" /><div><h3>{c.name}</h3><small>{c.sub}</small></div></div>
+            <p className="chapter-body">{c.body}</p>
+            <ul className="offers">{c.offers.map((o) => <li key={o}>{o}</li>)}</ul>
+            {c.videos?.length ? (
+              <div className="marquee" aria-label={`${c.name} videos`}><div className="marquee-track">
+                {[...c.videos, ...c.videos].map((v, i) => <figure key={`${v.src}-${i}`} className="mq-item"><video src={v.src} poster={v.poster} muted loop autoPlay playsInline preload={i < 4 ? 'metadata' : 'none'} aria-label={v.cap || ''} /></figure>)}
+              </div></div>
+            ) : null}
+            {c.photos?.length ? (
+              <div className="marquee reverse" aria-label={`${c.name} photos`}><div className="marquee-track">
+                {[...c.photos, ...c.photos].map((ph, i) => <figure key={`${ph.src}-${i}`} className="mq-item"><img src={ph.src} alt={ph.cap || ''} loading={i < 8 ? 'eager' : 'lazy'} decoding="async" /></figure>)}
+              </div></div>
+            ) : null}
+            <p className="courtesy">Photos and video courtesy of <a href={c.fb} target="_blank" rel="noopener">{c.name}</a>.</p>
+          </article>
+        ))}
+      </section>
+
+      <section className="gp-sec" id="jdev">
+        <p className="gp-kicker rv">Beyond the chair</p>
+        <h2 className="gp-h2 rv">With <span className="gp-gold">JDev Studio.</span></h2>
+        <div className="jdev-head rv"><img className="jdev-logo-white" src="/images/brand/jdev-logo-white.png" alt="JDev Studio" /><img className="jdev-logo-coral" src="/images/brand/jdev-logo-coral.png" alt="JDev Studio" /></div>
+        <p className="gp-lead rv">{JDEV.line}</p>
+        <div className="jdev-mods">
+          {JDEV_MODULES.map((m) => (
+            <article key={m.id} className="jdev-mod rv">
+              <h3>{m.label}</h3>
+              <p className="promise">{m.promise}</p>
+              <ul>{m.topics.map((t) => <li key={t}>{t}</li>)}</ul>
+              <p className="leave">{m.leave}</p>
+              {m.note ? <p className="note">{m.note}</p> : null}
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="gp-sec" id="how">
@@ -163,6 +216,7 @@ export default function GrowthPartner({ news = [] }) {
             <div className="gp-field"><span>Tracks you want</span>
               <div className="chk-grid">
                 {TRACKS.map((t) => <label key={t.id} className="chk"><input type="checkbox" name={`track_${t.id}`} /><span>{t.label}</span></label>)}
+                {JDEV_MODULES.map((m) => <label key={m.id} className="chk"><input type="checkbox" name={`jdev_${m.id}`} /><span>JDev · {m.label}</span></label>)}
               </div>
               {errors.tracks ? <p className="gp-err">{errors.tracks}</p> : null}
             </div>
@@ -194,6 +248,7 @@ export default function GrowthPartner({ news = [] }) {
         <div className="gp-doors"><a className="gp-btn ghost" href={MESSENGER}>Message us</a><a className="gp-btn ghost" href={FB}>Facebook</a><a className="gp-btn ghost" href="/dentalchairs">ROSON Dental Chairs</a></div>
         <p style={{ marginTop: 16 }}>DentaSource Direct · Pasig, Metro Manila · dentasourcedirect.com</p>
       </footer>
+      <GpSky />
     </main>
   );
 }
