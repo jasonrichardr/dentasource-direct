@@ -37,8 +37,8 @@ export const JDEV_MODULES = [
     label: 'Trading: candlesticks, RSI and MACD only',
     promise: 'Three tools, one plan, no noise.',
     leave: 'You leave with a rule set you can follow on a bad day, not just a good one.',
-    lead: 'Six modules and three tools. No indicators beyond these three, on purpose: a trader who reads candles, RSI and MACD well has more than most. The charts below are drawn from one series so you can see all three tell the same story.',
-    visuals: ['candles', 'rsi', 'macd'],
+    lead: 'Seven modules and three tools. No indicators beyond these three, on purpose: a trader who reads candles, RSI and MACD well has more than most. The charts below are drawn from one series so you can see all three tell the same story.',
+    visuals: ['candles', 'rsi', 'macd', 'timeframes'],
     note: 'Education only. Nothing here is financial advice. Trade only what you can afford to lose.',
     modules: [
       M('Module 1 · Japanese candlesticks', ['Open, high, low, close: what the body and the wicks say', 'Doji, hammer, engulfing, shooting star: the dozen patterns worth knowing', 'Timeframes: the same candle on the 1 hour and the 1 day', 'Support, resistance and where candles cluster']),
@@ -47,6 +47,7 @@ export const JDEV_MODULES = [
       M('Module 4 · One written plan', ['Entry, invalidation, size, exit, before you click', 'Risk per trade as a percentage, never a feeling', 'Reward to risk and why 1:2 changes everything', 'Backtesting the plan on old charts']),
       M('Module 5 · Discipline', ['FOMO and revenge trades: recognising them in your body', 'Journaling every trade: the template', 'When not to trade: news days, tired days, angry days', 'Reviewing a month of trades honestly']),
       M('Module 6 · News, industry and time of day', ['What a headline does to a chart in the first ten minutes', 'Sessions: Asia, London, New York and volume', 'Weekends and thin books', 'Building a weekly routine']),
+      M('Module 7 · Timeframes: 1m to 1W, and the timeline as a whole', ['What one candle really is on 1m, 5m, 10m, 30m, 1h, 4h, 12h, 1D and 7D: who trades it and what it can and cannot tell you', 'Top-down reading: 1W and 1D for direction, 4h and 1h for structure, 15m and 5m only for timing the entry', 'The same event on every timeframe: a crash on 5m is a wick on 1D; where to look on each chart and what the number under it means', 'Nesting: every 1h candle holds twelve 5m candles; reading the story inside a candle instead of the candle alone', 'Choosing your timeframe by your life, not by excitement: chair time, sleep and how often you can look', 'The whole timeline: cycles on 1W, trends on 1D, swings on 4h, noise below']),
     ],
   },
   {

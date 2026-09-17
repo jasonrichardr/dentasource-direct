@@ -525,3 +525,30 @@ html[data-theme="light"] .faceloop-stack img { box-shadow: 0 0 0 3px rgba(255, 2
 .with-logo { display: flex; align-items: center; gap: 8px; }
 .with-logo img { height: 26px; width: auto; background: #fff; border-radius: 8px; padding: 2px 6px; }
 .cp img.face { border: 1.5px solid var(--gold); }
+
+/* ───────── round 10 (2026-09-18): real token marks, tap-to-open tokens and nodes, timeframe ladder ───────── */
+.eco-hub, .eco-node, .net-node { outline: none; }
+.eco-hub:focus, .eco-node:focus, .net-node:focus { outline: none; }
+.net-node { cursor: pointer; }
+.net-node circle { transition: r 0.2s ease, stroke 0.2s ease; }
+.token { cursor: pointer; font: inherit; color: inherit; transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease; }
+.token img { width: 56px; height: 56px; border-radius: 50%; }
+.token:hover { transform: translateY(-2px); border-color: var(--c); }
+.token.on { border-color: var(--c); box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 30%, transparent), 0 10px 24px -12px var(--c); }
+.token-open { margin-top: 12px; padding: 14px 16px; border-radius: 14px; border-left: 3px solid; background: rgba(255, 255, 255, 0.05); animation: face-in 0.35s ease; }
+html[data-theme="light"] .token-open { background: rgba(20, 25, 43, 0.05); }
+.token-open-head { display: flex; align-items: center; gap: 10px; }
+.token-open-head img { width: 40px; height: 40px; border-radius: 50%; }
+.token-open-head b { display: block; font-size: 16px; } .token-open-head small { display: block; opacity: 0.7; font-size: 12px; }
+.token-open p { margin: 10px 0 0; font-size: 14px; line-height: 1.5; opacity: 0.9; }
+.token-open p b { opacity: 1; }
+.eco-hub.on circle { filter: drop-shadow(0 0 10px rgba(255, 248, 226, 0.5)); }
+.tf-ladder { margin-top: 14px; display: grid; gap: 6px; }
+.tf-row { border-radius: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 0 14px; }
+html[data-theme="light"] .tf-row { background: rgba(20, 25, 43, 0.04); border-color: rgba(20, 25, 43, 0.12); }
+.tf-row summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 11px 0; }
+.tf-row summary::-webkit-details-marker { display: none; }
+.tf-row summary b { font-size: 15px; min-width: 64px; color: #c9a227; } html[data-theme="light"] .tf-row summary b { color: #9a7a1a; }
+.tf-row summary span { font-size: 13px; opacity: 0.75; flex: 1; }
+.tf-row summary::after { content: '+'; color: #c9a227; font-size: 18px; } .tf-row[open] summary::after { content: '−'; }
+.tf-row p { margin: 0 0 10px; font-size: 13.5px; line-height: 1.5; opacity: 0.88; }
