@@ -37,7 +37,7 @@ export function Countdown({ target = WINDOW_START_MS, onDone }) {
       <p className="cd-caption">The wheel opens in</p>
       <div className="countdown" role="timer" aria-live="off">
         {[['days', parts?.days], ['hours', parts?.hours], ['min', parts?.minutes], ['sec', parts?.seconds]].map(([l, n]) => (
-          <div className="cd-cell" key={l}><span className="cd-n">{n == null ? '--' : pad(n)}</span><span className="cd-l">{l}</span></div>
+          <div className={`cd-cell cd-${l}`} key={l}><span className="cd-n">{n == null ? '--' : pad(n)}</span><span className="cd-l">{l}</span></div>
         ))}
       </div>
     </div>
@@ -52,17 +52,36 @@ export function IdleWheel() {
   );
 }
 
+// The three headline prizes wear a badge (Jarich: "Grand Prize is 30,000 pesos training credit · 2nd prize 10% off on any · 3rd prize 5% off on any");
+// the gifts show their picture.
+const PODIUM = {
+  credits30k: { badge: 'Grand Prize', title: '₱30,000 Training Credits', sub: 'DentaSource Direct Training Center · selected partner clinics', cls: 'p-grand' },
+  off10: { badge: '2nd Prize', title: '10% off', sub: 'on any booth purchase or deposit', cls: 'p-second' },
+  off5: { badge: '3rd Prize', title: '5% off', sub: 'on any booth purchase or deposit', cls: 'p-third' },
+};
+const GIFT_IMG = { fogfree: '/images/spin/fogfree.jpg', ballpen: '/images/spin/ballpen.jpg', ecobag: '/images/spin/ecobag.jpg' };
+
 export function PrizeList() {
-  const rows = PRIZES.filter((p) => p.kind !== 'respin');
-  const note = { credits: 'Selected partner clinics', discount: 'Any booth purchase or deposit', gift: 'While stocks last' };
+  const podium = PRIZES.filter((p) => PODIUM[p.id]);
+  const gifts = PRIZES.filter((p) => p.kind === 'gift');
   return (
-    <ul className="prize-list" aria-label="What you can win">
-      {rows.map((p) => (
-        <li key={p.id} className={p.kind === 'credits' ? 'hi' : p.kind === 'discount' ? 'disc' : ''}>
-          <span className="prize-dot" aria-hidden /><b>{p.label}</b><small>{note[p.kind]}</small>
-        </li>
-      ))}
-    </ul>
+    <div className="prizes" aria-label="What you can win">
+      <ul className="podium">
+        {podium.map((p) => { const d = PODIUM[p.id]; return (
+          <li key={p.id} className={`podium-row ${d.cls}`}>
+            <span className="badge">{d.badge}</span>
+            <span className="p-body"><b className="p-title">{d.title}</b><small>{d.sub}</small></span>
+            <span className="p-shine" aria-hidden />
+          </li>
+        ); })}
+      </ul>
+      <p className="gifts-label">Everyone else takes one of these home</p>
+      <ul className="gifts">
+        {gifts.map((p) => (
+          <li key={p.id}><img src={GIFT_IMG[p.id]} alt="" loading="lazy" /><b>{p.label}</b></li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

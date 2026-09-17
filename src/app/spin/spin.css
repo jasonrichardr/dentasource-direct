@@ -286,3 +286,38 @@
 .phone-row .cta { width: auto; padding: 0 18px; height: 48px; align-self: end; font-size: 14px; }
 .pre-stack { position: relative; z-index: 2; width: min(100%, 420px); display: grid; gap: 18px; justify-items: center; }
 .pre-stack .card { width: 100%; }
+
+/* countdown: each cell its own colour (2026-09-17) */
+.cd-days .cd-n { color: #fde68a; text-shadow: 0 0 18px rgba(212, 175, 55, 0.6); }
+.cd-days { border-color: rgba(212, 175, 55, 0.6); }
+.cd-hours .cd-n { color: #86efac; text-shadow: 0 0 18px rgba(52, 211, 153, 0.6); }
+.cd-hours { border-color: rgba(52, 211, 153, 0.55); }
+.cd-min .cd-n { color: #7dd3fc; text-shadow: 0 0 18px rgba(56, 189, 248, 0.6); }
+.cd-min { border-color: rgba(56, 189, 248, 0.5); }
+.cd-sec .cd-n { color: #f9a8d4; text-shadow: 0 0 18px rgba(244, 114, 182, 0.6); }
+.cd-sec { border-color: rgba(244, 114, 182, 0.5); }
+
+/* the podium + gifts (2026-09-17) */
+.prizes { display: grid; gap: 10px; text-align: left; }
+.podium { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.podium-row { position: relative; overflow: hidden; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(255, 255, 255, 0.05); }
+.badge { display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #06110c; background: #e5e7eb; white-space: nowrap; }
+.p-body { display: grid; gap: 2px; min-width: 0; }
+.p-title { font-size: 22px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.05; }
+.p-body small { font-size: 12px; color: rgba(245, 245, 247, 0.6); line-height: 1.3; }
+.p-shine { position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.14) 45%, transparent 60%); transform: translateX(-120%); animation: shine 4.5s ease-in-out infinite; pointer-events: none; }
+.p-second .p-shine { animation-delay: 1.2s; } .p-third .p-shine { animation-delay: 2.4s; }
+@keyframes shine { 0%, 60%, 100% { transform: translateX(-120%); } 30% { transform: translateX(120%); } }
+.p-grand { border-color: rgba(212, 175, 55, 0.8); background: linear-gradient(135deg, rgba(212, 175, 55, 0.22), rgba(212, 175, 55, 0.06)); box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.25), 0 18px 40px -24px rgba(212, 175, 55, 0.9); }
+.p-grand .badge { background: linear-gradient(180deg, #fff3b0, #d4af37); }
+.p-grand .p-title { font-size: 26px; background: linear-gradient(90deg, #fff3b0, #d4af37); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.p-second { border-color: rgba(52, 211, 153, 0.6); background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.05)); }
+.p-second .badge { background: linear-gradient(180deg, #d1fae5, #6ee7b7); }
+.p-second .p-title { color: #86efac; text-shadow: 0 0 18px rgba(52, 211, 153, 0.5); }
+.p-third { border-color: rgba(125, 211, 252, 0.55); background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(56, 189, 248, 0.04)); }
+.p-third .badge { background: linear-gradient(180deg, #e0f2fe, #7dd3fc); }
+.p-third .p-title { color: #bae6fd; text-shadow: 0 0 18px rgba(56, 189, 248, 0.5); }
+.gifts-label { margin: 2px 0 0; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245, 245, 247, 0.55); text-align: center; }
+.gifts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.gifts li { display: grid; gap: 6px; justify-items: center; padding: 8px 6px 10px; border-radius: 14px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); font-size: 13px; font-weight: 700; text-align: center; }
+.gifts img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.9); }
