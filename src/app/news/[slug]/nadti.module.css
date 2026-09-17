@@ -116,11 +116,8 @@
 
 .btn[data-kind="google"] { background: #1860c8; box-shadow: 0 6px 16px rgba(24, 96, 200, 0.28); }
 
-.gdot {
-    width: 10px; height: 10px; border-radius: 50%;
-    background: conic-gradient(#ea4335 0 25%, #fbbc05 0 50%, #34a853 0 75%, #4285f4 0);
-    display: inline-block;
-}
+.gicon { width: 20px; height: 20px; flex: 0 0 20px; border-radius: 4px; background: #fff; }
+.row .gicon { width: 16px; height: 16px; flex-basis: 16px; }
 
 .secondary .btn {
     background: #fff;

@@ -881,7 +881,7 @@ The **26th NADTI Trade Exhibit and Scientific Sessions** runs from **Tuesday, Se
 
 The organizer is the **National Association of Dental Traders, Inc.**, NADTI, the association of the country's dental suppliers, organized in the year 2000. This year's theme is **"Advancing Dental Innovation: Beyond 25 Years of Excellence."** The Professional Regulation Commission has granted the program ==10 CPD points==.
 
-Ten lectures fill the three days. The speakers come from ==Singapore 🇸🇬, Malaysia 🇲🇾, Thailand 🇹🇭, Taiwan 🇹🇼 and the Philippines 🇵🇭==, one of them a maxillofacial prosthodontist of Syrian 🇸🇾 origin teaching in Malaysia. Every speaker card below has a button that saves that lecture to your phone's calendar with reminders. On the final morning NADTI opens its **first Student Forum**. Two raffles run alongside: an early-bird prize already drawn on September 1, and a **brand-new dental chair** sponsored by Intercast, drawn at the event, winner must be present.
+Ten lectures fill the three days. The speakers come from ==Singapore 🇸🇬, Malaysia 🇲🇾, Thailand 🇹🇭, Taiwan 🇹🇼 and the Philippines 🇵🇭==, one of them a maxillofacial prosthodontist of Syrian 🇸🇾 origin teaching in Malaysia. Every speaker card below has a button that saves that lecture to your Google Calendar. On the final morning NADTI opens its **first Student Forum**. Two raffles run alongside: an early-bird prize already drawn on September 1, and a **brand-new dental chair** sponsored by Intercast, drawn at the event, winner must be present.
 
 ==DentaSource Direct is at Booth 034 and 035.== More on that at the end.
 
@@ -889,7 +889,7 @@ NADTI announced all of this across a dozen Facebook posts between July and Septe
 
 ## The Three-Day Lecture Schedule
 
-All lectures are inside the Scientific Sessions program at SMX. Times are as posted by NADTI; the organizer may adjust them on the day, so treat this as the plan and confirm at the registration desk. Tap the button beside any lecture to put it in your phone's calendar; each entry carries the speaker, the room, the booth and two reminders.
+All lectures are inside the Scientific Sessions program at SMX. Times are as posted by NADTI; the organizer may adjust them on the day, so treat this as the plan and confirm at the registration desk. Tap the button beside any lecture to put it in your Google Calendar; each entry carries the speaker, the room and the booth.
 
 @schedule
 
