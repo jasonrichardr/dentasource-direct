@@ -5,12 +5,11 @@ export const GUIDELINES = {
   head: 'A community of learners. Not entertainers.',
   lead: 'The Training Center is a place to learn and to teach. These are the terms every member, speaker and partner agrees to.',
   items: [
-    { title: 'Learners first, speakers included', text: 'Everyone here is still learning, the lecturer as much as the first-year. Nobody is a know-it-all. The more we know, the more we see there is to know.' },
+    { title: 'Learners first, speakers included', text: 'Everyone keeps learning. Education never stops, for the lecturer as much as for the first-year. Nobody is a know-it-all. The more we know, the more we see there is to know.' },
     { title: 'Education, not entertainment', text: 'We bring knowledge, experience and skill to the room to pass knowledge on. Sessions are hands-on and evidence-led. Showmanship is not the product.' },
     { title: 'Science, research and innovation', text: 'Claims are backed by literature or by cases we can show. When the evidence changes, so do we. Product talk is welcome only when it teaches.' },
     { title: 'Everyone is equal at the table', text: 'A first-year practitioner and a thirty-year practitioner sit side by side and both ask questions. Titles do not buy a better seat.' },
     { title: 'No politics', text: 'Not in the lectures, not in the forums, not in the chat. Strictly. Religion, elections and party lines stay outside the door.' },
-    { title: 'Growth over recognition', text: 'People who are focused on their own growth, and not on being seen, belong here. Credit is given, praise is not chased.' },
     { title: 'Respect and confidentiality', text: 'Patients in any case shown are anonymised and consented. What a colleague shares in the room stays in the room unless they say otherwise.' },
     { title: 'Members-only forums, soon', text: 'Internal forums open to members shortly. Until then, the Training Center is the room. The same rules apply online.' },
   ],
