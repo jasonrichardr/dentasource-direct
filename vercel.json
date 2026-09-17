@@ -60,7 +60,7 @@
     },
     {
       "source": "/orthostrategy/dremil/sample",
-      "destination": "https://dsd-tads-sample.vercel.app/orthostrategy/dremil/sample"
+      "destination": "https://dsd-tads-sample.vercel.app/"
     },
     {
       "source": "/growthpartner/dremil/:path*",
