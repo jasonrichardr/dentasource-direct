@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { PRIZES } from '@/lib/spin/prizes';
 import { searchUrl } from '@/lib/spin/console';
 import {
-  deskTally, deskSearch, deskClaim, deskClaimByQr, deskClaimByCode, deskDeleteTests, deskLogout, deskRehearsal,
+  deskTally, deskSearch, deskClaim, deskClaimByQr, deskClaimByCode, deskDeleteTests, deskDeleteReserved, deskLogout, deskRehearsal,
   deskSetPrize, deskResetPrizes, deskLinkSocial, deskNote,
 } from '@/actions/spin';
 import QrScanner from './QrScanner';
@@ -65,7 +65,7 @@ function PrizeRow({ id, t, onSave, busy }) {
   );
 }
 
-function VisitorRow({ r, busy, onClaim, onLink, onNote }) {
+function VisitorRow({ r, busy, onClaim, onLink, onNote, onRemove }) {
   const [open, setOpen] = useState(null);
   const [draft, setDraft] = useState('');
   const [note, setNote] = useState('');
@@ -118,7 +118,7 @@ function VisitorRow({ r, busy, onClaim, onLink, onNote }) {
       ) : null}
       {msg ? <p className="row-msg">{msg}</p> : null}
       <div className="row-act">
-        {r.reserved ? <span className="row-claimed">Reserved · not spun yet</span> : r.claimed ? <span className="row-claimed">Claimed {r.claimed}</span> : (
+        {r.reserved ? <><span className="row-claimed">Reserved · not spun yet</span><button type="button" className="ghost tiny" onClick={() => onRemove(r.leadId, r.code)} disabled={busy}>Remove</button></> : r.claimed ? <span className="row-claimed">Claimed {r.claimed}</span> : (
           r.prizeId === 'spinagain'
             ? <span className="row-claimed">Still spinning</span>
             : <button className="cta small" onClick={() => onClaim(r.leadId)} disabled={busy}>Claimed</button>
@@ -171,6 +171,12 @@ export default function Desk() {
   const deleteTests = () => start(async () => {
     if (pendingDelete == null) { const r = await deskDeleteTests(false); setPendingDelete(r.count); return; }
     const r = await deskDeleteTests(true); setMsg(`Deleted ${r.deleted} test spins.`); setPendingDelete(null); await refresh(q);
+  });
+  const [pendingRemove, setPendingRemove] = useState(null);
+  const removeReserved = (leadId, code) => start(async () => {
+    if (pendingRemove !== leadId) { setPendingRemove(leadId); setMsg(`Remove reservation ${code}? Tap Remove again to confirm.`); return; }
+    const r = await deskDeleteReserved(leadId); setPendingRemove(null);
+    setMsg(r?.error || `Reservation ${code} removed.`); await refresh(q);
   });
   const rehearsal = (on) => start(async () => { await deskRehearsal(on); await refresh(q); });
   const logout = () => start(async () => { await deskLogout(); router.refresh(); });
@@ -242,7 +248,7 @@ export default function Desk() {
           </form>
           <section className="rows">
             {rows.length === 0 ? <p className="lede">No spins yet.</p> : null}
-            {rows.map((r) => <VisitorRow key={r.leadId} r={r} busy={busy} onClaim={claim} onLink={link} onNote={note} />)}
+            {rows.map((r) => <VisitorRow key={r.leadId} r={r} busy={busy} onClaim={claim} onLink={link} onNote={note} onRemove={removeReserved} />)}
           </section>
           <section className="desk-tools">
             <h2 className="eyebrow">Tools</h2>
