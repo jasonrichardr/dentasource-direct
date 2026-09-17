@@ -229,3 +229,35 @@ html[data-theme="light"] body:has(.gp) { background: #f6f1e4; }
 .tile .snd { width: 40px; height: 40px; }
 .gp-theme { width: 40px; height: 40px; }
 .gp-top .gp-btn { height: 40px; }
+
+/* ───────── round 3 (2026-09-17): original lockup, bare partner logos, modules, board, creed, privacy ───────── */
+.gp-brand .lockup { height: 40px; width: auto; display: block; }
+.gp-brand .wm-tc { align-self: flex-end; margin-bottom: 2px; }
+@media (max-width: 400px) { .gp-brand .lockup { height: 34px; } .gp-brand .wm-tc { display: none; } }
+.gp-logos { gap: 16px; }
+.gp-logos .logo-bare { height: 44px; width: auto; display: block; }
+.gp-logos .logo-bare.denjoy { height: 46px; border-radius: 8px; }
+.gp-logos .logo-bare.ortho { height: 40px; border-radius: 6px; }
+.gp-logos .logo-bare.crest { height: 56px; }
+@media (min-width: 640px) { .gp-logos .logo-bare { height: 56px; } .gp-logos .logo-bare.crest { height: 68px; } .gp-logos .pill { height: 50px; } .gp-logos .pill img { height: 32px; } }
+.modset { margin-top: 14px; border-radius: 18px; background: var(--panel); border: 1px solid rgba(201, 162, 39, 0.22); padding: 0 18px; }
+.modset summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; font-family: var(--serif); font-size: 21px; font-weight: 600; }
+.modset summary::-webkit-details-marker { display: none; }
+.modset summary small { font-family: var(--sans); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+.modset summary::after { content: '+'; font-family: var(--sans); color: var(--gold); font-size: 22px; margin-left: 6px; }
+.modset[open] summary::after { content: '−'; }
+.modset-lead { margin: 0 0 12px; color: var(--muted); font-size: 14.5px; line-height: 1.5; }
+.modlist { margin: 0 0 18px; padding: 0 0 0 20px; display: grid; gap: 12px; }
+.modlist > li { font-size: 15px; }
+.modlist > li b { display: block; margin-bottom: 4px; }
+.modlist ul { margin: 0; padding: 0 0 0 16px; color: var(--muted); font-size: 13.5px; line-height: 1.45; display: grid; gap: 2px; }
+.marquee.kb { margin: 20px -18px 0; }
+.marquee.kb .mq-item.kb-item { width: 300px; aspect-ratio: 3 / 2; border-radius: 12px; overflow: hidden; background: #0d1326; border: 1px solid rgba(201, 162, 39, 0.25); flex: none; margin: 0; }
+.marquee.kb .mq-item.kb-item img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
+.creed { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 12px; }
+.creed li { padding: 14px 16px; border-radius: 14px; background: var(--panel); border-left: 3px solid var(--gold); font-size: 15px; line-height: 1.5; color: var(--ink); }
+.privacy { display: grid; gap: 12px; margin-top: 18px; }
+@media (min-width: 720px) { .privacy { grid-template-columns: repeat(3, 1fr); } }
+.privacy h4 { margin: 0 0 4px; font-family: var(--serif); font-size: 17px; font-weight: 600; }
+.privacy p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.45; }
+html[data-theme="light"] .modset, html[data-theme="light"] .creed li { background: rgba(255, 255, 255, 0.72); }

@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState, useTransition } from 'react';
 import { TRACKS, PARTNERS, REELS, PHOTOS, LIVE, CHAPTERS } from '@/data/growth';
 import { JDEV, JDEV_MODULES } from '@/data/jdev';
+import { SAE, DA, PRIVACY } from '@/data/ffcmodules';
+import { KB, MANIFESTO, SAMPLE_BOARD } from '@/data/community';
+import { applySpeaker } from '@/actions/speaker';
 import GpSky, { ThemeSwitch } from './GpSky';
 import { reserveSeat } from '@/actions/growth';
 import GoogleEmailButton from '../spin/GoogleEmailButton';
@@ -48,6 +51,18 @@ export default function GrowthPartner({ news = [] }) {
   const [pending, start] = useTransition();
   const [nameV, setNameV] = useState('');
   const [emailV, setEmailV] = useState('');
+  const [spoke, setSpoke] = useState(null);
+  const [sErr, setSErr] = useState({});
+  const submitSpeaker = (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    start(async () => {
+      const r = await applySpeaker(fd);
+      if (r?.fields) { setSErr(r.fields); return; }
+      if (r?.error) { setSErr({ form: r.error }); return; }
+      setSErr({}); setSpoke(r);
+    });
+  };
 
   const submit = (e) => {
     e.preventDefault();
@@ -70,8 +85,8 @@ export default function GrowthPartner({ news = [] }) {
     <main className="gp">
       <header className="gp-top">
         <a className="gp-brand" href="/" aria-label="DentaSource Direct Training Center">
-          <img className="wm-mark" src="/images/brand/dsd-mark.png" alt="" />
-          <span className="wm"><span className="wm-line"><span className="wm-a">DENTA</span><span className="wm-b">SOURCE</span></span><span className="wm-c">DIRECT</span><span className="wm-tc">Training Center</span></span>
+          <img className="lockup" src="/images/brand/dsd-lockup.png" alt="DentaSource Direct" />
+          <span className="wm-tc">Training Center</span>
         </a>
         <div className="gp-top-actions"><ThemeSwitch /><a className="gp-btn" href="#reserve">Reserve my seat</a></div>
       </header>
@@ -88,9 +103,9 @@ export default function GrowthPartner({ news = [] }) {
           </div>
           <div className="gp-logos rv" aria-label="With our partners">
             <span className="pill"><img src="/images/brand/roson-logo-final.png" alt="ROSON" /></span>
-            <span className="pill"><img src="/images/brand/denjoy-logo-final.png" alt="Denjoy" /></span>
-            <span className="pill"><img src="/gp/logos/cred-orthostrategy.png" alt="Orthostrategy Study Group" /></span>
-            <span className="pill round"><img src="/gp/logos/cred-creststudy-round.png" alt="Crest Study Group" /></span>
+            <img className="logo-bare denjoy" src="/images/brand/denjoy-logo-final.png" alt="Denjoy" />
+            <img className="logo-bare ortho" src="/gp/logos/orthostrategy-clear.png" alt="Orthostrategy Study Group" />
+            <img className="logo-bare crest" src="/gp/logos/crest-clear.png" alt="Crest Study Group" />
           </div>
         </div>
       </section>
@@ -136,6 +151,32 @@ export default function GrowthPartner({ news = [] }) {
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="gp-sec" id="modules">
+        <p className="gp-kicker rv">Module by module</p>
+        <h2 className="gp-h2 rv">What a batch <span className="gp-gold">actually covers.</span></h2>
+        <p className="gp-lead rv">Two of the tracks, opened up. The rest are written the same way and shared when you reserve.</p>
+        {[DA, SAE].map((t) => (
+          <details key={t.title} className="modset rv">
+            <summary><span>{t.title}</span><small>{t.modules.length} modules</small></summary>
+            <p className="modset-lead">{t.lead}</p>
+            <ol className="modlist">
+              {t.modules.map((m) => <li key={m.title}><b>{m.title}</b><ul>{m.points.map((pt) => <li key={pt}>{pt}</li>)}</ul></li>)}
+            </ol>
+          </details>
+        ))}
+      </section>
+
+      <section className="gp-sec" id="board">
+        <p className="gp-kicker rv">After the course</p>
+        <h2 className="gp-h2 rv">You leave with <span className="gp-gold">your own application.</span></h2>
+        <p className="gp-lead rv">{SAMPLE_BOARD.lead}</p>
+        <div className="marquee kb rv"><div className="marquee-track">
+          {[...KB, ...KB].map((k, i) => <figure key={`${k.src}-${i}`} className="mq-item kb-item"><img src={k.src} alt={k.cap} loading={i < 6 ? 'eager' : 'lazy'} decoding="async" /></figure>)}
+        </div></div>
+        <div className="gp-hero-cta rv"><a className="gp-btn" href={SAMPLE_BOARD.href} target="_blank" rel="noopener">Roam the sample board</a><a className="gp-btn ghost" href="#reserve">Reserve my seat</a></div>
+        <p className="credit-line rv">{SAMPLE_BOARD.note}</p>
       </section>
 
       <section className="gp-sec" id="partners">
@@ -195,6 +236,34 @@ export default function GrowthPartner({ news = [] }) {
         </ul>
       </section>
 
+      <section className="gp-sec" id="teach-with-us">
+        <p className="gp-kicker rv">Teach with us</p>
+        <h2 className="gp-h2 rv">A community of learners. <span className="gp-gold">Not an audience.</span></h2>
+        <ul className="creed rv">{MANIFESTO.map((l) => <li key={l}>{l}</li>)}</ul>
+        {spoke ? (
+          <div className="thanks rv in">
+            <p className="gp-kicker">Received</p>
+            <h3 className="gp-h2" style={{ fontSize: 28 }}>Thank you. We read every one.</h3>
+            <p className="gp-lead" style={{ margin: '10px auto 0' }}>We will write back from the Training Center. Ref {spoke.ref}</p>
+          </div>
+        ) : (
+          <form className="gp-form rv" onSubmit={submitSpeaker} noValidate>
+            <label className="gp-field"><span>Full name</span><input name="name" autoComplete="name" required />{sErr.name ? <p className="gp-err">{sErr.name}</p> : null}</label>
+            <label className="gp-field"><span>Study group, clinic or school</span><input name="group" autoComplete="organization" required />{sErr.group ? <p className="gp-err">{sErr.group}</p> : null}</label>
+            <label className="gp-field"><span>Email</span><input name="email" type="email" inputMode="email" autoComplete="email" required />{sErr.email ? <p className="gp-err">{sErr.email}</p> : null}</label>
+            <label className="gp-field"><span>Mobile number</span><input name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="0917 123 4567" required />{sErr.phone ? <p className="gp-err">{sErr.phone}</p> : null}</label>
+            <label className="gp-field"><span>What you want to teach, and to whom</span><input name="topic" required />{sErr.topic ? <p className="gp-err">{sErr.topic}</p> : null}</label>
+            <label className="gp-field"><span>One link to your work</span><input name="link" inputMode="url" placeholder="facebook.com/… or your page" /></label>
+            <label className="consent"><input type="checkbox" name="rules" /><span>I have read the community rules and I agree: education first, no politics, no praise-seeking, we all keep learning.</span></label>
+            {sErr.rules ? <p className="gp-err">{sErr.rules}</p> : null}
+            <label className="consent"><input type="checkbox" name="consent" /><span>DentaSource Direct may contact me about teaching at the Training Center.</span></label>
+            {sErr.consent ? <p className="gp-err">{sErr.consent}</p> : null}
+            {sErr.form ? <p className="gp-err">{sErr.form}</p> : null}
+            <button type="submit" className="gp-btn" disabled={pending}>{pending ? 'Sending' : 'Ask to teach with us'}</button>
+          </form>
+        )}
+      </section>
+
       <section className="gp-sec" id="reserve">
         <p className="gp-kicker rv">Reserve my seat</p>
         <h2 className="gp-h2 rv">Tell us what you want <span className="gp-gold">to learn.</span></h2>
@@ -243,6 +312,14 @@ export default function GrowthPartner({ news = [] }) {
           <div className="gp-doors rv"><a className="gp-btn ghost" href="/news">All news</a></div>
         </section>
       ) : null}
+
+      <section className="gp-sec" id="privacy">
+        <p className="gp-kicker rv">How we handle your details</p>
+        <p className="gp-lead rv">{PRIVACY.lead}</p>
+        <div className="privacy rv">
+          {PRIVACY.items.map((it) => <div key={it.title}><h4>{it.title}</h4><p>{it.text}</p></div>)}
+        </div>
+      </section>
 
       <footer className="gp-foot">
         <div className="gp-doors"><a className="gp-btn ghost" href={MESSENGER}>Message us</a><a className="gp-btn ghost" href={FB}>Facebook</a><a className="gp-btn ghost" href="/dentalchairs">ROSON Dental Chairs</a></div>
