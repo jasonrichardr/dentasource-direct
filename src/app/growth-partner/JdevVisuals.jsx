@@ -185,7 +185,17 @@ const TF = [
 
 export function TimeframeLadder() {
   const d = useMemo(() => {
-    const base = makeSeries(480, 29); // 480 "5-minute" candles = 40 hours
+    // 480 "5-minute" candles = 40 hours. A real day: chop, a sharp news drop inside the gold band, a V recovery,
+    // then a grind up. Deterministic so every reader sees the same chart.
+    let x = 7; const rnd = () => { x = (x * 1103515245 + 12345) & 0x7fffffff; return x / 0x7fffffff; };
+    let p = 100; const base = [];
+    for (let i = 0; i < 480; i++) {
+      let drift = i < 216 ? 0.02 : i < 236 ? -0.9 : i < 264 ? 0.75 : 0.06;   // band = 216..264
+      const vol = i >= 216 && i < 264 ? 1.6 : 0.7;
+      const o = p; const c = o + drift + (rnd() - 0.5) * vol * 2;
+      const h = Math.max(o, c) + rnd() * vol; const l = Math.min(o, c) - rnd() * vol;
+      base.push({ o, h, l, c }); p = c;
+    }
     return { m5: base, h1: agg(base, 12), h4: agg(base, 48) };
   }, []);
   const W = 640, H = 150;
