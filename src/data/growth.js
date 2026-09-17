@@ -3,7 +3,7 @@
 
 export const TRACKS = [
   { id: 'digital', label: 'Digital Dentistry', icon: '/images/training/digital-dentistry.png', people: [{ name: 'Dr. Rajan Yraola', title: 'DMD, DT · Digital dentistry', photo: '/gp/people/rajan.png' }], promise: 'Intraoral scanning, CAD and CAM, and guided workflows on the same scanners and chairs you can buy downstairs.', leave: 'You leave with a scan-to-design workflow you can run on Monday.' },
-  { id: 'assistant', label: 'Dental Assistant Training', icon: '/gp/logos/ffc-ring-clean.png', plate: true, people: [{ name: 'Ms. Angel', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/angel.png' }, { name: 'Ms. Trizia', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/trizia.png' }, { name: 'Sir Mark', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/mark.png' }], promise: 'Chairside skills for your team: infection control, instruments, four-handed assisting, front desk flow.', leave: 'Your assistants leave certified in the way your clinic actually runs.', with: { name: 'FFC Dental Clinic', logo: '/gp/logos/ffc-ring-clean.png' } },
+  { id: 'assistant', label: 'Dental Assistant Training', icon: '/gp/logos/ffc-ring-clean.png', plate: true, people: [{ name: 'Ms. Angel M. Calvo', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/angel.png' }, { name: 'Ms. Trizia Marie M. Calvo', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/trizia.png' }, { name: 'Mr. Mark Joy Galang', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/mark.png' }], promise: 'Chairside skills for your team: infection control, instruments, four-handed assisting, front desk flow.', leave: 'Your assistants leave certified in the way your clinic actually runs.', with: { name: 'FFC Dental Clinic', logo: '/gp/logos/ffc-ring-clean.png' } },
   { id: 'ortho', label: 'Orthodontics', icon: '/gp/logos/cred-orthostrategy.png', plate: true, promise: 'Mini screws and TADs, hands-on, with the Orthostrategy Study Group.', leave: 'You leave having placed TADs on the simulator under a mentor.', with: { name: 'Orthostrategy Study Group', logo: '/gp/logos/cred-orthostrategy.png' } },
   { id: 'endo', label: 'Endodontics', icon: '/images/training/endodontics.png', people: [{ name: 'Dr. Fairylane Finn Chan-Ramirez', title: 'DMD · Endodontics', photo: '/gp/people/finn.png' }], promise: 'Rotary systems, apex locators, and obturation on Denjoy equipment.', leave: 'You leave with a faster, calmer canal.', with: { name: 'Denjoy', logo: '/images/brand/denjoy-logo-final.png' } },
   { id: 'prostho', label: 'Prosthodontics', icon: '/images/training/prosthodontics.png', promise: 'Preparation, impression, and digital design for crowns and bridges that fit the first time.', leave: 'You leave with cases planned end to end.' },
@@ -238,9 +238,9 @@ export const CHAPTERS = [
     ],
     people: [
       { name: 'Dr. Fairylane Finn Chan-Ramirez', title: 'DMD · Founder, FFC Dental Clinic', photo: '/gp/people/finn.png' },
-      { name: 'Ms. Angel', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/angel.png' },
-      { name: 'Ms. Trizia', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/trizia.png' },
-      { name: 'Sir Mark', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/mark.png' },
+      { name: 'Ms. Angel M. Calvo', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/angel.png' },
+      { name: 'Ms. Trizia Marie M. Calvo', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/trizia.png' },
+      { name: 'Mr. Mark Joy Galang', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/mark.png' },
     ],
   },
 ];
