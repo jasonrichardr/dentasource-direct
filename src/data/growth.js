@@ -50,6 +50,12 @@ export const PHOTOS = [
 // (share/p/1EXygVDAVD) turned out to be a Prosthodontics Visual Atlas advert, not clinic footage — left out.
 export const LIVE = [
   { src: '/gp/live/crest-workshop.mp4', poster: '/gp/live/crest-workshop.jpg', cap: 'Scan, design, prepare, manufacture: one day, with Crest Study Group' },
+  { src: '/gp/live/ortho-1cv8cqF7of.mp4', poster: '/gp/live/ortho-1cv8cqF7of.jpg', cap: 'TADs placement, supervised, with Orthostrategy Study Group' },
+  { src: '/gp/live/ortho-1HYWPNDgmM.mp4', poster: '/gp/live/ortho-1HYWPNDgmM.jpg', cap: 'Reading the intraoral photo, then the chair' },
+  { src: '/gp/live/ortho-1HXCbbJFW9.mp4', poster: '/gp/live/ortho-1HXCbbJFW9.jpg', cap: 'Chairside photography, ring light and phone' },
+  { src: '/gp/live/ortho-1BzGiVRh1z.mp4', poster: '/gp/live/ortho-1BzGiVRh1z.jpg', cap: 'Wire bending on the arch form' },
+  { src: '/gp/live/ortho-1ByLRFfpyA.mp4', poster: '/gp/live/ortho-1ByLRFfpyA.jpg', cap: 'Lecture day, Orthostrategy batch' },
+  { src: '/gp/live/ortho-19ivw7fw5A.mp4', poster: '/gp/live/ortho-19ivw7fw5A.jpg', cap: 'Typodont work at the table' },
 ];
 
 // Partner chapters (2026-09-17). Research: second-brain research/2026-09-17-crest-orthostrategy-offers.md.
