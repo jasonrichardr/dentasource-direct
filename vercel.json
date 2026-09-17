@@ -55,12 +55,12 @@
   ],
   "rewrites": [
     {
-      "source": "/orthostrategy/dremil/sample/:path*",
-      "destination": "https://dsd-tads-sample.vercel.app/orthostrategy/dremil/sample/:path*"
-    },
-    {
       "source": "/orthostrategy/dremil/sample",
       "destination": "https://dsd-tads-sample.vercel.app/"
+    },
+    {
+      "source": "/orthostrategy/dremil/sample/:path+",
+      "destination": "https://dsd-tads-sample.vercel.app/orthostrategy/dremil/sample/:path+"
     },
     {
       "source": "/growthpartner/dremil/:path*",
