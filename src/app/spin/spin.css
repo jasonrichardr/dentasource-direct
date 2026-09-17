@@ -340,3 +340,6 @@
 .credits-facts { list-style: none; margin: 10px 0 12px; padding: 0; display: grid; gap: 6px; }
 .credits-facts li { display: grid; grid-template-columns: 52px 1fr; gap: 8px; font-size: 13px; color: rgba(245, 245, 247, 0.78); line-height: 1.35; }
 .credits-facts b { color: var(--gold); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding-top: 2px; }
+
+/* the room's dock steps aside while a sheet is up */
+html.sheet-open #tx-dock { opacity: 0; pointer-events: none; transition: opacity 0.2s; }
