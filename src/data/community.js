@@ -1,26 +1,42 @@
-// The learners' community (2026-09-17, Jarich's words, direct on purpose; round 4 edits 2026-09-17 late).
-export const MANIFESTO = [
-  'We are a community of learners. Speakers included: we learn every day and we hone our skills every day. Nobody here is a know-it-all. The more we know, the more we see there is more.',
-  'Science, research and innovation. Education first, always. We use our knowledge, our experience and our skills to provide knowledge.',
-  'Everyone is seen as equal. A first-year and a thirty-year practitioner sit at the same table and both ask questions.',
-  'Politics is not welcome here. Not in the lectures, not in the forums, not in the chat. Strictly.',
-  'People who are focused on their own growth, and not on being seen, belong here.',
-  'Members get internal forums soon, members only. Until then, the Training Center is the room.',
-];
-
-// About us (round 4). Jarich: "make like about us button like ffcdentalclinic.com and add me and doc finn ...
-// me as founder and doc finn as co founder". The R&D stance written straight, not as marketing.
-export const ABOUT = {
-  kicker: 'About us',
-  title: 'Two clinics, one showroom, one habit: keep learning.',
-  paras: [
-    'DentaSource Direct sells dental equipment and runs the largest dental showroom in the country, in Pasig. FFC Dental Clinic, our sister clinic, is where the tools get used on real patients every day. The Training Center sits between the two, so what we teach is what we run.',
-    'We sell tools, and we are honest about them. If a tool is not good we say so, even if it is on our shelf. If a better one exists, we move to it. We only contract with companies that do their own research and development, and we visit their factories and labs before we sign.',
-    'China leads research and development in dental equipment today, and we accept that plainly. The direction of the market is easy to see, in dentistry and beyond. Our job is to bring the best of it here, service it properly, and teach people to use it well.',
+// The learners' community (round 5, 2026-09-17): the creed became a Community guidelines sheet, written for
+// professionals. Jarich's rulings kept word for word where they matter: education first, no politics, equals.
+export const GUIDELINES = {
+  kicker: 'Community guidelines',
+  head: 'A community of learners. Not entertainers.',
+  lead: 'The Training Center is a place to learn and to teach. These are the terms every member, speaker and partner agrees to.',
+  items: [
+    { title: 'Learners first, speakers included', text: 'Everyone here is still learning, the lecturer as much as the first-year. Nobody is a know-it-all. The more we know, the more we see there is to know.' },
+    { title: 'Education, not entertainment', text: 'We bring knowledge, experience and skill to the room to pass knowledge on. Sessions are hands-on and evidence-led. Showmanship is not the product.' },
+    { title: 'Science, research and innovation', text: 'Claims are backed by literature or by cases we can show. When the evidence changes, so do we. Product talk is welcome only when it teaches.' },
+    { title: 'Everyone is equal at the table', text: 'A first-year practitioner and a thirty-year practitioner sit side by side and both ask questions. Titles do not buy a better seat.' },
+    { title: 'No politics', text: 'Not in the lectures, not in the forums, not in the chat. Strictly. Religion, elections and party lines stay outside the door.' },
+    { title: 'Growth over recognition', text: 'People who are focused on their own growth, and not on being seen, belong here. Credit is given, praise is not chased.' },
+    { title: 'Respect and confidentiality', text: 'Patients in any case shown are anonymised and consented. What a colleague shares in the room stays in the room unless they say otherwise.' },
+    { title: 'Members-only forums, soon', text: 'Internal forums open to members shortly. Until then, the Training Center is the room. The same rules apply online.' },
   ],
+  foot: 'DentaSource Direct Training Center · Community guidelines · version 1 · September 2026',
+};
+
+// About us (round 5): the FFC about-sheet grammar, DSD's story. Portraits from the FFC brand set (Jarich + Dr. Finn).
+export const ABOUT = {
+  logo: '/gp/about/dsd-round.png',
+  kicker: 'Est. Pasig · Metro Manila',
+  head: 'We sell the tools.\nWe would rather teach you to use them.',
+  paras: [
+    'DentaSource Direct is a dental equipment company with the largest dental showroom in the country, in Pasig, and the exclusive distributor of ROSON and Denjoy in the Philippines. Our sister clinic, FFC Dental Clinic, is where the same tools work on real patients every day. The Training Center sits between the two, so what we teach is what we run.',
+    'We are honest about what we sell. If a tool is not good we say so, even when it is on our shelf, and when a better one exists we move to it. We only contract with manufacturers that do their own research and development, and we visit their factories and labs before we sign.',
+    'China leads research and development in dental equipment today, and we say that plainly. The direction of the market is easy to see, in dentistry and beyond. Our job is to bring the best of it here, service it properly, and teach people to use it well.',
+  ],
+  pillarsKicker: 'Three pillars · one purpose',
+  pillars: [
+    { name: 'DentaSource Direct', logo: '/gp/about/dsd-round.png', text: 'Equipment, installation, service and the Training Center, inside the largest dental showroom in the Philippines.' },
+    { name: 'FFC Dental Clinic', logo: '/gp/logos/ffc-ring-clean.png', href: 'https://ffcdentalclinic.com', text: 'Five branches across Metro Manila since 2017. Endodontics, oral surgery, orthodontics and restorative care, and the clinic behind the Dental Assistant track.' },
+    { name: 'JDev Studio', logo: '/gp/logos/cred-jdev-round.png', text: 'The studio that builds the software behind both companies, and teaches software, agents, crypto and trading at the Center.' },
+  ],
+  peopleKicker: 'The people behind it',
   people: [
-    { name: 'Jason Richard Ramirez', role: 'Founder', initials: 'JR', photo: null, bio: 'Founded DentaSource Direct and builds the software behind it through JDev Studio. Runs the showroom, the service team, and the Training Center.' },
-    { name: 'Dr. Fairylane Finn Chan-Ramirez', role: 'Co-founder', initials: 'FC', photo: '/gp/about/finn.png', bio: 'Founded FFC Dental Clinic in 2017 and leads its branches. Trained under Università di Siena faculty. Every clinical track here is checked against her chair.' },
+    { name: 'Jason Richard Ramirez', role: 'Founder', photo: '/gp/about/jarich.png', bio: 'Founded DentaSource Direct and builds its software through JDev Studio. Runs the showroom, the service team and the Training Center.' },
+    { name: 'Dr. Fairylane Finn Chan-Ramirez', role: 'Co-founder', photo: '/gp/about/finn.png', bio: 'Founded FFC Dental Clinic in 2017 and leads its branches. Trained under Università di Siena faculty. Every clinical track here is checked against her chair.' },
   ],
 };
 
