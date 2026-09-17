@@ -318,7 +318,7 @@ export async function linkClinicSocial(leadId, code, platform, value) {
   if (!CONSOLE_KEY()) return { ok: true, url, skipped: 'nokey' };
   try {
     const r = await callConvex('mutation', 'consoleNadti:linkSocial', { key: CONSOLE_KEY(), code: parsed.code, platform, value }, { timeoutMs: 5000 });
-    if (r?.ok) return { ok: true, url: r.url };
+    if (r?.ok) return { ok: true, url: r.url, already: !!r.already };
     if (r?.reason === 'no_prospect') return { ok: true, url, skipped: 'no_prospect' };
     return { error: 'That link does not look right.' };
   } catch (e) {
@@ -536,7 +536,7 @@ export async function deskLinkSocial(leadId, platform, value) {
   if (lead.interest === INTEREST_TEST || !consoleKey()) return { ok: true, url, skipped: true };
   try {
     const r = await callConvex('mutation', 'consoleNadti:linkSocial', { key: consoleKey(), code: parsed.code, platform, value }, { timeoutMs: 5000 });
-    return r?.ok ? { ok: true, url: r.url } : { error: r?.reason === 'no_prospect' ? 'This visitor is not in the console yet.' : 'That link does not look right.' };
+    return r?.ok ? { ok: true, url: r.url, already: !!r.already } : { error: r?.reason === 'no_prospect' ? 'This visitor is not in the console yet.' : 'That link does not look right.' };
   } catch (e) {
     console.error('[spin] deskLinkSocial failed:', e?.message || e);
     return { error: 'Console did not answer. Try again.' };

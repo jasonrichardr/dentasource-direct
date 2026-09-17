@@ -27,7 +27,7 @@ function when(iso) {
 
 function linkedOf(r, id) {
   const s = r.socials || {};
-  if (id === 'google') return !!s.placeId;
+  if (id === 'google') return !!(s.placeId || s.mapsUrl);
   if (id === 'facebook') return !!s.fbUrl;
   if (id === 'instagram') return !!s.igUrl;
   if (id === 'tiktok') return !!s.tiktokUrl;
@@ -75,7 +75,7 @@ function VisitorRow({ r, busy, onClaim, onLink, onNote }) {
     e.preventDefault();
     const res = await onLink(r.leadId, open, draft);
     if (res?.error) { setMsg(res.error); return; }
-    setMsg(res?.skipped ? 'Saved (test row, console untouched).' : 'Linked.'); setOpen(null); setDraft('');
+    setMsg(res?.skipped ? 'Saved (test row, console untouched).' : res?.already ? `Already linked: ${res.url}` : 'Linked.'); setOpen(null); setDraft('');
   };
   const submitNote = async (e) => {
     e.preventDefault();
