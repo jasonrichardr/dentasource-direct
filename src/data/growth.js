@@ -2,12 +2,12 @@
 // Media files are listed in second-brain/builds/dsd-growth-partner/media-manifest.md with inclusion reasons.
 
 export const TRACKS = [
-  { id: 'digital', label: 'Digital Dentistry', icon: '/images/training/digital-dentistry.png', promise: 'Intraoral scanning, CAD and CAM, and guided workflows on the same scanners and chairs you can buy downstairs.', leave: 'You leave with a scan-to-design workflow you can run on Monday.' },
-  { id: 'assistant', label: 'Dental Assistant Training', icon: '/gp/logos/ffc-ring-clean.png', plate: true, people: [{ name: 'Ms. Angel', title: 'Head Dental Assistant', photo: '/gp/people/angel.png' }, { name: 'Ms. Trizia', title: 'Dental Assistant · Trainer', photo: '/gp/people/trizia.png' }, { name: 'Sir Mark', title: 'Dental Assistant · Trainer', photo: '/gp/people/mark.png' }], promise: 'Chairside skills for your team: infection control, instruments, four-handed assisting, front desk flow.', leave: 'Your assistants leave certified in the way your clinic actually runs.', with: { name: 'FFC Dental Clinic', logo: '/gp/logos/ffc-ring-clean.png' } },
+  { id: 'digital', label: 'Digital Dentistry', icon: '/images/training/digital-dentistry.png', people: [{ name: 'Dr. Rajan Yraola', title: 'DMD, DT · Digital dentistry', photo: '/gp/people/rajan.png' }], promise: 'Intraoral scanning, CAD and CAM, and guided workflows on the same scanners and chairs you can buy downstairs.', leave: 'You leave with a scan-to-design workflow you can run on Monday.' },
+  { id: 'assistant', label: 'Dental Assistant Training', icon: '/gp/logos/ffc-ring-clean.png', plate: true, people: [{ name: 'Ms. Angel', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/angel.png' }, { name: 'Ms. Trizia', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/trizia.png' }, { name: 'Sir Mark', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/mark.png' }], promise: 'Chairside skills for your team: infection control, instruments, four-handed assisting, front desk flow.', leave: 'Your assistants leave certified in the way your clinic actually runs.', with: { name: 'FFC Dental Clinic', logo: '/gp/logos/ffc-ring-clean.png' } },
   { id: 'ortho', label: 'Orthodontics', icon: '/gp/logos/cred-orthostrategy.png', plate: true, promise: 'Mini screws and TADs, hands-on, with the Orthostrategy Study Group.', leave: 'You leave having placed TADs on the simulator under a mentor.', with: { name: 'Orthostrategy Study Group', logo: '/gp/logos/cred-orthostrategy.png' } },
   { id: 'endo', label: 'Endodontics', icon: '/images/training/endodontics.png', people: [{ name: 'Dr. Fairylane Finn Chan-Ramirez', title: 'DMD · Endodontics', photo: '/gp/people/finn.png' }], promise: 'Rotary systems, apex locators, and obturation on Denjoy equipment.', leave: 'You leave with a faster, calmer canal.', with: { name: 'Denjoy', logo: '/images/brand/denjoy-logo-final.png' } },
   { id: 'prostho', label: 'Prosthodontics', icon: '/images/training/prosthodontics.png', promise: 'Preparation, impression, and digital design for crowns and bridges that fit the first time.', leave: 'You leave with cases planned end to end.' },
-  { id: 'surgery', label: 'Oral Surgery', icon: '/images/training/oral-surgery.png', promise: 'Surgical fundamentals and implant planning with the Crest Study Group.', leave: 'You leave knowing which cases to take and which to refer.', with: { name: 'Crest Study Group', logo: '/gp/logos/cred-creststudy-round.png' } },
+  { id: 'surgery', label: 'Oral Surgery', icon: '/images/training/oral-surgery.png', people: [{ name: 'Dr. Pocholo Loleng', title: 'DMD · Oral surgery', photo: '/gp/people/pocholo.png' }], promise: 'Surgical fundamentals and implant planning with the Crest Study Group.', leave: 'You leave knowing which cases to take and which to refer.', with: { name: 'Crest Study Group', logo: '/gp/logos/cred-creststudy-round.png' } },
   { id: 'aesthetics', label: 'Aesthetics', icon: '/images/training/aesthetics.png', promise: 'Shade, composite layering, and smile design with the tools we demonstrate in the showroom.', leave: 'You leave with a before and after you are proud to post.' },
   { id: 'business', label: 'Practice Business and DentaDesk', icon: '/images/training/business.png', promise: 'Running the clinic as a business, and DentaDesk, a free app for your own clinic on Mac, Windows, iOS, and Android.', leave: 'You leave with your numbers in one place and a plan for the year.', platforms: true },
 ];
@@ -42,7 +42,6 @@ export const PHOTOS = [
   { src: '/gp/photos/showroom-session.jpg', cap: 'Showroom session with the ROSON team' },
   { src: '/gp/photos/hands-on-service.jpg', cap: 'Technical training on the chairs we sell' },
   { src: '/gp/photos/team-workshop.jpg', cap: 'Team workshop' },
-  { src: '/gp/photos/roson-qc-lab.jpg', cap: 'Where the chairs are tested' },
 ];
 
 // Live at the chair (2026-09-17): FFC Dental Clinic / Training Center footage re-hosted with Jarich's ruling
@@ -223,6 +222,25 @@ export const CHAPTERS = [
     { src: '/gp/partners/ortho/p085.jpg' },
     { src: '/gp/partners/ortho/p086.jpg' },
     { src: '/gp/partners/ortho/p087.jpg' }
+    ],
+  },
+  {
+    id: 'ffc',
+    name: 'FFC Dental Clinic',
+    sub: 'Our sister clinic · Dr. Fairylane Finn Chan-Ramirez · five branches, Metro Manila',
+    logo: '/gp/logos/ffc-ring-clean.png', shape: 'round',
+    fb: 'https://ffcdentalclinic.com',
+    body: 'FFC is where the tools we sell work on real patients every day, in five branches since 2017. Its chairside team trains the Dental Assistant course, and its founder checks every clinical course here against her own chair. What we teach at the Center is what FFC runs.',
+    offers: [
+      'Dental Assistant Training: nine modules, taught by the head dental assistants who run FFC\'s chairs',
+      'Endodontics with Dr. Finn: rotary, apex locators and obturation on the Denjoy systems FFC uses daily',
+      'Live-patient days for the clinical courses, on consented cases, inside a working clinic',
+    ],
+    people: [
+      { name: 'Dr. Fairylane Finn Chan-Ramirez', title: 'DMD · Founder, FFC Dental Clinic', photo: '/gp/people/finn.png' },
+      { name: 'Ms. Angel', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/angel.png' },
+      { name: 'Ms. Trizia', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/trizia.png' },
+      { name: 'Sir Mark', title: 'Head Dental Assistant · Trainer', photo: '/gp/people/mark.png' },
     ],
   },
 ];
