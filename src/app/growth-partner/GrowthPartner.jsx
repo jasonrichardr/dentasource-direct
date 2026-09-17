@@ -10,7 +10,7 @@ import { applySpeaker } from '@/actions/speaker';
 import GpSky, { ThemeSwitch } from './GpSky';
 import GpSheet, { ModuleList } from './GpSheet';
 import { GlassSheet, PrivacySheet } from './FfcSheets';
-import { TokenRow, NetworkMap, MarketCapChart, TradingCharts, EcosystemGraph } from './JdevVisuals';
+import { TokenRow, NetworkMap, MarketCapChart, TradingCharts, EcosystemGraph, TimeframeLadder } from './JdevVisuals';
 import { reserveSeat } from '@/actions/growth';
 import GoogleEmailButton from '../spin/GoogleEmailButton';
 import { AppleMark, AndroidMark, WindowsMark, FacebookMark, MessengerMark } from '../spin/brandMarks';
@@ -403,7 +403,7 @@ export default function GrowthPartner({ news = [] }) {
           <p className="gp-sheet-lead">{jd.lead}</p>
           {jd.note ? <p className="note">{jd.note}</p> : null}
           {jd.id === 'crypto' ? <><TokenRow /><NetworkMap /><MarketCapChart /><EcosystemGraph onModule={jumpModule} /></> : null}
-          {jd.id === 'trading' ? <TradingCharts /> : null}
+          {jd.id === 'trading' ? <><TradingCharts /><TimeframeLadder /></> : null}
           <ModuleList modules={jd.modules} idPrefix={`jdev-${jd.id}`} />
           <p className="leave">{jd.leave}</p>
           <div className="gp-doors" style={{ justifyContent: 'flex-start', marginTop: 18 }}><a className="gp-btn" href="#reserve" onClick={goAfterClose('reserve')}>Reserve my seat</a></div>
