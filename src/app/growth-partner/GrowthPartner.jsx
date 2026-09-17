@@ -1,12 +1,15 @@
 'use client';
 
-import { useEffect, useRef, useState, useTransition } from 'react';
+import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
 import { TRACKS, PARTNERS, REELS, PHOTOS, LIVE, CHAPTERS } from '@/data/growth';
 import { JDEV, JDEV_MODULES } from '@/data/jdev';
-import { SAE, DA, PRIVACY } from '@/data/ffcmodules';
-import { KB, MANIFESTO, SAMPLE_BOARD } from '@/data/community';
+import { PRIVACY } from '@/data/ffcmodules';
+import { TRACK_MODULES } from '@/data/trackmodules';
+import { KB, MANIFESTO, SAMPLE_BOARD, ABOUT, WHERE } from '@/data/community';
 import { applySpeaker } from '@/actions/speaker';
 import GpSky, { ThemeSwitch } from './GpSky';
+import GpSheet, { ModuleList } from './GpSheet';
+import { TokenRow, NetworkMap, MarketCapChart, TradingCharts, EcosystemGraph } from './JdevVisuals';
 import { reserveSeat } from '@/actions/growth';
 import GoogleEmailButton from '../spin/GoogleEmailButton';
 import { AppleMark, AndroidMark, WindowsMark } from '../spin/brandMarks';
@@ -24,24 +27,35 @@ function useReveal() {
   }, []);
 }
 
+// Muted, autoplaying while in view. Round 4: no sound button on any video (Jarich: "remove all speaker icon from videos").
 function Reel({ r, wide }) {
   const v = useRef(null);
-  const [sound, setSound] = useState(false);
   useEffect(() => {
     const el = v.current; if (!el) return;
-    const io = new IntersectionObserver(([en]) => {
-      if (en.isIntersecting) el.play().catch(() => {}); else { el.pause(); if (sound) { el.muted = true; setSound(false); } }
-    }, { threshold: 0.35 });
+    const io = new IntersectionObserver(([en]) => { if (en.isIntersecting) el.play().catch(() => {}); else el.pause(); }, { threshold: 0.35 });
     io.observe(el);
     return () => io.disconnect();
-  }, [sound]);
+  }, []);
   return (
-    <div className={`tile ${wide ? 'wide' : ''} ${sound ? 'live' : ''}`}>
-      <video ref={v} src={r.src} poster={r.poster} muted={!sound} loop playsInline preload="metadata" />
-      <button type="button" className="snd" aria-label={sound ? 'Mute' : 'Play with sound'} onClick={() => { const el = v.current; if (!el) return; el.muted = sound; setSound(!sound); el.play().catch(() => {}); }}>{sound ? '🔊' : '🔈'}</button>
+    <div className={`tile ${wide ? 'wide' : ''}`}>
+      <video ref={v} src={r.src} poster={r.poster} muted loop playsInline preload="metadata" />
       <div className="cap">{r.cap}</div>
     </div>
   );
+}
+
+function Person({ p, bio }) {
+  return (
+    <div className="person">
+      {p.photo ? <img className="face" src={p.photo} alt={p.name} /> : <span className="mono" aria-hidden>{p.initials}</span>}
+      <b>{p.name}</b><small>{p.role}</small>
+      {bio ? <p>{p.bio}</p> : null}
+    </div>
+  );
+}
+
+function PrivacyButton({ onOpen }) {
+  return <button type="button" className="pv-i" aria-label="How we handle your details" aria-haspopup="dialog" onClick={onOpen}>i</button>;
 }
 
 export default function GrowthPartner({ news = [] }) {
@@ -53,6 +67,10 @@ export default function GrowthPartner({ news = [] }) {
   const [emailV, setEmailV] = useState('');
   const [spoke, setSpoke] = useState(null);
   const [sErr, setSErr] = useState({});
+  // one sheet at a time: { kind: 'track'|'jdev'|'about'|'privacy', id }
+  const [sheet, setSheet] = useState(null);
+  const closeSheet = useCallback(() => setSheet(null), []);
+
   const submitSpeaker = (e) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
@@ -77,15 +95,21 @@ export default function GrowthPartner({ news = [] }) {
 
   const wall = [];
   const rs = [...REELS]; const ps = [...PHOTOS];
-  // interleave: reel, reel, photo(wide), photo, reel, photo ...
   const order = ['r', 'p', 'p', 'r', 'p', 'p', 'r', 'p', 'p', 'r', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'];
   for (const k of order) { const it = k === 'r' ? rs.shift() : ps.shift(); if (it) wall.push({ kind: k, it }); }
 
+  const track = sheet?.kind === 'track' ? TRACKS.find((t) => t.id === sheet.id) : null;
+  const trackMods = track ? TRACK_MODULES[track.id] : null;
+  const jd = sheet?.kind === 'jdev' ? JDEV_MODULES.find((m) => m.id === sheet.id) : null;
+  const jumpModule = (n) => { const el = document.getElementById(`jdev-${jd.id}-m${n}`); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+
   return (
+    <>
     <main className="gp">
       <header className="gp-top">
         <a className="gp-brand" href="/" aria-label="DentaSource Direct Training Center">
-          <img className="lockup" src="/images/brand/dsd-lockup.png" alt="DentaSource Direct" />
+          <img className="lockup lockup-dark" src="/images/brand/dsd-lockup-dark.png" alt="DentaSource Direct" />
+          <img className="lockup lockup-light" src="/images/brand/dsd-lockup.png" alt="" aria-hidden />
           <span className="wm-tc">Training Center</span>
         </a>
         <div className="gp-top-actions"><ThemeSwitch /><a className="gp-btn" href="#reserve">Reserve my seat</a></div>
@@ -118,7 +142,7 @@ export default function GrowthPartner({ news = [] }) {
           <div className="live-grid">
             {LIVE.map((v) => <Reel key={v.src} r={v} wide={false} />)}
           </div>
-          <p className="credit-line rv">Filmed at the DentaSource Direct Training Center and FFC Dental Clinic, with consent. Sound is off until you tap it.</p>
+          <p className="credit-line rv">Filmed at the DentaSource Direct Training Center and FFC Dental Clinic, with consent. Videos play without sound.</p>
         </section>
       ) : null}
 
@@ -136,10 +160,10 @@ export default function GrowthPartner({ news = [] }) {
       <section className="gp-sec" id="tracks">
         <p className="gp-kicker rv">What you can learn</p>
         <h2 className="gp-h2 rv">Eight tracks. <span className="gp-gold">One promise.</span></h2>
-        <p className="gp-lead rv">You leave able to do the thing, not just describe it.</p>
+        <p className="gp-lead rv">You leave able to do the thing, not just describe it. Tap a track for its modules.</p>
         <div className="tracks">
           {TRACKS.map((t) => (
-            <article key={t.id} className="track rv">
+            <article key={t.id} className="track rv" role="button" tabIndex={0} aria-haspopup="dialog" onClick={() => setSheet({ kind: 'track', id: t.id })} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSheet({ kind: 'track', id: t.id }); } }}>
               <div className={`track-ic ${t.plate ? 'plate' : ''}`}><img src={t.icon} alt="" /></div>
               <div>
                 <h3>{t.label}</h3>
@@ -147,25 +171,11 @@ export default function GrowthPartner({ news = [] }) {
                 <p><em>{t.leave}</em></p>
                 {t.with ? <div className="with"><span>with</span><img src={t.with.logo} alt={t.with.name} /><span>{t.with.name}</span></div> : null}
                 {t.platforms ? <div className="plat"><span><AppleMark size={14} />Mac</span><span><WindowsMark size={14} />Windows</span><span><AppleMark size={14} />iOS</span><span><AndroidMark size={14} />Android</span></div> : null}
+                <span className="open">{TRACK_MODULES[t.id]?.modules.length || 0} modules</span>
               </div>
             </article>
           ))}
         </div>
-      </section>
-
-      <section className="gp-sec" id="modules">
-        <p className="gp-kicker rv">Module by module</p>
-        <h2 className="gp-h2 rv">What a batch <span className="gp-gold">actually covers.</span></h2>
-        <p className="gp-lead rv">Two of the tracks, opened up. The rest are written the same way and shared when you reserve.</p>
-        {[DA, SAE].map((t) => (
-          <details key={t.title} className="modset rv">
-            <summary><span>{t.title}</span><small>{t.modules.length} modules</small></summary>
-            <p className="modset-lead">{t.lead}</p>
-            <ol className="modlist">
-              {t.modules.map((m) => <li key={m.title}><b>{m.title}</b><ul>{m.points.map((pt) => <li key={pt}>{pt}</li>)}</ul></li>)}
-            </ol>
-          </details>
-        ))}
       </section>
 
       <section className="gp-sec" id="board">
@@ -211,16 +221,14 @@ export default function GrowthPartner({ news = [] }) {
         <p className="gp-kicker rv">Beyond the chair</p>
         <h2 className="gp-h2 rv">With <span className="gp-gold">JDev Studio.</span></h2>
         <div className="jdev-head rv"><img className="jdev-logo-white" src="/images/brand/jdev-logo-white.png" alt="JDev Studio" /><img className="jdev-logo-coral" src="/images/brand/jdev-logo-coral.png" alt="JDev Studio" /></div>
-        <p className="gp-lead rv">{JDEV.line}</p>
-        <div className="jdev-mods">
+        <p className="gp-lead rv">{JDEV.line} Tap a track to open it.</p>
+        <div className="jdev-grid">
           {JDEV_MODULES.map((m) => (
-            <article key={m.id} className="jdev-mod rv">
+            <button key={m.id} type="button" className="jdev-card rv" aria-haspopup="dialog" onClick={() => setSheet({ kind: 'jdev', id: m.id })}>
+              <small>{m.modules.length} modules</small>
               <h3>{m.label}</h3>
-              <p className="promise">{m.promise}</p>
-              <ul>{m.topics.map((t) => <li key={t}>{t}</li>)}</ul>
-              <p className="leave">{m.leave}</p>
-              {m.note ? <p className="note">{m.note}</p> : null}
-            </article>
+              <p>{m.promise}</p>
+            </button>
           ))}
         </div>
       </section>
@@ -234,6 +242,15 @@ export default function GrowthPartner({ news = [] }) {
           <li>Seats: limited on purpose. Hands-on means a station per person.</li>
           <li>Pricing: shared on reply, per track. No surprises on the day.</li>
         </ul>
+        <div className="where rv">
+          <div className="where-info">
+            <h3>{WHERE.name}</h3>
+            <p>{WHERE.lines[0]}<br />{WHERE.lines[1]}</p>
+            <small>{WHERE.hours} · <a href={`tel:${WHERE.phone.replace(/\s+/g, '')}`} style={{ color: 'inherit' }}>{WHERE.phone}</a></small>
+            <div className="gp-doors" style={{ justifyContent: 'flex-start' }}><a className="gp-btn ghost" href={WHERE.share} target="_blank" rel="noopener">Open in Google Maps</a><a className="gp-btn ghost" href="/contact">Contact page</a></div>
+          </div>
+          <div className="where-map"><iframe src={WHERE.embed} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen title={`Map showing ${WHERE.lines[0]}, ${WHERE.lines[1]}`} /></div>
+        </div>
       </section>
 
       <section className="gp-sec" id="teach-with-us">
@@ -254,14 +271,26 @@ export default function GrowthPartner({ news = [] }) {
             <label className="gp-field"><span>Mobile number</span><input name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="0917 123 4567" required />{sErr.phone ? <p className="gp-err">{sErr.phone}</p> : null}</label>
             <label className="gp-field"><span>What you want to teach, and to whom</span><input name="topic" required />{sErr.topic ? <p className="gp-err">{sErr.topic}</p> : null}</label>
             <label className="gp-field"><span>One link to your work</span><input name="link" inputMode="url" placeholder="facebook.com/… or your page" /></label>
-            <label className="consent"><input type="checkbox" name="rules" /><span>I have read the community rules and I agree: education first, no politics, no praise-seeking, we all keep learning.</span></label>
+            <label className="consent"><input type="checkbox" name="rules" /><span>I have read the community rules and I agree: education first, no politics, we all keep learning.</span></label>
             {sErr.rules ? <p className="gp-err">{sErr.rules}</p> : null}
-            <label className="consent"><input type="checkbox" name="consent" /><span>DentaSource Direct may contact me about teaching at the Training Center.</span></label>
+            <div className="consent-row">
+              <label className="consent"><input type="checkbox" name="consent" /><span>DentaSource Direct may contact me about teaching at the Training Center.</span></label>
+              <PrivacyButton onOpen={() => setSheet({ kind: 'privacy' })} />
+            </div>
             {sErr.consent ? <p className="gp-err">{sErr.consent}</p> : null}
             {sErr.form ? <p className="gp-err">{sErr.form}</p> : null}
             <button type="submit" className="gp-btn" disabled={pending}>{pending ? 'Sending' : 'Ask to teach with us'}</button>
           </form>
         )}
+      </section>
+
+      <section className="gp-sec" id="about">
+        <p className="gp-kicker rv">{ABOUT.kicker}</p>
+        <h2 className="gp-h2 rv">{ABOUT.title}</h2>
+        <div className="about-card rv">
+          <div className="people">{ABOUT.people.map((p) => <Person key={p.name} p={p} />)}</div>
+          <div className="gp-doors"><button type="button" className="gp-btn ghost" aria-haspopup="dialog" onClick={() => setSheet({ kind: 'about' })}>About us</button></div>
+        </div>
       </section>
 
       <section className="gp-sec" id="reserve">
@@ -289,7 +318,10 @@ export default function GrowthPartner({ news = [] }) {
               </div>
               {errors.tracks ? <p className="gp-err">{errors.tracks}</p> : null}
             </div>
-            <label className="consent"><input type="checkbox" name="consent" /><span>I agree that DentaSource Direct may contact me about the Training Center, products, and promos.</span></label>
+            <div className="consent-row">
+              <label className="consent"><input type="checkbox" name="consent" /><span>I agree that DentaSource Direct may contact me about the Training Center, products, and promos.</span></label>
+              <PrivacyButton onOpen={() => setSheet({ kind: 'privacy' })} />
+            </div>
             {errors.consent ? <p className="gp-err">{errors.consent}</p> : null}
             {errors.form ? <p className="gp-err">{errors.form}</p> : null}
             <button type="submit" className="gp-btn" disabled={pending}>{pending ? 'Reserving' : 'Reserve my seat'}</button>
@@ -313,19 +345,53 @@ export default function GrowthPartner({ news = [] }) {
         </section>
       ) : null}
 
-      <section className="gp-sec" id="privacy">
-        <p className="gp-kicker rv">How we handle your details</p>
-        <p className="gp-lead rv">{PRIVACY.lead}</p>
-        <div className="privacy rv">
-          {PRIVACY.items.map((it) => <div key={it.title}><h4>{it.title}</h4><p>{it.text}</p></div>)}
-        </div>
-      </section>
-
       <footer className="gp-foot">
-        <div className="gp-doors"><a className="gp-btn ghost" href={MESSENGER}>Message us</a><a className="gp-btn ghost" href={FB}>Facebook</a><a className="gp-btn ghost" href="/dentalchairs">ROSON Dental Chairs</a></div>
+        <div className="gp-doors"><a className="gp-btn ghost" href={MESSENGER}>Message us</a><a className="gp-btn ghost" href={FB}>Facebook</a><a className="gp-btn ghost" href="/dentalchairs">ROSON Dental Chairs</a><button type="button" className="gp-btn ghost" onClick={() => setSheet({ kind: 'privacy' })}>How we handle your details</button></div>
         <p style={{ marginTop: 16 }}>DentaSource Direct · Pasig, Metro Manila · dentasourcedirect.com</p>
       </footer>
-      <GpSky />
     </main>
+
+    {/* the room (dock + sky + music) lives OUTSIDE main, like /spin: .gp > * is a z-index 1 stacking context that trapped it */}
+    <GpSky />
+
+    <GpSheet open={!!track} onClose={closeSheet} kicker="Track" title={track?.label}>
+      {track && trackMods ? (
+        <>
+          {track.with ? <p className="gp-sheet-lead" style={{ marginTop: 6 }}>with {track.with.name}</p> : null}
+          <ModuleList lead={trackMods.lead} modules={trackMods.modules} />
+          <p className="leave">{track.leave}</p>
+          <div className="gp-doors" style={{ justifyContent: 'flex-start', marginTop: 18 }}><a className="gp-btn" href="#reserve" onClick={closeSheet}>Reserve my seat</a></div>
+        </>
+      ) : null}
+    </GpSheet>
+
+    <GpSheet open={!!jd} onClose={closeSheet} kicker="JDev Studio" title={jd?.label} wide>
+      {jd ? (
+        <>
+          <p className="gp-sheet-lead">{jd.lead}</p>
+          {jd.note ? <p className="note">{jd.note}</p> : null}
+          {jd.id === 'crypto' ? <><TokenRow /><NetworkMap /><MarketCapChart /><EcosystemGraph onModule={jumpModule} /></> : null}
+          {jd.id === 'trading' ? <TradingCharts /> : null}
+          <ModuleList modules={jd.modules} idPrefix={`jdev-${jd.id}`} />
+          <p className="leave">{jd.leave}</p>
+          <div className="gp-doors" style={{ justifyContent: 'flex-start', marginTop: 18 }}><a className="gp-btn" href="#reserve" onClick={closeSheet}>Reserve my seat</a></div>
+        </>
+      ) : null}
+    </GpSheet>
+
+    <GpSheet open={sheet?.kind === 'about'} onClose={closeSheet} kicker={ABOUT.kicker} title={ABOUT.title}>
+      <div className="about-sheet">
+        {ABOUT.paras.map((p) => <p key={p}>{p}</p>)}
+        <div className="people">{ABOUT.people.map((p) => <Person key={p.name} p={p} bio />)}</div>
+      </div>
+    </GpSheet>
+
+    <GpSheet open={sheet?.kind === 'privacy'} onClose={closeSheet} kicker="Your privacy" title="How we handle your details">
+      <div className="pv-sheet">
+        <p className="gp-sheet-lead">{PRIVACY.lead}</p>
+        <div className="privacy">{PRIVACY.items.map((it) => <div key={it.title}><h4>{it.title}</h4><p>{it.text}</p></div>)}</div>
+      </div>
+    </GpSheet>
+    </>
   );
 }
