@@ -6,7 +6,7 @@ export const GUIDELINES = {
   lead: 'The Training Center is a place to learn and to teach. These are the terms every member, speaker and partner agrees to.',
   items: [
     { title: 'Learners first, speakers included', text: 'Everyone keeps learning. Education never stops, for the lecturer as much as for the first-year. Nobody is a know-it-all. The more we know, the more we see there is to know.' },
-    { title: 'Education, not entertainment', text: 'We bring knowledge, experience and skill to the room to pass knowledge on. Sessions are hands-on and evidence-led. Showmanship is not the product.' },
+    { title: 'Education, as experience', text: 'What we teach was applied before it was taught: techniques at the chair, then the running of the clinic and the company behind it. Almost a decade of trial and error across different ways of managing people, money and patients, kept because it worked and dropped when it did not. Sessions are hands-on and evidence-led. This is not from a book; it is what we still do every day.' },
     { title: 'Science, research and innovation', text: 'Claims are backed by literature or by cases we can show. When the evidence changes, so do we. Product talk is welcome only when it teaches.' },
     { title: 'Everyone is equal at the table', text: 'A first-year practitioner and a thirty-year practitioner sit side by side and both ask questions. Titles do not buy a better seat.' },
     { title: 'No politics', text: 'Not in the lectures, not in the forums, not in the chat. Strictly. Religion, elections and party lines stay outside the door.' },
