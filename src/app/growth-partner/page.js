@@ -7,9 +7,10 @@ export const metadata = {
   description: 'Digital Dentistry, Dental Assistant Training, Orthodontics with Orthostrategy, Endodontics, Prosthodontics, Oral Surgery, Aesthetics, and Practice Business at the DentaSource Direct Training Center in Pasig. See how we teach, then reserve your seat.',
   openGraph: {
     title: 'Your growth partner in dentistry',
-    description: 'The DentaSource Direct Training Center, inside the largest dental showroom in the country. See how we teach.',
-    images: ['/gp/photos/venue-08.jpg'],
+    description: 'Eight hands-on courses at the DentaSource Direct Training Center, inside the largest dental showroom in the Philippines. Now open, more to come.',
+    images: [{ url: '/images/og/growth-partner-2026-09-18.png', width: 1200, height: 630 }],
   },
+  twitter: { card: 'summary_large_image', images: ['/images/og/growth-partner-2026-09-18.png'] },
 };
 
 const MONTHS = { January: 1, February: 2, March: 3, April: 4, May: 5, June: 6, July: 7, August: 8, September: 9, October: 10, November: 11, December: 12 };
