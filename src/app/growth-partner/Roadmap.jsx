@@ -14,7 +14,8 @@ export default function Roadmap({ onModule }) {
   const [path, setPath] = useState([]);
   const [seen, setSeen] = useState([]);
   const [burst, setBurst] = useState(null);
-  useEffect(() => { try { const v = JSON.parse(localStorage.getItem(KEY) || '{}'); if (Array.isArray(v.path)) setPath(v.path); if (Array.isArray(v.seen)) setSeen(v.seen); } catch { /* ignore */ } }, []);
+  // stops renamed between rounds live on in old phones' storage: keep only ids that still exist, so the ring never passes 100
+  useEffect(() => { try { const v = JSON.parse(localStorage.getItem(KEY) || '{}'); const keep = (a) => (Array.isArray(a) ? a.filter((id) => ALL.includes(id)) : []); setPath(keep(v.path)); setSeen(keep(v.seen)); } catch { /* ignore */ } }, []);
   const save = (p, s) => { try { localStorage.setItem(KEY, JSON.stringify({ path: p, seen: s })); } catch { /* ignore */ } };
   const tap = (id) => {
     setOpen((cur) => (cur === id ? null : id));
@@ -22,7 +23,7 @@ export default function Roadmap({ onModule }) {
     setBurst(id); setTimeout(() => setBurst((b) => (b === id ? null : b)), 700);
   };
   const toggle = (id) => setPath((p) => { const n = p.includes(id) ? p.filter((x) => x !== id) : [...p, id]; save(n, seen); return n; });
-  const pct = Math.round((seen.length / ALL.length) * 100);
+  const pct = Math.min(100, Math.round((seen.filter((id) => ALL.includes(id)).length / ALL.length) * 100));
   const cur = useMemo(() => { for (const s of ROADMAP) { const n = s.nodes.find((x) => x.id === open); if (n) return { s, n }; } return null; }, [open]);
   const must = ALL.length;
   return (
