@@ -18,18 +18,19 @@ export const TRACK_MODULES = {
   },
   assistant: { lead: DA.lead, modules: DA.modules },
   ortho: {
-    lead: 'Mini screws and TADs with the Orthostrategy Study Group. Simulator first, then the chair under a mentor.',
+    lead: 'Mini screws, TADs and wire bending with the Orthostrategy Study Group. Simulator first, then the chair under a mentor.',
     modules: [
       M('Module 1 · Why TADs', ['Anchorage in plain words', 'Cases that change once you can place a screw', 'Cases that should still be referred']),
       M('Module 2 · Selection and safe zones', ['Screw length, diameter and thread', 'The 30 degree safe-zone law', 'Reading the CBCT for root proximity']),
       M('Module 3 · Placement technique', ['Self-drilling, step by step', 'Angulation, torque and the feel of good bone', 'Soft tissue management around the head']),
       M('Module 4 · Biomechanics', ['Direct and indirect anchorage', 'Force levels, elastics and springs', 'Intrusion, retraction and distalization set-ups']),
-      M('Module 5 · Hands-on', ['Placement on the simulator, every angle', 'Loading and checking mobility', 'Removal and what a failed screw teaches']),
-      M('Module 6 · Live patient day', ['Case presentation and consent', 'Placement under supervision', 'Follow-up schedule and troubleshooting']),
+      M('Module 5 · Wire bending', ['Pliers, wires and the arch form: which wire for which job', 'First-, second- and third-order bends on the typodont', 'Loops, springs and hooks that work with a TAD', 'Bending to the case: intrusion arches and retraction hooks'],
+      M('Module 6 · Hands-on', ['Placement on the simulator, every angle', 'Loading and checking mobility', 'Removal and what a failed screw teaches']),
+      M('Module 7 · Live patient day', ['Case presentation and consent', 'Placement under supervision', 'Follow-up schedule and troubleshooting']),
     ],
   },
   endo: {
-    lead: 'Rotary systems, apex locators and obturation on Denjoy equipment, from access to the final radiograph.',
+    lead: 'Rotary systems, apex locators and obturation on Denjoy equipment, taught with FFC Dental Clinic, from access to the final radiograph.',
     modules: [
       M('Module 1 · Access and anatomy', ['Access shapes that find every canal', 'Reading the pre-op radiograph for surprises', 'Magnification and light']),
       M('Module 2 · Working length', ['Apex locators: how they read and when they lie', 'Confirming with the radiograph', 'Reference points that do not move']),
