@@ -24,7 +24,7 @@ export const TRACK_MODULES = {
       M('Module 2 · Selection and safe zones', ['Screw length, diameter and thread', 'The 30 degree safe-zone law', 'Reading the CBCT for root proximity']),
       M('Module 3 · Placement technique', ['Self-drilling, step by step', 'Angulation, torque and the feel of good bone', 'Soft tissue management around the head']),
       M('Module 4 · Biomechanics', ['Direct and indirect anchorage', 'Force levels, elastics and springs', 'Intrusion, retraction and distalization set-ups']),
-      M('Module 5 · Wire bending', ['Pliers, wires and the arch form: which wire for which job', 'First-, second- and third-order bends on the typodont', 'Loops, springs and hooks that work with a TAD', 'Bending to the case: intrusion arches and retraction hooks'],
+      M('Module 5 · Wire bending', ['Pliers, wires and the arch form: which wire for which job', 'First-, second- and third-order bends on the typodont', 'Loops, springs and hooks that work with a TAD', 'Bending to the case: intrusion arches and retraction hooks']),
       M('Module 6 · Hands-on', ['Placement on the simulator, every angle', 'Loading and checking mobility', 'Removal and what a failed screw teaches']),
       M('Module 7 · Live patient day', ['Case presentation and consent', 'Placement under supervision', 'Follow-up schedule and troubleshooting']),
     ],
