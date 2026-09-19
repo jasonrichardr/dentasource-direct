@@ -146,15 +146,13 @@ export default function GrowthPartner({ news = [] }) {
       <section className="gp-hero">
         <video src="/gp/reels/reel-07.mp4" poster="/gp/reels/reel-07.jpg" autoPlay muted loop playsInline preload="metadata" aria-hidden />
         <div className="gp-hero-inner">
-          <p className="gp-kicker rv">DentaSource Direct Training Center · Pasig</p>
+          <p className="gp-kicker rv">Training Center · Pasig</p>
           <h1 className="gp-h1 rv">Your growth partner <span className="gp-gold">in dentistry.</span></h1>
           <p className="gp-lead rv">We sell the chairs, the scanners, and the x-rays. We would rather teach you to make the most of them. The Training Center sits inside the largest dental showroom in the Philippines, so every lecture is a hands-on session and every tool is within reach.</p>
           <div className="gp-hero-cta rv">
             <a className="gp-btn" href="#reserve">Reserve my seat</a>
           </div>
           <div className="gp-logos rv" aria-label="With our partners">
-            <span className="pill"><img src="/images/brand/roson-logo-final.png" alt="ROSON" /></span>
-            <img className="logo-bare denjoy" src="/images/brand/denjoy-logo-final.png" alt="Denjoy" />
             <img className="logo-bare ortho" src="/gp/logos/orthostrategy-clear.png" alt="Orthostrategy Study Group" />
             <img className="logo-bare crest" src="/gp/logos/cred-creststudy-round.png" alt="Crest Study Group" />
             <img className="logo-bare round" src="/gp/logos/ffc-ring-clean.png" alt="FFC Dental Clinic" />
@@ -197,7 +195,6 @@ export default function GrowthPartner({ news = [] }) {
               <div>
                 <h3>{t.label}</h3>
                 <p>{t.promise}</p>
-                <p><em>{t.leave}</em></p>
                 {t.with ? <div className="with"><span>with</span><img src={t.with.logo} alt={t.with.name} /><span>{t.with.name}</span></div> : null}
                 {t.people?.length ? <FaceLoop people={t.people} /> : null}
                 {t.platforms ? <div className="plat"><span><AppleMark size={14} />Mac</span><span><WindowsMark size={14} />Windows</span><span><AppleMark size={14} />iOS</span><span><AndroidMark size={14} />Android</span></div> : null}
@@ -228,22 +225,11 @@ export default function GrowthPartner({ news = [] }) {
           ))}
         </div>
         {CHAPTERS.map((c) => (
-          <article key={c.id} className="chapter rv" id={`partner-${c.id}`}>
+          <article key={c.id} className="chapter chapter-compact rv" id={`partner-${c.id}`} role="button" tabIndex={0} aria-haspopup="dialog" onClick={() => openSheet({ kind: 'chapter', id: c.id })} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSheet({ kind: 'chapter', id: c.id }); } }}>
             <div className="chapter-head"><img className={c.shape || ''} src={c.logo} alt="" /><div><h3>{c.name}</h3><small>{c.sub}</small></div></div>
-            {c.people?.length ? <div className="people-row">{c.people.map((d) => <div key={d.name} className="person-chip"><img src={d.photo} alt={d.name} decoding="async" /><span><b>{d.name}</b><small>{d.title}</small></span></div>)}</div> : null}
-            <p className="chapter-body">{c.body}</p>
-            <ul className="offers">{c.offers.map((o) => <li key={o}>{o}</li>)}</ul>
-            {c.videos?.length ? (
-              <div className="marquee" aria-label={`${c.name} videos`}><div className="marquee-track">
-                {[...c.videos, ...c.videos].map((v, i) => <figure key={`${v.src}-${i}`} className="mq-item"><video src={v.src} poster={v.poster} muted loop autoPlay playsInline preload={i < 4 ? 'metadata' : 'none'} aria-label={v.cap || ''} /></figure>)}
-              </div></div>
-            ) : null}
-            {c.photos?.length ? (
-              <div className="marquee reverse" aria-label={`${c.name} photos`}><div className="marquee-track">
-                {[...c.photos, ...c.photos].map((ph, i) => <figure key={`${ph.src}-${i}`} className="mq-item"><img src={ph.src} alt={ph.cap || ''} loading={i < 8 ? 'eager' : 'lazy'} decoding="async" /></figure>)}
-              </div></div>
-            ) : null}
-            {c.videos?.length || c.photos?.length ? <p className="courtesy">Photos and video courtesy of <a href={c.fb} target="_blank" rel="noopener">{c.name}</a>.</p> : <p className="courtesy"><a href={c.fb} target="_blank" rel="noopener">{c.name}</a></p>}
+            {c.people?.length ? <div className="faces-row">{c.people.map((d) => <img key={d.name} src={d.photo} alt={d.name} title={`${d.name} · ${d.title}`} decoding="async" />)}<span>{c.people.length === 1 ? c.people[0].name : `${c.people[0].name} and ${c.people.length - 1} more`}</span></div> : null}
+            <p className="chapter-body clamp">{c.body}</p>
+            <span className="open">{c.offers.length} offers{c.videos?.length || c.photos?.length ? ` · ${(c.videos?.length || 0) + (c.photos?.length || 0)} photos and videos` : ''}</span>
           </article>
         ))}
       </section>
@@ -342,7 +328,7 @@ export default function GrowthPartner({ news = [] }) {
             <div className="gp-field"><span>Courses you want</span>
               <div className="course-pick">
                 {TRACKS.map((t) => <label key={t.id} className="cp"><input type="checkbox" name={`track_${t.id}`} /><img src={t.people?.[0]?.photo || t.icon} alt="" className={t.people?.length ? 'face' : t.plate ? 'plate' : ''} /><span>{t.label}</span><i aria-hidden>✓</i></label>)}
-                {JDEV_MODULES.map((m) => <label key={m.id} className="cp jd"><input type="checkbox" name={`jdev_${m.id}`} /><img src="/gp/logos/cred-jdev-round.png" alt="" /><span>{m.label}</span><i aria-hidden>✓</i></label>)}
+                {JDEV_MODULES.map((m) => <label key={m.id} className="cp jd"><input type="checkbox" name={`jdev_${m.id}`} /><img src="/gp/logos/cred-jdev-round.png" alt="" /><span>{m.short || m.label}</span><i aria-hidden>✓</i></label>)}
               </div>
               {errors.tracks ? <p className="gp-err">{errors.tracks}</p> : null}
             </div>
@@ -411,6 +397,28 @@ export default function GrowthPartner({ news = [] }) {
           <div className="gp-doors" style={{ justifyContent: 'flex-start', marginTop: 18 }}><a className="gp-btn" href="#reserve" onClick={goAfterClose('reserve')}>Reserve my seat</a></div>
         </>
       ) : null}
+    </GpSheet>
+
+    <GpSheet open={sheet?.kind === 'chapter'} onClose={closeSheet} kicker="Growth Partner" title={CHAPTERS.find((c) => c.id === sheet?.id)?.name} wide>
+      {sheet?.kind === 'chapter' ? (() => { const c = CHAPTERS.find((x) => x.id === sheet.id); if (!c) return null; return (
+        <>
+          <p className="gp-sheet-lead">{c.sub}</p>
+          {c.people?.length ? <div className="people-row" style={{ marginTop: 12 }}>{c.people.map((d) => <div key={d.name} className="person-chip"><img src={d.photo} alt={d.name} decoding="async" /><span><b>{d.name}</b><small>{d.title}</small></span></div>)}</div> : null}
+          <p className="chapter-body">{c.body}</p>
+          <ul className="offers">{c.offers.map((o) => <li key={o}>{o}</li>)}</ul>
+          {c.videos?.length ? (
+            <div className="marquee sheet-mq" aria-label={`${c.name} videos`}><div className="marquee-track">
+              {[...c.videos, ...c.videos].map((v, i) => <figure key={`${v.src}-${i}`} className="mq-item"><video src={v.src} poster={v.poster} muted loop autoPlay playsInline preload={i < 4 ? 'metadata' : 'none'} aria-label={v.cap || ''} /></figure>)}
+            </div></div>
+          ) : null}
+          {c.photos?.length ? (
+            <div className="marquee reverse sheet-mq" aria-label={`${c.name} photos`}><div className="marquee-track">
+              {[...c.photos, ...c.photos].map((ph, i) => <figure key={`${ph.src}-${i}`} className="mq-item"><img src={ph.src} alt={ph.cap || ''} loading={i < 8 ? 'eager' : 'lazy'} decoding="async" /></figure>)}
+            </div></div>
+          ) : null}
+          <p className="courtesy">{c.videos?.length || c.photos?.length ? 'Photos and video courtesy of ' : ''}<a href={c.fb} target="_blank" rel="noopener">{c.name}</a>.</p>
+          <div className="gp-doors" style={{ justifyContent: 'flex-start', marginTop: 18 }}><a className="gp-btn" href="#reserve" onClick={goAfterClose('reserve')}>Reserve my seat</a></div>
+        </>); })() : null}
     </GpSheet>
 
     <GlassSheet open={sheet?.kind === 'about'} onClose={closeSheet} label="About DentaSource Direct">

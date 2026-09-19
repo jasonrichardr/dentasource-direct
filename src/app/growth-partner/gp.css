@@ -596,3 +596,25 @@ html[data-theme="light"] .rm-card { background: rgba(20, 25, 43, 0.05); }
 .rm-path { margin-top: 18px; padding: 14px 16px; border-radius: 14px; border: 1px solid rgba(201, 162, 39, 0.4); background: rgba(201, 162, 39, 0.08); }
 .rm-path-list { display: flex; flex-wrap: wrap; gap: 6px; }
 .rm-path-list span { padding: 6px 10px; border-radius: 999px; border: 1px solid; font-size: 12px; cursor: pointer; background: rgba(255, 255, 255, 0.04); }
+
+/* ───────── trim (2026-09-19): compact chapters open a sheet; two-column course pills; hero without brand repeats ───────── */
+.chapter-compact { cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease; }
+.chapter-compact:hover, .chapter-compact:focus-visible { border-color: var(--gold); transform: translateY(-2px); outline: none; }
+.chapter-body.clamp { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.chapter-compact .open { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+.chapter-compact .open::after { content: '→'; }
+.faces-row { display: flex; align-items: center; margin-top: 12px; font-size: 12.5px; color: var(--muted); }
+.faces-row img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--gold); margin-right: -9px; background: #0d1326; }
+.faces-row span { margin-left: 18px; }
+.gp-sheet .chapter-body { margin-top: 14px; }
+.gp-sheet .offers li { color: inherit; }
+.gp-sheet .sheet-mq { margin: 14px -18px 0; }
+.gp-sheet .sheet-mq .mq-item { width: 150px; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background: #000; flex: none; margin: 0; }
+.gp-sheet .sheet-mq .mq-item img, .gp-sheet .sheet-mq .mq-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gp-sheet .sheet-mq.reverse .mq-item { width: 170px; aspect-ratio: 4 / 3; }
+.gp-sheet .courtesy { margin-top: 12px; font-size: 12.5px; opacity: 0.75; } .gp-sheet .courtesy a { color: #c9a227; }
+.course-pick { display: flex; flex-wrap: wrap; gap: 7px; }
+.cp { padding: 5px 11px 5px 5px; font-size: 12.5px; }
+.cp img { width: 28px; height: 28px; }
+.gp-field .cp span { font-size: 12.5px; line-height: 1.2; overflow-wrap: normal; word-break: keep-all; }
+.track p { font-size: 13.5px; }
