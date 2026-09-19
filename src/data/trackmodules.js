@@ -30,11 +30,11 @@ export const TRACK_MODULES = {
     ],
   },
   endo: {
-    lead: 'Rotary systems, apex locators and obturation on Denjoy equipment, taught with FFC Dental Clinic, from access to the final radiograph.',
+    lead: 'From access to the final radiograph: the thinking, the hand skills and a protocol that works on any rotary system. Taught with FFC Dental Clinic by Dr. Finn, who leads and mentors more than twenty active dentists inside the clinic and beyond it.',
     modules: [
       M('Module 1 · Access and anatomy', ['Access shapes that find every canal', 'Reading the pre-op radiograph for surprises', 'Magnification and light']),
       M('Module 2 · Working length', ['Apex locators: how they read and when they lie', 'Confirming with the radiograph', 'Reference points that do not move']),
-      M('Module 3 · Rotary shaping', ['Motor settings, torque and speed', 'File sequences on Denjoy systems', 'Avoiding separation and ledges']),
+      M('Module 3 · Rotary shaping', ['Motor settings, torque and speed', 'File sequences: reading any system\'s sequence and adapting it to the canal', 'Avoiding separation and ledges']),
       M('Module 4 · Irrigation and disinfection', ['Sodium hypochlorite, EDTA and activation', 'Time, volume and safety', 'Intracanal medicaments']),
       M('Module 5 · Obturation', ['Warm vertical and single cone', 'Sealers and what they forgive', 'The post-op radiograph you want to see']),
       M('Module 6 · Hands-on', ['Extracted teeth and blocks', 'Full case on the simulator', 'Retreatment basics']),
