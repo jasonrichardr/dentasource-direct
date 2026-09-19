@@ -8,9 +8,9 @@ export const metadata = {
   openGraph: {
     title: 'Your growth partner in dentistry',
     description: 'Eight hands-on courses at the DentaSource Direct Training Center, inside the largest dental showroom in the Philippines. Now open, more to come.',
-    images: [{ url: '/images/og/growth-partner-2026-09-18b.png', width: 1200, height: 630 }],
+    images: [{ url: '/images/og/growth-partner-2026-09-19.png', width: 1200, height: 630 }],
   },
-  twitter: { card: 'summary_large_image', images: ['/images/og/growth-partner-2026-09-18b.png'] },
+  twitter: { card: 'summary_large_image', images: ['/images/og/growth-partner-2026-09-19.png'] },
 };
 
 const MONTHS = { January: 1, February: 2, March: 3, April: 4, May: 5, June: 6, July: 7, August: 8, September: 9, October: 10, November: 11, December: 12 };

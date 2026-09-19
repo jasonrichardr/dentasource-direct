@@ -16,7 +16,7 @@ export const JDEV = {
 export const JDEV_MODULES = [
   {
     id: 'crypto',
-    label: 'Cryptocurrency and Blockchain',
+    label: 'Cryptocurrency and Blockchain', short: 'Crypto and Blockchain',
     promise: 'From your first wallet to reading a whitepaper without fear.',
     leave: 'You leave able to explain a token in two minutes and spot a bad one in one.',
     lead: 'Eight modules on how the chain works, what rides on it, how to read what people publish about it, and how to keep your head. Visual first: tokens, networks, market cap and the whole ecosystem drawn out, and every node opens.',
@@ -34,7 +34,7 @@ export const JDEV_MODULES = [
   },
   {
     id: 'trading',
-    label: 'Trading: candlesticks, RSI and MACD only',
+    label: 'Trading: candlesticks, RSI and MACD only', short: 'Trading',
     promise: 'Three tools, one plan, no noise.',
     leave: 'You leave with a rule set you can follow on a bad day, not just a good one.',
     lead: 'Seven modules and three tools. No indicators beyond these three, on purpose: a trader who reads candles, RSI and MACD well has more than most. The charts below are drawn from one series so you can see all three tell the same story.',
@@ -52,7 +52,7 @@ export const JDEV_MODULES = [
   },
   {
     id: 'agentic',
-    label: 'Software and Agentic Engineering',
+    label: 'Software and Agentic Engineering', short: 'Software and Agents',
     promise: 'Build real tools with AI agents, the way this site and DentaDesk were built.',
     leave: 'You leave with a working app of your own online and the habit of checking it.',
     lead: SAE.lead,
