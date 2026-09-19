@@ -17,7 +17,6 @@ export const PARTNERS = [
   { name: 'Crest Study Group', sub: 'Digital dentistry and surgery study group', logo: '/gp/logos/cred-creststudy-round.png', shape: 'round' },
   { name: 'FFC Dental Clinic', sub: 'Dental Assistant Training', logo: '/gp/logos/ffc-ring-clean.png', shape: 'round' },
   { name: 'JDev Studio', sub: 'Software and agentic engineering', logo: '/gp/logos/cred-jdev-round.png', shape: 'round' },
-  { name: 'Denjoy', sub: 'Endodontic systems', logo: '/images/brand/denjoy-logo-final.png', shape: 'plate' },
 ];
 
 export const REELS = [
