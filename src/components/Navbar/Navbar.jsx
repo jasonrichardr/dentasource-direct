@@ -6,11 +6,12 @@ import { usePathname } from 'next/navigation';
 import { m as motion, AnimatePresence } from 'framer-motion';
 
 // Routes with their own immersive chrome (design-DNA pages) — global navbar stays out.
-const CHROME_FREE_ROUTES = ['/denjoy', '/spin', '/spin/desk', '/growth-partner'];
+const CHROME_FREE_ROUTES = ['/denjoy', '/spin', '/spin/desk', '/growth-partner', '/k-clamps'];
 
 const navLinks = [
   { name: 'Equipment', href: '/products' },
   { name: 'Dental Chairs', href: '/dentalchairs' },
+  { name: 'K-Clamps', href: '/k-clamps' },
   { name: 'Denjoy', href: '/denjoy' },
   { name: 'News', href: '/news' },
   { name: 'Trade-In', href: '/trade-in' },

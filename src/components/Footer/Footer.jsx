@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 // Routes with their own immersive chrome (design-DNA pages) — global footer stays out.
-const CHROME_FREE_ROUTES = ['/denjoy', '/spin', '/spin/desk', '/growth-partner'];
+const CHROME_FREE_ROUTES = ['/denjoy', '/spin', '/spin/desk', '/growth-partner', '/k-clamps'];
 
 const PHONE = '+63 962 579 3024';
 const PHONE_HREF = 'tel:+639625793024';
@@ -14,6 +14,7 @@ const columns = [
     title: 'Equipment',
     links: [
       ['Dental Chairs', '/dentalchairs', true],
+      ['K-Clamps', '/k-clamps', true],
       ['All Equipment', '/products'],
       ['Denjoy Endodontics', '/denjoy', true],
       ['Trade-In Program', '/trade-in'],
