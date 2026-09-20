@@ -1017,17 +1017,27 @@ Registration and inquiries: bit.ly/26THNADTI and nadtievents@gmail.com. We will 
         slug: "pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026",
         title: "PDA San Pablo City Chapter Invites All Dentists to Its 2nd Scientific Seminar and General Membership Meeting, October 29 at CDC 1028 Café",
         date: "September 19, 2026",
-        image: "/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/hero-invitation-2x.jpg",
-        ogImage: "/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/og.jpg",
+        image: "/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/hero-invitation-v2-2x.jpg",
+        ogImage: "/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/og-v2.jpg",
         hideHeroImage: false,
-        abstract: "The Philippine Dental Association San Pablo City Chapter opens its 2nd Scientific Seminar and General Membership Meeting to every dentist on Thursday, October 29, 2026, 12:00 PM, at CDC 1028 Café in San Pablo City Highlands. What the afternoon is, who the chapter is, what it has been doing this year, how to get to the hilltop café, and what to bring for your CPD record.",
+        abstract: "The Philippine Dental Association San Pablo City Chapter opens its 2nd Scientific Seminar and General Membership Meeting to every dentist on Thursday, October 29, 2026 at CDC 1028 Café in San Pablo City Highlands: registration at 12:30 PM, program 1:00 to 6:00 PM. Two lectures under the theme Bridging the Gap Between Alignment and Tissue Health: Dr. Emil Angelo Santos on real-world self-ligation and Dr. Francesca Daye See-Santos on crown lengthening. The chapter, the venue, the map, and what to bring for your CPD record.",
         content: `## The Invitation
 
-The **Philippine Dental Association San Pablo City Chapter** is inviting all dentists to its **2nd Scientific Seminar and General Membership Meeting** on **Thursday, October 29, 2026**. The program starts at **12:00 PM** at **CDC 1028 Café**, San Pablo City Highlands, Barangay San Jose, San Pablo City, Laguna.
+The **Philippine Dental Association San Pablo City Chapter** is inviting all dentists to its **2nd Scientific Seminar and General Membership Meeting** on **Thursday, October 29, 2026**. Registration opens at **12:30 PM** and the program runs from **1:00 to 6:00 PM** at **CDC 1028 Café**, San Pablo City Highlands, Barangay San Jose, San Pablo City, Laguna. The registration fee is ₱1,200, with payment details behind the QR code on the chapter's poster.
 
 In the chapter's own words, it is an afternoon of learning, professional fellowship, and meaningful connections with fellow dental professionals. The invitation is open, not members-only, so dentists from the neighbouring towns of Laguna and Quezon are welcome to sit in.
 
-==Lecture topics, speakers and the CPD credit for the day have not been posted yet.== We will update this page the moment the chapter announces them, and we will add the registration details in the same place.
+The afternoon carries one theme, ==Bridging the gap between alignment and tissue health==, and two lectures: an orthodontist on self-ligating brackets as they behave in a private practice, and a periodontist on crown lengthening. The CPD credit for the day has not been posted yet; we will add it here when the chapter announces it.
+
+![The chapter's poster for the 2nd Scientific Seminar and General Membership Meeting](/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/poster-2nd-scientific-seminar-gmm-october-29.jpg)
+
+## The Two Lectures
+
+@avatar(/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/avatar-dr-emil-angelo-santos.jpg) **Dr. Emil Angelo Santos, Passive vs. Active vs. Reality: Real-World Self-Ligation in Private Practice.** An orthodontist with an MSD in Orthodontics and the founder of the Orthostrategy Study Group, Dr. Santos teaches the fundamentals of orthodontic practice to general dentists, including the two-day TADs course he gave at the DentaSource Direct Training Center in August 2026. Self-ligating brackets are sold as passive or active; his lecture is about what the mechanics do in a real private-practice case load, and how to plan around it.
+
+@avatar(/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/avatar-dr-francesca-daye-see-santos.jpg) **Dr. Francesca Daye See-Santos, Beyond the Gingival Margin: The Art of Crown Lengthening.** A periodontist, Dr. See-Santos takes the second hour to the soft tissue: when a restoration or an orthodontic finish needs more tooth than the gum allows, how crown lengthening is planned and cut, and how it is kept stable. The two lectures are a pair on purpose, alignment on one side and the tissue that has to hold it on the other, which is what the seminar's theme line says.
+
+Both speakers are members of the host chapter, and Dr. Santos is one of the study-group leaders on our [Training Center page](/growth-partner).
 
 ## What a Scientific Seminar and General Membership Meeting Is
 
@@ -1080,7 +1090,7 @@ The Highlands road climbs, so give yourself a few extra minutes from the city pr
 
 Bring your **PRC license number**. Chapter seminars keep an attendance sheet that is filed with the PRC's CPD accreditation system, and your units are credited against that number. Dentists renewing in 2026 should note that the PRC accepts a CPD undertaking for renewals until June 30, 2026, but the units are not waived, they are carried into the next cycle, so every accredited hour still counts.
 
-Bring a pen for the membership meeting, and a card or two. The chapter itself says the afternoon is for connections as much as for lectures.
+Bring a pen for the membership meeting, and a card or two. The chapter itself says the afternoon is for connections as much as for lectures. Registration is ₱1,200; scan the QR code on the poster above for the form and the payment details, or write to the chapter at pdasanpablocitychapter@gmail.com.
 
 ## From DentaSource Direct
 
@@ -1090,9 +1100,9 @@ If you are in Manila next week, the [26th NADTI Trade Exhibit](/news/nadti-2026-
 
 ## Save the Date
 
-**Thursday, October 29, 2026, 12:00 PM, CDC 1028 Café, San Pablo City Highlands.** Open to all dentists. We will add the speakers, the CPD credit and the registration details to this page as soon as the chapter posts them.
+**Thursday, October 29, 2026. Registration 12:30 PM, program 1:00 to 6:00 PM, CDC 1028 Café, San Pablo City Highlands.** Open to all dentists. Dr. Emil Angelo Santos on real-world self-ligation, Dr. Francesca Daye See-Santos on crown lengthening. We will add the CPD credit as soon as the chapter posts it, and we will report on the afternoon after October 29.
 
-Sources: [PDA San Pablo City Chapter Official](https://www.facebook.com/pdasanpablocity), [Philippine Dental Association local chapters](https://pda.com.ph/about-us/local-chapters/), [PRC CPD Accreditation System, PDA provider record](https://cpdas.prc.gov.ph/public/providerInfo.aspx?id=kkmNhUR0wPZn28Hjju4rJQ%3D%3D), [CDC 1028 Café](https://cdc1028cafe.carrd.co/), [PRC: CPD undertaking accepted until June 30, 2026](https://www.prc.gov.ph/article/extending-acceptance-cpd-undertaking-renewal-professional-identification-card-until-june-30).`
+Sources: [PDA San Pablo City Chapter Official](https://www.facebook.com/pdasanpablocity), [the seminar poster as posted by Dr. Emil Angelo Santos](https://www.facebook.com/share/p/19Lno4npvd/), [Philippine Dental Association local chapters](https://pda.com.ph/about-us/local-chapters/), [PRC CPD Accreditation System, PDA provider record](https://cpdas.prc.gov.ph/public/providerInfo.aspx?id=kkmNhUR0wPZn28Hjju4rJQ%3D%3D), [CDC 1028 Café](https://cdc1028cafe.carrd.co/), [PRC: CPD undertaking accepted until June 30, 2026](https://www.prc.gov.ph/article/extending-acceptance-cpd-undertaking-renewal-professional-identification-card-until-june-30).`
     },
     {
         id: "pda-san-pablo-city-camarines-norte-twinning-webinar-march-2026",
