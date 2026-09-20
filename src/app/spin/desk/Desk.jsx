@@ -6,7 +6,7 @@ import { PRIZES } from '@/lib/spin/prizes';
 import { searchUrl } from '@/lib/spin/console';
 import {
   deskTally, deskSearch, deskClaim, deskClaimByQr, deskClaimByCode, deskDeleteTests, deskDeleteReserved, deskLogout, deskRehearsal,
-  deskSetPrize, deskResetPrizes, deskLinkSocial, deskNote,
+  deskSetPrize, deskResetPrizes, deskLinkSocial, deskNote, deskExport,
 } from '@/actions/spin';
 import QrScanner from './QrScanner';
 import { MARK } from '../brandMarks';
@@ -18,6 +18,32 @@ const SOCIALS = [
   { id: 'instagram', label: 'Instagram' },
   { id: 'tiktok', label: 'TikTok' },
 ];
+
+const FILTERS = [
+  { id: 'all', label: 'All', noun: 'visitors', one: 'visitor', empty: 'No spins yet.' },
+  { id: 'unclaimed', label: 'Unclaimed', noun: 'unclaimed', one: 'unclaimed', empty: 'Nothing waiting to be handed over.' },
+  { id: 'claimed', label: 'Claimed', noun: 'claimed', one: 'claimed', empty: 'No prizes handed over yet.' },
+  { id: 'reserved', label: 'Reserved', noun: 'reserved', one: 'reserved', empty: 'No pre-registrations yet.' },
+  { id: 'winners', label: 'Winners', noun: 'winners', one: 'winner', empty: 'No credit or discount winners yet.' },
+];
+const FILTER_BY_ID = Object.fromEntries(FILTERS.map((f) => [f.id, f]));
+const REFRESH_MS = 20000;
+
+/** Manila wall clock with seconds, for the "Updated hh:mm:ss" line. */
+function manilaClock(d = new Date()) {
+  try {
+    return new Intl.DateTimeFormat('en-PH', { timeZone: 'Asia/Manila', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(d);
+  } catch { return ''; }
+}
+
+/** Manila calendar day, for the CSV filename. */
+function manilaYmd(d = new Date()) {
+  try {
+    const p = new Intl.DateTimeFormat('en-PH', { timeZone: 'Asia/Manila', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(d);
+    const g = (t) => p.find((x) => x.type === t)?.value;
+    return `${g('year')}-${g('month')}-${g('day')}`;
+  } catch { return ''; }
+}
 
 function when(iso) {
   try {
@@ -65,12 +91,18 @@ function PrizeRow({ id, t, onSave, busy }) {
   );
 }
 
-function VisitorRow({ r, busy, onClaim, onLink, onNote, onRemove }) {
+function VisitorRow({ r, busy, onClaim, onLink, onNote, onRemove, onFormState }) {
   const [open, setOpen] = useState(null);
   const [draft, setDraft] = useState('');
   const [note, setNote] = useState('');
   const [msg, setMsg] = useState('');
   const [more, setMore] = useState(false);
+  // Tell the desk while a form is open here, so the 20 s auto-refresh holds off
+  // instead of yanking the row out from under someone mid-typing.
+  useEffect(() => {
+    onFormState(r.leadId, open !== null || more);
+    return () => onFormState(r.leadId, false);
+  }, [open, more, r.leadId, onFormState]);
   const submitLink = async (e) => {
     e.preventDefault();
     const res = await onLink(r.leadId, open, draft);
@@ -90,7 +122,11 @@ function VisitorRow({ r, busy, onClaim, onLink, onNote, onRemove }) {
         <span className="row-prize">{r.prizeLabel}</span>
         {r.test ? <span className="row-tag">TEST</span> : null}
       </div>
-      <div className="row-sub">{r.name} · {r.clinic} · <a href={`tel:${r.phone}`}>{r.phone}</a> · {when(r.createdAt)}</div>
+      <div className="row-sub">
+        {r.name} · {r.clinic} · <a href={`tel:${r.phone}`}>{r.phone}</a>
+        {r.reserved && r.email ? <> · <a href={`mailto:${r.email}`}>{r.email}</a></> : null}
+        {' · '}{when(r.createdAt)}
+      </div>
       <div className="row-socials" aria-label="Linked socials">
         {SOCIALS.map((s) => {
           const Mark = MARK[s.id]; const on = linkedOf(r, s.id);
@@ -139,14 +175,42 @@ export default function Desk() {
   const [scanResult, setScanResult] = useState(null);
   const [typed, setTyped] = useState('');
   const [tab, setTab] = useState('visitors');
+  const [filter, setFilter] = useState('all');
+  const [total, setTotal] = useState(0);
+  const [updatedAt, setUpdatedAt] = useState(null);
   const [busy, start] = useTransition();
 
-  const refresh = useCallback(async (query = q) => {
-    const [t, r] = await Promise.all([deskTally(), deskSearch(query)]);
-    setTally(t); setRows(r);
-  }, [q]);
+  const refresh = useCallback(async (query = q, f = filter) => {
+    const [t, r] = await Promise.all([deskTally(), deskSearch(query, f)]);
+    setTally(t); setRows(r.rows); setTotal(r.total); setUpdatedAt(new Date());
+  }, [q, filter]);
 
-  useEffect(() => { refresh('').catch(() => router.refresh()); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { refresh('', 'all').catch(() => router.refresh()); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ── auto-refresh ──
+  // Refs, not deps: the interval must keep its own 20 s rhythm instead of being
+  // torn down and restarted on every keystroke in the search box.
+  const refreshRef = useRef(refresh);
+  const busyRef = useRef(busy);
+  const scanningRef = useRef(scanning);
+  const openForms = useRef(new Set());
+  useEffect(() => { refreshRef.current = refresh; }, [refresh]);
+  useEffect(() => { busyRef.current = busy; }, [busy]);
+  useEffect(() => { scanningRef.current = scanning; }, [scanning]);
+
+  const onFormState = useCallback((leadId, isOpen) => {
+    if (isOpen) openForms.current.add(leadId);
+    else openForms.current.delete(leadId);
+  }, []);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      if (typeof document !== 'undefined' && document.visibilityState !== 'visible') return;
+      if (busyRef.current || scanningRef.current || openForms.current.size > 0) return;
+      refreshRef.current().catch(() => { /* a dropped tick is harmless; the next one retries */ });
+    }, REFRESH_MS);
+    return () => window.clearInterval(id);
+  }, []);
 
   const showClaim = (r) => {
     if (r?.ok) {
@@ -160,25 +224,46 @@ export default function Desk() {
       setScanResult({ tone: 'bad', title: r?.error || 'Could not read that QR', sub: r?.row ? `${r.row.name} · ${r.row.prizeLabel}` : '' });
     }
   };
-  const onToken = (token) => start(async () => { showClaim(await deskClaimByQr(token)); await refresh(q); });
-  const onTyped = (e) => { e.preventDefault(); const c = typed; start(async () => { showClaim(await deskClaimByCode(c)); setTyped(''); await refresh(q); }); };
-  const search = (e) => { e.preventDefault(); start(() => refresh(q)); };
-  const claim = (id) => start(async () => { const r = await deskClaim(id); if (r?.error) { setMsg(r.error); return; } setMsg(`Claimed ${r.row.code} for ${r.row.name}.`); await refresh(q); });
-  const savePrize = (id, patch) => start(async () => { const r = await deskSetPrize(id, patch); if (r?.error) setMsg(r.error); await refresh(q); });
-  const resetPrizes = () => start(async () => { await deskResetPrizes(); setMsg('Prize controls reset to the defaults.'); await refresh(q); });
-  const link = (leadId, platform, value) => new Promise((resolve) => start(async () => { const r = await deskLinkSocial(leadId, platform, value); if (r?.ok) await refresh(q); resolve(r); }));
+  const onToken = (token) => start(async () => { showClaim(await deskClaimByQr(token)); await refresh(q, filter); });
+  const onTyped = (e) => { e.preventDefault(); const c = typed; start(async () => { showClaim(await deskClaimByCode(c)); setTyped(''); await refresh(q, filter); }); };
+  const search = (e) => { e.preventDefault(); start(() => refresh(q, filter)); };
+  const pickFilter = (f) => { setFilter(f); start(() => refresh(q, f)); };
+  const jumpToFilter = (f) => { setTab('visitors'); pickFilter(f); };
+  const exportCsv = () => start(async () => {
+    const r = await deskExport(filter);
+    if (r?.error) { setMsg(r.error); return; }
+    try {
+      // The BOM keeps Excel from mangling the peso sign in the prize labels.
+      const blob = new Blob(['\ufeff', r.csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `nadti-2026-${filter}-${manilaYmd()}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      setMsg(`Downloaded ${r.count} rows`);
+    } catch {
+      setMsg('Could not build the file on this device.');
+    }
+  });
+  const claim = (id) => start(async () => { const r = await deskClaim(id); if (r?.error) { setMsg(r.error); return; } setMsg(`Claimed ${r.row.code} for ${r.row.name}.`); await refresh(q, filter); });
+  const savePrize = (id, patch) => start(async () => { const r = await deskSetPrize(id, patch); if (r?.error) setMsg(r.error); await refresh(q, filter); });
+  const resetPrizes = () => start(async () => { await deskResetPrizes(); setMsg('Prize controls reset to the defaults.'); await refresh(q, filter); });
+  const link = (leadId, platform, value) => new Promise((resolve) => start(async () => { const r = await deskLinkSocial(leadId, platform, value); if (r?.ok) await refresh(q, filter); resolve(r); }));
   const note = (leadId, line) => new Promise((resolve) => start(async () => { resolve(await deskNote(leadId, line)); }));
   const deleteTests = () => start(async () => {
     if (pendingDelete == null) { const r = await deskDeleteTests(false); setPendingDelete(r.count); return; }
-    const r = await deskDeleteTests(true); setMsg(`Deleted ${r.deleted} test spins.`); setPendingDelete(null); await refresh(q);
+    const r = await deskDeleteTests(true); setMsg(`Deleted ${r.deleted} test spins.`); setPendingDelete(null); await refresh(q, filter);
   });
   const [pendingRemove, setPendingRemove] = useState(null);
   const removeReserved = (leadId, code) => start(async () => {
     if (pendingRemove !== leadId) { setPendingRemove(leadId); setMsg(`Remove reservation ${code}? Tap Remove again to confirm.`); return; }
     const r = await deskDeleteReserved(leadId); setPendingRemove(null);
-    setMsg(r?.error || `Reservation ${code} removed.`); await refresh(q);
+    setMsg(r?.error || `Reservation ${code} removed.`); await refresh(q, filter);
   });
-  const rehearsal = (on) => start(async () => { await deskRehearsal(on); await refresh(q); });
+  const rehearsal = (on) => start(async () => { await deskRehearsal(on); await refresh(q, filter); });
   const logout = () => start(async () => { await deskLogout(); router.refresh(); });
 
   const active = tally ? ORDER.filter((id) => tally.byPrize[id]?.active).length : 0;
@@ -216,14 +301,16 @@ export default function Desk() {
         <section className="desk-grid">
           <div className="stat"><span className="stat-n">{tally.today}</span><span className="stat-l">spins today</span></div>
           <div className="stat"><span className="stat-n">{tally.total}</span><span className="stat-l">spins total</span></div>
-          <div className="stat stat-claimed"><span className="stat-n">{tally.claimedTotal}</span><span className="stat-l">prizes handed over</span></div>
-          <div className="stat"><span className="stat-n">{tally.reserved}</span><span className="stat-l">pre-registered</span></div>
+          <button type="button" className="stat stat-claimed stat-tap" onClick={() => jumpToFilter('claimed')}><span className="stat-n">{tally.claimedTotal}</span><span className="stat-l">prizes handed over</span></button>
+          <button type="button" className="stat stat-tap" onClick={() => jumpToFilter('reserved')}><span className="stat-n">{tally.reserved}</span><span className="stat-l">pre-registered</span></button>
           <div className={`stat status-${tally.status}`}>
             <span className="stat-n"><i className="pulse" aria-hidden />{tally.status === 'open' ? 'OPEN' : 'CLOSED'}</span>
             <span className="stat-l">wheel · {tally.override}{tally.rehearsal ? ' · rehearsal' : ''}</span>
           </div>
         </section>
       ) : <p className="lede">Loading</p>}
+
+      {updatedAt ? <p className="desk-updated">Updated {manilaClock(updatedAt)} · refreshes every 20 s</p> : null}
 
       <nav className="desk-tabs" aria-label="Desk sections">
         <button type="button" className={tab === 'visitors' ? 'on' : ''} onClick={() => setTab('visitors')}>Visitors</button>
@@ -246,10 +333,19 @@ export default function Desk() {
             <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Claim code, mobile number, name, or clinic" inputMode="search" />
             <button className="cta small" type="submit" disabled={busy}>Find</button>
           </form>
+          <div className="chip-row" role="group" aria-label="Filter visitors">
+            {FILTERS.map((f) => (
+              <button key={f.id} type="button" className={`chip ${filter === f.id ? 'on' : ''}`} aria-pressed={filter === f.id} onClick={() => pickFilter(f.id)} disabled={busy}>{f.label}</button>
+            ))}
+            <button type="button" className="ghost tiny chip-export" onClick={exportCsv} disabled={busy}>Download CSV</button>
+          </div>
           <section className="rows">
-            {rows.length === 0 ? <p className="lede">No spins yet.</p> : null}
-            {rows.map((r) => <VisitorRow key={r.leadId} r={r} busy={busy} onClaim={claim} onLink={link} onNote={note} onRemove={removeReserved} />)}
+            {rows.length === 0 ? <p className="lede">{FILTER_BY_ID[filter].empty}</p> : null}
+            {rows.map((r) => <VisitorRow key={r.leadId} r={r} busy={busy} onClaim={claim} onLink={link} onNote={note} onRemove={removeReserved} onFormState={onFormState} />)}
           </section>
+          {rows.length > 0 ? (
+            <p className="rows-count">{total > rows.length ? `Showing ${rows.length} of ${total}` : `${total} ${total === 1 ? FILTER_BY_ID[filter].one : FILTER_BY_ID[filter].noun}`}</p>
+          ) : null}
           <section className="desk-tools">
             <h2 className="eyebrow">Tools</h2>
             <div className="tool-row">

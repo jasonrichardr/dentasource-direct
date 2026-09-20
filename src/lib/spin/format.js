@@ -102,3 +102,23 @@ export function countdownParts(targetMs, nowMs = Date.now()) {
     seconds: left % 60,
   };
 }
+
+// ───────────── CSV export (pure; the desk builds the Blob) ─────────────
+
+export const CSV_COLUMNS = ['name', 'clinic', 'phone', 'email', 'code', 'prize', 'claimed', 'reserved', 'created'];
+
+/** RFC 4180 cell: quote when it holds a comma, a quote, CR or LF; double the inner quotes. */
+export function csvCell(v) {
+  const s = v == null ? '' : String(v);
+  return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+}
+
+/** Rows of plain objects → CSV text with a header row. CRLF line endings, as Excel expects. */
+export function toCsv(rows, columns = CSV_COLUMNS) {
+  const head = columns.map(csvCell).join(',');
+  const body = (rows || []).map((r) => columns.map((c) => csvCell(r ? r[c] : '')).join(','));
+  return [head, ...body].join('\r\n');
+}
+
+/** Desk visitor chips. Shared by the desk UI and the server where-clause builder. */
+export const DESK_FILTERS = ['all', 'unclaimed', 'claimed', 'reserved', 'winners'];

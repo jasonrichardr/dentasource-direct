@@ -9,7 +9,7 @@ import {
 import { PRIZES, PRIZE_BY_ID, pickPrize, wedgeIndexFor, effectivePrizes, effectiveChances } from '@/lib/spin/prizes';
 import {
   INTEREST_REAL, INTEREST_TEST, INTEREST_PRE, INTEREST_PRE_TEST, normalizePhone, splitName, makeCode, isValidCode,
-  isValidEmail, eventStatus, prizePrefix, messageFor, parseMessage, claimedMessage, manilaStamp, reservedMessage, parseReserved,
+  isValidEmail, eventStatus, prizePrefix, messageFor, parseMessage, claimedMessage, manilaStamp, reservedMessage, parseReserved, toCsv,
 } from '@/lib/spin/format';
 import { callConvex, normalizeSocial } from '@/lib/spin/console';
 
@@ -407,28 +407,101 @@ export async function deskTally() {
   };
 }
 
-export async function deskSearch(q) {
-  await requireDesk();
-  const raw = String(q || '').trim();
-  let where = { interest: { in: ALL_INTERESTS } };
-  if (raw) {
-    const up = raw.toUpperCase();
-    const phone = normalizePhone(raw);
-    if (isValidCode(up)) where = { ...where, message: { contains: `Code: ${up}` } };
-    else if (phone) where = { ...where, phone };
-    else where = {
-      ...where,
-      OR: [
-        { firstName: { contains: raw, mode: 'insensitive' } },
-        { lastName: { contains: raw, mode: 'insensitive' } },
-        { clinicName: { contains: raw, mode: 'insensitive' } },
-      ],
-    };
+/** Prizes that come with a sales slip: the desk chases these separately. */
+const SLIP_PRIZES = ['credits30k', 'off10', 'off5'];
+const SPIN_AGAIN_PREFIX = prizePrefix(PRIZE_BY_ID.spinagain.label);
+
+/**
+ * One chip → one Prisma where-clause. Kept apart from the free-text search so the
+ * two are ANDed together and neither can clobber the other's OR.
+ * realOnly drops the TEST interests, which is what the CSV export wants.
+ */
+function filterClause(filter, realOnly = false) {
+  const booth = realOnly ? [INTEREST_REAL] : BOOTH_INTERESTS;
+  const pre = realOnly ? [INTEREST_PRE] : PRE_INTERESTS;
+  const all = realOnly ? [INTEREST_REAL, INTEREST_PRE] : ALL_INTERESTS;
+  switch (filter) {
+    case 'unclaimed':
+      // Still owed a prize. A spin-again row owes nothing, so it never counts.
+      return {
+        interest: { in: booth },
+        message: { contains: 'Claimed: no' },
+        NOT: { message: { startsWith: SPIN_AGAIN_PREFIX } },
+      };
+    case 'claimed':
+      return {
+        interest: { in: booth },
+        message: { startsWith: 'Prize: ' },
+        NOT: { message: { contains: 'Claimed: no' } },
+      };
+    case 'reserved':
+      return { interest: { in: pre } };
+    case 'winners':
+      return {
+        interest: { in: booth },
+        OR: SLIP_PRIZES.map((id) => ({ message: { startsWith: prizePrefix(PRIZE_BY_ID[id].label) } })),
+      };
+    default:
+      return { interest: { in: all } };
   }
-  const rows = await prisma.lead.findMany({ where, orderBy: { createdAt: 'desc' }, take: 50 });
+}
+
+/** Free-text clause, or null when the box is empty. */
+function searchClause(raw) {
+  if (!raw) return null;
+  const up = raw.toUpperCase();
+  const phone = normalizePhone(raw);
+  if (isValidCode(up)) return { message: { contains: `Code: ${up}` } };
+  if (phone) return { phone };
+  return {
+    OR: [
+      { firstName: { contains: raw, mode: 'insensitive' } },
+      { lastName: { contains: raw, mode: 'insensitive' } },
+      { clinicName: { contains: raw, mode: 'insensitive' } },
+    ],
+  };
+}
+
+function deskWhere(q, filter, realOnly = false) {
+  const clauses = [filterClause(filter, realOnly)];
+  const s = searchClause(String(q || '').trim());
+  if (s) clauses.push(s);
+  return { AND: clauses };
+}
+
+/** Newest 50 matching rows plus the full match count, so the desk can say "showing 50 of 132". */
+export async function deskSearch(q, filter = 'all') {
+  await requireDesk();
+  const where = deskWhere(q, filter);
+  const [rows, total] = await Promise.all([
+    prisma.lead.findMany({ where, orderBy: { createdAt: 'desc' }, take: 50 }),
+    prisma.lead.count({ where }),
+  ]);
   const shaped = rows.map(shapeLead);
   const socials = await consoleSocials(shaped.filter((r) => !r.test && r.code).map((r) => r.code));
-  return shaped.map((r) => ({ ...r, socials: socials[r.code] || null }));
+  return { rows: shaped.map((r) => ({ ...r, socials: socials[r.code] || null })), total };
+}
+
+/**
+ * Every REAL row matching the chip, as CSV text for the desk to download.
+ * TEST rows are excluded by construction: rehearsal data never leaves the booth.
+ */
+export async function deskExport(filter = 'all') {
+  await requireDesk();
+  const where = deskWhere('', filter, true);
+  const rows = await prisma.lead.findMany({ where, orderBy: { createdAt: 'desc' } });
+  const out = rows.map(shapeLead).map((r) => ({
+    name: r.name,
+    clinic: r.clinic,
+    phone: r.phone || '',
+    email: r.email || '',
+    code: r.code,
+    prize: r.reserved ? '' : r.prizeLabel,
+    claimed: r.reserved ? '' : (r.claimed || 'no'),
+    reserved: r.reserved ? 'yes' : 'no',
+    created: manilaStamp(new Date(r.createdAt)),
+  }));
+  return { csv: toCsv(out), count: out.length };
 }
 
 async function claimLead(lead) {
