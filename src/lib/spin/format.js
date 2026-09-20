@@ -107,9 +107,28 @@ export function countdownParts(targetMs, nowMs = Date.now()) {
 
 export const CSV_COLUMNS = ['name', 'clinic', 'phone', 'email', 'code', 'prize', 'claimed', 'reserved', 'created'];
 
-/** RFC 4180 cell: quote when it holds a comma, a quote, CR or LF; double the inner quotes. */
+/**
+ * Cells a spreadsheet would run as a formula. Visitors type their own name and
+ * clinic into the public spin form, so those strings are untrusted by the time
+ * the desk opens the export in Excel.
+ *
+ * A leading + or - in front of a plain phone or number is left alone (every
+ * phone here starts +63); a real payload always carries letters or a bracket.
+ */
+export function needsFormulaGuard(s) {
+  if (!s) return false;
+  if (/^[=@\t\r]/.test(s)) return true;
+  return /^[+-]/.test(s) && !/^[+-][0-9 ()./-]*$/.test(s);
+}
+
+/**
+ * RFC 4180 cell: quote when it holds a comma, a quote, CR or LF; double the
+ * inner quotes. A formula-looking cell is first neutered with a leading
+ * apostrophe, which spreadsheets read as "this is text".
+ */
 export function csvCell(v) {
-  const s = v == null ? '' : String(v);
+  let s = v == null ? '' : String(v);
+  if (needsFormulaGuard(s)) s = `'${s}`;
   return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
 }
 

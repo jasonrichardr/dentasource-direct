@@ -5,7 +5,7 @@ import {
   messageFor, parseMessage, claimedMessage, CODE_ALPHABET,
 } from './format.js';
 import { reservedMessage, parseReserved, countdownParts, WINDOW_START_MS } from './format.js';
-import { csvCell, toCsv, CSV_COLUMNS } from './format.js';
+import { csvCell, toCsv, CSV_COLUMNS, needsFormulaGuard } from './format.js';
 
 test('normalizePhone accepts PH mobile formats', () => {
   assert.equal(normalizePhone('0917 123 4567'), '+639171234567');
@@ -128,4 +128,34 @@ test('toCsv fills missing fields and survives an embedded newline', () => {
 
 test('CSV_COLUMNS is the agreed desk export shape', () => {
   assert.deepEqual(CSV_COLUMNS, ['name', 'clinic', 'phone', 'email', 'code', 'prize', 'claimed', 'reserved', 'created']);
+});
+
+test('csvCell neuters spreadsheet formulas from visitor-typed fields', () => {
+  // A visitor can type anything into the public spin form's name/clinic boxes.
+  assert.equal(csvCell('=1+1'), "'=1+1");
+  assert.equal(csvCell('=HYPERLINK("http://evil.ph","x")'), '"\'=HYPERLINK(""http://evil.ph"",""x"")"');
+  assert.equal(csvCell('@SUM(A1:A9)'), "'@SUM(A1:A9)");
+  assert.equal(csvCell('\tcmd'), "'\tcmd");
+  assert.equal(csvCell('\rcmd'), '"\'\rcmd"');
+  assert.equal(csvCell('+HYPERLINK("x")'), '"\'+HYPERLINK(""x"")"');
+  assert.equal(csvCell('-2+3+cmd|\' /c calc\'!A0'), "'-2+3+cmd|' /c calc'!A0");
+});
+
+test('the guard leaves phone numbers and ordinary text alone', () => {
+  assert.equal(csvCell('+639171234567'), '+639171234567');
+  assert.equal(csvCell('-5'), '-5');
+  assert.equal(csvCell('+63 (917) 123-4567'), '+63 (917) 123-4567');
+  assert.equal(csvCell('Smile Dental'), 'Smile Dental');
+  assert.equal(csvCell('doc@clinic.ph'), 'doc@clinic.ph');
+  assert.equal(needsFormulaGuard('+639171234567'), false);
+  assert.equal(needsFormulaGuard('=cmd'), true);
+  assert.equal(needsFormulaGuard(''), false);
+});
+
+test('a malicious clinic name cannot break the row structure', () => {
+  const csv = toCsv([{ name: 'Mallory', clinic: '=cmd|\'/c calc\'!A0', phone: '+639171234567', code: 'AB7K2M9' }]);
+  const lines = csv.split('\r\n');
+  assert.equal(lines.length, 2);
+  assert.ok(lines[1].includes("'=cmd"));
+  assert.ok(lines[1].includes('+639171234567'));
 });
