@@ -1017,8 +1017,8 @@ Registration and inquiries: bit.ly/26THNADTI and nadtievents@gmail.com. We will 
         slug: "pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026",
         title: "PDA San Pablo City Chapter Invites All Dentists to Its 2nd Scientific Seminar and General Membership Meeting, October 29 at CDC 1028 Café",
         date: "September 19, 2026",
-        image: "/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/hero-invitation-v2-2x.jpg",
-        ogImage: "/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/og-v2.jpg",
+        image: "/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/hero-doctors-2x.jpg",
+        ogImage: "/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/og-doctors.jpg",
         hideHeroImage: false,
         abstract: "The Philippine Dental Association San Pablo City Chapter opens its 2nd Scientific Seminar and General Membership Meeting to every dentist on Thursday, October 29, 2026 at CDC 1028 Café in San Pablo City Highlands: registration at 12:30 PM, program 1:00 to 6:00 PM. Two lectures under the theme Bridging the Gap Between Alignment and Tissue Health: Dr. Emil Angelo Santos on real-world self-ligation and Dr. Francesca Daye See-Santos on crown lengthening. The chapter, the venue, the map, and what to bring for your CPD record.",
         content: `## The Invitation
