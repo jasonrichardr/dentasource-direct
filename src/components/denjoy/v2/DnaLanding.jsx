@@ -8,7 +8,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Anton, DM_Mono, DM_Sans } from 'next/font/google';
-import DnaChrome from './DnaChrome';
 import HeroArc from './HeroArc';
 import { Spotlight, InstrumentsRail, ChapterWall, DnaFaq } from './DnaSections';
 import DnaFooter from './DnaFooter';
@@ -85,8 +84,7 @@ export default function DnaLanding() {
         <Contours />
       </div>
 
-      {/* LAYER 2 · chrome (fixed bar + menu takeover) */}
-      <DnaChrome />
+      {/* LAYER 2 · chrome = the site's global Navbar (own bar retired 2026-09-21) */}
 
       {/* LAYER 1 · content scenes */}
       <div className={styles.zoneMain}>

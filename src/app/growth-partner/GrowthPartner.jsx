@@ -137,9 +137,7 @@ export default function GrowthPartner({ news = [] }) {
     <>
     <main className="gp">
       <header className="gp-top">
-        <a className="gp-brand" href="/" aria-label="DentaSource Direct Training Center">
-          <img className="lockup lockup-light" src="/images/brand/logo-banner.png" alt="DentaSource Direct" />
-        </a>
+        <span className="gp-top-spacer" aria-hidden="true" />
         <div className="gp-top-actions"><ThemeSwitch /><a className="gp-btn gold" href="#reserve">Reserve my seat</a></div>
       </header>
 

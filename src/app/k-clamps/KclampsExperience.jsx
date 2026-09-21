@@ -4,7 +4,7 @@
 // A dark, instrument-tray page: a floating specimen field in the hero, an interactive
 // dental arch (tap a tooth → the clamps that fit it), an explorer grid (tap a clamp → the
 // arch lights the teeth it fits), kits, a user-story reel and a FAQ. Chrome-free route: it
-// carries its own bar and menu, like /denjoy.
+// sits under the site's global Navbar like every other page (chrome-free list = /spin only).
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
@@ -14,14 +14,6 @@ import { trackContact } from '@/lib/analytics';
 import styles from './kclamps.module.css';
 
 const MESSENGER = 'dentasource';
-const menuLinks = [
-  ['Equipment', '/products'],
-  ['Dental Chairs', '/dentalchairs'],
-  ['Denjoy', '/denjoy'],
-  ['News', '/news'],
-  ['Showroom', '/contact'],
-  ['Training Center', '/growth-partner'],
-];
 
 function messengerUrl(text) {
   return `https://m.me/${MESSENGER}?ref=${encodeURIComponent(text)}`;
@@ -186,7 +178,6 @@ function Hero({ onExplore }) {
           <a href="#tooth-map" className={styles.btnGhost}>Start from a tooth</a>
         </div>
       </div>
-      <div className={styles.heroScroll} aria-hidden="true"><span /></div>
     </section>
   );
 }
@@ -560,49 +551,10 @@ function Faq() {
   );
 }
 
-function Chrome({ scrolled }) {
-  const [open, setOpen] = useState(false);
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [open]);
-  return (
-    <>
-      <header className={`${styles.bar} ${scrolled ? styles.barScrolled : ''}`}>
-        <Link href="/" className={styles.barHome} aria-label="DentaSource Direct home">
-          <img src="/images/brand/dsd-lockup-dark.png" alt="DentaSource Direct" />
-          <span>DentaSource Direct</span>
-        </Link>
-        <a href="#top" className={styles.wordmark}>K-CLAMP</a>
-        <button type="button" className={styles.menuBtn} onClick={() => setOpen(true)} aria-label="Open menu" aria-expanded={open}>Menu</button>
-      </header>
-      <AnimatePresence>
-        {open && (
-          <motion.nav className={styles.menu} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} aria-label="Site">
-            <button type="button" className={styles.menuClose} onClick={() => setOpen(false)} aria-label="Close menu">✕ Close</button>
-            <Link href="/" className={styles.menuItem} onClick={() => setOpen(false)}>Home</Link>
-            {menuLinks.map(([label, href]) => (
-              <Link key={href} href={href} className={styles.menuItem} onClick={() => setOpen(false)}>{label}</Link>
-            ))}
-          </motion.nav>
-        )}
-      </AnimatePresence>
-    </>
-  );
-}
-
 export default function KclampsExperience() {
   const explorerRef = useRef(null);
   const [tooth, setTooth] = useState(null);
-  const [scrolled, setScrolled] = useState(false);
   const [scene, setScene] = useState('hero');
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   useEffect(() => {
     const zones = document.querySelectorAll('[data-scene-zone]');
@@ -629,7 +581,6 @@ export default function KclampsExperience() {
         <div className={styles.glowB} />
         <div className={styles.gridLines} />
       </div>
-      <Chrome scrolled={scrolled} />
       <Hero onExplore={() => explorerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })} />
       <ToothFirst tooth={tooth} setTooth={setTooth} explorerRef={explorerRef} />
       <Explorer explorerRef={explorerRef} tooth={tooth} setTooth={setTooth} />
