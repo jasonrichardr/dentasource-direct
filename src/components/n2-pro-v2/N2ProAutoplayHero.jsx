@@ -1,12 +1,13 @@
 'use client';
 import { m as motion } from 'framer-motion';
+import { mediaUrl } from '@/lib/cinema/media';
 
 export default function N2ProAutoplayHero() {
   return (
     <section className="relative isolate overflow-hidden bg-white text-[#1D1D1F] min-h-[100svh] md:h-screen md:min-h-[640px]">
       <video
         className="absolute inset-0 w-full h-full object-cover object-center"
-        src="/videos/n2pro-hero-loop.mp4"
+        src={mediaUrl('/videos/n2pro-hero-loop.mp4')}
         autoPlay
         muted
         loop

@@ -1,6 +1,7 @@
 'use client';
 
 import { m as motion } from 'framer-motion';
+import { mediaUrl } from '@/lib/cinema/media';
 
 export default function FreePexHero() {
   return (
@@ -10,7 +11,7 @@ export default function FreePexHero() {
     >
       <video
         className="absolute inset-0 w-full h-full object-cover object-center"
-        src="/videos/freepex-hero-loop.mp4"
+        src={mediaUrl('/videos/freepex-hero-loop.mp4')}
         autoPlay
         muted
         loop

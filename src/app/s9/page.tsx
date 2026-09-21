@@ -9,6 +9,8 @@ import S9ProductConfigurator from "@/components/s9/S9ProductConfigurator";
 import S9VisualTour from "@/components/s9/S9VisualTour";
 import S9WhatsInTheBox from "@/components/s9/S9WhatsInTheBox";
 import S9WarrantyTable from "@/components/s9/S9WarrantyTable";
+import ProductCinema from "@/cinema/product/ProductCinema";
+import { productCinemaConfig } from "@/cinema/product/productConfig";
 
 export const metadata = {
     title: "Roson S9 Affordable Luxury Dental Chair",
@@ -26,15 +28,17 @@ export default function S9Page() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
             <ChairSchemas route="/s9" />
-            <S9HeroVisual />
-            <S9FeatureGrid />
-            <S9DisinfectionSection />
-            <S9ErgonomicsSection />
-            <SpecGate><S9TechSpecs /></SpecGate>
-            <S9ProductConfigurator />
-            <S9VisualTour />
-            <S9WhatsInTheBox />
-            <S9WarrantyTable />
+            <ProductCinema config={productCinemaConfig("s9")}>
+                <S9HeroVisual />
+                <S9FeatureGrid />
+                <S9DisinfectionSection />
+                <S9ErgonomicsSection />
+                <SpecGate><S9TechSpecs /></SpecGate>
+                <S9ProductConfigurator />
+                <S9VisualTour />
+                <S9WhatsInTheBox />
+                <S9WarrantyTable />
+            </ProductCinema>
         </main>
     );
 }

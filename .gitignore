@@ -57,3 +57,7 @@ rosons_chairs_data/
 
 # AutoResearch isolated loop copies (large, never deploy)
 .autoresearch/
+
+# Studio (localhost editor) — write log and JSON backups, never shipped
+src/data/cinema/.studio-log
+*.json.bak

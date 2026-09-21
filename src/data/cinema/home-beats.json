@@ -1,0 +1,259 @@
+{
+  "version": 1,
+  "generated": "2026-09-05",
+  "page": "/",
+  "notes": "Home arc for the DSD cinema overhaul. Q19 round (2026-09-06): showroom, ROSON and Denjoy merged into one beat; pre-delivery inspection removed; delivery became the installs marquee; after sales became the parts marquee; see us in action became a mixed marquee.",
+  "beats": [
+    {
+      "key": "hero",
+      "kind": "lockup",
+      "eyebrow": "DentaSource Direct",
+      "headline": "Nobody else touches your chair.",
+      "body": "We uncrate it, test it, drive it to your door, build it in your room, and come back when you call. One team from the crate to the handover, and the same team on the phone a year later.",
+      "cta": {
+        "label": "Visit the showroom",
+        "href": "/contact"
+      },
+      "media": [
+        "/cinema/brand/dsd-round.png",
+        "/videos/dsd-hero-poster.jpg"
+      ]
+    },
+    {
+      "key": "heart",
+      "kind": "heart",
+      "eyebrow": "Chairs in service",
+      "headline": "Hundreds of dental chairs",
+      "body": "In clinics across the Philippines. Every one of them uncrated, tested and signed off in our warehouse before it left, then assembled in the operatory by our own technicians.",
+      "cta": {
+        "label": "See the chair lineup",
+        "href": "/dentalchairs"
+      },
+      "media": []
+    },
+    {
+      "key": "see-us-in-action",
+      "kind": "action",
+      "eyebrow": "Our people",
+      "headline": "The real DentaSource.",
+      "body": "True enthusiasts and professionals in their craft. The crew I get to build with every day, and they bring it.",
+      "stars": [
+        "Most of them worked inside real clinics before they ever stood on a sales floor",
+        "They learn at our Training Center in Pasig, then teach in the same room",
+        "The person who answers your question has usually done the thing you are asking about",
+        "Every frame on this page is our own footage, never stock"
+      ],
+      "ctas": [
+        {
+          "label": "About DentaSource Direct",
+          "href": "/about",
+          "variant": "ghost"
+        },
+        {
+          "label": "Visit the showroom",
+          "href": "/contact#showroom",
+          "variant": "solid"
+        }
+      ],
+      "itemsFrom": "action-reels.json"
+    },
+    {
+      "key": "the-floor",
+      "kind": "photo",
+      "eyebrow": "The showroom",
+      "headline": "The largest dental showroom in the country, and the only door to three brands",
+      "body": "610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. We are the exclusive Philippine distributor for ROSON and the exclusive Denjoy partner here, so the unit on our floor is the unit you receive, and the spares and the support stay in the country. Sit in them side by side in the same light before you choose.",
+      "cta": {
+        "label": "Visit the showroom",
+        "href": "/contact"
+      },
+      "media": [
+        "/images/news/why-visit-the-pasig-showroom/v014-1.jpg",
+        "/images/news/roson-dental-south-china-2026/v018-4.jpg",
+        "/images/news/dentasource-exclusive-denjoy-partner-philippines/p073-1.jpg"
+      ]
+    },
+    {
+      "key": "k-clamps",
+      "kind": "photo",
+      "eyebrow": "Rubber dam",
+      "headline": "K-Clamp",
+      "body": "Forty-six rubber dam clamp sizes by Shinhung, Korea. Exclusive in the Philippines.",
+      "cta": {
+        "label": "See the 46 sizes",
+        "href": "/k-clamps"
+      },
+      "media": [
+        "/images/kclamps/c-56.jpg",
+        "/images/kclamps/c-14.jpg",
+        "/images/kclamps/c-212.jpg"
+      ]
+    },
+    {
+      "key": "training-center",
+      "kind": "action",
+      "eyebrow": "Growth Partner",
+      "headline": "A growth partner, not a supplier.",
+      "body": "Units 307 and 308 at Mercedes Square Plaza in Pasig, minutes from the showroom. Simulator stations, an interactive board, and courses run with partner study groups and clinical instructors. Your staff train on the same unit that will be standing in your operatory, and our own team learns in this room before they teach in it, which is why the person who trains them on handover day has done the procedure themselves.",
+      "media": [
+        "/images/news/dentasource-training-center-opens-pasig/v032-1.jpg",
+        "/images/news/dentasource-training-center-opens-pasig/v032-2.jpg",
+        "/images/news/dentasource-training-center-opens-pasig/v032-4.jpg",
+        "/images/news/9-day-digital-dentistry-course-2026/v022-3.jpg"
+      ],
+      "ctas": [
+        {
+          "label": "Ask about training",
+          "href": "/contact",
+          "variant": "solid"
+        },
+        {
+          "label": "The Growth Partner program",
+          "href": "https://ffcdentalclinic.com/growth-partner",
+          "external": true,
+          "variant": "ghost"
+        }
+      ]
+    },
+    {
+      "key": "delivery",
+      "kind": "installs",
+      "eyebrow": "Nationwide delivery",
+      "headline": "We travel the whole country to build it",
+      "body": "Luzon is served by our own van and our own installation team. Units bound for the Visayas and Mindanao go by freight with installation arranged on arrival. A free ocular visit comes first, so the unit fits the room before it ever leaves the warehouse.",
+      "cta": {
+        "label": "Arrange a delivery",
+        "href": "/contact"
+      },
+      "media": [
+        "/images/news/new-year-restock-nationwide-delivery-2026/v001-3.jpg",
+        "/images/news/dental-chair-delivery-occidental-mindoro/v023-1.jpg",
+        "/images/news/dental-chair-delivery-occidental-mindoro/v023-2.jpg",
+        "/images/news/dental-chair-installation-cabuyao-laguna/v081-1.jpg"
+      ],
+      "tilesFrom": "installs.json"
+    },
+    {
+      "key": "after-sales",
+      "kind": "parts",
+      "eyebrow": "After sales and parts",
+      "headline": "The chair is the room, so downtime is the cost",
+      "body": "Our technicians assess a fault on site first, and we hold parts here for that reason. Handpiece lines, valves, upholstery, control boards and delivery arms are all serviceable. When the assessment says it will not clear quickly, a replacement unit goes out and the affected one comes back.",
+      "cta": {
+        "label": "Talk to our service team",
+        "href": "/contact"
+      },
+      "media": [
+        "/images/news/after-sales-replacement-not-repair/p074-1.jpg",
+        "/images/news/dental-chair-dismantling-service/v005-3.jpg",
+        "/images/news/two-roson-dx-s3-ignacio-dental-clinic/v089-6.jpg",
+        "/images/news/three-deliveries-one-week-dx-s3-dx-n2-pro/v047-4.jpg"
+      ],
+      "tradeIn": {
+        "eyebrow": "Trade-in program",
+        "headline": "Your old chair has value here",
+        "body": "Almost any make or model counts toward a new ROSON chair, working or not. We appraise it, we collect it, and the new chair goes in the same day the old one comes out.",
+        "cta": {
+          "label": "Get a trade-in estimate",
+          "href": "/trade-in"
+        },
+        "media": [
+          {
+            "src": "/images/news/dental-chair-dismantling-service/v005-1.jpg",
+            "alt": "An older dental chair being prepared for removal",
+            "w": 360,
+            "h": 640
+          },
+          {
+            "src": "/images/news/old-chair-out-roson-dx-a3-in/v098-1.jpg",
+            "alt": "A technician working on an older dental chair",
+            "w": 1080,
+            "h": 1920
+          },
+          {
+            "src": "/images/news/dental-chair-dismantling-service/v005-2.jpg",
+            "alt": "A technician dismantling a dental chair",
+            "w": 360,
+            "h": 640
+          },
+          {
+            "src": "/images/news/old-chair-out-roson-dx-a3-in/v098-3.jpg",
+            "alt": "A technician working under a dental chair",
+            "w": 1080,
+            "h": 1920
+          }
+        ],
+        "sources": [
+          "dental-chair-dismantling-service",
+          "old-chair-out-roson-dx-a3-in"
+        ]
+      }
+    },
+    {
+      "key": "news",
+      "kind": "marquee",
+      "eyebrow": "From the news desk",
+      "headline": "Something is always happening on the floor",
+      "body": "Installs, showroom days, conventions, courses and the odd thing that only happens once. We write it down the day it happens, from our own posts.",
+      "cta": {
+        "label": "See what is happening",
+        "href": "/news"
+      },
+      "media": [
+        "/images/news/roson-dx-a3-dobles-teylan-dental-care/og.jpg",
+        "/images/news/dentasource-training-center-opens-pasig/og.jpg",
+        "/images/news/117th-pda-annual-convention-2026/og.jpg",
+        "/images/news/pre-delivery-inspection-every-dental-chair/og.jpg",
+        "/images/news/denjoy-now-available-dentasource-showroom/og.jpg",
+        "/images/news/roson-dx-s3-installation-balanga-bataan/og.jpg",
+        "/images/news/why-visit-the-pasig-showroom/og.jpg",
+        "/images/news/digicon-2026-dentasource-booth/og.jpg",
+        "/images/news/roson-roray-handheld-xray/og.jpg",
+        "/images/news/old-chair-out-roson-dx-a3-in/og.jpg",
+        "/images/news/new-year-restock-nationwide-delivery-2026/og.jpg",
+        "/images/news/roson-dx-a1-trend-edition-colors/og.jpg"
+      ]
+    },
+    {
+      "key": "ask-dsd",
+      "kind": "chat",
+      "eyebrow": "Ask DSD",
+      "headline": "The ten questions we are asked most",
+      "body": "Price, installment, delivery outside Metro Manila, after sales, showroom hours, training, spare parts and installation time. The answers are here, and the inquiry form sits at the end of them.",
+      "cta": {
+        "label": "Send an inquiry",
+        "href": "/contact"
+      },
+      "media": [],
+      "script": "ask-dsd.json"
+    },
+    {
+      "key": "marbles",
+      "kind": "marbles",
+      "eyebrow": "Culture, on camera",
+      "headline": "Press and hold any of them",
+      "body": "Reels from conventions, installs, training days and ordinary afternoons on the floor. No stock footage and no actors. Press and hold a marble to watch the one you are curious about.",
+      "cta": {
+        "label": "About the team",
+        "href": "/about"
+      },
+      "media": [],
+      "reels": "reel-library.json"
+    },
+    {
+      "key": "door",
+      "kind": "door",
+      "eyebrow": "The door",
+      "headline": "Come and sit in the chair",
+      "body": "610 C. Raymundo Avenue, Maybunga, Pasig City, Monday to Sunday, 9 AM to 8 PM. No appointment needed, though telling us you are coming means the model you want is set up and powered when you arrive.",
+      "cta": {
+        "label": "Send an inquiry",
+        "href": "/contact"
+      },
+      "media": [
+        "/images/news/why-visit-the-pasig-showroom/v013-2.jpg",
+        "/videos/dsd-hero-poster.jpg"
+      ]
+    }
+  ]
+}

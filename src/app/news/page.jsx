@@ -1,4 +1,23 @@
 import NewsContent from './NewsContent';
+import { newsData } from '@/data/news';
+
+/**
+ * The card grid needs five fields per article. The BODIES are what make the corpus heavy,
+ * and nothing on this screen renders one, so they never leave the server: the page ships
+ * the slim list and the full archive waits behind an import() in newsSearchIndex.js until
+ * somebody actually searches.
+ */
+function slimList() {
+  return [...newsData]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .map((a) => ({
+      slug: a.slug,
+      title: a.title,
+      abstract: a.abstract,
+      date: a.date,
+      image: a.ogImage || a.image || null,
+    }));
+}
 
 export const metadata = {
   title: 'Dental Industry News & Insights',
@@ -24,5 +43,5 @@ export const metadata = {
 };
 
 export default function NewsPage() {
-  return <NewsContent />;
+  return <NewsContent articles={slimList()} />;
 }

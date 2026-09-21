@@ -19,6 +19,20 @@ export default async function proxy(request: NextRequest) {
     return NextResponse.next({ request: { headers: stripped } });
   }
 
+  // ☠️ THE STUDIO DOES NOT EXIST IN PRODUCTION. /studio and /api/studio/* are a
+  // localhost editor that WRITES TO THE SOURCE TREE. The page and every route
+  // handler already refuse in production on their own, but notFound() inside a
+  // streamed page can only render the not-found body AFTER the 200 has been
+  // committed, which leaves a soft 404. This is the hard one, and it is first
+  // in the file on purpose: there is no reason to refresh a session for a
+  // request that is about to be refused.
+  if (process.env.NODE_ENV === 'production') {
+    const p = request.nextUrl.pathname;
+    if (p === '/studio' || p.startsWith('/studio/') || p.startsWith('/api/studio')) {
+      return new NextResponse(null, { status: 404 });
+    }
+  }
+
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(

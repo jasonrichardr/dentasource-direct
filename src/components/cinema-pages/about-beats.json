@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "generated": "2026-09-05",
+  "page": "/about",
+  "notes": "About arc, 6 beats, Phase B3a. Particles carry the round mark on the opening and closing beats only; every other beat is a DOM plate over a dimmed cloud, per the ruling that no product or object forms from particles. Overlapping copy (showroom, exclusives, Training Center) is taken from src/data/cinema/home-beats.json so the two pages cannot drift. Roles only, no names, no prices, no warranty terms.",
+  "beats": [
+    {
+      "key": "hero",
+      "kind": "lockup",
+      "eyebrow": "About",
+      "headline": "About DentaSource Direct",
+      "body": "We supply dental chairs, imaging and endodontic equipment to clinics across the Philippines, and we install what we sell.",
+      "cta": { "label": "Visit the showroom", "href": "/contact#showroom" }
+    },
+    {
+      "key": "what-we-are",
+      "kind": "statement",
+      "eyebrow": "The business",
+      "headline": "One channel, from the source to your operatory",
+      "body": "Exclusive Philippine distributor for ROSON and for Denjoy, with the largest dental showroom in the country and a training center minutes from it. Everything we sell is uncrated and tested here before it goes out, and our own technicians assemble it in the room where it will be used."
+    },
+    {
+      "key": "showroom",
+      "kind": "photo",
+      "eyebrow": "The showroom",
+      "headline": "The largest dental showroom in the country",
+      "body": "610 C. Raymundo Avenue, Maybunga, Pasig City. Open Monday to Sunday, 9 AM to 8 PM. Compare models side by side in the same light, sit in them, and bring your operatory measurements.",
+      "cta": { "label": "Book a showroom visit", "href": "/contact#showroom" },
+      "media": [
+        "/images/news/why-visit-the-pasig-showroom/v014-1.jpg",
+        "/images/news/why-visit-the-pasig-showroom/v014-2.jpg"
+      ]
+    },
+    {
+      "key": "exclusives",
+      "kind": "photo",
+      "eyebrow": "ROSON and Denjoy, exclusively",
+      "headline": "Two exclusive lines, held in one place",
+      "body": "ROSON chairs reach Filipino clinics through one channel, straight from the source, so the unit on our floor is the unit ROSON shipped. Denjoy joined it in June 2026: endo motors, apex locators, ultrasonic activators and the workstations that hold them, with the spares and the support kept here.",
+      "cta": { "label": "See the Denjoy range", "href": "/denjoy" },
+      "media": [
+        "/images/news/roson-dental-south-china-2026/v018-4.jpg",
+        "/images/news/dentasource-exclusive-denjoy-partner-philippines/p073-1.jpg"
+      ]
+    },
+    {
+      "key": "training-center",
+      "kind": "photo",
+      "eyebrow": "The Training Center",
+      "headline": "A room of phantom heads, minutes away",
+      "body": "Units 307 and 308, 3rd Floor, Mercedes Square Plaza, Mercedes Avenue corner Luis Street, San Miguel, Pasig City. A row of simulator stations, an interactive teaching board, and courses run with partner study groups.",
+      "cta": { "label": "Ask about training", "href": "/contact" },
+      "media": [
+        "/images/news/dentasource-training-center-opens-pasig/v032-1.jpg",
+        "/images/news/dentasource-training-center-opens-pasig/v032-2.jpg"
+      ]
+    },
+    {
+      "key": "door",
+      "kind": "door",
+      "eyebrow": "The door",
+      "headline": "Come and sit in the chair",
+      "body": "610 C. Raymundo Avenue, Maybunga, Pasig City, Monday to Sunday, 9 AM to 8 PM. No appointment needed, though telling us you are coming means the model you want is set up and powered when you arrive.",
+      "ctas": [
+        { "label": "Visit the showroom", "href": "/contact#showroom", "variant": "solid" },
+        { "label": "Send an inquiry", "href": "/contact#inquiry", "variant": "ghost" }
+      ]
+    }
+  ]
+}

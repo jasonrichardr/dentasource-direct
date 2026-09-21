@@ -9,6 +9,8 @@ import N1ProductConfigurator from "@/components/n1/N1ProductConfigurator";
 import N1VisualTour from "@/components/n1/N1VisualTour";
 import N1WhatsInTheBox from "@/components/n1/N1WhatsInTheBox";
 import N1WarrantyTable from "@/components/n1/N1WarrantyTable";
+import ProductCinema from "@/cinema/product/ProductCinema";
+import { productCinemaConfig } from "@/cinema/product/productConfig";
 
 export const metadata = {
     title: "Roson Classic Model N1",
@@ -26,15 +28,17 @@ export default function N1Page() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
             <ChairSchemas route="/n1" />
-            <N1HeroVisual />
-            <N1FeatureGrid />
-            <N1SimplicitySection />
-            <N1ErgonomicsSection />
-            <SpecGate><N1TechSpecs /></SpecGate>
-            <N1ProductConfigurator />
-            <N1VisualTour />
-            <N1WhatsInTheBox />
-            <N1WarrantyTable />
+            <ProductCinema config={productCinemaConfig("n1")}>
+                <N1HeroVisual />
+                <N1FeatureGrid />
+                <N1SimplicitySection />
+                <N1ErgonomicsSection />
+                <SpecGate><N1TechSpecs /></SpecGate>
+                <N1ProductConfigurator />
+                <N1VisualTour />
+                <N1WhatsInTheBox />
+                <N1WarrantyTable />
+            </ProductCinema>
         </main>
     );
 }

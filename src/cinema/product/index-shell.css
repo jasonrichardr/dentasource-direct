@@ -1,0 +1,20 @@
+/* index-shell.css — the dark tokens applied to the two index pages, and nothing else.
+   Their catalog layouts are untouched; this paints the page ground and the type from
+   --paper / --ink so the indexes follow the same switch as the cinema pages. */
+
+.pc-index {
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* The catalog components below paint their own white sections with Tailwind utilities.
+   In dark mode those would island on the page ground, so the shell neutralises the
+   hard-coded page whites it owns and lets the tokens carry through. Component-level
+   surfaces (cards, chips) keep their own treatment. */
+:root[data-theme="dark"] .pc-index > main,
+:root[data-theme="dark"] .pc-index main.bg-white,
+:root[data-theme="dark"] .pc-index section.bg-white {
+  background: var(--paper);
+  color: var(--ink);
+}

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "generated": "2026-09-05",
+  "kind": "scripted",
+  "notes": "Scripted typewriter chat, no AI and no backend, ruled in Q13. Ten buyer questions in the order they are asked most. Every answer is 240 characters or fewer. No prices, no warranty terms, no competitor names, no personal names, no dash characters.",
+  "intro": "Ask DSD. Ten questions, answered the way we answer them on the phone.",
+  "exchanges": [
+    {
+      "id": 1,
+      "question": "How much is a dental chair?",
+      "answer": "Pricing depends on the model, the configuration and what is included, so we quote on request. Tell us the model you are looking at and the room it is going into, and we will put a figure against it."
+    },
+    {
+      "id": 2,
+      "question": "Do you offer installment plans?",
+      "answer": "Yes. Installment terms are available across the chair lineup, and they move with the model and the configuration. You get the schedule with your quote rather than a figure on a web page."
+    },
+    {
+      "id": 3,
+      "question": "Do you deliver outside Metro Manila?",
+      "answer": "We deliver nationwide. Clinics on Luzon are served by our own van and installation team. Units bound for the Visayas and Mindanao go by freight, with installation arranged on arrival."
+    },
+    {
+      "id": 4,
+      "question": "What happens if something goes wrong after the install?",
+      "answer": "Our technicians assess the fault on site, and we hold parts locally. If it will not clear quickly we deliver a replacement unit and take the affected one back. Coverage details come with your quote."
+    },
+    {
+      "id": 5,
+      "question": "When is the showroom open?",
+      "answer": "Monday to Sunday, 9 AM to 8 PM, at 610 C. Raymundo Avenue, Maybunga, Pasig City. No appointment needed, though telling us you are coming means the model you want is set up and powered."
+    },
+    {
+      "id": 6,
+      "question": "Why Denjoy for endodontics?",
+      "answer": "We are the exclusive Denjoy partner in the Philippines, so units arrive through one channel, sealed and genuine, and the spares and support sit here. Handle one at the showroom before you decide."
+    },
+    {
+      "id": 7,
+      "question": "Do you train my team?",
+      "answer": "Yes. Your staff are trained at handover on the day of the install, and our Training Center in Pasig runs longer courses on simulators with partner study groups and clinical instructors."
+    },
+    {
+      "id": 8,
+      "question": "Are spare parts available locally?",
+      "answer": "Yes. Handpiece lines, valves, upholstery, control boards and delivery arms are all serviceable, and we hold parts here, so a same day repair is often possible rather than a wait on a shipment."
+    },
+    {
+      "id": 9,
+      "question": "How long does an installation take?",
+      "answer": "A few hours for a chair, because the unit was already assembled and tested once in our warehouse. A free ocular visit before delivery checks your plumbing, power and access so the day runs to plan."
+    },
+    {
+      "id": 10,
+      "question": "Can the purchase be financed?",
+      "answer": "Installment terms are arranged through us, and some clinics come with their own bank or lender. Either way we prepare the quote and the documents the financing needs. Terms are given on request."
+    }
+  ],
+  "cta": {
+    "label": "Send an inquiry",
+    "href": "/contact"
+  }
+}

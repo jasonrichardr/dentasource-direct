@@ -4,6 +4,8 @@ import MessengerButton from '@/components/denjoy/MessengerButton';
 import { denjoyProducts } from '@/data/denjoy';
 import { faqGraph } from '@/lib/schemas/faq';
 import styles from './page.module.css';
+import ProductCinema from '@/cinema/product/ProductCinema';
+import { productCinemaConfig } from '@/cinema/product/productConfig';
 
 export const metadata = {
   title:
@@ -91,7 +93,9 @@ export default function DenjoyPage() {
       <JsonLd id="denjoy-product-schema" data={productHubSchema} />
       <JsonLd id="denjoy-faq-schema" data={faqSchema} />
       <main>
-        <DnaLanding />
+        <ProductCinema config={productCinemaConfig('denjoy')}>
+          <DnaLanding />
+        </ProductCinema>
       </main>
       <div className={styles.mobileStickyBar}>
         <MessengerButton

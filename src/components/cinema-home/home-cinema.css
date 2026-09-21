@@ -1,0 +1,753 @@
+/* home-cinema.css — the furniture of the 15 beat home arc. Everything here sits INSIDE
+   a .cinema-panel, so the rules are about fitting one screen: the panel is fixed, it
+   never scrolls, and a beat that overflows is a beat the visitor cannot read.
+
+   Colours only ever come from the cinema tokens in src/cinema/cinema.css, so one
+   data-theme attribute on <html> turns the whole arc. */
+
+/* The navbar came back on 2026-09-21 (Jarich's ruling: it stays on every cinema page, in
+   the dark skin), so the reserve at the top is its measured height again plus a hair, not
+   the 44px the lone trust marquee needed. The home arc keeps a tighter gap than
+   cinema.css gives the product pages: its first beat is a wordmark, not a headline. */
+.cinema-panel {
+  padding-top: calc(var(--dsd-nav-h, 100px) + clamp(8px, 2vh, 24px));
+}
+
+/* ☠️ A BEAT WITH A FORMATION SEATS ITS COPY BELOW IT, NOT OVER IT.
+   The engine marks those panels .copy-low. Its own rule bottom-anchors them, which is
+   right for a short caption and wrong for a home beat: the hero carries an eyebrow, a
+   headline, four lines of body and a button, and bottom-anchoring floated all of that
+   straight back up through the particle wordmark.
+   So the panel is TOP-anchored instead, at a fraction of the engine's own locked --vh:
+   the particles own the upper band, the words start under them, and because --vh is
+   frozen at load the seam cannot move when a phone's URL bar slides. */
+.cinema-panel.copy-low {
+  justify-content: flex-start;
+  padding-top: calc(var(--vh, 1vh) * 73);
+  padding-bottom: clamp(20px, 4vh, 48px);
+}
+@media (max-width: 700px) {
+  .cinema-panel.copy-low { padding-top: calc(var(--vh, 1vh) * 62); }
+}
+
+/* Only the live beat may be touched: the panels are stacked fixed overlays, so a
+   chip or a card on a dimmed beat would otherwise swallow a tap meant for the page. */
+.cinema-panel.live .dsd-interactive { pointer-events: auto; }
+
+/* ---- the shared panel skeleton ---- */
+.dsd-panel {
+  width: min(1180px, 92vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(10px, 1.6vh, 20px);
+  max-height: 100%;
+}
+.dsd-panel .cinema-kicker { margin-bottom: 0; }
+.dsd-panel .cinema-sub { margin-top: 0; }
+
+/* A beat that carries media gives the words a narrower measure, so the copy column
+   stays readable while the pictures run the full width. */
+.dsd-copy { max-width: 720px; }
+.dsd-copy-wide { max-width: 860px; }
+
+/* ---- CTAs ---- */
+/* .cinema-cta is the engine's own hook: the panel only lets THAT class be tapped
+   while its beat is live. Everything below is just the paint. */
+.cinema-cta,
+.dsd-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-size: clamp(13px, 1.15vw, 15px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform .25s ease, background .25s ease, border-color .25s ease;
+}
+.dsd-cta-solid {
+  background: var(--dsd-green);
+  color: var(--paper);
+  box-shadow: 0 10px 30px rgba(6, 95, 70, .28);
+}
+:root[data-theme="dark"] .dsd-cta-solid { color: #06231a; }
+.dsd-cta-ghost {
+  background: color-mix(in srgb, var(--paper) 76%, transparent);
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--ink) 22%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.dsd-cta:hover { transform: translateY(-1px); }
+.dsd-cta:focus-visible { outline: 2px solid var(--dsd-green); outline-offset: 3px; }
+.dsd-cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+/* ---- the photo beats: a one up or two up plate over the dimmed sphere ---- */
+.dsd-photos {
+  display: flex;
+  gap: clamp(8px, 1.2vw, 16px);
+  justify-content: center;
+  width: 100%;
+}
+.dsd-photos img {
+  width: 100%;
+  max-width: 470px;
+  height: clamp(140px, 30vh, 320px);
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--dsd-green) 34%, transparent);
+  /* ☠️ box-shadow, never filter: drop-shadow — WebKit paints a black corner on a
+     drop-shadowed image inside a composited layer. */
+  box-shadow: 0 14px 34px rgba(10, 20, 16, .22);
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+/* a phone is height poor: the second plate steps aside so the copy always fits */
+@media (max-width: 700px) {
+  .dsd-photos img:nth-child(2) { display: none; }
+  .dsd-photos img { max-width: 100%; height: clamp(120px, 22vh, 200px); }
+}
+
+/* ---- the one team strip: FFC's marquee mechanics, doubled track, -50% sweep ---- */
+.dsd-strip {
+  width: min(96vw, 1200px);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+}
+/* ☠️ THE SEAM LAW: the -50% wrap is exact only if the two halves are the same width.
+   Whitespace between inline tiles renders as text and widens the second half, so the
+   track kills its own font size and every tile carries a fixed box. */
+.dsd-strip-track {
+  display: flex;
+  width: max-content;
+  font-size: 0;
+  /* ☠️ THIS DURATION IS A FALLBACK, NOT THE SPEED. src/lib/cinema/marquee.js measures each
+     track and writes an inline animation-duration that makes it run at FFC's measured
+     px/s, because a fixed duration on a variable width track is a variable SPEED: at 39s
+     the 198 tile training strip ran at 488 px/s, nearly four times FFC. This value only
+     applies if that never runs, so it errs SLOW rather than fast. */
+  animation: dsd-strip-scroll 120s linear infinite;
+}
+.dsd-strip-track img {
+  height: clamp(110px, 24vh, 240px);
+  /* width comes from the ratio, NOT from next/image's width attribute, so a tile that is
+     still a placeholder and a tile carrying a picture occupy the identical box. */
+  width: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--dsd-green) 34%, transparent);
+  box-shadow: 0 10px 26px rgba(10, 20, 16, .18);
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+@keyframes dsd-strip-scroll { to { transform: translateX(-50%); } }
+/* A strip runs only near its own beat. Every other track stands still rather than
+   compositing off screen at opacity 0. */
+.cinema-panel:not(.near) .dsd-strip-track,
+.cinema-panel:not(.near) .dsd-news-track { animation-play-state: paused; }
+
+/* ---- the news marquee: two rows, opposite sweeps ---- */
+.dsd-news {
+  width: min(98vw, 1280px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.dsd-news-row { overflow: hidden; }
+.dsd-news-track {
+  display: flex;
+  width: max-content;
+  gap: 10px;
+  /* Fallback only; the real duration is measured per row. See .dsd-strip-track above. */
+  animation: dsd-strip-scroll 60s linear infinite;
+}
+.dsd-news-track.reverse { animation-direction: reverse; }
+.dsd-news-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: clamp(230px, 24vw, 310px);
+  padding: 8px 12px 8px 8px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 26px rgba(10, 20, 16, .14);
+}
+.dsd-news-thumb {
+  width: 74px;
+  height: 56px;
+  flex: 0 0 74px;
+  object-fit: cover;
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--ink) 10%, transparent);
+}
+.dsd-news-title {
+  font-size: 12.5px;
+  line-height: 1.32;
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.dsd-news-card:hover { border-color: color-mix(in srgb, var(--dsd-green) 55%, transparent); }
+@media (max-width: 700px) {
+  .dsd-news-card { width: 224px; }
+  .dsd-news-thumb { width: 58px; height: 46px; flex-basis: 58px; }
+}
+
+/* ---- Ask DSD: chips, a typed answer, a door at the end ---- */
+.dsd-chat { width: min(880px, 94vw); }
+.dsd-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  /* ☠️ WIDTH 100%, NOT auto. As a cross-axis flex child under align-items:center the row
+     took its content width, so the phone's single nowrap line hung off BOTH edges and the
+     first chip started off screen. Pinned to the panel, it scrolls from its own first
+     chip instead. */
+  width: 100%;
+  min-width: 0;
+}
+.dsd-chip {
+  font-size: clamp(11.5px, 1vw, 13px);
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 9px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--paper) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: border-color .2s ease, background .2s ease;
+}
+.dsd-chip[aria-pressed="true"] {
+  border-color: var(--dsd-green);
+  background: color-mix(in srgb, var(--dsd-green) 16%, var(--paper));
+}
+.dsd-chip:focus-visible { outline: 2px solid var(--dsd-green); outline-offset: 3px; }
+/* A phone cannot wrap ten chips and still show the answer, so there they become one
+   swipeable row. A horizontal scroller never steals the page's vertical scroll. */
+@media (max-width: 700px) {
+  .dsd-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .dsd-chips::-webkit-scrollbar { display: none; }
+  .dsd-chip { flex: 0 0 auto; }
+}
+.dsd-answer {
+  width: 100%;
+  min-height: clamp(96px, 15vh, 132px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 18px;
+  border-radius: 16px;
+  text-align: left;
+  background: color-mix(in srgb, var(--paper) 74%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.dsd-answer p {
+  margin: 0;
+  font-size: clamp(13px, 1.35vw, 16.5px);
+  line-height: 1.5;
+  color: var(--ink);
+}
+.dsd-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.14em;
+  background: var(--dsd-green);
+  animation: dsd-blink 1s steps(1) infinite;
+}
+@keyframes dsd-blink { 50% { opacity: 0; } }
+/* ---- the star statement, ported from the FFC sign in cinema -------------------------
+   FFC calls it .sd-stars. Same geometry, same marker, same gold: a fit-content column
+   capped at min(92vw, 560px) and centred, the text inside LEFT aligned so the ✦ markers
+   form a straight column while the sentences keep their natural ragged right. Centring
+   the sentences themselves is what makes a bullet list read as a poster instead of a
+   claim, which is why FFC does not.
+   ☠️ THE MARKER COLOUR IS TWO COLOURS ON PURPOSE. #b8932e is legible gold on paper and
+   goes muddy on a night sky; #e6c76a is legible on the night sky and washes out on paper.
+   The dark rule is the one the cinema actually spends most of its time in. */
+.dsd-stars {
+  list-style: none;
+  width: fit-content;
+  max-width: min(92vw, 560px);
+  margin: 10px auto 0;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+  text-align: left;
+}
+.dsd-stars li {
+  position: relative;
+  padding-left: 26px;
+}
+.dsd-stars li::before {
+  content: '\2726';
+  position: absolute;
+  left: 2px;
+  top: .05em;
+  color: #b8932e;
+  text-shadow: 0 0 10px rgba(184, 147, 46, .35);
+}
+:root[data-theme="dark"] .dsd-stars li::before {
+  color: #e6c76a;
+  text-shadow: 0 0 12px rgba(230, 199, 106, .5);
+}
+
+@media (prefers-reduced-motion: reduce) { .dsd-caret { animation: none; } }
+
+/* ---- the marbles wall: role tiles in glass, no names, no physics in this phase ---- */
+.dsd-marbles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(8px, 1vw, 14px);
+  width: 100%;
+}
+.dsd-marble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: clamp(10px, 1.6vh, 18px) 12px;
+  border-radius: 18px;
+  text-align: center;
+  background: linear-gradient(160deg,
+    color-mix(in srgb, var(--paper) 82%, transparent),
+    color-mix(in srgb, var(--paper) 58%, transparent));
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 60%, transparent), 0 12px 30px rgba(10, 20, 16, .18);
+}
+/* the placeholder art: a glass bead, drawn rather than photographed, until the
+   real portraits arrive */
+.dsd-marble-art {
+  width: clamp(44px, 7vh, 74px);
+  height: clamp(44px, 7vh, 74px);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255, 255, 255, .95), rgba(255, 255, 255, .34) 42%, transparent 66%),
+    radial-gradient(circle at 68% 78%, color-mix(in srgb, var(--dsd-green) 60%, transparent), transparent 62%),
+    linear-gradient(150deg, color-mix(in srgb, var(--dsd-green-light) 42%, transparent), color-mix(in srgb, var(--dsd-green-deep) 44%, transparent));
+  border: 1px solid color-mix(in srgb, #fff 55%, transparent);
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, .55), 0 8px 20px rgba(10, 20, 16, .26);
+}
+.dsd-marble-role {
+  font-size: clamp(12px, 1.1vw, 14.5px);
+  font-weight: 700;
+  color: var(--ink);
+}
+.dsd-marble-note {
+  font-size: clamp(10.5px, 0.95vw, 12.5px);
+  line-height: 1.38;
+  color: var(--ink);
+  opacity: .78;
+}
+@media (max-width: 700px) {
+  .dsd-marbles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+  .dsd-marble { padding: 8px 8px; border-radius: 14px; }
+  .dsd-marble-note { display: none; }
+}
+
+/* ---- FFC's marbles stage, ported ------------------------------------------------
+   Its leadership beat does not float the spheres on the page: it paints a dark academia
+   field behind them, a soft centre vignette so the glass reads as gems rather than as
+   cut-outs, and a scrim at the foot so the copy stays legible over the picture. Ours had
+   the cluster on the bare sky, which is what Jarich's frame was objecting to. */
+.dsd-marble-stage {
+  position: fixed;
+  inset: 0;
+  z-index: -1;                       /* behind the panel's own copy, over the sky */
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(7, 6, 11, 0) 58%, rgba(7, 6, 11, .82) 100%),
+    radial-gradient(130% 100% at 50% 45%, rgba(8, 6, 12, .20) 0%, rgba(8, 6, 12, .10) 40%, rgba(8, 6, 12, .5) 100%),
+    url('/cinema/marbles/marble-bg.jpg') center / cover no-repeat,
+    #07060b;
+  animation: dsd-stage-in .4s ease both;
+}
+@keyframes dsd-stage-in { from { opacity: 0; } to { opacity: 1; } }
+/* ☠️ NO TEXT SELECTION ON THIS BEAT. A long press meant to open a marble was selecting
+   the headline instead; FFC hit the same thing on a phone. The whole beat is a gesture. */
+.cinema-panel:has(.dsd-cluster), .cinema-panel:has(.dsd-cluster) * {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+/* the copy sits over the stage, and needs FFC's shadows to hold against a photograph */
+.cinema-panel:has(.dsd-cluster) .cinema-head { text-shadow: 0 2px 20px rgba(0,0,0,.85), 0 0 30px rgba(0,0,0,.6); }
+.cinema-panel:has(.dsd-cluster) .cinema-sub,
+.cinema-panel:has(.dsd-cluster) .cinema-kicker { text-shadow: 0 1px 16px rgba(0,0,0,.7); }
+
+/* ---- the reel cluster: the stage IS the screen now ---------------------------------
+   Jarich: the wall had an invisible box around it. It did, and the box was this element.
+   The canvas used to fill a min(98vw,1240px) by 56vh block sitting in the panel's flow, so
+   a bead flung outward vanished at an edge a hand's width from the middle of the screen.
+   There were never any physics walls to remove: nothing in marbleCluster.js stops a bead,
+   it just stops being drawn.
+   So the CANVAS is pinned to the whole viewport by the cluster itself (stage:'viewport'),
+   and this element stays exactly where it was, at exactly its old size, as a SENTINEL: it
+   is what the panel's IntersectionObserver watches, and it is what reserves the vertical
+   space the copy is laid out around. A mount pinned to the viewport would intersect
+   forever and the cluster would never sleep, which on this wall is a whole set of video
+   decoders that never stop. */
+.dsd-cluster {
+  width: min(98vw, 1240px);
+  height: clamp(300px, 56vh, 520px);
+  touch-action: none;
+}
+@media (max-width: 700px) {
+  .dsd-cluster { height: clamp(300px, 52vh, 460px); }
+}
+
+/* ☠️ A FULL SCREEN touch-action:none WOULD TRAP A PHONE VISITOR ON THIS BEAT.
+   touch-action is resolved by walking up from the element the finger lands on, so the
+   canvas inherits `none` from the rule above. That was harmless while the canvas was a
+   52vh block with page above and below it to drag on. Covering the screen, it means every
+   vertical swipe is eaten by the cluster and there is no way to scroll off the beat.
+   A mouse wheel is not affected by touch-action, so the desktop keeps the free fling in
+   every direction; a coarse pointer gives the vertical axis back to the page and keeps
+   the horizontal one for the beads. A press and hold still opens a reel, because a hold
+   is not a pan. */
+@media (pointer: coarse) {
+  .dsd-cluster, .dsd-cluster canvas { touch-action: pan-y; }
+}
+
+/* The canvas sits at z-index 1 INSIDE the panel, over the copy. The button has to come
+   back over the canvas or the beat's only control is behind a sheet of glass. */
+.cinema-panel:has(.dsd-cluster) .cinema-cta,
+.cinema-panel:has(.dsd-cluster) .dsd-cta-row {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---- the set pager: the wall holds 24 beads, the library holds more --------------- */
+/* ☠️ THE ROW CARRIES ITS OWN GROUND, NOT THREE SEPARATE ONES.
+   The pager used to float over the night sky, where bare text on a dark field was
+   perfectly legible. Seating the wall below the copy moved the glass to exactly where this
+   row sits, and at set 8 the beads are at their brightest: pale uppercase text and two
+   translucent pills over lit, moving glass was the weakest text on the page. Giving each
+   piece its own pill did not fix it, because the gaps between them still showed bead.
+   One opaque plate behind the whole row does, and it also makes prev, count and next read
+   as a single control instead of three things that happen to be near each other. */
+.dsd-pager {
+  position: relative;
+  z-index: 2;                 /* over the canvas, like the button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: fit-content;
+  margin-inline: auto;
+  padding: 5px 6px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(241, 236, 225, .92);
+  background: rgba(6, 5, 10, .72);
+  border: 1px solid rgba(241, 236, 225, .16);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  backdrop-filter: blur(16px) saturate(1.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
+}
+.dsd-pager-btn {
+  appearance: none;
+  border: 1px solid rgba(241, 236, 225, .22);
+  background: rgba(255, 255, 255, .06);   /* on the row's scrim, not on the beads */
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  padding: 7px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color .25s ease, background .25s ease;
+}
+.dsd-pager-btn:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--dsd-green) 60%, transparent);
+  background: color-mix(in srgb, var(--dsd-green) 20%, transparent);
+}
+/* ☠️ DISABLED IS DIMMED, NOT HIDDEN. A pager whose ends disappear changes width as the
+   visitor moves through it, and the count label jumps sideways under their eye. */
+.dsd-pager-btn:disabled { opacity: .34; cursor: default; }
+
+/* The row's own scrim is the ground now, so the count is plain text on it again. */
+.dsd-pager-count {
+  font-variant-numeric: tabular-nums;
+  padding: 0 10px;
+}
+
+@media (max-width: 700px) {
+  .dsd-pager { gap: 4px; font-size: 11px; padding: 4px 5px; }
+  .dsd-pager-btn { padding: 6px 13px; }
+}
+
+/* ---- the mixed marquee: stills and clips in one track ---- */
+.dsd-mixed .dsd-strip-track video,
+.dsd-mixed .dsd-strip-track img {
+  height: clamp(150px, 32vh, 300px);
+  width: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--dsd-green) 30%, transparent);
+  box-shadow: 0 10px 26px rgba(10, 20, 16, .22);
+  background: #000;
+}
+/* a still is landscape where a reel is portrait: it keeps the same HEIGHT, so the track
+   stays one clean band, and takes the width its own frame wants */
+.dsd-mixed .dsd-strip-track img { aspect-ratio: 4 / 3; }
+
+/* ---- the parts marquee: the news desk's two rows, carrying parts ---- */
+.dsd-part-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+  width: clamp(190px, 20vw, 250px);
+  padding: 8px 14px 8px 8px;
+  border-radius: 14px;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.dsd-part-img {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.dsd-part-name { font-size: 12.5px; line-height: 1.3; font-weight: 600; }
+/* a tile with no name in the source is just the photograph, so it stops carrying the
+   width a caption would have needed */
+.dsd-part-card.is-bare { width: auto; padding: 8px; }
+
+/* ☠️ THE CREW ROW IS A PHOTOGRAPH, NOT A CARD. The parts tiles are transparent cut-outs
+   that need a plate behind them to read; these are real frames and a plate around one
+   turns it into a product listing. Fixed box with object-fit cover, because the manifest
+   mixes 1200x630 landscape with 1080x1920 portrait and a row of honest aspect ratios
+   staircases. */
+.dsd-crew-shot {
+  flex: 0 0 auto;
+  width: 126px;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+@media (max-width: 700px) {
+  .dsd-crew-shot { width: 104px; height: 70px; }
+}
+
+/* ---- the action beat: six vertical reels ---- */
+.dsd-reels {
+  display: flex;
+  gap: clamp(6px, 0.8vw, 12px);
+  justify-content: center;
+  align-items: flex-start;      /* captions hang below a shared top edge */
+  width: 100%;
+}
+/* ☠️ EQUAL COLUMNS, NOT INTRINSIC ONES. Without a basis each figure sized itself to its
+   own video's intrinsic width, so the six reels came out at two different widths and the
+   row read as ragged. flex: 1 1 0 makes the columns identical and the aspect-ratio on the
+   video does the rest. */
+.dsd-reel {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 190px;
+}
+.dsd-reel video {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: clamp(200px, 40vh, 380px);
+  object-fit: cover;
+  border-radius: 14px;
+  background: #000;
+  border: 1px solid color-mix(in srgb, var(--dsd-green) 26%, transparent);
+  box-shadow: 0 12px 30px rgba(10, 20, 16, .3);
+}
+.dsd-reel figcaption {
+  font-size: clamp(9.5px, 0.85vw, 11.5px);
+  line-height: 1.3;
+  color: var(--ink);
+  opacity: .78;
+  text-align: center;
+}
+/* A phone cannot hold six reels across, so they become one swipeable row. A horizontal
+   scroller never steals the page's vertical scroll, which is the cinema's own input. */
+@media (max-width: 700px) {
+  .dsd-reels {
+    overflow-x: auto;
+    justify-content: flex-start;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .dsd-reels::-webkit-scrollbar { display: none; }
+  .dsd-reel { flex: 0 0 46vw; }
+}
+
+/* ---- the checklist under the inspection beat ---- */
+.dsd-checklist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  justify-content: center;
+  max-width: 900px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.dsd-checklist li {
+  font-size: clamp(10.5px, 0.95vw, 12.5px);
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--ink);
+  opacity: .8;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--dsd-green) 32%, transparent);
+  background: color-mix(in srgb, var(--paper) 68%, transparent);
+}
+@media (max-width: 700px) { .dsd-checklist { display: none; } }
+
+/* ---- copy that is in the HTML for a crawler and a screen reader, not on the glass ---- */
+.dsd-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- REDUCED MOTION -----------------------------------------------------------------
+   ☠️ THIS BLOCK LIVES LAST, AND THAT IS LOAD BEARING. It sat above the news marquee's own
+   rule and did nothing to it: `.dsd-news-track { animation: none }` and
+   `.dsd-news-track { animation: dsd-strip-scroll 52s ... }` have the SAME specificity, so
+   the later declaration won and the marquee kept sweeping for a visitor who had asked the
+   whole system to hold still. Measured, not eyeballed: computed animationName read
+   `dsd-strip-scroll` under prefers-reduced-motion until this moved to the end of the file.
+   The strip only escaped because its own rule happens to be declared earlier.
+
+   The engine already stands its rAF loop down; these are the parts of the arc that move
+   on their own without it. Both marquees stop dead rather than crawl, the caret stops
+   blinking (under reduced motion the answer arrives whole, so there is no caret at all),
+   and every hover transition and lift is dropped. */
+@media (prefers-reduced-motion: reduce) {
+  .dsd-strip-track, .dsd-news-track { animation: none; }
+  .dsd-caret { animation: none; }
+  .cinema-cta, .dsd-cta, .dsd-chip, .dsd-news-card,
+  .dsd-photos img, .dsd-strip-track img { transition: none; }
+  .dsd-cta:hover { transform: none; }
+}
+
+/* ---- the trade-in program, seated between after sales and the parts rows ----------
+   Jarich, 2026-09-07: the closing card at the foot of the page is gone and this is the
+   one thing from it he wanted kept, moved up here. One plate, copy on the left, the news
+   desk's own photographs of older chairs on the right. The frames are portrait phone
+   video stills (360x640 and 1080x1920), so the tiles are portrait too and object-fit
+   cover keeps the row level. */
+.dsd-tradein {
+  width: min(98vw, 1280px);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 2px 0 10px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  text-align: left;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--paper) 84%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+}
+.dsd-tradein-copy { flex: 1 1 auto; min-width: 0; }
+.dsd-tradein-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--dsd-green);
+}
+.dsd-tradein-head {
+  margin: 4px 0 6px;
+  font-size: clamp(17px, 1.7vw, 22px);
+  line-height: 1.15;
+  font-weight: 700;
+}
+.dsd-tradein-body {
+  margin: 0 0 10px;
+  max-width: 52ch;
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: .86;
+}
+.dsd-tradein-cta { padding: 9px 18px; font-size: 13px; }
+.dsd-tradein-shots { display: flex; gap: 8px; flex: 0 0 auto; }
+.dsd-tradein-shot {
+  display: block;
+  width: 92px;
+  height: 122px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+@media (max-width: 700px) {
+  .dsd-tradein { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px; }
+  .dsd-tradein-body { max-width: none; }
+  .dsd-tradein-shots { justify-content: space-between; }
+  .dsd-tradein-shot { width: 23%; height: 96px; }
+}
+
+/* ---- the marbles beat: headline at the top, the wall gets the middle ---------------
+   Jarich, 2026-09-07: "place headline more up top so we have space for marbles". The
+   engine centres a beat's copy in the viewport, so on this beat the words sat a third of
+   the way down and the seating loop had to push the wall into the bottom band. Top-anchor
+   this panel only, and let the cluster sentinel take the free height: the copy starts
+   under the marquee, the pager and the button stay at the foot, and the seating loop,
+   which measures from the copy's real bottom edge, hands the wall everything between.
+   Scoped with :has(.dsd-cluster) so the reduced-motion still wall keeps the engine's
+   centred layout. */
+.cinema-panel:has(.dsd-cluster) { justify-content: flex-start; }
+.cinema-panel:has(.dsd-cluster) .dsd-panel { height: 100%; }
+.cinema-panel:has(.dsd-cluster) .dsd-cluster { flex: 1 1 auto; height: auto; min-height: 220px; }
+.cinema-panel:has(.dsd-cluster) .cinema-sub { max-width: 60ch; }

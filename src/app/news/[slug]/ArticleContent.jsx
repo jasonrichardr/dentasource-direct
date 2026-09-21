@@ -5,9 +5,10 @@ import Link from 'next/link';
 import { m as motion } from 'framer-motion';
 import JsonLd from '@/components/JsonLd';
 import { articleGraph } from '@/lib/schemas/article';
-import FocusMusic from './FocusMusic';
 import ArticleMarbles from './ArticleMarbles';
 import styles from './page.module.css';
+import '../news-theme.css';
+import { mediaUrl } from '@/lib/cinema/media';
 import { NadtiSpeakerCard, NadtiSchedule } from './NadtiCards';
 
 // Inline grammar shared by paragraphs and avatar rows: **bold**, ==highlight== and [text](url).
@@ -39,7 +40,6 @@ function renderInline(text) {
 }
 
 export default function ArticleContent({ article }) {
-    const readMinutes = Math.max(1, Math.round(article.content.split(/\s+/).length / 200));
     return (
         <main className={styles.articlePage}>
             <JsonLd id={`article-${article.slug}`} data={articleGraph(article)} />
@@ -54,7 +54,6 @@ export default function ArticleContent({ article }) {
                         <span className={styles.date}>{article.date}</span>
                         <h1 className={styles.title}>{article.title}</h1>
                         <p className={styles.abstract}>{article.abstract}</p>
-                        <FocusMusic minutes={readMinutes} />
                     </motion.div>
                 </div>
                 {article.image && !article.hideHeroImage && (
@@ -184,7 +183,7 @@ export default function ArticleContent({ article }) {
                                     return (
                                         <div key={idx} className={styles.inlineImageWrapper}>
                                             <video
-                                                src={match[2]}
+                                                src={mediaUrl(match[2])}
                                                 controls
                                                 muted
                                                 playsInline

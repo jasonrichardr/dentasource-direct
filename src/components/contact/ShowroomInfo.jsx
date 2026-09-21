@@ -15,16 +15,16 @@ export default function ShowroomInfo() {
         transition={{ duration: 0.8 }}
         className="relative z-10 max-w-lg mt-8 lg:mt-4 space-y-10"
       >
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white">
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white">
           Walk in anytime.<br />
           <span className="text-white/50">See every product up close.</span>
-        </h1>
+        </h2>
 
         <div>
           <h4 className="text-white font-medium mb-2 uppercase tracking-wider text-xs">Headquarters & Showroom</h4>
           <p className="text-white/70 leading-relaxed text-lg">
-            610 C. Maybunga Rd<br />
-            Pasig City, Metro Manila<br />
+            610 C. Raymundo Avenue<br />
+            Maybunga, Pasig City, Metro Manila<br />
             Philippines
           </p>
         </div>
@@ -45,7 +45,7 @@ export default function ShowroomInfo() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="DentaSource Direct showroom on Google Maps"
-            aria-label="Map showing 610 C. Maybunga Rd, Pasig City"
+            aria-label="Map showing 610 C. Raymundo Avenue, Maybunga, Pasig City"
           />
         </div>
 

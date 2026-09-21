@@ -9,6 +9,8 @@ import A3SProductConfigurator from "@/components/a3s/A3SProductConfigurator";
 import A3SVisualTour from "@/components/a3s/A3SVisualTour";
 import A3SWhatsInTheBox from "@/components/a3s/A3SWhatsInTheBox";
 import A3SWarrantyTable from "@/components/a3s/A3SWarrantyTable";
+import ProductCinema from "@/cinema/product/ProductCinema";
+import { productCinemaConfig } from "@/cinema/product/productConfig";
 
 export const metadata = {
     title: "Roson A3S Smart Dental Chair",
@@ -26,15 +28,17 @@ export default function A3SPage() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
             <ChairSchemas route="/a3s" />
-            <A3SHeroVisual />
-            <A3SFeatureGrid />
-            <A3SColorSection />
-            <A3SErgonomicsSection />
-            <SpecGate><A3STechSpecs /></SpecGate>
-            <A3SProductConfigurator />
-            <A3SVisualTour />
-            <A3SWhatsInTheBox />
-            <A3SWarrantyTable />
+            <ProductCinema config={productCinemaConfig("a3s")}>
+                <A3SHeroVisual />
+                <A3SFeatureGrid />
+                <A3SColorSection />
+                <A3SErgonomicsSection />
+                <SpecGate><A3STechSpecs /></SpecGate>
+                <A3SProductConfigurator />
+                <A3SVisualTour />
+                <A3SWhatsInTheBox />
+                <A3SWarrantyTable />
+            </ProductCinema>
         </main>
     );
 }

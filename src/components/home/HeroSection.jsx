@@ -1,6 +1,7 @@
 'use client';
 
 import { m as motion } from 'framer-motion';
+import { mediaUrl } from '@/lib/cinema/media';
 
 const stats = [
     { value: '140', unit: 'sqm', label: 'Showroom' },
@@ -23,7 +24,7 @@ export default function HeroSection() {
                     preload="auto"
                     poster="/videos/dsd-hero-poster.jpg"
                 >
-                    <source src="/videos/dsd-hero-loop.mp4" type="video/mp4" />
+                    <source src={mediaUrl('/videos/dsd-hero-loop.mp4')} type="video/mp4" />
                 </video>
                 {/* Legibility overlays */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/25" />

@@ -9,6 +9,8 @@ import S6ProductConfigurator from "@/components/s6/S6ProductConfigurator";
 import S6VisualTour from "@/components/s6/S6VisualTour";
 import S6WhatsInTheBox from "@/components/s6/S6WhatsInTheBox";
 import S6WarrantyTable from "@/components/s6/S6WarrantyTable";
+import ProductCinema from "@/cinema/product/ProductCinema";
+import { productCinemaConfig } from "@/cinema/product/productConfig";
 
 export const metadata = {
     title: "Roson S6 Professional Dental Chair",
@@ -26,15 +28,17 @@ export default function S6Page() {
     return (
         <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
             <ChairSchemas route="/s6" />
-            <S6HeroVisual />
-            <S6FeatureGrid />
-            <S6AccessibilitySection />
-            <S6ErgonomicsSection />
-            <SpecGate><S6TechSpecs /></SpecGate>
-            <S6ProductConfigurator />
-            <S6VisualTour />
-            <S6WhatsInTheBox />
-            <S6WarrantyTable />
+            <ProductCinema config={productCinemaConfig("s6")}>
+                <S6HeroVisual />
+                <S6FeatureGrid />
+                <S6AccessibilitySection />
+                <S6ErgonomicsSection />
+                <SpecGate><S6TechSpecs /></SpecGate>
+                <S6ProductConfigurator />
+                <S6VisualTour />
+                <S6WhatsInTheBox />
+                <S6WarrantyTable />
+            </ProductCinema>
         </main>
     );
 }

@@ -1,17 +1,37 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { newsData } from '@/data/news';
+import { useCallback, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { m as motion } from 'framer-motion';
-import NewsSearch, { buildIndex, search } from './NewsSearch';
+import NewsSearch, { search } from './NewsSearch';
+import './news-theme.css';
 
-export default function NewsContent() {
+const EMPTY = { terms: [], hits: [], matchedSlugs: null, total: 0 };
+
+export default function NewsContent({ articles = [] }) {
   const [query, setQuery] = useState('');
-  const sortedNews = useMemo(() => [...newsData].sort((a, b) => new Date(b.date) - new Date(a.date)), []);
-  const index = useMemo(() => buildIndex(sortedNews), [sortedNews]);
-  const result = useMemo(() => search(index, query), [index, query]);
+  // The archive arrives on demand. Until it does, `index` is null and the grid simply
+  // shows everything, which is exactly what it shows when nobody is searching anyway.
+  const [index, setIndex] = useState(null);
+
+  const sortedNews = articles;
+
+  /** Fetch the corpus once, on the first sign of intent: a focus, or a keystroke. */
+  const loadArchive = useCallback(() => {
+    setIndex((cur) => {
+      if (cur) return cur;                       // already here
+      import('./newsSearchIndex')
+        .then((m) => setIndex(m.default))
+        .catch(() => setIndex(null));            // a failed chunk leaves the grid intact
+      return cur;
+    });
+  }, []);
+
+  const result = useMemo(() => (index ? search(index, query) : EMPTY), [index, query]);
   const searching = result.terms.length > 0;
+  // A query typed before the archive lands: the box says so rather than saying "no results",
+  // which would be a lie about the archive rather than a fact about the query.
+  const archivePending = query.trim().length > 0 && !index;
   const visible = searching ? sortedNews.filter((a) => result.matchedSlugs.has(a.slug)) : sortedNews;
   const featured = searching ? null : sortedNews[0];
   const grid = searching ? visible : sortedNews.slice(1);
@@ -24,7 +44,11 @@ export default function NewsContent() {
 
       <main style={{
         minHeight: '100vh',
-        background: '#faf8f5',
+        // A veil over the night sky in dark, the flat paper it always was by day.
+        // position/zIndex raise the list above the fixed sky canvas at z-index 1.
+        background: 'var(--news-list-ground)',
+        position: 'relative',
+        zIndex: 2,
         paddingTop: 130,
         paddingBottom: 80,
         fontFamily: "'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif",
@@ -39,7 +63,7 @@ export default function NewsContent() {
           >
             <p style={{
               fontSize: 11, fontWeight: 700, letterSpacing: '2.5px',
-              textTransform: 'uppercase', color: '#2d6a5a', marginBottom: 12,
+              textTransform: 'uppercase', color: 'var(--news-accent)', marginBottom: 12,
             }}>
               DentaSource Direct
             </p>
@@ -47,18 +71,25 @@ export default function NewsContent() {
               fontFamily: "'DM Serif Display', Georgia, serif",
               fontSize: 'clamp(32px, 5vw, 48px)',
               fontWeight: 400,
-              color: '#1a1a1a',
+              color: 'var(--news-ink)',
               marginBottom: 12,
               letterSpacing: '-0.5px',
             }}>
               News & Insights
             </h1>
             <p style={{
-              fontSize: 17, color: '#7a7a7a', maxWidth: 560, lineHeight: 1.6,
+              fontSize: 17, color: 'var(--news-ink-2)', maxWidth: 560, lineHeight: 1.6,
             }}>
               The latest from the Philippine dental industry: product launches, PDA updates, technology trends, and expert buying guides.
             </p>
-            <NewsSearch query={query} setQuery={setQuery} result={result} totalArticles={sortedNews.length} />
+            <NewsSearch
+              query={query}
+              setQuery={setQuery}
+              result={result}
+              totalArticles={sortedNews.length}
+              onActivate={loadArchive}
+              pending={archivePending}
+            />
           </motion.div>
         </div>
 
@@ -75,7 +106,7 @@ export default function NewsContent() {
                   position: 'relative',
                   borderRadius: 20,
                   overflow: 'hidden',
-                  border: '1px solid #e5e0d8',
+                  border: '1px solid var(--news-line)',
                   cursor: 'pointer',
                   transition: 'box-shadow 0.3s, transform 0.3s',
                 }}>
@@ -143,10 +174,13 @@ export default function NewsContent() {
               >
                 <Link href={`/news/${article.slug}`} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
                   <div style={{
-                    background: 'white',
+                    // Was the literal 'white' while every sibling here was already a
+                    // token, so the night register put white cards on a night page.
+                    // --news-surface IS #ffffff by day, so the day card is unchanged.
+                    background: 'var(--news-surface)',
                     borderRadius: 16,
                     overflow: 'hidden',
-                    border: '1px solid #e5e0d8',
+                    border: '1px solid var(--news-line)',
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
@@ -155,7 +189,7 @@ export default function NewsContent() {
                   }}
                   onMouseEnter={e => {
                     e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.08)';
+                    e.currentTarget.style.boxShadow = '0 12px 40px var(--news-shadow)';
                   }}
                   onMouseLeave={e => {
                     e.currentTarget.style.transform = 'translateY(0)';
@@ -175,7 +209,7 @@ export default function NewsContent() {
                     )}
                     <div style={{ padding: 22, flex: 1, display: 'flex', flexDirection: 'column' }}>
                       <p style={{
-                        fontSize: 12, color: '#999', fontWeight: 500, marginBottom: 8,
+                        fontSize: 12, color: 'var(--news-ink-3)', fontWeight: 500, marginBottom: 8,
                       }}>
                         {article.date}
                       </p>
@@ -183,14 +217,14 @@ export default function NewsContent() {
                         fontFamily: "'DM Serif Display', Georgia, serif",
                         fontSize: 19,
                         fontWeight: 400,
-                        color: '#1a1a1a',
+                        color: 'var(--news-ink)',
                         lineHeight: 1.3,
                         marginBottom: 10,
                       }}>
                         {article.title}
                       </h3>
                       <p style={{
-                        fontSize: 14, color: '#7a7a7a', lineHeight: 1.6,
+                        fontSize: 14, color: 'var(--news-ink-2)', lineHeight: 1.6,
                         flex: 1,
                         display: '-webkit-box',
                         WebkitLineClamp: 3,
@@ -201,7 +235,7 @@ export default function NewsContent() {
                       </p>
                       <div style={{
                         marginTop: 16,
-                        fontSize: 14, fontWeight: 600, color: '#2d6a5a',
+                        fontSize: 14, fontWeight: 600, color: 'var(--news-accent)',
                         display: 'flex', alignItems: 'center', gap: 4,
                       }}>
                         Read article →

@@ -1,5 +1,7 @@
 import A1RadianLanding from '@/components/a1-radian/A1RadianLanding';
 import A1ProSchemas from '@/components/a1-pro/A1ProSchemas';
+import ProductCinema from '@/cinema/product/ProductCinema';
+import { productCinemaConfig } from '@/cinema/product/productConfig';
 
 export const metadata = {
   title: { absolute: 'ROSON A1 Pro Dental Chair | DentaSource Direct Philippines' },
@@ -33,9 +35,11 @@ export const metadata = {
 
 export default function A1ProPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen">
       <A1ProSchemas />
-      <A1RadianLanding />
+      <ProductCinema config={productCinemaConfig('a1-pro')}>
+        <A1RadianLanding />
+      </ProductCinema>
     </main>
   );
 }

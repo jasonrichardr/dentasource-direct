@@ -1,12 +1,23 @@
 import { Inter, Playfair_Display, Geist, Instrument_Sans, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
 import JsonLd from '@/components/JsonLd';
 import { organizationGraph } from '@/lib/schemas/organization';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import MetaPixel from '@/components/analytics/MetaPixel';
 import MotionProvider from '@/components/MotionProvider';
+import ThemeScript from '@/cinema/ThemeScript';
+import SiteShell from '@/components/site/SiteShell';
+import Navbar from '@/components/Navbar/Navbar';
+// ☠️ THE BRANCH'S OWN TOP MARQUEE IS GONE, THE STYLESHEET IS NOT. The navbar carries
+// its own green trust line, so rendering <TrustMarquee /> as well put two of them on
+// the page. The file still has to load: the rules that stand the corner theme switch
+// down while the music room holds the screen live in it, not in cinema.css.
+import '@/components/site/trust-marquee.css';
+// The cinema tokens are site-wide from here on: the navbar, the footer and the room all
+// key off --paper / --ink / --dsd-green, so they must resolve on /news and /classic too,
+// not only on the routes that mount CinemaPage.
+import '@/cinema/cinema.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });
@@ -68,13 +79,20 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${geistSans.variable} ${instrument.variable} ${plexMono.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Stamps data-theme on <html> before the first paint, so the cinema never
+            flashes the wrong theme on its way to the right one. */}
+        <ThemeScript />
+      </head>
       <body className="antialiased">
         <MotionProvider>
+        <SiteShell>
         <MetaPixel />
         <JsonLd id="organization-graph" data={organizationGraph} />
         <Navbar />
         {children}
         <Footer />
+        </SiteShell>
         {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
         {/* Umami — the family's own watchtower on the VPS (2026-09-01). Live visitors,
             per-page, city/device/referrer; IPs hashed. Sits beside GA/Pixel, replaces neither. */}

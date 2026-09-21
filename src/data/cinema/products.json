@@ -1,0 +1,1510 @@
+{
+  "version": 1,
+  "generated": "2026-09-05",
+  "notes": "8 beat product skeleton, ruled in brainstorms/2026-09-05-dsd-site-overhaul-ffc-parity.md Q12. Feature bullets come from each page's own feature list. No transparent PNGs exist in public/, so every heroImage is a white ground studio shot and the particle sampler must key on background brightness rather than alpha. See content-notes.md.",
+  "sharedChecklist": [
+    "Visual and structural inspection",
+    "Electrical and power system testing",
+    "Chair movement and positioning calibration",
+    "Delivery system and handpiece ports",
+    "Dental light and auxiliary functions",
+    "Water system and drainage inspection",
+    "Accessories and package inclusions verification",
+    "Final quality assurance approval"
+  ],
+  "products": [
+    {
+      "slug": "a1-pro",
+      "name": "ROSON A1 Pro",
+      "route": "/a1-pro",
+      "heroImage": "/images/products/a1-pro/hero.jpg",
+      "heroImageNote": "White ground studio shot. Alternate silhouette for particle sampling: /images/products/a1-pro/pieces/chair-silhouette-roson-blue.png",
+      "isIndex": false,
+      "beats": {
+        "forms": {
+          "eyebrow": "The unit",
+          "headline": "Color, engineered",
+          "body": "ROSON's color led treatment chair, built on a 12 mm carbon structural steel frame and finished in the color the clinic chooses rather than the one the catalog allows.",
+          "media": [
+            "/images/products/a1-pro/hero.jpg",
+            "/images/products/a1-pro/pieces/chair-silhouette-roson-blue.png"
+          ]
+        },
+        "whoItIsFor": {
+          "eyebrow": "Who it is for",
+          "headline": "Design led clinics and first practices",
+          "body": "From the page: new generation dentists setting up a first practice, design conscious and women led clinics, pediatric and family rooms, premium aesthetic practices, multi chair clinics that want a color per operatory, and boutique design led rooms.",
+          "segments": [
+            "New generation dentists setting up a first practice",
+            "Women led and design conscious clinics",
+            "Pediatric and family friendly clinics",
+            "Premium aesthetic and cosmetic practices",
+            "Multi chair clinics with operatory personalities",
+            "Boutique design led private practices"
+          ]
+        },
+        "features": {
+          "eyebrow": "What it carries",
+          "headline": "From the product page",
+          "body": "The feature list on the existing page, unchanged. The full specification table stays reachable below this beat.",
+          "bullets": [
+            "12 mm carbon structural steel frame with a 150 kg patient load",
+            "Sleep grade soft start and stop motion through the full travel",
+            "Rolight S 8 LED light with yellow, white and mixed modes and a removable handle",
+            "Intelligent memory chair positions, saved and recalled with one touch",
+            "Smart clean button: entry position, cup fill, 5 minute spittoon rinse and pipeline flush",
+            "RS-07 professional dentist stool included as standard"
+          ]
+        },
+        "colors": {
+          "eyebrow": "Colors and upholstery",
+          "headline": "Chosen for the room it goes into",
+          "body": "Three signature colors come pre styled by ROSON's design team, and the unit can be customized across the FS silicone and PU leather ranges, forty four colorways in total. Color customization extends to the water box, upholstery and instrument tray.",
+          "colors": [
+            "ROSON Blue (FS21)",
+            "Ballet Pink (FS22)",
+            "Mint Green (FS23)"
+          ],
+          "upholstery": [
+            "FS silicone range",
+            "PU leather range"
+          ]
+        },
+        "inRealClinics": {
+          "eyebrow": "In real clinics",
+          "headline": "Installed, not rendered",
+          "body": "Photographs from our own installation posts, each one linked to the article it came from.",
+          "items": []
+        },
+        "inspectionAndInstallation": {
+          "eyebrow": "Inspection and installation",
+          "headline": "Tested here, assembled in your room",
+          "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse against an eight point checklist before it ships. A free ocular visit measures your operatory first, then our own technicians build it on site and hand it over.",
+          "checklist": [
+            "Visual and structural inspection",
+            "Electrical and power system testing",
+            "Chair movement and positioning calibration",
+            "Delivery system and handpiece ports",
+            "Dental light and auxiliary functions",
+            "Water system and drainage inspection",
+            "Accessories and package inclusions verification",
+            "Final quality assurance approval"
+          ],
+          "media": [
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
+          ],
+          "sourceArticle": "pre-delivery-inspection-every-dental-chair"
+        },
+        "relatedNews": [
+          "roson-a1-a1-pro-complete-guide",
+          "roson-dx-a1-fashion-model-three-colors",
+          "roson-dx-a1-trend-edition-colors"
+        ],
+        "door": {
+          "eyebrow": "The door",
+          "headline": "See it before you decide",
+          "body": "It is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. Sit in it, run it through its full travel, and bring your operatory measurements.",
+          "cta": {
+            "label": "Send an inquiry",
+            "href": "/contact"
+          },
+          "media": [
+            "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "a3",
+      "name": "ROSON Flagship Model A3",
+      "route": "/a3",
+      "heroImage": "/images/products/a3/A3 Dental Chair/img01.jpg",
+      "heroImageNote": "White ground studio shot, 1000 by 1000.",
+      "isIndex": false,
+      "beats": {
+        "forms": {
+          "eyebrow": "The unit",
+          "headline": "Clinical excellence, perfected",
+          "body": "The flagship of the range, and the chair most new clinics ask about by name. Waterline disinfection, a touchscreen panel and hands free cup filling arrive as standard rather than as options.",
+          "media": [
+            "/images/products/a3/A3 Dental Chair/img01.jpg"
+          ]
+        },
+        "whoItIsFor": {
+          "eyebrow": "Who it is for",
+          "headline": "The room that has to do everything",
+          "body": "Practices that want waterline disinfection, a color touchscreen and memory positions built in, and clinics replacing a chair that has to hold up to a full day, every day.",
+          "segments": [
+            "Established practices upgrading their main operatory",
+            "Clinics that treat infection control as a specification, not a routine",
+            "New builds fitting out a flagship room"
+          ]
+        },
+        "features": {
+          "eyebrow": "What it carries",
+          "headline": "From the product page",
+          "body": "The feature list on the existing page, unchanged. The full specification table stays reachable below this beat.",
+          "bullets": [
+            "EOW disinfection system running on the waterlines",
+            "8 bead Philips LED shadowless operating light with adjustable color temperature",
+            "Medical grade color LCD touchscreen with three memory positions",
+            "Active anti collision on the assistant arm and the backrest",
+            "Sensory cup fill using dual infrared and gravity sensors",
+            "One key smart drainage with a 5 minute automated flushing cycle"
+          ]
+        },
+        "colors": {
+          "eyebrow": "Colors and upholstery",
+          "headline": "Chosen for the room it goes into",
+          "body": "Seven unit colors and three upholstery choices, with over the patient, swing mounted and cart mounted delivery to suit the room.",
+          "colors": [
+            "Coloured Glaze Blue",
+            "Gray",
+            "Begonia Red",
+            "Hermes Orange",
+            "Olive Green",
+            "Tiffany Blue",
+            "Light Green"
+          ],
+          "upholstery": [
+            "PU Leather",
+            "Sewn Microfiber",
+            "Seamless Microfiber"
+          ]
+        },
+        "inRealClinics": {
+          "eyebrow": "In real clinics",
+          "headline": "Installed, not rendered",
+          "body": "Photographs from our own installation posts, each one linked to the article it came from.",
+          "items": [
+            {
+              "slug": "roson-dx-a3-dobles-teylan-dental-care",
+              "image": "/images/news/roson-dx-a3-dobles-teylan-dental-care/v091-6.jpg",
+              "alt": "Our technician with the dentist at the assembled DX-A3 chair"
+            },
+            {
+              "slug": "old-chair-out-roson-dx-a3-in",
+              "image": "/images/news/old-chair-out-roson-dx-a3-in/v098-4.jpg",
+              "alt": "Unpacking the new DX-A3 chair from its wrapping inside the clinic"
+            },
+            {
+              "slug": "custom-color-roson-dx-a3-cabatuan-isabela",
+              "image": "/images/news/custom-color-roson-dx-a3-cabatuan-isabela/v100-5.jpg",
+              "alt": "Two technicians assembling the unit with its custom yellow trim"
+            }
+          ]
+        },
+        "inspectionAndInstallation": {
+          "eyebrow": "Inspection and installation",
+          "headline": "Tested here, assembled in your room",
+          "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse against an eight point checklist before it ships. A free ocular visit measures your operatory first, then our own technicians build it on site and hand it over.",
+          "checklist": [
+            "Visual and structural inspection",
+            "Electrical and power system testing",
+            "Chair movement and positioning calibration",
+            "Delivery system and handpiece ports",
+            "Dental light and auxiliary functions",
+            "Water system and drainage inspection",
+            "Accessories and package inclusions verification",
+            "Final quality assurance approval"
+          ],
+          "media": [
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
+          ],
+          "sourceArticle": "pre-delivery-inspection-every-dental-chair"
+        },
+        "relatedNews": [
+          "roson-dx-a3-dobles-teylan-dental-care",
+          "old-chair-out-roson-dx-a3-in",
+          "custom-color-roson-dx-a3-cabatuan-isabela"
+        ],
+        "door": {
+          "eyebrow": "The door",
+          "headline": "See it before you decide",
+          "body": "It is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. Sit in it, run it through its full travel, and bring your operatory measurements.",
+          "cta": {
+            "label": "Send an inquiry",
+            "href": "/contact"
+          },
+          "media": [
+            "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "a3l",
+      "name": "ROSON Fashion Model A3L",
+      "route": "/a3l",
+      "heroImage": "/images/products/dxa3l/013_Roson_Fashion_Model_A3L_Dental_Chair_with_brown_se.jpg",
+      "heroImageNote": "White ground studio shot. The sunlit render at /images/products/sunlit/chair_a3l_brown_sunlight.png is a scene, not a cutout, so it is a poor particle source.",
+      "isIndex": false,
+      "beats": {
+        "forms": {
+          "eyebrow": "The unit",
+          "headline": "Same A3 power, your clinic's style",
+          "body": "The same engineering as the A3 in a darker, more executive finish. Clinics choose it for the room as much as for the chair, which is fair when the operatory is the first thing a patient sees.",
+          "media": [
+            "/images/products/dxa3l/013_Roson_Fashion_Model_A3L_Dental_Chair_with_brown_se.jpg"
+          ]
+        },
+        "whoItIsFor": {
+          "eyebrow": "Who it is for",
+          "headline": "Clinics choosing the room as much as the chair",
+          "body": "Practices where the operatory is part of the brand, and dentists who want A3 engineering without the standard A3 look.",
+          "segments": [
+            "Design forward private practices",
+            "Clinics fitting a signature operatory",
+            "Second rooms that have to match the first"
+          ]
+        },
+        "features": {
+          "eyebrow": "What it carries",
+          "headline": "From the product page",
+          "body": "The feature list on the existing page, unchanged. The full specification table stays reachable below this beat.",
+          "bullets": [
+            "8-Tooth Smile oral light with Philips LEDs and infrared on and off",
+            "Medical grade color LCD with power on self test and fault code display",
+            "Anti collision safety system in the assistant arm",
+            "4 angle adjustable handpiece holder, 30 to 80 degrees",
+            "Soft start and stop whisper silent motor",
+            "RS06 ergonomic dentist stool"
+          ]
+        },
+        "colors": {
+          "eyebrow": "Colors and upholstery",
+          "headline": "Chosen for the room it goes into",
+          "body": "Seven unit colors and three upholstery choices, with the darker executive finish that separates the A3L from the A3.",
+          "colors": [
+            "Coloured Glaze Blue",
+            "Gray",
+            "Begonia Red",
+            "Hermes Orange",
+            "Olive Green",
+            "Tiffany Blue",
+            "Light Green"
+          ],
+          "upholstery": [
+            "PU Leather (standard)",
+            "Sewn Microfiber",
+            "Seamless Microfiber"
+          ]
+        },
+        "inRealClinics": {
+          "eyebrow": "In real clinics",
+          "headline": "Installed, not rendered",
+          "body": "Photographs from our own installation posts, each one linked to the article it came from.",
+          "items": [
+            {
+              "slug": "roson-a3l-delivery-pangasinan",
+              "image": "/images/news/roson-a3l-delivery-pangasinan/v003-5.jpg",
+              "alt": "The A3L set in position inside the operatory"
+            },
+            {
+              "slug": "roson-dx-a3l-apex-dental-studio-fairview",
+              "image": "/images/news/roson-dx-a3l-apex-dental-studio-fairview/v203-1.jpg",
+              "alt": "A delivery in progress card showing the DX-A3L being carried in and unboxed"
+            }
+          ]
+        },
+        "inspectionAndInstallation": {
+          "eyebrow": "Inspection and installation",
+          "headline": "Tested here, assembled in your room",
+          "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse against an eight point checklist before it ships. A free ocular visit measures your operatory first, then our own technicians build it on site and hand it over.",
+          "checklist": [
+            "Visual and structural inspection",
+            "Electrical and power system testing",
+            "Chair movement and positioning calibration",
+            "Delivery system and handpiece ports",
+            "Dental light and auxiliary functions",
+            "Water system and drainage inspection",
+            "Accessories and package inclusions verification",
+            "Final quality assurance approval"
+          ],
+          "media": [
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
+          ],
+          "sourceArticle": "pre-delivery-inspection-every-dental-chair"
+        },
+        "relatedNews": [
+          "roson-a3l-delivery-pangasinan",
+          "roson-dx-a3l-apex-dental-studio-fairview",
+          "how-we-install-your-dental-chair"
+        ],
+        "door": {
+          "eyebrow": "The door",
+          "headline": "See it before you decide",
+          "body": "It is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. Sit in it, run it through its full travel, and bring your operatory measurements.",
+          "cta": {
+            "label": "Send an inquiry",
+            "href": "/contact"
+          },
+          "media": [
+            "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "a3s",
+      "name": "ROSON Smart Model A3S",
+      "route": "/a3s",
+      "heroImage": "/images/products/a3s/A3S Dental Chair/1-8.jpg",
+      "heroImageNote": "White ground studio shot, 640 by 640.",
+      "isIndex": false,
+      "beats": {
+        "forms": {
+          "eyebrow": "The unit",
+          "headline": "Smart comfort, seamless leather as standard",
+          "body": "The leaner member of the A3 family, on the same platform with a lighter specification, and the widest color palette in the lineup. Seamless microfiber leather is standard here rather than an upgrade.",
+          "media": [
+            "/images/products/a3s/A3S Dental Chair/1-8.jpg"
+          ]
+        },
+        "whoItIsFor": {
+          "eyebrow": "Who it is for",
+          "headline": "First clinics and second operatories",
+          "body": "It suits a first clinic, or a second operatory where the budget has to stretch across two rooms rather than one, without giving up the A3 platform.",
+          "segments": [
+            "First clinics fitting out one room",
+            "Practices adding a second operatory",
+            "Clinics that want color choice on the floor"
+          ]
+        },
+        "features": {
+          "eyebrow": "What it carries",
+          "headline": "From the product page",
+          "body": "The feature list on the existing page, unchanged. The full specification table stays reachable below this beat.",
+          "bullets": [
+            "Rolight S with a condition breathing lamp and double mode",
+            "Seamless microfiber leather as standard, with no seam crevices",
+            "Medical grade color LCD with self test and fault code display",
+            "Soft start and stop motor system",
+            "4 angle adjustable handpiece holder, 30 to 80 degrees",
+            "RS06 ergonomic dentist stool"
+          ]
+        },
+        "colors": {
+          "eyebrow": "Colors and upholstery",
+          "headline": "Chosen for the room it goes into",
+          "body": "Seven unit colors, the widest palette in the ROSON lineup, with seamless microfiber leather included rather than added.",
+          "colors": [
+            "Tiffany Blue",
+            "Begonia Red",
+            "Olive Green",
+            "Gray",
+            "Coloured Glaze Blue",
+            "Orange",
+            "Light Green"
+          ],
+          "upholstery": [
+            "Seamless Microfiber (standard)",
+            "PU Leather",
+            "Sewn Microfiber"
+          ]
+        },
+        "inRealClinics": {
+          "eyebrow": "In real clinics",
+          "headline": "Installed, not rendered",
+          "body": "Photographs from our own installation posts, each one linked to the article it came from.",
+          "items": [
+            {
+              "slug": "roson-dx-a3s-installation-pampanga",
+              "image": "/images/news/roson-dx-a3s-installation-pampanga/v017-7.jpg",
+              "alt": "Two technicians beside the assembled ROSON DX-A3S"
+            },
+            {
+              "slug": "roson-dx-a3s-delivery-taguig",
+              "image": "/images/news/roson-dx-a3s-delivery-taguig/v103-7.jpg",
+              "alt": "Walking the dentist through the finished DX-A3S chair"
+            },
+            {
+              "slug": "clinic-upgrade-cavite-roson-dx-a3s",
+              "image": "/images/news/clinic-upgrade-cavite-roson-dx-a3s/v019-2.jpg",
+              "alt": "Our technician adjusting the assembled DX-A3S with its monitor arm mounted"
+            }
+          ]
+        },
+        "inspectionAndInstallation": {
+          "eyebrow": "Inspection and installation",
+          "headline": "Tested here, assembled in your room",
+          "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse against an eight point checklist before it ships. A free ocular visit measures your operatory first, then our own technicians build it on site and hand it over.",
+          "checklist": [
+            "Visual and structural inspection",
+            "Electrical and power system testing",
+            "Chair movement and positioning calibration",
+            "Delivery system and handpiece ports",
+            "Dental light and auxiliary functions",
+            "Water system and drainage inspection",
+            "Accessories and package inclusions verification",
+            "Final quality assurance approval"
+          ],
+          "media": [
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
+          ],
+          "sourceArticle": "pre-delivery-inspection-every-dental-chair"
+        },
+        "relatedNews": [
+          "roson-dx-a3s-installation-pampanga",
+          "roson-dx-a3s-delivery-taguig",
+          "clinic-upgrade-cavite-roson-dx-a3s"
+        ],
+        "door": {
+          "eyebrow": "The door",
+          "headline": "See it before you decide",
+          "body": "It is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. Sit in it, run it through its full travel, and bring your operatory measurements.",
+          "cta": {
+            "label": "Send an inquiry",
+            "href": "/contact"
+          },
+          "media": [
+            "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "n1",
+      "name": "ROSON Classic Model N1",
+      "route": "/n1",
+      "heroImage": "/images/products/n1/N1 Dental Chair/N1_1.jpg",
+      "heroImageNote": "White ground studio shot, 640 by 640.",
+      "isIndex": false,
+      "beats": {
+        "forms": {
+          "eyebrow": "The unit",
+          "headline": "The simplest setup in the lineup",
+          "body": "The entry point of the whole range and the most direct way to put a complete operatory together. It arrives as a full setup rather than a chair you then have to finish buying.",
+          "media": [
+            "/images/products/n1/N1 Dental Chair/N1_1.jpg"
+          ]
+        },
+        "whoItIsFor": {
+          "eyebrow": "Who it is for",
+          "headline": "A first clinic, or a room that has to be simple",
+          "body": "Entry level, with a rotatable right arm so elderly patients, children and patients with limited mobility can sit down and stand up without obstruction.",
+          "segments": [
+            "First clinics on a fixed build budget",
+            "Rooms treating elderly and pediatric patients",
+            "Satellite and provincial branches"
+          ]
+        },
+        "features": {
+          "eyebrow": "What it carries",
+          "headline": "From the product page",
+          "body": "The feature list on the existing page, unchanged. The full specification table stays reachable below this beat.",
+          "bullets": [
+            "8-Tooth Smile oral light with double mode and infrared on and off",
+            "Rotatable right arm that swings clear for patient access",
+            "180 degree rotatable ceramic spittoon",
+            "One starter system for air, water and electricity",
+            "Constant temperature warm water at 40 degrees, plus or minus 5",
+            "RS03 ergonomic dentist stool"
+          ]
+        },
+        "colors": {
+          "eyebrow": "Colors and upholstery",
+          "headline": "Chosen for the room it goes into",
+          "body": "Seven unit colors and three upholstery choices, the same palette as the rest of the N series.",
+          "colors": [
+            "Dark Blue",
+            "Orange",
+            "Light Grey",
+            "Bordeaux",
+            "Apple Green",
+            "Middle Grey",
+            "Green"
+          ],
+          "upholstery": [
+            "PU Leather",
+            "Sewn Microfiber",
+            "Seamless Microfiber"
+          ]
+        },
+        "inRealClinics": {
+          "eyebrow": "In real clinics",
+          "headline": "Installed, not rendered",
+          "body": "Photographs from our own installation posts, each one linked to the article it came from.",
+          "items": [
+            {
+              "slug": "roson-dx-n1-installed-quezon-city-june-2025",
+              "image": "/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-6.jpg",
+              "alt": "The finished brown DX-N1 with the light head mounted and aimed"
+            },
+            {
+              "slug": "roson-dx-n1-installed-general-trias-cavite-2025",
+              "image": "/images/news/roson-dx-n1-installed-general-trias-cavite-2025/v308-6.jpg",
+              "alt": "The finished DX-N1 with its light arm over the chair"
+            },
+            {
+              "slug": "two-roson-dx-n1-pilapil-abao-dental-baras",
+              "image": "/images/news/two-roson-dx-n1-pilapil-abao-dental-baras/p208-1.jpg",
+              "alt": "The dentist with the two new ROSON DX-N1 units in Baras, Rizal"
+            }
+          ]
+        },
+        "inspectionAndInstallation": {
+          "eyebrow": "Inspection and installation",
+          "headline": "Tested here, assembled in your room",
+          "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse against an eight point checklist before it ships. A free ocular visit measures your operatory first, then our own technicians build it on site and hand it over.",
+          "checklist": [
+            "Visual and structural inspection",
+            "Electrical and power system testing",
+            "Chair movement and positioning calibration",
+            "Delivery system and handpiece ports",
+            "Dental light and auxiliary functions",
+            "Water system and drainage inspection",
+            "Accessories and package inclusions verification",
+            "Final quality assurance approval"
+          ],
+          "media": [
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
+          ],
+          "sourceArticle": "pre-delivery-inspection-every-dental-chair"
+        },
+        "relatedNews": [
+          "roson-dx-n1-installed-quezon-city-june-2025",
+          "two-roson-dx-n1-pilapil-abao-dental-baras",
+          "roson-dx-n1-juvy-pilapil-dental-tanay"
+        ],
+        "door": {
+          "eyebrow": "The door",
+          "headline": "See it before you decide",
+          "body": "It is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. Sit in it, run it through its full travel, and bring your operatory measurements.",
+          "cta": {
+            "label": "Send an inquiry",
+            "href": "/contact"
+          },
+          "media": [
+            "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "n2-plus",
+      "name": "ROSON Classic Model N2 Plus",
+      "route": "/n2-plus",
+      "heroImage": "/images/products/n2-plus/N2+ Dental Chair/N2_Front.png",
+      "heroImageNote": "White ground studio shot, 2560 by 2028, indexed PNG with no alpha.",
+      "isIndex": false,
+      "beats": {
+        "forms": {
+          "eyebrow": "The unit",
+          "headline": "Everything you need, nothing you do not",
+          "body": "The most complete standard configuration in the N series. The parts other models list as options are already on the unit when it arrives.",
+          "media": [
+            "/images/products/n2-plus/N2+ Dental Chair/N2_Front.png"
+          ]
+        },
+        "whoItIsFor": {
+          "eyebrow": "Who it is for",
+          "headline": "Clinics that want the extras included",
+          "body": "For practices that would rather have the tissue box, the X-ray viewer and the second water bottle in the standard build than add them later.",
+          "segments": [
+            "Busy general practices",
+            "Clinics standardising two or more rooms",
+            "Buyers who dislike option lists"
+          ]
+        },
+        "features": {
+          "eyebrow": "What it carries",
+          "headline": "From the product page",
+          "body": "The feature list on the existing page, unchanged. The full specification table stays reachable below this beat.",
+          "bullets": [
+            "8-Tooth Smile oral light with double mode and infrared on and off",
+            "Wide dentist table, 650 by 300 mm, with five handpiece holder positions",
+            "180 degree rotatable ceramic spittoon with programmable cup filler",
+            "5 in 1 multifunctional tissue box with dual layer storage",
+            "Two 1L pure water bottles with constant temperature warm water",
+            "Built in LED X-ray viewer on the dentist element"
+          ]
+        },
+        "colors": {
+          "eyebrow": "Colors and upholstery",
+          "headline": "Chosen for the room it goes into",
+          "body": "Seven unit colors and three upholstery choices, the same palette as the rest of the N series.",
+          "colors": [
+            "Apple Green",
+            "Bordeaux",
+            "Dark Blue",
+            "Green",
+            "Light Grey",
+            "Middle Grey",
+            "Orange"
+          ],
+          "upholstery": [
+            "PU Leather",
+            "Sewn Microfiber",
+            "Seamless Microfiber"
+          ]
+        },
+        "inRealClinics": {
+          "eyebrow": "In real clinics",
+          "headline": "Installed, not rendered",
+          "body": "Photographs from our own installation posts, each one linked to the article it came from.",
+          "items": []
+        },
+        "inspectionAndInstallation": {
+          "eyebrow": "Inspection and installation",
+          "headline": "Tested here, assembled in your room",
+          "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse against an eight point checklist before it ships. A free ocular visit measures your operatory first, then our own technicians build it on site and hand it over.",
+          "checklist": [
+            "Visual and structural inspection",
+            "Electrical and power system testing",
+            "Chair movement and positioning calibration",
+            "Delivery system and handpiece ports",
+            "Dental light and auxiliary functions",
+            "Water system and drainage inspection",
+            "Accessories and package inclusions verification",
+            "Final quality assurance approval"
+          ],
+          "media": [
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
+          ],
+          "sourceArticle": "pre-delivery-inspection-every-dental-chair"
+        },
+        "relatedNews": [
+          "how-we-install-your-dental-chair",
+          "pre-delivery-inspection-every-dental-chair",
+          "why-visit-the-pasig-showroom"
+        ],
+        "door": {
+          "eyebrow": "The door",
+          "headline": "See it before you decide",
+          "body": "It is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. Sit in it, run it through its full travel, and bring your operatory measurements.",
+          "cta": {
+            "label": "Send an inquiry",
+            "href": "/contact"
+          },
+          "media": [
+            "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "n2-pro",
+      "name": "ROSON Elite Model N2 PRO",
+      "route": "/n2-pro",
+      "heroImage": "/images/products/n2-pro/N2 Pro Dental Chair/1-1.jpg",
+      "heroImageNote": "White ground studio shot, 1000 by 1000.",
+      "isIndex": false,
+      "beats": {
+        "forms": {
+          "eyebrow": "The unit",
+          "headline": "The premium unit of the N series",
+          "body": "The bolder unit in the series, built for heavy daily use in a busy room. It carries the widest dentist tray in the series and an independent disinfectant water supply.",
+          "media": [
+            "/images/products/n2-pro/N2 Pro Dental Chair/1-1.jpg"
+          ]
+        },
+        "whoItIsFor": {
+          "eyebrow": "Who it is for",
+          "headline": "Rooms that run all day",
+          "body": "For a practice where one operatory carries the schedule, and the tray, the water supply and the motor have to hold up to it.",
+          "segments": [
+            "High volume general practices",
+            "Clinics running one main operatory",
+            "Practices replacing a worn N series unit"
+          ]
+        },
+        "features": {
+          "eyebrow": "What it carries",
+          "headline": "From the product page",
+          "body": "The feature list on the existing page, unchanged. The full specification table stays reachable below this beat.",
+          "bullets": [
+            "Dentist tray at 650 by 315 mm, the widest in the series",
+            "Independent disinfectant water supply",
+            "Rolight S operating light with infrared hands free control",
+            "Swing mount doctor bridge",
+            "180 degree rotatable ceramic spittoon",
+            "24V silent motor with intelligent soft start and stop"
+          ]
+        },
+        "colors": {
+          "eyebrow": "Colors and upholstery",
+          "headline": "Chosen for the room it goes into",
+          "body": "Seven unit colors carrying ROSON FS codes, and three upholstery choices where the microfiber options differ only in the seam detail.",
+          "colors": [
+            "ROSON Blue (FS21)",
+            "Skyscraper Gray (FS19)",
+            "Mountain Blue (FS14)",
+            "Coloured Glaze Blue (FS02)",
+            "Begonia Red (FS04)",
+            "Hermes Orange (FS05)",
+            "Olive Green (FS06)"
+          ],
+          "upholstery": [
+            "Seamless Microfiber",
+            "Sewn Microfiber",
+            "PU Leather"
+          ]
+        },
+        "inRealClinics": {
+          "eyebrow": "In real clinics",
+          "headline": "Installed, not rendered",
+          "body": "Photographs from our own installation posts, each one linked to the article it came from.",
+          "items": [
+            {
+              "slug": "roson-dx-n2-pro-installation-doc-jake",
+              "image": "/images/news/roson-dx-n2-pro-installation-doc-jake/v042-6.jpg",
+              "alt": "Our technician and the dentist checking the finished dental unit"
+            },
+            {
+              "slug": "three-deliveries-one-week-dx-s3-dx-n2-pro",
+              "image": "/images/news/three-deliveries-one-week-dx-s3-dx-n2-pro/v047-6.jpg",
+              "alt": "The finished DX-N2 Pro unit with the team"
+            }
+          ]
+        },
+        "inspectionAndInstallation": {
+          "eyebrow": "Inspection and installation",
+          "headline": "Tested here, assembled in your room",
+          "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse against an eight point checklist before it ships. A free ocular visit measures your operatory first, then our own technicians build it on site and hand it over.",
+          "checklist": [
+            "Visual and structural inspection",
+            "Electrical and power system testing",
+            "Chair movement and positioning calibration",
+            "Delivery system and handpiece ports",
+            "Dental light and auxiliary functions",
+            "Water system and drainage inspection",
+            "Accessories and package inclusions verification",
+            "Final quality assurance approval"
+          ],
+          "media": [
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
+          ],
+          "sourceArticle": "pre-delivery-inspection-every-dental-chair"
+        },
+        "relatedNews": [
+          "roson-dx-n2-pro-installation-doc-jake",
+          "three-deliveries-one-week-dx-s3-dx-n2-pro",
+          "roson-product-masterclass-a3-n2-pro-a1-pro"
+        ],
+        "door": {
+          "eyebrow": "The door",
+          "headline": "See it before you decide",
+          "body": "It is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. Sit in it, run it through its full travel, and bring your operatory measurements.",
+          "cta": {
+            "label": "Send an inquiry",
+            "href": "/contact"
+          },
+          "media": [
+            "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "s3",
+      "name": "ROSON Hot Selling Model S3",
+      "route": "/s3",
+      "heroImage": "/images/products/s3/S3 Dental Chair/S3_1.jpg",
+      "heroImageNote": "White ground studio shot, 640 by 640.",
+      "isIndex": false,
+      "beats": {
+        "forms": {
+          "eyebrow": "The unit",
+          "headline": "ROSON lists it as its bestselling model",
+          "body": "The unit built around cleaning. The light handle comes off for the autoclave, the spittoon bowl detaches without tools, and the suction filter lifts out for sterilization.",
+          "media": [
+            "/images/products/s3/S3 Dental Chair/S3_1.jpg"
+          ]
+        },
+        "whoItIsFor": {
+          "eyebrow": "Who it is for",
+          "headline": "Clinics with a full appointment book",
+          "body": "Designed for practices seeing twenty or more patients a day, where the parts that touch a patient have to come apart quickly at the end of a list.",
+          "segments": [
+            "High volume general practices",
+            "Clinics with strict infection control routines",
+            "Practices replacing a first chair"
+          ]
+        },
+        "features": {
+          "eyebrow": "What it carries",
+          "headline": "From the product page",
+          "body": "The feature list on the existing page, unchanged. The full specification table stays reachable below this beat.",
+          "bullets": [
+            "LED sensor light at 35,000 lux or more with touchless on and off",
+            "Autoclavable light handle, sterilized at 134 degrees",
+            "Detachable swiveling spittoon that comes apart without tools",
+            "Detachable anti bacteria suction filter",
+            "4 way hands free foot control",
+            "Multi articulated headrest with one handed positioning"
+          ]
+        },
+        "colors": {
+          "eyebrow": "Colors and upholstery",
+          "headline": "Chosen for the room it goes into",
+          "body": "Seven unit colors and three upholstery choices, with a 6 way adjustable dentist stool included as standard.",
+          "colors": [
+            "Light Blue",
+            "Orange",
+            "Ivory",
+            "Bordeaux",
+            "Brown",
+            "Apple Green",
+            "Green"
+          ],
+          "upholstery": [
+            "PU Leather",
+            "Sewn Microfiber",
+            "Seamless Microfiber"
+          ]
+        },
+        "inRealClinics": {
+          "eyebrow": "In real clinics",
+          "headline": "Installed, not rendered",
+          "body": "Photographs from our own installation posts, each one linked to the article it came from.",
+          "items": [
+            {
+              "slug": "two-roson-dx-s3-ignacio-dental-clinic",
+              "image": "/images/news/two-roson-dx-s3-ignacio-dental-clinic/v089-5.jpg",
+              "alt": "Our team with the clinic staff beside the two new DX-S3 chairs"
+            },
+            {
+              "slug": "roson-dx-s3-installation-balanga-bataan",
+              "image": "/images/news/roson-dx-s3-installation-balanga-bataan/v201-1.jpg",
+              "alt": "The finished DX-S3 headrest in the glass walled operatory"
+            },
+            {
+              "slug": "three-deliveries-one-week-dx-s3-dx-n2-pro",
+              "image": "/images/news/three-deliveries-one-week-dx-s3-dx-n2-pro/v049-5.jpg",
+              "alt": "The assembled DX-S3 with its side panel fitted"
+            }
+          ]
+        },
+        "inspectionAndInstallation": {
+          "eyebrow": "Inspection and installation",
+          "headline": "Tested here, assembled in your room",
+          "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse against an eight point checklist before it ships. A free ocular visit measures your operatory first, then our own technicians build it on site and hand it over.",
+          "checklist": [
+            "Visual and structural inspection",
+            "Electrical and power system testing",
+            "Chair movement and positioning calibration",
+            "Delivery system and handpiece ports",
+            "Dental light and auxiliary functions",
+            "Water system and drainage inspection",
+            "Accessories and package inclusions verification",
+            "Final quality assurance approval"
+          ],
+          "media": [
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
+          ],
+          "sourceArticle": "pre-delivery-inspection-every-dental-chair"
+        },
+        "relatedNews": [
+          "two-roson-dx-s3-ignacio-dental-clinic",
+          "roson-dx-s3-installation-balanga-bataan",
+          "roson-dx-s3-premium-package-installation"
+        ],
+        "door": {
+          "eyebrow": "The door",
+          "headline": "See it before you decide",
+          "body": "It is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. Sit in it, run it through its full travel, and bring your operatory measurements.",
+          "cta": {
+            "label": "Send an inquiry",
+            "href": "/contact"
+          },
+          "media": [
+            "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "s6",
+      "name": "ROSON Professional Model S6",
+      "route": "/s6",
+      "heroImage": "/images/products/s6/S6 Dental Chair/S6_1.jpg",
+      "heroImageNote": "White ground studio shot, 640 by 640.",
+      "isIndex": false,
+      "beats": {
+        "forms": {
+          "eyebrow": "The unit",
+          "headline": "The chair that goes lower",
+          "body": "The S6 drops to a 380 mm lowest position, 20 mm below any other chair in the ROSON range, and sits on a casting steel frame and backrest support.",
+          "media": [
+            "/images/products/s6/S6 Dental Chair/S6_1.jpg"
+          ]
+        },
+        "whoItIsFor": {
+          "eyebrow": "Who it is for",
+          "headline": "Rooms where getting into the chair is the hard part",
+          "body": "Elderly patients, children and wheelchair users transfer on and off more safely when the seat starts lower. No other model in the range goes this low.",
+          "segments": [
+            "Clinics with elderly and mobility limited patients",
+            "Pediatric rooms",
+            "Practices doing four handed dentistry in a compact operatory"
+          ]
+        },
+        "features": {
+          "eyebrow": "What it carries",
+          "headline": "From the product page",
+          "body": "The feature list on the existing page, unchanged. The full specification table stays reachable below this beat.",
+          "bullets": [
+            "Rolight S dental light with infrared on and off control",
+            "380 mm lowest chair position, 20 mm lower than any other ROSON chair",
+            "Casting steel frame and backrest support",
+            "Compact assistant unit built for four handed dentistry",
+            "4 way hands free foot control",
+            "Stable multi joint headrest with one handed positioning"
+          ]
+        },
+        "colors": {
+          "eyebrow": "Colors and upholstery",
+          "headline": "Chosen for the room it goes into",
+          "body": "Seven unit colors and three upholstery choices, the same palette as the S3.",
+          "colors": [
+            "Light Blue",
+            "Orange",
+            "Ivory",
+            "Bordeaux",
+            "Brown",
+            "Apple Green",
+            "Green"
+          ],
+          "upholstery": [
+            "PU Leather",
+            "Sewn Microfiber",
+            "Seamless Microfiber"
+          ]
+        },
+        "inRealClinics": {
+          "eyebrow": "In real clinics",
+          "headline": "Installed, not rendered",
+          "body": "Photographs from our own installation posts, each one linked to the article it came from.",
+          "items": []
+        },
+        "inspectionAndInstallation": {
+          "eyebrow": "Inspection and installation",
+          "headline": "Tested here, assembled in your room",
+          "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse against an eight point checklist before it ships. A free ocular visit measures your operatory first, then our own technicians build it on site and hand it over.",
+          "checklist": [
+            "Visual and structural inspection",
+            "Electrical and power system testing",
+            "Chair movement and positioning calibration",
+            "Delivery system and handpiece ports",
+            "Dental light and auxiliary functions",
+            "Water system and drainage inspection",
+            "Accessories and package inclusions verification",
+            "Final quality assurance approval"
+          ],
+          "media": [
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
+          ],
+          "sourceArticle": "pre-delivery-inspection-every-dental-chair"
+        },
+        "relatedNews": [
+          "why-visit-the-pasig-showroom",
+          "how-we-install-your-dental-chair",
+          "pre-delivery-inspection-every-dental-chair"
+        ],
+        "door": {
+          "eyebrow": "The door",
+          "headline": "See it before you decide",
+          "body": "It is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. Sit in it, run it through its full travel, and bring your operatory measurements.",
+          "cta": {
+            "label": "Send an inquiry",
+            "href": "/contact"
+          },
+          "media": [
+            "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "s9",
+      "name": "ROSON Affordable Luxury Model S9",
+      "route": "/s9",
+      "heroImage": "/images/products/s9/main.jpg",
+      "heroImageNote": "White ground studio shot, 640 by 640.",
+      "isIndex": false,
+      "beats": {
+        "forms": {
+          "eyebrow": "The unit",
+          "headline": "Your practice, elevated",
+          "body": "Waterline disinfection and memory positions on a 45 degree operation panel, in a unit that sits below the flagship without giving up the parts a clinic uses every day.",
+          "media": [
+            "/images/products/s9/main.jpg"
+          ]
+        },
+        "whoItIsFor": {
+          "eyebrow": "Who it is for",
+          "headline": "Practices that want the flagship features, not the flagship",
+          "body": "For clinics that want active waterline disinfection and one key drainage without specifying the top of the range.",
+          "segments": [
+            "Growing practices upgrading a main room",
+            "Clinics adding a second high specification operatory",
+            "Buyers weighing the A3 against a leaner unit"
+          ]
+        },
+        "features": {
+          "eyebrow": "What it carries",
+          "headline": "From the product page",
+          "body": "The feature list on the existing page, unchanged. The full specification table stays reachable below this beat.",
+          "bullets": [
+            "45 degree ergonomic operation panel with three memory positions",
+            "8-Tooth Smile Philips LED oral light",
+            "Anti collision backrest that stops on contact",
+            "One key smart drainage with a 5 minute flushing cycle",
+            "5 in 1 multifunctional tissue box",
+            "Breathable seamless microfiber leather"
+          ]
+        },
+        "colors": {
+          "eyebrow": "Colors and upholstery",
+          "headline": "Chosen for the room it goes into",
+          "body": "Seven unit colors including Jewel Green, which only the S9 carries, and three upholstery choices.",
+          "colors": [
+            "Olive Green",
+            "Orange",
+            "Tiffany Blue",
+            "Jewel Green",
+            "Coloured Glaze Blue",
+            "Gray",
+            "Begonia Red"
+          ],
+          "upholstery": [
+            "PU Leather",
+            "Sewn Microfiber",
+            "Seamless Microfiber"
+          ]
+        },
+        "inRealClinics": {
+          "eyebrow": "In real clinics",
+          "headline": "Installed, not rendered",
+          "body": "Photographs from our own installation posts, each one linked to the article it came from.",
+          "items": []
+        },
+        "inspectionAndInstallation": {
+          "eyebrow": "Inspection and installation",
+          "headline": "Tested here, assembled in your room",
+          "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse against an eight point checklist before it ships. A free ocular visit measures your operatory first, then our own technicians build it on site and hand it over.",
+          "checklist": [
+            "Visual and structural inspection",
+            "Electrical and power system testing",
+            "Chair movement and positioning calibration",
+            "Delivery system and handpiece ports",
+            "Dental light and auxiliary functions",
+            "Water system and drainage inspection",
+            "Accessories and package inclusions verification",
+            "Final quality assurance approval"
+          ],
+          "media": [
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
+          ],
+          "sourceArticle": "pre-delivery-inspection-every-dental-chair"
+        },
+        "relatedNews": [
+          "why-visit-the-pasig-showroom",
+          "pre-delivery-inspection-every-dental-chair",
+          "how-we-install-your-dental-chair"
+        ],
+        "door": {
+          "eyebrow": "The door",
+          "headline": "See it before you decide",
+          "body": "It is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. Sit in it, run it through its full travel, and bring your operatory measurements.",
+          "cta": {
+            "label": "Send an inquiry",
+            "href": "/contact"
+          },
+          "media": [
+            "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "denjoy",
+      "name": "Denjoy endodontic range",
+      "route": "/denjoy",
+      "heroImage": "/images/denjoy/meta-endo/hero.jpg",
+      "heroImageNote": "Flat pale blue ground rather than white, so the particle sampler needs a color key rather than a pure white key. Alternate: /images/denjoy/meet-endo/meetendo-studio-alt.jpg",
+      "isIndex": false,
+      "beats": {
+        "forms": {
+          "eyebrow": "The unit",
+          "headline": "The Denjoy line, all of it, locally",
+          "body": "Twelve instruments in one lineup: the workstations, the motors, the locators and the activators that a root canal appointment actually runs on. Exclusive Philippine distribution, with the spares and the support kept here.",
+          "media": [
+            "/images/denjoy/meta-endo/hero.jpg"
+          ]
+        },
+        "whoItIsFor": {
+          "eyebrow": "Who it is for",
+          "headline": "General practices that do endodontics every week",
+          "body": "These are not glamorous purchases. They are the tools a general practice uses several times a week and depends on being accurate every single time.",
+          "segments": [
+            "General practices doing root canals weekly",
+            "Endodontists building a dedicated setup",
+            "Clinics replacing a locator or motor they no longer trust"
+          ]
+        },
+        "features": {
+          "eyebrow": "What it carries",
+          "headline": "From the product page",
+          "body": "The feature list on the existing page, unchanged. The full specification table stays reachable below this beat.",
+          "bullets": [
+            "Meet Endo, the integrated endodontic system",
+            "Meta Endo Pro I, the pro level workstation",
+            "Meta Endo, four in one on a single bench",
+            "FREE PEX, the benchtop apex locator",
+            "i-Pexo, the touchable apex locator",
+            "i-Moto, the cordless three motion endo motor"
+          ]
+        },
+        "colors": {
+          "eyebrow": "Colors and upholstery",
+          "headline": "Chosen for the room it goes into",
+          "body": "Not stated. Denjoy instruments ship in the manufacturer's own finishes, so there is no color or upholstery choice to make.",
+          "colors": [],
+          "upholstery": []
+        },
+        "inRealClinics": {
+          "eyebrow": "In real clinics",
+          "headline": "Installed, not rendered",
+          "body": "Photographs from our own installation posts, each one linked to the article it came from.",
+          "items": [
+            {
+              "slug": "partner-clinic-switches-to-denjoy",
+              "image": "/images/news/partner-clinic-switches-to-denjoy/v109-1.jpg",
+              "alt": "The Denjoy endodontic workstation with its tablet screen in the operatory"
+            },
+            {
+              "slug": "dentist-testimonial-denjoy-worth-it",
+              "image": "/images/news/dentist-testimonial-denjoy-worth-it/v130-7.jpg",
+              "alt": "The Denjoy apex locator handpiece in use at the chair"
+            }
+          ]
+        },
+        "inspectionAndInstallation": {
+          "eyebrow": "Inspection and installation",
+          "headline": "Tested here, assembled in your room",
+          "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse against an eight point checklist before it ships. A free ocular visit measures your operatory first, then our own technicians build it on site and hand it over.",
+          "checklist": [
+            "Visual and structural inspection",
+            "Electrical and power system testing",
+            "Chair movement and positioning calibration",
+            "Delivery system and handpiece ports",
+            "Dental light and auxiliary functions",
+            "Water system and drainage inspection",
+            "Accessories and package inclusions verification",
+            "Final quality assurance approval"
+          ],
+          "media": [
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
+          ],
+          "sourceArticle": "pre-delivery-inspection-every-dental-chair"
+        },
+        "relatedNews": [
+          "dentasource-exclusive-denjoy-partner-philippines",
+          "denjoy-now-available-dentasource-showroom",
+          "inside-the-box-genuine-denjoy"
+        ],
+        "door": {
+          "eyebrow": "The door",
+          "headline": "See it before you decide",
+          "body": "The Denjoy bench sits alongside the ROSON chairs at 610 C. Raymundo Avenue, Maybunga, Pasig City. Demonstration slots are booked by appointment because the units are shared between visitors.",
+          "cta": {
+            "label": "Book a demonstration",
+            "href": "/contact"
+          },
+          "media": [
+            "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "roray-xray",
+      "name": "ROSON RoRay handheld X-ray",
+      "route": "/roray-xray",
+      "heroImage": "/images/products/roray/hero.jpg",
+      "heroImageNote": "White ground studio shot, 840 by 840.",
+      "isIndex": false,
+      "beats": {
+        "forms": {
+          "eyebrow": "The unit",
+          "headline": "Diagnostic clarity, in your hand",
+          "body": "A handheld intraoral X-ray unit for periapical and bitewing imaging. No wall mount, no electrical work, no dedicated room. It is operated one handed at the chair.",
+          "media": [
+            "/images/products/roray/hero.jpg"
+          ]
+        },
+        "whoItIsFor": {
+          "eyebrow": "Who it is for",
+          "headline": "Clinics without an X-ray room",
+          "body": "From the page: film era clinics going digital, provincial clinics with no wall mount infrastructure, multi operatory clinics sharing one unit, mobile and outreach services, new builds, and pediatric rooms where positioning has to flex.",
+          "segments": [
+            "Film era clinics going digital",
+            "Rural and provincial clinics",
+            "Multi operatory clinics sharing one unit",
+            "Mobile and outreach services",
+            "New clinic builds",
+            "Pediatric clinics"
+          ]
+        },
+        "features": {
+          "eyebrow": "What it carries",
+          "headline": "From the product page",
+          "body": "The feature list on the existing page, unchanged. The full specification table stays reachable below this beat.",
+          "bullets": [
+            "0.4 mm ultra fine focal spot",
+            "High frequency solid state potting encapsulated tube",
+            "Validated to 100,000 exposure cycles",
+            "Double protection design with 9 percent full coverage lead shielding",
+            "50,000 or more imaging exposures per battery cycle",
+            "2.8 inch HD color display showing kVp, mA and exposure time"
+          ]
+        },
+        "colors": {
+          "eyebrow": "Colors and upholstery",
+          "headline": "Chosen for the room it goes into",
+          "body": "Not stated. The RoRay ships in one finish, and the choice on this page is the sensor it pairs with rather than a color.",
+          "colors": [],
+          "upholstery": []
+        },
+        "inRealClinics": {
+          "eyebrow": "In real clinics",
+          "headline": "Installed, not rendered",
+          "body": "Photographs from our own installation posts, each one linked to the article it came from.",
+          "items": []
+        },
+        "inspectionAndInstallation": {
+          "eyebrow": "Inspection and installation",
+          "headline": "Tested here, assembled in your room",
+          "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse against an eight point checklist before it ships. A free ocular visit measures your operatory first, then our own technicians build it on site and hand it over.",
+          "checklist": [
+            "Visual and structural inspection",
+            "Electrical and power system testing",
+            "Chair movement and positioning calibration",
+            "Delivery system and handpiece ports",
+            "Dental light and auxiliary functions",
+            "Water system and drainage inspection",
+            "Accessories and package inclusions verification",
+            "Final quality assurance approval"
+          ],
+          "media": [
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
+          ],
+          "sourceArticle": "pre-delivery-inspection-every-dental-chair"
+        },
+        "relatedNews": [
+          "roson-roray-handheld-xray",
+          "roson-digital-xray-sensor",
+          "roson-intraoral-scanner-goodbye-impressions"
+        ],
+        "door": {
+          "eyebrow": "The door",
+          "headline": "See it before you decide",
+          "body": "It is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, paired with the sensor so the whole digital workflow can be seen in one visit. Open Monday to Sunday, 9 AM to 8 PM.",
+          "cta": {
+            "label": "Book a demonstration",
+            "href": "/contact"
+          },
+          "media": [
+            "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "dentalchairs",
+      "name": "Dental chairs",
+      "route": "/dentalchairs",
+      "heroImage": "/images/products/a3/A3 Dental Chair/img01.jpg",
+      "heroImageNote": "Index page. Uses the A3 studio shot as the forming silhouette.",
+      "isIndex": true,
+      "beats": {
+        "forms": {
+          "eyebrow": "The range",
+          "headline": "The ROSON lineup in one room",
+          "body": "Nine chairs across three families, all of them on the showroom floor at the same time and in the same light. The choice narrows faster in person than it does on a phone.",
+          "media": [
+            "/images/products/a3/A3 Dental Chair/img01.jpg"
+          ]
+        },
+        "whoItIsFor": {
+          "eyebrow": "Who it is for",
+          "headline": "Anyone choosing a chair",
+          "body": "First clinics, replacements and second operatories. The N series is where most first clinics land, the A3 family is the middle of the range, and the S series is where dentists go when the chair has to hold up to a full day, every day.",
+          "segments": [
+            "First clinics",
+            "Practices replacing a chair",
+            "Clinics adding an operatory"
+          ]
+        },
+        "features": {
+          "eyebrow": "What it carries",
+          "headline": "From the product page",
+          "body": "The feature list on the existing page, unchanged. The full specification table stays reachable below this beat.",
+          "bullets": [
+            "The A3 family: A3, A3S and A3L on one platform",
+            "The S series: S3, S6 and S9",
+            "The N series: N1, N2 Plus and N2 Pro",
+            "The A1 Pro, the color led unit of the range",
+            "Seven unit colors on most models, three upholstery choices",
+            "Over the patient, swing mounted and cart mounted delivery"
+          ]
+        },
+        "colors": {
+          "eyebrow": "Colors and upholstery",
+          "headline": "Chosen for the room it goes into",
+          "body": "Colors and upholstery vary by model. Each product page carries its own palette.",
+          "colors": [],
+          "upholstery": []
+        },
+        "inRealClinics": {
+          "eyebrow": "In real clinics",
+          "headline": "Installed, not rendered",
+          "body": "Photographs from our own installation posts, each one linked to the article it came from.",
+          "items": []
+        },
+        "inspectionAndInstallation": {
+          "eyebrow": "Inspection and installation",
+          "headline": "Tested here, assembled in your room",
+          "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse against an eight point checklist before it ships. A free ocular visit measures your operatory first, then our own technicians build it on site and hand it over.",
+          "checklist": [
+            "Visual and structural inspection",
+            "Electrical and power system testing",
+            "Chair movement and positioning calibration",
+            "Delivery system and handpiece ports",
+            "Dental light and auxiliary functions",
+            "Water system and drainage inspection",
+            "Accessories and package inclusions verification",
+            "Final quality assurance approval"
+          ],
+          "media": [
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
+          ],
+          "sourceArticle": "pre-delivery-inspection-every-dental-chair"
+        },
+        "relatedNews": [
+          "why-visit-the-pasig-showroom",
+          "how-we-install-your-dental-chair",
+          "pre-delivery-inspection-every-dental-chair"
+        ],
+        "door": {
+          "eyebrow": "The door",
+          "headline": "See it before you decide",
+          "body": "It is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. Sit in it, run it through its full travel, and bring your operatory measurements.",
+          "cta": {
+            "label": "Send an inquiry",
+            "href": "/contact"
+          },
+          "media": [
+            "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "products",
+      "name": "Equipment catalog",
+      "route": "/products",
+      "heroImage": "/images/products/roray/hero.jpg",
+      "heroImageNote": "Index page. Uses the RoRay studio shot as the forming silhouette.",
+      "isIndex": true,
+      "beats": {
+        "forms": {
+          "eyebrow": "The range",
+          "headline": "Everything that is not a chair",
+          "body": "Imaging, endodontics, curing and filling, sterilization and the accessories that finish an operatory. The chairs have their own pages, and this is the rest of the room.",
+          "media": [
+            "/images/products/roray/hero.jpg"
+          ]
+        },
+        "whoItIsFor": {
+          "eyebrow": "Who it is for",
+          "headline": "Clinics fitting out the rest of the room",
+          "body": "For practices completing an operatory around a chair they already have, and for builds where the small equipment list is the part nobody planned.",
+          "segments": [
+            "Clinics completing an operatory",
+            "Practices upgrading one instrument at a time",
+            "New builds working through an equipment list"
+          ]
+        },
+        "features": {
+          "eyebrow": "What it carries",
+          "headline": "From the product page",
+          "body": "The feature list on the existing page, unchanged. The full specification table stays reachable below this beat.",
+          "bullets": [
+            "Imaging: handheld X-ray, sensors and shade matching",
+            "Endodontics: motors, apex locators and pulp testers",
+            "Curing and filling: curing lights and obturation systems",
+            "Sterilization: autoclaves",
+            "Accessories: cabinets, trolleys and compressors",
+            "Chairs live on their own pages under dental chairs"
+          ]
+        },
+        "colors": {
+          "eyebrow": "Colors and upholstery",
+          "headline": "Chosen for the room it goes into",
+          "body": "Not stated. Colors and finishes are per item and are listed on the item itself.",
+          "colors": [],
+          "upholstery": []
+        },
+        "inRealClinics": {
+          "eyebrow": "In real clinics",
+          "headline": "Installed, not rendered",
+          "body": "Photographs from our own installation posts, each one linked to the article it came from.",
+          "items": []
+        },
+        "inspectionAndInstallation": {
+          "eyebrow": "Inspection and installation",
+          "headline": "Tested here, assembled in your room",
+          "body": "Every unit is uncrated, assembled, powered up and tested in our warehouse against an eight point checklist before it ships. A free ocular visit measures your operatory first, then our own technicians build it on site and hand it over.",
+          "checklist": [
+            "Visual and structural inspection",
+            "Electrical and power system testing",
+            "Chair movement and positioning calibration",
+            "Delivery system and handpiece ports",
+            "Dental light and auxiliary functions",
+            "Water system and drainage inspection",
+            "Accessories and package inclusions verification",
+            "Final quality assurance approval"
+          ],
+          "media": [
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-7.jpg",
+            "/images/news/pre-delivery-inspection-every-dental-chair/v033-8.jpg"
+          ],
+          "sourceArticle": "pre-delivery-inspection-every-dental-chair"
+        },
+        "relatedNews": [
+          "roson-digital-xray-sensor",
+          "koungsun-digital-shade-matching-device",
+          "roson-intraoral-scanner-goodbye-impressions"
+        ],
+        "door": {
+          "eyebrow": "The door",
+          "headline": "See it before you decide",
+          "body": "It is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. Sit in it, run it through its full travel, and bring your operatory measurements.",
+          "cta": {
+            "label": "Send an inquiry",
+            "href": "/contact"
+          },
+          "media": [
+            "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"
+          ]
+        }
+      }
+    }
+  ]
+}

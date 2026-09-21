@@ -1,12 +1,13 @@
 'use client';
 import { m as motion } from 'framer-motion';
+import { mediaUrl } from '@/lib/cinema/media';
 
 export default function RorayAutoplayHero() {
   return (
     <section className="relative isolate overflow-hidden bg-black text-white min-h-[100svh] md:h-screen md:min-h-[640px]">
       <video
         className="absolute inset-0 w-full h-full object-cover object-center"
-        src="/videos/roray-hero-loop.mp4"
+        src={mediaUrl('/videos/roray-hero-loop.mp4')}
         autoPlay
         muted
         loop
