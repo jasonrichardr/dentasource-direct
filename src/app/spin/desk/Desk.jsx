@@ -357,7 +357,7 @@ export default function Desk() {
               </button>
               {pendingDelete != null ? <button className="ghost" onClick={() => setPendingDelete(null)}>Cancel</button> : null}
             </div>
-            <p className="fineprint">The wheel opens automatically on September 22 to 24. Rehearsal spins are tagged TEST and never count toward caps.</p>
+            <p className="fineprint">The wheel opens automatically September 22 to 24, 9:00 AM to 5:00 PM Manila. Rehearsal spins are tagged TEST and never count toward caps.</p>
           </section>
         </>
       ) : null}

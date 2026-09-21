@@ -50,8 +50,11 @@ test('email check', () => {
 
 test('eventStatus follows the Manila window in auto', () => {
   assert.equal(eventStatus({ now: new Date('2026-09-23T10:00:00+08:00') }), 'open');
-  assert.equal(eventStatus({ now: new Date('2026-09-22T00:00:00+08:00') }), 'open');
-  assert.equal(eventStatus({ now: new Date('2026-09-24T23:59:00+08:00') }), 'open');
+  // The window is booth hours, 9:00 AM to 5:00 PM, not whole calendar days.
+  assert.equal(eventStatus({ now: new Date('2026-09-22T08:59:00+08:00') }), 'closed');
+  assert.equal(eventStatus({ now: new Date('2026-09-22T09:00:00+08:00') }), 'open');
+  assert.equal(eventStatus({ now: new Date('2026-09-24T17:00:00+08:00') }), 'open');
+  assert.equal(eventStatus({ now: new Date('2026-09-24T17:00:01+08:00') }), 'closed');
   assert.equal(eventStatus({ now: new Date('2026-09-21T23:59:00+08:00') }), 'closed');
   assert.equal(eventStatus({ now: new Date('2026-09-25T00:00:01+08:00') }), 'closed');
 });

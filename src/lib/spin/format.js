@@ -7,9 +7,12 @@ export const INTEREST_TEST = 'NADTI 2026 booth (TEST)';
 export const INTEREST_PRE = 'NADTI 2026 pre-registered';
 export const INTEREST_PRE_TEST = 'NADTI 2026 pre-registered (TEST)';
 
-// Event window in Asia/Manila (+08:00, no DST): Sept 22 00:00 → Sept 24 23:59:59.999
-export const WINDOW_START_MS = Date.UTC(2026, 8, 21, 16, 0, 0, 0);
-export const WINDOW_END_MS = Date.UTC(2026, 8, 24, 15, 59, 59, 999);
+// Event window in Asia/Manila (+08:00, no DST): the BOOTH HOURS, not the calendar
+// days. Sept 22 09:00 → Sept 24 17:00, the last minute a prize can still be
+// claimed at Booth 034 and 035 (Jarich's ruling, 2026-09-21). The end is
+// inclusive: 17:00:00.000 is still open, 17:00:01 is closed.
+export const WINDOW_START_MS = Date.UTC(2026, 8, 22, 1, 0, 0, 0);
+export const WINDOW_END_MS = Date.UTC(2026, 8, 24, 9, 0, 0, 0);
 
 // Philippine mobile → +639XXXXXXXXX, else null.
 export function normalizePhone(raw) {

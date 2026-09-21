@@ -14,7 +14,9 @@ import Wheel from './Wheel';
 import { track } from './track';
 
 export const RESERVED_STORE = 'nadti-spin-2026-reserved';
-export const BOOTH_LINE = 'Booth 034 and 035 · Halls 1 to 3';
+export const BOOTH_LINE = 'Booth 034 and 035, Halls 1 to 3, SMX Convention Center Manila';
+// The window is booth hours now, not calendar days, so the hours travel with the place.
+export const HOURS_LINE = 'September 22 to 24, 9:00 AM to 5:00 PM';
 
 export function loadReserved() {
   try { const r = JSON.parse(localStorage.getItem(RESERVED_STORE) || 'null'); return r && r.phone ? r : null; } catch { return null; }
@@ -36,7 +38,7 @@ export function Countdown({ target = WINDOW_START_MS, onDone }) {
   useEffect(() => { if (parts?.done && onDone) onDone(); }, [parts?.done, onDone]);
   return (
     <div>
-      <p className="cd-caption">The wheel opens in</p>
+      <p className="cd-caption">The wheel opens Tuesday 9:00 AM</p>
       <div className="countdown" role="timer" aria-live="off">
         {[['days', parts?.days], ['hours', parts?.hours], ['min', parts?.minutes], ['sec', parts?.seconds]].map(([l, n]) => (
           <div className={`cd-cell cd-${l}`} key={l}><span className="cd-n">{n == null ? '--' : pad(n)}</span><span className="cd-l">{l}</span></div>
@@ -315,6 +317,7 @@ export default function PreEvent({ onOpen, doors, onCredits }) {
         <h1 className="title">Every spin wins at NADTI 2026</h1>
         <p className="lede hero-lede">₱30,000 Training Credits, 10% and 5% off, and a gift for everyone else. Reserve your spin now, skip the form at the booth.</p>
         <p className="booth-line">{BOOTH_LINE}</p>
+        <p className="hours-line">{HOURS_LINE}</p>
         <Countdown onDone={onOpen} />
         <button type="button" ref={heroCtaRef} className="cta hero-cta" onClick={() => goToSlot('spin-hero-cta')}>
           {reserved ? 'See my reservation' : 'Reserve my spin'}
