@@ -437,12 +437,13 @@
       "locationConfidence": "high",
       "width": 720,
       "height": 1280,
-      "note": "already on the wall before the library existed",
+      "note": "round 6: held out of every beat. Looked at all sixteen sampled frames: in five of them the room's large screen is showing a face photograph beside a smile design mockup, which is a patient record on a screen and is excluded whatever the room. The clip stays in the library for the wall, which samples it as a tiny texture, and does not come to the home arc.",
       "hd": "/cinema/reels/hd/wall-09.mp4",
       "hdWidth": 720,
       "hdHeight": 1280,
       "playTo": 37.9,
-      "cardStart": 38.3
+      "cardStart": 38.3,
+      "beatExclude": "a patient case photograph on the teaching screen"
     },
     {
       "id": "wall-10",
