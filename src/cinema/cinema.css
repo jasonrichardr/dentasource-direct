@@ -110,7 +110,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(48px, 10vh, 140px) 6vw;
+  /* ☠️ THE NAVBAR IS BACK (Jarich, 2026-09-21), SO THE RESERVE IS BACK. A panel is a
+     fixed overlay filling the viewport, so its own padding is the only thing standing
+     between the first beat's eyebrow and the bottom of the bar. --dsd-nav-h is the
+     measured height of the two tier navbar: 100px on a phone, 108px from 768px up. */
+  padding: calc(var(--dsd-nav-h, 100px) + clamp(12px, 3vh, 44px)) 6vw clamp(48px, 10vh, 140px);
   text-align: center;
 }
 /* Only the live panel is tappable, so an invisible link can never fire on a swipe. */

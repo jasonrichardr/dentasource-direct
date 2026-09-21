@@ -5,10 +5,56 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { m as motion, AnimatePresence } from 'framer-motion';
 
-// Routes with their own immersive chrome (design-DNA pages) — global navbar stays out.
-// Routes with their own immersive chrome — the global navbar stays out. /denjoy, /growth-partner and
-// /k-clamps now carry the site navbar like every other page (Jarich, 2026-09-21).
+// Routes with their own immersive chrome — the global navbar stays out. /denjoy,
+// /growth-partner and /k-clamps now carry the site navbar like every other page
+// (Jarich, 2026-09-21).
 const CHROME_FREE_ROUTES = ['/spin', '/spin/desk'];
+
+// ---- the dark skin -----------------------------------------------------------------
+//
+// Jarich ruled on 2026-09-21 that the navbar stays on the cinema pages rather than being
+// deleted for them, but a white bar over a night sky is a hole punched in the picture.
+// So the same navbar wears a second skin on those routes: the green trust line is
+// untouched, the white logo bar becomes near-black glass, and the wordmark swaps to the
+// lockup whose DIRECT reads light. Everything else on the site, /classic included, keeps
+// the bar exactly as it has always been.
+//
+// The skin is chosen from the PATHNAME, not from data-theme. Two different questions:
+// data-theme is the visitor's light/dark preference inside the cinema, this is whether
+// the page underneath the bar is a cinema at all. A cinema page in its light register
+// still wants the dark bar, because the sky behind it is still a picture.
+//
+// Route TREES, so /news/<slug> and /denjoy/meet-endo are caught with their parents.
+// '/' is matched on its own, because as a prefix it would swallow the whole site.
+const CINEMA_ROUTES = [
+  '/about',
+  '/contact',
+  '/products',
+  '/dentalchairs',
+  '/a3',
+  '/a3l',
+  '/a3s',
+  '/s3',
+  '/s6',
+  '/s9',
+  '/n1',
+  '/n2-plus',
+  '/n2-pro',
+  '/a1-pro',
+  '/roray-xray',
+  '/news',
+  '/denjoy',
+  '/k-clamps',
+  '/growth-partner',
+  '/team',
+  '/cinema-lab',
+];
+
+export function isCinemaRoute(pathname) {
+  if (!pathname) return false;
+  if (pathname === '/') return true;
+  return CINEMA_ROUTES.some((r) => pathname === r || pathname.startsWith(`${r}/`));
+}
 
 const navLinks = [
   { name: 'Equipment', href: '/products' },
@@ -40,12 +86,22 @@ const trustItems = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const dark = isCinemaRoute(pathname);
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
   }, [open]);
 
   if (CHROME_FREE_ROUTES.includes(pathname)) return null;
+
+  const barClass = dark
+    ? 'w-full bg-[rgba(7,11,16,0.72)] backdrop-blur-xl border-b border-white/10'
+    : 'w-full bg-white border-b border-gray-200/60 shadow-sm';
+  const linkClass = dark
+    ? 'text-xs font-semibold text-white/80 hover:text-white transition-colors tracking-[0.12em] uppercase'
+    : 'text-xs font-semibold text-gray-500 hover:text-[#1a3c34] transition-colors tracking-[0.12em] uppercase';
+  const barLine = dark ? 'bg-white' : 'bg-[#1a3c34]';
+  const wordmark = dark ? '/images/brand/dsd-lockup-dark.png' : '/images/brand/logo-banner.png';
 
   return (
     <>
@@ -56,8 +112,10 @@ export default function Navbar() {
         }
       `}</style>
 
-      <nav className="fixed top-0 left-0 right-0 z-50 w-full max-w-[100vw] overflow-hidden flex flex-col">
-        {/* Marquee Trust Bar */}
+      {/* dsd-sitenav is the hook the music room reaches for: the rule that stands the
+          chrome down while the room holds the screen lives in trust-marquee.css. */}
+      <nav className="dsd-sitenav fixed top-0 left-0 right-0 z-50 w-full max-w-[100vw] overflow-hidden flex flex-col">
+        {/* Marquee Trust Bar — the same green line in both skins, by the ruling. */}
         <div className="w-full bg-[#1a3c34] py-1.5 overflow-hidden">
           <div className="flex w-max items-center gap-8" style={{ animation: 'marquee 40s linear infinite' }}>
             {[...trustItems, ...trustItems].map((text, i) => (
@@ -70,11 +128,11 @@ export default function Navbar() {
         </div>
 
         {/* Logo + Hamburger Bar */}
-        <div className="w-full bg-white border-b border-gray-200/60 shadow-sm">
+        <div className={barClass}>
           <div className="flex items-center justify-between px-4 py-3 max-w-7xl mx-auto">
             <Link href="/" onClick={() => setOpen(false)} className="relative z-50 shrink-0">
               <Image
-                src="/images/brand/logo-banner.png"
+                src={wordmark}
                 alt="DentaSource Direct"
                 width={600}
                 height={200}
@@ -86,23 +144,20 @@ export default function Navbar() {
             {/* Desktop links */}
             <div className="hidden md:flex items-center gap-6">
               {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-xs font-semibold text-gray-500 hover:text-[#1a3c34] transition-colors tracking-[0.12em] uppercase"
-                >
+                <Link key={link.name} href={link.href} className={linkClass}>
                   {link.name}
                 </Link>
               ))}
-              <Link
-                href="/login"
-                className="text-xs font-semibold text-gray-500 hover:text-[#1a3c34] transition-colors tracking-[0.12em] uppercase"
-              >
+              <Link href="/login" className={linkClass}>
                 Sign In
               </Link>
               <Link
                 href="/contact"
-                className="text-xs font-semibold px-5 py-2 rounded-full bg-[#1a3c34] text-white hover:bg-[#234e44] transition-colors tracking-wide"
+                className={
+                  dark
+                    ? 'text-xs font-semibold px-5 py-2 rounded-full bg-[#1a3c34] text-white hover:bg-[#2c6354] transition-colors tracking-wide border border-white/15'
+                    : 'text-xs font-semibold px-5 py-2 rounded-full bg-[#1a3c34] text-white hover:bg-[#234e44] transition-colors tracking-wide'
+                }
               >
                 Contact
               </Link>
@@ -114,9 +169,9 @@ export default function Navbar() {
               className="md:hidden relative z-50 w-10 h-10 flex flex-col items-center justify-center gap-[5px]"
               aria-label="Menu"
             >
-              <span className={`w-5 h-[1.5px] bg-[#1a3c34] rounded-full transition-all duration-300 ${open ? 'rotate-45 translate-y-[6.5px]' : ''}`} />
-              <span className={`w-5 h-[1.5px] bg-[#1a3c34] rounded-full transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
-              <span className={`w-5 h-[1.5px] bg-[#1a3c34] rounded-full transition-all duration-300 ${open ? '-rotate-45 -translate-y-[6.5px]' : ''}`} />
+              <span className={`w-5 h-[1.5px] ${barLine} rounded-full transition-all duration-300 ${open ? 'rotate-45 translate-y-[6.5px]' : ''}`} />
+              <span className={`w-5 h-[1.5px] ${barLine} rounded-full transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
+              <span className={`w-5 h-[1.5px] ${barLine} rounded-full transition-all duration-300 ${open ? '-rotate-45 -translate-y-[6.5px]' : ''}`} />
             </button>
           </div>
         </div>
@@ -130,7 +185,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-white flex flex-col pt-24 px-6 pb-8"
+            className={`fixed inset-0 z-40 flex flex-col pt-24 px-6 pb-8 ${dark ? 'bg-[#070b10]' : 'bg-white'}`}
           >
             <div className="flex flex-col flex-1 justify-center gap-1">
               {navLinks.map((link, i) => (
@@ -143,7 +198,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block py-4 text-2xl font-semibold text-[#1a3c34] border-b border-gray-100"
+                    className={`block py-4 text-2xl font-semibold border-b ${dark ? 'text-white/90 border-white/10' : 'text-[#1a3c34] border-gray-100'}`}
                   >
                     {link.name}
                   </Link>
@@ -165,7 +220,7 @@ export default function Navbar() {
               <Link
                 href="/login"
                 onClick={() => setOpen(false)}
-                className="mt-3 block w-full text-center py-4 rounded-2xl border-2 border-[#1a3c34] text-[#1a3c34] font-semibold text-base"
+                className={`mt-3 block w-full text-center py-4 rounded-2xl border-2 font-semibold text-base ${dark ? 'border-white/30 text-white' : 'border-[#1a3c34] text-[#1a3c34]'}`}
               >
                 Sign In
               </Link>

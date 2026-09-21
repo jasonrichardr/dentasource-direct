@@ -2,8 +2,8 @@
     background-color: var(--news-article-ground);
     color: var(--news-ink);
     min-height: 100vh;
-    padding-top: 100px;
-    /* offset for navbar */
+    padding-top: var(--dsd-nav-h, 100px);
+    /* offset for the navbar: 100px on a phone, 108px from 768px up (globals.css) */
     font-family: var(--font-body);
     /* The night sky is a fixed canvas at z-index 1. A page in normal flow would paint
        UNDER it (positioned boxes paint after in-flow ones), so the article is raised

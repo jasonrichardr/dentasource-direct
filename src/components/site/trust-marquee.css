@@ -70,6 +70,7 @@
    straight across the top of the veil. The rule that hides the switch was right here all
    along; the marquee's was in a file about a component that no longer exists. */
 :root.dsd-room-open .dsd-trust,
+:root.dsd-room-open .dsd-sitenav,
 :root.dsd-room-open .cinema-switch { visibility: hidden; }
 
 @media (prefers-reduced-motion: reduce) {

@@ -5,10 +5,12 @@
    Colours only ever come from the cinema tokens in src/cinema/cinema.css, so one
    data-theme attribute on <html> turns the whole arc. */
 
-/* The navbar is gone (2026-09-05); the only chrome above the cinema is the one line trust
-   marquee, so the reserve at the top drops from 112px to a hair over its height. */
+/* The navbar came back on 2026-09-21 (Jarich's ruling: it stays on every cinema page, in
+   the dark skin), so the reserve at the top is its measured height again plus a hair, not
+   the 44px the lone trust marquee needed. The home arc keeps a tighter gap than
+   cinema.css gives the product pages: its first beat is a wordmark, not a headline. */
 .cinema-panel {
-  padding-top: max(clamp(40px, 8vh, 120px), 44px);
+  padding-top: calc(var(--dsd-nav-h, 100px) + clamp(8px, 2vh, 24px));
 }
 
 /* ☠️ A BEAT WITH A FORMATION SEATS ITS COPY BELOW IT, NOT OVER IT.
