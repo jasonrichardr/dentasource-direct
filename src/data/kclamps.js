@@ -178,9 +178,9 @@ export const kits = [
 
 export const features = [
   { title: 'Outstanding elasticity', body: 'The steel springs back. A K-Clamp survives the forceps, the tooth and the autoclave without opening up, so the fit you had on day one is the fit you have a year later.' },
-  { title: 'Soft-processed edges', body: 'Every jaw edge is finished smooth, which is the difference between a clamp that seats and a clamp that scars the gingiva.' },
+  { title: 'Soft-processed edges', body: 'Every jaw edge is soft-processed at the factory. Shinhung’s own line for it is superior comfort for the patient, prevents unwanted trauma. In the mouth, the difference between a clamp that seats and one that scars the gingiva.' },
   { title: 'Matte or glossy', body: 'The matte finish kills the glare under the operatory light; the glossy finish is the classic mirror steel. Both are the same clamp underneath.' },
-  { title: 'Autoclavable to 121°C', body: 'Stainless steel, fully autoclavable, with no coating to flake. Sterilize it the way you sterilize everything else.' },
+  { title: 'Autoclavable to 121°C', body: 'Stainless steel, fabricated to resist corrosion in the intraoral and autoclave conditions. Fully autoclavable at 121°C, with no coating to flake. Sterilize it the way you sterilize everything else.' },
 ];
 
 export const faqs = [

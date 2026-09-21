@@ -67,6 +67,14 @@ const brand = {
   description: 'Stainless steel rubber dam clamps in 46 sizes, matte or glossy, autoclavable to 121°C. Exclusive Philippine distribution by DentaSource Direct.',
   image: 'https://dentasourcedirect.com/images/kclamps/chart.jpg',
   url: 'https://dentasourcedirect.com/k-clamps',
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Material', value: 'Stainless steel' },
+    { '@type': 'PropertyValue', name: 'Sterilization method', value: 'Steam autoclave' },
+    { '@type': 'PropertyValue', name: 'Autoclave temperature', value: '121°C' },
+    { '@type': 'PropertyValue', name: 'Finish', value: 'Matte or glossy' },
+    { '@type': 'PropertyValue', name: 'Number of sizes', value: '46' },
+    { '@type': 'PropertyValue', name: 'Country of manufacture', value: 'Republic of Korea' },
+  ],
 };
 
 export default function KClampsPage() {
