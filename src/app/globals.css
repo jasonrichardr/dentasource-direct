@@ -15,6 +15,8 @@ html, body {
   :root {
     /* Layout */
     --nav-height: 80px;
+    /* Real height of the fixed global Navbar (trust marquee + logo bar). Immersive pages pad by this. */
+    --dsd-nav-h: 100px;
     --max-width-wide: 1400px;
     --container-width: 1200px;
 
@@ -110,6 +112,7 @@ html, body {
 
 @layer utilities {
   .pt-nav { padding-top: var(--nav-height); }
+  @media (min-width: 768px) { :root { --dsd-nav-h: 108px; } }
   .mt-nav { margin-top: var(--nav-height); }
 }
 

@@ -100,11 +100,11 @@
 /* ---------- hero ---------- */
 .hero {
   position: relative; z-index: 1; min-height: 100svh;
-  display: grid; align-items: end; padding: 120px 16px 72px;
+  display: grid; align-items: end; padding: calc(var(--dsd-nav-h) + 28px) 16px 56px;
   isolation: isolate;
 }
-@media (min-width: 900px) { .hero { padding: 140px 32px 88px; align-items: center; } }
-.heroField { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+@media (min-width: 900px) { .hero { padding: calc(var(--dsd-nav-h) + 40px) 32px 88px; align-items: center; } }
+.heroField { position: absolute; inset: var(--dsd-nav-h) 0 0 0; z-index: 0; pointer-events: none; }
 .specimen {
   position: absolute; width: calc(120px * var(--s)); aspect-ratio: 4 / 3;
   border-radius: 14px; overflow: hidden;
@@ -153,7 +153,7 @@
 .toothPicked .toothBody { stroke-width: 2.2; }
 
 /* ---------- tooth-first ---------- */
-.toothFirst { position: relative; z-index: 1; padding: 64px 0 40px; }
+.toothFirst { position: relative; z-index: 1; padding: 64px 0 40px; scroll-margin-top: calc(var(--dsd-nav-h) + 8px); }
 .toothFirstBody { display: grid; gap: 20px; padding: 0 16px; max-width: 1180px; margin: 0 auto; }
 @media (min-width: 900px) { .toothFirstBody { grid-template-columns: 1.1fr 0.9fr; padding: 0 32px; align-items: start; } }
 .mapCard { position: relative; background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)); border: 1px solid var(--line); border-radius: 24px; padding: 18px 12px 8px; }
@@ -172,7 +172,7 @@
 .fitList small { color: var(--ink-2); font-size: 13px; line-height: 1.45; }
 
 /* ---------- explorer ---------- */
-.explorer { position: relative; z-index: 1; padding: 56px 0 40px; scroll-margin-top: 70px; }
+.explorer { position: relative; z-index: 1; padding: 56px 0 40px; scroll-margin-top: calc(var(--dsd-nav-h) + 8px); }
 .controls { display: flex; flex-direction: column; gap: 12px; padding: 0 16px; max-width: 1180px; margin: 0 auto 18px; }
 @media (min-width: 900px) { .controls { flex-direction: row; align-items: center; justify-content: space-between; padding: 0 32px; } }
 .chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
@@ -195,7 +195,7 @@
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
   border: 1px solid var(--line); border-radius: 18px; padding: 8px; cursor: pointer; color: inherit; font: inherit;
   transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
-  scroll-margin-top: 90px;
+  scroll-margin-top: calc(var(--dsd-nav-h) + 16px);
 }
 .card:hover, .cardActive { border-color: color-mix(in srgb, var(--c) 60%, transparent); box-shadow: 0 12px 40px -18px var(--c), inset 0 0 0 1px color-mix(in srgb, var(--c) 25%, transparent); }
 .cardPhoto { display: block; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: #202832; }
