@@ -9,6 +9,35 @@ import ArticleMarbles from './ArticleMarbles';
 import styles from './page.module.css';
 import '../news-theme.css';
 import { mediaUrl } from '@/lib/cinema/media';
+import { NadtiSpeakerCard, NadtiSchedule } from './NadtiCards';
+
+// Inline grammar shared by paragraphs and avatar rows: **bold**, ==highlight== and [text](url).
+function renderInline(text) {
+    const parts = text.split(/(\*\*.*?\*\*|==.*?==|\[[^\]]+\]\([^)]+\))/g);
+    return parts.map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+            return <strong key={i}>{part.slice(2, -2)}</strong>;
+        }
+        if (part.startsWith('==') && part.endsWith('==') && part.length > 4) {
+            return <mark key={i} className={styles.mark}>{part.slice(2, -2)}</mark>;
+        }
+        const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        if (linkMatch) {
+            const isExternal = linkMatch[2].startsWith('http');
+            return (
+                <a
+                    key={i}
+                    href={linkMatch[2]}
+                    target={isExternal ? '_blank' : undefined}
+                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                >
+                    {linkMatch[1]}
+                </a>
+            );
+        }
+        return part;
+    });
+}
 
 export default function ArticleContent({ article }) {
     return (
@@ -190,32 +219,32 @@ export default function ArticleContent({ article }) {
                                 </div>
                             );
                         }
+                        // NADTI 2026 blocks: @speaker(id) renders a speaker card with calendar buttons,
+                        // @schedule renders the three-day programme with one button per lecture.
+                        const speakerMatch = trimmed.match(/^@speaker\(([a-z0-9-]+)\)$/);
+                        if (speakerMatch) {
+                            return <NadtiSpeakerCard key={idx} id={speakerMatch[1]} />;
+                        }
+                        if (trimmed === '@schedule') {
+                            return <NadtiSchedule key={idx} />;
+                        }
+                        // An avatar row: a paragraph that starts with @avatar(src) renders a small round
+                        // portrait beside the text — used for schedules and speaker lists.
+                        const avatarMatch = trimmed.match(/^@avatar\(([^)]+)\)\s*([\s\S]+)$/);
+                        if (avatarMatch) {
+                            return (
+                                <div key={idx} className={styles.avatarRow}>
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={avatarMatch[1]} alt="" className={styles.avatarImg} loading="lazy" />
+                                    <p className={styles.paragraph}>{renderInline(avatarMatch[2])}</p>
+                                </div>
+                            );
+                        }
                         // Text paragraphs (with basic bold and link rendering)
                         if (trimmed.length > 0) {
-                            // Split by ** for bold text and [text](url) for links
-                            const parts = trimmed.split(/(\*\*.*?\*\*|\[[^\]]+\]\([^)]+\))/g);
                             return (
                                 <p key={idx} className={styles.paragraph}>
-                                    {parts.map((part, i) => {
-                                        if (part.startsWith('**') && part.endsWith('**')) {
-                                            return <strong key={i}>{part.slice(2, -2)}</strong>;
-                                        }
-                                        const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
-                                        if (linkMatch) {
-                                            const isExternal = linkMatch[2].startsWith('http');
-                                            return (
-                                                <a
-                                                    key={i}
-                                                    href={linkMatch[2]}
-                                                    target={isExternal ? '_blank' : undefined}
-                                                    rel={isExternal ? 'noopener noreferrer' : undefined}
-                                                >
-                                                    {linkMatch[1]}
-                                                </a>
-                                            );
-                                        }
-                                        return part;
-                                    })}
+                                    {renderInline(trimmed)}
                                 </p>
                             );
                         }

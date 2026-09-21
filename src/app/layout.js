@@ -8,7 +8,12 @@ import MetaPixel from '@/components/analytics/MetaPixel';
 import MotionProvider from '@/components/MotionProvider';
 import ThemeScript from '@/cinema/ThemeScript';
 import SiteShell from '@/components/site/SiteShell';
-import TrustMarquee from '@/components/site/TrustMarquee';
+import Navbar from '@/components/Navbar/Navbar';
+// ☠️ THE BRANCH'S OWN TOP MARQUEE IS GONE, THE STYLESHEET IS NOT. The navbar carries
+// its own green trust line, so rendering <TrustMarquee /> as well put two of them on
+// the page. The file still has to load: the rules that stand the corner theme switch
+// down while the music room holds the screen live in it, not in cinema.css.
+import '@/components/site/trust-marquee.css';
 // The cinema tokens are site-wide from here on: the navbar, the footer and the room all
 // key off --paper / --ink / --dsd-green, so they must resolve on /news and /classic too,
 // not only on the routes that mount CinemaPage.
@@ -84,7 +89,7 @@ export default function RootLayout({ children }) {
         <SiteShell>
         <MetaPixel />
         <JsonLd id="organization-graph" data={organizationGraph} />
-        <TrustMarquee />
+        <Navbar />
         {children}
         <Footer />
         </SiteShell>

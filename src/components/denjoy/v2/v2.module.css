@@ -13,7 +13,7 @@
   --ice: #eaf6ef;            /* canvas base = ape-grey role */
   --chip: rgba(255, 255, 255, 0.3);
   --ease-house: cubic-bezier(0.4, 0, 0.2, 1);
-  --header-h: 72px;
+  --header-h: var(--dsd-nav-h, 100px);
   font-family: var(--dna-sans), system-ui, sans-serif;
   color: var(--ink);
   background: var(--ice);
@@ -730,7 +730,7 @@
 }
 
 @media (min-width: 768px) {
-  .root { --header-h: 84px; }
+  .root { --header-h: var(--dsd-nav-h, 108px); }
   .heroTitle { font-size: clamp(72px, 9vw, 130px); }
   .spot { padding: 140px 6vw 96px; }
   .spotCollage { right: 4vw; width: 220px; }

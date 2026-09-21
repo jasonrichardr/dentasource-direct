@@ -864,6 +864,421 @@ The same page carries DentaSource Direct's own openings. A **Dental Chair Techni
 
 [Apply at ffcdentalclinic.com/careers](https://ffcdentalclinic.com/careers/)`
     },
+    {
+        id: "nadti-2026-smx-manila-complete-guide",
+        slug: "nadti-2026-smx-manila-complete-guide",
+        title: "NADTI 2026 at SMX Manila, September 22 to 24: Every Lecture, Every Speaker, and Booth 034",
+        date: "September 16, 2026",
+        image: "/images/news/nadti-2026-smx-manila-complete-guide/hero-speakers-2x.jpg",
+        ogImage: "/images/news/nadti-2026-smx-manila-complete-guide/og-speakers-degrees-v2.jpg",
+        hideHeroImage: false,
+        abstract: "The complete guide to the 26th NADTI Trade Exhibit and Scientific Sessions: three days, ten lectures, speakers from six countries, 10 CPD points, the first Student Forum, the raffles, how to register, how to get there, and where to find DentaSource Direct at Booth 034 and 035 in Halls 1 to 3, where every visitor spins the wheel at dentasourcedirect.com/spin.",
+        content: `[Spin the wheel at Booth 034 and 035: dentasourcedirect.com/spin](/spin)
+
+## The Event at a Glance
+
+The **26th NADTI Trade Exhibit and Scientific Sessions** runs from **Tuesday, September 22 to Thursday, September 24, 2026** at the **SMX Convention Center Manila**, Seashell Lane, Mall of Asia Complex, Pasay City, in **Halls 1 to 3**. The floor opens at **10:30 AM** and closes at **7:30 PM** each day.
+
+The organizer is the **National Association of Dental Traders, Inc.**, NADTI, the association of the country's dental suppliers, organized in the year 2000. This year's theme is **"Advancing Dental Innovation: Beyond 25 Years of Excellence."** The Professional Regulation Commission has granted the program ==10 CPD points==.
+
+Ten lectures fill the three days. The speakers come from ==Singapore 🇸🇬, Malaysia 🇲🇾, Thailand 🇹🇭, Taiwan 🇹🇼 and the Philippines 🇵🇭==, one of them a maxillofacial prosthodontist of Syrian 🇸🇾 origin teaching in Malaysia. Every speaker card below has a button that saves that lecture to your Google Calendar. On the final morning NADTI opens its **first Student Forum**. Two raffles run alongside: an early-bird prize already drawn on September 1, and a **brand-new dental chair** sponsored by Intercast, drawn at the event, winner must be present.
+
+==DentaSource Direct is at Booth 034 and 035.== More on that at the end.
+
+NADTI announced all of this across a dozen Facebook posts between July and September. This page gathers every fact from those posts, adds what we could confirm about each speaker, and keeps it in one place so you can plan your three days.
+
+## The Three-Day Lecture Schedule
+
+All lectures are inside the Scientific Sessions program at SMX. Times are as posted by NADTI; the organizer may adjust them on the day, so treat this as the plan and confirm at the registration desk. Tap the button beside any lecture to put it in your Google Calendar; each entry carries the speaker, the room and the booth.
+
+@schedule
+
+![The Scientific Sessions schedule as posted by NADTI](/images/news/nadti-2026-smx-manila-complete-guide/poster-scientific-sessions-grid.jpg)
+
+## The Speakers
+
+NADTI's posts give each speaker a name, a flag and a title. We went further and checked who they are, so you know whose hour you are sitting in. Where we could not confirm a detail from a reliable source, we left it out.
+
+![The ten lectures, nine speakers: Ryan San, Noor Addeen Abo Arsheed, Felylou Altura Fernandez, Nazatul Sabariah Ahmad, Johnah Galicia, Karla Marrie Manaloto, Kullanant Pansrimangkorn, Chung Hua Chen and Renoir Amba](/images/news/nadti-2026-smx-manila-complete-guide/speakers-strip.jpg)
+
+@speaker(ryan-san)
+
+Ryan San 🇸🇬 is the chief executive and co-founder of **EM2AI**, the artificial-intelligence subsidiary of Q&M Dental Group, a dental chain listed on the Singapore 🇸🇬 Exchange. EM2AI builds software that reads radiographs, flags pathology, charts automatically and drafts treatment plans; it runs across more than 150 Q&M clinics in Singapore 🇸🇬 and Malaysia 🇲🇾, its accuracy has been checked by University of Malaya staff, and in May 2026 it was granted a Singapore patent for dental treatment planning methods. He holds a Bachelor of Commerce in Accounting and Finance from Curtin University and is not a dentist, which is the point of his hour: this is the operator's view of what happens when a clinic group actually switches AI on, what broke, and what stuck. If you have been wondering whether AI charting is real or a brochure, this is the session for you.
+
+@speaker(noor-addeen-abo-arsheed)
+
+An Associate Professor and certified maxillofacial prosthodontist who heads the Restorative Dentistry Department of the Faculty of Dentistry at MAHSA University in Selangor, Malaysia 🇲🇾. He earned his Bachelor of Dental Surgery in 2005 and his master's degree and specialization in prosthodontics in 2010, trained under the prosthodontic rehabilitation specialists Joseph Massad and Matthias Kern, and now carries more than fifteen years of clinical and teaching experience. He is a Fellow of the Pierre Fauchard Academy and a member of the International College of Prosthodontists, previously served as Deputy Dean and head of clinical teaching at Lincoln University College, and is a co-author of a systematic review and meta-analysis on the Biologically Oriented Preparation Technique. He speaks twice at NADTI: on Tuesday afternoon he makes the case for the **endocrown**, the single-piece ceramic restoration that anchors in the pulp chamber instead of a post and core, as part of the biomimetic movement in restorative dentistry; on Thursday morning he opens the Student Forum on the judgment every clinician makes daily, whether a compromised tooth is worth saving. NADTI notes this is his second visit to the Philippines 🇵🇭.
+
+@speaker(felylou-altura-fernandez)
+
+A dentist, a lawyer and a nurse in one person. The Professional Regulation Commission's own CPD records list her as JD (LLB), DMD, RN, USRN, and she has delivered this same lecture on the PDA circuit under a PRC-accredited program. Her hour covers whether the PRC Code of Ethics under Board Resolution No. 14, series of 2008 is binding on you, the gray zones between dentistry as a profession and dentistry as a business, and how the code applies to social-media conduct. Practical, and increasingly relevant for every clinic with a Facebook page.
+
+@speaker(nazatul-sabariah-ahmad)
+
+A paediatric dentist who earned her DDS at Universiti Kebangsaan Malaysia 🇲🇾 in 2004 and her Doctor in Dentistry in Paediatric Dentistry at the UCL Eastman Dental Institute in London 🇬🇧 in 2012. She started in Malaysia's Ministry of Health, spent about a decade as a university academic, and now leads the Dental Valet group of paediatric clinics as CEO of DV Group Berhad while consulting at Avisena Women's and Children's Specialist Hospital. She sits on the editorial board of the Ministry of Health's Clinical Practice Guidelines. Her lecture is on **Molar Incisor Hypomineralisation**, the chalky, sensitive, fracture-prone first molars and incisors that general dentists see far more often than they diagnose. Diagnosis, prevention, and what to do when a child sits in your chair with one.
+
+@speaker(johnah-galicia)
+
+One of the most credentialed endodontists in the country. DMD from Manila Central University in 1996, a clinical dentistry diploma from the University of Rennes 1 in France 🇫🇷, a PhD in Oral Biology from Niigata University in Japan 🇯🇵, and endodontic specialty training at the University of North Carolina at Chapel Hill 🇺🇸 as an AAE Foundation Educator Scholar. He is a Diplomate of the American Board of Endodontics, formerly directed graduate endodontology programs at the University of the Pacific in California and at UCL Eastman in London, served as a trustee of the AAE Foundation, and is now Professor and Associate Dean at the MCU College of Dentistry. His topic is the case every practitioner dreads: the root canal that will not heal. Why persistent infections persist, biologically, and what actually resolves them.
+
+@speaker(karla-marrie-manaloto)
+
+An orthodontist with a Master of Science in Orthodontics from 2012, fellowship training in temporomandibular disorders and orofacial pain, and further training in tongue and lip tie. She consults at Landayan Dental Clinic and belongs to the Orofacial Pain Association of the Philippines, the Philippine Association of Functional Joint Orthopedic TMJ and the Philippine Dental Association, with affiliate membership in the World Federation of Orthodontists. Her lecture is on **low-hysteresis archwires**, wires that deliver a steadier, gentler force across a wider range of deflection, and the claim in the title, that one wire can carry a case further than a conventional sequence.
+
+@speaker(kullanant-pansrimangkorn)
+
+Listed on Curaden Academy's roster of certified **iTOP** lecturers, the individually trained oral prophylaxis program that teaches clinicians to teach patients, hands in mouth, until brushing and interdental cleaning are done properly. A Bangkok 🇹🇭 clinician with hospital practice and published research on caries in Thai preschool children. His session is for anyone who has watched a patient nod through hygiene instructions and come back six months later with the same plaque.
+
+@speaker(chung-hua-chen)
+
+An endodontist from Taiwan 🇹🇼 presenting **bioceramic obturation**, the shift from gutta-percha and resin sealers to calcium-silicate bioceramic sealers and the hydraulic, single-cone technique that comes with them. It pairs naturally with Dr. Galicia's session the day before. NADTI's post lists his name, country and topic; we could not locate an independent profile to add here.
+
+@speaker(renoir-amba)
+
+A prosthodontist with more than thirty years in practice, based at his own clinic in BF Homes, Parañaque. His hour is on **metal-free, all-ceramic** conservative options for replacing a single missing back tooth, the decision between a resin-bonded bridge, a conventional bridge and an implant, and how far modern ceramics have pushed the conservative end of that choice.
+
+## The First Student Forum
+
+For the first time NADTI has carved out a program for students. On ==Thursday, September 24 at 9:00 AM==, Dr. Abo Arsheed 🇲🇾 lectures on "When to Restore, When to Replace: Clinical Decision-Making for Future Dentists", aimed squarely at dental students about to enter clinical practice.
+
+@speaker(student-forum-abo-arsheed)
+
+The student package, as posted by NADTI: registration for students and clinicians at ==₱500==, which covers the Student Forum, the full Scientific Sessions and the trade exhibit. The ==first 250 students== who claim their convention ID receive **four basic dental instruments**, first come, first served. A separate ==₱10,000 cash raffle== is exclusive to attending students. Slots are limited and attendance confirmation is required.
+
+![NADTI's Student Forum announcement](/images/news/nadti-2026-smx-manila-complete-guide/poster-student-forum-abo-arsheed.jpg)
+![The student package: ₱500 registration, instruments for the first 250, a ₱10,000 raffle](/images/news/nadti-2026-smx-manila-complete-guide/poster-student-forum-full-details.jpg)
+
+## Registration, CPD Points and the Raffles
+
+Registration runs through NADTI's online form at **bit.ly/26THNADTI**. Categories are Dentist, New Dentist, Government Dentist, Faculty or Academe, Dental Technologist, Dental Hygienist and Student. You will need your PRC Professional Identification Card number and expiry date and a photo of the card; the form also asks for your PDA chapter and up to three companions. Payment is by bank deposit or GCash to NADTI, with proof of payment uploaded to the form, and NADTI has also said cash can be paid through a trader's agent.
+
+Early-bird registration closed on **August 14** after a one-week extension the NADTI Board of Trustees granted because of the typhoon that hit Luzon in early August. Pre-registration closed on **September 15**. If you have not registered, the remaining route is on-site registration at SMX, so arrive early on your first day.
+
+The program carries **10 CPD points** for the PRC's continuing professional development requirement, announced by NADTI on August 13. For comparison, the 24th NADTI in 2024 was accredited at 11 CPD units, so this is in line with previous years.
+
+Two raffles. The **early-bird major prize**, a Louis Vuitton Vernis Brea GM handbag with certificate of authenticity, was drawn live on NADTI's Facebook page on September 1 at 2:00 PM. The **grand raffle prize**, a ==brand-new dental chair sponsored by Intercast, The Dental Solution Company==, is drawn at the event, and you must be present to win.
+
+![10 CPD points granted](/images/news/nadti-2026-smx-manila-complete-guide/poster-10-cpd-points.jpg)
+![The grand raffle prize: a brand-new dental chair sponsored by Intercast](/images/news/nadti-2026-smx-manila-complete-guide/poster-grand-raffle-dental-chair-intercast.jpg)
+![The early-bird prize, drawn September 1](/images/news/nadti-2026-smx-manila-complete-guide/poster-early-bird-lv-bag.jpg)
+
+## Beyond 25 Years
+
+NADTI was organized in 2000 to, in its own words, foster cooperation among traders and become a source of growth and advancement in the field of dentistry. The annual Trade Exhibit is where the country's suppliers, manufacturers and distributors put their equipment on one floor for three days, and the Scientific Sessions grew around it. The 24th edition in 2024 was filed with the PRC with a target of 4,000 participants. The 25th, in September 2025, was at the same SMX Convention Center Manila. This year's theme, "Beyond 25 Years of Excellence," is the association marking a quarter century of the exhibit and setting out the next one.
+
+The run-up was busy. Through June and July NADTI's officers took the 26th banner on the road to Philippine Dental Association chapter events, induction ceremonies and scientific seminars in Cavite, Olongapo, Zambales, Bataan, Pampanga, Nueva Ecija and San Jose del Monte, handing out registration QR codes and the NADTI pouch that has become a running joke on the page. One of those pouches, photographed by a dentist wading through Luzon floodwater in late August, got its own post: NADTI bag one, floodwaters zero.
+
+![NADTI officers with the 26th banner during the chapter roadshow](/images/news/nadti-2026-smx-manila-complete-guide/photo-nadti-officers-with-26th-banner.jpg)
+
+![The PDA Cavite Chapter scientific seminar and induction](/images/news/nadti-2026-smx-manila-complete-guide/photo-pda-cavite-chapter-seminar-banner.jpg)
+![PDA Olongapo Chapter induction](/images/news/nadti-2026-smx-manila-complete-guide/photo-roadshow-pda-olongapo-chapter.jpg)
+![PDA Zambales Dental Chapter induction and scientific seminar](/images/news/nadti-2026-smx-manila-complete-guide/photo-pda-zambales-43rd-induction-wide.jpg)
+
+![The PDA City of San Jose del Monte Chapter's third induction, one of the roadshow stops](/images/news/nadti-2026-smx-manila-complete-guide/photo-pda-csjdm-3rd-induction-group.jpg)
+
+## Getting There
+
+SMX Convention Center Manila sits on Seashell Lane in the Mall of Asia Complex, Pasay City, beside the SMX side of SM Mall of Asia and a short walk from the MOA Arena. Coming from EDSA or Roxas Boulevard, turn into the MOA Complex and follow the signs for SMX; parking is in the MOA Complex lots. From the NAIA terminals it is a short drive along Roxas Boulevard or the NAIA Expressway, longer at rush hour. The floor opens at 10:30 AM; the first lectures on Wednesday and Thursday start at 10:30, and Tuesday's starts at 10:00, so plan to be inside before the doors.
+
+[map](https://maps.google.com/maps?q=SMX+Convention+Center+Manila,+Seashell+Lane,+Mall+of+Asia+Complex,+Pasay&z=16&output=embed|https://www.google.com/maps/dir/?api=1&destination=SMX+Convention+Center+Manila,+Seashell+Lane,+Pasay)
+
+## DentaSource Direct at Booth 034 and 035
+
+We will be in **Halls 1 to 3 at Booth 034 and 035** all three days, and the chair at the front of the booth is the **ROSON A1 Pro**, the color-led treatment chair ROSON built for the new generation of dentists. It comes in three signature colors, ROSON Blue, Ballet Pink and Mint Green, with twelve silicone-leather and twenty-one PU-leather options beyond those, on a 12 mm carbon-structural-steel frame rated for 150 kg, with sleep-grade soft start and stop, the Rolight S eight-LED tri-mode light with hands-free infrared control, intelligent chair memory, a Smart Clean button, and the RS-07 dentist stool as standard. NADTI is the first trade floor where you can sit in one in all three colors. The [A1 Pro page](/a1-pro) has the full walk-through.
+
+![ROSON A1 Pro in Signature Mint Green](/images/news/nadti-2026-smx-manila-complete-guide/a1-pro-mint-green.jpg)
+![ROSON A1 Pro in Signature Ballet Pink](/images/news/nadti-2026-smx-manila-complete-guide/a1-pro-ballet-pink.jpg)
+![ROSON A1 Pro in Signature ROSON Blue](/images/news/nadti-2026-smx-manila-complete-guide/a1-pro-roson-blue.jpg)
+
+Beside it, the **A3 family** and the **S6**, set up to be sat in, not just looked at. Our technicians run the chairs through their positions, the light and the delivery unit for every visitor, and the handpiece and small-equipment counter is open the whole time.
+
+The endodontic counter is **Denjoy**, the brand DentaSource Direct distributes exclusively in the Philippines, and it lands in the same week two endodontists lecture upstairs on persistent infections and bioceramic obturation. On the counter: the **Meta Endo Pro I** and **Meet Endo** integrated systems that put apex locator, motor and obturation in one touchscreen unit, the **FREE PEX** benchtop apex locator and the phone-sized **i-Pexo**, the cordless **i-Moto** motor with programmable torque, the **iUe1** ultrasonic irrigator, the **iCure** light that does six jobs at 103 grams, and the **iPack** and **Meta Pack** for warm gutta-percha. Every unit is powered on, so you can run a file, read an apex, and feel the torque control yourself. The [Denjoy page](/denjoy) has each one in detail.
+
+![The Denjoy endodontic set at the DentaSource Direct showroom: FREE PEX, i-Moto, i-Pexo](/images/denjoy/ensemble-hero-1.jpg)
+![Denjoy Meta Endo Pro I integrated endodontic system](/images/denjoy/meta-endo-pro-i/hero.jpg)
+![The i-Moto cordless endo motor on its stand](/images/denjoy/ensemble-hero-2.jpg)
+
+This year the booth has a wheel. Scan the QR code at the booth, sign up with your name, clinic and mobile number, and spin at **dentasourcedirect.com/spin**. ==Every spin wins something.== The wheel carries **₱30,000 in Training Credits** at the DentaSource Direct Training Center for selected partner clinics, **10% off** and **5% off** any purchase or deposit made at the booth from September 22 to 24, a spin-again wedge, and DentaSource gifts. One spin per mobile number; you claim at the booth by showing the screen to our team. The wheel opens on the morning of September 22 and closes with the show.
+
+Booth pricing is on request at the booth. If you are weighing the A3 family against each other before you come, the [ROSON A3 series](/a3) page covers the differences, and our [March coverage of the 5th NADTI Summer Sale](/news/nadti-2026-summer-sale-smx) shows what three days at our booth look like.
+
+## From NADTI's Page
+
+Everything above was drawn from NADTI's announcements between July 2 and September 15, 2026, with the speaker background checked against the sources named in each profile. The schedule and the "Future of Dentistry" announcement, as NADTI posted them:
+
+[facebook](https://www.facebook.com/nadti.traders/photos/-the-future-of-dentistry-starts-herejoin-us-at-the-26th-nadti-trade-exhibit-and-/4662887804050370/)
+
+Registration and inquiries: bit.ly/26THNADTI and nadtievents@gmail.com. We will update this page during and after the event with what happened on the floor.
+
+[Find us at Booth 034 and 035, or book a showroom visit](/contact)`
+    },
+    {
+        id: "pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026",
+        slug: "pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026",
+        title: "PDA San Pablo City Chapter Invites All Dentists to Its 2nd Scientific Seminar and General Membership Meeting, October 29 at CDC 1028 Café",
+        date: "September 19, 2026",
+        image: "/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/hero-doctors-2x.jpg",
+        ogImage: "/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/og-doctors.jpg",
+        hideHeroImage: false,
+        abstract: "The Philippine Dental Association San Pablo City Chapter opens its 2nd Scientific Seminar and General Membership Meeting to every dentist on Thursday, October 29, 2026 at CDC 1028 Café in San Pablo City Highlands: registration at 12:30 PM, program 1:00 to 6:00 PM. Two lectures under the theme Bridging the Gap Between Alignment and Tissue Health: Dr. Emil Angelo Santos on real-world self-ligation and Dr. Francesca Daye See-Santos on crown lengthening. The chapter, the venue, the map, and what to bring for your CPD record.",
+        content: `## The Invitation
+
+The **Philippine Dental Association San Pablo City Chapter** is inviting all dentists to its **2nd Scientific Seminar and General Membership Meeting** on **Thursday, October 29, 2026**. Registration opens at **12:30 PM** and the program runs from **1:00 to 6:00 PM** at **CDC 1028 Café**, San Pablo City Highlands, Barangay San Jose, San Pablo City, Laguna. The registration fee is ₱1,200, with payment details behind the QR code on the chapter's poster.
+
+In the chapter's own words, it is an afternoon of learning, professional fellowship, and meaningful connections with fellow dental professionals. The invitation is open, not members-only, so dentists from the neighbouring towns of Laguna and Quezon are welcome to sit in.
+
+The afternoon carries one theme, ==Bridging the gap between alignment and tissue health==, and two lectures: an orthodontist on self-ligating brackets as they behave in a private practice, and a periodontist on crown lengthening. The CPD credit for the day has not been posted yet; we will add it here when the chapter announces it.
+
+![The chapter's poster for the 2nd Scientific Seminar and General Membership Meeting](/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/poster-2nd-scientific-seminar-gmm-october-29.jpg)
+
+## The Two Lectures
+
+@avatar(/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/avatar-dr-emil-angelo-santos.jpg) **Dr. Emil Angelo Santos, Passive vs. Active vs. Reality: Real-World Self-Ligation in Private Practice.** An orthodontist with an MSD in Orthodontics and the founder of the Orthostrategy Study Group, Dr. Santos teaches the fundamentals of orthodontic practice to general dentists, including the two-day TADs course he gave at the DentaSource Direct Training Center in August 2026. Self-ligating brackets are sold as passive or active; his lecture is about what the mechanics do in a real private-practice case load, and how to plan around it.
+
+@avatar(/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/avatar-dr-francesca-daye-see-santos.jpg) **Dr. Francesca Daye See-Santos, Beyond the Gingival Margin: The Art of Crown Lengthening.** A periodontist, Dr. See-Santos takes the second hour to the soft tissue: when a restoration or an orthodontic finish needs more tooth than the gum allows, how crown lengthening is planned and cut, and how it is kept stable. The two lectures are a pair on purpose, alignment on one side and the tissue that has to hold it on the other, which is what the seminar's theme line says.
+
+Both speakers are members of the host chapter, and Dr. Santos is one of the study-group leaders on our [Training Center page](/growth-partner).
+
+## What a Scientific Seminar and General Membership Meeting Is
+
+PDA chapters run two kinds of gatherings, and this one is both in a single afternoon.
+
+The **Scientific Seminar** is the lecture half. A chapter books one or more speakers, applies for credit through the PDA's accreditation as a CPD provider with the Professional Regulation Commission, and the hours you sit through count toward your license renewal. The PDA holds provider accreditation number DNT-2009-001, valid until April 12, 2027, and chapter seminars are filed under it.
+
+The **General Membership Meeting** is the business half. Officers report on the chapter's year, members vote on what needs a vote, dues are settled, and the next activities are lined up. This is where a chapter decides what it does next, so it is worth staying for even if you came for the lecture.
+
+## Who the San Pablo City Chapter Is
+
+The chapter's seal carries the year **1947**, which makes it one of the older PDA chapters in Southern Tagalog. It sits in PDA's Region IV grouping alongside the Laguna Chapter, and its members practise in San Pablo City and the towns around the Seven Lakes.
+
+The chapter keeps an official Facebook page at facebook.com/pdasanpablocity and reaches members by email at pdasanpablocitychapter@gmail.com, the address it uses for seminar registrations and refunds.
+
+![The chapter's official page mark](/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/chapter-official-page-logo.jpg)
+
+## What the Chapter Has Been Doing
+
+We went through the chapter's public page to see what a year with this group looks like. It is a busy one, and each item below has its own article on this site.
+
+**August 29, 2025.** Chapter members joined San Pablo City's simultaneous coconut planting, the morning the city set a Guinness World Record for the most people planting coconuts at the same time. The chapter took part under PDA's Ecodentistry program. [Read the story](/news/pda-san-pablo-city-chapter-coconut-tree-planting-august-2025).
+
+**September 28, 2025.** The chapter's previous 2nd Scientific Seminar, **K Saya-Saya! Pediatric Dentistry**, filled a Sunday at Auravel Grande Hotel and Resort with five lectures and two workshops on children's dentistry, good for 6 CPD points. [Read the story](/news/pda-san-pablo-city-chapter-k-saya-saya-pediatric-dentistry-seminar-2025).
+
+**February 1, 2026.** The chapter joined the PDA's opening of the 22nd National Dental Health Month at SM Mall of Asia and carried the month's Aksyon Sa Alagang Pambibig campaign on its page.
+
+**March 1, 2026.** A twinning seminar and workshop with the **Endodontic Society of the Philippines** at Hiraya Function Hall: a full day on failing root canals, shaping and filling, and airflow biofilm clearance. [Read the story](/news/esp-pda-san-pablo-city-chapter-twinning-seminar-workshop-march-2026).
+
+**March 4, 2026.** The chapter's clinics switched off lights and air-conditioning from noon to 1 PM for PDA's 10th Dentist Hour. [Read the story](/news/pda-san-pablo-city-chapter-10th-dentist-hour-march-2026).
+
+**March 18, 2026.** A twinning webinar with the **PDA Camarines Norte Chapter** on radiographic interpretation and the dental management of patients with HIV, 3 CPD units over Zoom. [Read the story](/news/pda-san-pablo-city-camarines-norte-twinning-webinar-march-2026).
+
+Further back, in September 2023, the chapter hosted the Philippine College of Oral and Maxillofacial Surgeons' South Luzon Conference at Coco Palace Hotel, a seven-hour program on odontogenic infections, dry socket, oro-antral fistula and socket preservation.
+
+![K Saya-Saya! Pediatric Dentistry, the chapter's September 2025 seminar](/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/poster-2025-k-saya-saya-pediatric-dentistry.jpg)
+![The March 2026 twinning seminar and workshop with the Endodontic Society of the Philippines](/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/poster-2026-esp-twinning-seminar-workshop.jpg)
+![The March 2026 twinning webinar with the PDA Camarines Norte Chapter](/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/poster-2026-camarines-norte-twinning-webinar.jpg)
+![Chapter members at the coconut planting site, August 29, 2025](/images/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026/photo-2025-coconut-tree-planting-members.jpg)
+
+## The Venue: CDC 1028 Café
+
+**CDC 1028 Café** sits inside the San Pablo City Highlands estate in Barangay San Jose, up the road past the San Pablo City Convention Center. It is a hilltop café with a wide view over the city and the lakes, with both an air-conditioned room and an open-air deck. It opens at 9 AM on weekdays and can be reached at (0939) 924 4880.
+
+The Highlands road climbs, so give yourself a few extra minutes from the city proper. The map below is pinned on the café; the button under it opens turn-by-turn directions in Google Maps.
+
+[map](https://maps.google.com/maps?q=CDC+1028+Cafe+San+Pablo+City+Highlands+Laguna&z=15&output=embed|https://www.google.com/maps/dir/?api=1&destination=CDC+1028+Cafe+San+Pablo+City+Highlands+Laguna)
+
+## What to Bring
+
+Bring your **PRC license number**. Chapter seminars keep an attendance sheet that is filed with the PRC's CPD accreditation system, and your units are credited against that number. Dentists renewing in 2026 should note that the PRC accepts a CPD undertaking for renewals until June 30, 2026, but the units are not waived, they are carried into the next cycle, so every accredited hour still counts.
+
+Bring a pen for the membership meeting, and a card or two. The chapter itself says the afternoon is for connections as much as for lectures. Registration is ₱1,200; scan the QR code on the poster above for the form and the payment details, or write to the chapter at pdasanpablocitychapter@gmail.com.
+
+## From DentaSource Direct
+
+A good share of the chairs we install and service are in Laguna and Quezon clinics, and San Pablo is a regular stop for our technicians. If you are coming down from the seminar with a chair, a light or an X-ray on your mind, our showroom in Pasig is open for a visit, and we can bring a unit out to a clinic in San Pablo for a demonstration. Book either through the [contact page](/contact).
+
+If you are in Manila next week, the [26th NADTI Trade Exhibit](/news/nadti-2026-smx-manila-complete-guide) runs September 22 to 24 at SMX, and we are at Booth 034 and 035.
+
+## Save the Date
+
+**Thursday, October 29, 2026. Registration 12:30 PM, program 1:00 to 6:00 PM, CDC 1028 Café, San Pablo City Highlands.** Open to all dentists. Dr. Emil Angelo Santos on real-world self-ligation, Dr. Francesca Daye See-Santos on crown lengthening. We will add the CPD credit as soon as the chapter posts it, and we will report on the afternoon after October 29.
+
+Sources: [PDA San Pablo City Chapter Official](https://www.facebook.com/pdasanpablocity), [the seminar poster as posted by Dr. Emil Angelo Santos](https://www.facebook.com/share/p/19Lno4npvd/), [Philippine Dental Association local chapters](https://pda.com.ph/about-us/local-chapters/), [PRC CPD Accreditation System, PDA provider record](https://cpdas.prc.gov.ph/public/providerInfo.aspx?id=kkmNhUR0wPZn28Hjju4rJQ%3D%3D), [CDC 1028 Café](https://cdc1028cafe.carrd.co/), [PRC: CPD undertaking accepted until June 30, 2026](https://www.prc.gov.ph/article/extending-acceptance-cpd-undertaking-renewal-professional-identification-card-until-june-30).`
+    },
+    {
+        id: "pda-san-pablo-city-camarines-norte-twinning-webinar-march-2026",
+        slug: "pda-san-pablo-city-camarines-norte-twinning-webinar-march-2026",
+        title: "PDA San Pablo City and Camarines Norte Chapters Hold a Twinning Webinar on Radiographs and HIV in the Dental Chair",
+        date: "March 18, 2026",
+        image: "/images/news/pda-san-pablo-city-camarines-norte-twinning-webinar-march-2026/poster-twinning-webinar.jpg",
+        ogImage: "/images/news/pda-san-pablo-city-camarines-norte-twinning-webinar-march-2026/og.jpg",
+        hideHeroImage: false,
+        abstract: "Two PDA chapters, one in Laguna and one in Bicol, shared a Zoom room on Wednesday, March 18, 2026: Dr. Mario Esquillo on radiographic interpretation and Dr. Evalyn Roxas on dealing with HIV in dental patients, 3 CPD units for a ₱500 registration.",
+        content: `## Two Chapters, One Screen
+
+On **Wednesday, March 18, 2026, at 4:30 PM**, the **PDA San Pablo City Chapter** and the **PDA Camarines Norte Chapter** held a twinning webinar over Zoom. Twinning is the PDA's word for two chapters pooling a program: one speaker list, one registration, both memberships invited. It lets a chapter in Laguna and a chapter in Bicol fill an afternoon of lectures that neither would run alone.
+
+The program carried **3 CPD units**. Registration was ₱500, open until March 16, with payment details inside the registration form.
+
+## The Lectures
+
+**Dr. Mario Esquillo** opened with **Radiographic Interpretation**, the reading of periapical, bitewing and panoramic films for what a general practitioner needs to catch: caries under restorations, periapical change, bone levels and the incidental findings that need a referral.
+
+**Dr. Evalyn Roxas** gave two connected lectures. The first, **Dealing with HIV in Dental Patients: Oral Health, Issues, Detection and Dental Management**, covered the oral signs that can be the first clue to an undiagnosed infection, the precautions that apply to every patient regardless of status, and how treatment planning changes for a patient on antiretroviral therapy. The second, **Informing Suspected HIV Dental Patients**, took on the harder conversation: how a dentist raises a suspicion with a patient, refers for testing and keeps the patient's trust.
+
+The subject is timely. The Philippines has one of the fastest-growing HIV epidemics in the Asia-Pacific, and the dental chair is often where oral lesions are first seen. A chapter putting two hours on it, for its own members and a partner chapter's, is the kind of continuing education that changes what happens in a clinic the next morning.
+
+## The Announcement
+
+[facebook](https://www.facebook.com/pdasanpablocity/posts/pfbid0zoH7coda8r5LAdB7N4NhbpAiJSqyupcygGJkvyKgdHwCJsHq7c2KC7j2jq74XCULl)
+
+The chapter's next in-person program is its 2nd Scientific Seminar and General Membership Meeting on October 29, 2026 at CDC 1028 Café. [Details here](/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026).
+
+Source: [PDA San Pablo City Chapter Official](https://www.facebook.com/pdasanpablocity).`
+    },
+    {
+        id: "pda-san-pablo-city-chapter-10th-dentist-hour-march-2026",
+        slug: "pda-san-pablo-city-chapter-10th-dentist-hour-march-2026",
+        title: "Lights Off at Noon: PDA San Pablo City Chapter Joins the 10th Dentist Hour",
+        date: "March 4, 2026",
+        image: "/images/news/pda-san-pablo-city-chapter-10th-dentist-hour-march-2026/poster-10th-dentist-hour.jpg",
+        ogImage: "/images/news/pda-san-pablo-city-chapter-10th-dentist-hour-march-2026/og.jpg",
+        hideHeroImage: false,
+        abstract: "For one hour on Wednesday, March 4, 2026, clinics of the PDA San Pablo City Chapter switched off their lights and air-conditioning for the Philippine Dental Association's 10th Dentist Hour, the profession's own version of Earth Hour under the Pilipinong Dentista Aaksyon Para Sa Kalikasan program.",
+        content: `## One Hour, Every First Wednesday
+
+**Dentist Hour** is the Philippine Dental Association's environmental hour. From **12:00 noon to 1:00 PM** on the first Wednesday of the month, member clinics switch off the lights, turn off or raise the air-conditioning to 25 degrees, and unplug what does not need to run. The **10th Dentist Hour** fell on **Wednesday, March 4, 2026**, and the **PDA San Pablo City Chapter** took part.
+
+The program sits under **Pilipinong Dentista Aaksyon Para Sa Kalikasan**, or PDA-PSK, the association's environmental arm, and it is part of the wider **Ecodentistry** effort that asks dental practices to cut their carbon footprint. The March edition carried a graduation theme, "March to Graduation: Shine Bright, Save the Earth."
+
+## How a Chapter Takes Part
+
+The mechanics are simple and built for proof. Members download a timestamp camera app, photograph their darkened clinics during the hour, and post the photos with the campaign hashtags so the chapter's participation is counted. The San Pablo City Chapter posted its timestamped clinic photos that afternoon, tagged #pdaecodentistry2025 and #dentisthour. We have chosen not to republish those photos here, since they show the inside of a member's private clinic with its address.
+
+## Why It Matters to a Clinic
+
+A dental clinic is a small building with a large electrical bill: a compressor, a suction motor, an autoclave, an X-ray unit, operatory lights and the air-conditioning that runs all day. One hour off a month changes little on its own. The point of Dentist Hour is the habit it builds, and the audit it prompts: which of these draws power all day and does not need to?
+
+Two of the easiest wins are in the chair itself. Modern dental units draw far less at idle than the units they replace, and LED operatory lights use a fraction of the power of the halogen lamps they succeeded, while running cooler, which in turn eases the air-conditioning. If your unit is more than a decade old, a Dentist Hour audit is a fair moment to check what it costs to keep running.
+
+The chapter's environmental work continued from the coconut planting it joined in August 2025. [Read that story](/news/pda-san-pablo-city-chapter-coconut-tree-planting-august-2025).
+
+[facebook](https://www.facebook.com/pdasanpablocity/posts/pfbid02Hcxm2g5C2XRicmCd4Z5uLzhNRreZu8t7jov3KzYVJkenVmWxR5T3sLc5vddkrvGkl)
+
+Source: [PDA San Pablo City Chapter Official](https://www.facebook.com/pdasanpablocity).`
+    },
+    {
+        id: "esp-pda-san-pablo-city-chapter-twinning-seminar-workshop-march-2026",
+        slug: "esp-pda-san-pablo-city-chapter-twinning-seminar-workshop-march-2026",
+        title: "Endodontic Society of the Philippines and PDA San Pablo City Chapter Hold a Twinning Seminar and Workshop on Failing Root Canals",
+        date: "March 1, 2026",
+        image: "/images/news/esp-pda-san-pablo-city-chapter-twinning-seminar-workshop-march-2026/poster-esp-twinning-seminar-workshop.jpg",
+        ogImage: "/images/news/esp-pda-san-pablo-city-chapter-twinning-seminar-workshop-march-2026/og.jpg",
+        hideHeroImage: false,
+        abstract: "A full Sunday at Hiraya Function Hall in San Pablo City on March 1, 2026: Dr. Grace Ellen S. Dey on whether a failing root canal should stay or go, with a hands-on shaping and filling workshop, and Dr. Lilli Ann D. Fernando on airflow biofilm clearance as an alternative to scaling and polishing.",
+        content: `## The Program
+
+The **Endodontic Society of the Philippines**, in partnership with the **PDA San Pablo City Chapter**, held a **Twinning Seminar and Workshop** on **Sunday, March 1, 2026**, from 8:00 AM to 4:00 PM at **Hiraya Function Hall**, Farconville Subdivision, Barangay San Francisco, San Pablo City.
+
+Registration was offered as lectures only, or lectures with the workshop, with an early-bird rate until February 14. The workshop had limited slots. Registration was extended in the final week, after the early-bird rate had closed.
+
+## Should It Stay or Should It Go?
+
+**Dr. Grace Ellen S. Dey** carried the endodontic half of the day. Her lecture, **Should It Stay or Should It Go? A Systematic Approach to Failing Root Canals for the General Practitioner**, dealt with the decision every general dentist faces when a treated tooth comes back with a lesion or a symptom: retreat, refer for surgery, or extract and plan an implant. The systematic part is what makes it useful in a general practice, a set of questions about the tooth, the previous treatment and the patient that leads to the same answer each time.
+
+Her second session, **Mastering Shaping and Filling Techniques**, was the hands-on workshop: a lecture and workshop on root canal therapy, with participants working through canal shaping and obturation on their own blocks.
+
+## Airflow Biofilm Clearance
+
+**Dr. Lilli Ann D. Fernando** gave the hygiene lecture, **Airstream Biofilm Clearance: A Race to Dental Health**, on air-polishing as an alternative to conventional scaling and polishing. Guided biofilm therapy, in which the biofilm is disclosed, removed with a fine powder in a stream of air and water, and only then is any remaining calculus scaled, has moved from specialist periodontal practices into general clinics over the last few years. It is faster for the patient and gentler on enamel and implant surfaces, and it changes what a hygiene appointment needs in the room.
+
+## Why a Twinning Program
+
+Specialty societies bring speakers and a curriculum; a local chapter brings a room full of general practitioners who need exactly that curriculum. The twinning format lets the two meet outside Manila. San Pablo dentists got a full day of endodontics and hygiene without the drive, and the Endodontic Society met a room it does not usually reach.
+
+The chapter followed this program with a twinning webinar on March 18 with the PDA Camarines Norte Chapter. [Read that story](/news/pda-san-pablo-city-camarines-norte-twinning-webinar-march-2026).
+
+[facebook](https://www.facebook.com/pdasanpablocity/posts/pfbid065PvXLh7dLUiCHMzGjZzaGXHLWKBiZnKFH2Ju6zpLZhcH1PJennuXu5B5JiN26dCl)
+
+Sources: [PDA San Pablo City Chapter Official](https://www.facebook.com/pdasanpablocity), [Endodontic Society of the Philippines](https://www.endodonticsociety.ph/), [Hiraya San Pablo Events Place](https://hirayasanpablo.com/).`
+    },
+    {
+        id: "pda-san-pablo-city-chapter-k-saya-saya-pediatric-dentistry-seminar-2025",
+        slug: "pda-san-pablo-city-chapter-k-saya-saya-pediatric-dentistry-seminar-2025",
+        title: "K Saya-Saya! PDA San Pablo City Chapter Fills a Sunday With Pediatric Dentistry: Five Lectures, Two Workshops, 6 CPD Points",
+        date: "September 28, 2025",
+        image: "/images/news/pda-san-pablo-city-chapter-k-saya-saya-pediatric-dentistry-seminar-2025/poster-k-saya-saya-pediatric-dentistry.jpg",
+        ogImage: "/images/news/pda-san-pablo-city-chapter-k-saya-saya-pediatric-dentistry-seminar-2025/og.jpg",
+        hideHeroImage: false,
+        abstract: "The PDA San Pablo City Chapter's 2nd Scientific Seminar of the 2025 to 2026 year, K Saya-Saya! Pediatric Dentistry, ran from 7 AM to 5:30 PM on Sunday, September 28, 2025 at Auravel Grande Hotel and Resort: dental pain in children, odontogenic infections, treatment planning, the emergency visit and prescription writing, from five speakers, with 6 CPD points.",
+        content: `## A Whole Day on Children's Teeth
+
+On **Sunday, September 28, 2025**, the **PDA San Pablo City Chapter** held its **2nd Scientific Seminar**, titled **K Saya-Saya! Pediatric Dentistry**, at **Auravel Grande Hotel and Resort** on Maharlika Highway, San Pablo City. The program ran from 7:00 AM to 5:30 PM, with **five lectures and two workshops**, and the Professional Regulation Commission credited it with **6 CPD points**.
+
+The title is a play on words that ran through the whole program: each lecture carried a K-word, and together they spelled out what a dentist meets when a child is in the chair. Registration opened August 11, with a member rate and a non-member rate, and closed September 21.
+
+## The Five Lectures
+
+**K-Sakit! Dental Pain in Children: Clinical Recognition, Management and Prevention** by **Dr. Maria Liza C. Centeno**. How to read the different kinds of pain a child presents with, tell odontogenic from non-odontogenic sources through a structured assessment, and choose analgesics and antibiotics by current evidence-based guidelines.
+
+**K-Paga! Clinical and Biological Parameters of Odontogenic Infection and Management in Pediatric Patients** by **Dr. Jasper L. Tago**. The biology of odontogenic infections in children, how they spread, the signs that decide urgency (fever, swelling, trismus, lymphadenopathy), and the American Academy of Pediatric Dentistry protocols from a localised abscess to a facial space infection, including when to refer and hospitalise.
+
+**K-Langan! Treatment Planning in Pediatric Dentistry** by **Dr. Germilyn Krizza Chua Go**. A full treatment-planning sequence: medical and dental history, clinical and radiographic examination, caries risk and behaviour assessment, then prioritising emergency care, prevention, surgical, restorative and orthodontic needs, with a section on informed consent from the parent.
+
+**K-Takot! The Emergency Pediatric Dental Visit** by **Dr. Manuel V. Vallesteros**. Starting from the 2018 National Health Survey finding that 42 percent of Filipinos had never seen a dentist, the lecture dealt with the frightened child and the demanding parent who arrive together on an emergency, and the behaviour guidance that turns a bad first visit into a manageable one.
+
+**K-Galing! Clear and Present Guidelines in Prescription Writing for Children** by **Dr. Fina G. Lopez**. Antimicrobial stewardship for dentists: what, how and when to prescribe, with the WHO's projection of 10 million deaths a year from antimicrobial resistance by 2050 as the reason to get it right. The lecture included a short workshop on computing and writing paediatric doses of antibiotics and analgesics.
+
+![K-Sakit: Dr. Maria Liza C. Centeno on dental pain in children](/images/news/pda-san-pablo-city-chapter-k-saya-saya-pediatric-dentistry-seminar-2025/lecture-k-sakit-dental-pain-in-children.jpg)
+![K-Paga: Dr. Jasper L. Tago on odontogenic infections](/images/news/pda-san-pablo-city-chapter-k-saya-saya-pediatric-dentistry-seminar-2025/lecture-k-paga-odontogenic-infection.jpg)
+![K-Langan: Dr. Germilyn Krizza Chua Go on treatment planning](/images/news/pda-san-pablo-city-chapter-k-saya-saya-pediatric-dentistry-seminar-2025/lecture-k-langan-treatment-planning.jpg)
+![K-Takot: Dr. Manuel V. Vallesteros on the emergency visit](/images/news/pda-san-pablo-city-chapter-k-saya-saya-pediatric-dentistry-seminar-2025/lecture-k-takot-emergency-pediatric-visit.jpg)
+![K-Galing: Dr. Fina G. Lopez on prescription writing for children](/images/news/pda-san-pablo-city-chapter-k-saya-saya-pediatric-dentistry-seminar-2025/lecture-k-galing-prescription-writing.jpg)
+
+## Why Pediatric Dentistry, and Why a Whole Day
+
+Most children in the Philippines are treated by general practitioners, not paediatric specialists, and most of the difficult moments in a general clinic involve a child: the toothache that has been going on for a week, the swelling that appeared overnight, the parent who wants an antibiotic. A day built around exactly those moments, with the dosing arithmetic done on paper in a workshop, is continuing education a general dentist can use the next morning.
+
+It also shows how a chapter seminar is put together. The program was announced on the chapter's page on August 11, with the five lecture abstracts posted as cards over the following weeks, refunds handled by the treasurer by email, and 6 CPD points filed with the PRC.
+
+[facebook](https://www.facebook.com/pdasanpablocity/posts/pfbid02m58qW8iNtcut1k2tbGfEyuhVNwZo4kT8cXaSxW38gzVDiARCNWoKjRe2z7TBcdfYl)
+
+The chapter's next seminar under the same name, the 2nd Scientific Seminar and General Membership Meeting of the 2026 to 2027 year, is on October 29, 2026 at CDC 1028 Café. [Details here](/news/pda-san-pablo-city-chapter-2nd-scientific-seminar-gmm-october-2026).
+
+Sources: [PDA San Pablo City Chapter Official](https://www.facebook.com/pdasanpablocity), [Auravel Grande Hotel and Resort](https://www.tripadvisor.com/Hotel_Review-g298457-d4818221-Reviews-Auravel_Grande_Hotel_and_Resort-San_Pablo_City_Laguna_Province_Calabarzon_Region_Luzon.html).`
+    },
+    {
+        id: "pda-san-pablo-city-chapter-coconut-tree-planting-august-2025",
+        slug: "pda-san-pablo-city-chapter-coconut-tree-planting-august-2025",
+        title: "PDA San Pablo City Chapter Plants Coconuts the Morning the City Sets a Guinness World Record",
+        date: "August 29, 2025",
+        image: "/images/news/pda-san-pablo-city-chapter-coconut-tree-planting-august-2025/photo-members-at-the-planting-site.jpg",
+        ogImage: "/images/news/pda-san-pablo-city-chapter-coconut-tree-planting-august-2025/og.jpg",
+        hideHeroImage: false,
+        abstract: "On Friday, August 29, 2025, members of the PDA San Pablo City Chapter joined San Pablo City's simultaneous coconut planting under PDA's Ecodentistry program, the same 15 minutes in which the city planted about 11,000 seedlings across 12 barangays and set a Guinness World Record for the most people planting coconuts at the same time.",
+        content: `## Dentists in the Field at Dawn
+
+At dawn on **Friday, August 29, 2025**, members of the **PDA San Pablo City Chapter** were in a field in San Pablo City with gloves, seedlings and a clipboard. The occasion was the city's **Simultaneous Planting of Coconut Tree Seedlings**, under the banner "One Seedling, One Community, One Commitment," held during National Coconut Week.
+
+The chapter took part as part of PDA's **Ecodentistry** program, which asks dental practices to reduce their environmental impact and asks chapters to show up for their communities' environmental work. In the chapter's words, the aim was to help revive the coconut industry in San Pablo City, a city whose economy and landscape have been built on the tree for generations.
+
+## The Record
+
+The morning was bigger than one chapter. San Pablo City had organised the planting as an official **Guinness World Records** attempt for the most people planting coconuts simultaneously, with an adjudicator flown in to certify it on site. In a window of **15 minutes**, thousands of residents across **12 barangays** put about **11,000 seedlings** in the ground, and the record was confirmed the same day.
+
+The chapter's members were among those thousands, and their photos from the morning show the city's official banner behind them: "Thousand Seedlings, Coconut Week, August 29, 2025, Official Attempt in 15 Minutes."
+
+![Planting the seedlings](/images/news/pda-san-pablo-city-chapter-coconut-tree-planting-august-2025/photo-planting-1.jpg)
+![Every seedling in its own hole, gloves on](/images/news/pda-san-pablo-city-chapter-coconut-tree-planting-august-2025/photo-planting-2.jpg)
+![The chapter's announcement card for the planting](/images/news/pda-san-pablo-city-chapter-coconut-tree-planting-august-2025/poster-coconut-tree-planting.jpg)
+
+## Ecodentistry, Explained
+
+Ecodentistry is the PDA's name for greener dental practice: less single-use plastic, amalgam handled and disposed of properly, water and power used with care, digital radiography in place of film and chemistry, and the monthly Dentist Hour in which clinics switch off lights and air-conditioning for an hour. Community planting is the visible end of it, the part a chapter can do together on a Friday morning.
+
+The chapter kept the thread going through the year: it joined the 10th Dentist Hour on March 4, 2026. [Read that story](/news/pda-san-pablo-city-chapter-10th-dentist-hour-march-2026).
+
+Sources: [PDA San Pablo City Chapter Official](https://www.facebook.com/pdasanpablocity), [Philippine News Agency: San Pablo City breaks Guinness world record for coconut planting](https://www.pna.gov.ph/articles/1257631), [Rappler: San Pablo City sets Guinness record](https://www.rappler.com/philippines/luzon/san-pablo-city-laguna-guinness-world-record-simultaneous-planting-coconut-trees/).`
+    },
 ];
 
 export const newsData = [...baseNews, ...fbNews2026];

@@ -55,6 +55,14 @@
   ],
   "rewrites": [
     {
+      "source": "/orthostrategy/dremil/sample",
+      "destination": "https://dsd-tads-sample.vercel.app/"
+    },
+    {
+      "source": "/orthostrategy/dremil/sample/:path+",
+      "destination": "https://dsd-tads-sample.vercel.app/orthostrategy/dremil/sample/:path+"
+    },
+    {
       "source": "/growthpartner/dremil/:path*",
       "destination": "https://srv1376990.hstgr.cloud/dremil/:path*"
     },
