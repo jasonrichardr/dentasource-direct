@@ -3270,6 +3270,24 @@
       "hdHeight": 1080,
       "heldReason": "720x406 into a 480px bead: covers it 0.85 times, under the 0.95 floor. RECOVERABLE: its theatre copy is 1920x1080, so the source has the pixels and a cover targeted bead re-encode readmits it",
       "heldRecoverable": true
+    },
+    {
+      "id": "34809738205339742",
+      "src": "/cinema/reels/34809738205339742.mp4",
+      "source_url": "https://m.facebook.com/watch/?v=34809738205339742",
+      "poster": "/cinema/reels/34809738205339742.jpg",
+      "duration": 55.1,
+      "date": "2026-03-29",
+      "caption": "Pre delivery inspection before a unit leaves the stockroom",
+      "alt": "Pre delivery inspection before a unit leaves the stockroom",
+      "meta_caption": "Your Clinic Deserves Nothing Less Than PERFECTION. At DentaSource Direct, we make sure every dental chair that reaches your clinic is ready, reliable, and built to perform. Before delivery, each unit goes through our strict Pre-Delivery Inspection.",
+      "category": "showroom",
+      "width": 720,
+      "height": 1280,
+      "note": "round 6: harvested and encoded 2026-09-21; pre delivery inspection on the 610 C. Raymundo premises",
+      "hd": "/cinema/reels/hd/34809738205339742.mp4",
+      "hdWidth": 1080,
+      "hdHeight": 1920
     }
   ],
   "tileFit": "cover",
