@@ -1008,6 +1008,96 @@ export function mixOrder(items) {
   return out.filter(Boolean);
 }
 
+/**
+ * The address, the map, and the way in. Only the training beat carries one today.
+ *
+ * ☠️ GOOGLE'S OWN PLACE PHOTOS MAY NOT BE COPIED ONTO THIS SITE (Maps platform terms), so
+ * the building is shown by EMBEDDING Street View rather than by saving a still out of it.
+ * An embed is served by Google and stays theirs; a screenshot would be ours to licence and
+ * we do not have that licence. If DSD ever shoots its own photograph of the entrance, that
+ * still belongs here and the pano frame can go.
+ *
+ * ☠️ BOTH FRAMES ARE GATED ON `near`, and that is the same rule the marquees follow. An
+ * iframe is not a picture: each one boots Google's own bundle, so two of them mounted at
+ * page load would cost the visitor a megabyte of somebody else's JavaScript for a beat
+ * eight scrolls down. They mount when the beat is close and never before.
+ *
+ * ☠️ AND THE ARC MUST SURVIVE THEM FAILING. A blocked, throttled or offline Google leaves
+ * an empty frame, so the ADDRESS is plain text above them and the two links below are
+ * ordinary anchors. Everything a visitor actually needs in order to arrive is readable
+ * with both embeds dead.
+ */
+export function PlaceMap({ place, near }) {
+  if (!place) return null;
+  return (
+    <div className="dsd-place">
+      {place.address ? <p className="dsd-place-address">{place.address}</p> : null}
+      <div className="dsd-place-frames">
+        {[['map', place.mapEmbed, place.mapTitle], ['pano', place.panoEmbed, place.panoTitle]]
+          .filter(([, src]) => src)
+          .map(([kind, src, title]) => (
+            <div className={`dsd-place-frame dsd-place-${kind}`} key={kind}>
+              {near ? (
+                <iframe
+                  src={src}
+                  title={title}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  // Street View asks for device orientation to let a phone look around by
+                  // tilting. Without these two the console carries a permissions policy
+                  // violation on every load and the tilt gesture silently does nothing.
+                  allow="accelerometer; gyroscope; fullscreen"
+                />
+              ) : null}
+            </div>
+          ))}
+      </div>
+      {Array.isArray(place.links) && place.links.length ? (
+        <div className="dsd-cta-row dsd-place-links">
+          {place.links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cinema-cta dsd-cta dsd-cta-ghost"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+/**
+ * How many tiles a mixed marquee actually renders.
+ *
+ * ☠️ THE TRACK'S DURATION IS ITS WIDTH DIVIDED BY A FIXED SPEED, so a longer list does not
+ * move faster, it takes longer to come round. src/lib/cinema/marquee.js sweeps at the
+ * measured 131.8 px per second on a wide viewport. Round 6 handed the nationwide beat 85
+ * items, which is 170 tiles in the doubled track and something near 16,000 px of travel
+ * for one pass: about two minutes before the last tile is on screen once. Nobody waits
+ * two minutes at one beat, so those tiles are bytes the visitor pays for and never sees.
+ *
+ * 44 keeps the longest strip near a minute, which is already generous, and leaves the
+ * other three mixed beats untouched because none of them reaches it. The list is built
+ * in HomeCinema by filtering the manifests, so raising this number is the only edit
+ * needed if Jarich wants the whole run: nothing else has to be re-listed.
+ *
+ * ☠️ THE CUT IS TAKEN AFTER mixOrder(), NOT BEFORE. mixOrder spaces the clips evenly
+ * through the whole list; slicing first would take the head of the raw array, which is
+ * every image the manifest happens to list before its first video.
+ */
+/** Send a clip back to its start if it is anywhere inside its branded end card. */
+const cardGuard = (playTo) => (e) => {
+  const v = e.currentTarget;
+  if (v.currentTime >= playTo) v.currentTime = 0;
+};
+
+const MIXED_SHOWN = 44;
+
 export function ActionPanel({ beat, beatIndex, items = [] }) {
   const near = useBeatNear(beatIndex, { margin: '80%' });
 
@@ -1023,7 +1113,7 @@ export function ActionPanel({ beat, beatIndex, items = [] }) {
   // (video first, then image, then video, and images alone once the clips run out); this
   // component does not sort, it renders what the file decided, so the strategy is
   // editable without touching code.
-  const tiles = useMemo(() => mixOrder(items), [items]);
+  const tiles = useMemo(() => mixOrder(items).slice(0, MIXED_SHOWN), [items]);
   const trackRef = useRef(null);
 
   // ☠️ ONE CLIP SPEAKS AT A TIME, AND THAT IS A DATA DECISION, NOT A TASTE ONE.
@@ -1063,6 +1153,7 @@ export function ActionPanel({ beat, beatIndex, items = [] }) {
   return (
     <div className="dsd-panel">
       <Copy beat={beat} />
+      <PlaceMap place={beat.place} near={near} />
       <div className="dsd-strip dsd-mixed">
         <div className="dsd-strip-track" ref={trackRef} data-marquee={`mixed-${beat.key}`}>
           {(near ? [...tiles, ...tiles] : []).map((it, i) => {
@@ -1075,14 +1166,42 @@ export function ActionPanel({ beat, beatIndex, items = [] }) {
                   // the clip moves to the media origin; the poster stays in the repo,
                   // so an unreachable origin shows a still rather than a black tile
                   src={near ? mediaUrl(it.src) : undefined}
-                  poster={near ? optimised(it.poster, 384) : undefined}
+                  // ☠️ A MISSING POSTER USED TO BUILD `/_next/image?url=undefined`, which
+                  // the optimiser answers 400 to, once per tile. It never showed because
+                  // the only beats reading the library were the WebGL marbles, and that
+                  // wall samples the clip into a texture and never looks at `poster`. The
+                  // moment round 6 put library reels into a DOM marquee, 19 entries that
+                  // had always carried a null poster became 19 bad requests. They all have
+                  // real posters now; this is so the next one cannot do it again.
+                  poster={near && it.poster ? optimised(it.poster, 384) : undefined}
                   aria-hidden={echo ? 'true' : undefined}
                   muted
                   loop
                   playsInline
                   preload="none"
+                  // ☠️ LOOP BEFORE THE END CARD. DSD closes most of its reels with a
+                  // branded outro: the logo, a SCAN ME QR code, a phone number and the
+                  // showroom address. 48 of the 90 clips these beats draw on end in one.
+                  // `loop` alone plays every clip to its last frame, so a marquee tile
+                  // parks on that card for a second or two on every pass, which is
+                  // exactly the promo card the exclusion law bars, served from the home
+                  // page. Looping at `playTo` means the card never paints. The seconds
+                  // come from the manifest, measured per clip; a clip without one plays
+                  // to its natural end as before.
+                  onTimeUpdate={it.playTo ? cardGuard(it.playTo) : undefined}
+                  // ☠️ AND THE SAME GUARD ON PAUSE, because timeupdate does not fire on a
+                  // video that is not playing. This marquee pauses every tile except the
+                  // one nearest the middle, so a clip stopped inside its card region would
+                  // sit on that card indefinitely, and a paused video shows its LAST
+                  // PAINTED FRAME rather than its poster. Playback alone cannot get there,
+                  // since timeupdate fires about every 250ms and playTo is 0.4s clear of
+                  // the card, but a seek can, and a seek is what a visitor does.
+                  onSeeked={it.playTo ? cardGuard(it.playTo) : undefined}
                   onVolumeChange={(e) => speak(!e.currentTarget.muted && !e.currentTarget.paused)}
-                  onPause={() => speak(false)}
+                  // ☠️ ONE onPause, DOING BOTH JOBS. Written as two props the second
+                  // silently wins and the first never runs, which is how the card guard
+                  // came to do nothing on a paused tile while looking present in the file.
+                  onPause={(e) => { speak(false); if (it.playTo) cardGuard(it.playTo)(e); }}
                 />
               );
             }

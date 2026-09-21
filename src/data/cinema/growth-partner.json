@@ -227,7 +227,9 @@
       "source_url": "https://ffcdentalclinic.com/growth-partner/",
       "hd": "/cinema/growth/hd/reel-08.mp4",
       "hdWidth": 720,
-      "hdHeight": 1280
+      "hdHeight": 1280,
+      "playTo": 29.4,
+      "cardStart": 29.8
     },
     {
       "type": "video",
@@ -240,7 +242,9 @@
       "source_url": "https://ffcdentalclinic.com/growth-partner/",
       "hd": "/cinema/growth/hd/reel-09.mp4",
       "hdWidth": 720,
-      "hdHeight": 1280
+      "hdHeight": 1280,
+      "playTo": 24.0,
+      "cardStart": 24.4
     },
     {
       "type": "video",
@@ -288,5 +292,6 @@
   "tileVideoPx": 162,
   "tileVideoHeightPx": 288,
   "tileFit": "cover",
-  "admittedUnmeasured": 0
+  "admittedUnmeasured": 0,
+  "playToNotes": "round 6: DSD appends a branded end card to most of its reels, carrying the logo, a SCAN ME QR code, a phone number and the showroom address. 48 of the 90 clips these beats draw on end in one, between 1.4 and 10.8 seconds long. The exclusion law bars a promo card as a tile, and a looping muted marquee reaches the end of a clip and sits on that card. `playTo` is the second the card begins, less a little, and the mixed marquee loops back to the start there, so the card never paints. `cardStart` is kept as the measurement. Found by OCR binary search over a one frame per second probe of the final 55 percent of every clip."
 }

@@ -112,8 +112,17 @@
 }
 
 /* ---- the one team strip: FFC's marquee mechanics, doubled track, -50% sweep ---- */
+/* ☠️ THE STRIP IS THE FLEX CHILD THAT GETS CRUSHED, so it is told not to be. The panel is
+   a flex column and the tiles' height comes from the tile rule, not from this box, so with
+   the default flex-shrink:1 a tall sibling steals the strip's room instead of overflowing
+   the panel. Measured when the training beat gained its map: the strip reported 85px on a
+   1440x900 desktop against a 288px tile, so every tile was rendering as a thin horizontal
+   band out of the middle of the picture, and 0px on a 390x844 phone, where the marquee
+   vanished entirely. Both read as "the images are broken" rather than as a layout fault,
+   which is why this needs saying here. */
 .dsd-strip {
   width: min(96vw, 1200px);
+  flex: 0 0 auto;
   overflow: hidden;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
@@ -526,6 +535,92 @@
 /* a still is landscape where a reel is portrait: it keeps the same HEIGHT, so the track
    stays one clean band, and takes the width its own frame wants */
 .dsd-mixed .dsd-strip-track img { aspect-ratio: 4 / 3; }
+
+/* ---- the place block: address, map, Street View, and the way in ---- */
+.dsd-place {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  /* it may not grow into the marquee's room */
+  flex: 0 0 auto;
+}
+.dsd-place-address {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(12px, 1.4vw, 14px);
+  line-height: 1.35;
+  opacity: .92;
+}
+/* ☠️ THE FRAMES STAY SIDE BY SIDE AT EVERY WIDTH, AND THAT IS A BUDGET, NOT A TASTE.
+   Stacked on a phone they cost two frame heights in a beat that also carries a headline,
+   five lines of body, a marquee and two CTAs. Measured at 390x844 with them stacked: the
+   panel overflowed by 164px and the marquee was squeezed to ZERO height, so the whole
+   strip was invisible and the beat looked like it had lost its media. Side by side they
+   cost one. minmax is deliberately small for the same reason: auto-fit with a 240px
+   minimum silently re-stacks them below 500px, which is the bug it looks like it fixes. */
+.dsd-place-frames {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+  flex: 0 0 auto;
+}
+.dsd-place-frame {
+  position: relative;
+  height: clamp(104px, 15vh, 180px);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--dsd-green) 30%, transparent);
+  box-shadow: 0 10px 26px rgba(10, 20, 16, .22);
+  /* the frame keeps its shape before the iframe mounts, so the beat does not jump when
+     the visitor arrives at it */
+  background: rgba(10, 20, 16, .35);
+}
+.dsd-place-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.dsd-place-links { margin-top: 2px; }
+
+@media (max-width: 700px) {
+  /* NOT re-stacked: see the note above the grid */
+  .dsd-place-frame { height: 104px; }
+  .dsd-place { gap: 6px; }
+  .dsd-place-address { font-size: 12px; line-height: 1.35; }
+  .dsd-place-links { gap: 8px; }
+}
+
+/* ☠️ A BEAT THAT CARRIES A PLACE BLOCK HAS TO PAY FOR IT OUT OF ITS OWN HEIGHT.
+   Measured on the training beat at 390x844: copy 191, place 249, marquee 270, CTAs 103,
+   plus gaps, against 643px of panel. That is 211px of overflow, and what falls off the
+   bottom is the CTA, which is the one thing the beat exists to produce. The marquee is
+   the block with slack in it, because a tile is legible well below its default height,
+   so only the beats with a place block get a shorter one. Every other mixed beat is
+   untouched. */
+.cinema-panel:has(.dsd-place) .dsd-mixed .dsd-strip-track video,
+.cinema-panel:has(.dsd-place) .dsd-mixed .dsd-strip-track img {
+  height: clamp(148px, 21vh, 208px);
+}
+/* and the beat's own stack closes up, which buys back most of another tile's worth */
+.cinema-panel:has(.dsd-place) .dsd-panel { gap: 8px; }
+.cinema-panel:has(.dsd-place) .dsd-place-frame { height: clamp(96px, 13.5vh, 158px); }
+
+/* the two map links are a footnote to the address, not a second call to action: compact
+   pills that sit on one line, rather than two full width buttons stacked under it */
+.dsd-place-links .dsd-cta {
+  padding: 7px 14px;
+  font-size: clamp(11px, 1.15vw, 13px);
+  min-width: 0;
+}
+.dsd-place-links { gap: 8px; }
 
 /* ---- the parts marquee: the news desk's two rows, carrying parts ---- */
 .dsd-part-card {
