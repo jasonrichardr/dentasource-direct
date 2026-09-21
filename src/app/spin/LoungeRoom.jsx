@@ -32,5 +32,116 @@ export default function LoungeRoom() {
     const load = (src) => new Promise((res) => { const s = document.createElement('script'); s.src = src; s.async = false; s.onload = res; s.onerror = res; document.body.appendChild(s); });
     load('/lounge/sky.js').then(() => load('/lounge/room.js'));
   }, []);
+
+  // ☠️ THE DOCK MUST NEVER SIT ON THE CONVERSION PATH. It is position:fixed in the
+  // lower-right at z-index 10000, so whatever it covers is both unreadable AND
+  // untappable: a tap on the covered pixels starts the music instead of doing what
+  // the visitor meant. Two yields, both driven from here and both expressed in
+  // spin.css with a class-qualified selector, because /lounge/room.css is injected
+  // into <head> at RUNTIME and so beats spin.css on source order at equal weight.
+  //   html.input-focus  → a form field holds the keyboard, the dock fades out
+  //   --spin-dock-dodge → the gift tiles are under the dock, lift just past them
+  //   html.dock-yield   → the lift needed is so large the dock would wander into
+  //                       the podium, so it steps aside entirely for that stretch
+  useEffect(() => {
+    const html = document.documentElement;
+    const FORMS = '.gate-form, .pre-form, .phone-row';
+    const isField = (el) => !!(el && el.tagName && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName) && el.closest && el.closest(FORMS));
+
+    const onFocusIn = (e) => { if (isField(e.target)) html.classList.add('input-focus'); };
+    // focusout lands before the next focusin, so settle on the next frame or
+    // tabbing between two fields would flash the dock back in between them.
+    const onFocusOut = () => { requestAnimationFrame(() => { if (!isField(document.activeElement)) html.classList.remove('input-focus'); }); };
+
+    // Left is geometrically impossible: the gift tiles span 39px to 351px of a
+    // 390px viewport and the dock is at least 145px wide against the right edge,
+    // so no horizontal offset clears them. Up is the only axis. 200px covers the
+    // deepest crossing of this layout (measured max lift 180px), so the dock
+    // always nudges here; the fade is the guard for a viewport too short for that.
+    const MAX_DODGE = 200;
+    let frame = 0;
+    let safeBottom = 0, safeRight = 0;
+    const readSafe = () => {
+      try {
+        const probe = document.createElement('div');
+        probe.style.cssText = 'position:fixed;left:0;top:0;opacity:0;pointer-events:none;width:env(safe-area-inset-right,0px);height:env(safe-area-inset-bottom,0px)';
+        document.body.appendChild(probe);
+        safeRight = probe.offsetWidth; safeBottom = probe.offsetHeight;
+        probe.remove();
+      } catch { safeBottom = 0; safeRight = 0; }
+    };
+    const setVar = (v) => { if (html.style.getPropertyValue('--spin-dock-dodge') !== v) html.style.setProperty('--spin-dock-dodge', v); };
+    const setYield = (on) => { if (html.classList.contains('dock-yield') !== on) html.classList.toggle('dock-yield', on); };
+
+    const hits = (b, r) => r && r.width > 0 && r.height > 0 && b.right > r.left && r.right > b.left && b.bottom > r.top && r.bottom > b.top;
+
+    const measure = () => {
+      frame = 0;
+      const dock = document.getElementById('tx-dock');
+      if (!dock) { setVar('0px'); setYield(false); return; }
+      // ☠️ THE DOCK'S BOX IS COMPUTED, NOT MEASURED. getBoundingClientRect reports
+      // the INTERPOLATED position while `bottom` is animating, and feeding that
+      // back into the lift makes the dodge chase its own tail: measured live, it
+      // oscillated 90px → 50px → 0px across three scroll steps and let the tiles
+      // through twice. offsetWidth/offsetHeight are layout values, untouched by a
+      // `bottom` transition, so the resting box is derived from them instead.
+      const barH = html.classList.contains('has-spin-bar') ? (parseFloat(html.style.getPropertyValue('--spin-bar-h')) || 0) : 0;
+      const rest = 14 + safeBottom + barH;
+      const w = dock.offsetWidth, h = dock.offsetHeight;
+      const right = window.innerWidth - 14 - safeRight;
+      const boxAt = (lift) => ({ right, left: right - w, bottom: window.innerHeight - rest - lift, top: window.innerHeight - rest - lift - h });
+
+      // Pass 1: the gift tiles. Lift just past them, as far as MAX_DODGE allows.
+      let lift = 0;
+      const gifts = document.querySelector('.gifts');
+      const g = gifts && gifts.getBoundingClientRect();
+      if (hits(boxAt(0), g)) {
+        const needed = Math.ceil(boxAt(0).bottom - g.top) + 8;
+        if (needed > MAX_DODGE) { setVar('0px'); setYield(true); return; }
+        lift = needed;
+      }
+
+      // Pass 2: form fields, checked against the box the dodge actually leaves.
+      // ☠️ A FIELD UNDER THE DOCK CANNOT BE TAPPED AT ALL. The dock is z-index
+      // 10000 with pointer-events:auto, so it takes the tap and starts the music.
+      // The focus rule above cannot save this one, because you have to tap the
+      // field to focus it: measured on the open-phase fold, 12 of 50 sample points
+      // across the Mobile number input landed on the dock instead. Nudging is no
+      // use either, since clearing the field here would push the dock back onto
+      // the tiles, so the dock steps aside entirely while a field is under it.
+      for (const f of document.querySelectorAll('.gate-form input, .pre-form input, .phone-row input')) {
+        if (f.type === 'hidden') continue;
+        if (hits(boxAt(lift), f.getBoundingClientRect())) { setVar('0px'); setYield(true); return; }
+      }
+
+      setYield(false);
+      setVar(`${lift}px`);
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(measure); };
+    readSafe();
+
+    document.addEventListener('focusin', onFocusIn);
+    document.addEventListener('focusout', onFocusOut);
+    window.addEventListener('scroll', schedule, { passive: true });
+    const onResize = () => { readSafe(); schedule(); };
+    window.addEventListener('resize', onResize);
+    // The sticky bar changes the dock's resting height by toggling a class on
+    // <html>; watch for that rather than guessing when React has committed.
+    const mo = new MutationObserver(schedule);
+    mo.observe(html, { attributes: true, attributeFilter: ['class', 'style'] });
+    schedule();
+
+    return () => {
+      document.removeEventListener('focusin', onFocusIn);
+      document.removeEventListener('focusout', onFocusOut);
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', onResize);
+      mo.disconnect();
+      if (frame) cancelAnimationFrame(frame);
+      html.classList.remove('input-focus', 'dock-yield');
+      html.style.removeProperty('--spin-dock-dodge');
+    };
+  }, []);
+
   return null;
 }

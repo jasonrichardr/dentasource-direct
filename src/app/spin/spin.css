@@ -374,10 +374,23 @@ html.sheet-open #tx-dock { opacity: 0; pointer-events: none; transition: opacity
 /* The dock is lower-RIGHT and the bar is full width, so they collide by default.
    Higher specificity than /lounge/room.css's own #tx-dock rule, which is injected
    into <head> at runtime and therefore wins on source order at equal weight. */
-html.has-spin-bar #tx-dock {
-  bottom: calc(var(--spin-bar-h, 76px) + 14px + env(safe-area-inset-bottom, 0px));
-  transition: bottom 0.22s ease-out;
+/* The dock's resting place, restated here so the dodge below can ride on it. The
+   14px matches /lounge/room.css exactly, so nothing moves at rest. `html` makes
+   this (0,1,1), which beats room.css's bare #tx-dock (0,1,0) on weight. */
+html #tx-dock {
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px) + var(--spin-dock-dodge, 0px));
+  /* No transition on `bottom`: the dodge below is recomputed every scroll frame,
+     and an in-flight animation would lag the dock straight through the tiles. */
+  transition: opacity 0.18s ease-out;
 }
+html.has-spin-bar #tx-dock {
+  bottom: calc(var(--spin-bar-h, 76px) + 14px + env(safe-area-inset-bottom, 0px) + var(--spin-dock-dodge, 0px));
+}
+/* The dock never sits on a field that holds the keyboard, and never on the gift
+   tiles when lifting past them would put it in the middle of the card instead.
+   LoungeRoom.jsx drives both. */
+html.input-focus #tx-dock,
+html.dock-yield #tx-dock { opacity: 0; pointer-events: none; }
 
 /* Compact podium for the open-phase gate: prizes before the form, no new art. */
 .prize-strip { margin: 0 0 14px; }
