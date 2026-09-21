@@ -311,7 +311,7 @@ export default function SpinExperience({ status, rehearsal }) {
         {phase === 'gate' && !askPin && !reserved && (
           <motion.section key="gate" className="card" {...fade}>
             <h1 className="title">Spin to win at NADTI 2026</h1>
-            <p className="lede">Every spin wins something. Spin from anywhere, claim at {BOOTH_LINE}, until September 24.</p>
+            <p className="lede">Every spin wins something. Spin from anywhere, claim at {BOOTH_LINE}, until September 24, 5:00 PM.</p>
             <div className="prize-strip"><PrizeList onCredits={() => setCredits(true)} /></div>
             <form onSubmit={onSubmit} className="gate-form" noValidate>
               <GoogleEmailButton onIdentity={({ email, name }) => { setEmailV(email); if (name && !nameV) setNameV(name); setFromGoogle(true); }} />
