@@ -10,7 +10,8 @@ import GoogleEmailButton from './GoogleEmailButton';
 import OffersSheet from './OffersSheet';
 import CreditsSheet from './CreditsSheet';
 import { GoogleMapsMark, FacebookMark, TikTokMark, MessengerMark } from './brandMarks';
-import PreEvent, { loadReserved, saveReserved, clearReserved } from './PreEvent';
+import PreEvent, { PrizeList, BOOTH_LINE, loadReserved, saveReserved, clearReserved } from './PreEvent';
+import { track } from './track';
 import LoungeRoom from './LoungeRoom';
 import Wheel from './Wheel';
 import Stage from './Stage';
@@ -179,6 +180,7 @@ export default function SpinExperience({ status, rehearsal }) {
       if (r?.closed) { setPhase('closed'); return; }
       if (r?.error) { setErrors({ form: r.error }); return; }
       setErrors({});
+      track('spin-signup');
       const merged = { ...r, clinic: String(fd.get('clinic') || '').trim() || r.clinic || '', placeId: r.placeId || (place?.placeId ?? null), linked: {} };
       setResult(merged);
       if (r.reserved) clearReserved();
@@ -308,10 +310,12 @@ export default function SpinExperience({ status, rehearsal }) {
 
         {phase === 'gate' && !askPin && !reserved && (
           <motion.section key="gate" className="card" {...fade}>
-            <h1 className="title">Sign up to spin</h1>
-            <p className="lede">Four quick details, then the wheel is yours. Every spin wins something.</p>
+            <h1 className="title">Spin to win at NADTI 2026</h1>
+            <p className="lede">Every spin wins something. Spin from anywhere, claim at {BOOTH_LINE}, until September 24.</p>
+            <div className="prize-strip"><PrizeList onCredits={() => setCredits(true)} /></div>
             <form onSubmit={onSubmit} className="gate-form" noValidate>
               <GoogleEmailButton onIdentity={({ email, name }) => { setEmailV(email); if (name && !nameV) setNameV(name); setFromGoogle(true); }} />
+              <Field id="phone" label="Mobile number" type="tel" autoComplete="tel" inputMode="tel" placeholder="0917 123 4567" error={errors.phone} required />
               <Field id="name" label="Full name" autoComplete="name" error={errors.name} required value={nameV} onChange={(e) => setNameV(e.target.value)} />
               <Field id="clinic" label="Dental clinic" autoComplete="organization" error={errors.clinic} required value={clinicQ} onChange={(e) => { setClinicQ(e.target.value); setPlace(null); setNoneOfThese(false); }} />
               {place ? (
@@ -338,7 +342,6 @@ export default function SpinExperience({ status, rehearsal }) {
                 </div>
               ) : lookingUp ? <p className="match-q">Looking up your clinic on Google</p> : null}
               <Field id="email" label={fromGoogle ? 'Email (from Google)' : 'Email'} type="email" autoComplete="email" inputMode="email" error={errors.email} required value={emailV} onChange={(e) => { setEmailV(e.target.value); setFromGoogle(false); }} />
-              <Field id="phone" label="Mobile number" type="tel" autoComplete="tel" inputMode="tel" placeholder="0917 123 4567" error={errors.phone} required />
               <label className={`consent ${errors.consent ? 'has-error' : ''}`}>
                 <input type="checkbox" name="consent" />
                 <span>I agree that DentaSource Direct may contact me about products and promos.</span>

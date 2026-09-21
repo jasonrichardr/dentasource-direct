@@ -3,13 +3,15 @@
 // Before the wheel opens: countdown, the wheel idling, what you can win, and pre-registration
 // (a reserved spin with a backup QR). Rulings: brainstorms/2026-09-16-nadti-spin-preregister.md.
 
-import { useCallback, useEffect, useState, useTransition } from 'react';
+import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
+import { createPortal } from 'react-dom';
 import { preRegister, lookupClinic } from '@/actions/spin';
 import { PRIZES } from '@/lib/spin/prizes';
 import { WINDOW_START_MS, countdownParts } from '@/lib/spin/format';
 import { GoogleMapsMark } from './brandMarks';
 import GoogleEmailButton from './GoogleEmailButton';
 import Wheel from './Wheel';
+import { track } from './track';
 
 export const RESERVED_STORE = 'nadti-spin-2026-reserved';
 export const BOOTH_LINE = 'Booth 034 and 035 · Halls 1 to 3';
@@ -118,8 +120,37 @@ function useQr(token) {
   return url;
 }
 
+export const SHARE_URL = 'https://dentasourcedirect.com/spin?src=share';
+export const SHARE_TEXT = 'Every spin wins at the DentaSource Direct booth at NADTI 2026. Reserve yours:';
+
+// navigator.share is the phone path; everything else gets the clipboard, and a
+// textarea + execCommand behind that (older in-app browsers expose neither).
+async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); return true; } catch { /* fall through */ }
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed'; ta.style.top = '-1000px';
+    document.body.appendChild(ta); ta.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  } catch { return false; }
+}
+
 export function ReservedCard({ r, onReset }) {
   const qr = useQr(r.qr);
+  const [shareMsg, setShareMsg] = useState('');
+  const onShare = useCallback(async () => {
+    track('spin-share');
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try { await navigator.share({ title: 'Spin to win at NADTI 2026', text: SHARE_TEXT, url: SHARE_URL }); }
+      catch { /* the sheet was dismissed */ }
+      return;
+    }
+    const ok = await copyText(`${SHARE_TEXT} ${SHARE_URL}`);
+    setShareMsg(ok ? 'Link copied' : SHARE_URL);
+  }, []);
   return (
     <div className="pre-form" style={{ textAlign: 'center' }}>
       <p className="eyebrow">Spin reserved</p>
@@ -130,6 +161,10 @@ export function ReservedCard({ r, onReset }) {
         {qr ? <img src={qr} alt="Reservation QR code" className="qr" /> : <span className="qr qr-pending" aria-hidden />}
         <span className="code-hint">Backup only. If you change phones, our desk finds you with this.</span>
         <span className="code-subtle">{r.code}</span>
+      </div>
+      <div className="share-row">
+        <button type="button" className="share-btn" onClick={onShare}>Share with your clinic</button>
+        {shareMsg ? <p className="share-msg">{shareMsg}</p> : null}
       </div>
       <button type="button" className="ghost" onClick={onReset}>Not you? Register with your own number</button>
     </div>
@@ -170,6 +205,7 @@ export function PreRegisterForm({ onReserved, onOpen }) {
       setErrors({});
       const rec = { leadId: r.leadId, code: r.code, qr: r.qr, firstName: r.firstName, name: r.name, clinic: r.clinic, email: r.email, phone: r.phone, reservedAt: Date.now() };
       saveReserved(rec);
+      track('spin-reserved');
       onReserved?.(rec);
     });
   }, [onReserved, onOpen]);
@@ -177,8 +213,9 @@ export function PreRegisterForm({ onReserved, onOpen }) {
   return (
     <form onSubmit={onSubmit} className="gate-form pre-form" noValidate>
       <h2 className="title">Reserve your spin</h2>
-      <p className="lede">Register now, spin at the booth. One spin per mobile number, every spin wins something.</p>
+      <p className="lede">30 seconds now, no form at the booth. Every spin wins something.</p>
       <GoogleEmailButton onIdentity={({ email, name }) => { setEmailV(email); if (name && !nameV) setNameV(name); setFromGoogle(true); }} />
+      <Field id="phone" label="Mobile number" type="tel" autoComplete="tel" inputMode="tel" placeholder="0917 123 4567" error={errors.phone} required />
       <Field id="name" label="Full name" autoComplete="name" error={errors.name} required value={nameV} onChange={(e) => setNameV(e.target.value)} />
       <Field id="clinic" label="Dental clinic" autoComplete="organization" error={errors.clinic} required value={clinicQ} onChange={(e) => { setClinicQ(e.target.value); setPlace(null); setNoneOfThese(false); }} />
       {place ? (
@@ -205,7 +242,6 @@ export function PreRegisterForm({ onReserved, onOpen }) {
         </div>
       ) : lookingUp ? <p className="match-q">Looking up your clinic on Google</p> : null}
       <Field id="email" label={fromGoogle ? 'Email (from Google)' : 'Email'} type="email" autoComplete="email" inputMode="email" error={errors.email} required value={emailV} onChange={(e) => { setEmailV(e.target.value); setFromGoogle(false); }} />
-      <Field id="phone" label="Mobile number" type="tel" autoComplete="tel" inputMode="tel" placeholder="0917 123 4567" error={errors.phone} required />
       <label className={`consent ${errors.consent ? 'has-error' : ''}`}>
         <input type="checkbox" name="consent" />
         <span>I agree that DentaSource Direct may contact me about products and promos.</span>
@@ -213,30 +249,96 @@ export function PreRegisterForm({ onReserved, onOpen }) {
       {errors.consent ? <p className="field-error">{errors.consent}</p> : null}
       {errors.form ? <p className="field-error">{errors.form}</p> : null}
       <button type="submit" className="cta" disabled={pending}>{pending ? 'Reserving' : 'Reserve my spin'}</button>
-      <p className="fineprint">Your spin is redeemed on your own phone at the booth.</p>
+      <p className="fineprint">Your spin is reserved to this number. At the booth, open this page and spin.</p>
     </form>
   );
 }
 
 export default function PreEvent({ onOpen, doors, onCredits }) {
   const [reserved, setReserved] = useState(null);
-  useEffect(() => { setReserved(loadReserved()); }, []);
+  const [mounted, setMounted] = useState(false);
+  // Two sentinels drive the sticky bar: the hero CTA (has it scrolled away?) and
+  // the form/reserved slot (is the destination already on screen?).
+  const [heroSeen, setHeroSeen] = useState(true);
+  const [slotSeen, setSlotSeen] = useState(false);
+  const heroCtaRef = useRef(null);
+  const slotRef = useRef(null);
+  const barRef = useRef(null);
+
+  useEffect(() => { setMounted(true); setReserved(loadReserved()); }, []);
   const reset = () => { clearReserved(); setReserved(null); };
+
+  // Scroll the visitor to whichever card is theirs, and hand the keyboard to the
+  // first field. preventScroll keeps the smooth scroll from being cut short.
+  const goToSlot = useCallback((event) => {
+    track(event);
+    const slot = slotRef.current;
+    if (!slot) return;
+    slot.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const first = slot.querySelector('input:not([type="hidden"]):not([type="checkbox"])');
+    if (first) { try { first.focus({ preventScroll: true }); } catch { first.focus(); } }
+  }, []);
+
+  useEffect(() => {
+    if (!mounted || typeof IntersectionObserver === 'undefined') return;
+    const hero = new IntersectionObserver(([e]) => setHeroSeen(e.isIntersecting), { threshold: 0 });
+    // ☠️ THE SLOT SENTINEL NEEDS A SHRUNK ROOT. The form is ~700px tall on a
+    // 390-wide phone, so a plain threshold:0 counts it as "on screen" the moment
+    // its first pixel peeks over the bottom edge. Measured: that left the bar a
+    // 165px band out of 1,667px of scroll, which is a bar nobody ever sees.
+    // Clipping 35% off the bottom of the root means the slot only counts once it
+    // is genuinely being read, and the bar covers the whole prize section.
+    const slot = new IntersectionObserver(([e]) => setSlotSeen(e.isIntersecting), { threshold: 0, rootMargin: '0px 0px -35% 0px' });
+    if (heroCtaRef.current) hero.observe(heroCtaRef.current);
+    if (slotRef.current) slot.observe(slotRef.current);
+    return () => { hero.disconnect(); slot.disconnect(); };
+  }, [mounted, reserved]);
+
+  const showBar = mounted && !reserved && !heroSeen && !slotSeen;
+
+  // The room's music dock sits in the same corner. Publish the bar's real height
+  // on <html> so /lounge/room.css's dock can step above it (rule in spin.css).
+  useEffect(() => {
+    const html = document.documentElement;
+    if (showBar) {
+      html.style.setProperty('--spin-bar-h', `${barRef.current?.offsetHeight || 72}px`);
+      html.classList.add('has-spin-bar');
+    } else {
+      html.classList.remove('has-spin-bar');
+    }
+    return () => { html.classList.remove('has-spin-bar'); };
+  }, [showBar]);
+
   return (
     <>
       <section className="card pre-card">
-        <h1 className="title">The wheel opens at NADTI</h1>
+        <h1 className="title">Every spin wins at NADTI 2026</h1>
+        <p className="lede hero-lede">₱30,000 Training Credits, 10% and 5% off, and a gift for everyone else. Reserve your spin now, skip the form at the booth.</p>
         <p className="booth-line">{BOOTH_LINE}</p>
         <Countdown onDone={onOpen} />
+        <button type="button" ref={heroCtaRef} className="cta hero-cta" onClick={() => goToSlot('spin-hero-cta')}>
+          {reserved ? 'See my reservation' : 'Reserve my spin'}
+        </button>
+        <p className="fineprint">30 seconds. One spin per mobile number.</p>
       </section>
       <IdleWheel />
       <section className="card pre-card">
         <p className="eyebrow">What you can win</p>
         <p className="lede" style={{ marginTop: 6 }}>Every spin wins something. Prizes are claimed at the booth.</p>
         <PrizeList onCredits={onCredits} />
-        {reserved ? <ReservedCard r={reserved} onReset={reset} /> : <PreRegisterForm onReserved={setReserved} onOpen={onOpen} />}
+        <div ref={slotRef}>
+          {reserved ? <ReservedCard r={reserved} onReset={reset} /> : <PreRegisterForm onReserved={setReserved} onOpen={onOpen} />}
+        </div>
       </section>
       <section className="card">{doors}</section>
+      {showBar && mounted
+        ? createPortal(
+            <div className="spin-bar" ref={barRef}>
+              <button type="button" className="cta" onClick={() => goToSlot('spin-bar-cta')}>Reserve my spin</button>
+            </div>,
+            document.body,
+          )
+        : null}
     </>
   );
 }

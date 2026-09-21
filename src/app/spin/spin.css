@@ -343,3 +343,59 @@
 
 /* the room's dock steps aside while a sheet is up */
 html.sheet-open #tx-dock { opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+
+/* ───────── round 6: conversion rails (2026-09-21) ─────────
+   Prize-led hero, a CTA above the fold, a sticky bar that hands the scroll back
+   to the form, and a share door on the reserved card. */
+
+/* The hero CTA sits under the countdown, inside the card. */
+.hero-lede { margin: 0 0 10px; }
+.hero-cta { margin-top: 14px; }
+
+/* ☠️ THE STICKY BAR IS PORTALLED TO <body>, NEVER RENDERED INSIDE .card.
+   Two ancestors on this page would demote a position:fixed child to absolute:
+   .card carries backdrop-filter, and .pre-stack is a framer-motion node that
+   holds a transform mid-animation. Both create a containing block. The room's
+   own ✕ and 🌗 buttons live outside #tx-room for exactly this reason. */
+.spin-bar {
+  position: fixed; z-index: 9998;
+  left: 0; right: 0; bottom: 0;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+  background: rgba(6, 17, 12, 0.82);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 -18px 40px -24px rgba(0, 0, 0, 0.9);
+  animation: bar-in 0.22s ease-out both;
+}
+@keyframes bar-in { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .spin-bar { animation: none; } }
+.spin-bar .cta { max-width: 420px; margin: 0 auto; display: block; height: 52px; }
+/* The dock is lower-RIGHT and the bar is full width, so they collide by default.
+   Higher specificity than /lounge/room.css's own #tx-dock rule, which is injected
+   into <head> at runtime and therefore wins on source order at equal weight. */
+html.has-spin-bar #tx-dock {
+  bottom: calc(var(--spin-bar-h, 76px) + 14px + env(safe-area-inset-bottom, 0px));
+  transition: bottom 0.22s ease-out;
+}
+
+/* Compact podium for the open-phase gate: prizes before the form, no new art. */
+.prize-strip { margin: 0 0 14px; }
+.prize-strip .podium-row { padding: 9px 12px; gap: 10px; }
+.prize-strip .podium-btn { padding: 9px 12px; gap: 10px; }
+.prize-strip .p-title { font-size: 18px; }
+.prize-strip .p-grand .p-title { font-size: 20px; }
+.prize-strip .p-body small { font-size: 11px; }
+.prize-strip .badge { height: 22px; font-size: 10px; padding: 0 8px; }
+.prize-strip .gifts li { font-size: 12px; padding: 6px 5px 8px; }
+.prize-strip .gifts-label { font-size: 10px; }
+
+/* Share with your clinic (reserved card). */
+.share-row { margin-top: 14px; }
+.share-btn {
+  width: 100%; min-height: 48px; border-radius: 999px; cursor: pointer;
+  font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+  color: #fff3b0; background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.55);
+}
+.share-btn:active { transform: translateY(1px); }
+.share-msg { margin: 8px 0 0; font-size: 12.5px; text-align: center; color: #86efac; }
