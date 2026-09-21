@@ -1090,6 +1090,12 @@ export function PlaceMap({ place, near }) {
  * through the whole list; slicing first would take the head of the raw array, which is
  * every image the manifest happens to list before its first video.
  */
+/** Send a clip back to its start if it is anywhere inside its branded end card. */
+const cardGuard = (playTo) => (e) => {
+  const v = e.currentTarget;
+  if (v.currentTime >= playTo) v.currentTime = 0;
+};
+
 const MIXED_SHOWN = 44;
 
 export function ActionPanel({ beat, beatIndex, items = [] }) {
@@ -1173,8 +1179,29 @@ export function ActionPanel({ beat, beatIndex, items = [] }) {
                   loop
                   playsInline
                   preload="none"
+                  // ☠️ LOOP BEFORE THE END CARD. DSD closes most of its reels with a
+                  // branded outro: the logo, a SCAN ME QR code, a phone number and the
+                  // showroom address. 48 of the 90 clips these beats draw on end in one.
+                  // `loop` alone plays every clip to its last frame, so a marquee tile
+                  // parks on that card for a second or two on every pass, which is
+                  // exactly the promo card the exclusion law bars, served from the home
+                  // page. Looping at `playTo` means the card never paints. The seconds
+                  // come from the manifest, measured per clip; a clip without one plays
+                  // to its natural end as before.
+                  onTimeUpdate={it.playTo ? cardGuard(it.playTo) : undefined}
+                  // ☠️ AND THE SAME GUARD ON PAUSE, because timeupdate does not fire on a
+                  // video that is not playing. This marquee pauses every tile except the
+                  // one nearest the middle, so a clip stopped inside its card region would
+                  // sit on that card indefinitely, and a paused video shows its LAST
+                  // PAINTED FRAME rather than its poster. Playback alone cannot get there,
+                  // since timeupdate fires about every 250ms and playTo is 0.4s clear of
+                  // the card, but a seek can, and a seek is what a visitor does.
+                  onSeeked={it.playTo ? cardGuard(it.playTo) : undefined}
                   onVolumeChange={(e) => speak(!e.currentTarget.muted && !e.currentTarget.paused)}
-                  onPause={() => speak(false)}
+                  // ☠️ ONE onPause, DOING BOTH JOBS. Written as two props the second
+                  // silently wins and the first never runs, which is how the card guard
+                  // came to do nothing on a paused tile while looking present in the file.
+                  onPause={(e) => { speak(false); if (it.playTo) cardGuard(it.playTo)(e); }}
                 />
               );
             }

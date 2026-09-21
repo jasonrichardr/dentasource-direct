@@ -418,7 +418,9 @@
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-08.mp4",
       "hdWidth": 720,
-      "hdHeight": 1280
+      "hdHeight": 1280,
+      "playTo": 24.0,
+      "cardStart": 24.4
     },
     {
       "id": "wall-09",
@@ -438,7 +440,9 @@
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-09.mp4",
       "hdWidth": 720,
-      "hdHeight": 1280
+      "hdHeight": 1280,
+      "playTo": 37.9,
+      "cardStart": 38.3
     },
     {
       "id": "wall-10",
@@ -598,7 +602,9 @@
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-17.mp4",
       "hdWidth": 720,
-      "hdHeight": 1280
+      "hdHeight": 1280,
+      "playTo": 28.0,
+      "cardStart": 28.4
     },
     {
       "id": "wall-18",
@@ -758,7 +764,9 @@
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-25.mp4",
       "hdWidth": 480,
-      "hdHeight": 854
+      "hdHeight": 854,
+      "playTo": 162.8,
+      "cardStart": 163.2
     },
     {
       "id": "wall-26",
@@ -778,7 +786,9 @@
       "note": "already on the wall before the library existed",
       "hd": "/cinema/reels/hd/wall-26.mp4",
       "hdWidth": 480,
-      "hdHeight": 854
+      "hdHeight": 854,
+      "playTo": 84.9,
+      "cardStart": 85.5
     },
     {
       "id": "wall-27",
@@ -956,7 +966,9 @@
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-03.mp4",
       "hdWidth": 480,
-      "hdHeight": 854
+      "hdHeight": 854,
+      "playTo": 30.3,
+      "cardStart": 30.9
     },
     {
       "id": "field-04",
@@ -975,7 +987,9 @@
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-04.mp4",
       "hdWidth": 480,
-      "hdHeight": 854
+      "hdHeight": 854,
+      "playTo": 32.8,
+      "cardStart": 33.2
     },
     {
       "id": "field-05",
@@ -1013,7 +1027,9 @@
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-06.mp4",
       "hdWidth": 480,
-      "hdHeight": 854
+      "hdHeight": 854,
+      "playTo": 61.3,
+      "cardStart": 61.7
     },
     {
       "id": "field-07",
@@ -1032,7 +1048,9 @@
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-07.mp4",
       "hdWidth": 480,
-      "hdHeight": 854
+      "hdHeight": 854,
+      "playTo": 54.7,
+      "cardStart": 55.1
     },
     {
       "id": "field-09",
@@ -1051,7 +1069,9 @@
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-09.mp4",
       "hdWidth": 480,
-      "hdHeight": 854
+      "hdHeight": 854,
+      "playTo": 41.0,
+      "cardStart": 41.4
     },
     {
       "id": "field-11",
@@ -1070,7 +1090,9 @@
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-11.mp4",
       "hdWidth": 480,
-      "hdHeight": 854
+      "hdHeight": 854,
+      "playTo": 38.0,
+      "cardStart": 38.4
     },
     {
       "id": "field-12",
@@ -1089,7 +1111,9 @@
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-12.mp4",
       "hdWidth": 480,
-      "hdHeight": 854
+      "hdHeight": 854,
+      "playTo": 47.5,
+      "cardStart": 47.9
     },
     {
       "id": "field-17",
@@ -1108,7 +1132,9 @@
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-17.mp4",
       "hdWidth": 480,
-      "hdHeight": 854
+      "hdHeight": 854,
+      "playTo": 30.2,
+      "cardStart": 30.6
     },
     {
       "id": "field-19",
@@ -1127,7 +1153,9 @@
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-19.mp4",
       "hdWidth": 480,
-      "hdHeight": 854
+      "hdHeight": 854,
+      "playTo": 64.8,
+      "cardStart": 65.2
     },
     {
       "id": "field-20",
@@ -1146,7 +1174,9 @@
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-20.mp4",
       "hdWidth": 480,
-      "hdHeight": 854
+      "hdHeight": 854,
+      "playTo": 51.9,
+      "cardStart": 52.3
     },
     {
       "id": "field-21",
@@ -1184,7 +1214,9 @@
       "note": "already in the repo, watched and kept, not re-encoded",
       "hd": "/cinema/reels/hd/field-23.mp4",
       "hdWidth": 480,
-      "hdHeight": 854
+      "hdHeight": 854,
+      "playTo": 72.9,
+      "cardStart": 73.3
     },
     {
       "id": "field-24",
@@ -1511,7 +1543,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1686392845807696.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 29.4,
+      "cardStart": 29.8
     },
     {
       "id": "1968490167144330",
@@ -1675,7 +1709,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/2264046751080325.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 24.9,
+      "cardStart": 25.3
     },
     {
       "id": "1327978675477044",
@@ -1693,7 +1729,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1327978675477044.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 30.3,
+      "cardStart": 30.9
     },
     {
       "id": "2794952264198672",
@@ -1729,7 +1767,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1683481059462196.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 32.8,
+      "cardStart": 33.2
     },
     {
       "id": "1917792168939952",
@@ -1801,7 +1841,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1783856553066745.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 28.0,
+      "cardStart": 28.4
     },
     {
       "id": "2138686030401963",
@@ -1873,7 +1915,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1655693562346487.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 37.9,
+      "cardStart": 38.3
     },
     {
       "id": "1518637086604072",
@@ -1927,7 +1971,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1003522505429933.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 24.0,
+      "cardStart": 24.4
     },
     {
       "id": "1320731836605600",
@@ -2053,7 +2099,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/952495344243881.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 57.9,
+      "cardStart": 58.3
     },
     {
       "id": "3913817348922519",
@@ -2091,7 +2139,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1275618868025503.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 39.3,
+      "cardStart": 39.7
     },
     {
       "id": "816383304860590",
@@ -2109,7 +2159,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/816383304860590.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 32.0,
+      "cardStart": 32.4
     },
     {
       "id": "1701745900994914",
@@ -2127,7 +2179,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1701745900994914.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 61.3,
+      "cardStart": 61.7
     },
     {
       "id": "4465157690422797",
@@ -2145,7 +2199,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/4465157690422797.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 19.9,
+      "cardStart": 20.3
     },
     {
       "id": "1305206541522895",
@@ -2163,7 +2219,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1305206541522895.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 23.1,
+      "cardStart": 23.5
     },
     {
       "id": "982416134243105",
@@ -2201,7 +2259,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/924087053827979.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 54.7,
+      "cardStart": 55.1
     },
     {
       "id": "1298016768942445",
@@ -2291,7 +2351,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/3312264415609418.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 82.1,
+      "cardStart": 82.5
     },
     {
       "id": "857481130682886",
@@ -2327,7 +2389,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1579061633321894.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 41.0,
+      "cardStart": 41.4
     },
     {
       "id": "1249814683272078",
@@ -2345,7 +2409,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1249814683272078.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 39.8,
+      "cardStart": 40.2
     },
     {
       "id": "1838737903502386",
@@ -2381,7 +2447,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/3248225922025033.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 56.6,
+      "cardStart": 57.0
     },
     {
       "id": "1600633247921603",
@@ -2399,7 +2467,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1600633247921603.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 38.0,
+      "cardStart": 38.4
     },
     {
       "id": "25872895762382044",
@@ -2417,7 +2487,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/25872895762382044.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 47.5,
+      "cardStart": 47.9
     },
     {
       "id": "734728242834618",
@@ -2435,7 +2507,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/734728242834618.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 32.7,
+      "cardStart": 33.1
     },
     {
       "id": "873165588930729",
@@ -2453,7 +2527,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/873165588930729.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 32.1,
+      "cardStart": 32.5
     },
     {
       "id": "1633561794664812",
@@ -2543,7 +2619,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/769116215668843.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 30.7,
+      "cardStart": 31.1
     },
     {
       "id": "1089983923204877",
@@ -2579,7 +2657,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1193847869573475.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 28.4,
+      "cardStart": 28.8
     },
     {
       "id": "1453670749761290",
@@ -2597,7 +2677,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1453670749761290.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 30.2,
+      "cardStart": 30.6
     },
     {
       "id": "1261406355829099",
@@ -2669,7 +2751,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1948358382412256.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 27.3,
+      "cardStart": 27.7
     },
     {
       "id": "1873040906635560",
@@ -2687,7 +2771,9 @@
       "height": 960,
       "hd": "/cinema/reels/hd/1873040906635560.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1440
+      "hdHeight": 1440,
+      "playTo": 27.4,
+      "cardStart": 27.8
     },
     {
       "id": "2356888671419841",
@@ -3089,7 +3175,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1340525937239978.mp4",
       "hdWidth": 720,
-      "hdHeight": 1280
+      "hdHeight": 1280,
+      "playTo": 56.1,
+      "cardStart": 56.5
     },
     {
       "id": "1360163231895400",
@@ -3107,7 +3195,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1360163231895400.mp4",
       "hdWidth": 720,
-      "hdHeight": 1280
+      "hdHeight": 1280,
+      "playTo": 57.5,
+      "cardStart": 57.9
     },
     {
       "id": "682494724272698",
@@ -3125,7 +3215,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/682494724272698.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 64.8,
+      "cardStart": 65.2
     },
     {
       "id": "1165736618285530",
@@ -3179,7 +3271,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1862434721226777.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 51.9,
+      "cardStart": 52.3
     },
     {
       "id": "1061880969097993",
@@ -3215,7 +3309,9 @@
       "height": 1280,
       "hd": "/cinema/reels/hd/1585400655485928.mp4",
       "hdWidth": 1080,
-      "hdHeight": 1920
+      "hdHeight": 1920,
+      "playTo": 49.0,
+      "cardStart": 49.4
     },
     {
       "id": "1278774399878877",
@@ -3941,5 +4037,6 @@
       "heldRecoverable": false
     }
   ],
-  "locationNotes": "round 6, 2026-09-21: the \"location\" field says WHERE the clip was shot and is the field to trust. \"category\" was assigned from the Facebook CAPTION and is wrong about location for 138 of the 182 entries, so it is kept for provenance and is never used to place media in a beat. Every location here was decided by LOOKING at a five frame contact sheet of the clip, never at its caption. Per clip evidence, with the marks actually seen in each sheet, lives in builds/dsd-site-overhaul/round6/reel-locations.json in the vault."
+  "locationNotes": "round 6, 2026-09-21: the \"location\" field says WHERE the clip was shot and is the field to trust. \"category\" was assigned from the Facebook CAPTION and is wrong about location for 138 of the 182 entries, so it is kept for provenance and is never used to place media in a beat. Every location here was decided by LOOKING at a five frame contact sheet of the clip, never at its caption. Per clip evidence, with the marks actually seen in each sheet, lives in builds/dsd-site-overhaul/round6/reel-locations.json in the vault.",
+  "playToNotes": "round 6: DSD appends a branded end card to most of its reels, carrying the logo, a SCAN ME QR code, a phone number and the showroom address. 48 of the 90 clips these beats draw on end in one, between 1.4 and 10.8 seconds long. The exclusion law bars a promo card as a tile, and a looping muted marquee reaches the end of a clip and sits on that card. `playTo` is the second the card begins, less a little, and the mixed marquee loops back to the start there, so the card never paints. `cardStart` is kept as the measurement. Found by OCR binary search over a one frame per second probe of the final 55 percent of every clip."
 }

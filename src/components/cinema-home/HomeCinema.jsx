@@ -256,8 +256,8 @@ const GROWTH_DROPPED = [
  * own rules about them; they do not come to the home arc.
  */
 const LIVE_SESSIONS = [
-  { slug: 'crest-workshop', alt: 'A workshop session running in the Training Center', duration: 32.0 },
-].map(({ slug, alt, duration }) => ({
+  { slug: 'crest-workshop', alt: 'A workshop session running in the Training Center', duration: 32.0, playTo: 26.0 },
+].map(({ slug, alt, duration, playTo }) => ({
   type: 'video',
   src: `/cinema/growth/${slug}.mp4`,
   poster: `/gp/live/${slug}.jpg`,
@@ -266,6 +266,7 @@ const LIVE_SESSIONS = [
   width: 720,
   height: 1280,
   duration,
+  playTo,
 }));
 
 /** A library reel in the shape ActionPanel's mixed marquee wants. */
@@ -278,6 +279,7 @@ const reelItem = (r) => ({
   width: r.width,
   height: r.height,
   duration: r.duration,
+  playTo: r.playTo,
   reel_id: r.id,
 });
 
@@ -314,6 +316,25 @@ const leadFirst = (items, reelId) => {
   return i < 0 ? items : [items[i], ...items.slice(0, i), ...items.slice(i + 1)];
 };
 
+/**
+ * One tile per source, first mention wins.
+ *
+ * ☠️ THE BEATS AND THE MANIFESTS OVERLAP ON PURPOSE AND THAT MAKES DUPLICATES. A beat's
+ * own `media` array is the list it was hand written with, and the manifests were later
+ * built over the same articles, so the nationwide beat listed four frames that
+ * installs.json already carried and the training beat three that training-media.json did.
+ * Rendered, that is the same photograph twice in one sweep of the marquee, which reads as
+ * a bug in the strip rather than as a repeated picture.
+ */
+const dedupe = (items) => {
+  const seen = new Set();
+  return items.filter((it) => {
+    if (!it || !it.src || seen.has(it.src)) return false;
+    seen.add(it.src);
+    return true;
+  });
+};
+
 const FLOOR_BEAT = HOME_BEATS.find((b) => b.key === 'the-floor');
 const TRAINING_BEAT = HOME_BEATS.find((b) => b.key === 'training-center');
 const DELIVERY_BEAT = HOME_BEATS.find((b) => b.key === 'delivery');
@@ -340,26 +361,28 @@ const MIXED_ITEMS = {
   // The floor: every reel shot in the showroom, opening on the one Jarich named, with the
   // showroom's own photographs mixed through them.
   'the-floor': leadFirst(
-    [...reelsShotIn('showroom'), ...beatStills(FLOOR_BEAT, 'The showroom floor in Pasig')],
+    dedupe([...reelsShotIn('showroom'), ...beatStills(FLOOR_BEAT, 'The showroom floor in Pasig')]),
     FLOOR_BEAT?.leadReel,
   ),
 
   // The Training Center: everything actually shot in that room, from three manifests.
-  'training-center': [
+  'training-center': dedupe([
     ...TRAINING_ITEMS.filter((it) => (it.type !== 'video' ? !TRAINING_STILLS_DROPPED.includes(it.src) : trainingVideoIsTheRoom(it))),
     ...GROWTH_ITEMS.filter((it) => !GROWTH_DROPPED.includes(it.src)),
     ...LIVE_SESSIONS,
     // training reels the caption-built manifest never picked up
     ...reelsShotIn('training').filter((v) => !TRAINING_ITEMS.some((it) => it.reel_id === v.reel_id)),
     ...beatStills(TRAINING_BEAT, 'Inside the Training Center in Pasig'),
-  ],
+  ]),
 
   // Nationwide: the install tiles, and every reel of the team or the cargo travelling.
-  delivery: [
-    ...INSTALL_TILES.map((t) => ({ type: 'image', ...t, caption: t.alt })),
+  delivery: dedupe([
+    // a tile whose luminance makes it paint as a black rectangle is held out the same way
+    // a promo card is: it is in the manifest, it is not on the beat
+    ...INSTALL_TILES.filter((t) => !t.beatExclude).map((t) => ({ type: 'image', ...t, caption: t.alt })),
     ...reelsShotIn('road'),
     ...beatStills(DELIVERY_BEAT, 'On the road with a delivery'),
-  ],
+  ]),
 };
 
 function panelFor(beat, i, articles) {
