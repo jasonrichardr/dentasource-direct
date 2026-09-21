@@ -59,7 +59,7 @@
     },
     {
       "key": "the-floor",
-      "kind": "photo",
+      "kind": "action",
       "eyebrow": "The showroom",
       "headline": "The largest dental showroom in the country, and the only door to three brands",
       "body": "610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. We are the exclusive Philippine distributor for ROSON and the exclusive Denjoy partner here, so the unit on our floor is the unit you receive, and the spares and the support stay in the country. Sit in them side by side in the same light before you choose.",
@@ -68,10 +68,39 @@
         "href": "/contact"
       },
       "media": [
-        "/images/news/why-visit-the-pasig-showroom/v014-1.jpg",
-        "/images/news/roson-dental-south-china-2026/v018-4.jpg",
-        "/images/news/dentasource-exclusive-denjoy-partner-philippines/p073-1.jpg"
-      ]
+        {
+          "src": "/images/home/showroom/visit-1.jpg",
+          "alt": "The showroom floor from the door, with the reception counter and the chair lineup",
+          "width": 1080,
+          "height": 820
+        },
+        {
+          "src": "/images/home/showroom/visit-2.jpg",
+          "alt": "Chairs standing side by side in the middle of the showroom floor",
+          "width": 1080,
+          "height": 820
+        },
+        {
+          "src": "/images/home/showroom/visit-3.jpg",
+          "alt": "The reception counter and the glass front of the showroom",
+          "width": 1080,
+          "height": 820
+        },
+        {
+          "src": "/images/home/showroom/visit-4.jpg",
+          "alt": "Chairs in several upholstery colours under the showroom lights",
+          "width": 1080,
+          "height": 820
+        },
+        {
+          "src": "/images/news/why-visit-the-pasig-showroom/v014-1.jpg",
+          "alt": "A member of the team on the showroom floor beside the chairs",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "leadReel": "2698777730518007",
+      "note": "round 6: the two frames that were not shot here are gone. v018-4 was a ROSON stand at a trade show in China and p073-1 was a partnership share card laid over a factory building, so neither belonged on a beat about this floor. The videos are not listed here: HomeCinema takes every reel the visual pass placed in the showroom, so the beat cannot drift from reel-library.json."
     },
     {
       "key": "k-clamps",
@@ -94,7 +123,25 @@
       "kind": "action",
       "eyebrow": "Growth Partner",
       "headline": "A growth partner, not a supplier.",
-      "body": "Units 307 and 308 at Mercedes Square Plaza in Pasig, minutes from the showroom. Simulator stations, an interactive board, and courses run with partner study groups and clinical instructors. Your staff train on the same unit that will be standing in your operatory, and our own team learns in this room before they teach in it, which is why the person who trains them on handover day has done the procedure themselves.",
+      "body": "Most of what we do starts after the invoice. Your staff train on the same chair that will stand in your operatory, in this room, before it is delivered. Our own team learns here first, so the person who hands your chair over has already done the procedure on it. Courses run with partner study groups and clinical instructors. Service and parts stay in the country.",
+      "place": {
+        "address": "Mercedes Square Plaza 2, Units 307 and 308, Mercedes Avenue corner Luis Street, Pasig City",
+        "mapEmbed": "https://www.google.com/maps?q=14.5681266,121.0913401&z=17&output=embed",
+        "mapTitle": "Map of the DentaSource Training Center in Pasig City",
+        "panoEmbed": "https://www.google.com/maps?layer=c&cbll=14.5681266,121.0913401&cbp=12,0,0,0,0&output=svembed",
+        "panoTitle": "Street View of the Training Center building and its parking on Luis Street",
+        "links": [
+          {
+            "label": "Get directions",
+            "href": "https://www.google.com/maps/dir/?api=1&destination=14.5681266,121.0913401"
+          },
+          {
+            "label": "See the building on Street View",
+            "href": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=14.5681266,121.0913401"
+          }
+        ],
+        "note": "Google Maps carries one pin for Mercedes Square Plaza and no separate pin for Plaza 2 or for the Training Center, so the embeds and the links address the coordinates rather than a place id. Google place photos are NOT copied onto the site, which the Maps terms forbid; the building is shown by EMBEDDING Street View, which stays served by Google. The cbp parameter is load bearing: without it the same svembed URL answers 200 and quietly renders a zoomed out WORLD MAP instead of a panorama, which is what it did on the first pass. With it the pano resolves to 1250 Luis, Pasig and shows the building frontage and the parking along it."
+      },
       "media": [
         "/images/news/dentasource-training-center-opens-pasig/v032-1.jpg",
         "/images/news/dentasource-training-center-opens-pasig/v032-2.jpg",
@@ -117,7 +164,7 @@
     },
     {
       "key": "delivery",
-      "kind": "installs",
+      "kind": "action",
       "eyebrow": "Nationwide delivery",
       "headline": "We travel the whole country to build it",
       "body": "Luzon is served by our own van and our own installation team. Units bound for the Visayas and Mindanao go by freight with installation arranged on arrival. A free ocular visit comes first, so the unit fits the room before it ever leaves the warehouse.",
@@ -131,7 +178,15 @@
         "/images/news/dental-chair-delivery-occidental-mindoro/v023-2.jpg",
         "/images/news/dental-chair-installation-cabuyao-laguna/v081-1.jpg"
       ],
-      "tilesFrom": "installs.json"
+      "tilesFrom": "installs.json",
+      "note": "round 6: the tiles still come from installs.json and every reel the visual pass marked `road` is mixed in beside them, which is why this is the action panel rather than the image only installs panel. See HomeCinema.jsx.",
+      "ctas": [
+        {
+          "label": "Arrange a delivery",
+          "href": "/contact",
+          "variant": "solid"
+        }
+      ]
     },
     {
       "key": "after-sales",
