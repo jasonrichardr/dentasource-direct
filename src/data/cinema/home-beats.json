@@ -74,6 +74,22 @@
       ]
     },
     {
+      "key": "k-clamps",
+      "kind": "photo",
+      "eyebrow": "Rubber dam",
+      "headline": "K-Clamp",
+      "body": "Forty-six rubber dam clamp sizes by Shinhung, Korea. Exclusive in the Philippines.",
+      "cta": {
+        "label": "See the 46 sizes",
+        "href": "/k-clamps"
+      },
+      "media": [
+        "/images/kclamps/c-56.jpg",
+        "/images/kclamps/c-14.jpg",
+        "/images/kclamps/c-212.jpg"
+      ]
+    },
+    {
       "key": "training-center",
       "kind": "action",
       "eyebrow": "Growth Partner",

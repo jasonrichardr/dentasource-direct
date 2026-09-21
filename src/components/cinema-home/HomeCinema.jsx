@@ -109,6 +109,10 @@ const FORMATIONS = {
   heart: { kind: 'heart', copyLow: true },
   // the merged beat: the floor, and the two brands that only come through it
   'the-floor': { kind: 'sphere', radius: 3.7, ripple: 0.18, dim: true },
+  // K-Clamps sits directly after the floor beat because it is the third line that only
+  // comes through that door. Same sphere family as its neighbour, a touch tighter, so
+  // the two brand beats read as a pair rather than as one held frame.
+  'k-clamps': { kind: 'sphere', radius: 3.55, ripple: 0.2, dim: true },
   'training-center': { kind: 'sphere', radius: 3.85, ripple: 0.19, dim: true },
   delivery: { kind: 'sphere', radius: 3.6, ripple: 0.16, dim: true },
   'after-sales': { kind: 'sphere', radius: 3.5, ripple: 0.21, dim: true },
