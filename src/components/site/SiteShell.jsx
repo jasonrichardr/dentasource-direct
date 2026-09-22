@@ -34,7 +34,13 @@ import MarqueeSpeed from './MarqueeSpeed';
 // /studio is the localhost editor: the room's dock over a text field is noise,
 // and its document-level gesture listeners would start the music on the first
 // click into a headline.
-const ROOM_FREE_PREFIXES = ['/portal', '/admin', '/attendance', '/login', '/auth', '/api', '/team', '/studio'];
+// ☠️ /growth-partner AND /spin MOUNT THEIR OWN ROOM (LoungeRoom, the vanilla port under
+// public/lounge, chosen 2026-09-17 to match ffcdentalclinic.com 1:1 and tuned there: the
+// spin dock dodges the gift tiles, the sheets keep the dock alive across popstate). With
+// the cinema shell on every route since 2026-09-21, this Room mounted BESIDE it: two docks,
+// two media elements, and the same song playing twice on one tap (Jarich, 2026-09-22).
+// Those two routes keep their own room and get none from here.
+const ROOM_FREE_PREFIXES = ['/portal', '/admin', '/attendance', '/login', '/auth', '/api', '/team', '/studio', '/growth-partner', '/spin'];
 
 export function isRoomFree(pathname) {
   if (!pathname) return false;
