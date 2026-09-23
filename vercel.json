@@ -79,6 +79,10 @@
       "destination": "https://srv1376990.hstgr.cloud/jarich/:path*"
     },
     {
+      "source": "/growthpartner/drrajan/:path*",
+      "destination": "https://srv1376990.hstgr.cloud/drrajan/:path*"
+    },
+    {
       "source": "/jarich",
       "destination": "https://jarich-hub.vercel.app/jarich"
     },
