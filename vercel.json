@@ -83,6 +83,14 @@
       "destination": "https://srv1376990.hstgr.cloud/drrajan/:path*"
     },
     {
+      "source": "/drrajan/crest",
+      "destination": "https://rajan-crest.vercel.app/drrajan/crest"
+    },
+    {
+      "source": "/drrajan/crest/:path*",
+      "destination": "https://rajan-crest.vercel.app/drrajan/crest/:path*"
+    },
+    {
       "source": "/jarich",
       "destination": "https://jarich-hub.vercel.app/jarich"
     },
