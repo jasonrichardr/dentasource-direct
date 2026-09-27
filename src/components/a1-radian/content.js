@@ -1,206 +1,198 @@
 /* ─────────────────────────────────────────────────────────────────────
-   ROSON A1 Pro — content for the rideradian-DNA page.
+   ROSON A1 Pro — content for the rideradian-DNA detail sections that sit
+   under the product cinema on /a1-pro.
    Copy laws (DSD, locked): no competitor names, no emojis, Pasig showroom,
-   real product angles, learning-first (no "#1" roadmaps). Say less, bigger.
-   Reuses the existing curated copy in ../a1-pro/a1proContent.js.
+   real product angles, learning-first (no "#1" roadmaps), no prices, and
+   no dashes (em or en) in public copy. Say less, bigger.
+
+   2026-09-27 (the length pass): the page ran 25 viewport heights on a phone.
+   The second pinned hero, the manifesto, the two feature sections and the
+   configurations panel are now ONE swipeable detail row; configurations and
+   the spec sheet are ONE accordion; the close carries ONE call (Messenger,
+   this month's price). Nothing factual was dropped: every spec row, every
+   standard item and every optional add-on still renders.
    ───────────────────────────────────────────────────────────────────── */
 
-// Imported (not just re-exported) so the reading-time helper below can walk
-// signatureColors' copy — it renders on this page (the ColorStrip). The public
-// API is unchanged: all three are still exported from content.js.
 import { signatureColors, dentistSegments, a1proFaqs } from '../a1-pro/a1proContent';
 export { signatureColors, dentistSegments, a1proFaqs };
 
 const P = '/images/products/a1-pro/pieces';
-const HM = '/images/products/a1-pro/hero-morph';
 const NEWS = '/images/news/roson-a1-2026'; // the clean, mobile-perfect ROSON deck panels (from the news guide)
 
-/* ── Article panels (Jarich's pick) ──────────────────────────────────────
-   The finished ROSON deck pages: each is a self-contained editorial card
-   (image + heading + caption baked in), sized tall for mobile. We show them
-   WHOLE at native ratio — never overlay our own captions (they'd clash). */
+/* The one call on the page. m.me cannot prefill a message; `ref` tags the
+   thread so the team can see it came from this page. */
+export const MESSENGER_PRICE = {
+  label: 'Get this month’s price on Messenger',
+  short: 'Get this month’s price',
+  href: 'https://m.me/dentasource?ref=a1pro_month_price',
+};
+
+/* Detail row header (the manifesto line, kept). */
+export const details = {
+  eyebrow: 'For the new generation',
+  headline: ['Some dentists inherit a room.', 'You design one.'],
+  sub: 'Every part of the A1 Pro, one card at a time. Swipe through.',
+};
+
+/* The finished ROSON deck pages, shown WHOLE at native ratio with a short
+   DSD line under each. The configurations panel closes the row. */
 export const featurePanels = [
   {
     src: `${NEWS}/a1-frame-system.jpg`, ratio: 0.685,
-    alt: 'Stable Core chair frame — 12 mm steel, 150 kg load — and the sleep-grade moving system',
-    title: 'Rock-solid. 150 kg.',
-    copy: 'A 12 mm carbon-steel core holds steady under every procedure — no wobble, no drift — and the sleep-grade motion rises and falls without a lurch.',
+    alt: 'Stable Core chair frame, 12 mm steel, 150 kg load, and the sleep grade moving system',
+    title: 'Rock solid. 150 kg.',
+    copy: 'A 12 mm carbon steel core holds steady under every procedure, and the sleep grade motion rises and falls without a lurch.',
   },
   {
     src: `${NEWS}/a1-shortcuts.jpg`, ratio: 0.685,
-    alt: 'Pro Shortcut Combos and the 4-position adjustable handpiece holder',
+    alt: 'Pro Shortcut Combos and the 4 position adjustable handpiece holder',
     title: 'Your shortcuts, one touch.',
-    copy: 'Pro Shortcut Combos recall your positions and run cup-fill, rinse and pipeline flush on their own — the 4-position handpiece holder keeps every instrument where your hand expects it.',
+    copy: 'Pro Shortcut Combos recall your positions and run cup fill, rinse and pipeline flush on their own. The 4 position holder keeps every handpiece where your hand expects it.',
   },
   {
     src: `${NEWS}/a1-rolight.jpg`, ratio: 0.685,
     alt: 'Rolight S dental light, spittoon odor trap, and integrated handle',
     title: 'Light that adapts.',
-    copy: 'The Rolight S covers the whole oral cavity in three modes — yellow, white, mixed — with a removable handle for disinfection and a rotary odor-trap spittoon.',
+    copy: 'The Rolight S covers the whole oral cavity in yellow, white or mixed mode, with a removable handle for disinfection and a rotary odor trap spittoon.',
   },
   {
     src: `${NEWS}/a1-cup-upholstery.jpg`, ratio: 0.685,
-    alt: 'Patient self-help cup filling and the soft silicone rubber leather upholstery',
+    alt: 'Patient self help cup filling and the soft silicone rubber leather upholstery',
     title: 'Patients help themselves.',
-    copy: 'One-touch cup filling the patient can reach, wrapped in soft silicone rubber leather — stain-resistant, hypoallergenic, and built to be wiped clean all day.',
+    copy: 'One touch cup filling the patient can reach, wrapped in soft silicone rubber leather: stain resistant, hypoallergenic, easy to wipe clean.',
   },
   {
     src: `${NEWS}/a1-stool.jpg`, ratio: 0.685,
     alt: 'The RS-07 professional dentist stool',
     title: 'The RS-07 stool, included.',
-    copy: 'A professional dentist stool ships standard — U-vent seat, adaptive backrest, sloped leg rest — engineered against the lumbar and circulatory strain of long chairside days.',
+    copy: 'A professional dentist stool ships standard, with a U vent seat, adaptive backrest and sloped leg rest for long chairside days.',
   },
   {
     src: `${NEWS}/a1-four-handed.jpg`, ratio: 1.464,
-    alt: 'The A1 four-handed treatment space, seen from above',
+    alt: 'The A1 four handed treatment space, seen from above',
     title: 'Built for four hands.',
-    copy: 'An operatory laid out for the whole team — everything within reach, seen from above.',
+    copy: 'An operatory laid out for the whole team, everything within reach.',
+  },
+  {
+    src: `${NEWS}/a1-configurations.jpg`, ratio: 0.685,
+    alt: 'The three A1 mounting configurations: top mounted, implant, and trolley',
+    title: 'Three ways to build it.',
+    copy: 'A top mounted delivery unit, an implant ready setup, or a mobile trolley. The full kit list is in the specifications below.',
   },
 ];
 
-/* The moving showcase strip — a beauty-led mix that drifts on its own. */
-export const showcasePanels = [
-  { src: `${NEWS}/a1-glamour.jpg`, ratio: 0.685, alt: 'ROSON A1 in Ballet Pink' },
-  { src: `${NEWS}/a1-frame-system.jpg`, ratio: 0.685, alt: 'Stable Core chair frame — 12 mm steel, 150 kg load' },
-  { src: `${NEWS}/a1-shortcuts.jpg`, ratio: 0.685, alt: 'Pro Shortcut Combos and the 4-position handpiece holder' },
-  { src: `${NEWS}/a1-rolight.jpg`, ratio: 0.685, alt: 'Rolight S dental light and spittoon' },
-  { src: `${NEWS}/a1-cup-upholstery.jpg`, ratio: 0.685, alt: 'Patient self-help cup filling and silicone upholstery' },
-  { src: `${NEWS}/a1-stool.jpg`, ratio: 0.685, alt: 'The RS-07 professional dentist stool' },
-  { src: `${NEWS}/a1-four-handed.jpg`, ratio: 1.464, alt: 'The A1 four-handed treatment space, from above' },
-  { src: `${NEWS}/a1-tone-setter.jpg`, ratio: 1.464, alt: 'Integrated color customization across the unit' },
-];
-
-/* The color-library moving strip — the color cards, drifting. */
+/* The color library moving strip: the color cards, drifting. */
 export const colorPanels = [
-  { src: `${NEWS}/a1-signature-colors.jpg`, ratio: 0.685, alt: 'The three A1 signature colors — ROSON Blue, Ballet Pink, Mint Green' },
-  { src: `${NEWS}/a1-tone-setter.jpg`, ratio: 1.464, alt: 'Integrated color customization — upholstery, water box, and instrument tray matched' },
-  { src: `${NEWS}/a1-upholstery-charts.jpg`, ratio: 1.464, alt: 'The full upholstery palette — soft silicone rubber leather and medical-grade PU' },
+  { src: `${NEWS}/a1-signature-colors.jpg`, ratio: 0.685, alt: 'The three A1 signature colors: ROSON Blue, Ballet Pink, Mint Green' },
+  { src: `${NEWS}/a1-tone-setter.jpg`, ratio: 1.464, alt: 'Integrated color customization: upholstery, water box, and instrument tray matched' },
+  { src: `${NEWS}/a1-upholstery-charts.jpg`, ratio: 1.464, alt: 'The full upholstery palette: soft silicone rubber leather and medical grade PU' },
   { src: `${NEWS}/a1-glamour.jpg`, ratio: 0.685, alt: 'ROSON A1 in Ballet Pink' },
 ];
 
-/* Hero color-morph frames — three real colorways of one render, same angle. */
-export const heroFrames = [
-  { key: 'blue', name: 'ROSON Blue', code: 'FS21', src: `${HM}/a1-hero-blue-v2.webp`, swatch: '#3D6F90' },
-  { key: 'pink', name: 'Ballet Pink', code: 'FS22', src: `${HM}/a1-hero-pink-v2.webp`, swatch: '#D87B8A' },
-  { key: 'mint', name: 'Mint Green', code: 'FS23', src: `${HM}/a1-hero-mint-v2.webp`, swatch: '#9BC5B4' },
-];
-
-export const hero = {
-  eyebrow: 'The ROSON A1 Pro',
-  headline: ['Your clinic.', 'Your color.'],
-  sub: 'A dental unit built for the new generation of dentists.',
-  primary: { label: 'Book a showroom demo', href: '/contact?interest=dental-chairs' },
-  secondary: { label: 'Explore the A1 Pro', href: '#a1-color' },
-  scrollHint: 'Scroll',
+export const colorCopy = {
+  eyebrow: 'The color library',
+  headline: ['Forty four ways', 'to be yours.'],
+  body: 'Three signatures pre styled by ROSON, then the full FS silicone and PU leather ranges, 44 colorways in all, matched across the water box, tray and upholstery.',
 };
 
-/* USP spotlight — the "why the A1 Pro" argument, one line at a time.
-   Eight benefit-led titles (Jarich asked for more than five). Each product
-   also earns its own dedicated section below; this is the headline case.
-   Every item carries its image's NATIVE ratio — the media panel bends to the
-   photo (NativeImg), so nothing is ever cropped, portrait or ultra-wide. */
-
-/* Statement interlude — the young-generation manifesto. */
-export const manifesto = {
-  headline: ['Some dentists inherit a room.', 'You design one.'],
-  body: 'The A1 Pro treats color as a first-class engineering choice, not an afterthought. Solid performance to support your diagnosis, premium aesthetics to brighten your practice — where beauty meets capability, and style walks with professionalism.',
-  cta: { label: 'Explore the color library', href: '#a1-color' },
-  bg: `${P}/atmosphere-pink-chair-curtains-clean.png`,
-};
-
-/* Engineers — the making. Real production-base + QC-lab photography (native
-   ratio, never cropped), a self-built stat tile, demoted spec-ticks, creds.
-   Language law: "production base", never "factory". */
-
-/* Color library — the 44-color story told with real ROSON swatch walls at
-   native ratio (marquee retired). Signatures strip up top, then the two full
-   material walls side by side. signatureColors (names + hex + poetry) imported. */
-
-/* Configurations — the official ROSON A1 product-configuration table
-   (PDF p.19–20), three mounting models at native ratio. Standard (√) vs the
-   four optional (△) clinical add-ons, verbatim from the sheet. */
+/* Configurations: the official ROSON A1 product configuration sheet
+   (PDF p.19 to 20). Standard (√) vs the four optional (△) clinical add-ons. */
 export const configurations = {
-  eyebrow: 'A configuration for every scenario',
-  headline: ['Three ways', 'to build it.'],
-  intro: 'The A1 Pro adapts to your operatory — a top-mounted delivery unit, an implant-ready setup, or a mobile trolley. Everything in the standard column ships as standard; four clinical add-ons are optional.',
-  // one clean article panel showing all three mounting models (shown whole)
-  panel: { src: `${NEWS}/a1-configurations.jpg`, ratio: 0.685, alt: 'The three A1 mounting configurations — top-mounted, implant, and trolley' },
+  mounting: ['Top mounted', 'Implant', 'Trolley'],
   standard: [
     'PU upholstery',
-    'Soft start & stop system',
+    'Soft start and stop system',
     'Stable Core chair base',
-    'Patient self-help cup filler',
-    'Detachable & rotatable ceramic spittoon',
-    'One-key water-source switch',
+    'Patient self help cup filler',
+    'Detachable, rotatable ceramic spittoon',
+    'One key water source switch',
     'ROSON intelligent control system',
-    'Error self-check program',
-    'Error-code display',
+    'Error self check program',
+    'Error code display',
     'Intelligent memory chair position',
     'Intelligent draining pipeline rinse',
-    'Cup-fill & spittoon-rinse linkage',
+    'Cup fill and spittoon rinse linkage',
     'Multifunction foot control',
     'Rolight S LED light',
     'RS-07 dentist stool',
     'LED X-ray viewer',
   ],
-  optional: ['Built-in scaler', 'Built-in micro motor', 'Built-in curing light', 'Intraoral camera'],
-  note: 'Per the ROSON A1 product-configuration sheet; final build confirmed at quote.',
+  optional: ['Built in scaler', 'Built in micro motor', 'Built in curing light', 'Intraoral camera'],
+  note: 'Per the ROSON A1 product configuration sheet; final build confirmed at quote.',
 };
 
-/* Closing — the Pasig showroom moment. */
+/* Tech specs, grouped for the accordion (superset of the JSON-LD schema). */
+export const specGroups = [
+  {
+    key: 'chair',
+    title: 'Chair and frame',
+    rows: [
+      ['Frame', '12 mm premium carbon structural steel'],
+      ['Maximum patient load', '150 kg'],
+      ['Motion system', 'Sleep grade soft start and stop'],
+      ['Memory positions', 'Intelligent chair position recall, one touch'],
+      ['Smart workflow', 'Smart Clean: 5 minute spittoon rinse and pipeline flush'],
+      ['Handpiece holder', '4 position adjustable (storage plus 2 grip angles)'],
+      ['Spittoon', 'Detachable ceramic with rotary odor trap'],
+      ['Film viewer', 'LED X-ray viewer, built in, standard'],
+    ],
+  },
+  {
+    key: 'light',
+    title: 'Light',
+    rows: [
+      ['Operating light', 'Rolight S, 8 LED, tri mode (yellow, white, mixed)'],
+      ['Light control', 'Infrared sensing plus manual button, removable handle'],
+    ],
+  },
+  {
+    key: 'color',
+    title: 'Upholstery and color',
+    rows: [
+      ['Upholstery', 'Soft silicone rubber leather or medical grade PU leather'],
+      ['Signature colors', 'ROSON Blue (FS21), Ballet Pink (FS22), Mint Green (FS23)'],
+      ['Custom colors', '44 colorways across the FS silicone and PU leather ranges'],
+    ],
+  },
+  {
+    key: 'kit',
+    title: 'Kit and configuration',
+    rows: [
+      ['Dentist stool', 'RS-07 Professional, included standard'],
+      ['Configurations', 'Top mounted, Implant, Trolley'],
+    ],
+    kit: true, // renders the standard (√) / optional (△) lists under the rows
+  },
+  {
+    key: 'origin',
+    title: 'Origin and warranty',
+    rows: [
+      ['Origin', 'Foshan Roson Medical, China'],
+      ['Warranty', 'Up to 5 years on the motor'],
+    ],
+  },
+];
+
+/* Closing: the Pasig showroom and the one call. */
 export const closing = {
-  // ruler counts colors, not units (A1 Pro isn't limited-run)
-  rulerStart: 'FS 01 / 44',
-  rulerEnd: '44 / 44',
   coords: '14.5764°N  121.0851°E',
   coordsLabel: 'DentaSource showroom · Pasig',
   headline: ['See every color', 'in person.'],
-  body: 'Sit in it. Recline it. Feel the silicone leather and pick your color. The country’s largest dental showroom is in Pasig — service and parts supported locally.',
-  priceLine: 'Complete chair · stool · light · X-ray viewer — included as standard.',
-  primary: { label: 'Book a showroom demo', href: '/contact?interest=dental-chairs' },
-  secondary: { label: 'Request a quote', href: '/contact?interest=dental-chairs' },
-  // the install-guide article — white-glove delivery proof, step by step
-  tertiary: { label: 'See how we Deliver', href: '/news/how-we-install-your-dental-chair' },
+  body: 'Sit in it, recline it, feel the silicone leather and pick your color at our Pasig showroom, open Monday to Sunday, 9 AM to 8 PM. Service and parts are supported locally.',
+  included: 'Chair, stool, light and X-ray viewer included as standard.',
+  cta: MESSENGER_PRICE,
+  deliver: { label: 'See how we deliver and install', href: '/news/how-we-install-your-dental-chair' },
   disclaimer: 'Configuration may vary. Specifications confirmed at showroom demo and quote.',
   bg: `${P}/four-handed-top-down-pink-clean.png`,
-  // old A1 Pro hero loop — color-reveal film, now the living backdrop of the showroom finale
-  video: '/videos/a1-pro-hero-loop.mp4',
 };
 
-/* Tech specs — the full mono definition list (superset of the JSON-LD schema;
-   Configurations reflect the ROSON A1 mounting options, confirmed at quote). */
-export const techSpecs = [
-  ['Frame', '12 mm premium carbon structural steel'],
-  ['Maximum patient load', '150 kg'],
-  ['Motion system', 'Sleep-grade soft start / stop'],
-  ['Operating light', 'Rolight S — 8-LED, tri-mode (yellow / white / mixed)'],
-  ['Light control', 'Infrared sensing + manual button, removable handle'],
-  ['Memory positions', 'Intelligent chair-position recall (one-touch)'],
-  ['Smart workflow', 'Smart Clean: 5-min spittoon rinse + pipeline flush'],
-  ['Handpiece holder', '4-position adjustable (storage + 2 grip angles)'],
-  ['Spittoon', 'Detachable ceramic with rotary odor trap'],
-  ['Film viewer', 'LED X-ray viewer — built-in, standard'],
-  ['Upholstery', 'Soft silicone rubber leather or medical-grade PU leather'],
-  ['Signature colors', 'ROSON Blue · Ballet Pink · Mint Green'],
-  ['Custom colors', '44 colorways — FS silicone + PU leather ranges'],
-  ['Dentist stool', 'RS-07 Professional (included standard)'],
-  ['Configurations', 'Top-mounted · Implant · Trolley'],
-  ['Optional add-ons', 'Built-in scaler · micro motor · curing light · intraoral camera'],
-  ['Origin', 'Foshan Roson Medical, China'],
-  ['Warranty', 'Up to 5 years on the motor'],
-];
-
 /* ── Reading time ────────────────────────────────────────────────────────
-   An honest "N min read" for the page, derived from the real copy — the same
-   formula the news articles use (ArticleContent.jsx: words / 200, floored at
-   1). We recurse every rendered content object's string values, skipping
-   asset paths and routes (strings that start with '/') so image/href paths
-   never inflate the count. Only copy that actually renders on this page is
-   counted (dentistSegments / a1proFaqs are re-exported but unused here, so
-   they're left out). */
+   An honest "N min read" for the page, derived from the copy that renders
+   here, with the same formula the news articles use (words / 200, floored at
+   1). Strings that start with '/' or 'http' are asset paths and routes. */
 function countWords(value) {
   if (typeof value === 'string') {
-    if (value.startsWith('/')) return 0; // asset path or route — not prose
+    if (value.startsWith('/') || value.startsWith('http')) return 0;
     return value.trim().split(/\s+/).filter(Boolean).length;
   }
   if (Array.isArray(value)) return value.reduce((n, v) => n + countWords(v), 0);
@@ -211,9 +203,8 @@ function countWords(value) {
 }
 
 const COPY_SOURCES = [
-  hero, manifesto, configurations, closing,
-  featurePanels, showcasePanels, colorPanels, heroFrames,
-  techSpecs, signatureColors,
+  details, featurePanels, colorCopy, colorPanels,
+  configurations, specGroups, closing,
 ];
 
 export const readingWordCount = COPY_SOURCES.reduce((n, src) => n + countWords(src), 0);
