@@ -17,8 +17,9 @@
       "slug": "a1-pro",
       "name": "ROSON A1 Pro",
       "route": "/a1-pro",
-      "heroImage": "/images/products/a1-pro/hero.jpg",
-      "heroImageNote": "White ground studio shot. Alternate silhouette for particle sampling: /images/products/a1-pro/pieces/chair-silhouette-roson-blue.png",
+      "heroImage": "/images/products/a1-pro/hero-a1-pro-pink-4x3.webp",
+      "heroFit": "scene",
+      "heroImageNote": "ROSON brochure page 07 (Ballet Pink), cropped 4:3 with no text. The old hero.jpg was a failed cutout (wall remnants, black floor steps) and must not return. Alternate silhouette for particle sampling: /images/products/a1-pro/pieces/chair-silhouette-roson-blue.png",
       "isIndex": false,
       "beats": {
         "forms": {
@@ -26,7 +27,7 @@
           "headline": "Color, engineered",
           "body": "ROSON's color led treatment chair, built on a 12 mm carbon structural steel frame and finished in the color the clinic chooses rather than the one the catalog allows.",
           "media": [
-            "/images/products/a1-pro/hero.jpg",
+            "/images/products/a1-pro/hero-a1-pro-pink-4x3.webp",
             "/images/products/a1-pro/pieces/chair-silhouette-roson-blue.png"
           ]
         },
@@ -106,8 +107,8 @@
           "headline": "See it before you decide",
           "body": "It is on the showroom floor at 610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. Sit in it, run it through its full travel, and bring your operatory measurements.",
           "cta": {
-            "label": "Send an inquiry",
-            "href": "/contact"
+            "label": "Get this month’s price on Messenger",
+            "href": "https://m.me/dentasource?ref=a1pro_month_price"
           },
           "media": [
             "/images/news/why-visit-the-pasig-showroom/v014-1.jpg"

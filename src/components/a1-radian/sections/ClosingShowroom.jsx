@@ -1,46 +1,42 @@
 'use client';
 
 /* ─────────────────────────────────────────────────────────────────────
-   CLOSING — the Pasig showroom finale.
-   Full-bleed clinical photograph under a strong dark scrim, a vertical
-   "instrument" ruler ticking the 44-colour library on the far-left edge,
-   and the ONE display headline of the page. The bg parallaxes gently on
-   native scroll (transform + opacity only). Reduced-motion → static, no
-   parallax. Dark theme; emerald is the only signal colour, the rest is
-   carried by the photograph.
+   CLOSING — the Pasig showroom and the ONE call on the page.
+   The old A1 Pro hero loop plays under a strong dark scrim (poster first,
+   so the first paint is clean). One primary action: Messenger, for this
+   month's price. The install article stays as a quiet text link, not a
+   second button. The bg parallaxes gently on native scroll (transform
+   only); reduced motion → static.
    ───────────────────────────────────────────────────────────────────── */
 
 import { useRef } from 'react';
+import Link from 'next/link';
 import { m, useScroll, useTransform, useReducedMotion } from 'framer-motion';
-import { SectionWrap, Pill, MonoLabel } from '../primitives';
+import { SectionWrap, MonoLabel, Arrow } from '../primitives';
 import { closing } from '../content';
 import { mediaUrl } from '@/lib/cinema/media';
+import { trackContact } from '@/lib/analytics';
 
-/* Full-bleed background, over-sized so the parallax translate never
-   reveals an edge (wrapper runs 10% past each side of the section).
-   The old A1 Pro hero loop plays here as a living backdrop — muted +
-   playsInline so it autoplays on mobile; the still frame is the poster
-   so the first paint is clean before the film streams in. */
+const VIDEO = '/videos/a1-pro-hero-loop.mp4';
+
 function ParallaxBg({ y }) {
   return (
     <m.div className="absolute inset-x-0 will-change-transform" style={{ top: '-10%', bottom: '-10%', y }}>
       <video
         className="absolute inset-0 h-full w-full object-cover object-center"
-        src={mediaUrl(closing.video)}
+        src={mediaUrl(VIDEO)}
         poster={closing.bg}
         autoPlay
         muted
         loop
         playsInline
-        preload="auto"
-        aria-label="ROSON A1 Pro dental chair — color-reveal loop"
+        preload="metadata"
+        aria-label="ROSON A1 Pro dental chair, color reveal loop"
       />
     </m.div>
   );
 }
 
-/* Strong dark scrim — left-weighted for the copy, top/bottom for the
-   coords + disclaimer. Keeps bone text readable over the photograph. */
 function Scrim() {
   return (
     <div
@@ -54,98 +50,55 @@ function Scrim() {
   );
 }
 
-/* Decorative instrument ruler — 24 emerald ticks (major/minor widths),
-   colour-library counters top + bottom. Hidden when the viewport is
-   cramped. Optional scaleX reveal when motion is allowed. */
-function Ruler({ animate }) {
-  const ticks = Array.from({ length: 24 });
-  return (
-    <div className="pointer-events-none absolute inset-y-0 left-5 z-10 hidden flex-col items-start justify-between py-14 md:flex">
-      <MonoLabel className="text-[10px] text-[var(--signal)]">{closing.rulerStart}</MonoLabel>
-
-      <div className="flex flex-1 flex-col justify-between py-8">
-        {ticks.map((_, i) => {
-          const major = i % 4 === 0;
-          const cls = `h-px origin-left bg-[var(--signal)] ${major ? 'w-7' : 'w-3'}`;
-          return animate ? (
-            <m.span
-              key={i}
-              className={cls}
-              initial={{ scaleX: 0, opacity: 0 }}
-              whileInView={{ scaleX: 1, opacity: major ? 0.7 : 0.4 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.5, delay: i * 0.02, ease: [0.625, 0.05, 0, 1] }}
-            />
-          ) : (
-            <span key={i} className={`${cls} ${major ? 'opacity-70' : 'opacity-40'}`} />
-          );
-        })}
-      </div>
-
-      <MonoLabel className="text-[10px] text-[var(--muted)]">{closing.rulerEnd}</MonoLabel>
-    </div>
-  );
-}
-
 export default function ClosingShowroom() {
   const ref = useRef(null);
   const reduce = useReducedMotion();
-  const motion = !reduce;
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
-  // Subtle vertical parallax; range stays well inside the 10% over-scan.
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
   const y = useTransform(scrollYProgress, [0, 1], ['-6%', '6%']);
 
   return (
-    <SectionWrap
-      theme="dark"
-      container={false}
-      id="a1-showroom"
-      pad=""
-      className="relative overflow-hidden"
-    >
-      {/* scroll tracker — matches the section box exactly (parallax target) */}
+    <SectionWrap theme="dark" container={false} id="a1-showroom" pad="" className="relative overflow-hidden">
       <div ref={ref} aria-hidden className="pointer-events-none absolute inset-0" />
-
-      <ParallaxBg y={motion ? y : undefined} />
+      <ParallaxBg y={reduce ? undefined : y} />
       <Scrim />
-      <Ruler animate={motion} />
 
-      {/* copy column */}
-      <div className="relative z-10 mx-auto flex min-h-[92vh] w-full max-w-[1200px] flex-col justify-center px-5 pt-28 pb-32 sm:px-8 md:pl-28">
+      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-5 py-16 sm:px-8 md:py-24">
         <div className="max-w-[36rem]">
           <MonoLabel className="text-[12px] text-[var(--signal)]">{closing.coords}</MonoLabel>
           <MonoLabel as="div" className="mt-1.5 text-[var(--muted)]">{closing.coordsLabel}</MonoLabel>
 
-          <h2 className="radian-h mt-6 text-[clamp(3rem,7vw,5.5rem)] text-[var(--bone)]">
+          <h2 className="radian-h mt-5 text-[clamp(2.5rem,6.5vw,5rem)] text-[var(--bone)]">
             {closing.headline.map((line, i) => (
               <span key={i} className="block">{line}</span>
             ))}
           </h2>
 
-          <p className="mt-6 max-w-[34rem] text-[15px] leading-snug text-[var(--bone)]/80">
-            {closing.body}
-          </p>
+          <p className="mt-5 max-w-[34rem] text-[15px] leading-snug text-[var(--bone)]/80">{closing.body}</p>
+          <p className="mt-3 max-w-[34rem] text-[14px] font-medium text-[var(--signal)]">{closing.included}</p>
 
-          <p className="mt-5 max-w-[34rem] text-[14px] font-medium text-[var(--signal)]">
-            {closing.priceLine}
-          </p>
+          <a
+            href={closing.cta.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackContact({ channel: 'messenger', content_name: 'a1-pro-month-price' })}
+            className="group mt-7 inline-flex min-h-[48px] items-center gap-3 rounded-full bg-[var(--signal)] px-6 py-3 text-[15px] font-medium text-[#04110b] transition-colors duration-300 hover:bg-[#0c9f74]"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2C6.48 2 2 6.12 2 11.2c0 2.86 1.46 5.4 3.74 7.06V22l3.42-1.88c.9.25 1.86.38 2.84.38 5.52 0 10-4.12 10-9.2S17.52 2 12 2zm1 12.4l-2.5-2.66L5.7 14.4l5.3-5.6 2.56 2.66 4.74-2.66-5.3 5.6z" />
+            </svg>
+            {/* the long label wraps to two lines on a phone, so phones get the short one */}
+            <span className="sm:hidden">{closing.cta.short}</span>
+            <span className="hidden sm:inline">{closing.cta.label}</span>
+            <Arrow className="transition-transform duration-300 group-hover:translate-x-0.5" />
+          </a>
 
-          <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            <Pill variant="primary" href={closing.primary.href}>{closing.primary.label}</Pill>
-            <Pill variant="ghost" href={closing.secondary.href}>{closing.secondary.label}</Pill>
-            <Pill variant="ghost" href={closing.tertiary.href}>{closing.tertiary.label}</Pill>
+          <div className="mt-5">
+            <Link href={closing.deliver.href} className="text-[14px] text-[var(--bone)]/75 underline decoration-[var(--bone)]/30 underline-offset-4 hover:text-[var(--bone)]">
+              {closing.deliver.label}
+            </Link>
           </div>
-        </div>
-      </div>
 
-      {/* disclaimer footnote — pinned to the very bottom */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10">
-        <div className="mx-auto w-full max-w-[1200px] px-5 pb-6 sm:px-8 md:pl-28">
-          <MonoLabel className="text-[10px] text-[var(--muted)]">{closing.disclaimer}</MonoLabel>
+          <MonoLabel as="p" className="mt-10 block text-[10px] text-[var(--muted)]">{closing.disclaimer}</MonoLabel>
         </div>
       </div>
     </SectionWrap>

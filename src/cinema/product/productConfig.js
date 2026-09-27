@@ -164,5 +164,8 @@ export function productCinemaConfig(slug) {
     copy: { ...b.door, secondaryCta: NON_CHAIRS.has(slug) ? SECOND_CTA.equipment : SECOND_CTA.chairs },
   });
 
-  return { slug, name: product.name, photo, beats };
+  // `heroFit: "scene"` marks a hero that is a full photograph with its own background
+  // rather than a product on a white ground. It sizes to the photograph's own ratio
+  // instead of sitting inside the near-white mat.
+  return { slug, name: product.name, photo, photoFit: product.heroFit || null, beats };
 }

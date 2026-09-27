@@ -6,7 +6,7 @@ source of truth and the style exemplar):
 
 - `./primitives.jsx`  — the shared components you MUST use (do not re-implement).
 - `./content.js`      — all copy + asset paths. Import your section's content; never hardcode strings that exist there.
-- `./sections/HeroColorMorph.jsx` — the GOLD-STANDARD exemplar. Match its idiom exactly.
+- `./sections/DetailScroller.jsx` — the current exemplar (HeroColorMorph was retired in the 2026-09-27 length pass). Match its idiom.
 
 ## Non-negotiable laws
 1. **No new dependencies.** Only: `react`, `framer-motion` (import the motion component as `m`: `import { m } from 'framer-motion'`), `next/image`, `next/link`, `lucide-react` (icons, if truly needed), and the local `../primitives` + `../content`.

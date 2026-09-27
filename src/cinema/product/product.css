@@ -40,6 +40,19 @@
   .pc-hero-img { max-height: calc(var(--vh, 1vh) * 38); border-radius: 13px; }
 }
 
+/* A scene hero: a full photograph with its own background (the A1 Pro's brochure shot),
+   not a product on a white ground. It keeps its own 4:3 ratio and shrinks as one piece
+   under the height cap, so there is no mat at the sides and nothing is cropped. */
+.pc-hero-scene .pc-hero-img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-inline: auto;
+  object-fit: cover;
+  background: #f3dfe4;
+}
+
 /* The description carried down from beat 1. It leads the panel, so it sits a shade
    quieter than the beat's own line and keeps the two paragraphs from reading as one
    wall of text on a phone. */

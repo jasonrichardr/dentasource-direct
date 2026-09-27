@@ -35,12 +35,18 @@ function Body({ children }) {
 // photograph over the dimmed calm cloud, the same treatment the install and bench beats
 // use. Under it: the eyebrow, the full model name as the page's h1, and one line. The
 // marketing tagline is that line rather than the headline.
-function FormsPanel({ copy, name, photo }) {
+function FormsPanel({ copy, name, photo, photoFit }) {
+  const scene = photoFit === 'scene';
   return (
     <div className="cinema-copy pc-wide">
       {photo && (
-        <figure className="pc-hero">
-          <img className="pc-hero-img" src={photo} alt={name} />
+        <figure className={`pc-hero${scene ? ' pc-hero-scene' : ''}`}>
+          <img
+            className="pc-hero-img"
+            src={photo}
+            alt={name}
+            {...(scene ? { width: 1200, height: 900, fetchPriority: 'high' } : {})}
+          />
         </figure>
       )}
       <Kicker>{copy.eyebrow}</Kicker>
@@ -227,7 +233,7 @@ export default function ProductCinema({ config, children, detailsLabel = 'Full d
   const beats = config.beats.map((b) => b.formation);
   const panels = config.beats.map((b) => {
     const Panel = PANEL_BY_ID[b.id];
-    return <Panel key={b.id} copy={b.copy} name={config.name} photo={config.photo} />;
+    return <Panel key={b.id} copy={b.copy} name={config.name} photo={config.photo} photoFit={config.photoFit} />;
   });
 
   return (
