@@ -271,7 +271,7 @@ export default function GrowthPartner({ news = [] }) {
 
       <section className="gp-sec" id="teach-with-us">
         <p className="gp-kicker rv">Teach with us</p>
-        <h2 className="gp-h2 rv">A community of learners. <span className="gp-gold">Not entertainers.</span></h2>
+        <h2 className="gp-h2 rv">A community of <span className="gp-gold">learners.</span></h2>
         <p className="gp-lead rv">Speakers, partners and members learn side by side. Education first, evidence always, no politics. Read the guidelines before you ask to teach.</p>
         <button type="button" className="about-door rv" aria-haspopup="dialog" onClick={() => openSheet({ kind: 'rules' })}>✦ Community guidelines</button>
         {spoke ? (
