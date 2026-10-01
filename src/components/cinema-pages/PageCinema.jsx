@@ -27,7 +27,7 @@ import './page-cinema.css';
  *  home arc's, which were measured against a real copy band at 390x844 so the particles
  *  own the upper half and the words own the lower one. */
 const MARK = '/cinema/brand/dsd-round.png';
-const MARK_CROP = { sx: 86, sy: 41, sw: 308, sh: 300 };
+const MARK_CROP = { sx: 81, sy: 36, sw: 318, sh: 318 };
 const WORDMARK = 'DentaSource Direct';
 const HERO_LOCKUP = { markBox: 2.7, markY: 3.45, wordBoxH: 2.2, wordCenterY: 0.95 };
 const DOOR_LOCKUP = { markBox: 2.6, markY: 3.2, wordBoxH: 2.1, wordCenterY: 0.85 };

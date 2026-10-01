@@ -18,7 +18,7 @@ const BEATS = [
     // the round badge only: the source PNG bakes its own hairline wordmark under the
     // mark, and hairline type samples muddy at particle density, so the words are
     // re-rendered from canvas type instead (see the lockup builder)
-    crop: { sx: 86, sy: 41, sw: 308, sh: 300 },
+    crop: { sx: 81, sy: 36, sw: 318, sh: 318 },
     text: 'DentaSource Direct',
     lockup: { markBox: 3.1, markY: 2.35, wordCenterY: -2.0 },
   },

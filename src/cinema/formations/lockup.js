@@ -25,7 +25,18 @@ export const STACK_SRC = "/images/brand/logo-stacked.png";
 // "DentaSource Direct" under the mark, and sampling the whole file renders that tiny
 // wordmark inside the disc as well as the real one below it: the same words twice, one of
 // them unreadable. Measured ink bounds of the symbol alone.
-const DISC_CROP = { sx: 86, sy: 41, sw: 308, sh: 300 };
+// ☠️ AND IT IS A SQUARE WITH A MARGIN, OR THE DISC IS CUT (Jarich, 2026-10-02: "it looks
+// cut"). The old box {86, 41, 308, 300} stopped at row 340 while the green rim runs to row
+// 343 and the disc's shadow to about 346, so the bottom of the ring was sliced flat; the
+// box was also 308 by 300 drawn into a square, which stretched the disc 2.7% tall.
+// Measured on the asset: the disc's ink spans x 88 to 392 and y 43 to 346, centred on
+// (240, 194). This box is that centre with 318 a side, which leaves 21 px of ground on
+// three sides and 26 below. The small "DentaSource Direct" under the badge starts at row
+// 350 and its top edge falls inside this box, which is why keepCentre() below exists.
+const DISC_CROP = { sx: 81, sy: 36, sw: 318, sh: 318 };
+// how much of the crop the disc itself fills (977 of 1024 at the sample size), so the
+// layout can draw the box a little larger and keep the visible disc at the asset's size
+const DISC_FILL = 0.955;
 const WORD_CROP = { sx: 100, sy: 498, sw: 889, sh: 198 };
 // the asset's own proportions, used to lay the two samplings out as one lockup
 const ASSET = { discD: 222, wordW: 889, wordH: 198, gap: 12 };
@@ -91,6 +102,26 @@ function erode(mask, cw, ch, n) {
   return cur;
 }
 
+// THE MARK IS ONE PIECE. Keep only the ink connected to the centre of the box. A square
+// crop around the disc also catches two slivers of the badge's own grey outline in its top
+// corners and the top edge of the small wordmark under it; neither can be reached by the
+// corner flood (they touch the border and are not pale), and both rendered as stray dots.
+// Nothing that belongs to the disc is disconnected from it: face, D and rim are one shape.
+function keepCentre(mask, cw, ch) {
+  const start = ((ch >> 1) * cw) + (cw >> 1);
+  if (!mask[start]) return mask;
+  const keep = new Uint8Array(mask.length);
+  const stack = [start];
+  keep[start] = 1;
+  while (stack.length) {
+    const i = stack.pop();
+    const x = i % cw, y = (i / cw) | 0;
+    const next = [x > 0 ? i - 1 : -1, x < cw - 1 ? i + 1 : -1, y > 0 ? i - cw : -1, y < ch - 1 ? i + cw : -1];
+    for (const j of next) if (j >= 0 && mask[j] && !keep[j]) { keep[j] = 1; stack.push(j); }
+  }
+  return keep;
+}
+
 // ONE PARTICLE PER CELL, no jitter. Sampling random ink pixels leaves holes and clumps
 // because random points collide; a grid tiles the shape exactly once, which is what makes
 // it read as a mark instead of a spray.
@@ -129,9 +160,17 @@ function pitchFor(ink, d, cw, ch, target) {
 // made the mark disappear in Jarich's light screenshot. The disc's own samples are taken
 // down toward the ink end so the mark has a ground to sit on; the wordmark is already
 // dark green and black and is left exactly as printed.
+// ☠️ ONLY THE COLOURLESS DARKS ARE LIFTED, NEVER THE GREEN (Jarich, 2026-10-02: the dot
+// logo "looks cut"). DENTA's green is a gradient in the asset, rgb(0,103,1) at the edges of
+// each letter and rgb(0,112,1) through the middle. After grade() those land at luma 0.311
+// and 0.356, either side of darkLiftBelow 0.35, so the edges of every DENTA letter were
+// lifted to silver and the middles stayed green: the big D read as a green band with its
+// top and its lower curve cut off in grey. The rule above always meant black DIRECT and
+// its speed lines; a dot with real colour in it is left as the asset has it.
 function liftForDark(r, g, b, dials) {
   const l = 0.299 * r + 0.587 * g + 0.114 * b;
-  if (l >= dials.darkLiftBelow) return [r, g, b];
+  const chroma = Math.max(r, g, b) - Math.min(r, g, b);
+  if (l >= dials.darkLiftBelow || chroma > dials.darkLiftMaxChroma) return [r, g, b];
   const k = dials.darkLiftTo / Math.max(l, 0.04);
   const hue = dials.darkLiftHue;          // how much of the original colour survives
   return [
@@ -183,7 +222,7 @@ export function buildLockup(N, { discImg, wordImg, isDark = false, markBox, mark
   for (let i = 0; i < discInk.length; i++) {
     discInk[i] = discGround[i] ? 0 : 1;
   }
-  discInk = erode(discInk, disc.cw, disc.ch, dials.erosion);
+  discInk = keepCentre(erode(discInk, disc.cw, disc.ch, dials.erosion), disc.cw, disc.ch);
 
   // the wordmark sits on the page, and its counters are open to it, so a plain threshold
   // is the right rule here and a flood would be the wrong one
@@ -246,7 +285,9 @@ export function buildLockup(N, { discImg, wordImg, isDark = false, markBox, mark
     }
   };
   const nDisc = Math.min(N, Math.round(N * discShare));
-  place(dRes.cells, disc.cw, disc.ch, 0, discCY, discD, discD, 0, nDisc, isDark ? 0 : dials.lightDiscDarken);
+  // the box is drawn DISC_FILL larger than the disc so the disc inside it lands at discD
+  const discBox = discD / DISC_FILL;
+  place(dRes.cells, disc.cw, disc.ch, 0, discCY, discBox, discBox, 0, nDisc, isDark ? 0 : dials.lightDiscDarken);
   place(wRes.cells, word.cw, word.ch, 0, wordCY, wordW, wordH, nDisc, N);
 
   // The dot is sized to the spacing the particles ACTUALLY land at, which is the grid
@@ -258,7 +299,7 @@ export function buildLockup(N, { discImg, wordImg, isDark = false, markBox, mark
   return {
     positions: out,
     colors: col,
-    discPitchWorld: (discEff / disc.cw) * discD * dials.dotSize,
+    discPitchWorld: (discEff / disc.cw) * discBox * dials.dotSize,
     wordPitchWorld: (wordEff / word.cw) * wordW * dials.dotSize,
     counts: {
       discCells: dRes.cells.length, wordCells: wRes.cells.length,

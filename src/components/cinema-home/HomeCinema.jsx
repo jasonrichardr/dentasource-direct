@@ -76,7 +76,7 @@ import './home-cinema.css';
  *  one. Computed at both: group 9.20 wide inside 10.9 available on the phone, and the top
  *  of the disc clearing the viewport by 95px on the laptop and 247px on the phone. */
 const MARK = '/cinema/brand/dsd-round.png';
-const MARK_CROP = { sx: 86, sy: 41, sw: 308, sh: 300 };
+const MARK_CROP = { sx: 81, sy: 36, sw: 318, sh: 318 };
 const WORDMARK = 'DentaSource Direct';
 
 /**
