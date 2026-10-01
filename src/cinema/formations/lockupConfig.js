@@ -39,6 +39,9 @@ export const LOCKUP_DEFAULTS = {
   darkLiftBelow: 0.35,
   darkLiftTo: 0.85,
   darkLiftHue: 0.22,
+  // a dark dot with more colour than this is a green, not ink, and keeps its colour.
+  // Graded DENTA green measures 0.53; black DIRECT and its anti-aliased greys stay under 0.1
+  darkLiftMaxChroma: 0.2,
 
   // ---- light register: a silver disc on cream paper needs taking down to be seen at all
   lightDiscDarken: 0.62,
@@ -55,6 +58,7 @@ export const LOCKUP_DIAL_META = [
   { key: 'darkLiftBelow',   label: 'Dark lift floor', min: 0,    max: 0.8,  step: 0.01, group: 'Dark register' },
   { key: 'darkLiftTo',      label: 'Dark lift to',    min: 0.3,  max: 1,    step: 0.01, group: 'Dark register' },
   { key: 'darkLiftHue',     label: 'Dark lift hue keep', min: 0, max: 1,    step: 0.01, group: 'Dark register' },
+  { key: 'darkLiftMaxChroma', label: 'Dark lift colour cap', min: 0, max: 1, step: 0.01, group: 'Dark register' },
   { key: 'lightDiscDarken', label: 'Light disc darken', min: 0.2, max: 1,   step: 0.01, group: 'Light register' },
 ];
 
