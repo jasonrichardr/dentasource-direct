@@ -2,7 +2,7 @@
 // professionals. Jarich's rulings kept word for word where they matter: education first, no politics, equals.
 export const GUIDELINES = {
   kicker: 'Community guidelines',
-  head: 'A community of learners. Not entertainers.',
+  head: 'A community of learners.',
   lead: 'The Training Center is a place to learn and to teach. These are the terms every member, speaker and partner agrees to.',
   items: [
     { title: 'Learners first, speakers included', text: 'Everyone keeps learning. Education never stops, for the lecturer as much as for the first-year. Nobody is a know-it-all. The more we know, the more we see there is to know.' },
