@@ -17,7 +17,7 @@ export const metadata = {
 // BookingForm, untouched and still wired to their server action. Beats 1 and 2 are the
 // doors into them, which is why their CTAs are in-page anchors.
 //
-// #showroom is load bearing: the home arc's door sends Visit the showroom here.
+// #showroom is load bearing: the about arc sends Visit the showroom here.
 // Everything sits inside <main> so the music room hides it all together.
 export default function ContactPage() {
   return (

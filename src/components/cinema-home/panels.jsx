@@ -99,17 +99,23 @@ export function LockupPanel({ beat, level = 1 }) {
 }
 
 // The closing beat: the same lockup, nearer, with both doors open.
+// ☠️ NO "VISIT THE SHOWROOM" HERE ANY MORE. The navbar's Showroom link is that door now
+// (Jarich, 2026-10-01), and this beat already prints the address, so the useful second
+// door is the route there. The cid is the showroom's own Google Maps place, the same one
+// lib/schemas/organization.js declares as hasMap, so the pin cannot drift from the schema.
+const SHOWROOM_MAP = 'https://www.google.com/maps?cid=6544193348824466616';
+
 export function DoorPanel({ beat }) {
   return (
     <div className="dsd-panel dsd-copy-wide">
       <Copy beat={beat} className="dsd-copy-wide" />
       <div className="dsd-cta-row">
-        <Link href="/contact#showroom" prefetch={false} className="cinema-cta dsd-cta dsd-cta-solid">
-          Visit the showroom
-        </Link>
-        <Link href="/contact" prefetch={false} className="cinema-cta dsd-cta dsd-cta-ghost">
+        <Link href="/contact" prefetch={false} className="cinema-cta dsd-cta dsd-cta-solid">
           Send an inquiry
         </Link>
+        <a href={SHOWROOM_MAP} target="_blank" rel="noopener noreferrer" className="cinema-cta dsd-cta dsd-cta-ghost">
+          Get directions
+        </a>
       </div>
     </div>
   );

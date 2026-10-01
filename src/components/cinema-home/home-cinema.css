@@ -330,6 +330,15 @@
   text-shadow: 0 0 12px rgba(230, 199, 106, .5);
 }
 
+/* ☠️ NO ORPHANED LAST WORD IN A HEADLINE. "A growth partner, not just a supplier." broke
+   as "not just a / supplier." on both a phone and a laptop, the closing word alone on its
+   own line, which is the word the line exists for. balance evens the lines out instead
+   ("A growth partner, / not just a supplier."); pretty does the gentler version for the
+   body, where only the last line matters. Scoped to the home arc: src/cinema/cinema.css
+   is shared by every cinema page and they were not part of this review. */
+.dsd-panel .cinema-head { text-wrap: balance; }
+.dsd-panel .cinema-sub { text-wrap: pretty; }
+
 @media (prefers-reduced-motion: reduce) { .dsd-caret { animation: none; } }
 
 /* ---- the marbles wall: role tiles in glass, no names, no physics in this phase ---- */
@@ -612,6 +621,18 @@
 /* and the beat's own stack closes up, which buys back most of another tile's worth */
 .cinema-panel:has(.dsd-place) .dsd-panel { gap: 8px; }
 .cinema-panel:has(.dsd-place) .dsd-place-frame { height: clamp(96px, 13.5vh, 158px); }
+
+/* ☠️ A SHORT PHONE STILL LOST THE BUTTONS. Measured 2026-10-01 at 375x667 (an iPhone SE)
+   after the training copy went to three one line stars: copy 113-372, place 380-515,
+   marquee 523-671, buttons 679-724, so the whole button row sat under the bottom edge.
+   The same two blocks with slack pay for it again on short screens only; a 390x844
+   phone measured 710-755 for the row and is untouched by this rule. */
+@media (max-height: 700px) {
+  .cinema-panel:has(.dsd-place) .dsd-mixed .dsd-strip-track video,
+  .cinema-panel:has(.dsd-place) .dsd-mixed .dsd-strip-track img { height: 92px; }
+  .cinema-panel:has(.dsd-place) .dsd-place-frame { height: 76px; }
+  .cinema-panel:has(.dsd-place) .dsd-panel { gap: 6px; }
+}
 
 /* the two map links are a footnote to the address, not a second call to action: compact
    pills that sit on one line, rather than two full width buttons stacked under it */
