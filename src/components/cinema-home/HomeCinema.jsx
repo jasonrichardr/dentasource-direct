@@ -34,24 +34,11 @@ const ASK_SCRIPT = { ...askScript, exchanges: visible(askScript.exchanges) };
 const REEL_LIBRARY = visible(reelLibrary.reels);
 const TRAINING_ITEMS = visible(trainingMedia.items);
 
-// ☠️ TEN PER SET, CUT HERE, NOT THE MANIFEST'S TWENTY FOUR.
-// Jarich: "instead of set of 8 make them set of 10 so we can reduce glass marbles for
-// each". Read as ten MARBLES per page rather than ten pages: "reduce glass marbles for
-// each" only makes sense as fewer beads on screen at once, and 192 reels at ten a page is
-// twenty sets, which matches "instead of set of 8" being about the label he can see.
-//
-// reel-library.json still ships `sets` of 24 and this no longer reads them. The cut is
-// taken from the FLAT reels order, which is the same order those sets were built from
-// (the 33 entries the wall has always shown come first), so nothing is dropped and
-// nothing is reordered: there are simply more, shorter pages. The reason the old code
-// deferred to the manifest was to keep set 1 stable on the day of the switch; that day
-// has passed, and the instruction now is explicitly to re-cut. If builder-products ever
-// re-cuts `sets` to ten, this should go back to reading them.
-const MARBLES_PER_SET = 10;
-const REEL_SETS = [];
-for (let i = 0; i < REEL_LIBRARY.length; i += MARBLES_PER_SET) {
-  REEL_SETS.push(REEL_LIBRARY.slice(i, i + MARBLES_PER_SET));
-}
+// ☠️ NO SETS ANY MORE: THE MARBLES WALL IS A RING OVER THE WHOLE VISIBLE LIBRARY.
+// Jarich, 2026-10-01: seven on the wall, a tap adds the next reel and knocks one out, and
+// the Prev / Next pager is gone. MarblesPanel takes REEL_LIBRARY in visible() order (the
+// order the old sets were cut from, so the first seven are the first seven of set 1).
+// reel-library.json still ships `sets` of 24 and nothing reads them.
 const ACTION_ITEMS = visible(actionReels.items);
 const PARTS = visible(partsData.parts);
 const CREW_SHOTS = visible(crewShots.items);
@@ -397,7 +384,7 @@ function panelFor(beat, i, articles) {
       case 'installs': return <InstallsPanel beat={beat} beatIndex={i} tiles={INSTALL_TILES} />;
     case 'parts': return <PartsPanel beat={beat} beatIndex={i} parts={PARTS} crew={CREW_SHOTS} />;
     case 'chat': return <ChatPanel beat={beat} beatIndex={i} script={ASK_SCRIPT} />;
-    case 'marbles': return <MarblesPanel beat={beat} beatIndex={i} sets={REEL_SETS} />;
+    case 'marbles': return <MarblesPanel beat={beat} beatIndex={i} reels={REEL_LIBRARY} />;
     case 'action': return <ActionPanel beat={beat} beatIndex={i} items={MIXED_ITEMS[beat.key] || []} />;
     case 'door': return <DoorPanel beat={beat} />;
     case 'photo':
