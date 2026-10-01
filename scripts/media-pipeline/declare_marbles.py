@@ -40,7 +40,7 @@ LIBRARY = REPO / "src/data/cinema/reel-library.json"
 # canvas height, which is 261 css px at a 900px canvas and 464 at 1600px, and that
 # derivation ignores the refraction magnification it cannot compute. A guess here is worth
 # nothing: between 260 and 500 this rule either does nothing or holds a quarter of the wall.
-MARBLE_PX: int | None = 480
+MARBLE_PX: int | None = 400
 COVER_MIN = 0.95
 
 # ☠️ RECORD HOW THE NUMBER WAS OBTAINED, BECAUSE NOBODY CAN RE-MEASURE IT.
@@ -51,44 +51,28 @@ COVER_MIN = 0.95
 # The provenance therefore ships IN the manifest rather than living in a commit message.
 # Fill both fields when MARBLE_PX is set; the script refuses without them.
 MARBLE_PX_METHOD: str | None = (
-    "builder-home projected the LIVE three.js scene in a proof build: camera.position.z, "
-    "camera.fov and canvas.clientHeight read off the running page, and each bead's radius "
-    "off its cannon body after the shoal settled. Viewport and canvas 1440x900, z=7, "
-    "fov=45. Hero bead (index 0) world radius 1.554 -> 482.4 css px diameter; smallest "
-    "bead 161.7. Phone 390x844 at z=13 gives a 217.5 hero. Reproduced independently from "
-    "source: baseR = 0.56 * beadScale(1.5) = 0.840, hero = baseR * 1.85 "
-    "(marbleCluster.js:285), diameter 3.108 against a visible height of "
-    "2*7*tan(22.5) = 5.799, which is 0.536 of a 900px canvas = 482.4. Derivation and "
-    "measurement agree to a tenth of a pixel. NOTE the video disc inside the bead is only "
-    "54% of it unmagnified (260.0 px) and the glass refracts that across the whole sphere, "
-    "so 482 is the right quantity and 260 is a different one that happens to look "
-    "plausible. A brightness scan of a frame CANNOT confirm this: the beads overlap. "
-    "WHY THE DESKTOP NUMBER GOVERNS AND THE PHONE'S 217.5 IS ONLY ON RECORD: the wall "
-    "serves the SAME clips to both viewports. REEL_SETS is built once at module scope "
-    "from the library and sliced into fixed sets, and MarblesPanel picks by setIndex, "
-    "never by device, so there is no phone set to judge separately. IF YOU GO TO CHECK "
-    "THAT, THE OBVIOUS CHECK LOOKS LIKE IT REFUTES IT: MarblesPanel DOES branch on "
-    "matchMedia('(min-width: 820px)') at panels.jsx:578, and a grep for matchMedia finds "
-    "it and reads as device-dependent sets. It is not. That branch selects the FRAMING "
-    "(cameraZ, spreadX, spreadY, beadScale) and never the content, so the device decides "
-    "how big the beads are drawn and never which clips are in them. The same branch is "
-    "why the desktop tile governs AND why the viewport spread is 2.22x. The strictest tile "
-    "therefore has to govern, or a clip that is fine on a phone and soft on a desktop "
-    "ships soft. That is what makes 480 correct rather than merely conservative, and it "
-    "means every bar here is a DESKTOP bar: on the phone tile every shape in the library "
-    "clears 0.95, 480x854 at 2.21 and 720x406 at 1.87, so nothing is ever held there. "
-    "WHY THIS TILE ALONE SPREADS 2.22x ACROSS VIEWPORTS while every other tile on the arc "
-    "varies about 1.10x: the phone was moved to cameraZ 13.0 two rounds ago to fit a "
-    "portrait stage, a framing decision about the shoal's geometry that had nothing to do "
-    "with resolution. The strictness is a side effect of that, not a deliberate choice, "
-    "and a reader who does not know it will assume otherwise. THE COUPLING RUNS BOTH "
-    "WAYS: cameraZ and beadScale in panels.jsx SET this tile, and this tile decides which "
-    "clips may appear at all. Raise cameraZ and the beads shrink, the gate loosens, and "
-    "clips judged too soft become admissible; lower it and clips already on the wall "
-    "become barred. builder-home documented that at the call site in ec58d50; if this "
-    "tile ever stops matching the wall, that comment is where the cause will be."
+    "2026-10-01, MARBLES v2 (seven beads, tap to add): read off the LIVE scene in a "
+    "production build with the cluster's own beads() call, which projects every bead's "
+    "centre and its radius along the camera's right vector, after the shoal had settled "
+    "(the settle is deterministic: the same wall at 11 and at 25 seconds). Viewport and "
+    "canvas 1440x900, cameraZ 7.0, fov 45, beadScale 1.44, ladder [1.6, 1.08, 1.0, 1.15, "
+    "1.04, 1.12, 1.0], zPull 6. Hero bead (slot 0) drawn at 401 css px; smallest 248. Phone "
+    "390x844 at cameraZ 13.0, beadScale 1.7: hero 213, smallest 132. Reproduced from "
+    "source: baseR = 0.56 * 1.44 = 0.8064, hero = baseR * 1.6 = 1.290, diameter 2.580 "
+    "against a visible height of 2*7*tan(22.5) = 5.799, which is 0.445 of a 900px canvas = "
+    "400.5 at the wall's plane; the 0.5px over that is the hero sitting a hair in front of "
+    "it. zPull 6 is what makes this one number rather than a range: with the old depth "
+    "spring the beads stacked in depth and perspective drew the same hero anywhere up to "
+    "453. NO CLIP CHANGED ADMISSIBILITY: every clip on the wall has a short side of 480 or "
+    "more (passes while the tile is at most 505.3) and every held clip 358 to 360 (held "
+    "while it is over 378.9), so 480 -> 400 moved 0 of 197. The previous tile was 480, "
+    "measured 482.4 on the ten bead wall (2026-09-06, builder-home). WHY THE DESKTOP NUMBER "
+    "GOVERNS: the wall serves the SAME ring to both viewports, so the strictest tile has to "
+    "be the declared one. THE COUPLING RUNS BOTH WAYS: cameraZ, beadScale and the ladder in "
+    "panels.jsx / marbleCluster.js SET this tile, and this tile decides which clips may "
+    "appear at all; the call site in panels.jsx carries the note."
 )
-MARBLE_PX_RAW: float | None = 482.4      # the measurement BEFORE rounding down
+MARBLE_PX_RAW: float | None = 401.0      # the measurement BEFORE rounding down (2026-10-01, seven beads)
 
 
 def judge(w: int, h: int, tw: float, th: float | None = None) -> float:

@@ -80,11 +80,78 @@ const RAIN_EVERY_MS = 300;   // Jarich: "a marble glass one by one ... per 0.3 s
 const RAIN_WAIT_MS = 1000;   // longest we hold a drop back waiting for its texture to decode
 const LAND_BY_MS = 2000;     // an incoming bead still not landed by then is declared landed
 
+// ── TAP TO ADD (opt-in, tapToAdd: true) ──
+// Jarich, 2026-10-01: "show 7 marble glasses then when they tap once a glass marble will be
+// added and remove 1 ... i want it like the glass was from their finger when they tap so the
+// glass marble will get hit". A tap births the NEXT reel's bead at the finger, grows it, and
+// throws it at a bead in the wall; the struck bead is knocked out, so the count holds.
+// ☠️ THE LADDER IS FLATTER THAN THE RAIN WALL'S, AND THAT IS THE VISIBILITY FIX, NOT TASTE.
+// The ten bead wall ran from 1.85 (hero) down to 0.62 of baseR, so its smallest bead was a
+// third of its biggest: 73 css px on a phone. Here slot 0 is still the hero and still sets
+// the resolution gate declared as reel-library.json's tile (see the call site in
+// panels.jsx), and the other six are nearly equal. Swept on the live scene: a 1.0 to 1.6
+// spread across all seven would not pack into the band under the copy, it flipped between
+// one long row off both edges and three rows over the headline. One hero plus six even
+// beads settles into two rows, every time, from the same seed.
+const TAP_LADDER = [1.6, 1.08, 1.0, 1.15, 1.04, 1.12, 1.0];
+const TAP_IN_FLIGHT = 3;     // launches allowed in the air at once; a tap past this is ignored
+const TAP_GROW_MS = 150;     // born small at the finger, full size this fast
+const TAP_GROW_FROM = 0.22;
+const TAP_SPEED = 10.0;      // launch speed, world units per second
+const TAP_KNOCK_MS = 700;    // a target the launch never touched is knocked out anyway
+const TAP_KNOCK_SPEED = 7.0; // outward speed a struck bead leaves the wall with
+const TAP_WARM_AHEAD = 3;    // decoders opened ahead of the next taps
+const FALL_MAX_MS = 4000;    // a knocked out bead is retired by then wherever it got to
+const VIDEO_FACE_AFTER_S = 0.5; // a poster gives way to its video only this far into playback
+
+/**
+ * One haptic tick, or nothing. Never throws.
+ * ☠️ IPHONE SAFARI HAS NO navigator.vibrate. iOS 18 does fire the system haptic when a
+ * <input type="checkbox" switch> toggles from a user gesture, and clicking its <label> from
+ * inside the pointerup handler counts as that gesture. So: vibrate where it exists (Android
+ * Chrome), the switch trick on a coarse pointer without it, and nothing on a desktop.
+ * The label is created, clicked and removed each time, in <head> with display:none, so it
+ * can never take focus, scroll the page or be seen. Its click is untrusted, so nothing that
+ * waits for a real first gesture (the lounge music) mistakes it for one.
+ */
+function hapticTick() {
+  try {
+    if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+      navigator.vibrate(8);
+      return;
+    }
+    if (!window.matchMedia || !window.matchMedia('(pointer: coarse)').matches) return;
+    const label = document.createElement('label');
+    label.setAttribute('aria-hidden', 'true');
+    label.style.display = 'none';
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.setAttribute('switch', '');
+    input.tabIndex = -1;
+    label.appendChild(input);
+    document.head.appendChild(label);
+    label.click();
+    label.remove();
+  } catch (e) { /* no haptics here, and that is fine */ }
+}
+
 export function createMarbleCluster(container, {
   videos = [], hdVideos = [], count = 18, isMobile = false, faceFocus = {}, faceZoom = {},
   faceZoomDefault = 1, cameraZ = 8, spreadX = NATURAL_R, spreadY = NATURAL_R,
   stage = 'container', centerY = 0, centerPull = 1, beadScale = 1, linDamp = LIN_DAMP,
+  // tapToAdd: the ring queue mode. `reels` is the whole library as [{ url, hd, poster }]; the
+  // first `count` seed the wall and every tap adds the next one. OFF by default, so every
+  // existing caller (ArticleMarbles, /classic) is untouched.
+  tapToAdd = false, reels = null, maxPixelRatio = null, hintText = null, zPull = 1,
+  ladder = TAP_LADDER,
 } = {}) {
+  const tapMode = !!tapToAdd && Array.isArray(reels) && reels.length > 0;
+  if (tapMode) {
+    const seed = reels.slice(0, count);
+    videos = seed.map((r) => r.url);
+    hdVideos = seed.map((r) => r.hd || null);
+  }
+  const posters = tapMode ? reels.slice(0, count).map((r) => r.poster || null) : [];
   const damping = Math.min(0.99, Math.max(0.1, linDamp));
   // ☠️ THE WELL'S CENTRE MOVES, THE WALL'S FREEDOM DOES NOT.
   // Jarich: the shoal was sitting across the headline. The fix is NOT a wall or a clamp,
@@ -128,6 +195,14 @@ export function createMarbleCluster(container, {
   const pull = Math.max(0.1, centerPull);
   const kX = K_CENTER * pull * (NATURAL_R / Math.max(0.2, spreadX)) ** 2;
   const kY = K_CENTER * pull * (NATURAL_R / Math.max(0.2, spreadY)) ** 2;
+  // ☠️ THE WELL MUST BE STIFFER IN DEPTH THAN ACROSS, OR BEADS HIDE BEHIND EACH OTHER.
+  // A flat well (spreadY 1.4 on the laptop) makes kY about 90 while the depth spring was a
+  // flat 18, so squeezing the shoal vertically was cheaper to answer by stacking beads in
+  // front of and behind each other than by spreading them out. Measured on seven beads:
+  // the same settings settled with the smallest bead drawn at 257 px one run and 224 the
+  // next, purely from which beads ended up behind, and a bead behind is a bead half hidden.
+  // zPull scales the depth spring (default 1, every existing caller unchanged).
+  const kZ = K_CENTER_Z * Math.max(0.1, zPull);
   // mobile shows ALL the reels too (they're compressed 480p) — just smaller beads + camera pulled back
 
   // ── renderer: TRANSPARENT — only the marbles paint; the black comes from the panel's CSS bg (which
@@ -160,7 +235,12 @@ export function createMarbleCluster(container, {
   }
   const hint = document.createElement("div");
   hint.className = "cp-marble-hint";
-  hint.innerHTML = '<span class="cp-hint-icon" aria-hidden="true">\ud83d\udc46</span><span class="cp-hint-title">Press &amp; <b>hold</b> a marble<br>to see</span>';
+  hint.innerHTML = '<span class="cp-hint-icon" aria-hidden="true">\ud83d\udc46</span>';
+  const hintTitle = document.createElement("span");
+  hintTitle.className = "cp-hint-title";
+  if (hintText) hintTitle.textContent = hintText;
+  else hintTitle.innerHTML = 'Press &amp; <b>hold</b> a marble<br>to see';
+  hint.appendChild(hintTitle);
   document.body.appendChild(hint);
   let hintRetired = false, hintTimer = 0;
   const hideHint = () => { hint.classList.remove("show"); if (hintTimer) { clearTimeout(hintTimer); hintTimer = 0; } };
@@ -171,7 +251,10 @@ export function createMarbleCluster(container, {
     hintTimer = setTimeout(() => hint.classList.remove("show"), 1000); // one-second flash (Jarich 2026-07-03) — never nag
   };
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 1.9));
+  // ☠️ maxPixelRatio IS THE SHARPNESS. A 3x phone drawn at the old 1.5 cap renders the glass
+  // at half its real resolution, which reads as soft beads. A caller showing only a few
+  // beads can afford more; the default keeps every existing caller identical.
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio || (isMobile ? 1.5 : 1.9)));
   renderer.setClearColor(0x000000, 0); // transparent clear
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.1;
@@ -227,11 +310,33 @@ export function createMarbleCluster(container, {
 
   // ── shared video texture pool: ONE <video> decoder per unique clip (iOS hard-caps concurrent
   //    decoders), round-robined across the FILLED beads — the elva trick: few clips fill many marbles. ──
-  function makeTex(url, i) {
+  // ☠️ EVERY DECODER THIS CLUSTER OPENS IS COUNTED HERE, BECAUSE NONE OF THEM IS IN THE DOM.
+  // The bead videos are never attached to the document, so querySelectorAll('video') sees
+  // none of them and a leak would be invisible. An element joins on creation and leaves
+  // only through releaseVideo, which is the one place a decoder is actually freed.
+  const liveVideos = new Set();
+  function releaseVideo(t) {
+    if (!t || t.released) return;
+    t.released = true;
+    try { t.el.pause(); t.el.removeAttribute("src"); t.el.load(); } catch (e) { /* torn down */ }
+    liveVideos.delete(t.el);
+    // a bead that still exists falls back to its poster rather than to black glass
+    if (t.posterTex && t.planeMat.map !== t.posterTex) { t.planeMat.map = t.posterTex; t.planeMat.needsUpdate = true; }
+  }
+  function disposeTex(t) {
+    if (!t) return;
+    releaseVideo(t);
+    t.vtex?.dispose();
+    t.posterTex?.dispose();
+    t.planeMat.dispose();
+  }
+
+  function makeTex(url, i, poster = null) {
     const el = document.createElement("video");
     el.src = mediaUrl(url);      // repo path in the manifest, media origin at run time
     el.muted = true; el.loop = true; el.playsInline = true; el.crossOrigin = "anonymous";
     el.preload = "none"; el.setAttribute("playsinline", ""); el.setAttribute("muted", "");
+    liveVideos.add(el);
     const tex = new THREE.VideoTexture(el);
     tex.colorSpace = THREE.SRGBColorSpace;
     tex.center.set(0.5, 0.5);
@@ -270,13 +375,52 @@ export function createMarbleCluster(container, {
     el.addEventListener("loadedmetadata", frameCrop);
     frameCrop();                              // in case metadata is already there
     const planeMat = new THREE.MeshBasicMaterial({ map: tex, toneMapped: false, side: THREE.DoubleSide });
-    return { el, planeMat };
+    const t = { el, planeMat, vtex: tex, posterTex: null, released: false };
+    if (!poster) return t;
+
+    // ☠️ NO BEAD IS EVER BLACK GLASS: IT WEARS ITS POSTER UNTIL THE VIDEO HAS A FRAME.
+    // A VideoTexture with nothing decoded samples as black, and on a cold cache or a slow
+    // media origin that was most of the wall for the first seconds (measured on the old
+    // build: two of the beads in view were solid black after the wall had settled). The
+    // poster is a same origin jpg (media.js leaves images on the app), so it lands fast and
+    // it still lands when the media origin does not. The crop is the same square-from-the-
+    // long-axis rule as the video's, read off the image's own dimensions.
+    const pt = new THREE.TextureLoader().load(poster, (loaded) => {
+      const img = loaded.image;
+      const w = img?.naturalWidth || img?.width, h = img?.naturalHeight || img?.height;
+      if (!w || !h) return;
+      const side = Math.min(w, h), rx = side / w, ry = side / h;
+      loaded.repeat.set(rx, ry);
+      if (h >= w) loaded.offset.set(0, THREE.MathUtils.clamp((1 - ry / 2) - focusY, 0, 1 - ry));
+      else loaded.offset.set(THREE.MathUtils.clamp(focusY - rx / 2, 0, 1 - rx), 0);
+      loaded.needsUpdate = true;
+    });
+    pt.colorSpace = THREE.SRGBColorSpace;
+    pt.center.set(0.5, 0.5);
+    t.posterTex = pt;
+    planeMat.map = pt;
+    // ☠️ "HAS A FRAME" IS NOT "HAS A PICTURE". Swapping on loadeddata was the obvious rule
+    // and it put black beads straight back on the wall: measured with ffmpeg, three of the
+    // first seven clips (wall-dsd-showcase, -showcase-4, -hero-loop) open on a pure black
+    // frame, luma 0.0 at t=0 and 120+ a second later. The face changes only once playback
+    // is past that opening, so a clip that is paused at frame 0 (inactive wall, an iPhone in
+    // Low Power Mode refusing muted autoplay) keeps showing its poster instead.
+    const toVideo = () => {
+      if (t.released || planeMat.map === tex) return;
+      if (el.readyState < 2 || el.currentTime < VIDEO_FACE_AFTER_S) return;
+      planeMat.map = tex;
+      planeMat.needsUpdate = true;
+      el.removeEventListener("timeupdate", toVideo);
+    };
+    el.addEventListener("timeupdate", toVideo);
+    return t;
   }
-  const texPool = videos.map(makeTex);
+  const texPool = videos.map((url, i) => makeTex(url, i, posters[i] || null));
   // ☠️ vids IS NOT A SNAPSHOT ANY MORE. The rain swap adds and removes decoders while the
   // wall is running, so setActive and dispose have to walk the LIVE set rather than a list
   // captured at build time. It is derived from units on demand instead of stored.
-  const vids = () => units.map((u) => u.tex && u.tex.el).filter(Boolean);
+  // A bead that was knocked out already gave its decoder back, so it is not played again.
+  const vids = () => units.map((u) => u.tex && !u.tex.released && u.tex.el).filter(Boolean);
 
   // ── marbles ──
   const group = new THREE.Group();
@@ -300,7 +444,8 @@ export function createMarbleCluster(container, {
   // bead magnifies its video LESS and shows a glass ring. video-fill ∝ r·zoom, so to make EVERY bead
   // fill like the biggest, hold r·zoom constant → zoom = refZoom·rMax/r (capped so the inner disc
   // never pokes past the glass). refZoom = faceZoomDefault = the biggest bead's perfect zoom. (Jarich 2026-06-26)
-  const rMax = baseR * 1.85;      // the hero bead (biggest)
+  const LADDER = Array.isArray(ladder) && ladder.length ? ladder : TAP_LADDER;
+  const rMax = baseR * (tapMode ? Math.max(...LADDER) : 1.85);      // the hero bead (biggest)
   const ZOOM_CAP = 0.98;          // keep the inner disc inside the bead (no poke-out)
   /**
    * Build ONE bead: glass, video face, physics body, and the record the loops walk.
@@ -312,17 +457,25 @@ export function createMarbleCluster(container, {
    */
   function makeBead(slot, url, hd, tex, spawn) {
     const isFilled = !!tex;
-    const r = isFilled
+    const r = tapMode
+      ? baseR * LADDER[slot % LADDER.length]
+      : isFilled
       ? (slot === HERO_I ? baseR * 1.85
          : slot === SMALL_I ? baseR * 0.62
          : baseR * (0.95 + hash(slot) * 0.55))
       : baseR * (0.5 + Math.pow(hash(slot + 101), 1.4) * 1.35);
 
+    // ☠️ THE TINT WAS EATING THE VIDEO ON BIG BEADS. three's transmission path length is
+    // thickness TIMES the mesh scale, and both are r here, so the path grows as r squared.
+    // At the desktop hero (r 1.55) that is 2.4 units through a warm attenuation tuned for
+    // 1.6: each channel lost a quarter to a half and the reel read dim and yellow. Tap mode
+    // draws every bead big, so it lets the light through further; the rain wall keeps its
+    // look.
     const glass = new THREE.MeshPhysicalMaterial({
       color: 0xffffff, metalness: 0, roughness: isFilled ? 0.05 : 0.04,
       transmission: 1, ior: 1.45, thickness: r * (isFilled ? 1.0 : 1.3),
       attenuationColor: isFilled ? ATTEN : CLEAR_TINTS[slot % CLEAR_TINTS.length],
-      attenuationDistance: isFilled ? 1.6 : 0.85,
+      attenuationDistance: isFilled ? (tapMode ? 6.0 : 1.6) : 0.85,
       clearcoat: 1, clearcoatRoughness: 0.07,
       iridescence: isFilled ? 0.12 : 0.72,
       iridescenceIOR: 1.3,
@@ -378,16 +531,29 @@ export function createMarbleCluster(container, {
   // press-and-hold / dive state (defined here so the fling handler can see `focused`)
   let frozen = false, focused = false, currentTheater = null;
   let prevCursor = new THREE.Vector3(999, 999, 999);
+  // tap mode: the press in progress on the canvas, { x, y, t, id, drag, pick }
+  let press = null;
   const onMove = (e) => {
     if (focused) { ptr.engaged = false; return; } // a marble is open — don't fling underneath it
     const t = e.touches ? e.touches[0] : e;
     if (!t) return;
+    // ☠️ IN TAP MODE THE FINGER ONLY SHOVES ONCE IT IS A DRAG. The cursor body used to
+    // engage on hover and on the press itself, so it sat at the finger and pushed out of
+    // the way the very bead the finger was on: a tap's target and a hold's reel both slid
+    // off before the tap or the hold could land on them. Drag to fling is kept: past
+    // MOVE_CANCEL the press becomes a drag and the finger shoves exactly as before.
+    if (tapMode) {
+      if (!press || !press.drag) { ptr.engaged = false; return; }
+    }
     const r = canvas.getBoundingClientRect();
     // only engage when the pointer/touch is ON the canvas — so touches above/below (headline, founders,
     // black margins) still scroll the page freely, while drags ON the beads fling them.
     if (t.clientX < r.left || t.clientX > r.right || t.clientY < r.top || t.clientY > r.bottom) { ptr.engaged = false; return; }
     ptr.x = ((t.clientX - r.left) / r.width) * 2 - 1;
     ptr.y = -(((t.clientY - r.top) / r.height) * 2 - 1);
+    // a drag that just began has no previous point: do not read the jump from wherever the
+    // cursor was parked as a throw
+    if (!ptr.engaged && tapMode) ptr.fresh = true;
     ptr.engaged = true;
   };
   const onLeave = () => { ptr.engaged = false; };
@@ -442,9 +608,14 @@ export function createMarbleCluster(container, {
   }
 
   // bead → viewport rect (center x/y + diameter px) so the player can grow FROM that exact spot
-  function beadScreenRect(index) {
-    const u = units[index].unit;
-    const rad = units[index].body.shapes[0].radius;
+  // ☠️ LOOKED UP BY THE PICKED SHELL, NOT BY units[slot]. The slot is the bead's place on the
+  // size ladder, and once any bead has been swapped out units[] is no longer in slot order:
+  // units[slot] is then some OTHER bead and the player grew out of the wrong marble.
+  function beadScreenRect(pick) {
+    const rec = units.find((u) => u.shell.userData === pick) || units[pick.index];
+    if (!rec) return { x: window.innerWidth / 2, y: window.innerHeight / 2, d: 120 };
+    const u = rec.unit;
+    const rad = rec.body.shapes[0].radius;
     const rect = canvas.getBoundingClientRect();
     const c = u.position.clone().project(camera);
     const cx = rect.left + (c.x * 0.5 + 0.5) * rect.width;
@@ -460,11 +631,12 @@ export function createMarbleCluster(container, {
     focused = true; frozen = true;
     hintRetired = true; hideHint(); // they found it — stop showing the hint for good
     clearTimeout(holdTimer); holdTimer = 0; holdPick = null;
+    press = null;                   // the hold that opened this must never also launch a bead
     ptr.engaged = false;
     vids().forEach((el) => el.pause());
     if (navigator.vibrate) try { navigator.vibrate(12); } catch (_) {}
 
-    const o = beadScreenRect(pick.index);
+    const o = beadScreenRect(pick);
     const root = document.createElement("div");
     root.className = "cp-theater";
     root.innerHTML =
@@ -589,6 +761,41 @@ export function createMarbleCluster(container, {
   window.addEventListener("pointercancel", onHoldUp);
   canvas.addEventListener("contextmenu", onCtx);
 
+  // ── TAP TO ADD: a press shorter than HOLD_MS that moved less than MOVE_CANCEL ──
+  // ☠️ THE THREE GESTURES ARE TOLD APART ON RELEASE, NEVER ON PRESS. Down only records
+  // where and when. A press that travels past MOVE_CANCEL is a drag (it flings, see onMove)
+  // and can no longer be a tap. A press still down at HOLD_MS belongs to the theatre, which
+  // clears `press` when it opens. Only what is left at pointerup is a tap, so a hold can
+  // never also launch a bead and a fling never launches one either.
+  const onTapDown = (e) => {
+    if (!tapMode || focused || !active || e.isPrimary === false) return;
+    if (e.button != null && e.button > 0) return;    // right or middle mouse is not a tap
+    press = {
+      x: e.clientX, y: e.clientY, t: performance.now(), id: e.pointerId, drag: false,
+      // what the finger landed on, read BEFORE anything can move it
+      pick: shellRecAt(e.clientX, e.clientY),
+    };
+  };
+  const onTapMove = (e) => {
+    if (!press || e.pointerId !== press.id || press.drag) return;
+    if (Math.hypot(e.clientX - press.x, e.clientY - press.y) > MOVE_CANCEL) press.drag = true;
+  };
+  const onTapUp = (e) => {
+    const p = press;
+    press = null;
+    if (!p || e.pointerId !== p.id || p.drag || focused || !active) return;
+    if (performance.now() - p.t >= HOLD_MS) return;   // a hold, on a bead or on empty glass
+    if (Math.hypot(e.clientX - p.x, e.clientY - p.y) > MOVE_CANCEL) return;
+    launchAt(e.clientX, e.clientY, p.pick);
+  };
+  const onTapCancel = () => { press = null; };
+  if (tapMode) {
+    canvas.addEventListener("pointerdown", onTapDown);
+    window.addEventListener("pointermove", onTapMove);
+    window.addEventListener("pointerup", onTapUp);
+    window.addEventListener("pointercancel", onTapCancel);
+  }
+
   function resize() {
     // On the viewport stage the sentinel's size says nothing about the drawing buffer.
     const w = (viewportStage ? window.innerWidth : container.clientWidth) || 1;
@@ -614,6 +821,7 @@ export function createMarbleCluster(container, {
       _ndc.set(ptr.x, ptr.y);
       raycaster.setFromCamera(_ndc, camera);
       if (raycaster.ray.intersectPlane(PLANE, _hit)) {
+        if (ptr.fresh) { prevCursor.copy(_hit); ptr.fresh = false; }
         // soft fling: only a fraction of the finger's speed, capped so a quick press can't launch beads away
         let vx = ((_hit.x - prevCursor.x) / dt) * FLING_SCALE;
         let vy = ((_hit.y - prevCursor.y) / dt) * FLING_SCALE;
@@ -639,12 +847,12 @@ export function createMarbleCluster(container, {
         _f.set(
           -kX * body.position.x * m,
           -kY * (body.position.y - centreY) * m,   // pulls home to centreY, not to zero
-          -K_CENTER_Z * body.position.z * m,
+          -kZ * body.position.z * m,
         );
         body.applyForce(_f, body.position);
       } else if (state === 'falling') {
         // gravity for the departing bead only; the world itself stays weightless
-        _f.set(0, -FALL_G * m, -K_CENTER_Z * body.position.z * m);
+        _f.set(0, -FALL_G * m, -kZ * body.position.z * m);
         body.applyForce(_f, body.position);
       } else {
         // incoming: a fraction of the centring spring so a miss still comes home, and the
@@ -652,7 +860,7 @@ export function createMarbleCluster(container, {
         _f.set(
           -kX * body.position.x * m * INCOMING_PULL,
           -kY * (body.position.y - centreY) * m * INCOMING_PULL,
-          -K_CENTER_Z * body.position.z * m,
+          -kZ * body.position.z * m,
         );
         body.applyForce(_f, body.position);
       }
@@ -699,6 +907,11 @@ export function createMarbleCluster(container, {
     window.removeEventListener("pointerup", onHoldUp);
     window.removeEventListener("pointercancel", onHoldUp);
     canvas.removeEventListener("contextmenu", onCtx);
+    canvas.removeEventListener("pointerdown", onTapDown);
+    window.removeEventListener("pointermove", onTapMove);
+    window.removeEventListener("pointerup", onTapUp);
+    window.removeEventListener("pointercancel", onTapCancel);
+    tapTimers.forEach(clearTimeout);
     window.removeEventListener("pointermove", onMove);
     window.removeEventListener("pointerdown", onMove);
     window.removeEventListener("touchstart", onMove);
@@ -727,12 +940,12 @@ export function createMarbleCluster(container, {
     // the decoders warmed for the neighbouring sets are nobody's once the wall is gone
     for (const t of warmed.values()) dropWarm(t);
     warmed.clear();
-    for (const rec of units) {
-      if (!rec.tex) continue;
-      try { rec.tex.el.pause(); rec.tex.el.removeAttribute("src"); rec.tex.el.load(); } catch (e) { /* already torn down */ }
-      rec.tex.planeMat.map?.dispose();
-      rec.tex.planeMat.dispose();
+    for (const rec of units) disposeTex(rec.tex);
+    // anything still holding a src is a decoder no bead or warm slot accounted for: free it
+    for (const el of liveVideos) {
+      try { el.pause(); el.removeAttribute("src"); el.load(); } catch (e) { /* torn down */ }
     }
+    liveVideos.clear();
     for (const shell of shells) shell.material.dispose();
     sphereGeo.dispose(); planeGeo.dispose(); envRT.dispose();
     scene.environment = null;   // envSrc is already disposed at build time, line ~161
@@ -776,16 +989,12 @@ export function createMarbleCluster(container, {
   const WARM_CAP = 24;      // the two neighbouring sets of ten, with room to spare
   const warmKey = (e) => `${e.slot}|${e.url}`;
   function openTex(e) {
-    const t = makeTex(e.url, e.slot);
+    const t = makeTex(e.url, e.slot, e.poster || null);
     t.el.preload = "auto";
     try { t.el.load(); } catch (err) { /* torn down */ }
     return t;
   }
-  function dropWarm(t) {
-    try { t.el.pause(); t.el.removeAttribute("src"); t.el.load(); } catch (e) { /* torn down */ }
-    t.planeMat.map?.dispose();
-    t.planeMat.dispose();
-  }
+  function dropWarm(t) { disposeTex(t); }
   /**
    * Open decoders for the sets a click could reach next, so a later swapTo on one of them
    * drops at full cadence. `lists` is every set to keep warm; anything warmed earlier that
@@ -818,10 +1027,31 @@ export function createMarbleCluster(container, {
   function releaseOutgoing(rec) {
     if (!rec || rec.state !== 'live') return;
     rec.state = 'falling';
+    rec.fellAt = performance.now();
+    tapClaims.delete(rec);
+    stats.knocked += 1;
+    const v = rec.body.velocity;
+    if (tapMode) {
+      // ☠️ A STRUCK BEAD GIVES ITS DECODER BACK THE MOMENT IT LEAVES THE WALL, NOT WHEN IT
+      // LEAVES THE SCREEN. Under continuous tapping several beads are in the air at once,
+      // and each one still holding a playing video would let the decoder count climb with
+      // the tap rate. It flies out wearing its poster, which nobody can tell apart at speed.
+      releaseVideo(rec.tex);
+      // The launch mostly strikes along the view axis (the bead is born in front of the one
+      // under the finger), so the impact alone pushes the target BACK, not out. It leaves
+      // outward from the well's centre, the shortest way off the stage, plus what the hit gave.
+      let dx = rec.body.position.x, dy = rec.body.position.y - centreY;
+      const len = Math.hypot(dx, dy);
+      if (len < 0.05) { const a = Math.random() * Math.PI * 2; dx = Math.cos(a); dy = Math.sin(a); }
+      else { dx /= len; dy /= len; }
+      v.set(v.x * 0.4 + dx * TAP_KNOCK_SPEED, v.y * 0.4 + dy * TAP_KNOCK_SPEED, v.z * 0.4);
+      rec.body.angularVelocity.set((Math.random() - 0.5) * 6, (Math.random() - 0.5) * 6, (Math.random() - 0.5) * 6);
+      rec.body.linearDamping = 0.02;
+      return;
+    }
     // The impact velocity is the fling: the bead keeps whatever the collision gave it and
     // leaves under a little gravity. Only a bead that was released by the fallback timer
     // (a near miss, so it is barely moving) gets a kick of its own, outward at random.
-    const v = rec.body.velocity;
     if (v.length() < 1.5) {
       const a = Math.random() * Math.PI * 2;
       v.set(Math.cos(a) * 5, Math.sin(a) * 5, 0);
@@ -846,13 +1076,12 @@ export function createMarbleCluster(container, {
     world.removeBody(rec.body);
     group.remove(rec.unit);
     rec.shell.material.dispose();
-    if (rec.tex) {
-      // ☠️ THE DECODER GOES WITH THE BEAD. Both halves: removing src alone leaves the
-      // decoder holding its last buffer, and load() on a src-less element frees it.
-      try { rec.tex.el.pause(); rec.tex.el.removeAttribute("src"); rec.tex.el.load(); } catch (e) { /* torn down */ }
-      rec.tex.planeMat.map?.dispose();
-      rec.tex.planeMat.dispose();
-    }
+    tapClaims.delete(rec);
+    // ☠️ THE DECODER GOES WITH THE BEAD. Both halves: removing src alone leaves the
+    // decoder holding its last buffer, and load() on a src-less element frees it.
+    // disposeTex does both, and also frees the poster and the material holding them.
+    if (rec.tex) disposeTex(rec.tex);
+    stats.retired += 1;
   }
 
   /** A random LIVE bead that has not already been claimed by this run. */
@@ -874,11 +1103,14 @@ export function createMarbleCluster(container, {
     const tNow = performance.now();
     for (let i = units.length - 1; i >= 0; i -= 1) {
       const rec = units[i];
-      if (rec.state === 'falling' && offStage(rec)) retire(rec);
+      // a struck bead that never makes it off (a corner, a pile up) is retired anyway, so
+      // the count always comes back to the wall size
+      if (rec.state === 'falling' && (offStage(rec) || (rec.fellAt && tNow - rec.fellAt > FALL_MAX_MS))) { retire(rec); continue; }
       // an incoming bead joins the wall on first contact (the collide listener), or once
       // it has plainly arrived: a swap can never be left waiting on a bead already home
       if (rec.state === 'incoming' && tNow - rec.droppedAt > LAND_BY_MS) land(rec);
     }
+    if (tapMode) stepTaps(tNow);
     if (!swap) return;
     const now = performance.now();
     // ☠️ DUE TIMES ARE ABSOLUTE, NOT "0.3s AFTER THE LAST ONE ACTUALLY FELL".
@@ -998,6 +1230,236 @@ export function createMarbleCluster(container, {
   /** True while a rain swap is running, so the caller can hold its label. */
   function swapping() { return !!swap; }
 
+  // ────────────────────────────────────────────────────────────────────────────────────
+  // TAP TO ADD
+  //
+  // The library is a RING. The first `count` reels seed the wall; every accepted tap takes
+  // the next one, births its bead at the finger, and throws it at a bead in the wall. The
+  // struck bead is knocked out through the same falling and retire path the rain uses, so
+  // one in means one out and the wall holds its count however fast anyone taps.
+  // ────────────────────────────────────────────────────────────────────────────────────
+  const tapClaims = new Set();     // live beads a launch in the air is already aimed at
+  const tapTimers = new Set();
+  const stats = { taps: 0, launched: 0, ignored: 0, knocked: 0, retired: 0, haptics: 0 };
+  let ringPos = tapMode ? Math.min(count, reels.length) % reels.length : 0;
+  const LAUNCH_PLANE = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+  const tapKey = (e) => `tap|${e.url}`;
+
+  // ☠️ NEVER TWO OF THE SAME REEL ON THE WALL. The ring wraps after a full lap, and a bead
+  // nobody has struck in all that time would otherwise meet its own clip coming round
+  // again. Anything already on the wall or on its way in is skipped this lap.
+  function wallUrls() {
+    return new Set(units.filter((u) => u.state !== 'falling').map((u) => u.shell.userData.url));
+  }
+  function peekAhead(n) {
+    const out = [];
+    if (!tapMode) return out;
+    const onWall = wallUrls();
+    for (let k = 0; k < reels.length && out.length < n; k += 1) {
+      const e = reels[(ringPos + k) % reels.length];
+      if (!onWall.has(e.url)) out.push(e);
+    }
+    return out;
+  }
+  function nextEntry() {
+    const onWall = wallUrls();
+    for (let k = 0; k < reels.length; k += 1) {
+      const i = (ringPos + k) % reels.length;
+      if (!onWall.has(reels[i].url)) { ringPos = (i + 1) % reels.length; return reels[i]; }
+    }
+    return null;
+  }
+  /** Keep exactly the next TAP_WARM_AHEAD reels' decoders open, and nothing else. */
+  function warmAhead() {
+    if (!tapMode) return;
+    const ahead = peekAhead(TAP_WARM_AHEAD);
+    const keep = new Set(ahead.map(tapKey));
+    for (const [k, t] of warmed) if (!keep.has(k)) { dropWarm(t); warmed.delete(k); }
+    for (const e of ahead) {
+      const k = tapKey(e);
+      if (!warmed.has(k)) warmed.set(k, openTex({ url: e.url, slot: 0, poster: e.poster }));
+    }
+  }
+  function takeWarm(e) {
+    const k = tapKey(e);
+    const t = warmed.get(k);
+    if (t) { warmed.delete(k); return t; }
+    return openTex({ url: e.url, slot: 0, poster: e.poster });
+  }
+
+  /** The live bead under a screen point, or null. */
+  function shellRecAt(cx, cy) {
+    const rect = canvas.getBoundingClientRect();
+    if (cx < rect.left || cx > rect.right || cy < rect.top || cy > rect.bottom) return null;
+    _ndc.set(((cx - rect.left) / rect.width) * 2 - 1, -(((cy - rect.top) / rect.height) * 2 - 1));
+    raycaster.setFromCamera(_ndc, camera);
+    for (const h of raycaster.intersectObjects(shells, false)) {
+      const rec = units.find((u) => u.shell === h.object);
+      if (rec && rec.state === 'live') return rec;
+    }
+    return null;
+  }
+  const _p = new THREE.Vector3();
+  function toScreen(rec, rect) {
+    _p.set(rec.body.position.x, rec.body.position.y, rec.body.position.z).project(camera);
+    return { x: rect.left + (_p.x * 0.5 + 0.5) * rect.width, y: rect.top + (-_p.y * 0.5 + 0.5) * rect.height };
+  }
+  /** The live, unclaimed bead whose centre is nearest a screen point. */
+  function nearestLive(cx, cy) {
+    const rect = canvas.getBoundingClientRect();
+    let best = null, bd = Infinity;
+    for (const rec of units) {
+      if (rec.state !== 'live' || tapClaims.has(rec)) continue;
+      const s = toScreen(rec, rect);
+      const d = Math.hypot(s.x - cx, s.y - cy);
+      if (d < bd) { bd = d; best = rec; }
+    }
+    return best;
+  }
+
+  function setRadius(rec, rad) {
+    const sh = rec.body.shapes[0];
+    sh.radius = rad;
+    sh.updateBoundingSphereRadius();
+    rec.body.updateBoundingRadius();
+    rec.body.aabbNeedsUpdate = true;
+  }
+
+  /**
+   * One accepted tap. Returns true when a bead was launched. `pick` is the bead the finger
+   * landed on at pointerdown, read before anything could move it.
+   */
+  function launchAt(cx, cy, pick) {
+    stats.taps += 1;
+    let inFlight = 0;
+    for (const u of units) if (u.state === 'incoming') inFlight += 1;
+    if (inFlight >= TAP_IN_FLIGHT) { stats.ignored += 1; return false; }
+
+    // the bead under the finger, else the nearest one; never one already being aimed at
+    const ok = (rec) => rec && rec.state === 'live' && !tapClaims.has(rec);
+    let target = ok(pick) ? pick : null;
+    if (!target) { const under = shellRecAt(cx, cy); if (ok(under)) target = under; }
+    if (!target) target = nearestLive(cx, cy);
+    if (!target) { stats.ignored += 1; return false; }
+    const entry = nextEntry();
+    if (!entry) { stats.ignored += 1; return false; }
+
+    // ☠️ BORN AT THE FINGER, IN FRONT OF THE WALL. The screen point is cast onto a plane
+    // just in front of the target, so the new bead appears exactly under the fingertip and
+    // nearer the camera than the bead it is about to hit: it comes OUT of the finger and
+    // INTO the wall. Born small, so it does not overlap the target on its first frame.
+    const r = baseR * LADDER[target.slot % LADDER.length];
+    const launchZ = Math.min(camera.position.z * 0.45, target.body.position.z + target.r + r * 0.9);
+    const rect = canvas.getBoundingClientRect();
+    _ndc.set(((cx - rect.left) / rect.width) * 2 - 1, -(((cy - rect.top) / rect.height) * 2 - 1));
+    raycaster.setFromCamera(_ndc, camera);
+    LAUNCH_PLANE.constant = -launchZ;          // the plane z = launchZ
+    if (!raycaster.ray.intersectPlane(LAUNCH_PLANE, _hit)) { stats.ignored += 1; return false; }
+
+    const now = performance.now();
+    const tex = takeWarm(entry);
+    // the newcomer takes the struck bead's place on the size ladder, so the wall keeps its shape
+    const rec = makeBead(target.slot, entry.url, entry.hd, tex, new CANNON.Vec3(_hit.x, _hit.y, launchZ));
+    rec.state = 'incoming';
+    rec.droppedAt = now;
+    rec.body.linearDamping = 0.02;
+    rec.unit.scale.setScalar(TAP_GROW_FROM);
+    setRadius(rec, rec.r * TAP_GROW_FROM);
+    const tp = { target, t0: now, growing: true, landed: false, released: false };
+    rec.tap = tp;
+    const tb = target.body.position, b = rec.body.position;
+    const dx = tb.x - b.x, dy = tb.y - b.y, dz = tb.z - b.z;
+    const len = Math.hypot(dx, dy, dz) || 1;
+    rec.body.velocity.set((dx / len) * TAP_SPEED, (dy / len) * TAP_SPEED, (dz / len) * TAP_SPEED);
+
+    // ☠️ THE SAME ONE-LISTENER, FLAGS-ONLY RULE AS THE RAIN (see stepSwap): cannon-es walks
+    // its listener array by index, so this is never removed from inside its own dispatch.
+    // stepTaps detaches it once both flags are set.
+    const onCollide = (e) => {
+      if (e.body === tp.target.body) {
+        if (!tp.released) { tp.released = true; releaseOutgoing(tp.target); }
+        if (!tp.landed) { tp.landed = true; land(rec); }
+        return;
+      }
+      // until the target is struck, brushing another bead does not stop the throw
+      if (!tp.landed && tp.released) {
+        const other = units.find((u) => u.body === e.body);
+        if (other && other.state === 'live') { tp.landed = true; land(rec); }
+      }
+    };
+    rec.body.addEventListener('collide', onCollide);
+    rec.onCollide = onCollide;
+    tapClaims.add(target);
+    // a throw that never touches its target still knocks it out, or the wall would grow
+    const timer = setTimeout(() => {
+      tapTimers.delete(timer);
+      if (!tp.released) { tp.released = true; releaseOutgoing(tp.target); }
+    }, TAP_KNOCK_MS);
+    tapTimers.add(timer);
+
+    if (active && !focused) tex.el.play().catch(() => {});
+    // ☠️ ONE HAPTIC PER ACCEPTED TAP, AT LAUNCH, NEVER ON THE COLLISION. A tap that was
+    // ignored (too many in the air) gets none, so the hand learns which taps counted.
+    hapticTick();
+    stats.haptics += 1;
+    stats.launched += 1;
+    hideHint();
+    warmAhead();
+    return true;
+  }
+
+  /** Per frame, before the physics step: grow the newborns and steer them home. */
+  function stepTaps(now) {
+    for (const rec of units) {
+      const tp = rec.tap;
+      if (!tp) continue;
+      if (tp.growing) {
+        const k = Math.min(1, (now - tp.t0) / TAP_GROW_MS);
+        const s = TAP_GROW_FROM + (1 - TAP_GROW_FROM) * (1 - Math.pow(1 - k, 3));
+        rec.unit.scale.setScalar(s);
+        setRadius(rec, rec.r * s);
+        if (k >= 1) tp.growing = false;
+      }
+      // ☠️ IT HOMES ON THE TARGET UNTIL IT STRIKES. The target is still a sprung bead in a
+      // jostling wall, and a throw aimed at where it WAS can sail past by a bead's width,
+      // which leaves the knock to the timer and reads as a miss. Re-aiming every frame at
+      // the same speed makes the hit the outcome, not the hope.
+      if (rec.state === 'incoming' && !tp.released && tp.target.state === 'live') {
+        const tb = tp.target.body.position, b = rec.body.position;
+        const dx = tb.x - b.x, dy = tb.y - b.y, dz = tb.z - b.z;
+        const len = Math.hypot(dx, dy, dz) || 1;
+        rec.body.velocity.set((dx / len) * TAP_SPEED, (dy / len) * TAP_SPEED, (dz / len) * TAP_SPEED);
+      }
+      if (!tp.growing && tp.released && rec.state !== 'incoming') {
+        detachCollide(rec);          // outside any dispatch, as the rule above requires
+        rec.tap = null;
+      }
+    }
+  }
+
+  /** Every bead as drawn: screen centre, diameter in css px, state and what its face shows.
+   *  The proof harness reads this; the page does not. */
+  function beads() {
+    const rect = canvas.getBoundingClientRect();
+    _right.setFromMatrixColumn(camera.matrixWorld, 0);
+    return units.map((rec) => {
+      const p = rec.unit.position.clone();
+      const c = p.clone().project(camera);
+      const e = p.clone().addScaledVector(_right, rec.body.shapes[0].radius).project(camera);
+      const x = rect.left + (c.x * 0.5 + 0.5) * rect.width;
+      const y = rect.top + (-c.y * 0.5 + 0.5) * rect.height;
+      const ex = rect.left + (e.x * 0.5 + 0.5) * rect.width;
+      const t = rec.tex;
+      return {
+        slot: rec.slot, state: rec.state, x, y, d: Math.abs(ex - x) * 2,
+        url: rec.shell.userData.url,
+        face: !t ? 'none' : t.released ? 'poster' : (t.planeMat.map === t.vtex ? 'video' : 'poster'),
+      };
+    });
+  }
+
+  if (tapMode) warmAhead();
+
   /** The shoal's own extent in world units, radii included, once the spring has settled.
    *  A caller can compare it against the visible height (2 * cameraZ * tan(22.5deg)) and
    *  know whether its framing actually clears the beads instead of guessing from a
@@ -1050,6 +1512,9 @@ export function createMarbleCluster(container, {
     const visibleHalfW = visibleHalfH * camera.aspect;
     return {
       halfH: maxY, halfW: maxX, live: n, incoming, falling, warm: warmed.size,
+      // decoders this cluster holds open right now (bead faces plus warm slots), and the
+      // tap ledger: one launched should always mean one knocked and, later, one retired
+      videos: liveVideos.size, stats: { ...stats },
       top, bottom, centreY, meanY, meanX,
       visibleHalfH, visibleHalfW,
       fits: maxY <= visibleHalfH && maxX <= visibleHalfW,
@@ -1060,5 +1525,5 @@ export function createMarbleCluster(container, {
   /** Re-seat the well. The shoal slides to the new centre under its own spring. */
   function setCenterY(y) { if (Number.isFinite(y)) centreY = y; }
 
-  return { setActive, resize, dispose, canvas, bounds, setCenterY, swapTo, swapping, prefetch };
+  return { setActive, resize, dispose, canvas, bounds, beads, setCenterY, swapTo, swapping, prefetch };
 }
