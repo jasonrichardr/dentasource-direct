@@ -12,6 +12,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useBeatNear from './useBeatNear';
 import { mediaUrl } from '@/lib/cinema/media';
+import { mixOrder } from '@/lib/cinema/mixOrder';
 
 /* ── the shared copy block ─────────────────────────────────────────────────── */
 
@@ -982,31 +983,9 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
 // desktop pass before this was corrected.
 const optimised = (src, w = 384, q = 75) => `/_next/image?url=${encodeURIComponent(src)}&w=${w}&q=${q}`;
 
-/**
- * The mixed marquee's order rule, and it lives HERE now rather than baked into a manifest.
- *
- * It used to be action-reels.json's own decision: the file shipped its items already
- * interleaved and this component rendered them in file order. That worked while one file
- * fed one beat. The training beat's strip is merged in code from two manifests, so no
- * single file can decide the interleave for it, and two different ordering rules for the
- * same marquee is how they drift apart.
- *
- * ☠️ SPACED EVENLY, NOT ALTERNATED. Strict image, video, image alternation is right at a
- * dozen items and wrong at thirty: it spends every clip in the first third and leaves a
- * long silent tail. Opening on a video and spreading the rest across the whole run keeps
- * something moving from the first tile to the last, whatever the ratio happens to be.
- */
-export function mixOrder(items) {
-  const vids = items.filter((i) => i.type === 'video');
-  const rest = items.filter((i) => i.type !== 'video');
-  if (!vids.length) return rest;
-  const n = vids.length + rest.length;
-  const out = new Array(n).fill(null);
-  vids.forEach((v, k) => { out[Math.round((k * n) / vids.length)] = v; });
-  let r = 0;
-  for (let i = 0; i < n; i += 1) if (!out[i]) { out[i] = rest[r]; r += 1; }
-  return out.filter(Boolean);
-}
+// mixOrder moved to src/lib/cinema/mixOrder.js (2026-10-01, WWW) so the seed script can
+// read the same rule; it is re-exported here so every existing import keeps working.
+export { mixOrder };
 
 /**
  * The address, the map, and the way in. Only the training beat carries one today.
@@ -1098,7 +1077,7 @@ const cardGuard = (playTo) => (e) => {
 
 const MIXED_SHOWN = 44;
 
-export function ActionPanel({ beat, beatIndex, items = [] }) {
+export function ActionPanel({ beat, beatIndex, items = [], ordered = false }) {
   const near = useBeatNear(beatIndex, { margin: '80%' });
 
   // The room only stands aside for a reel that is actually AUDIBLE. Everything in this
@@ -1113,7 +1092,12 @@ export function ActionPanel({ beat, beatIndex, items = [] }) {
   // (video first, then image, then video, and images alone once the clips run out); this
   // component does not sort, it renders what the file decided, so the strategy is
   // editable without touching code.
-  const tiles = useMemo(() => mixOrder(items).slice(0, MIXED_SHOWN), [items]);
+  //
+  // ☠️ AND A WWW DECK IS NOT RE-SPACED (`ordered`, 2026-10-01). A deck saved from the
+  // console is an order a PERSON chose, tile by tile, and mixOrder would silently undo it.
+  // The cut still applies (the console draws the same line after tile 44, so staff see what
+  // plays), and the track is still the same list doubled, so the -50% seam law holds.
+  const tiles = useMemo(() => (ordered ? items : mixOrder(items)).slice(0, MIXED_SHOWN), [items, ordered]);
   const trackRef = useRef(null);
 
   // ☠️ ONE CLIP SPEAKS AT A TIME, AND THAT IS A DATA DECISION, NOT A TASTE ONE.

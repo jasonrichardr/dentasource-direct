@@ -160,6 +160,43 @@ site will point at pictures that are not there.
 
 The `.bak` files are working files. Do not commit those.
 
+## ☠️ Five strips are not yours any more: WWW owns them
+
+Since 2026-10-01 the team arranges five home-page strips from the console
+(console.dentasourcedirect.com, the **WWW** door), on their phones, live in about
+a minute, with no developer:
+
+| WWW strip | Home beat it drives |
+|---|---|
+| Our people | `see-us-in-action` |
+| The showroom | `the-floor` |
+| Training Center | `training-center` |
+| Nationwide | `delivery` |
+| After sales crew | the crew row inside `after-sales` |
+
+**Once WWW has saved a strip, the console's manifest is canon for that strip.**
+`src/app/page.js` reads it on the server every 60 seconds and a non-empty WWW
+deck replaces the baked list for its beat, played in the order the team set.
+From that moment, editing `action-reels.json`, `installs.json`,
+`training-media.json`, `growth-partner.json`, `crew-shots.json`, a beat's
+`media`, or the room filters in `src/lib/cinema/homeDecks.js` changes NOTHING
+a visitor sees on that strip. The baked list only comes back if the manifest is
+unreachable (the page never breaks on it) or the deck is empty (the console
+refuses to empty one).
+
+To get a new baked item onto a WWW strip: add it to the site, deploy, then add
+it in the console ("+ Add", From the site / From phone), or re-run the seed,
+which only refreshes strips nobody has edited:
+
+```bash
+node scripts/www-seed.mjs --dry                      # counts, writes nothing
+node scripts/www-seed.mjs --out /tmp/www-seed.json   # then, from the console repo root:
+#   unset CONVEX_DEPLOYMENT CONVEX_DEPLOY_KEY
+#   bunx convex run wwwPublic:seedDecks "$(cat /tmp/www-seed.json)"
+```
+
+The studio still edits every OTHER strip and every word on the arc.
+
 ## Known, and deliberately left
 
 The studio's compiled JavaScript is still in the production build output

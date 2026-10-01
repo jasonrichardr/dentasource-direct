@@ -29,6 +29,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'pda.com.ph',
       },
+      // WWW (2026-10-01): photos the team uploads from the console live in its Convex
+      // storage and go through next/image like every other still on the home arc. Only the
+      // storage path; src/lib/cinema/wwwManifest.js drops any other remote host before render.
+      {
+        protocol: 'https',
+        hostname: 'energized-puma-161.convex.cloud',
+        pathname: '/api/storage/**',
+      },
     ],
   },
   async redirects() {
