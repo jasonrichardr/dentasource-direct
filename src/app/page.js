@@ -1,5 +1,11 @@
 import HomeCinema from '@/components/cinema-home/HomeCinema';
 import { newsData } from '@/data/news';
+import { readWwwDecks } from '@/lib/cinema/wwwManifest';
+
+// WWW (2026-10-01): five of the home arc's strips are arranged by the team in the console and
+// read here, on the server, from its public manifest. ISR: the page is rebuilt at most once a
+// minute, so a console change is live in about a minute; a failed read keeps the baked lists.
+export const revalidate = 60;
 
 export const metadata = {
   title: 'DentaSource Direct — Premium Dental Equipment Philippines',
@@ -19,10 +25,11 @@ function marqueeArticles() {
     .slice(0, MARQUEE_COUNT);
 }
 
-export default function Home() {
+export default async function Home() {
+  const www = await readWwwDecks();
   return (
     <main>
-      <HomeCinema articles={marqueeArticles()} />
+      <HomeCinema articles={marqueeArticles()} www={www} />
     </main>
   );
 }
