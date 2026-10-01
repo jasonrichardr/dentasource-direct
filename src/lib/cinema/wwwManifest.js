@@ -3,7 +3,7 @@
 // Jarich, 2026-10-01: "give us access all to our website in our console.dentasourcedirect.com.
 // name it WWW". Every staff seat arranges five home-page strips from the console; they live
 // in the console's Convex (energized-puma-161) and are published as a tiny public manifest.
-// This file is the ONLY place the site reads it, ON THE SERVER, cached for 60 seconds (ISR),
+// This file is the ONLY place the site reads it, ON THE SERVER, once per page rebuild (ISR 60 s),
 // so a change in the console is on the page in about a minute and no visitor's browser
 // ever talks to Convex.
 //
@@ -20,10 +20,14 @@
 //   WWW_MANIFEST_URL   server-only override (a local mock for proofs, or 'off'); unset in
 //                      production, where the default below is the live manifest.
 
+import http from 'node:http';
+import https from 'node:https';
+
 const DEFAULT_URL = 'https://energized-puma-161.convex.site/www/manifest';
 export const WWW_STORAGE_ORIGIN = 'https://energized-puma-161.convex.cloud/api/storage/';
 const DECKS = ['people', 'showroom', 'training', 'nationwide', 'crew'];
 const TIMEOUT_MS = 4000;
+const MAX_BYTES = 2 * 1024 * 1024;
 
 const sitePath = (s) => typeof s === 'string' && s.startsWith('/') && !s.startsWith('//');
 const num = (n) => (typeof n === 'number' && Number.isFinite(n) && n > 0 ? n : undefined);
@@ -61,16 +65,51 @@ export function sanitizeWwwDecks(decks) {
   return out;
 }
 
+/**
+ * GET a small JSON body WITHOUT Next's fetch cache.
+ *
+ * ☠️ WHY NOT fetch(). Two ways were tried and both were wrong (2026-10-01 review):
+ *   fetch(url, { next: { revalidate: 60 } })  a data cache of its own, served STALE while
+ *       it refreshes, stacked on the page's own 60 s: a console change could take two
+ *       cycles, up to two minutes, to reach the page.
+ *   fetch(url, { cache: 'no-store' })  measured: it turns `/` from ISR (○, Revalidate 1m)
+ *       into ƒ Dynamic, so EVERY page view is server-rendered and calls Convex.
+ * Node's own https client is not patched by Next, so it is read like a database call:
+ * fresh on every page rebuild and never on a visitor's request. page.js's `revalidate = 60`
+ * is then the only clock, and a change is live within one cycle.
+ */
+function getJson(url, timeoutMs, maxBytes) {
+  return new Promise((resolveOnce) => {
+    // one answer, and a hard deadline on the WHOLE read (the socket timeout is only idle time)
+    let req;
+    const timer = setTimeout(() => { if (req) req.destroy(); resolveOnce(null); }, timeoutMs);
+    const resolve = (v) => { clearTimeout(timer); resolveOnce(v); };
+    let lib;
+    try { lib = new URL(url).protocol === 'http:' ? http : https; } catch { resolve(null); return; }
+    req = lib.get(url, { timeout: timeoutMs, headers: { accept: 'application/json' } }, (res) => {
+      // no redirects, no other status: anything but a straight 200 is "no WWW decks"
+      if (res.statusCode !== 200) { res.resume(); resolve(null); return; }
+      let size = 0;
+      const chunks = [];
+      res.on('data', (c) => {
+        size += c.length;
+        if (size > maxBytes) { req.destroy(); resolve(null); return; }
+        chunks.push(c);
+      });
+      res.on('end', () => {
+        try { resolve(JSON.parse(Buffer.concat(chunks).toString('utf8'))); } catch { resolve(null); }
+      });
+      res.on('error', () => resolve(null));
+    });
+    req.on('timeout', () => { req.destroy(); resolve(null); });
+    req.on('error', () => resolve(null));
+  });
+}
+
 /** Fetch the console's WWW decks. Never throws; `{}` means "every strip plays its baked list". */
 export async function readWwwDecks() {
   const url = process.env.WWW_MANIFEST_URL || DEFAULT_URL;
   if (url === 'off') return {};
-  try {
-    const res = await fetch(url, { next: { revalidate: 60 }, signal: AbortSignal.timeout(TIMEOUT_MS) });
-    if (!res.ok) return {};
-    const body = await res.json();
-    return sanitizeWwwDecks(body && body.decks);
-  } catch {
-    return {};
-  }
+  const body = await getJson(url, TIMEOUT_MS, MAX_BYTES);
+  return sanitizeWwwDecks(body && body.decks);
 }
