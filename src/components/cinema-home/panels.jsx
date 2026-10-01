@@ -7,11 +7,12 @@
 // the JSON, never from this file. The only strings written here are the two door CTAs and
 // the Ask DSD intro, which the JSON also carries. No names, no prices, no warranty terms.
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import useBeatNear from './useBeatNear';
 import { mediaUrl } from '@/lib/cinema/media';
+import { mixOrder } from '@/lib/cinema/mixOrder';
 
 /* ── the shared copy block ─────────────────────────────────────────────────── */
 
@@ -99,17 +100,23 @@ export function LockupPanel({ beat, level = 1 }) {
 }
 
 // The closing beat: the same lockup, nearer, with both doors open.
+// ☠️ NO "VISIT THE SHOWROOM" HERE ANY MORE. The navbar's Showroom link is that door now
+// (Jarich, 2026-10-01), and this beat already prints the address, so the useful second
+// door is the route there. The cid is the showroom's own Google Maps place, the same one
+// lib/schemas/organization.js declares as hasMap, so the pin cannot drift from the schema.
+const SHOWROOM_MAP = 'https://www.google.com/maps?cid=6544193348824466616';
+
 export function DoorPanel({ beat }) {
   return (
     <div className="dsd-panel dsd-copy-wide">
       <Copy beat={beat} className="dsd-copy-wide" />
       <div className="dsd-cta-row">
-        <Link href="/contact#showroom" prefetch={false} className="cinema-cta dsd-cta dsd-cta-solid">
-          Visit the showroom
-        </Link>
-        <Link href="/contact" prefetch={false} className="cinema-cta dsd-cta dsd-cta-ghost">
+        <Link href="/contact" prefetch={false} className="cinema-cta dsd-cta dsd-cta-solid">
           Send an inquiry
         </Link>
+        <a href={SHOWROOM_MAP} target="_blank" rel="noopener noreferrer" className="cinema-cta dsd-cta dsd-cta-ghost">
+          Get directions
+        </a>
       </div>
     </div>
   );
@@ -551,64 +558,24 @@ export function ChatPanel({ beat, beatIndex, script }) {
  * The phone's replacement (13.0 with a 2.4 by 4.2 portrait well) is at the call site.
  */
 
-// ☠️ THE WALL PAGES, IT DOES NOT GROW. One bead per reel with no duplicates is the rule
-// this cluster was built on, so the 192 entry library would be 192 video decoders on one
-// screen. The sets arrive already cut in reel-library.json, 24 at a time, with the entries
-// the wall already showed first so that nothing moves on the day of the switch. This
-// component pages through what it is handed and does not re-cut it.
-export function MarblesPanel({ beat, beatIndex, sets = [] }) {
+// ☠️ SEVEN ON THE WALL, AND THE LIBRARY IS A RING, NOT A STACK OF PAGES.
+// Jarich, 2026-10-01: "show 7 marble glasses then when they tap once a glass marble will be
+// added and remove 1". The Prev / Next pager and its "Set x of y" label are gone: the
+// first seven reels in the visible library seed the wall, and every tap brings in the next
+// one and knocks one out. One bead per reel with no duplicates still holds; the cluster
+// skips a reel that is already on the wall when the ring comes round again.
+const MARBLES_ON_WALL = 7;
+
+export function MarblesPanel({ beat, beatIndex, reels = [] }) {
   const mountRef = useRef(null);
   const near = useBeatNear(beatIndex, { margin: '80%' });
   const [reduced, setReduced] = useState(false);
-  const [set, setSet] = useState(0);
-  // ☠️ THE LABEL LAGS THE CLICK ON PURPOSE. A rain swap takes about three seconds, and for
-  // those three seconds the wall genuinely holds both sets: beads from the old one are
-  // still being knocked out while the new ones fall in. Saying "Set 4 of 20" the instant
-  // the button is pressed would be describing a wall that is not there yet, so the label
-  // moves when the last incoming bead has landed.
-  const [landed, setLanded] = useState(0);
-  const clusterRef = useRef(null);
-  const heldRef = useRef(0);
-
-  const setCount = Math.max(1, sets.length);
-  // Clamp rather than modulo: a library that shrinks under the visitor should land on the
-  // last real set, not wrap to the first.
-  const setIndex = Math.min(set, setCount - 1);
-  // the build effect reads the CURRENT set without taking it as a dependency
-  const setIndexRef = useRef(setIndex);
-  setIndexRef.current = setIndex;
-
-  // ☠️ A SET CHANGE IS A SWAP, NOT A REBUILD. The cluster keeps running and the incoming
-  // beads rain into it one every 0.3s, each knocking one of the outgoing beads out of the
-  // wall. Ten beads is about three seconds, and the wall is never empty during it.
-  // A click while a swap is running is QUEUED by the cluster and runs when this one ends,
-  // so holding Next does not interleave two rains into the same shoal.
-  // ☠️ THE NEXT SET'S DECODERS ARE OPENED WHILE THE WALL IS AT REST, NOT ON THE CLICK.
-  // Every bead clip is a cross-origin fetch, and a swap that has to open its ten decoders
-  // at click time measured seven to thirteen seconds: each drop sat out its grace period
-  // waiting for a first frame. The pager only ever moves one step, so warming the set on
-  // either side of the one on screen is enough for every click a visitor can make.
-  const listFor = useCallback((i) => (sets[i] || []).map((r, k) => ({
-    slot: k, url: r.src, hd: r.hd ? { src: r.hd, w: r.hdWidth, h: r.hdHeight } : null,
-  })), [sets]);
-  const warmNeighbours = useCallback((cluster, i) => {
-    if (!cluster) return;
-    // next first: it is the click a visitor makes far more often than prev
-    cluster.prefetch(i + 1 < sets.length ? listFor(i + 1) : [], i - 1 >= 0 ? listFor(i - 1) : []);
-  }, [sets, listFor]);
-
-  useEffect(() => {
-    const cluster = clusterRef.current;
-    if (!cluster || reduced) return;
-    if (heldRef.current === setIndex) return;
-    const list = listFor(setIndex);
-    if (!list.length) return;
-    heldRef.current = setIndex;
-    cluster.swapTo(list, () => {
-      setLanded(setIndex);
-      warmNeighbours(cluster, setIndex);
-    });
-  }, [setIndex, sets, reduced, listFor, warmNeighbours]);
+  // the ring the cluster walks, in visible() order: bead loop, theatre HD and poster
+  const ring = useMemo(() => reels.map((r) => ({
+    url: r.src,
+    hd: r.hd ? { src: r.hd, w: r.hdWidth, h: r.hdHeight } : null,
+    poster: r.poster || null,
+  })), [reels]);
 
   useEffect(() => {
     try { setReduced(matchMedia('(prefers-reduced-motion: reduce)').matches); } catch (e) { /* assume motion is fine */ }
@@ -621,7 +588,7 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
     // would be the opposite of what they asked for.
     if (!near || reduced) return undefined;
     const mount = mountRef.current;
-    if (!mount || !(sets[setIndexRef.current] || []).length) return undefined;
+    if (!mount || !ring.length) return undefined;
 
     // ☠️ THE CLUSTER AND ITS PHYSICS ENGINE ARRIVE WITH THE BEAT, NOT WITH THE PAGE.
     // marbleCluster pulls in cannon-es and its own several hundred lines, and a static
@@ -648,7 +615,6 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
       if (theaterOpen) window.dispatchEvent(new CustomEvent('dsd:videoaudio', { detail: { on: false } }));
       cleanupSeat?.();
       delete mount._dsdCluster;
-      clusterRef.current = null;
       cluster?.dispose();
     };
 
@@ -697,59 +663,57 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
       // 0.92 is the knee: it hits the two seconds asked for and keeps the fling livelier
       // than 0.86 does. Past it the wall stops settling FASTER, because an over-damped
       // shoal creeps to rest instead of arriving.
-      // ☠️ cameraZ AND beadScale SET A RESOLUTION GATE IN ANOTHER FILE. READ THIS BEFORE
-      // CHANGING EITHER.
+      // ☠️ cameraZ, beadScale AND THE LADDER SET A RESOLUTION GATE IN ANOTHER FILE. READ
+      // THIS BEFORE CHANGING ANY OF THEM.
       // Together they decide the hero bead's rendered diameter, and that diameter is
       // declared as reel-library.json's tile, which decides WHICH CLIPS MAY APPEAR ON THE
-      // WALL AT ALL. Measured off the live scene on 2026-09-06:
+      // WALL AT ALL. A clip is held when its square crop falls under 0.95 of that tile.
       //
-      //   desktop  cameraZ 7.0   hero bead 482.4 css px   declared as a tile of 480
-      //   phone    cameraZ 13.0  hero bead 217.5 css px
+      //   2026-09-06  ten beads   desktop hero 482.4 css px   declared 480
+      //   2026-10-01  seven beads desktop hero 401 css px, read off beads() on the settled
+      //               live scene, smallest 248; phone hero 213, smallest 132
       //
-      // A clip is held when its square crop falls under 0.95 of that tile, so today
-      // 480x854 passes at 1.00 and 720x406 is held at 0.85. Raise cameraZ and the beads
-      // shrink, the gate loosens and clips we judged too soft become admissible; lower it
-      // and clips already on the wall become barred. Nothing in reel-library.json points
-      // back here, so the coupling is invisible from that end.
+      // The 10-01 tile is declared 400. That moved NO clip across the line, and it is worth
+      // knowing why so the next change can be judged the same way: every visible clip has a
+      // short side of 480 or more (passes while the tile is under 505) and every held clip
+      // has 358 to 360 (held while the tile is over 377). Anywhere from 378 to 505 is the
+      // same wall. Outside that band clips start moving, so re-run
+      // scripts/media-pipeline/declare_marbles.py after re-measuring.
       //
-      // ☠️ THE TWO VIEWPORTS ARE 2.22x APART AND THAT IS THIS LINE'S DOING. Every other
-      // tile on the arc varies about 1.1x between desktop and phone; the bead varies 482
-      // to 217 because the phone was moved to cameraZ 13.0 to fit a portrait stage. The
-      // wall serves the SAME clips to both, so the desktop number has to govern: a clip
-      // fine on a phone and soft on a desktop would otherwise ship soft. The phone number
-      // could not have been declared, which is why the gate is a desktop gate.
+      // ☠️ THE DESKTOP GOVERNS: the wall serves the SAME ring to both viewports, so the
+      // strictest (largest) tile has to be the declared one.
       //
-      // If you change either number, re-measure the bead and tell whoever owns
-      // reel-library.json. The frames alone will not show you what you moved.
-      ? { isMobile: false, cameraZ: 7.0, spreadX: 5.8, spreadY: 1.4, centerPull: 1.8, beadScale: 1.5, linDamp: 0.92 }
-      // ☠️ A PORTRAIT STAGE NEEDS A PORTRAIT WELL. The phone kept an isotropic shoal and a
-      // near camera while its canvas was a 98vw by 52vh landscape box. The viewport stage
-      // is the opposite shape: at 390x844 the aspect is 0.46, so the visible WIDTH in
-      // world units collapses to 1.84 while the height grows to 3.98. The round shoal
-      // measured 2.40 half-widths against that 1.84, which is 130 percent: a quarter of
-      // the wall was hanging off both sides at REST, before anyone touched it.
-      // Pushing the camera back alone would fix the overflow and shrink the beads to
-      // nothing, so the well turns portrait as well: narrow in X, tall in Y, at a camera
-      // far enough to hold it. Measured settled, 390x844: 81% of the visible width and
-      // 55% of the height, both axes fitting. The height deliberately does NOT fill: the
-      // copy sits above the beads and the pager below them, and the canvas now covers
-      // both, so the band of glass has to leave them room.
-      : { isMobile: true, cameraZ: 13.0, spreadX: 2.4, spreadY: 4.2, centerPull: 1.8, beadScale: 1.5, linDamp: 0.92 };
-    // ☠️ EVERY ONE OF THESE SIX NUMBERS IS A SETTLED bounds() READING, NOT AN EYE.
-    // Swept at the real viewports against the real stage, nine seconds after the beat was
-    // parked, because a shoal read while it is still converging reads small. Desktop was
-    // measured and LEFT ALONE: 7.0/6.4/2.2 fills 94% of the visible width and 70% of the
-    // height and fits on both axes, and 94% is not a near miss, it is the wall spread
-    // across the stage the way Jarich asked for. The alternatives that bought margin
-    // (7.6/5.8/2.4 at 80%, 8.2/6.4/2.6 at 75%) bought it by making the beads smaller.
-    // The fov is VERTICAL, so cameraZ is what decides how much of the shoal is on screen;
-    // the box shape only ever changes how much is visible sideways. Both numbers above
-    // were set by measuring bounds(), not by eye.
+      // ☠️ zPull IS WHAT MAKES THE SIZES MEAN ANYTHING. With the depth spring at its old
+      // 18 and the flat well here at about 90, beads settled in front of and behind each
+      // other, and perspective drew the same bead anywhere from 222 to 453 px from one run
+      // to the next. zPull 6 keeps the seven side by side: every bead is drawn at its own
+      // ladder size, fully visible, and the gate number above is a number, not a range.
+      //
+      // spreadX 3.8 by 1.5 is two rows under the copy, centred, 77 percent of the width.
+      // 3.9 and up flipped to an arrangement that hangs off the right edge (96 percent,
+      // fits false); 3.4 and under stacks three rows up over the headline. Measured, both.
+      ? { isMobile: false, cameraZ: 7.0, spreadX: 3.8, spreadY: 1.5, centerPull: 1.8, beadScale: 1.44, linDamp: 0.92, zPull: 6, openHalfH: 2.0 }
+      // ☠️ A PORTRAIT STAGE NEEDS A PORTRAIT WELL. At 390x844 the visible WIDTH in world
+      // units is 2.49 at this camera while the height is 10.77, so the well is narrow in X
+      // and tall in Y. Seven beads, settled: 87 percent of the width, beads 132 to 213 css
+      // px, the band from under the copy to the foot of the screen. maxPixelRatio 2 because
+      // the 1.5 cap drew a 3x phone's glass at half its resolution, and seven beads can
+      // afford the fill the old twenty four could not.
+      : { isMobile: true, cameraZ: 13.0, spreadX: 2.0, spreadY: 3.6, centerPull: 1.8, beadScale: 1.7, linDamp: 0.92, zPull: 4, maxPixelRatio: 2, openHalfH: 3.2 };
+    // ☠️ EVERY NUMBER IN BOTH SHAPES IS A SETTLED READING OFF THE LIVE SCENE, NOT AN EYE.
+    // Swept on 2026-10-01 at 390x844 (3x, touch) and 1440x900, parked on this beat, with
+    // bounds() for the extent and beads() for each bead's drawn diameter, after the wall had
+    // stopped moving (the settle is deterministic: the same numbers give the same wall at
+    // 11 and at 25 seconds). The fov is VERTICAL, so cameraZ decides how much of the shoal
+    // is on screen; the well's shape only ever changes how much is visible sideways.
     cluster = createMarbleCluster(mount, {
-      videos: (sets[setIndexRef.current] || []).map((r) => r.src),
-      // The theatre plays these, not the 480 bead loops, whenever the manifest has one.
-      hdVideos: (sets[setIndexRef.current] || []).map((r) => (r.hd ? { src: r.hd, w: r.hdWidth, h: r.hdHeight } : null)),
-      count: (sets[setIndexRef.current] || []).length,   // exactly one bead per reel in THIS set
+      // The ring: the first seven seed the wall, each tap brings the next. Every entry
+      // carries its theatre HD (played instead of the 480 bead loop whenever the manifest
+      // has one) and its poster (the bead's face until the video has a frame).
+      reels: ring,
+      count: Math.min(MARBLES_ON_WALL, ring.length),
+      tapToAdd: true,
+      hintText: 'Tap to add · Hold to watch',
       ...shape,
       // ☠️ THE STAGE IS THE WHOLE SCREEN, NOT A BOX IN THE MIDDLE OF IT. See the note on
       // .dsd-cluster: the canvas is pinned to the viewport and the mount stays in flow as
@@ -761,9 +725,6 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
     // the proof harness reads the shoal's real extent through this; nothing in the page
     // uses it, and it goes with the cluster on dispose
     mount._dsdCluster = cluster;
-    clusterRef.current = cluster;
-    heldRef.current = setIndexRef.current;
-    warmNeighbours(cluster, setIndexRef.current);
 
     // ☠️ THE WALL RESTS BELOW THE WORDS, AND IT IS MEASURED, NOT DIALLED.
     // Jarich: the shoal was sitting across the headline and body. The fix is to move where
@@ -820,7 +781,21 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
     // trusted from one. Together they give a control signal steady enough to act on and a
     // calm test that is true whenever the wall has actually stopped travelling.
     const spreadY = shape.spreadY ?? 3.0;
-    let halfTop = null;
+    // ☠️ spreadY STOPPED BEING AN OVERESTIMATE AT SEVEN BEADS. It was one for the old
+    // shapes (2.2 -> 2.03, 4.2 -> 2.97), so it served as the opening guess. The seven bead
+    // laptop well is 1.5 and the wall settles 1.87 tall each side of its middle, so the
+    // guess opened the wall 4px OVER the copy and the loop took 25 seconds to walk it down.
+    // openHalfH is that settled half height, measured and rounded up a little (laptop
+    // 1.87 -> 2.0, phone 3.08 -> 3.2), so the opening is still on the safe, low side; spreadY
+    // is only the fallback for a shape nobody has measured.
+    const openHalf = shape.openHalfH ?? spreadY;
+    // ☠️ THE SHAPE ESTIMATE STARTS FROM THAT MEASURED HALF HEIGHT, NOT FROM THE FIRST SAMPLE.
+    // The first tick lands about a second after the build, while the beads are still
+    // bursting out of their seed scatter and the shoal is far smaller than it settles.
+    // Seeded from that, the loop hauled the laptop wall UP over the copy (measured: 51px
+    // clear at 2s, 5px OVER the copy at 4s) and then took 25 seconds to walk it back down.
+    // Seeded from the settled number, early small samples only nudge it.
+    let halfTop = openHalf;
 
     const adjust = () => {
       const copy = mount.parentElement?.querySelector('.dsd-copy');
@@ -841,7 +816,7 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
       // test: flinging one bead barely moves the mean, and the average absorbs the brief
       // change in the shoal's height rather than chasing it.
       const sample = b.top - b.meanY;
-      halfTop = halfTop == null ? sample : halfTop * 0.85 + sample * 0.15;
+      halfTop = halfTop * 0.85 + sample * 0.15;
 
       // World units per CSS pixel. The fov is vertical, so the visible HEIGHT maps onto
       // the canvas height, and on this stage the canvas is the viewport.
@@ -862,16 +837,15 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
     };
 
     // One coarse placement before the first correction, so the wall never sits over the
-    // copy even on the opening frames. spreadY overestimates the half height on both
-    // viewports (2.2 -> 2.03, 4.2 -> 2.97) and overestimating seats it LOWER, which is
-    // the safe direction to be wrong in.
+    // copy even on the opening frames. Overestimating the half height seats it LOWER, which
+    // is the safe direction to be wrong in.
     (() => {
       const copy = mount.parentElement?.querySelector('.dsd-copy');
       const b = cluster.bounds();
       if (!copy || !b) return;
       const perPx = (b.visibleHalfH * 2) / (window.innerHeight || 1);
       const targetTop = (window.innerHeight / 2 - (copy.getBoundingClientRect().bottom + COPY_GAP_PX)) * perPx;
-      cluster.setCenterY(targetTop - spreadY);
+      cluster.setCenterY(targetTop - openHalf);
     })();
 
     const seatTimer = setInterval(adjust, 1200);
@@ -895,19 +869,11 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
     });
     mo.observe(document.body, { childList: true });
     }
-    // ☠️ setIndex IS A DEPENDENCY, AND THE TEARDOWN IS THE POINT. Changing set runs this
-    // effect's cleanup, which calls cluster.dispose(), which now actually releases the 24
-    // video decoders, their textures and every material holding one. Swapping the textures
-    // in place would avoid rebuilding the WebGL context, but it would also mean carrying a
-    // second teardown path for the same objects, and the one that runs on every set change
-    // is exactly the one that has to be right. One path, exercised constantly.
-    // ☠️ setIndex IS DELIBERATELY NOT A DEPENDENCY ANY MORE. It used to be, and the teardown
-    // WAS the set change: dispose the cluster, build the next one. That is what read as
-    // heavy — the wall vanished, a new WebGL context came up, ten decoders started cold and
-    // the fresh shoal converged from a random scatter, which measured seven to fifteen
-    // seconds of "subsiding". The scene now lives across a set change and the beads cross
-    // over inside it, so this effect builds ONCE per visit to the beat.
-  }, [near, reduced, sets, warmNeighbours]);
+    // ☠️ THIS EFFECT BUILDS ONCE PER VISIT TO THE BEAT. Nothing a visitor does on the wall
+    // rebuilds the scene: a tap adds a bead inside the running cluster and knocks one out,
+    // so the WebGL context, the shoal and its decoders live for as long as the beat does.
+    // Only the ring itself changing (a new library) tears it down and builds it again.
+  }, [near, reduced, ring]);
 
   return (
     <div className="dsd-panel">
@@ -921,11 +887,14 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
       {reduced ? (
         // ☠️ THE CLUSTER HAS NO REDUCED MOTION PATH OF ITS OWN. I checked: there is no
         // prefers-reduced-motion branch anywhere in GlassMarbles or marbleCluster. So the
-        // still wall is built here, from the same list, and nothing moves or decodes.
+        // still wall is built here, from the same ring the cluster seeds from: the same
+        // seven reels, each shown as its poster in a drawn bead, and nothing moves or decodes.
         <div className="dsd-marbles" role="list">
-          {(sets[0] || []).slice(0, 12).map((r) => (
+          {reels.slice(0, MARBLES_ON_WALL).map((r) => (
             <div className="dsd-marble" role="listitem" key={r.src}>
-              <span className="dsd-marble-art" aria-hidden="true" />
+              <span className="dsd-marble-art" aria-hidden="true">
+                {r.poster ? <img src={r.poster} alt="" loading="lazy" decoding="async" /> : null}
+              </span>
               <span className="dsd-marble-note">{r.alt}</span>
             </div>
           ))}
@@ -933,36 +902,6 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
       ) : (
         <div className="dsd-cluster dsd-interactive" ref={mountRef} />
       )}
-      {/* The pager only appears when there is somewhere to go. It sits above the canvas,
-          which now covers the screen, and it is .dsd-interactive so the engine only lets
-          it be tapped while this beat is the live one. */}
-      {!reduced && setCount > 1 ? (
-        <div className="dsd-pager dsd-interactive">
-          <button
-            type="button"
-            className="dsd-pager-btn"
-            onClick={() => setSet((n) => Math.max(0, n - 1))}
-            disabled={setIndex === 0}
-            aria-label="Previous set of reels"
-          >
-            Prev
-          </button>
-          {/* aria-live so a screen reader is told the wall changed under it: the beads
-              themselves announce nothing. */}
-          <span className="dsd-pager-count" aria-live="polite">
-            {`Set ${Math.min(landed, setCount - 1) + 1} of ${setCount}`}
-          </span>
-          <button
-            type="button"
-            className="dsd-pager-btn"
-            onClick={() => setSet((n) => Math.min(setCount - 1, n + 1))}
-            disabled={setIndex === setCount - 1}
-            aria-label="Next set of reels"
-          >
-            Next
-          </button>
-        </div>
-      ) : null}
       <Ctas beat={beat} />
     </div>
   );
@@ -982,31 +921,9 @@ export function MarblesPanel({ beat, beatIndex, sets = [] }) {
 // desktop pass before this was corrected.
 const optimised = (src, w = 384, q = 75) => `/_next/image?url=${encodeURIComponent(src)}&w=${w}&q=${q}`;
 
-/**
- * The mixed marquee's order rule, and it lives HERE now rather than baked into a manifest.
- *
- * It used to be action-reels.json's own decision: the file shipped its items already
- * interleaved and this component rendered them in file order. That worked while one file
- * fed one beat. The training beat's strip is merged in code from two manifests, so no
- * single file can decide the interleave for it, and two different ordering rules for the
- * same marquee is how they drift apart.
- *
- * ☠️ SPACED EVENLY, NOT ALTERNATED. Strict image, video, image alternation is right at a
- * dozen items and wrong at thirty: it spends every clip in the first third and leaves a
- * long silent tail. Opening on a video and spreading the rest across the whole run keeps
- * something moving from the first tile to the last, whatever the ratio happens to be.
- */
-export function mixOrder(items) {
-  const vids = items.filter((i) => i.type === 'video');
-  const rest = items.filter((i) => i.type !== 'video');
-  if (!vids.length) return rest;
-  const n = vids.length + rest.length;
-  const out = new Array(n).fill(null);
-  vids.forEach((v, k) => { out[Math.round((k * n) / vids.length)] = v; });
-  let r = 0;
-  for (let i = 0; i < n; i += 1) if (!out[i]) { out[i] = rest[r]; r += 1; }
-  return out.filter(Boolean);
-}
+// mixOrder moved to src/lib/cinema/mixOrder.js (2026-10-01, WWW) so the seed script can
+// read the same rule; it is re-exported here so every existing import keeps working.
+export { mixOrder };
 
 /**
  * The address, the map, and the way in. Only the training beat carries one today.
@@ -1098,7 +1015,7 @@ const cardGuard = (playTo) => (e) => {
 
 const MIXED_SHOWN = 44;
 
-export function ActionPanel({ beat, beatIndex, items = [] }) {
+export function ActionPanel({ beat, beatIndex, items = [], ordered = false }) {
   const near = useBeatNear(beatIndex, { margin: '80%' });
 
   // The room only stands aside for a reel that is actually AUDIBLE. Everything in this
@@ -1113,7 +1030,12 @@ export function ActionPanel({ beat, beatIndex, items = [] }) {
   // (video first, then image, then video, and images alone once the clips run out); this
   // component does not sort, it renders what the file decided, so the strategy is
   // editable without touching code.
-  const tiles = useMemo(() => mixOrder(items).slice(0, MIXED_SHOWN), [items]);
+  //
+  // ☠️ AND A WWW DECK IS NOT RE-SPACED (`ordered`, 2026-10-01). A deck saved from the
+  // console is an order a PERSON chose, tile by tile, and mixOrder would silently undo it.
+  // The cut still applies (the console draws the same line after tile 44, so staff see what
+  // plays), and the track is still the same list doubled, so the -50% seam law holds.
+  const tiles = useMemo(() => (ordered ? items : mixOrder(items)).slice(0, MIXED_SHOWN), [items, ordered]);
   const trackRef = useRef(null);
 
   // ☠️ ONE CLIP SPEAKS AT A TIME, AND THAT IS A DATA DECISION, NOT A TASTE ONE.

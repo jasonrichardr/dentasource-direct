@@ -10,10 +10,6 @@
       "eyebrow": "DentaSource Direct",
       "headline": "Nobody else touches your chair.",
       "body": "We uncrate it, test it, drive it to your door, build it in your room, and come back when you call. One team from the crate to the handover, and the same team on the phone a year later.",
-      "cta": {
-        "label": "Visit the showroom",
-        "href": "/contact"
-      },
       "media": [
         "/cinema/brand/dsd-round.png",
         "/videos/dsd-hero-poster.jpg"
@@ -36,23 +32,17 @@
       "kind": "action",
       "eyebrow": "Our people",
       "headline": "The real DentaSource.",
-      "body": "True enthusiasts and professionals in their craft. The crew I get to build with every day, and they bring it.",
+      "body": "We laugh a lot and we lift for each other, on the showroom floor and on the long drives. When we walk into your clinic, you get all of us.",
       "stars": [
-        "Most of them worked inside real clinics before they ever stood on a sales floor",
-        "They learn at our Training Center in Pasig, then teach in the same room",
-        "The person who answers your question has usually done the thing you are asking about",
-        "Every frame on this page is our own footage, never stock"
+        "We look after each other, and after you",
+        "Most of us worked in real clinics first",
+        "We learn and teach at our Training Center"
       ],
       "ctas": [
         {
-          "label": "About DentaSource Direct",
+          "label": "About us",
           "href": "/about",
           "variant": "ghost"
-        },
-        {
-          "label": "Visit the showroom",
-          "href": "/contact#showroom",
-          "variant": "solid"
         }
       ],
       "itemsFrom": "action-reels.json"
@@ -63,10 +53,6 @@
       "eyebrow": "The showroom",
       "headline": "The largest dental showroom in the country, and the only door to three brands",
       "body": "610 C. Raymundo Avenue, Maybunga, Pasig City, open Monday to Sunday, 9 AM to 8 PM. We are the exclusive Philippine distributor for ROSON and the exclusive Denjoy partner here, so the unit on our floor is the unit you receive, and the spares and the support stay in the country. Sit in them side by side in the same light before you choose.",
-      "cta": {
-        "label": "Visit the showroom",
-        "href": "/contact"
-      },
       "media": [
         {
           "src": "/images/home/showroom/visit-1.jpg",
@@ -121,25 +107,15 @@
     {
       "key": "training-center",
       "kind": "action",
-      "eyebrow": "Growth Partner",
-      "headline": "A growth partner, not a supplier.",
-      "body": "Most of what we do starts after the invoice. Your staff train on the same chair that will stand in your operatory, in this room, before it is delivered. Our own team learns here first, so the person who hands your chair over has already done the procedure on it. Courses run with partner study groups and clinical instructors. Service and parts stay in the country.",
+      "eyebrow": "Training Center",
+      "headline": "A growth partner, not just a supplier.",
+      "body": "Our work starts after the invoice. We train beside your team, we keep learning with you, and we grow when your clinic grows.",
       "place": {
         "address": "Mercedes Square Plaza 2, Units 307 and 308, Mercedes Avenue corner Luis Street, Pasig City",
         "mapEmbed": "https://www.google.com/maps?q=14.5681266,121.0913401&z=17&output=embed",
         "mapTitle": "Map of the DentaSource Training Center in Pasig City",
         "panoEmbed": "https://www.google.com/maps?layer=c&cbll=14.5681266,121.0913401&cbp=12,0,0,0,0&output=svembed",
         "panoTitle": "Street View of the Training Center building and its parking on Luis Street",
-        "links": [
-          {
-            "label": "Get directions",
-            "href": "https://www.google.com/maps/dir/?api=1&destination=14.5681266,121.0913401"
-          },
-          {
-            "label": "See the building on Street View",
-            "href": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=14.5681266,121.0913401"
-          }
-        ],
         "note": "Google Maps carries one pin for Mercedes Square Plaza and no separate pin for Plaza 2 or for the Training Center, so the embeds and the links address the coordinates rather than a place id. Google place photos are NOT copied onto the site, which the Maps terms forbid; the building is shown by EMBEDDING Street View, which stays served by Google. The cbp parameter is load bearing: without it the same svembed URL answers 200 and quietly renders a zoomed out WORLD MAP instead of a panorama, which is what it did on the first pass. With it the pano resolves to 1250 Luis, Pasig and shows the building frontage and the parking along it."
       },
       "media": [
@@ -150,16 +126,21 @@
       ],
       "ctas": [
         {
-          "label": "Ask about training",
-          "href": "/contact",
+          "label": "See the courses",
+          "href": "/growth-partner",
           "variant": "solid"
         },
         {
-          "label": "The Growth Partner program",
-          "href": "https://ffcdentalclinic.com/growth-partner",
+          "label": "Get directions",
+          "href": "https://www.google.com/maps/dir/?api=1&destination=14.5681266,121.0913401",
           "external": true,
           "variant": "ghost"
         }
+      ],
+      "stars": [
+        "Your staff learn the chair before it arrives",
+        "Our technicians learn every model here first",
+        "Service and parts stay in the Philippines"
       ]
     },
     {
@@ -286,12 +267,8 @@
       "key": "marbles",
       "kind": "marbles",
       "eyebrow": "Culture, on camera",
-      "headline": "Press and hold any of them",
-      "body": "Reels from conventions, installs, training days and ordinary afternoons on the floor. No stock footage and no actors. Press and hold a marble to watch the one you are curious about.",
-      "cta": {
-        "label": "About the team",
-        "href": "/about"
-      },
+      "headline": "Tap the glass. Hold to watch.",
+      "body": "Installs, conventions, training days and ordinary afternoons, all filmed by us and never stock. Every tap brings in a new marble.",
       "media": [],
       "reels": "reel-library.json"
     },
