@@ -8,52 +8,52 @@
     {
       "id": 1,
       "question": "How much is a dental chair?",
-      "answer": "Pricing depends on the model, the configuration and what is included, so we quote on request. Tell us the model you are looking at and the room it is going into, and we will put a figure against it."
+      "answer": "It depends on the model and configuration, so we quote on request. Tell us the model and the room."
     },
     {
       "id": 2,
       "question": "Do you offer installment plans?",
-      "answer": "Yes. Installment terms are available across the chair lineup, and they move with the model and the configuration. You get the schedule with your quote rather than a figure on a web page."
+      "answer": "Yes, across the whole chair lineup. Terms move with the model, and the schedule comes with your quote."
     },
     {
       "id": 3,
       "question": "Do you deliver outside Metro Manila?",
-      "answer": "We deliver nationwide. Clinics on Luzon are served by our own van and installation team. Units bound for the Visayas and Mindanao go by freight, with installation arranged on arrival."
+      "answer": "Yes, nationwide. Luzon gets our own van and install team. Visayas and Mindanao go by freight, installed on arrival."
     },
     {
       "id": 4,
       "question": "What happens if something goes wrong after the install?",
-      "answer": "Our technicians assess the fault on site, and we hold parts locally. If it will not clear quickly we deliver a replacement unit and take the affected one back. Coverage details come with your quote."
+      "answer": "We assess it on site and hold parts locally. If it will not clear quickly, a replacement unit goes in."
     },
     {
       "id": 5,
       "question": "When is the showroom open?",
-      "answer": "Monday to Sunday, 9 AM to 8 PM, at 610 C. Raymundo Avenue, Maybunga, Pasig City. No appointment needed, though telling us you are coming means the model you want is set up and powered."
+      "answer": "Every day, 9 AM to 8 PM, at 610 C. Raymundo Avenue, Maybunga, Pasig City. No appointment needed."
     },
     {
       "id": 6,
       "question": "Why Denjoy for endodontics?",
-      "answer": "We are the exclusive Denjoy partner in the Philippines, so units arrive through one channel, sealed and genuine, and the spares and support sit here. Handle one at the showroom before you decide."
+      "answer": "We are the exclusive Denjoy partner here, so every unit is sealed and genuine, with spares and support in the country."
     },
     {
       "id": 7,
       "question": "Do you train my team?",
-      "answer": "Yes. Your staff are trained at handover on the day of the install, and our Training Center in Pasig runs longer courses on simulators with partner study groups and clinical instructors."
+      "answer": "Yes. Your staff train at handover on install day, and our Pasig Training Center runs longer simulator courses."
     },
     {
       "id": 8,
       "question": "Are spare parts available locally?",
-      "answer": "Yes. Handpiece lines, valves, upholstery, control boards and delivery arms are all serviceable, and we hold parts here, so a same day repair is often possible rather than a wait on a shipment."
+      "answer": "Yes. We hold parts here, from handpiece lines to control boards, so a same day repair is often possible."
     },
     {
       "id": 9,
       "question": "How long does an installation take?",
-      "answer": "A few hours for a chair, because the unit was already assembled and tested once in our warehouse. A free ocular visit before delivery checks your plumbing, power and access so the day runs to plan."
+      "answer": "A few hours per chair, since we already assembled and tested it in our warehouse. A free ocular visit comes first."
     },
     {
       "id": 10,
       "question": "Can the purchase be financed?",
-      "answer": "Installment terms are arranged through us, and some clinics come with their own bank or lender. Either way we prepare the quote and the documents the financing needs. Terms are given on request."
+      "answer": "Yes. Installment through us or your own bank. Either way, we prepare the quote and the documents."
     }
   ],
   "cta": {

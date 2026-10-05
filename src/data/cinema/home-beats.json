@@ -9,7 +9,7 @@
       "kind": "lockup",
       "eyebrow": "DentaSource Direct",
       "headline": "Nobody else touches your chair.",
-      "body": "We uncrate it, test it, drive it to your door, build it in your room, and come back when you call. One team from the crate to the handover, and the same team on the phone a year later.",
+      "body": "We uncrate it, test it, deliver it and build it in your room. Then we pick up when you call.",
       "media": [
         "/cinema/brand/dsd-round.png",
         "/videos/dsd-hero-poster.jpg"
@@ -20,7 +20,7 @@
       "kind": "heart",
       "eyebrow": "Chairs in service",
       "headline": "Hundreds of dental chairs",
-      "body": "In clinics across the Philippines. Every one of them uncrated, tested and signed off in our warehouse before it left, then assembled in the operatory by our own technicians.",
+      "body": "In clinics across the Philippines, each one tested in our warehouse and built on site by our own technicians.",
       "cta": {
         "label": "See the chair lineup",
         "href": "/dentalchairs"
@@ -32,7 +32,7 @@
       "kind": "action",
       "eyebrow": "Our people",
       "headline": "The real DentaSource.",
-      "body": "We laugh a lot and we lift for each other, on the showroom floor and on the long drives. When we walk into your clinic, you get all of us.",
+      "body": "We laugh a lot and lift for each other. When we walk into your clinic, you get all of us.",
       "stars": [
         "We look after each other, and after you",
         "Most of us worked in real clinics first",
@@ -51,8 +51,9 @@
       "key": "the-floor",
       "kind": "action",
       "eyebrow": "The showroom",
-      "headline": "The largest dental showroom in the country, and the only door to three brands",
-      "body": "Open Monday to Sunday, 9 AM to 8 PM. We are the exclusive Philippine distributor for ROSON and K-Clamps, and the exclusive Denjoy partner here, so the unit on our floor is the unit you receive, and the spares and the support stay in the country. Sit in them side by side in the same light before you choose.",
+      "headline": "The country's largest dental showroom",
+      "body": "Open every day, 9 AM to 8 PM. Sit in every chair side by side before you choose.",
+      "stars": ["Exclusive ROSON distributor", "Exclusive K-Clamps distributor", "Exclusive Denjoy partner", "Spares and support stay in the country"],
       "howFar": {
         "label": "How far am I?",
         "kicker": "Live distance",
@@ -304,9 +305,9 @@
       "kind": "action",
       "eyebrow": "Training Center",
       "headline": "A growth partner, not just a supplier.",
-      "body": "Our work starts after the invoice. We train beside your team, we keep learning with you, and we grow when your clinic grows.",
+      "body": "Our work starts after the invoice. We train beside your team and grow when your clinic grows.",
       "place": {
-        "address": "Mercedes Square Plaza 2, Units 307 and 308, Mercedes Avenue corner Luis Street, Pasig City",
+        "address": "Units 307 and 308, Mercedes Square Plaza 2, Pasig",
         "mapEmbed": "https://www.google.com/maps?q=14.5681266,121.0913401&z=17&output=embed",
         "mapTitle": "Map of the DentaSource Training Center in Pasig City",
         "panoEmbed": "https://www.google.com/maps?layer=c&cbll=14.5681266,121.0913401&cbp=12,0,0,0,0&output=svembed",
@@ -342,8 +343,9 @@
       "key": "delivery",
       "kind": "action",
       "eyebrow": "Nationwide delivery",
-      "headline": "We travel the whole country to build it",
-      "body": "Luzon is served by our own van and our own installation team. Units bound for the Visayas and Mindanao go by freight with installation arranged on arrival. A free ocular visit comes first, so the unit fits the room before it ever leaves the warehouse.",
+      "headline": "We travel the country to build it",
+      "body": "Every delivery starts with a free ocular visit, so the unit fits your room before it ships.",
+      "stars": ["Luzon by our own van and installation team", "Visayas and Mindanao by freight", "Installed on arrival, wherever you are"],
       "cta": {
         "label": "Arrange a delivery",
         "href": "/contact"
@@ -368,8 +370,9 @@
       "key": "after-sales",
       "kind": "parts",
       "eyebrow": "After sales and parts",
-      "headline": "The chair is the room, so downtime is the cost",
-      "body": "Our technicians assess a fault on site first, and we hold parts here for that reason. Handpiece lines, valves, upholstery, control boards and delivery arms are all serviceable. When the assessment says it will not clear quickly, a replacement unit goes out and the affected one comes back.",
+      "headline": "Downtime is the real cost",
+      "body": "Our technicians assess every fault on site, and we keep the parts here.",
+      "stars": ["Handpiece lines, valves and upholstery", "Control boards and delivery arms", "A replacement unit when a fix will take long"],
       "cta": {
         "label": "Talk to our service team",
         "href": "/contact"
@@ -383,7 +386,7 @@
       "tradeIn": {
         "eyebrow": "Trade-in program",
         "headline": "Your old chair has value here",
-        "body": "Almost any make or model counts toward a new ROSON chair, working or not. We appraise it, we collect it, and the new chair goes in the same day the old one comes out.",
+        "body": "Almost any make or model, working or not, counts toward a new ROSON chair. Old one out, new one in, the same day.",
         "cta": {
           "label": "Get a trade-in estimate",
           "href": "/trade-in"
@@ -425,7 +428,7 @@
       "kind": "marquee",
       "eyebrow": "From the news desk",
       "headline": "Something is always happening on the floor",
-      "body": "Installs, showroom days, conventions, courses and the odd thing that only happens once. We write it down the day it happens, from our own posts.",
+      "body": "Installs, showroom days, conventions and courses, written up the day they happen.",
       "cta": {
         "label": "See what is happening",
         "href": "/news"
@@ -450,7 +453,7 @@
       "kind": "chat",
       "eyebrow": "Ask DSD",
       "headline": "The ten questions we are asked most",
-      "body": "Price, installment, delivery outside Metro Manila, after sales, showroom hours, training, spare parts and installation time. The answers are here, and the inquiry form sits at the end of them.",
+      "body": "Price, installment, delivery, after sales, training and parts. Answered here, with the inquiry form at the end.",
       "cta": {
         "label": "Send an inquiry",
         "href": "/contact"
@@ -463,7 +466,7 @@
       "kind": "marbles",
       "eyebrow": "Culture, on camera",
       "headline": "Tap the glass. Hold to watch.",
-      "body": "Installs, conventions, training days and ordinary afternoons, all filmed by us and never stock. Every tap brings in a new marble.",
+      "body": "Filmed by us, never stock. Every tap brings in a new marble.",
       "media": [],
       "reels": "reel-library.json"
     },
@@ -472,7 +475,8 @@
       "kind": "door",
       "eyebrow": "The door",
       "headline": "Come and sit in the chair",
-      "body": "610 C. Raymundo Avenue, Maybunga, Pasig City, Monday to Sunday, 9 AM to 8 PM. No appointment needed, though telling us you are coming means the model you want is set up and powered when you arrive.",
+      "body": "610 C. Raymundo Avenue, Maybunga, Pasig City. Open every day, 9 AM to 8 PM.",
+      "stars": ["No appointment needed", "Call ahead and your model is powered up"],
       "cta": {
         "label": "Send an inquiry",
         "href": "/contact"
