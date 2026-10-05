@@ -19,6 +19,7 @@ import Room from '@/cinema/room';
 import RoomChrome from './RoomChrome';
 import ThemeToggle from '@/cinema/ThemeToggle';
 import MarqueeSpeed from './MarqueeSpeed';
+import LiquidGlass from './LiquidGlass';
 
 /**
  * ☠️ THE WORKING ROUTES GET NO ROOM.
@@ -62,6 +63,8 @@ export default function SiteShell({ children }) {
       {/* Every marquee, site wide, held at the speed measured on ffcdentalclinic.com.
           See src/lib/cinema/marquee.js for the numbers and how they were taken. */}
       <MarqueeSpeed />
+      {/* the liquid glass buttons' live half: finger light, squish, tick, haptic */}
+      <LiquidGlass />
       {!roomFree && <Room />}
       {!roomFree && <RoomChrome />}
     </ThemeProvider>

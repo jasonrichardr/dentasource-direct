@@ -16,8 +16,15 @@
 // closes on a tap or Esc, the dialog sits in its own boundary, and once either fails the
 // button falls back to plain Google Maps directions.
 
-import { Component, useCallback, useEffect, useRef, useState } from 'react';
+import { Component, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import homeBeats from '@/data/cinema/home-beats.json';
+import { visible } from '@/lib/cinema/visible';
+
+// The showroom beat carries the whole popup's copy (cities, privacy line, labels). Any other
+// beat that opens it (the Training Center, the door) sends only what differs: a title, a
+// place name, its own `dest`. Its keys win over the showroom's.
+const BASE = visible(homeBeats.beats).find((b) => b.key === 'the-floor')?.howFar || {};
 
 const load = () => import('./HowFarDialog');
 const DIRECTIONS = 'https://www.google.com/maps/dir/?api=1&destination=14.5809669%2C121.0867494&travelmode=driving';
@@ -39,7 +46,8 @@ class Guard extends Component {
   }
 }
 
-export default function HowFar({ copy }) {
+export default function HowFar({ copy: own }) {
+  const copy = useMemo(() => ({ ...BASE, ...(own || {}) }), [own]);
   const [open, setOpen] = useState(false);
   const [Dialog, setDialog] = useState(null);
   const [booting, setBooting] = useState(false); // the ring was on screen: the dialog skips its fade
@@ -70,7 +78,12 @@ export default function HowFar({ copy }) {
   }, [open, close]);
 
   const onClick = () => {
-    if (dead) { window.open(DIRECTIONS, '_blank', 'noopener,noreferrer'); return; }
+    if (dead) {
+      const d = copy.dest;
+      const url = d && Number.isFinite(Number(d.lat)) ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${d.lat},${d.lng}`)}&travelmode=driving` : DIRECTIONS;
+      window.open(url, '_blank', 'noopener,noreferrer');
+      return;
+    }
     setOpen(true);
     if (!Dialog) {
       setBooting(true);
@@ -84,7 +97,7 @@ export default function HowFar({ copy }) {
       <button
         type="button"
         ref={btn}
-        className="cinema-cta dsd-cta dsd-cta-solid dsd-howfar"
+        className="cinema-cta dsd-cta dsd-cta-solid dsd-howfar lg lg-primary"
         aria-haspopup="dialog"
         onPointerEnter={warm}
         onFocus={warm}
