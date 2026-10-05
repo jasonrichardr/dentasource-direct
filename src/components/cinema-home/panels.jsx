@@ -11,6 +11,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import useBeatNear from './useBeatNear';
+import HowFar from './HowFar';
 import { mediaUrl } from '@/lib/cinema/media';
 import { mixOrder } from '@/lib/cinema/mixOrder';
 
@@ -1075,6 +1076,7 @@ export function ActionPanel({ beat, beatIndex, items = [], ordered = false }) {
   return (
     <div className="dsd-panel">
       <Copy beat={beat} />
+      {beat.howFar ? <HowFar copy={beat.howFar} /> : null}
       <PlaceMap place={beat.place} near={near} />
       <div className="dsd-strip dsd-mixed">
         <div className="dsd-strip-track" ref={trackRef} data-marquee={`mixed-${beat.key}`}>

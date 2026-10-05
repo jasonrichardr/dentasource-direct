@@ -86,6 +86,40 @@
 .dsd-cta:focus-visible { outline: 2px solid var(--dsd-green); outline-offset: 3px; }
 .dsd-cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 
+/* ---- the showroom's "How far am I?" button (the popup paints itself, see how-far.css) ---- */
+.dsd-howfar { gap: 11px; }
+.dsd-howfar-ping { position: relative; width: 9px; height: 9px; border-radius: 50%; background: currentColor; flex: none; }
+.dsd-howfar-ping::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  animation: dsd-howfar-ping 1.8s ease-out infinite;
+}
+@keyframes dsd-howfar-ping { from { transform: scale(0.4); opacity: 0.9; } to { transform: scale(1.5); opacity: 0; } }
+/* shown for the moment between the tap and the popup's chunk arriving */
+.hf-booting {
+  position: fixed;
+  inset: 0;
+  z-index: 200000;
+  display: grid;
+  place-items: center;
+  background: rgba(2, 6, 4, 0.82);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.hf-boot-ring {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 2px solid rgba(52, 211, 153, 0.2);
+  border-top-color: #34d399;
+  animation: dsd-howfar-spin 0.8s linear infinite;
+}
+@keyframes dsd-howfar-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .dsd-howfar-ping::after, .hf-boot-ring { animation: none; } }
+
 /* ---- the photo beats: a one up or two up plate over the dimmed sphere ---- */
 .dsd-photos {
   display: flex;

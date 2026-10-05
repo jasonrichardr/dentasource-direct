@@ -9,7 +9,7 @@ export const revalidate = 60;
 
 export const metadata = {
   title: 'DentaSource Direct — Premium Dental Equipment Philippines',
-  description: 'The Philippines\' largest dental equipment showroom. Premium ROSON dental chairs, imaging equipment, and clinical tools with white-glove installation and training.',
+  description: 'The Philippines\' largest dental equipment showroom. Exclusive distributor of ROSON dental chairs, K-Clamps and Denjoy endodontics, with white-glove installation and training.',
 };
 
 // The news marquee is fed HERE, on the server, and reaches the client as four fields per

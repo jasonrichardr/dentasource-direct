@@ -146,7 +146,7 @@ export default function Footer() {
         </div>
 
         <div className="dsd-footer-faint flex flex-col md:flex-row items-center justify-between gap-3 pt-6 text-xs sm:text-sm font-medium">
-          <p>© {new Date().getFullYear()} DentaSource Direct. Exclusive ROSON and Denjoy distributor, Philippines.</p>
+          <p>© {new Date().getFullYear()} DentaSource Direct. Exclusive ROSON, K-Clamps and Denjoy distributor, Philippines.</p>
           <p>Largest dental equipment showroom in the country.</p>
         </div>
       </div>
