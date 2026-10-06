@@ -1,14 +1,22 @@
-import ChairsHero from '@/components/chairs/ChairsHero';
-import ChairCatalog from '@/components/chairs/ChairCatalog';
-import { products } from '@/data/products';
-import IndexShell from '@/cinema/product/IndexShell';
+import ChairGallery from '@/components/chair/ChairGallery';
+import { CHAIRS, INDEX_COPY } from '@/data/chairs/catalog';
+import productsJson from '@/data/cinema/products.json';
+import { visible } from '@/lib/cinema/visible';
+
+// ☠️ HIDDEN AT MODULE SCOPE, LIKE EVERY OTHER MANIFEST READ. The studio can hide a product in
+// products.json; a hidden chair leaves this gallery too, not only its own arc. The gallery's
+// words and photos live in src/data/chairs/catalog.js; products.json only decides who shows.
+const SHOWN = new Set(visible(productsJson.products).map((p) => p.slug));
+const CHAIRS_SHOWN = CHAIRS.filter((c) => SHOWN.has(c.slug));
 
 export const metadata = {
-  title: 'Dental Chairs — ROSON Collection',
-  description: 'Explore the complete ROSON dental chair lineup. From the flagship A3 to the budget-friendly S9, find the perfect chair for your practice.',
+  title: 'ROSON Dental Chairs',
+  description:
+    'Every ROSON dental chair we carry, from the A3 flagship to the S series, photographed side by side. See them at our Pasig showroom.',
   openGraph: {
-    title: "Dental Chairs — ROSON Collection",
-    description: "Explore the complete ROSON dental chair lineup. From the flagship A3 to the budget-friendly S9, find the perfect chair for your practice.",
+    title: 'ROSON Dental Chairs',
+    description:
+      'Every ROSON dental chair we carry, from the A3 flagship to the S series, photographed side by side. See them at our Pasig showroom.',
     url: 'https://dentasourcedirect.com/dentalchairs',
     type: 'website',
     images: ['/images/hero/dxa3-hero-original.jpg'],
@@ -16,29 +24,9 @@ export const metadata = {
 };
 
 export default function DentalChairsPage() {
-  // Filter to dental chairs only and map to the shape ChairCatalog expects
-  const chairs = products
-    .filter(p => p.category === 'chair')
-    .map(p => ({
-      id: p.slug,
-      slug: p.slug,
-      name: p.name,
-      tagline: p.tagline || '',
-      description: p.description || '',
-      shortDesc: p.shortDesc || '',
-      image: p.heroImage || (p.images && p.images[0]) || '',
-      isFeatured: !!p.badge || ['roson-s9', 'roson-dxa3', 'roson-dxn2-pro', 'roson-dxs6'].includes(p.slug),
-      features: (p.features || []).map(f =>
-        typeof f === 'string' ? { title: f, desc: '' } : { title: f.title || f, desc: f.description || '' }
-      ),
-    }));
-
   return (
-    <IndexShell>
-      <main className="w-full selection:bg-[#10b981] selection:text-white">
-        <ChairsHero />
-        <ChairCatalog initialChairs={chairs} />
-      </main>
-    </IndexShell>
+    <main className="w-full">
+      <ChairGallery chairs={CHAIRS_SHOWN} copy={INDEX_COPY} />
+    </main>
   );
 }
