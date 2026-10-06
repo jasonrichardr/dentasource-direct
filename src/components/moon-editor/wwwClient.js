@@ -12,8 +12,10 @@
 //                 (POST /api/query | /api/mutation | /api/action, Bearer token). No `convex`
 //                 package: the site gains no dependency, and the editor chunk stays small.
 //
-// ☠️ THE TOKEN LIVES IN MEMORY AND IN sessionStorage (this tab only, gone when it closes), NEVER
-// localStorage, and is never logged or rendered. Sign out forgets it.
+// ☠️ THE TOKEN LIVES IN MEMORY ONLY (Jarich, 2026-10-06: "forget on reload"). It is the seat's full
+// console pass, so it is never written to sessionStorage or localStorage, never logged, never
+// rendered: a reload, a closed tab or Sign out forgets it, and a script that reads storage finds
+// nothing. The price is a fresh sign-in per editing session, which is the point.
 
 export const CONSOLE_ORIGIN = 'https://console.dentasourcedirect.com';
 export const CONVEX_URL = 'https://energized-puma-161.convex.cloud';
@@ -38,19 +40,20 @@ export function tokenExpiry(token) {
 /** True while the token has more than `slackS` seconds left. */
 export const tokenFresh = (token, slackS = 30) => !!token && tokenExpiry(token) * 1000 - Date.now() > slackS * 1000;
 
+let memory = null; // { token, name }: module scope, so it dies with the page
+
 export function loadSession() {
-  try {
-    const s = JSON.parse(sessionStorage.getItem(SESSION_KEY) || 'null');
-    if (s && typeof s.token === 'string' && tokenFresh(s.token)) return { token: s.token, name: typeof s.name === 'string' ? s.name : '' };
-  } catch { /* storage blocked: the sheet asks for a sign-in */ }
-  return null;
+  // an earlier build kept the pass in sessionStorage: make sure no copy is left behind
+  try { sessionStorage.removeItem(SESSION_KEY); } catch { /* storage blocked */ }
+  return memory && tokenFresh(memory.token) ? memory : null;
 }
 
 export function saveSession(session) {
-  try { sessionStorage.setItem(SESSION_KEY, JSON.stringify({ token: session.token, name: session.name })); } catch { /* memory still holds it */ }
+  memory = { token: session.token, name: typeof session.name === 'string' ? session.name : '' };
 }
 
 export function forgetSession() {
+  memory = null;
   try { sessionStorage.removeItem(SESSION_KEY); } catch { /* nothing to forget */ }
 }
 
