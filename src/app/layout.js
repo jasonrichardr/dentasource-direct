@@ -18,6 +18,7 @@ import '@/components/site/trust-marquee.css';
 // key off --paper / --ink / --dsd-green, so they must resolve on /news and /classic too,
 // not only on the routes that mount CinemaPage.
 import '@/cinema/cinema.css';
+import '@/styles/liquid-glass.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });

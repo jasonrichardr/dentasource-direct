@@ -842,3 +842,20 @@
 .cinema-panel:has(.dsd-cluster) .dsd-panel { height: 100%; }
 .cinema-panel:has(.dsd-cluster) .dsd-cluster { flex: 1 1 auto; height: auto; min-height: 220px; }
 .cinema-panel:has(.dsd-cluster) .cinema-sub { max-width: 60ch; }
+
+/* ---- the closing beat (2026-10-06): two app teasers + How far on one row, Sign in under it ---- */
+.dsd-door-row { margin-top: clamp(6px, 1.4vh, 14px); }
+.dsd-signin { margin-top: clamp(10px, 1.8vh, 18px); opacity: .85; }
+.dsd-tease { cursor: default; }
+/* ☠️ THE CLOSING BEAT HAS TWO ROWS OF DOORS NOW, so 73vh pushed Sign in off every screen
+   (measured 2026-10-06: row at 882px of a 900px desktop, Sign in below the fold on phones).
+   On wide screens it starts higher, still under the wordmark (which ends near 50vh there);
+   on phones the wordmark sits lower, so the start stays at 62vh and the beat gets smaller
+   instead: no stars (the address line says the same), and compact doors that fit two rows. */
+.cinema-panel.copy-low:has(.dsd-door-row) { padding-top: calc(var(--vh, 1vh) * 55); }
+@media (max-width: 700px) {
+  .cinema-panel.copy-low:has(.dsd-door-row) { padding-top: calc(var(--vh, 1vh) * 62); }
+  .cinema-panel:has(.dsd-door-row) .dsd-stars { display: none; }
+  html:root .dsd-door-row .lg { padding: 9px 15px; font-size: 13px; gap: 7px; }
+  .dsd-door-row { gap: 8px; }
+}

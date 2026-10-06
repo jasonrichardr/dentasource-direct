@@ -19,6 +19,7 @@
 import * as THREE from "three";
 import * as CANNON from "cannon-es";
 import { mediaUrl } from "@/lib/cinema/media";
+import { hapticTick, hapticThud, clink } from '@/lib/glassFx';
 
 // A colourful "studio" environment painted on a canvas (equirect) → PMREM. This is what makes CLEAR
 // glass read as vibrant gems on black: the beads reflect/refract these coloured lights even when there's
@@ -104,36 +105,8 @@ const TAP_WARM_AHEAD = 3;    // decoders opened ahead of the next taps
 const FALL_MAX_MS = 4000;    // a knocked out bead is retired by then wherever it got to
 const VIDEO_FACE_AFTER_S = 0.5; // a poster gives way to its video only this far into playback
 
-/**
- * One haptic tick, or nothing. Never throws.
- * ☠️ IPHONE SAFARI HAS NO navigator.vibrate. iOS 18 does fire the system haptic when a
- * <input type="checkbox" switch> toggles from a user gesture, and clicking its <label> from
- * inside the pointerup handler counts as that gesture. So: vibrate where it exists (Android
- * Chrome), the switch trick on a coarse pointer without it, and nothing on a desktop.
- * The label is created, clicked and removed each time, in <head> with display:none, so it
- * can never take focus, scroll the page or be seen. Its click is untrusted, so nothing that
- * waits for a real first gesture (the lounge music) mistakes it for one.
- */
-function hapticTick() {
-  try {
-    if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
-      navigator.vibrate(8);
-      return;
-    }
-    if (!window.matchMedia || !window.matchMedia('(pointer: coarse)').matches) return;
-    const label = document.createElement('label');
-    label.setAttribute('aria-hidden', 'true');
-    label.style.display = 'none';
-    const input = document.createElement('input');
-    input.type = 'checkbox';
-    input.setAttribute('switch', '');
-    input.tabIndex = -1;
-    label.appendChild(input);
-    document.head.appendChild(label);
-    label.click();
-    label.remove();
-  } catch (e) { /* no haptics here, and that is fine */ }
-}
+// The haptic, the clink and the impact thud live in lib/glassFx (ported back from
+// ffcdentalclinic.com 2026-10-06, Jarich: "theres like a tone and haptic i want it the same").
 
 export function createMarbleCluster(container, {
   videos = [], hdVideos = [], count = 18, isMobile = false, faceFocus = {}, faceZoom = {},
@@ -1377,7 +1350,7 @@ export function createMarbleCluster(container, {
     // stepTaps detaches it once both flags are set.
     const onCollide = (e) => {
       if (e.body === tp.target.body) {
-        if (!tp.released) { tp.released = true; releaseOutgoing(tp.target); }
+        if (!tp.released) { tp.released = true; releaseOutgoing(tp.target); clink('hit'); hapticThud(); }
         if (!tp.landed) { tp.landed = true; land(rec); }
         return;
       }
@@ -1401,6 +1374,7 @@ export function createMarbleCluster(container, {
     // ☠️ ONE HAPTIC PER ACCEPTED TAP, AT LAUNCH, NEVER ON THE COLLISION. A tap that was
     // ignored (too many in the air) gets none, so the hand learns which taps counted.
     hapticTick();
+    clink('tap');
     stats.haptics += 1;
     stats.launched += 1;
     hideHint();

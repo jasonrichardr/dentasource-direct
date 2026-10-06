@@ -71,14 +71,14 @@ export function Cta({ cta, variant = 'ghost' }) {
         href={cta.href}
         target="_blank"
         rel="noopener noreferrer"
-        className={`cinema-cta dsd-cta dsd-cta-${variant}`}
+        className={`cinema-cta dsd-cta dsd-cta-${variant} lg${variant === 'solid' ? ' lg-primary' : ''}`}
       >
         {cta.label}
       </a>
     );
   }
   return (
-    <Link href={cta.href} prefetch={false} className={`cinema-cta dsd-cta dsd-cta-${variant}`}>
+    <Link href={cta.href} prefetch={false} className={`cinema-cta dsd-cta dsd-cta-${variant} lg${variant === 'solid' ? ' lg-primary' : ''}`}>
       {cta.label}
     </Link>
   );
@@ -100,25 +100,34 @@ export function LockupPanel({ beat, level = 1 }) {
   );
 }
 
-// The closing beat: the same lockup, nearer, with both doors open.
-// ☠️ NO "VISIT THE SHOWROOM" HERE ANY MORE. The navbar's Showroom link is that door now
-// (Jarich, 2026-10-01), and this beat already prints the address, so the useful second
-// door is the route there. The cid is the showroom's own Google Maps place, the same one
-// lib/schemas/organization.js declares as hasMap, so the pin cannot drift from the schema.
-const SHOWROOM_MAP = 'https://www.google.com/maps?cid=6544193348824466616';
-
+// The closing beat, ffcdentalclinic.com style (Jarich, 2026-10-06): no footer under it, and
+// the doors are the two apps on their way, then the road here, then a quiet Sign in.
+// ☠️ A TEASER IS A PROMISE, NOT A DOOR. It does not navigate (FFC's Care App rule); it
+// answers the tap with the glass tick and the shimmering SOON, nothing else. Every word
+// comes from beat.teases / beat.signIn / beat.howFar in home-beats.json.
 export function DoorPanel({ beat }) {
   return (
     <div className="dsd-panel dsd-copy-wide">
       <Copy beat={beat} className="dsd-copy-wide" />
-      <div className="dsd-cta-row">
-        <Link href="/contact" prefetch={false} className="cinema-cta dsd-cta dsd-cta-solid">
-          Send an inquiry
-        </Link>
-        <a href={SHOWROOM_MAP} target="_blank" rel="noopener noreferrer" className="cinema-cta dsd-cta dsd-cta-ghost">
-          Get directions
-        </a>
+      <div className="dsd-cta-row dsd-door-row">
+        {(beat.teases || []).map((t) => (
+          <button
+            key={t.label}
+            type="button"
+            className="cinema-cta lg dsd-tease"
+            aria-label={t.aria || `${t.label}, ${t.soon}`}
+          >
+            {t.label}
+            <span className="lg-soon" aria-hidden="true">{t.soon}</span>
+          </button>
+        ))}
+        {beat.howFar ? <HowFar copy={beat.howFar} /> : null}
       </div>
+      {beat.signIn ? (
+        <Link href={beat.signIn.href} prefetch={false} className="cinema-cta lg lg-sm dsd-signin">
+          {beat.signIn.label}
+        </Link>
+      ) : null}
     </div>
   );
 }
@@ -338,7 +347,7 @@ export function PartsPanel({ beat, beatIndex, parts = [], crew = [] }) {
             <h3 className="dsd-tradein-head">{beat.tradeIn.headline}</h3>
             {beat.tradeIn.body ? <p className="dsd-tradein-body">{beat.tradeIn.body}</p> : null}
             {beat.tradeIn.cta ? (
-              <Link href={beat.tradeIn.cta.href} prefetch={false} className="cinema-cta dsd-cta dsd-cta-solid dsd-tradein-cta">
+              <Link href={beat.tradeIn.cta.href} prefetch={false} className="cinema-cta dsd-cta dsd-cta-solid dsd-tradein-cta lg lg-primary">
                 {beat.tradeIn.cta.label}
               </Link>
             ) : null}
@@ -978,7 +987,7 @@ export function PlaceMap({ place, near }) {
               href={l.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="cinema-cta dsd-cta dsd-cta-ghost"
+              className="cinema-cta dsd-cta dsd-cta-ghost lg"
             >
               {l.label}
             </a>

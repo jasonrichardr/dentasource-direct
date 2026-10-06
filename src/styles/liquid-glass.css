@@ -1,0 +1,190 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   LIQUID GLASS (Jarich, 2026-10-06: "i dont want them green pill … translucent
+   buttons like its made from apple team", after liquidglassdesign.com and Apple's
+   Liquid Glass). One class, site wide: add `lg` to a link or button and it is glass.
+   Modifiers: lg-primary (the main door, green-tinted glass), lg-sm (a quieter size).
+
+   What makes it read as glass rather than a grey pill:
+   - the background is mostly the page behind it, blurred and SATURATED (backdrop)
+   - a bright specular rim on top, a faint inner light at the bottom (inset shadows)
+   - a highlight that sits where the finger or cursor is (--lg-x/--lg-y, LiquidGlass.jsx)
+   - a slow light running round the edge, and a sheen that passes now and then
+   - a squish on press that springs back past its size (the overshoot curve)
+   The tick and the haptic come from LiquidGlass.jsx (lib/glassFx).
+
+   ☠️ SPECIFICITY IS DELIBERATE. Every rule starts with html:root so it beats the
+   page CSS it lands on (.dsd-cta-solid, :root[data-theme="dark"] .dsd-cta-solid,
+   Tailwind utilities) without !important, whatever order the stylesheets load in.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@property --lg-a {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* light register: frosted white glass, dark ink */
+html:root {
+  --lg-ink: #0a1410;
+  --lg-tint: rgba(255, 255, 255, 0.46);
+  --lg-edge: rgba(255, 255, 255, 0.95);
+  --lg-line: rgba(10, 20, 16, 0.10);
+  --lg-spec: rgba(255, 255, 255, 0.9);
+  --lg-shade: 0 10px 28px rgba(10, 20, 16, 0.14), 0 1px 2px rgba(10, 20, 16, 0.12);
+  --lg-rim: rgba(16, 185, 129, 0.55);
+  --lg-p-tint: rgba(16, 185, 129, 0.20);
+  --lg-p-ink: #04382a;
+  --lg-p-glow: rgba(16, 185, 129, 0.28);
+  --lg-soon: #8a6a12;
+}
+/* dark register: smoked glass, light ink */
+html:root[data-theme="dark"],
+html:root .hf-card,
+html:root .lg-on-dark {
+  --lg-ink: #f0fdf4;
+  --lg-tint: rgba(255, 255, 255, 0.075);
+  --lg-edge: rgba(255, 255, 255, 0.42);
+  --lg-line: rgba(255, 255, 255, 0.07);
+  --lg-spec: rgba(255, 255, 255, 0.5);
+  --lg-shade: 0 12px 34px rgba(0, 0, 0, 0.42), 0 1px 2px rgba(0, 0, 0, 0.35);
+  --lg-rim: rgba(167, 243, 208, 0.7);
+  --lg-p-tint: rgba(16, 185, 129, 0.26);
+  --lg-p-ink: #ecfdf5;
+  --lg-p-glow: rgba(16, 185, 129, 0.34);
+  --lg-soon: #e6c76a;
+}
+
+html:root .lg {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-size: clamp(13px, 1.15vw, 15px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--lg-ink);
+  cursor: pointer;
+  background:
+    radial-gradient(120% 150% at var(--lg-x, 50%) var(--lg-y, -30%), var(--lg-spec) 0%, transparent 46%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0) 48%, rgba(255, 255, 255, 0.07) 100%),
+    var(--lg-tint);
+  border: 1px solid var(--lg-line);
+  box-shadow:
+    inset 0 1px 0.5px var(--lg-edge),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.12),
+    inset 0 0 20px rgba(255, 255, 255, 0.06),
+    var(--lg-shade);
+  -webkit-backdrop-filter: blur(16px) saturate(185%);
+  backdrop-filter: blur(16px) saturate(185%);
+  transform: translateZ(0) scale(var(--lg-s, 1));
+  transition: transform 0.5s cubic-bezier(0.2, 1.55, 0.35, 1), box-shadow 0.3s ease, color 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* the living rim: a slow light that runs round the edge */
+html:root .lg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(from var(--lg-a), transparent 0 16%, var(--lg-edge) 25%, transparent 34% 60%, var(--lg-rim) 69%, transparent 78% 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: lg-orbit 7s linear infinite;
+  opacity: 0.8;
+}
+/* the sheen: a soft band of light that crosses the glass now and then */
+html:root .lg::after {
+  content: '';
+  position: absolute;
+  inset: -40% -70%;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.26) 50%, transparent 58%);
+  transform: translateX(-62%);
+  animation: lg-sheen 6.8s ease-in-out infinite;
+}
+html:root .lg:nth-child(2n)::after { animation-delay: -2.3s; }
+html:root .lg:nth-child(3n)::after { animation-delay: -4.1s; }
+html:root .lg:nth-child(2n)::before { animation-duration: 9s; animation-direction: reverse; }
+
+html:root .lg:hover {
+  --lg-s: 1.035;
+  box-shadow:
+    inset 0 1px 0.5px var(--lg-edge),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.16),
+    inset 0 0 24px rgba(255, 255, 255, 0.09),
+    var(--lg-shade),
+    0 0 26px var(--lg-p-glow);
+}
+html:root .lg:active,
+html:root .lg.lg-press {
+  --lg-s: 0.955;
+  transition-duration: 0.12s;
+}
+html:root .lg:focus-visible {
+  outline: 2px solid #34d399;
+  outline-offset: 3px;
+}
+
+/* the main door: the same glass, tinted green, with a green breath under it */
+html:root .lg.lg-primary {
+  color: var(--lg-p-ink);
+  background:
+    radial-gradient(120% 150% at var(--lg-x, 50%) var(--lg-y, -30%), var(--lg-spec) 0%, transparent 46%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 48%, rgba(255, 255, 255, 0.06) 100%),
+    var(--lg-p-tint);
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow:
+    inset 0 1px 0.5px var(--lg-edge),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.14),
+    inset 0 0 22px rgba(52, 211, 153, 0.12),
+    var(--lg-shade),
+    0 8px 26px var(--lg-p-glow);
+}
+
+html:root .lg.lg-sm {
+  padding: 8px 16px;
+  font-size: 12.5px;
+  gap: 8px;
+}
+
+/* ✦ SOON on a teaser door: a gold chip with a slow shimmer (FFC's Care App grammar) */
+html:root .lg .lg-soon {
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.66em;
+  letter-spacing: 0.16em;
+  color: var(--lg-soon);
+  background: linear-gradient(100deg, rgba(230, 199, 106, 0.14) 30%, rgba(255, 236, 170, 0.42) 50%, rgba(230, 199, 106, 0.14) 70%) 0 0 / 220% 100%;
+  border: 1px solid rgba(230, 199, 106, 0.45);
+  animation: lg-soon 3.2s linear infinite;
+}
+
+@keyframes lg-orbit { to { --lg-a: 360deg; } }
+@keyframes lg-sheen { 0%, 68% { transform: translateX(-62%); } 100% { transform: translateX(62%); } }
+@keyframes lg-soon { to { background-position: -220% 0; } }
+
+/* no backdrop blur (old browsers): a solid enough tint that the label still reads */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  html:root .lg { background-color: rgba(240, 253, 244, 0.92); }
+  html:root[data-theme="dark"] .lg, html:root .hf-card .lg { background-color: rgba(12, 22, 18, 0.9); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:root .lg::before, html:root .lg::after, html:root .lg .lg-soon { animation: none; }
+  html:root .lg { transition: none; }
+}

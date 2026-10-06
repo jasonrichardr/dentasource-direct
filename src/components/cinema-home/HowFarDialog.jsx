@@ -23,6 +23,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './how-far.css';
 
+// The default destination; a beat can send another (the Training Center) as copy.dest.
 const SHOWROOM = { lat: 14.5809669, lng: 121.0867494 }; // from Jarich's Maps place link (console plan 34o)
 const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 const NIGHT = 'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Black_Marble/default/2016-01-01/GoogleMapsCompatible_Level8/{z}/{y}/{x}.png';
@@ -45,8 +46,8 @@ const reducedMotion = () => typeof window !== 'undefined' && window.matchMedia?.
 
 /** A longitude moved to the showroom's side of the antimeridian, so a visitor in California or
  *  Dubai gets a line (and a camera) across the short side of the globe, not the long one. */
-const nearLng = (lng) => (lng - SHOWROOM.lng > 180 ? lng - 360 : lng - SHOWROOM.lng < -180 ? lng + 360 : lng);
-const near = (p) => ({ lat: p.lat, lng: nearLng(p.lng) });
+const nearLng = (lng, d) => (lng - d.lng > 180 ? lng - 360 : lng - d.lng < -180 ? lng + 360 : lng);
+const near = (p, d) => ({ lat: p.lat, lng: nearLng(p.lng, d) });
 
 function haversineKm(a, b) {
   const R = 6371;
@@ -73,10 +74,10 @@ function decodePolyline6(str) {
   return out;
 }
 
-async function fetchRoute(from, signal) {
+async function fetchRoute(from, to, signal) {
   // Three decimals is ~100 m: enough for a road, not enough to name a house.
   const o = `${from.lng.toFixed(3)},${from.lat.toFixed(3)}`;
-  const res = await fetch(`${OSRM}${o};${SHOWROOM.lng},${SHOWROOM.lat}?overview=full&geometries=polyline6&steps=true`, { signal });
+  const res = await fetch(`${OSRM}${o};${to.lng},${to.lat}?overview=full&geometries=polyline6&steps=true`, { signal });
   if (!res.ok) throw new Error(`route ${res.status}`);
   const d = await res.json();
   if (d.code !== 'Ok' || !d.routes?.length) throw new Error(d.code || 'no route');
@@ -171,6 +172,8 @@ function Stat({ label, value, unit }) {
 }
 
 export default function HowFarDialog({ copy, onClose, instant = false }) {
+  const destLat = Number(copy.dest?.lat), destLng = Number(copy.dest?.lng);
+  const DEST = useMemo(() => (Number.isFinite(destLat) && Number.isFinite(destLng) ? { lat: destLat, lng: destLng } : SHOWROOM), [destLat, destLng]);
   const cardRef = useRef(null);
   const mapEl = useRef(null);
   const mapRef = useRef(null);
@@ -286,7 +289,7 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
           const el = document.createElement('div');
           el.className = 'hf-home';
           el.innerHTML = `<span class="hf-home-pulse"></span><img src="${BADGE}" alt="" draggable="false" /><span class="hf-tag">${escapeHtml(copy.showroom || 'DentaSource Direct')}</span>`;
-          new maplibregl.Marker({ element: el, anchor: 'center' }).setLngLat([SHOWROOM.lng, SHOWROOM.lat]).addTo(map);
+          new maplibregl.Marker({ element: el, anchor: 'center' }).setLngLat([DEST.lng, DEST.lat]).addTo(map);
 
           setMapState('ready');
           if (!reducedMotion()) {
@@ -312,7 +315,7 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
       try { mapRef.current?.remove(); } catch { /* already gone */ }
       mapRef.current = null;
     };
-  }, [copy.showroom, night]);
+  }, [copy.showroom, night, DEST]);
 
   /* ── where is the visitor ── */
   const locate = useCallback(() => {
@@ -342,33 +345,33 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
     let cancelled = false;
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), ROUTE_TIMEOUT_MS);
-    const straightKm = haversineKm(origin, SHOWROOM);
+    const straightKm = haversineKm(origin, DEST);
     setResult(null);
     if (straightKm < HERE_KM) {
-      setResult({ mode: 'here', straightKm, coords: [[origin.lng, origin.lat], [SHOWROOM.lng, SHOWROOM.lat]] });
+      setResult({ mode: 'here', straightKm, coords: [[origin.lng, origin.lat], [DEST.lng, DEST.lat]] });
       setPhase('ready');
       return () => { clearTimeout(timer); };
     }
     if (straightKm > ABROAD_KM) {
       // Abroad: OSRM can only answer 400 NoRoute, so do not ask it.
-      setResult({ mode: 'far', straightKm, coords: arc(near(origin), SHOWROOM) });
+      setResult({ mode: 'far', straightKm, coords: arc(near(origin, DEST), DEST) });
       setPhase('ready');
       return () => { clearTimeout(timer); };
     }
     setPhase('routing');
-    fetchRoute(origin, ctrl.signal)
+    fetchRoute(origin, DEST, ctrl.signal)
       .then((r) => {
         if (cancelled) return;
-        if (r.ferry) setResult({ mode: 'far', straightKm, coords: arc(near(origin), SHOWROOM) });
+        if (r.ferry) setResult({ mode: 'far', straightKm, coords: arc(near(origin, DEST), DEST) });
         else setResult({ mode: 'road', km: r.km, min: r.min, straightKm, coords: r.coords });
       })
       .catch(() => {
         if (cancelled) return;
-        setResult({ mode: straightKm > FAR_KM ? 'far' : 'line', straightKm, coords: arc(near(origin), SHOWROOM) });
+        setResult({ mode: straightKm > FAR_KM ? 'far' : 'line', straightKm, coords: arc(near(origin, DEST), DEST) });
       })
       .finally(() => { clearTimeout(timer); if (!cancelled) setPhase('ready'); });
     return () => { cancelled = true; clearTimeout(timer); ctrl.abort(); };
-  }, [origin]);
+  }, [origin, DEST]);
 
   /* ── paint it: fly in, draw the line, then send the comet down it on a loop ── */
   useEffect(() => {
@@ -384,7 +387,7 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
       return undefined;
     }
     let dead = false;
-    const at = near(origin);
+    const at = near(origin, DEST);
 
     youRef.current?.remove();
     const el = document.createElement('div');
@@ -402,8 +405,8 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
     // OSRM snaps to the nearest road; a thin dashed link closes the gap to the real dot.
     src('link')?.setData(result.mode === 'road' ? fc([line([[origin.lng, origin.lat], coords[0]])]) : EMPTY);
 
-    const lngs = coords.map((c) => c[0]).concat(at.lng, SHOWROOM.lng);
-    const lats = coords.map((c) => c[1]).concat(at.lat, SHOWROOM.lat);
+    const lngs = coords.map((c) => c[0]).concat(at.lng, DEST.lng);
+    const lats = coords.map((c) => c[1]).concat(at.lat, DEST.lat);
     // ☠️ PADDING IS CLAMPED TO THE CARD. A landscape phone is wide but ~380 px tall; the full
     // padding there exceeds the canvas and MapLibre then refuses to move, silently.
     const cw = cardRef.current?.clientWidth || 1000, ch = cardRef.current?.clientHeight || 700;
@@ -457,7 +460,7 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
     else { map.once('moveend', go); fallback = window.setTimeout(go, 3600); }
 
     return () => { dead = true; window.clearTimeout(fallback); map.off('moveend', go); cancelAnimationFrame(rafRef.current); };
-  }, [mapState, origin, result, copy.you]);
+  }, [mapState, origin, result, copy.you, DEST]);
 
   /* ── the words ── */
   const ready = phase === 'ready' && result;
@@ -472,7 +475,7 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
     return h >= opensAt && h < closesAt;
   }, [copy.opensAt, copy.closesAt]);
 
-  const dest = `${SHOWROOM.lat},${SHOWROOM.lng}`;
+  const dest = `${DEST.lat},${DEST.lng}`;
   const google = `https://www.google.com/maps/dir/?api=1${origin?.label ? `&origin=${encodeURIComponent(`${origin.lat},${origin.lng}`)}` : ''}&destination=${encodeURIComponent(dest)}&travelmode=driving`;
   const waze = `https://waze.com/ul?ll=${encodeURIComponent(dest)}&navigate=yes`;
 
@@ -509,7 +512,9 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
           <div>
             <div className="hf-kicker"><span className="hf-live" aria-hidden="true" />{copy.kicker}</div>
             <h2 className="hf-title" id="hf-title">{copy.title}</h2>
-            <div className={`hf-open ${open ? 'is-open' : 'is-closed'}`}>{open ? copy.openNow : copy.closedNow}</div>
+            {copy.openNow && copy.closedNow ? (
+              <div className={`hf-open ${open ? 'is-open' : 'is-closed'}`}>{open ? copy.openNow : copy.closedNow}</div>
+            ) : null}
           </div>
           <button type="button" className="hf-close" ref={closeRef} onClick={onClose} aria-label={copy.close || 'Close'}>×</button>
         </div>
@@ -520,7 +525,7 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
             <div className="hf-status" aria-hidden="true"><span className="hf-spinner" />{status}</div>
           ) : null}
           {phase === 'locating' && copy.pickCity ? (
-            <button type="button" className="hf-btn hf-btn-ghost hf-retry" onClick={askCity}>{copy.pickCity}</button>
+            <button type="button" className="hf-btn hf-btn-ghost hf-retry lg" onClick={askCity}>{copy.pickCity}</button>
           ) : null}
 
           {phase === 'ask' ? (
@@ -528,10 +533,10 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
               <p className="hf-note">{copy.askCity}</p>
               <div className="hf-chips">
                 {(copy.cities || []).map((c) => (
-                  <button type="button" key={c.name} className="hf-chip" onClick={() => pickCity(c)}>{c.name}</button>
+                  <button type="button" key={c.name} className="hf-chip lg lg-sm" onClick={() => pickCity(c)}>{c.name}</button>
                 ))}
               </div>
-              <button type="button" className="hf-btn hf-btn-ghost hf-retry" onClick={locate}>{copy.useLocation}</button>
+              <button type="button" className="hf-btn hf-btn-ghost hf-retry lg" onClick={locate}>{copy.useLocation}</button>
             </div>
           ) : null}
 
@@ -551,11 +556,11 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
               {note ? <p className="hf-note" aria-hidden="true">{note}</p> : null}
               <div className="hf-actions">
                 {result.mode === 'far' && copy.farCta ? (
-                  <a className="hf-btn hf-btn-solid" href={copy.farCta.href}>{copy.farCta.label}</a>
+                  <a className="hf-btn hf-btn-solid lg lg-primary" href={copy.farCta.href}>{copy.farCta.label}</a>
                 ) : null}
-                <a className="hf-btn hf-btn-solid" href={google} target="_blank" rel="noopener noreferrer">{copy.google}</a>
-                <a className="hf-btn hf-btn-ghost" href={waze} target="_blank" rel="noopener noreferrer">{copy.waze}</a>
-                <button type="button" className="hf-btn hf-btn-ghost" onClick={askCity}>{copy.changeCity}</button>
+                <a className="hf-btn hf-btn-solid lg lg-primary" href={google} target="_blank" rel="noopener noreferrer">{copy.google}</a>
+                <a className="hf-btn hf-btn-ghost lg" href={waze} target="_blank" rel="noopener noreferrer">{copy.waze}</a>
+                <button type="button" className="hf-btn hf-btn-ghost lg" onClick={askCity}>{copy.changeCity}</button>
               </div>
             </>
           ) : null}

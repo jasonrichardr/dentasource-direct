@@ -113,6 +113,9 @@ html, body {
 @layer utilities {
   .pt-nav { padding-top: var(--nav-height); }
   @media (min-width: 768px) { :root { --dsd-nav-h: 108px; } }
+  /* home is marquee only (2026-10-06): the reserve is the marquee's own height. :has() reads
+     the SSR'd nav, so the first paint is already right. (0,2,0) beats both rules above. */
+  :root:has(.dsd-sitenav-home) { --dsd-nav-h: 28px; }
   .mt-nav { margin-top: var(--nav-height); }
 }
 
