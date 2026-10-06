@@ -1,44 +1,30 @@
 import ChairSchemas from "@/components/ChairSchemas";
-import A3HeroVisual from "@/components/a3/A3HeroVisual";
-import A3FeatureGrid from "@/components/a3/A3FeatureGrid";
-import A3DisinfectionSection from "@/components/a3/A3DisinfectionSection";
-import A3ErgonomicsSection from "@/components/a3/A3ErgonomicsSection";
-import A3TechSpecs from "@/components/a3/A3TechSpecs";
-import SpecGate from "@/components/SpecGate";
-import A3ProductConfigurator from "@/components/a3/A3ProductConfigurator";
-import A3VisualTour from "@/components/a3/A3VisualTour";
-import A3WhatsInTheBox from "@/components/a3/A3WhatsInTheBox";
-import A3WarrantyTable from "@/components/a3/A3WarrantyTable";
-import ProductCinema from "@/cinema/product/ProductCinema";
-import { productCinemaConfig } from "@/cinema/product/productConfig";
+import ChairPage from "@/components/chair/ChairPage";
+import a3 from "@/data/chairs/a3";
+
+// The A3 is the pilot of the shared chair template: every word and photo on this page comes
+// from src/data/chairs/a3.js, and the sections come from src/components/chair/. The spec
+// table is still behind SpecGate (inside the template), and the JSON-LD is unchanged.
 
 export const metadata = {
-    title: "Roson A3 Flagship Dental Chair",
-    description: "The Roson A3 flagship — medical-grade water disinfection, intelligent infrared sensors, and whisper-quiet TiMOTION lift system.",
+  title: "ROSON Flagship Model A3 Dental Chair",
+  description:
+    "EOW waterline disinfection, a medical-grade color touchscreen and hands-free cup filling, built in as standard. See the A3 at our Pasig showroom.",
   openGraph: {
-    title: "Roson A3 Flagship Dental Chair",
-    description: "The Roson A3 flagship — medical-grade water disinfection, intelligent infrared sensors, and whisper-quiet TiMOTION lift system.",
-    url: 'https://dentasourcedirect.com/a3',
-    type: 'website',
-    images: ['/images/hero/dxa3-hero-original.jpg'],
+    title: "ROSON Flagship Model A3 Dental Chair",
+    description:
+      "EOW waterline disinfection, a medical-grade color touchscreen and hands-free cup filling, built in as standard. See the A3 at our Pasig showroom.",
+    url: "https://dentasourcedirect.com/a3",
+    type: "website",
+    images: ["/images/hero/dxa3-hero-original.jpg"],
   },
 };
 
 export default function A3Page() {
-    return (
-        <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
-            <ChairSchemas route="/a3" />
-            <ProductCinema config={productCinemaConfig("a3")}>
-                <A3HeroVisual />
-                <A3FeatureGrid />
-                <A3DisinfectionSection />
-                <A3ErgonomicsSection />
-                <SpecGate><A3TechSpecs /></SpecGate>
-                <A3ProductConfigurator />
-                <A3VisualTour />
-                <A3WhatsInTheBox />
-                <A3WarrantyTable />
-            </ProductCinema>
-        </main>
-    );
+  return (
+    <main className="min-h-screen">
+      <ChairSchemas route="/a3" />
+      <ChairPage chair={a3} />
+    </main>
+  );
 }
