@@ -25,6 +25,8 @@ import trainingMedia from '@/data/cinema/training-media.json';
 import { visible } from '@/lib/cinema/visible';
 import { buildHomeDecks, wwwFor, wwwItem, wwwCrewShot, WWW_BEAT_DECK } from '@/lib/cinema/homeDecks';
 import { useMemo } from 'react';
+// seven taps on the moon open the marquee editor; renders nothing until then
+import MoonGate from '@/components/moon-editor/MoonGate';
 
 // ☠️ EVERY MANIFEST IS FILTERED HERE, AT MODULE SCOPE, AND NOWHERE ELSE.
 // The studio writes `hidden: true` on an entry Jarich hides. Filtering at module scope
@@ -140,33 +142,38 @@ const FORMATIONS = {
 // ══════════════════════════════════════════════════════════════════════════
 const MIXED_ITEMS = buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAINING_ITEMS, GROWTH_ITEMS, INSTALL_TILES, HEART_CLIENTS });
 
-function panelFor(beat, i, articles, live) {
+function panelFor(beat, i, articles, live, speeds) {
+  // the WWW deck this beat's strip is (null for a beat the console does not hold) and its timing
+  const deck = WWW_BEAT_DECK[beat.key] || null;
+  const speed = deck ? speeds[deck] : undefined;
   switch (beat.kind) {
     case 'lockup': return <LockupPanel beat={beat} level={1} />;
     // the heart carries the clients' marquee now (2026-10-06), so it is an action panel over the
-    // heart formation, played in its built order so the lead dentists always open it
-    case 'heart': return <ActionPanel beat={beat} beatIndex={i} items={MIXED_ITEMS.heart || []} ordered />;
+    // heart formation, played in its built order so the lead dentists always open it. Since the
+    // moon editor (same day) the console can hold it as the `heart` deck; a saved deck replaces
+    // the baked list and plays `ordered` the same way.
+    case 'heart': return <ActionPanel beat={beat} beatIndex={i} items={live.heart || MIXED_ITEMS.heart || []} ordered deck="heart" speed={speeds.heart} />;
     case 'strip': return <StripPanel beat={beat} beatIndex={i} />;
     case 'marquee': return <NewsPanel beat={beat} beatIndex={i} articles={articles} />;
     // ☠️ THE TILES COME FROM THE MANIFEST, NOT FROM THE BEAT. See the note in
       // home-beats.json: the beat used to carry its own copy of this list and
       // installs.json was read by nothing.
       case 'installs': return <InstallsPanel beat={beat} beatIndex={i} tiles={INSTALL_TILES} />;
-    case 'parts': return <PartsPanel beat={beat} beatIndex={i} parts={PARTS} crew={live.crew || CREW_SHOTS} />;
+    case 'parts': return <PartsPanel beat={beat} beatIndex={i} parts={PARTS} crew={live.crew || CREW_SHOTS} crewSpeed={speeds.crew} />;
     case 'chat': return <ChatPanel beat={beat} beatIndex={i} script={ASK_SCRIPT} />;
     case 'marbles': return <MarblesPanel beat={beat} beatIndex={i} reels={REEL_LIBRARY} />;
     // WWW: a saved deck is played in its own order (`ordered` skips mixOrder); the baked
     // list keeps mixOrder exactly as before.
     case 'action': return live[beat.key]
-      ? <ActionPanel beat={beat} beatIndex={i} items={live[beat.key]} ordered />
-      : <ActionPanel beat={beat} beatIndex={i} items={MIXED_ITEMS[beat.key] || []} />;
+      ? <ActionPanel beat={beat} beatIndex={i} items={live[beat.key]} ordered deck={deck} speed={speed} />
+      : <ActionPanel beat={beat} beatIndex={i} items={MIXED_ITEMS[beat.key] || []} deck={deck} speed={speed} />;
     case 'door': return <DoorPanel beat={beat} />;
     case 'photo':
     default: return <PhotoPanel beat={beat} beatIndex={i} />;
   }
 }
 
-export default function HomeCinema({ articles = [], www = {} }) {
+export default function HomeCinema({ articles = [], www = {}, speeds = {} }) {
   // The WWW decks that are present and non-empty, mapped once into each panel's own shape.
   const live = useMemo(() => {
     const out = { crew: wwwFor(www, 'crew', wwwCrewShot) };
@@ -174,12 +181,13 @@ export default function HomeCinema({ articles = [], www = {} }) {
     return out;
   }, [www]);
   const beats = HOME_BEATS.map((b) => ({ key: b.key, ...(FORMATIONS[b.key] || { kind: 'sphere', dim: true }) }));
-  const panels = HOME_BEATS.map((b, i) => panelFor(b, i, articles, live));
+  const panels = HOME_BEATS.map((b, i) => panelFor(b, i, articles, live, speeds));
 
   return (
     <>
       <NightSky />
       <CinemaPage beats={beats} panels={panels} classicHref="/classic" />
+      <MoonGate />
     </>
   );
 }

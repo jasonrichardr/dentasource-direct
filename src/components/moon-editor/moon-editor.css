@@ -1,0 +1,222 @@
+/* The home page's marquee editor (seven taps on the moon). Loaded with the editor's chunk only,
+   so a visitor never downloads a rule of it. Every control is the site's liquid glass (`lg`,
+   src/styles/liquid-glass.css); the sign-in is the FFC GlassSheet (src/styles/ffc-sheet.css).
+   Rules that sit on a glass button start with html:root so they outrank that file's own
+   html:root .lg without !important, the same way it outranks the page. */
+
+/* ---- one strip in edit mode, in place of its marquee ---- */
+.me-strip {
+  width: min(96vw, 1200px);
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--ink);
+  text-align: left;
+  /* a panel is pointer-events none until it is the live one (cinema.css); so is this */
+  pointer-events: none;
+}
+.cinema-panel.live .me-strip { pointer-events: auto; }
+
+.me-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  font: 600 12px/1.3 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.03em;
+}
+.me-name { font-family: Georgia, "Times New Roman", serif; font-weight: 500; font-size: 15px; letter-spacing: 0; }
+.me-count { display: inline-flex; align-items: center; gap: 6px; opacity: 0.75; }
+.me-hint { margin-left: auto; color: #b8932e; }
+:root[data-theme="dark"] .me-hint { color: #e6c76a; }
+.me-note { margin: 6px 0; padding: 12px 16px; border-radius: 14px; font-size: 13.5px; line-height: 1.5; background: color-mix(in srgb, var(--ink) 7%, transparent); }
+
+.me-scroll {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+  padding: 8px 4px 10px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(184, 147, 46, 0.55) transparent;
+}
+.me-scroll::-webkit-scrollbar { height: 6px; }
+.me-scroll::-webkit-scrollbar-thumb { background: rgba(184, 147, 46, 0.55); border-radius: 6px; }
+
+.me-tile {
+  position: relative;
+  flex: 0 0 auto;
+  height: clamp(120px, 25vh, 230px);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  scroll-snap-align: start;
+  border: 1px solid rgba(184, 147, 46, 0.45);
+  background: color-mix(in srgb, var(--ink) 10%, transparent);
+  box-shadow: 0 8px 22px rgba(19, 35, 63, 0.18);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+/* the crew row: the same fixed landscape box its marquee uses (126x84), a size up so the x fits */
+.me-strip.is-compact .me-tile { height: 100px; width: 150px; }
+.me-strip.is-compact .me-tile img { width: 100%; }
+html:root .me-strip.is-compact .me-tile .lg.me-x { width: 28px; height: 28px; top: 5px; right: 5px; }
+html:root .me-strip.is-compact .me-scroll .lg.me-add { width: 100px; }
+.me-tile img { display: block; height: 100%; width: auto; object-fit: cover; -webkit-user-drag: none; }
+.me-tile:focus-visible { outline: 2px solid #34d399; outline-offset: 3px; }
+/* the first tile of a swap: a gold ring drawn INSIDE the tile, so the strip's own scroll box
+   can never clip it, and a lift */
+.me-tile.is-picked {
+  transform: translateY(-4px);
+  outline: 3px solid #e6c76a;
+  outline-offset: -3px;
+  box-shadow: 0 14px 30px rgba(184, 147, 46, 0.4);
+}
+.me-tile.is-picked .me-n { background: #e6c76a; color: #0b1b33; }
+/* past the strip's cut: kept, not played (the site plays the first 44, the crew row 18) */
+.me-tile.is-cut { opacity: 0.42; }
+.me-tile.is-uploading { opacity: 0.8; }
+.me-blank { display: block; height: 100%; aspect-ratio: 4 / 3; }
+
+.me-n, .me-kind {
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 11px/1 system-ui, -apple-system, sans-serif;
+  color: #fff;
+  background: rgba(7, 11, 20, 0.62);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+.me-kind { left: auto; right: 6px; bottom: 6px; padding: 0; width: 24px; }
+.me-up { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; background: rgba(7, 11, 20, 0.35); }
+
+/* the glass x on every tile */
+html:root .me-tile .lg.me-x {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  gap: 0;
+  border-radius: 50%;
+}
+html:root .me-tile .lg.me-x:disabled { opacity: 0.5; cursor: progress; }
+
+/* the + tile at the front of the strip */
+html:root .me-scroll .lg.me-add {
+  flex: 0 0 auto;
+  width: clamp(92px, 11vw, 124px);
+  height: auto;
+  padding: 0;
+  flex-direction: column;
+  gap: 6px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+html:root .me-scroll .lg.me-add:disabled { opacity: 0.55; cursor: progress; }
+
+/* the timing row */
+.me-timing {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: 600 12.5px/1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.me-timing-label { letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px; opacity: 0.8; }
+.me-range { flex: 1 1 auto; max-width: 340px; accent-color: #b8932e; height: 28px; }
+:root[data-theme="dark"] .me-range { accent-color: #e6c76a; }
+.me-speed { min-width: 48px; font-variant-numeric: tabular-nums; }
+html:root .me-timing .lg.me-play { padding: 7px 14px; }
+
+.me-preview { pointer-events: none; }
+
+.me-spin { animation: me-spin 0.9s linear infinite; }
+@keyframes me-spin { to { transform: rotate(360deg); } }
+
+/* ---- the sign-in sheet's button and errors ---- */
+html:root .ffc-as .lg.me-signin { display: flex; width: max-content; margin: 22px auto 6px; padding: 14px 28px; font-size: 14px; }
+.me-err { margin: 12px auto 0; max-width: 420px; font-size: 13px; line-height: 1.5; color: #c5221f; }
+:root[data-theme="dark"] .me-err { color: #ffb4b0; }
+.me-err-float { position: fixed; left: 50%; transform: translateX(-50%); top: calc(150px + env(safe-area-inset-top, 0px)); z-index: 11001; padding: 8px 14px; border-radius: 12px; background: rgba(13, 17, 30, 0.9); }
+
+/* ---- the floating bar: Editing · Done · Sign out ----
+   ☠️ AT THE TOP, NOT THE BOTTOM. Every strip sits in the lower half of its beat with its timing
+   row under it, and a bottom bar covered the Play button and the slider's end on a 1440x900
+   desktop (measured: the click landed on the bar). The top of the screen is sky in every beat
+   that carries a strip; the trust line above it is 28 px. */
+.me-bar {
+  position: fixed;
+  left: 50%;
+  top: calc(38px + env(safe-area-inset-top, 0px));
+  transform: translateX(-50%);
+  z-index: 11000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100vw - 24px);
+  padding: 8px 8px 8px 16px;
+  border-radius: 999px;
+  color: var(--lg-ink);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 50%),
+    var(--lg-tint);
+  border: 1px solid rgba(184, 147, 46, 0.5);
+  box-shadow: inset 0 1px 0.5px var(--lg-edge), var(--lg-shade), 0 0 30px rgba(216, 178, 74, 0.18);
+  -webkit-backdrop-filter: blur(18px) saturate(185%);
+  backdrop-filter: blur(18px) saturate(185%);
+}
+.me-bar-state { display: inline-flex; align-items: center; gap: 7px; font: 700 13px/1 system-ui, -apple-system, sans-serif; white-space: nowrap; }
+.me-bar-who { font-weight: 500; opacity: 0.7; max-width: 22vw; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---- the toast, under the bar ---- */
+.me-toast {
+  position: fixed;
+  left: 50%;
+  top: calc(96px + env(safe-area-inset-top, 0px));
+  transform: translateX(-50%);
+  z-index: 11001;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  padding: 10px 10px 10px 16px;
+  border-radius: 16px;
+  font: 600 13px/1.4 system-ui, -apple-system, sans-serif;
+  color: #f2ead2;
+  background: rgba(13, 17, 30, 0.92);
+  border: 1px solid rgba(216, 178, 74, 0.45);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+.me-toast.is-danger { border-color: rgba(255, 120, 110, 0.6); }
+.me-toast .lg { --lg-ink: #f0fdf4; }
+.me-toast-x { display: inline-flex; padding: 6px; border: 0; background: none; color: inherit; cursor: pointer; opacity: 0.7; }
+
+@media (max-width: 768px) {
+  .me-bar { padding-left: 12px; gap: 6px; }
+  .me-bar-who { display: none; }
+  .me-toast { top: calc(92px + env(safe-area-inset-top, 0px)); }
+  .me-hint { margin-left: 0; width: 100%; }
+  .me-tile { height: clamp(110px, 20vh, 170px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .me-tile, .me-spin { transition: none; animation: none; }
+}

@@ -1,7 +1,7 @@
 // lib/cinema/wwwManifest.js — the home page's read of the console's WWW strips.
 //
 // Jarich, 2026-10-01: "give us access all to our website in our console.dentasourcedirect.com.
-// name it WWW". Every staff seat arranges five home-page strips from the console; they live
+// name it WWW". Every staff seat arranges the home-page strips (six since 2026-10-06) from the console; they live
 // in the console's Convex (energized-puma-161) and are published as a tiny public manifest.
 // This file is the ONLY place the site reads it, ON THE SERVER, once per page rebuild (ISR 60 s),
 // so a change in the console is on the page in about a minute and no visitor's browser
@@ -25,7 +25,14 @@ import https from 'node:https';
 
 const DEFAULT_URL = 'https://energized-puma-161.convex.site/www/manifest';
 export const WWW_STORAGE_ORIGIN = 'https://energized-puma-161.convex.cloud/api/storage/';
-const DECKS = ['people', 'showroom', 'training', 'nationwide', 'crew'];
+// `heart` (Chairs in service) joined on 2026-10-06 with the moon editor. A manifest from a
+// console that has not got it yet simply has no heart deck, and the beat plays its baked list.
+const DECKS = ['people', 'showroom', 'training', 'nationwide', 'crew', 'heart'];
+
+// A strip's timing: a multiplier on the measured marquee speed (src/lib/cinema/marquee.js),
+// clamped to the same 0.5 to 2 the console enforces. Anything else is "the default".
+const SPEED_MIN = 0.5;
+const SPEED_MAX = 2;
 const TIMEOUT_MS = 4000;
 const MAX_BYTES = 2 * 1024 * 1024;
 
@@ -61,6 +68,23 @@ export function sanitizeWwwDecks(decks) {
     if (!Array.isArray(decks[deck])) continue;
     const tiles = decks[deck].map((t) => cleanTile(t, deck)).filter(Boolean);
     if (tiles.length) out[deck] = tiles;
+  }
+  return out;
+}
+
+/**
+ * The per-strip speeds, sanitised: only known decks, only finite numbers, clamped, and only
+ * the ones that differ from 1 (absent means the measured default, so the page's markup for
+ * a strip at the default is exactly what it was before speeds existed).
+ */
+export function sanitizeWwwSpeeds(speeds) {
+  const out = {};
+  if (!speeds || typeof speeds !== 'object') return out;
+  for (const deck of DECKS) {
+    const v = speeds[deck];
+    if (typeof v !== 'number' || !Number.isFinite(v)) continue;
+    const c = Math.min(SPEED_MAX, Math.max(SPEED_MIN, v));
+    if (c !== 1) out[deck] = c;
   }
   return out;
 }
@@ -106,10 +130,18 @@ function getJson(url, timeoutMs, maxBytes) {
   });
 }
 
-/** Fetch the console's WWW decks. Never throws; `{}` means "every strip plays its baked list". */
-export async function readWwwDecks() {
+/**
+ * Fetch the console's WWW decks and their timings. Never throws; empty objects mean "every
+ * strip plays its baked list at the measured speed".
+ */
+export async function readWww() {
   const url = process.env.WWW_MANIFEST_URL || DEFAULT_URL;
-  if (url === 'off') return {};
+  if (url === 'off') return { decks: {}, speeds: {} };
   const body = await getJson(url, TIMEOUT_MS, MAX_BYTES);
-  return sanitizeWwwDecks(body && body.decks);
+  return { decks: sanitizeWwwDecks(body && body.decks), speeds: sanitizeWwwSpeeds(body && body.speeds) };
+}
+
+/** The decks alone (the shape page.js read before timings existed). */
+export async function readWwwDecks() {
+  return (await readWww()).decks;
 }

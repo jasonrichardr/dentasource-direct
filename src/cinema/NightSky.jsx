@@ -10,6 +10,16 @@ import { useTheme } from './ThemeProvider';
 // The id is part of the contract the room was ported against: while the room is open it
 // hides the cinema but restores #sky, so the stars stay lit behind it. One cinema per
 // page, so one #sky.
+// The sky that is mounted now, for the one question asked of it from outside: where is the
+// moon? The home page's hidden editor (src/components/moon-editor/MoonGate.jsx) hit-tests
+// taps against it. One sky per page, so one slot.
+let liveSky = null;
+
+/** The moon's painted circle ({ x, y, r }, viewport CSS px), or null in light mode or before it loads. */
+export function skyMoonRect() {
+  return liveSky ? liveSky.moonRect() : null;
+}
+
 export default function NightSky() {
   const canvasRef = useRef(null);
   const skyRef = useRef(null);
@@ -19,8 +29,10 @@ export default function NightSky() {
     if (!canvasRef.current) return undefined;
     const sky = createNightSky(canvasRef.current);
     skyRef.current = sky;
+    liveSky = sky;
     return () => {
       skyRef.current = null;
+      if (liveSky === sky) liveSky = null;
       sky.destroy();
     };
   }, []);
