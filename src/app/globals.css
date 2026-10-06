@@ -114,8 +114,9 @@ html, body {
   .pt-nav { padding-top: var(--nav-height); }
   @media (min-width: 768px) { :root { --dsd-nav-h: 108px; } }
   /* home is marquee only (2026-10-06): the reserve is the marquee's own height. :has() reads
-     the SSR'd nav, so the first paint is already right. (0,2,0) beats both rules above. */
-  :root:has(.dsd-sitenav-home) { --dsd-nav-h: 28px; }
+     the home page's own SSR'd <main class="dsd-home-cinema">, so the first paint is already
+     right on the server and the client alike. (0,2,0) beats both rules above. */
+  :root:has(.dsd-home-cinema) { --dsd-nav-h: 28px; }
   .mt-nav { margin-top: var(--nav-height); }
 }
 
@@ -180,3 +181,10 @@ body[style*="overflow: hidden"]::-webkit-scrollbar {
   .radian [data-scrub] { position: static !important; }
   .radian * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
+/* ☠️ HOME CHROME IS CSS, NOT A PATHNAME TEST (2026-10-06). Home is marquee only and has no
+   footer (Jarich). Navbar and Footer render the same markup on every route; the home page
+   marks its own <main>, and these two rules stand the bar and the footer down under it.
+   A usePathname() test did this first and hydrated wrong on Vercel's prerender of '/'
+   (React #418, a flash of the old navbar). Browsers without :has() simply keep both. */
+:root:has(.dsd-home-cinema) .dsd-navbar-bar,
+:root:has(.dsd-home-cinema) footer.dsd-footer { display: none; }

@@ -5,8 +5,9 @@ import { usePathname } from 'next/navigation';
 import './footer.css';
 
 // Routes with their own immersive chrome (design-DNA pages) — global footer stays out.
-// '/' since 2026-10-06: home ends on its door beat, the way ffcdentalclinic.com does.
-const CHROME_FREE_ROUTES = ['/', '/denjoy', '/spin', '/spin/desk', '/growth-partner', '/k-clamps'];
+// Home has no footer either (2026-10-06), but that is CSS keyed on .dsd-home-cinema in
+// globals.css, not this list: a pathname test here mismatched Vercel's prerender of '/'.
+const CHROME_FREE_ROUTES = ['/denjoy', '/spin', '/spin/desk', '/growth-partner', '/k-clamps'];
 
 const PHONE = '+63 962 579 3024';
 const PHONE_HREF = 'tel:+639625793024';
