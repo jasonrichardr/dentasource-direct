@@ -28,6 +28,7 @@ import { AFTER, AFTER_FOOTER, LABELS, MODES, sig } from './breathing';
 import { drawOrb } from './orb';
 import { AGC_F, BANDS, BARS, bandHue, drawSpectrum, paintBands } from './spectrum';
 import { THOUGHTS, deal } from './thoughts';
+import { getAudioContext } from '@/lib/sharedAudio';
 
 /** The one track. CORS verified: `access-control-allow-origin: *` on this exact
  *  path, which is required because Web Audio reads pure SILENCE from a tainted
@@ -502,9 +503,10 @@ export default function Room() {
     function graph() {
       try {
         if (!ctx) {
-          const AC = window.AudioContext || window.webkitAudioContext;
-          if (!AC) return;
-          ctx = new AC();
+          // the page's ONE context (lib/sharedAudio): a second one beside the glass
+          // buttons' tick doubled this player's sound on a phone (2026-10-06)
+          ctx = getAudioContext();
+          if (!ctx) return;
           an = ctx.createAnalyser();
           an.fftSize = 2048;
           an.smoothingTimeConstant = 0.8;
@@ -1338,7 +1340,8 @@ export default function Room() {
       a.removeAttribute('src');
       if (a.parentNode) a.parentNode.removeChild(a);
       try {
-        if (ctx) ctx.close();
+        // the context is shared with the glass buttons now: disconnect the analyser, keep the context
+        try { if (an) an.disconnect(); } catch (e) { /* already gone */ }
       } catch (e) {
         /* context already closed */
       }
