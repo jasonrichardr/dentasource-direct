@@ -97,9 +97,11 @@ const FORMATIONS = {
     // foot still clears the copy band on a 390px phone, which is the tighter of the two.
     lockup: { markBox: 2.3, markY: 1.17, wordHalfW: 4.6, wordBoxH: 2.2, wordCenterY: 0.6 },
   },
-  // The heart carries the clients' marquee since 2026-10-06, so it reads like every other strip
-  // beat: copy and strip centred, the heart dimmed behind them instead of the copy sitting under it.
-  heart: { kind: 'heart', copyLow: false },
+  // The heart carries the clients' marquee since 2026-10-06, and the marquee sits BELOW the heart
+  // (Jarich, same day): a smaller heart lifted into the upper band (size and yOffset are world
+  // units; the default is 4.6 and 1.0), the copy and the strip seated under it by
+  // home-cinema.css (.dsd-beat-heart).
+  heart: { kind: 'heart', copyLow: true, size: 1.85, yOffset: 3.0 },
   // the merged beat: the floor, and the two brands that only come through it
   'the-floor': { kind: 'sphere', radius: 3.7, ripple: 0.18, dim: true },
   // K-Clamps sits directly after the floor beat because it is the third line that only

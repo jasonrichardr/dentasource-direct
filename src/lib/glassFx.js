@@ -5,6 +5,8 @@
 // Ported from ffcdentalclinic.com (builds/ffc-signin-cinematic/src/ui/marbleCluster.js,
 // 2026-10-03), whose haptic had itself been lifted from the DSD marble cluster on 10-02.
 
+import { getAudioContext } from './sharedAudio';
+
 /**
  * One haptic tick, or nothing.
  * ☠️ IPHONE SAFARI HAS NO navigator.vibrate. iOS 18 fires the system haptic when an
@@ -44,17 +46,12 @@ export function hapticThud() {
   try { if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') navigator.vibrate(26); } catch (e) { /* none */ }
 }
 
-let ctx = null;
+// the page's ONE AudioContext (lib/sharedAudio): a second one doubled the music on a phone
 function audio() {
-  try {
-    if (!ctx) {
-      const AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return null;
-      ctx = new AC();
-    }
-    if (ctx.state === 'suspended') ctx.resume().catch(() => {});
-    return ctx.state === 'closed' ? null : ctx;
-  } catch (e) { return null; }
+  const ctx = getAudioContext();
+  if (!ctx) return null;
+  try { if (ctx.state === 'suspended') ctx.resume().catch(() => {}); } catch (e) { /* next gesture */ }
+  return ctx;
 }
 
 /** A struck glass bar: three INHARMONIC sine partials (1 · 2.76 · 5.40), 4 ms attack, the high

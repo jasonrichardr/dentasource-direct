@@ -906,3 +906,20 @@
   -webkit-backdrop-filter: blur(10px) saturate(150%);
   backdrop-filter: blur(10px) saturate(150%);
 }
+
+/* the heart beat: the heart rides the upper band (HomeCinema's formation), the copy and the
+   clients' marquee sit under it. Earlier than the other copy-low beats because this one carries a
+   strip and a door, and compact on phones so the door stays on screen. */
+.cinema-panel.copy-low:has(.dsd-beat-heart) { padding-top: calc(var(--vh, 1vh) * 40); }
+.dsd-home-cinema .dsd-beat-heart .dsd-mixed .dsd-strip-track video,
+.dsd-home-cinema .dsd-beat-heart .dsd-mixed .dsd-strip-track img { height: clamp(150px, 31vh, 320px); }
+/* a short laptop (720 to 760 tall) ran the door 9px off the bottom: the tiles give it back */
+@media (min-width: 701px) and (max-height: 760px) {
+  .dsd-home-cinema .dsd-beat-heart .dsd-mixed .dsd-strip-track video,
+  .dsd-home-cinema .dsd-beat-heart .dsd-mixed .dsd-strip-track img { height: clamp(140px, 26vh, 260px); }
+}
+@media (max-width: 700px) {
+  .cinema-panel.copy-low:has(.dsd-beat-heart) { padding-top: calc(var(--vh, 1vh) * 44); }
+  .dsd-home-cinema .dsd-beat-heart .dsd-mixed .dsd-strip-track video,
+  .dsd-home-cinema .dsd-beat-heart .dsd-mixed .dsd-strip-track img { height: clamp(120px, 22vh, 200px); }
+}
