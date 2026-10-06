@@ -9,6 +9,7 @@ import CycleMat from './CycleMat';
 import { Stars, Actions, GlassLink } from './parts';
 import { ShowroomDoor } from './sections';
 import './chair.css';
+import IdleSky from '@/cinema/IdleSky';
 
 function CardPhoto({ chair }) {
   const p = chair.photo;
@@ -64,6 +65,9 @@ export default function ChairGallery({ chairs, copy }) {
   const rootId = 'chairs-index';
   const h = copy.hero;
   return (
+    <>
+    {/* the home page's night sky behind the page, dark mode only (Jarich 2026-10-06) */}
+    <IdleSky />
     <div id={rootId} className="ch">
       <section className="ch-index-hero" aria-labelledby="ch-index-title">
         <div className="ch-wrap ch-head ch-head-center">
@@ -86,6 +90,7 @@ export default function ChairGallery({ chairs, copy }) {
       <ShowroomDoor door={copy.door} />
       <ScrollFx rootId={rootId} />
     </div>
+    </>
   );
 }
 

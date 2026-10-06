@@ -681,3 +681,26 @@ html:root .lg.ch-swatch[aria-pressed='true'] .ch-swatch-dot { transform: scale(1
   .ch-fx [data-reveal], .ch-fx [data-reveal] .ch-stat-ch { transition: none; }
   .ch-card .ch-plx img { transition: none; }
 }
+
+/* ☠️ BY NIGHT THE GROUND IS THE HOME PAGE'S SKY (Jarich, 2026-10-06: "in dark mode i want the
+   background like background of homepage"). IdleSky mounts the engine's star canvas fixed at
+   z-index 1 behind the route, the same one /news uses, so the page lifts above it and its
+   ground goes transparent; every card becomes smoked glass the stars read through. Light
+   mode is untouched (the sky never runs by day). */
+:root[data-theme='dark'] .ch {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  --ch-card: rgba(14, 21, 36, 0.58);
+}
+:root[data-theme='dark'] .ch-tile,
+:root[data-theme='dark'] .ch-iconitem,
+:root[data-theme='dark'] .ch-stool,
+:root[data-theme='dark'] .ch-specgroup,
+:root[data-theme='dark'] .ch-chip,
+:root[data-theme='dark'] .ch-warranty li,
+:root[data-theme='dark'] .ch-door,
+:root[data-theme='dark'] .ch-card {
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  backdrop-filter: blur(10px) saturate(140%);
+}

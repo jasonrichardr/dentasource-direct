@@ -8,10 +8,14 @@
 import ScrollFx from './ScrollFx';
 import { ChairHero, ProofBand, FeatureStory, Comfort, Specs, BoxAndWarranty, ShowroomDoor } from './sections';
 import './chair.css';
+import IdleSky from '@/cinema/IdleSky';
 
 export default function ChairPage({ chair }) {
   const rootId = `chair-${chair.slug}`;
   return (
+    <>
+    {/* the home page's night sky behind the page, dark mode only (Jarich 2026-10-06) */}
+    <IdleSky />
     <div id={rootId} className="ch">
       <ChairHero chair={chair} />
       <ProofBand proof={chair.proof} />
@@ -22,5 +26,6 @@ export default function ChairPage({ chair }) {
       <ShowroomDoor door={chair.door} />
       <ScrollFx rootId={rootId} />
     </div>
+    </>
   );
 }
