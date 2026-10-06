@@ -18,6 +18,7 @@ import actionReels from '@/data/cinema/action-reels.json';
 import partsData from '@/data/cinema/parts.json';
 import crewShots from '@/data/cinema/crew-shots.json';
 import installsData from '@/data/cinema/installs.json';
+import heartClients from '@/data/cinema/heart-clients.json';
 import growthPartner from '@/data/cinema/growth-partner.json';
 import reelLibrary from '@/data/cinema/reel-library.json';
 import trainingMedia from '@/data/cinema/training-media.json';
@@ -46,9 +47,11 @@ const PARTS = visible(partsData.parts);
 const CREW_SHOTS = visible(crewShots.items);
 const INSTALL_TILES = visible(installsData.tiles);
 const GROWTH_ITEMS = visible(growthPartner.items);
+// the Chairs in service marquee: client installs from facebook.com/dentasource, lead dentists first
+const HEART_CLIENTS = visible(heartClients.items);
 
 import {
-  ActionPanel, ChatPanel, DoorPanel, HeartPanel, InstallsPanel, LockupPanel,
+  ActionPanel, ChatPanel, DoorPanel, InstallsPanel, LockupPanel,
   MarblesPanel, NewsPanel, PartsPanel, PhotoPanel, StripPanel,
 } from './panels';
 import './home-cinema.css';
@@ -94,8 +97,9 @@ const FORMATIONS = {
     // foot still clears the copy band on a 390px phone, which is the tighter of the two.
     lockup: { markBox: 2.3, markY: 1.17, wordHalfW: 4.6, wordBoxH: 2.2, wordCenterY: 0.6 },
   },
-  // copyLow: the copy sits UNDER the heart rather than inside it, as in the lab.
-  heart: { kind: 'heart', copyLow: true },
+  // The heart carries the clients' marquee since 2026-10-06, so it reads like every other strip
+  // beat: copy and strip centred, the heart dimmed behind them instead of the copy sitting under it.
+  heart: { kind: 'heart', copyLow: false },
   // the merged beat: the floor, and the two brands that only come through it
   'the-floor': { kind: 'sphere', radius: 3.7, ripple: 0.18, dim: true },
   // K-Clamps sits directly after the floor beat because it is the third line that only
@@ -132,12 +136,14 @@ const FORMATIONS = {
 // below for its beat and is played in the order a person arranged, and anything else (no
 // deck, an empty one, the manifest unreachable) leaves this baked list standing.
 // ══════════════════════════════════════════════════════════════════════════
-const MIXED_ITEMS = buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAINING_ITEMS, GROWTH_ITEMS, INSTALL_TILES });
+const MIXED_ITEMS = buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAINING_ITEMS, GROWTH_ITEMS, INSTALL_TILES, HEART_CLIENTS });
 
 function panelFor(beat, i, articles, live) {
   switch (beat.kind) {
     case 'lockup': return <LockupPanel beat={beat} level={1} />;
-    case 'heart': return <HeartPanel beat={beat} />;
+    // the heart carries the clients' marquee now (2026-10-06), so it is an action panel over the
+    // heart formation, played in its built order so the lead dentists always open it
+    case 'heart': return <ActionPanel beat={beat} beatIndex={i} items={MIXED_ITEMS.heart || []} ordered />;
     case 'strip': return <StripPanel beat={beat} beatIndex={i} />;
     case 'marquee': return <NewsPanel beat={beat} beatIndex={i} articles={articles} />;
     // ☠️ THE TILES COME FROM THE MANIFEST, NOT FROM THE BEAT. See the note in

@@ -1,0 +1,210 @@
+{
+  "version": 1,
+  "generated": "2026-10-06",
+  "notes": "Client installs from facebook.com/dentasource (consented, Jarich 2026-10-06). Lead dentists first. Items marked fromCard were cropped from the photo panels of the DentaSource proof of delivery cards at native resolution (small, 350 to 840 px wide). dobles-1 is a frame from the install reel. No Doc Jake photo was found (only technician reel footage). sourceUrl post ids are page scoped and may not open logged out.",
+  "items": [
+    {
+      "id": "amba-1",
+      "src": "/images/heart/amba-dental-clinic-alabang-1.webp",
+      "width": 350,
+      "height": 386,
+      "alt": "Dr. Renoir Amba beside his ROSON DX-A3 at Amba Dental Clinic, Alabang",
+      "dentist": "Dr. Renoir Amba",
+      "clinic": "Amba Dental Clinic, Alabang",
+      "chair": "ROSON DX-A3",
+      "lead": 1,
+      "fromCard": true,
+      "sourceUrl": "https://www.facebook.com/dentasource/posts/122180417342480133",
+      "date": "2025-11-08"
+    },
+    {
+      "id": "amba-2",
+      "src": "/images/heart/amba-dental-clinic-alabang-2.webp",
+      "width": 350,
+      "height": 386,
+      "alt": "The new ROSON DX-A3 dental chair in the Amba Dental Clinic operatory, Alabang",
+      "dentist": "Dr. Renoir Amba",
+      "clinic": "Amba Dental Clinic, Alabang",
+      "chair": "ROSON DX-A3",
+      "lead": 1,
+      "fromCard": true,
+      "sourceUrl": "https://www.facebook.com/dentasource/posts/122180417342480133",
+      "date": "2025-11-08"
+    },
+    {
+      "id": "ruffy-1",
+      "src": "/images/heart/macrodent-dental-marikina-1.webp",
+      "width": 620,
+      "height": 432,
+      "alt": "Dr. Mark Ruffy's clinic, Macrodent Dental in Marikina, with its new ROSON chair",
+      "dentist": "Dr. Mark Ruffy",
+      "clinic": "Macrodent Dental, Marikina",
+      "chair": "ROSON",
+      "lead": 2,
+      "fromCard": true,
+      "sourceUrl": "https://www.facebook.com/dentasource/posts/122180020556480133",
+      "date": "2025-11-05",
+      "note": "The delivery card reads DX-S3 and the news post DX-A3; the model is left out until Jarich confirms."
+    },
+    {
+      "id": "juvy-1",
+      "src": "/images/heart/pilapil-dental-clinic-tanay-1.webp",
+      "width": 352,
+      "height": 392,
+      "alt": "The new ROSON DX-N1 dental chair at Dr. Juvy Pilapil Dental Clinic, Tanay",
+      "dentist": "Dr. Juvy Pilapil",
+      "clinic": "Pilapil Dental Clinic, Tanay",
+      "chair": "ROSON DX-N1",
+      "lead": 4,
+      "fromCard": true,
+      "sourceUrl": "https://www.facebook.com/dentasource/posts/122178657008480133",
+      "date": "2025-10-25"
+    },
+    {
+      "id": "juvy-2",
+      "src": "/images/heart/pilapil-dental-clinic-tanay-2.webp",
+      "width": 352,
+      "height": 392,
+      "alt": "Dr. Juvy Pilapil Dental Clinic team giving a thumbs up beside the new ROSON DX-N1, Tanay",
+      "dentist": "Dr. Juvy Pilapil",
+      "clinic": "Pilapil Dental Clinic, Tanay",
+      "chair": "ROSON DX-N1",
+      "lead": 4,
+      "fromCard": true,
+      "sourceUrl": "https://www.facebook.com/dentasource/posts/122178657008480133",
+      "date": "2025-10-25"
+    },
+    {
+      "id": "torres-1",
+      "src": "/images/heart/beyond-the-smile-sampaloc-1.webp",
+      "width": 1252,
+      "height": 692,
+      "alt": "Dr. Julia Torres and her team beside the new ROSON chair at Beyond the Smile Dental Clinic, Sampaloc, Manila",
+      "dentist": "Dr. Julia Torres",
+      "clinic": "Beyond the Smile Dental Clinic, Sampaloc, Manila",
+      "chair": "ROSON",
+      "lead": 5,
+      "fromCard": true,
+      "sourceUrl": "https://www.facebook.com/dentasource/posts/122168483942480133",
+      "date": "2025-08-08"
+    },
+    {
+      "id": "dobles-1",
+      "src": "/images/heart/dobles-teylan-dental-care-1.webp",
+      "width": 900,
+      "height": 1600,
+      "alt": "The Dobles-Teylan Dental Care Center dentist with the DentaSource Direct team and the newly installed ROSON DX-A3",
+      "dentist": null,
+      "clinic": "Dobles-Teylan Dental Care Center",
+      "chair": "ROSON DX-A3",
+      "lead": null,
+      "fromCard": false,
+      "sourceUrl": "https://www.facebook.com/reel/2264046751080325/",
+      "date": "2026-06-26"
+    },
+    {
+      "id": "sevilla-1",
+      "src": "/images/heart/apex-dental-studio-fairview-1.webp",
+      "width": 352,
+      "height": 392,
+      "alt": "Dr. Hans Matthew Sevilla holding a DentaSource Direct sign beside the new ROSON DX-A3L at Apex Dental Studio, Fairview",
+      "dentist": "Dr. Hans Matthew Sevilla",
+      "clinic": "Apex Dental Studio, Fairview",
+      "chair": "ROSON DX-A3L",
+      "lead": null,
+      "fromCard": true,
+      "sourceUrl": "https://www.facebook.com/dentasource/posts/122182999778480133",
+      "date": "2025-11-29"
+    },
+    {
+      "id": "sevilla-2",
+      "src": "/images/heart/apex-dental-studio-fairview-2.webp",
+      "width": 352,
+      "height": 392,
+      "alt": "The new ROSON DX-A3L chair with monitor at Apex Dental Studio, Fairview",
+      "dentist": "Dr. Hans Matthew Sevilla",
+      "clinic": "Apex Dental Studio, Fairview",
+      "chair": "ROSON DX-A3L",
+      "lead": null,
+      "fromCard": true,
+      "sourceUrl": "https://www.facebook.com/dentasource/posts/122182999778480133",
+      "date": "2025-11-29"
+    },
+    {
+      "id": "nextcare-1",
+      "src": "/images/heart/nextcare-dental-bacolod-1.webp",
+      "width": 830,
+      "height": 454,
+      "alt": "Dr. Christian Alvarez and the team with the new ROSON DX-A3 at NextCare Dental, Bacolod City",
+      "dentist": "Dr. Christian Alvarez",
+      "clinic": "NextCare Dental, Bacolod City",
+      "chair": "ROSON DX-A3",
+      "lead": null,
+      "fromCard": true,
+      "sourceUrl": "https://www.facebook.com/dentasource/posts/122179769474480133",
+      "date": "2025-11-03"
+    },
+    {
+      "id": "hannah-1",
+      "src": "/images/heart/hannah-medical-clinic-malate-1.webp",
+      "width": 352,
+      "height": 392,
+      "alt": "A Hannah Medical Clinic team member with a DentaSource Direct technician beside the new ROSON DX-A3S, Malate, Manila",
+      "dentist": null,
+      "clinic": "Hannah Medical Clinic, Malate, Manila",
+      "chair": "ROSON DX-A3S",
+      "lead": null,
+      "fromCard": true,
+      "sourceUrl": "https://www.facebook.com/dentasource/posts/122179029290480133",
+      "date": "2025-10-28"
+    },
+    {
+      "id": "hannah-2",
+      "src": "/images/heart/hannah-medical-clinic-malate-2.webp",
+      "width": 352,
+      "height": 392,
+      "alt": "A Hannah Medical Clinic team member seated at the new ROSON DX-A3S, Malate, Manila",
+      "dentist": null,
+      "clinic": "Hannah Medical Clinic, Malate, Manila",
+      "chair": "ROSON DX-A3S",
+      "lead": null,
+      "fromCard": true,
+      "sourceUrl": "https://www.facebook.com/dentasource/posts/122179029290480133",
+      "date": "2025-10-28"
+    }
+  ],
+  "excluded": [
+    {
+      "file": "crops/abao-1+2 (Pilapil-Abao Dental Baras card panels)",
+      "reason": "Empty cluttered room with old maroon chairs, no people; not a client or installed-chair photo"
+    },
+    {
+      "file": "zamora-contract-2025-10-31.jpg (card)",
+      "reason": "Contract signing card, not an installed chair photo"
+    },
+    {
+      "file": "dental-chair-upgrade-proof-of-delivery-june-2025 p313-1/p313-2",
+      "reason": "Unnamed woman seated in the chair (could be a patient) and uncrating shots; no confirmed client dentist"
+    },
+    {
+      "file": "beyond-the-smile p314-1",
+      "reason": "Technician only fitting the chair, no client in frame"
+    },
+    {
+      "file": "all */og.jpg in news folders",
+      "reason": "Share cards with overlaid text"
+    },
+    {
+      "file": "v### reel frames in roson-dx-n2-pro-installation-doc-jake (v042-1..7)",
+      "reason": "Technician footage only; Doc Jake himself is not identifiable in any frame, so no Jake photo was published"
+    },
+    {
+      "file": "v### reel frames of ~16 other install articles (bataan v201, ignacio v089, taguig v103, cabatuan v100, mandaluyong v020, cabuyao v081, mindoro v023, pampanga v017, cavite v019, s3 premium v015, pangasinan v003, etc.)",
+      "reason": "Technicians installing or unloading vans, not client photos; clinic staff only briefly in the background"
+    },
+    {
+      "file": "full DSD proof-of-delivery cards (all 8)",
+      "reason": "Carry phone numbers, email, QR code and ORDER NOW; only photo panels cropped out"
+    }
+  ]
+}

@@ -859,3 +859,50 @@
   html:root .dsd-door-row .lg { padding: 9px 15px; font-size: 13px; gap: 7px; }
   .dsd-door-row { gap: 8px; }
 }
+
+/* ☠️ HOME TYPE IS FFC'S, 1:1 (Jarich, 2026-10-06: "get the same fonts and size of the texts and
+   marquee from ffcdentalclinic.com … the star before the word get it 1:1 … the fonts color here as
+   well … the same depth difference"). The sizes, the ✦ (.dsd-stars) and the paper halos that give the
+   words their depth were already FFC's, and both papers and the night ink already matched. What
+   differed was the faces and two inks, so those are FFC's now, values copied from
+   builds/ffc-signin-cinematic/index.html (:root tokens, .p-kicker, .p-head, .p-sub). Home only: the
+   product pages keep DSD's own type. */
+.dsd-home-cinema {
+  --ffc-serif: Georgia, "Times New Roman", "Iowan Old Style", serif;
+  --ffc-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --ink: #13233f; /* FFC navy by day */
+}
+:root[data-theme="dark"] .dsd-home-cinema { --ink: #f1ece1; /* moonlight, FFC's night ink */ }
+.dsd-home-cinema .cinema-head { font-family: var(--ffc-serif); font-weight: 400; }
+.dsd-home-cinema .cinema-sub,
+.dsd-home-cinema .dsd-stars,
+.dsd-home-cinema .cinema-kicker { font-family: var(--ffc-sans); }
+.dsd-home-cinema .cinema-kicker { color: #9a7b1e; }                       /* FFC --gold-deep, day */
+:root[data-theme="dark"] .dsd-home-cinema .cinema-kicker { color: #e6c76a; } /* inverted by night, as FFC does */
+
+/* the marquee tiles, FFC's grammar: a hairline gold rim, navy shadow with a top light, and taller
+   tiles (FFC runs 250 to 470 px; DSD beats also carry stars and doors, so they stop at 360) */
+.dsd-home-cinema .dsd-mixed .dsd-strip-track video,
+.dsd-home-cinema .dsd-mixed .dsd-strip-track img {
+  height: clamp(170px, 36vh, 360px);
+  border: 1px solid rgba(184, 147, 46, 0.45);
+  box-shadow: 0 10px 26px rgba(19, 35, 63, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+@media (max-width: 700px) {
+  .dsd-home-cinema .dsd-mixed .dsd-strip-track video,
+  .dsd-home-cinema .dsd-mixed .dsd-strip-track img { height: clamp(150px, 28vh, 260px); }
+}
+
+/* ☠️ BY DAY THE HEART IS BRIGHT RED UNDER THE WORDS (2026-10-06). The heart beat carries the
+   clients' marquee over an undimmed heart (the clients sit IN the heart), and at night white type
+   reads on red. On cream, navy and gold do not: measured illegible. So by day only, the copy sits
+   on a frosted plate, the same glass the buttons are made of. */
+:root:not([data-theme="dark"]) .dsd-home-cinema .dsd-beat-heart .dsd-copy {
+  padding: 14px 24px 16px;
+  border-radius: 22px;
+  background: rgba(251, 248, 241, 0.72);
+  border: 1px solid rgba(184, 147, 46, 0.32);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 34px rgba(19, 35, 63, 0.14);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  backdrop-filter: blur(10px) saturate(150%);
+}

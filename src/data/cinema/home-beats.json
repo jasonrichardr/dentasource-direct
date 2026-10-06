@@ -8,12 +8,8 @@
       "key": "hero",
       "kind": "lockup",
       "eyebrow": "DentaSource Direct",
-      "headline": "Nobody else touches your chair.",
-      "body": "We uncrate it, test it, deliver it and build it in your room. Then we pick up when you call.",
-      "cta": {
-        "label": "Equipment",
-        "href": "/products"
-      },
+      "headline": "We grow with your clinic.",
+      "body": "Chairs, training, service and a team that stays, from your first operatory to your next branch.",
       "media": [
         "/cinema/brand/dsd-round.png",
         "/videos/dsd-hero-poster.jpg"
@@ -35,20 +31,20 @@
       "key": "see-us-in-action",
       "kind": "action",
       "eyebrow": "Our people",
-      "headline": "The real DentaSource.",
-      "body": "We laugh a lot and lift for each other. When we walk into your clinic, you get all of us.",
+      "headline": "A team that cares for each other cares better for you.",
+      "body": "When we walk into your clinic, you get all of us.",
       "stars": [
         "We look after each other, and after you",
         "Most of us worked in real clinics first",
         "We learn and teach at our Training Center"
       ],
-      "ctas": [
-        {
-          "label": "About us",
-          "href": "/about",
-          "variant": "ghost"
+      "aboutDoor": {
+        "label": "✦ About us",
+        "join": {
+          "label": "✦ Join our team",
+          "href": "https://ffcdentalclinic.com/careers/"
         }
-      ],
+      },
       "itemsFrom": "action-reels.json"
     },
     {

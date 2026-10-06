@@ -9,7 +9,7 @@ import { KB, GUIDELINES, SAMPLE_BOARD, ABOUT, WHERE } from '@/data/community';
 import { applySpeaker } from '@/actions/speaker';
 import GpSky, { ThemeSwitch } from './GpSky';
 import GpSheet, { ModuleList } from './GpSheet';
-import { GlassSheet, PrivacySheet } from './FfcSheets';
+import { GlassSheet, PrivacySheet } from '@/components/site/FfcSheets';
 import { TokenRow, NetworkMap, MarketCapChart, TradingCharts, EcosystemGraph, TimeframeLadder } from './JdevVisuals';
 import Roadmap from './Roadmap';
 import { reserveSeat } from '@/actions/growth';
