@@ -22,7 +22,7 @@ export const ABOUT = {
   kicker: 'Est. Pasig · Metro Manila',
   head: 'We sell the tools.\nWe would rather teach you to use them.',
   paras: [
-    'DentaSource Direct is a dental equipment company with the largest dental showroom in the country, in Pasig, and the exclusive distributor of ROSON and Denjoy in the Philippines. Our sister clinic, FFC Dental Clinic, is where the same tools work on real patients every day. The Training Center sits between the two, so what we teach is what we run.',
+    'DentaSource Direct is a dental equipment company with the largest dental showroom in the country, in Pasig, and the exclusive distributor of ROSON, K-Clamps and Denjoy in the Philippines. Our sister clinic, FFC Dental Clinic, is where the same tools work on real patients every day. The Training Center sits between the two, so what we teach is what we run.',
     'We are honest about what we sell. If a tool is not good we say so, even when it is on our shelf, and when a better one exists we move to it. We only contract with manufacturers that do their own research and development, and we visit their factories and labs before we sign.',
     'China leads research and development in dental equipment today, and we say that plainly. The direction of the market is easy to see, in dentistry and beyond. Our job is to bring the best of it here, service it properly, and teach people to use it well.',
   ],

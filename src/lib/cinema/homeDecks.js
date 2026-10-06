@@ -201,7 +201,7 @@ const dedupe = (items) => {
  * Every mixed marquee's baked list, keyed by beat. The inputs are the visible() lists
  * HomeCinema builds at module scope, passed under the same names they had there.
  */
-export function buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAINING_ITEMS, GROWTH_ITEMS, INSTALL_TILES }) {
+export function buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAINING_ITEMS, GROWTH_ITEMS, INSTALL_TILES, HEART_CLIENTS = [] }) {
   /**
    * Every reel the visual pass placed in one room, in library order.
    *
@@ -243,7 +243,24 @@ export function buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAININ
     return HELD_BACK_TRAINING.includes(item.reel_id);
   };
 
+  // ☠️ THE HEART IS THE CLIENTS (Jarich, 2026-10-06: "for the heart add a marquee of our clients
+  // images and installed dental chair videos get from our facebook page … make dr amba and prominent
+  // dentists the always start of the marquee"). Every photo is from facebook.com/dentasource, posted
+  // with the client's consent (his ruling that day, which is what lets a named dentist appear here
+  // at all). The lead dentists open the strip ALWAYS and in his order (`lead` 1..5 in
+  // heart-clients.json); everyone else and every install reel follow, mixed so stills and clips
+  // alternate. The panel plays this list `ordered`, so nothing re-sorts the leads away.
+  const clientItem = (c) => ({ type: 'image', src: c.src, width: c.width, height: c.height, alt: c.alt, caption: c.alt });
+  const heartLeads = HEART_CLIENTS.filter((c) => c.lead).sort((a, b) => a.lead - b.lead).map(clientItem);
+  const heartRest = mixOrder(dedupe([
+    ...HEART_CLIENTS.filter((c) => !c.lead).map(clientItem),
+    ...REEL_LIBRARY
+      .filter((r) => ['install', 'delivery'].includes(r.category) && r.location !== 'road' && !r.promoOverlay && !r.beatExclude)
+      .map(reelItem),
+  ]));
+
   const MIXED_ITEMS = {
+    heart: [...heartLeads, ...heartRest],
     'see-us-in-action': ACTION_ITEMS,
 
     // The floor: every reel shot in the showroom, opening on the one Jarich named, with the

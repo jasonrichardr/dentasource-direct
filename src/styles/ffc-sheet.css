@@ -1,0 +1,30 @@
+/* The About sheet and its door pill, copied 1:1 from ffcdentalclinic.com on 2026-09-17 for the growth
+   partner page, shared site wide since 2026-10-06 when the home page's Our people beat started opening
+   the same sheet (Jarich: "when the button about us is pressed i want a popup like that then join our
+   team"). GlassSheet (src/components/site/FfcSheets.jsx) renders the markup these rules paint. */
+/* the door pill, 1:1 ffcdentalclinic.com #about-door */
+.about-door { display: block; width: max-content; margin: clamp(14px, 2.4vh, 24px) auto 0; font: 700 11.5px/1 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #f0d98a; background: rgba(16, 12, 8, 0.55); border: 1px solid rgba(216, 178, 74, 0.65); border-radius: 999px; padding: 11px 22px; cursor: pointer; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: 0 0 22px rgba(216, 178, 74, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.12); }
+html[data-theme="light"] .about-door { color: #6b5a2e; background: rgba(255, 252, 244, 0.6); border-color: rgba(184, 147, 46, 0.5); }
+.about-door.as-join { margin: 28px auto 6px; padding: 14px 28px; font-size: 12px; text-decoration: none; }
+
+/* the FFC about sheet: bs-card glass + as-* */
+.ffc-as { position: fixed; inset: 0; z-index: 11500; display: flex; align-items: center; justify-content: center; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; --serif: Georgia, "Times New Roman", "Iowan Old Style", serif; --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+.ffc-as .as-scrim { position: absolute; inset: 0; background: rgba(3, 5, 10, 0.55); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.ffc-as .bs-card { position: relative; z-index: 1; width: min(560px, calc(100vw - 24px)); max-height: 82vh; margin-bottom: max(14px, env(safe-area-inset-bottom)); border-radius: 26px; color: #f2ead2; background: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03) 38%, rgba(216, 178, 74, 0.05)), rgba(13, 17, 30, 0.96); border: 1px solid rgba(216, 178, 74, 0.45); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 0 44px rgba(216, 178, 74, 0.10), 0 24px 70px rgba(0, 0, 0, 0.5); overflow: hidden; padding: 0; text-align: center; }
+html[data-theme="light"] .ffc-as .bs-card { color: #22314f; background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.26) 40%, rgba(216, 178, 74, 0.10)), rgba(250, 246, 236, 0.96); border-color: rgba(184, 147, 46, 0.55); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 0 44px rgba(216, 178, 74, 0.14), 0 24px 70px rgba(31, 41, 66, 0.28); }
+.ffc-as .as-scroll { overflow-y: auto; max-height: 82vh; padding: 26px 24px 24px; overscroll-behavior: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.ffc-as .as-scroll::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.ffc-as .as-x { position: absolute; right: 12px; top: 12px; z-index: 2; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.08); color: inherit; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.ffc-as .as-logo { display: block; width: 84px; height: 84px; margin: 2px auto 12px; border-radius: 50%; }
+.ffc-as .as-kicker { font: 700 10px/1 var(--sans); letter-spacing: 0.2em; text-transform: uppercase; color: #c9a227; margin: 18px 0 8px; }
+.ffc-as .as-head { font-family: var(--serif); font-weight: 500; font-size: clamp(22px, 5.4vw, 30px); line-height: 1.2; margin: 0 0 12px; white-space: pre-line; }
+.ffc-as .as-p { font-size: 13.5px; line-height: 1.65; margin: 0 0 10px; text-align: left; opacity: 0.92; }
+.ffc-as .as-pillar { display: flex; align-items: center; gap: 12px; text-align: left; font-size: 12.5px; line-height: 1.55; opacity: 0.9; padding: 9px 0; border-bottom: 1px solid rgba(201, 162, 39, 0.18); color: inherit; text-decoration: none; }
+.ffc-as .as-pillar b { display: block; font-family: var(--serif); font-size: 15px; margin-bottom: 2px; opacity: 1; font-weight: 500; }
+.ffc-as .as-face { width: 46px; height: 46px; flex: none; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1px rgba(201, 162, 39, 0.35); }
+.ffc-as .as-face-person { width: 54px; height: 54px; border: 1px solid rgba(216, 178, 74, 0.75); box-shadow: 0 0 0 3px rgba(16, 12, 8, 0.35), 0 8px 20px rgba(0, 0, 0, 0.45); }
+html[data-theme="light"] .ffc-as .as-face-person { box-shadow: 0 0 0 3px rgba(255, 252, 244, 0.6), 0 8px 20px rgba(19, 35, 63, 0.22); }
+.ffc-as .as-rule { display: grid; gap: 4px; text-align: left; padding: 10px 0; border-bottom: 1px solid rgba(201, 162, 39, 0.18); }
+.ffc-as .as-rule b { font-family: var(--serif); font-weight: 500; font-size: 15px; }
+.ffc-as .as-rule p { margin: 0; font-size: 13px; line-height: 1.55; opacity: 0.88; }
+.ffc-as .as-foot { margin-top: 14px; font-size: 11px; letter-spacing: 0.04em; opacity: 0.7; }

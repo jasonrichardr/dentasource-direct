@@ -19,6 +19,7 @@ import '@/components/site/trust-marquee.css';
 // not only on the routes that mount CinemaPage.
 import '@/cinema/cinema.css';
 import '@/styles/liquid-glass.css';
+import '@/styles/ffc-sheet.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });

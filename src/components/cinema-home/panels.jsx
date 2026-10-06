@@ -12,6 +12,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useBeatNear from './useBeatNear';
 import HowFar from './HowFar';
+import AboutDoor from './AboutDoor';
 import { mediaUrl } from '@/lib/cinema/media';
 import { mixOrder } from '@/lib/cinema/mixOrder';
 
@@ -1083,7 +1084,7 @@ export function ActionPanel({ beat, beatIndex, items = [], ordered = false }) {
   }, [near]);
 
   return (
-    <div className="dsd-panel">
+    <div className={`dsd-panel dsd-beat-${beat.key}`}>
       <Copy beat={beat} />
       {beat.howFar ? <HowFar copy={beat.howFar} /> : null}
       <PlaceMap place={beat.place} near={near} />
@@ -1165,7 +1166,7 @@ export function ActionPanel({ beat, beatIndex, items = [], ordered = false }) {
           })}
         </div>
       </div>
-      <Ctas beat={beat} />
+      {beat.aboutDoor ? <AboutDoor door={beat.aboutDoor} /> : <Ctas beat={beat} />}
     </div>
   );
 }
