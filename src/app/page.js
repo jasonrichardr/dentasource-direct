@@ -28,7 +28,7 @@ function marqueeArticles() {
 export default async function Home() {
   const www = await readWwwDecks();
   return (
-    <main>
+    <main className="dsd-home-cinema">
       <HomeCinema articles={marqueeArticles()} www={www} />
     </main>
   );

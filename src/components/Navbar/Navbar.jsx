@@ -46,10 +46,11 @@ export default function Navbar() {
   }, [open]);
 
   if (CHROME_FREE_ROUTES.includes(pathname)) return null;
-  // ☠️ HOME IS MARQUEE ONLY (Jarich, 2026-10-06: "remove the navbar … so its just marquee at
-  // the top"). Every link the bar carried is a glass button inside its own beat now
-  // (home-beats.json), and globals.css shrinks --dsd-nav-h to the marquee's height here.
-  const home = pathname === '/';
+  // ☠️ HOME IS MARQUEE ONLY (Jarich, 2026-10-06), AND THAT IS DECIDED IN CSS, NOT HERE.
+  // A pathname test rendered the bar on Vercel's prerender of '/' and dropped it on the
+  // client: React #418 on every home load and a flash of the old navbar. The home page marks
+  // its own <main> (.dsd-home-cinema) and globals.css hides .dsd-navbar-bar under it, so the
+  // server and the client render the same markup everywhere.
 
   return (
     <>
@@ -62,7 +63,7 @@ export default function Navbar() {
 
       {/* dsd-sitenav is the hook the music room reaches for: the rule that stands the
           chrome down while the room holds the screen lives in trust-marquee.css. */}
-      <nav className={`dsd-sitenav ${home ? 'dsd-sitenav-home ' : ''}fixed top-0 left-0 right-0 z-50 w-full max-w-[100vw] overflow-hidden flex flex-col`}>
+      <nav className={`dsd-sitenav fixed top-0 left-0 right-0 z-50 w-full max-w-[100vw] overflow-hidden flex flex-col`}>
         {/* Marquee Trust Bar */}
         <div className="w-full bg-[#1a3c34] py-1.5 overflow-hidden">
           <div className="flex w-max items-center gap-8" style={{ animation: 'marquee 40s linear infinite' }}>
@@ -75,9 +76,8 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Logo + Hamburger Bar (not on home) */}
-        {!home && (
-        <div className="w-full bg-white border-b border-gray-200/60 shadow-sm">
+        {/* Logo + Hamburger Bar (hidden on home by globals.css, see above) */}
+        <div className="dsd-navbar-bar w-full bg-white border-b border-gray-200/60 shadow-sm">
           <div className="flex items-center justify-between px-4 py-3 max-w-7xl mx-auto">
             <Link href="/" onClick={() => setOpen(false)} className="relative z-50 shrink-0">
               <Image
@@ -127,7 +127,6 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-        )}
       </nav>
 
       {/* Mobile fullscreen menu */}
