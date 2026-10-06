@@ -293,14 +293,17 @@ export function buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAININ
 }
 
 // ══════════════════════════════════════════════════════════════════════════
-// WWW (2026-10-01): the console at console.dentasourcedirect.com holds five of the home
-// arc's strips as decks, and every staff seat arranges them from a phone. The page reads
+// WWW (2026-10-01): the console at console.dentasourcedirect.com holds six of the home
+// arc's strips as decks (the heart joined on 2026-10-06), and every staff seat arranges them from a phone. The page reads
 // the console's public manifest on the server (src/lib/cinema/wwwManifest.js, ISR 60 s).
 // ══════════════════════════════════════════════════════════════════════════
 
-/** The four mixed-marquee decks, by the beat they drive. The fifth, `crew`, is the crew
- *  row inside the after-sales parts beat and is handed to PartsPanel instead. */
+/** The mixed-marquee decks, by the beat they drive. `crew` is the crew row inside the
+ *  after-sales parts beat and is handed to PartsPanel instead. `heart` (Chairs in service,
+ *  2026-10-06) is the clients' marquee in the heart beat, which plays `ordered` whether it
+ *  comes from the console or from the baked list, so its lead dentists always open it. */
 export const WWW_BEAT_DECK = {
+  heart: 'heart',
   'see-us-in-action': 'people',
   'the-floor': 'showroom',
   'training-center': 'training',
@@ -334,12 +337,16 @@ export function wwwFor(www, deck, map) {
 }
 
 /**
- * The five lists exactly as the page plays them TODAY, for the first WWW copy.
+ * The six lists exactly as the page plays them TODAY, for the first WWW copy.
  *
  * ☠️ mixOrder IS APPLIED HERE, AT SEED TIME. A WWW deck is played in its own order (a
  * person arranged it), so the first copy has to BE the order a visitor sees now, or the
  * day the seed runs would reshuffle every strip. The whole list is kept, not the first 44:
  * the console draws the site's cut and staff can lift a tile from below the line.
+ *
+ * ☠️ EXCEPT THE HEART, WHICH IS ALREADY IN PLAY ORDER. buildHomeDecks puts the lead dentists
+ * first and mixes only the rest, and the panel plays it `ordered`. mixOrder over the whole
+ * list would put a video in slot one and push Dr. Amba out of the front.
  */
 export function bakedDeckLists(mixed, crewShots) {
   return {
@@ -348,6 +355,7 @@ export function bakedDeckLists(mixed, crewShots) {
     training: mixOrder(mixed['training-center'] || []),
     nationwide: mixOrder(mixed.delivery || []),
     crew: crewShots,
+    heart: mixed.heart || [],
   };
 }
 

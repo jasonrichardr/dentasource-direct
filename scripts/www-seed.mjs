@@ -1,7 +1,7 @@
 // scripts/www-seed.mjs — the FIRST copy of each WWW strip, built from the very lists the
 // home page bakes today.
 //
-// WWW (2026-10-01): five home-arc strips are arranged by the team in the console
+// WWW (2026-10-01): the home-arc strips (six since the heart joined on 2026-10-06) are arranged by the team in the console
 // (console.dentasourcedirect.com). Before anyone can arrange a strip, the console needs a
 // copy of what the page shows now. This script builds that copy with the SAME code the page
 // runs (src/lib/cinema/homeDecks.js, after visible(), in mixOrder's order) and writes it as
@@ -10,6 +10,7 @@
 //   node scripts/www-seed.mjs --dry                       counts per strip, writes nothing
 //   node scripts/www-seed.mjs --out /tmp/www-seed.json    the seed file
 //   node scripts/www-seed.mjs --out f.json --deck crew    a subset (comma list)
+//   node scripts/www-seed.mjs --out f.json --deck heart   the heart alone (2026-10-06)
 //
 // Then, from the CONSOLE repo root (it has no path to this repo, by its own law):
 //   unset CONVEX_DEPLOYMENT CONVEX_DEPLOY_KEY
@@ -41,8 +42,10 @@ const ACTION_ITEMS = visible(J('action-reels').items);
 const CREW_SHOTS = visible(J('crew-shots').items);
 const INSTALL_TILES = visible(J('installs').tiles);
 const GROWTH_ITEMS = visible(J('growth-partner').items);
+// the heart's clients (2026-10-06): lead dentists first, in Jarich's order
+const HEART_CLIENTS = visible(J('heart-clients').items);
 
-const MIXED = buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAINING_ITEMS, GROWTH_ITEMS, INSTALL_TILES });
+const MIXED = buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAINING_ITEMS, GROWTH_ITEMS, INSTALL_TILES, HEART_CLIENTS });
 const LISTS = bakedDeckLists(MIXED, CREW_SHOTS);
 
 // The console's default caption per strip (convex/lib/wwwDecks.ts), for an item with none.
@@ -52,8 +55,9 @@ const FALLBACK = {
   training: 'Inside the Training Center in Pasig',
   nationwide: 'On the road with a delivery',
   crew: 'The DentaSource after sales crew',
+  heart: "A DentaSource chair in service at a client's clinic",
 };
-const SHOWN = { people: 44, showroom: 44, training: 44, nationwide: 44, crew: 18 };
+const SHOWN = { people: 44, showroom: 44, training: 44, nationwide: 44, crew: 18, heart: 44 };
 
 const decks = {};
 let failed = false;

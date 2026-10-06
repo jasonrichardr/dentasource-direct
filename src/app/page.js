@@ -1,6 +1,6 @@
 import HomeCinema from '@/components/cinema-home/HomeCinema';
 import { newsData } from '@/data/news';
-import { readWwwDecks } from '@/lib/cinema/wwwManifest';
+import { readWww } from '@/lib/cinema/wwwManifest';
 
 // WWW (2026-10-01): five of the home arc's strips are arranged by the team in the console and
 // read here, on the server, from its public manifest. ISR: the page is rebuilt at most once a
@@ -26,10 +26,11 @@ function marqueeArticles() {
 }
 
 export default async function Home() {
-  const www = await readWwwDecks();
+  // the strips and their timings (2026-10-06: the moon editor sets a speed per strip)
+  const { decks, speeds } = await readWww();
   return (
     <main className="dsd-home-cinema">
-      <HomeCinema articles={marqueeArticles()} www={www} />
+      <HomeCinema articles={marqueeArticles()} www={decks} speeds={speeds} />
     </main>
   );
 }

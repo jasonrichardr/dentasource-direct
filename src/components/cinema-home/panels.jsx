@@ -15,6 +15,11 @@ import HowFar from './HowFar';
 import AboutDoor from './AboutDoor';
 import { mediaUrl } from '@/lib/cinema/media';
 import { mixOrder } from '@/lib/cinema/mixOrder';
+// the hidden marquee editor's seam: null for every visitor, see the file
+import { useMoonEditor } from '@/lib/cinema/moonEdit';
+
+/** A strip's timing as markup: absent at the measured default, so default markup is unchanged. */
+const speedAttr = (speed) => (typeof speed === 'number' && speed !== 1 ? speed : undefined);
 
 /* ── the shared copy block ─────────────────────────────────────────────────── */
 
@@ -290,8 +295,11 @@ const PARTS_SHOWN = 28;
 // twice as often. 18 photographs is about the same track length as 14 parts cards.
 const CREW_SHOWN = 18;
 
-export function PartsPanel({ beat, beatIndex, parts = [], crew = [] }) {
+export function PartsPanel({ beat, beatIndex, parts = [], crew = [], crewSpeed }) {
   const near = useBeatNear(beatIndex);
+  // edit mode (seven taps on the moon): the crew row becomes the editor's own strip
+  const editor = useMoonEditor();
+  const EditStrip = editor ? editor.Strip : null;
   // The manifest already alternates technician and sales so a row never runs as one kind,
   // so this is a slice and not a shuffle: re-ordering here would undo that.
   const crewRow = useMemo(() => crew.slice(0, CREW_SHOWN), [crew]);
@@ -401,9 +409,9 @@ export function PartsPanel({ beat, beatIndex, parts = [], crew = [] }) {
             the row under it goes back the other way, same as the row above it.
             Photographs of the crew, no captions: the parts rows carry the names, and a
             caption under a candid photograph would be a claim about a person. */}
-        {crewRow.length ? (
+        {!EditStrip && crewRow.length ? (
           <div className="dsd-news-row">
-            <div className="dsd-news-track" data-marquee="parts-crew">
+            <div className="dsd-news-track" data-marquee="parts-crew" data-speed={speedAttr(crewSpeed)}>
               {(near ? [...crewRow, ...crewRow] : []).map((shot, i) => (
                 near ? (
                   <Image
@@ -425,6 +433,9 @@ export function PartsPanel({ beat, beatIndex, parts = [], crew = [] }) {
           </div>
         ) : null}
       </div>
+      {/* edit mode: the crew row as the editor's strip, OUTSIDE .dsd-news so its edge fade
+          and overflow do not clip the strip's own head and scroll */}
+      {EditStrip ? <EditStrip deck="crew" near={near} compact /> : null}
       <Ctas beat={beat} />
     </div>
   );
@@ -1026,8 +1037,12 @@ const cardGuard = (playTo) => (e) => {
 
 const MIXED_SHOWN = 44;
 
-export function ActionPanel({ beat, beatIndex, items = [], ordered = false }) {
+export function ActionPanel({ beat, beatIndex, items = [], ordered = false, deck = null, speed }) {
   const near = useBeatNear(beatIndex, { margin: '80%' });
+  // edit mode (seven taps on the moon): a strip the console holds as a deck is drawn by the
+  // editor instead, paused and scrollable, with its tools on every tile
+  const editor = useMoonEditor();
+  const EditStrip = editor && deck ? editor.Strip : null;
 
   // The room only stands aside for a reel that is actually AUDIBLE. Everything in this
   // marquee autoplays muted, so in practice it never asks; the handler exists because a
@@ -1088,8 +1103,9 @@ export function ActionPanel({ beat, beatIndex, items = [], ordered = false }) {
       <Copy beat={beat} />
       {beat.howFar ? <HowFar copy={beat.howFar} /> : null}
       <PlaceMap place={beat.place} near={near} />
+      {EditStrip ? <EditStrip deck={deck} near={near} /> : (
       <div className="dsd-strip dsd-mixed">
-        <div className="dsd-strip-track" ref={trackRef} data-marquee={`mixed-${beat.key}`}>
+        <div className="dsd-strip-track" ref={trackRef} data-marquee={`mixed-${beat.key}`} data-speed={speedAttr(speed)}>
           {(near ? [...tiles, ...tiles] : []).map((it, i) => {
             const echo = i >= tiles.length;
             const key = `${i}-${it.src}`;
@@ -1166,6 +1182,7 @@ export function ActionPanel({ beat, beatIndex, items = [], ordered = false }) {
           })}
         </div>
       </div>
+      )}
       {beat.aboutDoor ? <AboutDoor door={beat.aboutDoor} /> : <Ctas beat={beat} />}
     </div>
   );

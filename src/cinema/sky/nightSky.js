@@ -82,6 +82,11 @@ export function createNightSky(canvas, { assetBase = SKY_ASSET_BASE } = {}) {
   const worldImg = {};             // tex name -> HTMLImageElement
   const worldSprite = {};          // world id -> baked canvas
   let worldsAsked = false;
+  // Where the moon was LAST PAINTED, in CSS px of the viewport, or null when it is not on
+  // screen (texture not loaded yet, scrolled out of the sheet, or the sky is off). The home
+  // page's hidden editor hit-tests taps against this (moonRect below): the canvas itself is
+  // pointer-events none, so the test is coordinates, and they must be the painted ones.
+  let moonAt = null;
 
   // ---- the bakery ----
   function sheet() {
@@ -227,6 +232,7 @@ export function createNightSky(canvas, { assetBase = SKY_ASSET_BASE } = {}) {
   }
 
   function drawWorlds(sy, t) {
+    moonAt = null;
     for (const w of WORLDS) {
       const img = worldImg[w.tex];
       if (!img) continue;
@@ -255,6 +261,7 @@ export function createNightSky(canvas, { assetBase = SKY_ASSET_BASE } = {}) {
       ctx.beginPath(); ctx.arc(cx, cy, R * (w.moon ? 5.5 : 3.2), 0, Math.PI * 2); ctx.fill();
 
       ctx.drawImage(sprite, cx - R, cy - R, R * 2, R * 2);
+      if (w.moon) moonAt = { x: cx, y: cy, r: R };
     }
   }
 
@@ -481,6 +488,7 @@ export function createNightSky(canvas, { assetBase = SKY_ASSET_BASE } = {}) {
   function stop() {
     active = false;
     held = false;
+    moonAt = null;
     canvas.style.display = "none";
     if (raf) cancelAnimationFrame(raf);
     raf = 0;
@@ -505,6 +513,8 @@ export function createNightSky(canvas, { assetBase = SKY_ASSET_BASE } = {}) {
     pause,
     resume,
     get active() { return active; },
+    /** The moon's painted circle ({ x, y, r } in viewport CSS px), or null when none is lit. */
+    moonRect() { return active && moonAt ? { ...moonAt } : null; },
     /** React unmount: stop the loop and give the listeners back. */
     destroy() {
       stop();

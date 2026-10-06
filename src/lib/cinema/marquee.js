@@ -176,11 +176,27 @@ export function marqueePxPerSecond(kind = 'media', id = null) {
 // run it at half the intended speed. It is a CSS module class, so no selector here reaches
 // it, and it is left alone deliberately. Anything new that wants this speed must either be
 // a -50% doubled track or teach this function about its own travel distance first.
+/**
+ * A track's own timing, from the console (2026-10-06, the moon editor): `data-speed` on the
+ * track is a MULTIPLIER on the measured speed above, 0.5 to 2, so "a bit slower" stays a
+ * bit slower however many tiles the strip gains. Absent, or anything that is not a finite
+ * number in range, is 1: the measured default, exactly as before.
+ */
+export const SPEED_MIN = 0.5;
+export const SPEED_MAX = 2;
+export function trackSpeed(el) {
+  const raw = el && el.dataset ? el.dataset.speed : undefined;
+  if (raw === undefined || raw === '') return 1;
+  const v = Number(raw);
+  if (!Number.isFinite(v) || v <= 0) return 1;
+  return Math.min(SPEED_MAX, Math.max(SPEED_MIN, v));
+}
+
 export function applyMarqueeSpeed(el, kind = 'media') {
   if (!el) return;
   const half = el.scrollWidth / 2;
   if (!half) return;                       // an empty track has no speed to set yet
-  const seconds = half / marqueePxPerSecond(kind, el.dataset ? el.dataset.marquee : null);
+  const seconds = half / (marqueePxPerSecond(kind, el.dataset ? el.dataset.marquee : null) * trackSpeed(el));
   if (!Number.isFinite(seconds) || seconds <= 0) return;
   el.style.animationDuration = `${seconds.toFixed(2)}s`;
 }
@@ -218,7 +234,8 @@ export function observeMarquees(root, kind = 'media', selector = '.dsd-strip-tra
   // A row that mounts later (the parts beat's crew row only renders when it has shots)
   // still needs observing, so watch for tracks appearing under the root.
   const mo = new MutationObserver(() => { attach(); apply(); });
-  mo.observe(root, { childList: true, subtree: true });
+  // data-speed too: the moon editor's timing slider re-times its strip with no reload
+  mo.observe(root, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-speed'] });
   let mq = null;
   try {
     mq = window.matchMedia(`(max-width: ${NARROW_MAX_PX}px)`);
