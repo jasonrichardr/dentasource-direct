@@ -259,9 +259,15 @@ export function buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAININ
       .map(reelItem),
   ]));
 
-  // band 1 of the nationwide strip: on the road, or filed as a delivery
+  // ☠️ THE STRIP PLAYS ONLY ITS FIRST 44 TILES (MIXED_SHOWN, and the console draws the same line),
+  // and there are 51 clips on the road. Travel-first with every clip ahead of every photo meant no
+  // photo ever played (Jarich asked for "videos and images"). So: an opening run of pure travel,
+  // then the rest of the road clips, the clinic installs and the photos mixed, which puts about
+  // 14 photos inside the 44. Only clips actually shot on the ROAD lead: three reels filed as
+  // `delivery` were filmed on the showroom floor and are not travel.
+  const TRAVEL_LEAD = 12;
   const travelReels = REEL_LIBRARY
-    .filter((r) => (r.location === 'road' || r.category === 'delivery') && !r.promoOverlay && !r.beatExclude)
+    .filter((r) => r.location === 'road' && !r.promoOverlay && !r.beatExclude)
     .map(reelItem);
 
   const MIXED_ITEMS = {
@@ -294,16 +300,19 @@ export function buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAININ
     //   3. the photographs: the install tiles, then the beat's own stills
     // The same exclusions as everywhere else: promoOverlay and beatExclude on a reel,
     // beatExclude on a tile, and installs.json's stripUnsafe frames are not in its tiles.
-    delivery: dedupe([
-      ...travelReels,
-      ...REEL_LIBRARY
-        .filter((r) => r.category === 'install' && r.location === 'clinic' && !r.promoOverlay && !r.beatExclude)
-        .map(reelItem),
-      // a tile whose luminance makes it paint as a black rectangle is held out the same way
-      // a promo card is: it is in the manifest, it is not on the beat
-      ...INSTALL_TILES.filter((t) => !t.beatExclude).map((t) => ({ type: 'image', ...t, caption: t.alt })),
-      ...beatStills(DELIVERY_BEAT, 'On the road with a delivery'),
-    ]),
+    delivery: [
+      ...travelReels.slice(0, TRAVEL_LEAD),
+      ...mixOrder(dedupe([
+        ...travelReels.slice(TRAVEL_LEAD),
+        ...REEL_LIBRARY
+          .filter((r) => r.category === 'install' && r.location === 'clinic' && !r.promoOverlay && !r.beatExclude)
+          .map(reelItem),
+        // a tile whose luminance makes it paint as a black rectangle is held out the same way
+        // a promo card is: it is in the manifest, it is not on the beat
+        ...INSTALL_TILES.filter((t) => !t.beatExclude).map((t) => ({ type: 'image', ...t, caption: t.alt })),
+        ...beatStills(DELIVERY_BEAT, 'On the road with a delivery'),
+      ])),
+    ],
   };
   return MIXED_ITEMS;
 }
