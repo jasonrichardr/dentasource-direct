@@ -20,15 +20,17 @@
 // imports it on the first hover or tap, so the home page itself pays nothing for the map.
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { MessageCircle } from 'lucide-react';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './how-far.css';
+// the console look and the line maths, shared with the reach popup (ReachDialog)
+import {
+  SHOWROOM, BADGE, manilaNow, isNightInManila, reducedMotion, consoleStyle, paintNight, foldAttribution,
+  haversineKm, arc, measure, slice, pointAt, line, fc, EMPTY, lineFc, useCountUp, escapeHtml,
+} from './mapKit';
 
-// The default destination; a beat can send another (the Training Center) as copy.dest.
-const SHOWROOM = { lat: 14.5809669, lng: 121.0867494 }; // from Jarich's Maps place link (console plan 34o)
-const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
-const NIGHT = 'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Black_Marble/default/2016-01-01/GoogleMapsCompatible_Level8/{z}/{y}/{x}.png';
+// The default destination (SHOWROOM, in mapKit); a beat can send another (the Training Center) as copy.dest.
 const OSRM = 'https://router.project-osrm.org/route/v1/driving/';
-const BADGE = '/cinema/brand/dsd-round.png';
 const MINT = '#34d399';
 const HERE_KM = 0.15; // inside this radius the visitor is at the showroom
 const FAR_KM = 450; // past this, a failed road lookup is read as "across the water", not as an outage
@@ -40,23 +42,10 @@ const GEO_TIMEOUT_MS = 12000;
 const GEO_WATCHDOG_MS = 15000;
 const MAP_WATCHDOG_MS = 15000;
 
-const manilaNow = (now = Date.now()) => new Date(now + 8 * 3600 * 1000);
-const isNightInManila = () => { const h = manilaNow().getUTCHours(); return h < 6 || h >= 18; };
-const reducedMotion = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-
 /** A longitude moved to the showroom's side of the antimeridian, so a visitor in California or
  *  Dubai gets a line (and a camera) across the short side of the globe, not the long one. */
 const nearLng = (lng, d) => (lng - d.lng > 180 ? lng - 360 : lng - d.lng < -180 ? lng + 360 : lng);
 const near = (p, d) => ({ lat: p.lat, lng: nearLng(p.lng, d) });
-
-function haversineKm(a, b) {
-  const R = 6371;
-  const toRad = (d) => (d * Math.PI) / 180;
-  const dLat = toRad(b.lat - a.lat);
-  const dLng = toRad(b.lng - a.lng);
-  const s = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLng / 2) ** 2;
-  return 2 * R * Math.asin(Math.sqrt(s));
-}
 
 /** OSRM's polyline6 → [[lng, lat], ...]. Compact on the wire even for a 1,000 km route. */
 function decodePolyline6(str) {
@@ -88,49 +77,6 @@ async function fetchRoute(from, to, signal) {
   return { coords: decodePolyline6(r.geometry), km: r.distance / 1000, min: r.duration / 60, ferry };
 }
 
-/** A soft curve from the visitor to the floor, for far mode and for a road that did not load. */
-function arc(from, to, n = 96) {
-  const dx = to.lng - from.lng, dy = to.lat - from.lat;
-  const cx = (from.lng + to.lng) / 2 - dy * 0.22, cy = (from.lat + to.lat) / 2 + dx * 0.22;
-  const pts = [];
-  for (let k = 0; k <= n; k++) {
-    const t = k / n, u = 1 - t;
-    pts.push([u * u * from.lng + 2 * u * t * cx + t * t * to.lng, u * u * from.lat + 2 * u * t * cy + t * t * to.lat]);
-  }
-  return pts;
-}
-
-/** Cumulative distance along a line, for "where is the comet at fraction f". */
-function measure(coords) {
-  const cum = [0];
-  for (let k = 1; k < coords.length; k++) {
-    cum.push(cum[k - 1] + haversineKm({ lng: coords[k - 1][0], lat: coords[k - 1][1] }, { lng: coords[k][0], lat: coords[k][1] }));
-  }
-  return cum;
-}
-/** The part of the line between fractions f0 and f1, both ends interpolated ([] when empty). */
-function slice(coords, cum, f0, f1) {
-  const lo = Math.min(1, Math.max(0, f0)), hi = Math.min(1, Math.max(0, f1));
-  if (hi <= lo) return [];
-  const total = cum[cum.length - 1] || 1, a = lo * total, b = hi * total;
-  const pts = [pointAt(coords, cum, lo)];
-  for (let k = 0; k < coords.length; k++) if (cum[k] > a && cum[k] < b) pts.push(coords[k]);
-  pts.push(pointAt(coords, cum, hi));
-  return pts;
-}
-function pointAt(coords, cum, f) {
-  const total = cum[cum.length - 1] || 1, d = Math.min(1, Math.max(0, f)) * total;
-  let lo = 0, hi = cum.length - 1;
-  while (lo < hi) { const mid = (lo + hi) >> 1; if (cum[mid] < d) lo = mid + 1; else hi = mid; }
-  const k = Math.max(1, lo), seg = cum[k] - cum[k - 1] || 1, t = (d - cum[k - 1]) / seg;
-  return [coords[k - 1][0] + (coords[k][0] - coords[k - 1][0]) * t, coords[k - 1][1] + (coords[k][1] - coords[k - 1][1]) * t];
-}
-
-const line = (coords) => ({ type: 'Feature', geometry: { type: 'LineString', coordinates: coords }, properties: {} });
-const fc = (features) => ({ type: 'FeatureCollection', features });
-const EMPTY = fc([]);
-const lineFc = (pts) => fc(pts.length >= 2 ? [line(pts)] : []);
-
 function fmtKm(km) {
   if (km < 10) return { v: km.toFixed(1), u: 'km' };
   return { v: Math.round(km).toLocaleString('en-PH'), u: 'km' };
@@ -142,32 +88,25 @@ function fmtMin(min) {
   return { v: r ? `${h} h ${r}` : String(h), u: r ? 'min' : 'h' };
 }
 
-/** Rolls a number up from 0 once `run` turns true. Plain rAF, no library. */
-function useCountUp(target, run, ms = 1300) {
-  const [v, setV] = useState(0);
-  const [still] = useState(reducedMotion);
-  useEffect(() => {
-    if (!run || still || !Number.isFinite(target)) return undefined;
-    let raf = 0;
-    const t0 = performance.now();
-    const step = (t) => {
-      const p = Math.min(1, (t - t0) / ms);
-      setV(target * (1 - (1 - p) ** 3));
-      if (p < 1) raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [target, run, ms, still]);
-  // reduced motion: no roll, the number is simply there
-  return still ? (run ? target : 0) : v;
-}
-
 function Stat({ label, value, unit }) {
   return (
     <div className="hf-stat">
       <div className="hf-stat-label">{label}</div>
       <div className="hf-stat-value">{value}<span className="hf-stat-unit">{unit}</span></div>
     </div>
+  );
+}
+
+/** The Messenger shortcut (Jarich, 2026-10-07): a small glass door to the FB page's inbox,
+ *  in a new tab so the map stays where it was. Absent copy, no button. */
+function Messenger({ copy }) {
+  const m = copy.messenger;
+  if (!m?.href || !m?.label) return null;
+  return (
+    <a className="hf-btn hf-btn-ghost hf-msg lg lg-sm" href={m.href} target="_blank" rel="noopener noreferrer">
+      <MessageCircle size={15} strokeWidth={2.2} aria-hidden="true" />
+      {m.label}
+    </a>
   );
 }
 
@@ -220,7 +159,7 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
   /* ── the map: a globe over the Philippines until we know where the visitor is ── */
   useEffect(() => {
     let dead = false;
-    let mo = null, moTimer = 0;
+    let unfold = () => {};
     (async () => {
       try {
         const mod = await import('maplibre-gl');
@@ -229,36 +168,18 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
         libRef.current = maplibregl;
         const map = new maplibregl.Map({
           container: mapEl.current,
-          style: {
-            version: 8,
-            projection: { type: 'globe' },
-            sources: {
-              esri: { type: 'raster', tiles: [ESRI], tileSize: 256, maxzoom: 19, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics' },
-              night: { type: 'raster', tiles: [NIGHT], tileSize: 256, maxzoom: 8, attribution: 'Night lights © NASA GIBS / VIIRS Black Marble' },
-            },
-            layers: [
-              { id: 'space', type: 'background', paint: { 'background-color': '#020604' } },
-              { id: 'esri', type: 'raster', source: 'esri', paint: { 'raster-fade-duration': 300 } },
-              { id: 'night', type: 'raster', source: 'night', paint: { 'raster-opacity': 0, 'raster-fade-duration': 300 } },
-            ],
+          style: consoleStyle({
+            space: '#020604',
             sky: { 'sky-color': '#03120c', 'horizon-color': '#1f8f6a', 'fog-color': '#03120c', 'sky-horizon-blend': 0.6, 'horizon-fog-blend': 0.8, 'fog-ground-blend': 0.5, 'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 1, 10, 1, 12, 0] },
-          },
+          }),
           center: [122.6, 12.2],
           zoom: 3.4,
           attributionControl: false,
         });
         mapRef.current = map;
         map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: 'Route © OSRM, OpenStreetMap contributors' }), 'top-right');
-        // The compact credits open themselves the first time they fill, and fold only after a
-        // drag, so on a phone they sat over the title. Fold them once; the (i) still opens them.
-        const attribEl = mapEl.current.querySelector('.maplibregl-ctrl-attrib');
-        if (attribEl && typeof MutationObserver !== 'undefined') {
-          mo = new MutationObserver(() => {
-            if (attribEl.classList.contains('maplibregl-compact-show')) { attribEl.classList.remove('maplibregl-compact-show'); mo.disconnect(); }
-          });
-          mo.observe(attribEl, { attributes: true, attributeFilter: ['class'] });
-          moTimer = window.setTimeout(() => mo.disconnect(), 20000);
-        }
+        // fold the compact credits once, so they do not sit over the title on a phone
+        unfold = foldAttribution(mapEl.current);
         // A missing tile (Esri, NASA) is not a broken map; only a dead WebGL is.
         map.on('error', (ev) => { console.warn('[how-far] map', ev?.error?.message || ev); });
         // ☠️ NOT map.on('load'). 'load' waits for EVERY tile on screen, which measured ~9 s on
@@ -267,11 +188,7 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
         // 'style.load' fires on the next frame: layers go in at once and tiles stream under them.
         const init = () => {
           if (dead) return;
-          if (night) {
-            map.setPaintProperty('night', 'raster-opacity', ['interpolate', ['linear'], ['zoom'], 5, 0.95, 8, 0.8, 11, 0]);
-            map.setPaintProperty('esri', 'raster-brightness-max', ['interpolate', ['linear'], ['zoom'], 8, 0.28, 11, 0.55, 14, 0.72]);
-            map.setPaintProperty('esri', 'raster-saturation', ['interpolate', ['linear'], ['zoom'], 8, -0.45, 11, -0.2, 14, -0.05]);
-          }
+          if (night) paintNight(map);
           map.addSource('route', { type: 'geojson', data: EMPTY });
           map.addSource('drawn', { type: 'geojson', data: EMPTY });
           map.addSource('link', { type: 'geojson', data: EMPTY });
@@ -309,8 +226,7 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
     return () => {
       dead = true;
       window.clearTimeout(watchdog);
-      window.clearTimeout(moTimer);
-      mo?.disconnect();
+      unfold();
       cancelAnimationFrame(rafRef.current);
       try { mapRef.current?.remove(); } catch { /* already gone */ }
       mapRef.current = null;
@@ -536,7 +452,10 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
                   <button type="button" key={c.name} className="hf-chip lg lg-sm" onClick={() => pickCity(c)}>{c.name}</button>
                 ))}
               </div>
-              <button type="button" className="hf-btn hf-btn-ghost hf-retry lg" onClick={locate}>{copy.useLocation}</button>
+              <div className="hf-actions">
+                <button type="button" className="hf-btn hf-btn-ghost lg" onClick={locate}>{copy.useLocation}</button>
+                <Messenger copy={copy} />
+              </div>
             </div>
           ) : null}
 
@@ -561,6 +480,7 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
                 <a className="hf-btn hf-btn-solid lg lg-primary" href={google} target="_blank" rel="noopener noreferrer">{copy.google}</a>
                 <a className="hf-btn hf-btn-ghost lg" href={waze} target="_blank" rel="noopener noreferrer">{copy.waze}</a>
                 <button type="button" className="hf-btn hf-btn-ghost lg" onClick={askCity}>{copy.changeCity}</button>
+                <Messenger copy={copy} />
               </div>
             </>
           ) : null}
@@ -571,8 +491,4 @@ export default function HowFarDialog({ copy, onClose, instant = false }) {
       </div>
     </div>
   );
-}
-
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }

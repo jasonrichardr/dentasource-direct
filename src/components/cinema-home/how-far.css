@@ -261,7 +261,12 @@
 .hf-retry { margin-top: 12px; }
 .hf-privacy { margin: 12px 0 0; font-size: 11px; color: rgba(236, 253, 245, 0.5); }
 
-/* map markers */
+/* map markers
+   ☠️ A MARKER ROOT IS NEVER position: relative. MapLibre places a marker with a transform
+   from the top left of the map, which only holds while .maplibregl-marker keeps it absolute;
+   a relative root sits in the normal flow after the markers before it, so the visitor's dot
+   was drawn 58 px under its real spot (the height of the badge added first). Measured
+   2026-10-07: offsetTop 58 on .hf-you. Absolute still anchors the pulse and the tag. */
 .hf-tag {
   position: absolute;
   top: calc(100% + 8px);
@@ -277,7 +282,7 @@
   border: 1px solid rgba(167, 243, 208, 0.3);
   pointer-events: none;
 }
-.hf-home { position: relative; width: 58px; height: 58px; }
+.hf-home { position: absolute; width: 58px; height: 58px; }
 .hf-home img {
   position: relative;
   width: 100%;
@@ -295,7 +300,7 @@
   border: 2px solid rgba(230, 199, 106, 0.7);
   animation: hf-ring 2.2s ease-out infinite;
 }
-.hf-you { position: relative; width: 18px; height: 18px; }
+.hf-you { position: absolute; width: 18px; height: 18px; }
 .hf-you-dot {
   position: absolute;
   inset: 0;

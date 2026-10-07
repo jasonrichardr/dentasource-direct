@@ -92,6 +92,10 @@
         "pickCity": "Pick a city instead",
         "google": "Google Maps",
         "waze": "Waze",
+        "messenger": {
+          "label": "Message us",
+          "href": "https://m.me/dentasource"
+        },
         "close": "Close",
         "openNow": "Open now until 8 PM",
         "closedNow": "Closed now, opens 9 AM",
@@ -360,9 +364,29 @@
         "Visayas and Mindanao by freight",
         "Installed on arrival, wherever you are"
       ],
-      "cta": {
-        "label": "Arrange a delivery",
-        "href": "/contact"
+      "reach": {
+        "label": "See our reach",
+        "kicker": "Nationwide reach",
+        "title": "Our clients across the Philippines",
+        "showroom": "Pasig showroom",
+        "clinics": "Clinics on the map",
+        "areas": "Provinces",
+        "farthest": "Farthest from Pasig",
+        "unit": "km",
+        "note": "Each star is a DentaSource client clinic, linked back to our Pasig showroom. Tap a star to see its town.",
+        "partsKicker": "In stock",
+        "partsTitle": "Spare parts on hand in Pasig",
+        "partsNote": "Kept in stock at the showroom, so a repair does not wait on a shipment from abroad.",
+        "messenger": {
+          "label": "Message us on Messenger",
+          "href": "https://m.me/dentasource"
+        },
+        "howFar": {
+          "label": "How far am I?"
+        },
+        "close": "Close",
+        "noMap": "The map could not start on this device. Message us and we will tell you how we reach your town.",
+        "privacy": "Stars show the town or province only, never a clinic's name. Positions are rounded to about a kilometre."
       },
       "media": [
         "/images/news/new-year-restock-nationwide-delivery-2026/v001-3.jpg",
@@ -371,14 +395,7 @@
         "/images/news/dental-chair-installation-cabuyao-laguna/v081-1.jpg"
       ],
       "tilesFrom": "installs.json",
-      "note": "round 6: the tiles still come from installs.json and every reel the visual pass marked `road` is mixed in beside them, which is why this is the action panel rather than the image only installs panel. See HomeCinema.jsx.",
-      "ctas": [
-        {
-          "label": "Arrange a delivery",
-          "href": "/contact",
-          "variant": "solid"
-        }
-      ]
+      "note": "round 6: the tiles still come from installs.json and every reel the visual pass marked `road` is mixed in beside them, which is why this is the action panel rather than the image only installs panel. See HomeCinema.jsx. 2026-10-07: the strip plays travel clips first, then installs filmed at a client's clinic, then the photographs, in that order (PLAYS_IN_ORDER in homeDecks.js). The button is the reach map (beat.reach), which replaced Arrange a delivery."
     },
     {
       "key": "after-sales",

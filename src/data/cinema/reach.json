@@ -1,0 +1,375 @@
+{
+ "version": 1,
+ "generated": "2026-10-07",
+ "notes": "Active DSD clients (console) plus installs from the Facebook install audit, as anonymous points: coordinates rounded to 2 dp (about 1 km), city/province only, installs at town level. Duplicates of console clients dropped by name in memory. No names, contacts or addresses.",
+ "clinics": 61,
+ "areas": 15,
+ "points": [
+  {
+   "lat": 16.95,
+   "lng": 121.67,
+   "area": "Isabela",
+   "exact": true
+  },
+  {
+   "lat": 16.07,
+   "lng": 120.76,
+   "area": "San Nicolas, Pangasinan",
+   "exact": true
+  },
+  {
+   "lat": 15.05,
+   "lng": 120.7,
+   "area": "San Fernando, Pampanga",
+   "exact": true
+  },
+  {
+   "lat": 15.03,
+   "lng": 120.69,
+   "area": "San Fernando, Pampanga",
+   "exact": true
+  },
+  {
+   "lat": 14.82,
+   "lng": 120.96,
+   "area": "Santa Maria, Bulacan",
+   "exact": true
+  },
+  {
+   "lat": 14.75,
+   "lng": 121.01,
+   "area": "Caloocan, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.75,
+   "lng": 121.01,
+   "area": "Caloocan, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.74,
+   "lng": 121.03,
+   "area": "Caloocan, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.73,
+   "lng": 121.06,
+   "area": "Quezon City, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.71,
+   "lng": 120.95,
+   "area": "Valenzuela, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.65,
+   "lng": 120.97,
+   "area": "Caloocan, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.65,
+   "lng": 120.97,
+   "area": "Caloocan, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.65,
+   "lng": 121.05,
+   "area": "Quezon City, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.65,
+   "lng": 121.05,
+   "area": "Quezon City, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.63,
+   "lng": 121.0,
+   "area": "Quezon City, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.63,
+   "lng": 121.1,
+   "area": "Marikina, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.62,
+   "lng": 120.99,
+   "area": "Manila, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.62,
+   "lng": 121.05,
+   "area": "Quezon City, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.61,
+   "lng": 120.99,
+   "area": "Manila, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.61,
+   "lng": 121.0,
+   "area": "Manila, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.61,
+   "lng": 121.02,
+   "area": "San Juan, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.6,
+   "lng": 121.05,
+   "area": "Mandaluyong, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.59,
+   "lng": 120.99,
+   "area": "Manila, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.59,
+   "lng": 121.12,
+   "area": "Cainta, Rizal",
+   "exact": true
+  },
+  {
+   "lat": 14.59,
+   "lng": 121.12,
+   "area": "Cainta, Rizal",
+   "exact": false
+  },
+  {
+   "lat": 14.58,
+   "lng": 120.98,
+   "area": "Manila, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.58,
+   "lng": 121.0,
+   "area": "Manila, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.58,
+   "lng": 121.03,
+   "area": "Mandaluyong, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.58,
+   "lng": 121.08,
+   "area": "Pasig, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.58,
+   "lng": 121.09,
+   "area": "Pasig, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.58,
+   "lng": 121.09,
+   "area": "Pasig, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.58,
+   "lng": 121.09,
+   "area": "Pasig, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.57,
+   "lng": 120.99,
+   "area": "Manila, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.57,
+   "lng": 121.08,
+   "area": "Pasig, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.56,
+   "lng": 120.59,
+   "area": "Limay, Bataan",
+   "exact": true
+  },
+  {
+   "lat": 14.56,
+   "lng": 121.02,
+   "area": "Makati, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.56,
+   "lng": 121.08,
+   "area": "Pasig, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.56,
+   "lng": 121.08,
+   "area": "Pasig, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.56,
+   "lng": 121.14,
+   "area": "Taytay, Rizal",
+   "exact": true
+  },
+  {
+   "lat": 14.54,
+   "lng": 121.0,
+   "area": "Pasay, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.53,
+   "lng": 121.07,
+   "area": "Taguig, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.53,
+   "lng": 121.15,
+   "area": "Angono, Rizal",
+   "exact": true
+  },
+  {
+   "lat": 14.52,
+   "lng": 121.07,
+   "area": "Taguig, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.52,
+   "lng": 121.28,
+   "area": "Baras, Rizal",
+   "exact": true
+  },
+  {
+   "lat": 14.5,
+   "lng": 121.29,
+   "area": "Tanay, Rizal",
+   "exact": true
+  },
+  {
+   "lat": 14.46,
+   "lng": 121.19,
+   "area": "Binangonan, Rizal",
+   "exact": true
+  },
+  {
+   "lat": 14.45,
+   "lng": 121.03,
+   "area": "Parañaque, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.43,
+   "lng": 121.03,
+   "area": "Muntinlupa, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.39,
+   "lng": 120.88,
+   "area": "General Trias, Cavite",
+   "exact": true
+  },
+  {
+   "lat": 14.39,
+   "lng": 120.88,
+   "area": "General Trias, Cavite",
+   "exact": true
+  },
+  {
+   "lat": 14.39,
+   "lng": 121.04,
+   "area": "Muntinlupa, Metro Manila",
+   "exact": true
+  },
+  {
+   "lat": 14.28,
+   "lng": 121.12,
+   "area": "Cabuyao, Laguna",
+   "exact": true
+  },
+  {
+   "lat": 14.28,
+   "lng": 121.42,
+   "area": "Santa Cruz, Laguna",
+   "exact": true
+  },
+  {
+   "lat": 13.84,
+   "lng": 121.98,
+   "area": "Unisan, Quezon",
+   "exact": true
+  },
+  {
+   "lat": 13.83,
+   "lng": 121.39,
+   "area": "San Juan, Batangas",
+   "exact": true
+  },
+  {
+   "lat": 13.59,
+   "lng": 122.32,
+   "area": "Catanauan, Quezon",
+   "exact": true
+  },
+  {
+   "lat": 13.44,
+   "lng": 120.73,
+   "area": "Abra de Ilog, Occidental Mindoro",
+   "exact": true
+  },
+  {
+   "lat": 12.87,
+   "lng": 121.13,
+   "area": "Sablayan, Occidental Mindoro",
+   "exact": true
+  },
+  {
+   "lat": 11.03,
+   "lng": 125.72,
+   "area": "Eastern Samar",
+   "exact": true
+  },
+  {
+   "lat": 10.95,
+   "lng": 122.58,
+   "area": "Iloilo",
+   "exact": true
+  },
+  {
+   "lat": 10.67,
+   "lng": 122.94,
+   "area": "Bacolod, Negros Island Region",
+   "exact": true
+  }
+ ]
+}

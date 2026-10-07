@@ -1,0 +1,350 @@
+/* "See our reach" popup. Always dark, like How far: a night map HUD in either site theme, in
+   gold rather than mint, because its stars are gold. Loaded with the ReachDialog chunk only,
+   together with how-far.css, whose small parts it borrows (the corners, the top bar, the
+   close button, the stats, the buttons, the badge) and re-tints below under .rm-card. The
+   button and the boot ring live in home-cinema.css because they paint before this file has
+   arrived. */
+
+.rm-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(ellipse at 50% 40%, rgba(230, 199, 106, 0.13), rgba(3, 4, 9, 0.9) 62%);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  animation: hf-fade 0.35s ease both;
+  overscroll-behavior: contain;
+}
+.rm-instant { animation: none; }
+
+.rm-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  width: min(1240px, 100%);
+  height: min(780px, calc(100dvh - 48px));
+  border-radius: 28px;
+  overflow: hidden;
+  background: #03040a;
+  border: 1px solid rgba(230, 199, 106, 0.32);
+  box-shadow: 0 0 0 1px rgba(230, 199, 106, 0.08), 0 40px 120px rgba(0, 0, 0, 0.65), 0 0 90px rgba(230, 199, 106, 0.16);
+  animation: hf-rise 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  color: #fffbeb;
+  font-family: var(--font-body);
+}
+.rm-stage { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+.rm-map { position: absolute; inset: 0; }
+.rm-map .maplibregl-canvas { outline: none; }
+.rm-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(3, 4, 9, 0.8), transparent 24%, transparent 62%, rgba(3, 4, 9, 0.7)),
+    radial-gradient(ellipse at 62% 48%, transparent 55%, rgba(3, 4, 9, 0.5)),
+    repeating-linear-gradient(to bottom, rgba(255, 236, 170, 0.03) 0 1px, transparent 1px 4px);
+}
+
+/* how-far.css's furniture, in gold */
+.rm-card .hf-corner { border-color: rgba(245, 217, 138, 0.7); }
+.rm-card .hf-kicker { color: #f5d98a; }
+.rm-card .hf-live { background: #e6c76a; animation-name: rm-live; }
+.rm-card .hf-title { color: #fffbeb; }
+.rm-card .hf-close { color: #fffbeb; background: rgba(6, 7, 14, 0.6); border-color: rgba(245, 217, 138, 0.4); }
+.rm-card .hf-close:hover { border-color: #e6c76a; }
+.rm-card .hf-close:focus-visible, .rm-card .hf-btn:focus-visible { outline-color: #e6c76a; }
+.rm-card .hf-stat { display: flex; flex-direction: column; justify-content: space-between; border-left-color: rgba(230, 199, 106, 0.55); }
+.rm-card .hf-stat-label { color: rgba(245, 217, 138, 0.85); letter-spacing: 0.18em; line-height: 1.35; }
+.rm-card .hf-stat-value { color: #fffbeb; font-size: clamp(22px, 2.5vw, 32px); text-shadow: 0 0 20px rgba(230, 199, 106, 0.55); }
+.rm-card .hf-stat-unit { color: rgba(255, 251, 235, 0.7); }
+.rm-card .hf-privacy { color: rgba(255, 251, 235, 0.5); }
+.rm-card .hf-btn-ghost { color: #fffbeb; }
+.rm-card .maplibregl-ctrl-top-right { top: 78px; right: 14px; }
+.rm-card .maplibregl-ctrl-attrib { background: rgba(3, 4, 9, 0.6); color: rgba(255, 251, 235, 0.7); }
+.rm-card .maplibregl-ctrl-attrib a { color: inherit; }
+.rm-card .maplibregl-ctrl-attrib-button { filter: invert(1); }
+
+/* the glass, gold-tinted for this card (the dark register comes from .lg-on-dark) */
+html:root .rm-card {
+  --lg-rim: rgba(255, 226, 150, 0.8);
+  --lg-p-tint: rgba(230, 199, 106, 0.26);
+  --lg-p-ink: #fffbeb;
+  --lg-p-glow: rgba(230, 199, 106, 0.32);
+}
+html:root .rm-card .lg.lg-primary {
+  border-color: rgba(230, 199, 106, 0.5);
+  box-shadow:
+    inset 0 1px 0.5px var(--lg-edge),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.14),
+    inset 0 0 22px rgba(230, 199, 106, 0.16),
+    var(--lg-shade),
+    0 8px 26px var(--lg-p-glow);
+}
+html:root .rm-card .lg:focus-visible { outline-color: #e6c76a; }
+.rm-msg svg { flex: none; }
+
+/* the numbers, the line, the doors */
+.rm-panel {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 4;
+  width: min(440px, calc(100% - 36px));
+  padding: 18px 20px 14px;
+  border-radius: 22px;
+  background: rgba(6, 7, 14, 0.76);
+  border: 1px solid rgba(230, 199, 106, 0.26);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 251, 235, 0.06);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  animation: hf-rise 0.6s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.rm-stats { gap: 12px; }
+.rm-note { margin: 12px 0 0; font-size: 13.5px; line-height: 1.5; color: rgba(255, 251, 235, 0.84); }
+
+/* the hub */
+.hf-home.rm-home { width: 42px; height: 42px; }
+.hf-home.rm-home img { border-width: 2px; box-shadow: 0 0 0 2px rgba(3, 4, 9, 0.85), 0 8px 20px rgba(0, 0, 0, 0.55), 0 0 22px rgba(230, 199, 106, 0.75); }
+.rm-home .hf-home-pulse { inset: -8px; }
+.rm-home .rm-home-tag { top: auto; bottom: calc(100% + 8px); color: #fffbeb; border-color: rgba(245, 217, 138, 0.35); background: rgba(3, 4, 9, 0.8); }
+
+/* ☠️ THE MARKER ELEMENT IS NEVER ANIMATED, AND NEVER GIVEN A POSITION. MapLibre places a
+   marker by writing `transform` on the element it was given, from the top left of the map,
+   which holds only while .maplibregl-marker keeps it absolute: a `position: relative` here
+   laid the 61 stars out in rows like words in a paragraph (seen 2026-10-07). Anything that
+   animates transform sits one level down (.rm-star-body). */
+.rm-star {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.rm-star.is-on { pointer-events: auto; }
+.rm-star:focus-visible { outline: 2px solid #e6c76a; outline-offset: 2px; border-radius: 50%; }
+.rm-star-body {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: scale(0.2);
+}
+.rm-star.is-on .rm-star-body {
+  animation:
+    rm-star-in 0.9s cubic-bezier(0.2, 1.6, 0.35, 1) both,
+    rm-twinkle var(--tw, 3s) ease-in-out 0.9s infinite;
+}
+.rm-star-core {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fffdf3;
+  box-shadow: 0 0 6px 2px rgba(255, 236, 170, 0.95), 0 0 16px 5px rgba(230, 199, 106, 0.6);
+}
+/* the glint: two hairlines across the core make it a star, not a dot */
+.rm-star-core::before,
+.rm-star-core::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 1.5px;
+  margin: -0.75px 0 0 -11px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 247, 214, 0.95), transparent);
+}
+.rm-star-core::after { transform: rotate(90deg); }
+.rm-star-glow {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 226, 140, 0.45), rgba(230, 199, 106, 0) 70%);
+}
+.rm-star-burst {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 230, 160, 0.9);
+  opacity: 0;
+}
+.rm-star.is-on .rm-star-burst { animation: rm-burst 1.1s ease-out both; }
+/* a Metro Manila star: smaller, so thirty of them ring the badge instead of burning a blob */
+.rm-star.is-near .rm-star-glow { width: 14px; height: 14px; }
+.rm-star.is-near .rm-star-core { width: 4px; height: 4px; box-shadow: 0 0 4px 1px rgba(255, 236, 170, 0.9), 0 0 9px 3px rgba(230, 199, 106, 0.45); }
+.rm-star.is-near .rm-star-core::before, .rm-star.is-near .rm-star-core::after { width: 12px; margin-left: -6px; }
+.rm-star.is-near .rm-star-burst { width: 10px; height: 10px; }
+.rm-star.is-picked .rm-star-core { width: 9px; height: 9px; background: #fff; }
+.rm-star.is-picked .rm-star-glow { box-shadow: 0 0 0 2px rgba(255, 236, 170, 0.9); background: radial-gradient(circle, rgba(255, 226, 140, 0.7), rgba(230, 199, 106, 0) 72%); }
+.rm-star.is-still .rm-star-body, .rm-star.is-still .rm-star-burst { animation: none; opacity: 1; transform: none; }
+.rm-star.is-still .rm-star-burst { opacity: 0; }
+
+/* the tapped star's town */
+.rm-pick {
+  padding: 6px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+  font: 700 12px/1.2 var(--font-body);
+  letter-spacing: 0.03em;
+  color: #fffbeb;
+  background: rgba(6, 7, 14, 0.86);
+  border: 1px solid rgba(245, 217, 138, 0.55);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 18px rgba(230, 199, 106, 0.3);
+  pointer-events: none;
+}
+
+/* the after sales shelf */
+.rm-parts {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  padding-top: 24px;
+  background: linear-gradient(180deg, #0a0c15, #04050a);
+  border-left: 1px solid rgba(230, 199, 106, 0.2);
+}
+.rm-parts-head { padding: 0 20px 14px; }
+.rm-parts-kicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #f5d98a;
+}
+.rm-parts-title { margin: 8px 0 0; font-family: var(--font-heading); font-size: 19px; font-weight: 600; line-height: 1.2; color: #fffbeb; }
+.rm-parts-note { margin: 6px 0 0; font-size: 12.5px; line-height: 1.45; color: rgba(255, 251, 235, 0.66); }
+.rm-parts-window {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+}
+/* ☠️ NO PADDING ON THE TRACK. It is the list twice and slides by -50%, which is exactly one
+   copy only while the track is nothing but the two copies; padding moves the seam. */
+.rm-parts-track {
+  display: flex;
+  flex-direction: column;
+  animation: rm-up calc(var(--rm-n, 28) * 3.2s) linear infinite;
+  will-change: transform;
+}
+.rm-parts-window:hover .rm-parts-track { animation-play-state: paused; }
+.rm-part {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 16px 10px;
+  padding: 8px 12px 8px 8px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(230, 199, 106, 0.16);
+}
+.rm-part.is-bare { justify-content: center; padding: 8px; }
+/* the parts are cut-outs: a light plate behind each one, or dark metal vanishes into the card */
+.rm-part-img {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.92);
+}
+.rm-part-name { font-size: 13px; font-weight: 600; line-height: 1.3; color: #fffbeb; }
+
+@keyframes rm-star-in { 0% { opacity: 0; transform: scale(0.2); } 60% { opacity: 1; transform: scale(1.7); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes rm-twinkle { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.8); } }
+@keyframes rm-burst { from { opacity: 0.95; transform: scale(0.4); } to { opacity: 0; transform: scale(3.4); } }
+@keyframes rm-live { 0% { box-shadow: 0 0 0 0 rgba(230, 199, 106, 0.7); } 100% { box-shadow: 0 0 0 9px rgba(230, 199, 106, 0); } }
+@keyframes rm-up { to { transform: translateY(-50%); } }
+@keyframes rm-left { to { transform: translateX(-50%); } }
+
+/* a phone (and a narrow tablet): the shelf becomes a band under the map */
+@media (max-width: 760px) {
+  .rm-backdrop { padding: 0; }
+  .rm-card {
+    width: 100%;
+    height: 100dvh;
+    border-radius: 0;
+    border: 0;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+  .rm-card .hf-top { padding: calc(18px + env(safe-area-inset-top)) 18px 18px; }
+  .rm-card .maplibregl-ctrl-top-right { top: calc(70px + env(safe-area-inset-top)); }
+  .rm-card .hf-corner { display: none; }
+  .rm-panel { left: 10px; right: 10px; bottom: 10px; width: auto; padding: 14px 14px 10px; border-radius: 20px; }
+  .rm-stats { gap: 8px; }
+  .rm-card .hf-stat { padding-left: 8px; }
+  .rm-card .hf-stat-label { font-size: 9px; letter-spacing: 0.1em; }
+  .rm-card .hf-stat-value { font-size: 21px; }
+  .rm-note { font-size: 13px; margin-top: 10px; }
+  .rm-card .hf-actions { margin-top: 12px; gap: 8px; }
+  html:root .rm-card .hf-btn { flex: 1 1 auto; padding: 10px 14px; }
+  .rm-card .hf-privacy { margin-top: 8px; font-size: 10.5px; }
+  .rm-home .rm-home-tag { display: none; }
+
+  .rm-parts {
+    padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+    border-left: 0;
+    border-top: 1px solid rgba(230, 199, 106, 0.22);
+  }
+  .rm-parts-head { display: flex; align-items: center; gap: 10px; padding: 0 14px 8px; }
+  .rm-parts-kicker { font-size: 9.5px; letter-spacing: 0.16em; }
+  .rm-parts-title { margin: 0; font-size: 14px; }
+  .rm-parts-note { display: none; }
+  .rm-parts-window {
+    flex: none;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  }
+  .rm-parts-track { flex-direction: row; width: max-content; animation-name: rm-left; animation-duration: calc(var(--rm-n, 28) * 4s); }
+  .rm-part { flex: 0 0 auto; width: 188px; margin: 0 10px 0 0; padding: 6px 10px 6px 6px; }
+  .rm-part.is-bare { width: auto; padding: 6px; }
+  .rm-part-img { width: 44px; height: 44px; flex-basis: 44px; }
+  .rm-part-name { font-size: 12px; }
+}
+
+/* a phone on its side: a slimmer shelf, a smaller panel, no note */
+@media (max-height: 520px) and (orientation: landscape) {
+  .rm-backdrop { padding: 0; }
+  .rm-card { width: 100%; height: 100dvh; border-radius: 0; border: 0; grid-template-columns: minmax(0, 1fr) 220px; }
+  .rm-card .hf-top { padding: 12px 16px; }
+  .rm-card .hf-title { font-size: 19px; }
+  .rm-card .hf-close { width: 36px; height: 36px; font-size: 20px; }
+  .rm-card .hf-corner { display: none; }
+  .rm-panel { left: 10px; bottom: 10px; width: min(340px, 60%); padding: 10px 12px 8px; }
+  .rm-note, .rm-parts-note, .rm-card .hf-privacy { display: none; }
+  .rm-card .hf-stat-value { font-size: 19px; }
+  .rm-card .hf-stat-label { font-size: 9px; letter-spacing: 0.1em; }
+  .rm-card .hf-actions { margin-top: 8px; }
+  .rm-parts { padding-top: 12px; }
+  .rm-parts-head { padding: 0 12px 8px; }
+  .rm-parts-title { font-size: 15px; }
+  .rm-part { margin: 0 10px 8px; }
+}
+
+/* reduced motion: no flight, no twinkle, no running shelf; the shelf scrolls by hand instead */
+@media (prefers-reduced-motion: reduce) {
+  .rm-backdrop, .rm-card, .rm-panel { animation: none; }
+  .rm-star.is-on .rm-star-body { animation: none; opacity: 1; transform: none; }
+  .rm-star.is-on .rm-star-burst, .rm-card .hf-live, .rm-home .hf-home-pulse { animation: none; }
+  .rm-parts-track { animation: none; }
+  .rm-parts-window { overflow: auto; overscroll-behavior: contain; }
+}
