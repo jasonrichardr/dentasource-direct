@@ -259,6 +259,17 @@ export function buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAININ
       .map(reelItem),
   ]));
 
+  // ☠️ THE STRIP PLAYS ONLY ITS FIRST 44 TILES (MIXED_SHOWN, and the console draws the same line),
+  // and there are 51 clips on the road. Travel-first with every clip ahead of every photo meant no
+  // photo ever played (Jarich asked for "videos and images"). So: an opening run of pure travel,
+  // then the rest of the road clips, the clinic installs and the photos mixed, which puts about
+  // 14 photos inside the 44. Only clips actually shot on the ROAD lead: three reels filed as
+  // `delivery` were filmed on the showroom floor and are not travel.
+  const TRAVEL_LEAD = 12;
+  const travelReels = REEL_LIBRARY
+    .filter((r) => r.location === 'road' && !r.promoOverlay && !r.beatExclude)
+    .map(reelItem);
+
   const MIXED_ITEMS = {
     heart: [...heartLeads, ...heartRest],
     'see-us-in-action': ACTION_ITEMS,
@@ -280,14 +291,28 @@ export function buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAININ
       ...beatStills(TRAINING_BEAT, 'Inside the Training Center in Pasig'),
     ]),
 
-    // Nationwide: the install tiles, and every reel of the team or the cargo travelling.
-    delivery: dedupe([
-      // a tile whose luminance makes it paint as a black rectangle is held out the same way
-      // a promo card is: it is in the manifest, it is not on the beat
-      ...INSTALL_TILES.filter((t) => !t.beatExclude).map((t) => ({ type: 'image', ...t, caption: t.alt })),
-      ...reelsShotIn('road'),
-      ...beatStills(DELIVERY_BEAT, 'On the road with a delivery'),
-    ]),
+    // Nationwide, TRAVEL FIRST (Jarich, 2026-10-07: "get more videos of us traveling and
+    // installing dental chairs. make the videos that we travel first"). Three bands, in this
+    // order, and the panel plays them AS IS (PLAYS_IN_ORDER below), never re-spaced:
+    //   1. every clip of the team or the cargo travelling: the visual pass's `road`, plus the
+    //      reels filed `delivery` (loading out and arriving)
+    //   2. every install filmed at a client's clinic (`install` shot in a `clinic`)
+    //   3. the photographs: the install tiles, then the beat's own stills
+    // The same exclusions as everywhere else: promoOverlay and beatExclude on a reel,
+    // beatExclude on a tile, and installs.json's stripUnsafe frames are not in its tiles.
+    delivery: [
+      ...travelReels.slice(0, TRAVEL_LEAD),
+      ...mixOrder(dedupe([
+        ...travelReels.slice(TRAVEL_LEAD),
+        ...REEL_LIBRARY
+          .filter((r) => r.category === 'install' && r.location === 'clinic' && !r.promoOverlay && !r.beatExclude)
+          .map(reelItem),
+        // a tile whose luminance makes it paint as a black rectangle is held out the same way
+        // a promo card is: it is in the manifest, it is not on the beat
+        ...INSTALL_TILES.filter((t) => !t.beatExclude).map((t) => ({ type: 'image', ...t, caption: t.alt })),
+        ...beatStills(DELIVERY_BEAT, 'On the road with a delivery'),
+      ])),
+    ],
   };
   return MIXED_ITEMS;
 }
@@ -297,6 +322,12 @@ export function buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAININ
 // arc's strips as decks (the heart joined on 2026-10-06), and every staff seat arranges them from a phone. The page reads
 // the console's public manifest on the server (src/lib/cinema/wwwManifest.js, ISR 60 s).
 // ══════════════════════════════════════════════════════════════════════════
+
+/**
+ * Beats whose BAKED list is already in play order, so the panel skips mixOrder for it the
+ * way it does for a saved WWW deck. The heart is wired separately in HomeCinema.
+ */
+export const PLAYS_IN_ORDER = ['delivery'];
 
 /** The mixed-marquee decks, by the beat they drive. `crew` is the crew row inside the
  *  after-sales parts beat and is handed to PartsPanel instead. `heart` (Chairs in service,
@@ -344,7 +375,10 @@ export function wwwFor(www, deck, map) {
  * day the seed runs would reshuffle every strip. The whole list is kept, not the first 44:
  * the console draws the site's cut and staff can lift a tile from below the line.
  *
- * ☠️ EXCEPT THE HEART, WHICH IS ALREADY IN PLAY ORDER. buildHomeDecks puts the lead dentists
+ * ☠️ EXCEPT THE HEART AND NATIONWIDE, WHICH ARE ALREADY IN PLAY ORDER. Nationwide is travel
+ * first, then installs, then photographs (2026-10-07); mixOrder would scatter the photos back in.
+ *
+ * The heart: buildHomeDecks puts the lead dentists
  * first and mixes only the rest, and the panel plays it `ordered`. mixOrder over the whole
  * list would put a video in slot one and push Dr. Amba out of the front.
  */
@@ -353,7 +387,8 @@ export function bakedDeckLists(mixed, crewShots) {
     people: mixOrder(mixed['see-us-in-action'] || []),
     showroom: mixOrder(mixed['the-floor'] || []),
     training: mixOrder(mixed['training-center'] || []),
-    nationwide: mixOrder(mixed.delivery || []),
+    // travel first, then installs, then photographs: already the order it plays in (2026-10-07)
+    nationwide: mixed.delivery || [],
     crew: crewShots,
     heart: mixed.heart || [],
   };

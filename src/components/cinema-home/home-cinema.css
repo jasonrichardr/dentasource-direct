@@ -98,8 +98,10 @@
   animation: dsd-howfar-ping 1.8s ease-out infinite;
 }
 @keyframes dsd-howfar-ping { from { transform: scale(0.4); opacity: 0.9; } to { transform: scale(1.5); opacity: 0; } }
-/* shown for the moment between the tap and the popup's chunk arriving */
-.hf-booting {
+/* shown for the moment between the tap and the popup's chunk arriving (.rm-booting is the
+   reach map's, a class of its own so the reach Esc can tell its ring from How far's) */
+.hf-booting,
+.rm-booting {
   position: fixed;
   inset: 0;
   z-index: 200000;
@@ -118,6 +120,9 @@
   animation: dsd-howfar-spin 0.8s linear infinite;
 }
 @keyframes dsd-howfar-spin { to { transform: rotate(360deg); } }
+/* the reach map's ring is gold, like its stars */
+.rm-booting { background: rgba(3, 4, 9, 0.84); }
+.rm-booting .hf-boot-ring { border-color: rgba(230, 199, 106, 0.2); border-top-color: #e6c76a; }
 @media (prefers-reduced-motion: reduce) { .dsd-howfar-ping::after, .hf-boot-ring { animation: none; } }
 
 /* ---- the photo beats: a one up or two up plate over the dimmed sphere ---- */

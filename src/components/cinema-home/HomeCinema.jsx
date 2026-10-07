@@ -23,7 +23,7 @@ import growthPartner from '@/data/cinema/growth-partner.json';
 import reelLibrary from '@/data/cinema/reel-library.json';
 import trainingMedia from '@/data/cinema/training-media.json';
 import { visible } from '@/lib/cinema/visible';
-import { buildHomeDecks, wwwFor, wwwItem, wwwCrewShot, WWW_BEAT_DECK } from '@/lib/cinema/homeDecks';
+import { buildHomeDecks, wwwFor, wwwItem, wwwCrewShot, WWW_BEAT_DECK, PLAYS_IN_ORDER } from '@/lib/cinema/homeDecks';
 import { useMemo } from 'react';
 // seven taps on the moon open the marquee editor; renders nothing until then
 import MoonGate from '@/components/moon-editor/MoonGate';
@@ -162,11 +162,11 @@ function panelFor(beat, i, articles, live, speeds) {
     case 'parts': return <PartsPanel beat={beat} beatIndex={i} parts={PARTS} crew={live.crew || CREW_SHOTS} crewSpeed={speeds.crew} />;
     case 'chat': return <ChatPanel beat={beat} beatIndex={i} script={ASK_SCRIPT} />;
     case 'marbles': return <MarblesPanel beat={beat} beatIndex={i} reels={REEL_LIBRARY} />;
-    // WWW: a saved deck is played in its own order (`ordered` skips mixOrder); the baked
-    // list keeps mixOrder exactly as before.
+    // WWW: a saved deck is played in its own order (`ordered` skips mixOrder); a baked list
+    // keeps mixOrder, except a beat whose list is built in play order (nationwide, travel first).
     case 'action': return live[beat.key]
       ? <ActionPanel beat={beat} beatIndex={i} items={live[beat.key]} ordered deck={deck} speed={speed} />
-      : <ActionPanel beat={beat} beatIndex={i} items={MIXED_ITEMS[beat.key] || []} deck={deck} speed={speed} />;
+      : <ActionPanel beat={beat} beatIndex={i} items={MIXED_ITEMS[beat.key] || []} ordered={PLAYS_IN_ORDER.includes(beat.key)} deck={deck} speed={speed} />;
     case 'door': return <DoorPanel beat={beat} />;
     case 'photo':
     default: return <PhotoPanel beat={beat} beatIndex={i} />;

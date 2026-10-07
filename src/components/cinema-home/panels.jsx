@@ -12,9 +12,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useBeatNear from './useBeatNear';
 import HowFar from './HowFar';
+import ReachMap from './ReachMap';
 import AboutDoor from './AboutDoor';
 import { mediaUrl } from '@/lib/cinema/media';
 import { mixOrder } from '@/lib/cinema/mixOrder';
+import { pickParts } from '@/lib/cinema/partsPick';
 // the hidden marquee editor's seam: null for every visitor, see the file
 import { useMoonEditor } from '@/lib/cinema/moonEdit';
 
@@ -286,9 +288,7 @@ export function InstallsPanel({ beat, beatIndex, tiles = [] }) {
 
 /* ── the parts marquee: two rows, the news desk's grammar ──────────────────────────── */
 
-/** How many parts the two rows carry. The file holds 244; a marquee that long is a
- *  warehouse inventory, not a shelf, and every extra tile is another image to fetch. */
-const PARTS_SHOWN = 28;
+// How many parts the two rows carry: PARTS_SHOWN, in lib/cinema/partsPick.js.
 // ☠️ THE CREW ROW IS SHORTER THAN THE PARTS ROWS ON PURPOSE. Its tiles are photographs at
 // 126px wide against parts cards at up to 250px, so matching the parts count would make
 // the bottom row visibly shorter than the two above it and its loop seam would come round
@@ -304,37 +304,9 @@ export function PartsPanel({ beat, beatIndex, parts = [], crew = [], crewSpeed }
   // so this is a slice and not a shuffle: re-ordering here would undo that.
   const crewRow = useMemo(() => crew.slice(0, CREW_SHOWN), [crew]);
   const rows = useMemo(() => {
-    // ☠️ A SPREAD, NOT A PREFIX. Taking the first 28 of the file would hand the beat
-    // whichever category happens to sort first; going round the categories in turn shows
-    // a chair's worth of parts instead: upholstery, then a syringe, then a light, and so
-    // on. Anything filed as Other is used last, since those are the least legible names.
-    // ☠️ DEDUPE BY NAME FIRST. builder-products warned that several genuinely different
-    // parts share a caption: "Supply pipe" appears four times among the labelled ones and
-    // "Light arm" three. They are real distinct parts, but a marquee that says Supply pipe
-    // four times in one sweep reads as a rendering bug, not as a catalogue. One tile per
-    // caption; unnamed parts are never deduped because they carry no caption to repeat.
-    const usedNames = new Set();
-    const buckets = new Map();
-    for (const part of parts) {
-      if (part.name) {
-        if (usedNames.has(part.name)) continue;
-        usedNames.add(part.name);
-      }
-      const k = part.category && part.category !== 'Other' ? part.category : '~other';
-      if (!buckets.has(k)) buckets.set(k, []);
-      buckets.get(k).push(part);
-    }
-    const keys = [...buckets.keys()].sort();
-    const picked = [];
-    for (let round = 0; picked.length < PARTS_SHOWN; round += 1) {
-      let addedThisRound = false;
-      for (const k of keys) {
-        const list = buckets.get(k);
-        if (round < list.length) { picked.push(list[round]); addedThisRound = true; }
-        if (picked.length >= PARTS_SHOWN) break;
-      }
-      if (!addedThisRound) break;          // every bucket exhausted
-    }
+    // the spread across categories and the dedupe by name live in lib/cinema/partsPick.js,
+    // shared with the reach map's parts column so both show the same shelf
+    const picked = pickParts(parts);
     const half = Math.ceil(picked.length / 2) || 1;
     return [picked.slice(0, half), picked.slice(half)];
   }, [parts]);
@@ -1183,6 +1155,8 @@ export function ActionPanel({ beat, beatIndex, items = [], ordered = false, deck
         </div>
       </div>
       )}
+      {/* the nationwide beat's door is the reach map (2026-10-07), where "Arrange a delivery" was */}
+      {beat.reach ? <ReachMap copy={beat.reach} /> : null}
       {beat.aboutDoor ? <AboutDoor door={beat.aboutDoor} /> : <Ctas beat={beat} />}
     </div>
   );

@@ -10,16 +10,16 @@
 // ☠️ THE POPUP IS PORTALED TO <body>. Each beat panel is a fixed overlay inside the cinema
 // stage; a dialog rendered in place would inherit its pointer-events and its stacking.
 //
-// ☠️ A FAILED CHUNK NEVER TAKES THE PAGE WITH IT. On bad mobile data the import can reject,
-// and a lazy component that throws in render with no boundary blanks the whole home page.
-// So the chunk is loaded by hand (not React.lazy, which caches the rejection), the boot ring
-// closes on a tap or Esc, the dialog sits in its own boundary, and once either fails the
-// button falls back to plain Google Maps directions.
+// ☠️ A FAILED CHUNK NEVER TAKES THE PAGE WITH IT. The hand loading, the boot ring, the
+// error boundary and the Esc that works before the chunk arrives live in lazyDialog.js
+// (shared with the reach map since 2026-10-07); once the chunk has failed, this button
+// falls back to plain Google Maps directions.
 
-import { Component, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import homeBeats from '@/data/cinema/home-beats.json';
 import { visible } from '@/lib/cinema/visible';
+import { useLazyDialog } from './lazyDialog';
 
 // The showroom beat carries the whole popup's copy (cities, privacy line, labels). Any other
 // beat that opens it (the Training Center, the door) sends only what differs: a title, a
@@ -29,67 +29,17 @@ const BASE = visible(homeBeats.beats).find((b) => b.key === 'the-floor')?.howFar
 const load = () => import('./HowFarDialog');
 const DIRECTIONS = 'https://www.google.com/maps/dir/?api=1&destination=14.5809669%2C121.0867494&travelmode=driving';
 
-class Guard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { broken: false };
-  }
-  static getDerivedStateFromError() {
-    return { broken: true };
-  }
-  componentDidCatch(err) {
-    console.warn('[how-far] dialog crashed', err);
-    this.props.onBreak();
-  }
-  render() {
-    return this.state.broken ? null : this.props.children;
-  }
-}
-
-export default function HowFar({ copy: own }) {
+/** `className` lets a host restyle the button (the reach map shows it as a quiet glass pill). */
+export default function HowFar({ copy: own, className = 'cinema-cta dsd-cta dsd-cta-solid dsd-howfar lg lg-primary' }) {
   const copy = useMemo(() => ({ ...BASE, ...(own || {}) }), [own]);
-  const [open, setOpen] = useState(false);
-  const [Dialog, setDialog] = useState(null);
-  const [booting, setBooting] = useState(false); // the ring was on screen: the dialog skips its fade
-  const [dead, setDead] = useState(false);
   const btn = useRef(null);
-  const pending = useRef(null);
+  const { open, warm, show, render } = useLazyDialog(load, btn, { tag: 'how-far' });
 
-  const fetchDialog = useCallback(() => {
-    pending.current ??= load()
-      .then((m) => { setDialog(() => m.default); return m.default; })
-      .catch((err) => { pending.current = null; throw err; });
-    return pending.current;
-  }, []);
-  const warm = () => { if (!Dialog && !dead) fetchDialog().catch(() => {}); };
-
-  const close = useCallback(() => {
-    setOpen(false);
-    setBooting(false);
-    btn.current?.focus({ preventScroll: true });
-  }, []);
-
-  // Esc closes from the first frame, before the dialog's own code has even arrived.
-  useEffect(() => {
-    if (!open) return undefined;
-    const onKey = (e) => { if (e.key === 'Escape') { e.stopPropagation(); close(); } };
-    window.addEventListener('keydown', onKey, true);
-    return () => window.removeEventListener('keydown', onKey, true);
-  }, [open, close]);
-
-  const onClick = () => {
-    if (dead) {
-      const d = copy.dest;
-      const url = d && Number.isFinite(Number(d.lat)) ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${d.lat},${d.lng}`)}&travelmode=driving` : DIRECTIONS;
-      window.open(url, '_blank', 'noopener,noreferrer');
-      return;
-    }
-    setOpen(true);
-    if (!Dialog) {
-      setBooting(true);
-      fetchDialog().catch(() => { setOpen(false); setBooting(false); setDead(true); });
-    }
-  };
+  const onClick = () => show(() => {
+    const d = copy.dest;
+    const url = d && Number.isFinite(Number(d.lat)) ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${d.lat},${d.lng}`)}&travelmode=driving` : DIRECTIONS;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  });
 
   if (!copy?.label) return null;
   return (
@@ -97,7 +47,7 @@ export default function HowFar({ copy: own }) {
       <button
         type="button"
         ref={btn}
-        className="cinema-cta dsd-cta dsd-cta-solid dsd-howfar lg lg-primary"
+        className={className}
         aria-haspopup="dialog"
         onPointerEnter={warm}
         onFocus={warm}
@@ -107,18 +57,7 @@ export default function HowFar({ copy: own }) {
         <span className="dsd-howfar-ping" aria-hidden="true" />
         {copy.label}
       </button>
-      {open ? createPortal(
-        Dialog ? (
-          <Guard onBreak={() => { setOpen(false); setDead(true); }}>
-            <Dialog copy={copy} onClose={close} instant={booting} />
-          </Guard>
-        ) : (
-          <div className="hf-booting" role="presentation" onClick={close}>
-            <span className="hf-boot-ring" />
-          </div>
-        ),
-        document.body,
-      ) : null}
+      {open ? createPortal(render({ copy }), document.body) : null}
     </>
   );
 }
