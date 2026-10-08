@@ -369,11 +369,11 @@
         "kicker": "Nationwide reach",
         "title": "Our clients across the Philippines",
         "showroom": "Pasig showroom",
-        "clinics": "Clinics on the map",
+        "clinics": "Clinics served",
         "areas": "Provinces",
         "farthest": "Farthest from Pasig",
         "unit": "km",
-        "note": "Each star is a DentaSource client clinic, linked back to our Pasig showroom. Tap a star to see its town.",
+        "note": "Each star is a client clinic with a known address, linked back to our Pasig showroom. Tap a star to see its town.",
         "partsKicker": "In stock",
         "partsTitle": "Spare parts on hand in Pasig",
         "partsNote": "Kept in stock at the showroom, so a repair does not wait on a shipment from abroad.",
@@ -386,7 +386,9 @@
         },
         "close": "Close",
         "noMap": "The map could not start on this device. Message us and we will tell you how we reach your town.",
-        "privacy": "Stars show the town or province only, never a clinic's name. Positions are rounded to about a kilometre."
+        "privacy": "Stars show the town or province only, never a clinic's name. Positions are rounded to about a kilometre.",
+        "clinicsShown": 100,
+        "clinicsPlus": "+"
       },
       "media": [
         "/images/news/new-year-restock-nationwide-delivery-2026/v001-3.jpg",
