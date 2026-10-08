@@ -385,22 +385,28 @@ export default function ReachDialog({ copy, onClose, instant = false }) {
 
   /* ── the numbers: they count the stars as they light, so the panel and the map agree ── */
   const done = lit >= STARS.length || mapState === 'failed';
+  // ☠️ THE CLINICS COUNTER IS CLINICS SERVED, NOT STARS (Jarich, 2026-10-08: "instead of 61 clinics
+  // on the map make it 100+"). The console holds 188 active clients; only those with a known
+  // location are stars. The counter climbs in step with the stars to `clinicsShown` and lands on
+  // it with the `clinicsPlus` mark, both from the copy; without them it counts the stars as before.
+  const clinicsTarget = Number(copy.clinicsShown) || CLINICS;
   const shown = useMemo(() => {
-    if (done) return { clinics: CLINICS, areas: AREAS, far: FARTHEST_KM };
+    if (done) return { clinics: clinicsTarget, areas: AREAS, far: FARTHEST_KM };
     // stars light in index order (nearest first), so the lit ones are the first `lit`
     const on = STARS.slice(0, lit);
     return {
-      clinics: lit,
+      clinics: Math.round((lit / Math.max(1, STARS.length)) * clinicsTarget),
       areas: Math.min(AREAS, new Set(on.map((s) => provinceOf(s.area))).size),
       far: on.reduce((m, s) => Math.max(m, s.km), 0),
     };
-  }, [lit, done]);
+  }, [lit, done, clinicsTarget]);
   const clinics = useGlide(shown.clinics, still);
+  const plus = done && copy.clinicsPlus ? copy.clinicsPlus : '';
   const areas = useGlide(shown.areas, still);
   const far = useGlide(shown.far, still);
   const unit = copy.unit || 'km';
   // the moving numbers are hidden from screen readers; this says the final values once
-  const spoken = !done ? '' : `${copy.clinics}: ${CLINICS}. ${copy.areas}: ${AREAS}. ${copy.farthest}: ${fmtInt(FARTHEST_KM)} ${unit}.`;
+  const spoken = !done ? '' : `${copy.clinics}: ${clinicsTarget}${plus}. ${copy.areas}: ${AREAS}. ${copy.farthest}: ${fmtInt(FARTHEST_KM)} ${unit}.`;
   const areaList = [...new Set(STARS.map((s) => s.area))].join(', ');
   const shelf = still ? PARTS : [...PARTS, ...PARTS];
 
@@ -428,7 +434,7 @@ export default function ReachDialog({ copy, onClose, instant = false }) {
             <p className="hf-sr" aria-live="polite">{picked != null ? STARS[picked].area : ''}</p>
             <p className="hf-sr">{areaList}</p>
             <div className="hf-stats rm-stats" aria-hidden="true">
-              <Stat label={copy.clinics} value={fmtInt(clinics)} />
+              <Stat label={copy.clinics} value={`${fmtInt(clinics)}${plus}`} />
               <Stat label={copy.areas} value={fmtInt(areas)} />
               <Stat label={copy.farthest} value={fmtInt(far)} unit={unit} />
             </div>
