@@ -1,0 +1,1988 @@
+{
+ "version": 1,
+ "generated": "2026-10-12",
+ "notes": "Booth and clinic moments for the ClientMarquee on /dentalchairs, /denjoy and /k-clamps. Built by builds/dsd-client-marquee/build_manifest.py from facebook.com/dentasource and tiktok.com/@dentasourcedirect posts (consented: already published on DSD's own pages, ruling 2026-10-06). Every frame was looked at; `excluded` lists what was left out and why.",
+ "items": [
+  {
+   "id": "at-their-clinic-703253-800",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install (Occidental Mindoro)",
+   "date": "2026-03-20",
+   "alt": "A dentist smiling beside her newly installed dental chair holding a DentaSource and ROSON sign",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7619288803592703253"
+   },
+   "src": "/images/clients/at-their-clinic-703253-800.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "pda-convention-2026-285816-470",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-17",
+   "alt": "A dentist laughing while trying a product at the DentaSource booth",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/27139759952285816/"
+   },
+   "src": "/images/clients/pda-convention-2026-285816-470.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "nadti-2026-014702-25",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "NADTI 2026",
+   "event": "NADTI 2026 (September)",
+   "date": "2026-09-24",
+   "alt": "DentaSource staff and visitors holding DentaSource tote bags wave together at the DentaSource Direct booth",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/950138841014702/"
+   },
+   "src": "/images/clients/nadti-2026-014702-25.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "pda-cebu-2025-255064-86",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "PDA Cebu 2025",
+   "event": "PDA Cebu & Mandaue Chapter Induction 2025",
+   "date": "2025-08-20",
+   "alt": "Two dentists in formal Filipiniana attire posing with a DentaSource staff member at the booth",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/1118092760255064/"
+   },
+   "src": "/images/clients/pda-cebu-2025-255064-86.jpg",
+   "w": 719,
+   "h": 1280
+  },
+  {
+   "id": "pda-quezon-city-2026-704476-40",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "PDA Quezon City 2026",
+   "event": "PDA Quezon City Chapter Convention 2026",
+   "date": "2026-06-02",
+   "alt": "A smiling dentist in an embroidered blouse waves beside a DentaSource staff member in front of the DentaSource Direct booth",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/4516217948704476/"
+   },
+   "src": "/images/clients/pda-quezon-city-2026-704476-40.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "digicon-2026-986288-45",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "DIGICON 2026",
+   "event": "DIGICON 2026",
+   "date": "2026-08-14",
+   "alt": "A smiling dentist holds a boxed gutta-percha obturation system at the DentaSource Direct table with two staff members",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/857584583986288/"
+   },
+   "src": "/images/clients/digicon-2026-986288-45.jpg",
+   "w": 540,
+   "h": 1280
+  },
+  {
+   "id": "mincon-2026-664812-345",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "MINCON 2026",
+   "event": "MINCON 2026",
+   "date": "2026-02-02",
+   "alt": "Group photo at the DentaSource booth: a chapter officer seated with DentaSource staff and visitors, one staff member holding a certificate of appreciation",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/1633561794664812/"
+   },
+   "src": "/images/clients/mincon-2026-664812-345.jpg",
+   "w": 720,
+   "h": 832
+  },
+  {
+   "id": "pagd-convention-2025-095374-200",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "PAGD Convention 2025",
+   "event": "PAGD 37th Annual Convention 2025",
+   "date": "2025-07-20",
+   "alt": "Two event officers, one in an academic sash and one in a barong, posing beside the DentaSource booth table",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/1079344027095374/"
+   },
+   "src": "/images/clients/pagd-convention-2025-095374-200.jpg",
+   "w": 468,
+   "h": 1280
+  },
+  {
+   "id": "pda-benguet-2026-053843-100",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "PDA Benguet 2026",
+   "event": "PDA Benguet Chapter Induction & Seminar 2026",
+   "date": "2026-07-20",
+   "alt": "A dentist in a chapter shirt fills in an order form at the booth counter while a DentaSource staff member assists",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/1464261549053843/"
+   },
+   "src": "/images/clients/pda-benguet-2026-053843-100.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "at-their-clinic-703253-815",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install (Occidental Mindoro)",
+   "date": "2026-03-20",
+   "alt": "A dentist holding a DentaSource and ROSON sign with two installers, one giving a thumbs-up, beside the new chair",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7619288803592703253"
+   },
+   "src": "/images/clients/at-their-clinic-703253-815.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "pda-convention-2026-290283-325",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-12",
+   "alt": "Two smiling convention attendees hold up green DentaSource Direct tote bags, one of them waving",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/2074080823290283/"
+   },
+   "src": "/images/clients/pda-convention-2026-290283-325.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "nadti-2026-026407-103",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "NADTI 2026",
+   "event": "NADTI 2026",
+   "date": "2026-09-22",
+   "alt": "Two visitors wave with a staff member at the DentaSource Direct booth, one holding a DentaSource tote bag",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/1886246649026407/"
+   },
+   "src": "/images/clients/nadti-2026-026407-103.jpg",
+   "w": 720,
+   "h": 960
+  },
+  {
+   "id": "pda-cebu-2025-255064-91",
+   "kind": "photo",
+   "brands": [
+    "dsd",
+    "kclamp"
+   ],
+   "tag": "PDA Cebu 2025",
+   "event": "PDA Cebu & Mandaue Chapter Induction 2025",
+   "date": "2025-08-20",
+   "alt": "A dentist holding papers and a DentaSource item, posing with two DentaSource staff beside the booth table",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/1118092760255064/"
+   },
+   "src": "/images/clients/pda-cebu-2025-255064-91.jpg",
+   "w": 719,
+   "h": 1280
+  },
+  {
+   "id": "pda-quezon-city-2026-704476-20",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "PDA Quezon City 2026",
+   "event": "PDA Quezon City Chapter Convention 2026",
+   "date": "2026-06-02",
+   "alt": "A senior dentist in a barong with a society medallion waves alongside a DentaSource staff member at the booth",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/4516217948704476/"
+   },
+   "src": "/images/clients/pda-quezon-city-2026-704476-20.jpg",
+   "w": 518,
+   "h": 1280
+  },
+  {
+   "id": "digicon-2026-557084-160",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "DIGICON 2026",
+   "event": "DIGICON 2026",
+   "date": "2026-08-13",
+   "alt": "A dentist in a beige blazer examines a small instrument handed over by a DentaSource staff member at a ROSON-branded table",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/845243108557084/"
+   },
+   "src": "/images/clients/digicon-2026-557084-160.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "mincon-2026-912062-135",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "MINCON 2026",
+   "event": "MINCON 2026",
+   "date": "2026-01-30",
+   "alt": "A dentist laughing with a DentaSource staff member while holding a packaged product at the booth",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/946975077912062/"
+   },
+   "src": "/images/clients/mincon-2026-912062-135.jpg",
+   "w": 720,
+   "h": 768
+  },
+  {
+   "id": "pagd-convention-2025-095374-90",
+   "kind": "photo",
+   "brands": [
+    "kclamp"
+   ],
+   "tag": "PAGD Convention 2025",
+   "event": "PAGD 37th Annual Convention 2025",
+   "date": "2025-07-20",
+   "alt": "A dentist in a purple sash examining a tray of rubber dam clamps at the DentaSource table",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/1079344027095374/"
+   },
+   "src": "/images/clients/pagd-convention-2025-095374-90.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "at-their-clinic-210453-570",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install",
+   "date": "2026-06-12",
+   "alt": "A dentist in a yellow coverall poses with three DentaSource team members in his clinic after the chair installation",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7650419178876210453"
+   },
+   "src": "/images/clients/at-their-clinic-210453-570.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "pda-convention-2026-447946-110",
+   "kind": "photo",
+   "brands": [
+    "denjoy",
+    "dsd"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "A smiling visitor with a DentaSource tote waves beside a staff member under the Denjoy sign",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-110.jpg",
+   "w": 720,
+   "h": 1049
+  },
+  {
+   "id": "nadti-2026-133361-490",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "NADTI 2026",
+   "event": "NADTI 2026",
+   "date": "2026-09-23",
+   "alt": "A cheerful group of visitors and staff waves at the DentaSource Direct booth, one man holding a large prize box",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/2616497452133361/"
+   },
+   "src": "/images/clients/nadti-2026-133361-490.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "pda-cebu-2025-255064-190",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "PDA Cebu 2025",
+   "event": "PDA Cebu & Mandaue Chapter Induction 2025",
+   "date": "2025-08-20",
+   "alt": "A smiling visitor making a finger-heart next to a waving DentaSource staff member at the booth",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/1118092760255064/"
+   },
+   "src": "/images/clients/pda-cebu-2025-255064-190.jpg",
+   "w": 719,
+   "h": 1280
+  },
+  {
+   "id": "pda-quezon-city-2026-704476-60",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "PDA Quezon City 2026",
+   "event": "PDA Quezon City Chapter Convention 2026",
+   "date": "2026-06-02",
+   "alt": "A dentist with a delegate badge waves and smiles next to a DentaSource staff member in the exhibit hall",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/4516217948704476/"
+   },
+   "src": "/images/clients/pda-quezon-city-2026-704476-60.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "mincon-2026-614114-220",
+   "kind": "video",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "MINCON 2026",
+   "event": "MINCON 2026",
+   "date": "2026-01-29",
+   "alt": "A DentaSource staff member hands out green DentaSource tote bags to smiling convention attendees in the lobby",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/882722704614114/"
+   },
+   "src": "/reels/clients/mincon-2026-614114-220.mp4",
+   "poster": "/images/clients/mincon-2026-614114-220-poster.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "at-their-clinic-441940-565",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install",
+   "date": "2026-09-30",
+   "alt": "A dentist stands with two DentaSource installers, one giving a thumbs-up, beside his newly installed dental chair",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7691217153315441940"
+   },
+   "src": "/images/clients/at-their-clinic-441940-565.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "pda-convention-2026-447946-130",
+   "kind": "photo",
+   "brands": [
+    "kclamp"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "A smiling visitor seated in front of the K-Clamp rubber dam kit backdrop holds a typodont, with a staff member behind",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-130.jpg",
+   "w": 720,
+   "h": 960
+  },
+  {
+   "id": "nadti-2026-810350-120",
+   "kind": "video",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "NADTI 2026",
+   "event": "NADTI 2026",
+   "date": "2026-03-26",
+   "alt": "A dentist in an orange top pointing and giving a thumbs-up at a sterilizer cabinet while a DentaSource staff member smiles",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/4424672977810350/"
+   },
+   "src": "/reels/clients/nadti-2026-810350-120.mp4",
+   "poster": "/images/clients/nadti-2026-810350-120-poster.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "pda-cebu-2025-989456-335",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "PDA Cebu 2025",
+   "event": "PDA Mandaue Chapter Induction 2025",
+   "date": "2025-08-19",
+   "alt": "A dentist smiling at the camera while browsing products at the DentaSource table",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/1443460116989456/"
+   },
+   "src": "/images/clients/pda-cebu-2025-989456-335.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "at-their-clinic-196053-375",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install",
+   "date": "2026-03-12",
+   "alt": "A woman holds a DentaSource and ROSON sign beside a newly installed, still plastic-wrapped dental chair",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7616222377877196053"
+   },
+   "src": "/images/clients/at-their-clinic-196053-375.jpg",
+   "w": 576,
+   "h": 768
+  },
+  {
+   "id": "pda-convention-2026-447946-170",
+   "kind": "photo",
+   "brands": [
+    "roson",
+    "kclamp",
+    "dsd"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "A group of visitors and staff wave with a DentaSource and ROSON sign in front of the K-Clamp wall",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-170.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "nadti-2026-954212-480",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "NADTI 2026",
+   "event": "NADTI 2026 (March, 5th NADTI Summer Sale)",
+   "date": "2026-03-25",
+   "alt": "A dentist sits in a lime-green ROSON dental chair at the booth while a DentaSource staff member stands beside her, ROSON backdrop behind",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/802121262954212/"
+   },
+   "src": "/images/clients/nadti-2026-954212-480.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "at-their-clinic-196053-393",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install",
+   "date": "2026-03-12",
+   "alt": "Two DSD technicians, the client holding a DentaSource and ROSON sign, and a colleague pose beside the new chair",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7616222377877196053"
+   },
+   "src": "/images/clients/at-their-clinic-196053-393.jpg",
+   "w": 576,
+   "h": 768
+  },
+  {
+   "id": "pda-convention-2026-447946-230",
+   "kind": "photo",
+   "brands": [
+    "roson",
+    "kclamp",
+    "dsd"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "Visitors pose with a DentaSource and ROSON sign at the K-Clamp wall, one holding a boxed obturation system",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-230.jpg",
+   "w": 633,
+   "h": 1280
+  },
+  {
+   "id": "nadti-2026-026407-183",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "NADTI 2026",
+   "event": "NADTI 2026",
+   "date": "2026-09-22",
+   "alt": "A smiling visitor holding a boxed prize and a DentaSource tote poses with two staff members at the booth",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/1886246649026407/"
+   },
+   "src": "/images/clients/nadti-2026-026407-183.jpg",
+   "w": 720,
+   "h": 921
+  },
+  {
+   "id": "at-their-clinic-703253-785",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install (Occidental Mindoro)",
+   "date": "2026-03-20",
+   "alt": "A dentist signing the handover form for her new dental chair",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7619288803592703253"
+   },
+   "src": "/images/clients/at-their-clinic-703253-785.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "pda-convention-2026-447946-290",
+   "kind": "photo",
+   "brands": [
+    "roson",
+    "kclamp"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "Two smiling visitors seated in a ROSON dental chair wave in front of the K-Clamp wall",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-290.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "nadti-2026-133361-170",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "NADTI 2026",
+   "event": "NADTI 2026",
+   "date": "2026-09-23",
+   "alt": "A visitor fills in a DentaSource client information form on a clipboard while a staff member sits beside him",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/2616497452133361/"
+   },
+   "src": "/images/clients/nadti-2026-133361-170.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "at-their-clinic-703253-755",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install (Occidental Mindoro)",
+   "date": "2026-03-20",
+   "alt": "A dentist running her hand over her new, still-wrapped dental chair",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7619288803592703253"
+   },
+   "src": "/images/clients/at-their-clinic-703253-755.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "pda-convention-2026-447946-303",
+   "kind": "photo",
+   "brands": [
+    "roson",
+    "dsd"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "Two visitors hold a DentaSource and ROSON sign and a green DentaSource bag while a staff member waves behind",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-303.jpg",
+   "w": 720,
+   "h": 960
+  },
+  {
+   "id": "nadti-2026-133361-510",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "NADTI 2026",
+   "event": "NADTI 2026",
+   "date": "2026-09-23",
+   "alt": "Two smiling visitors at the DentaSource table with staff, typodonts and instruments on display",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/2616497452133361/"
+   },
+   "src": "/images/clients/nadti-2026-133361-510.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "at-their-clinic-982741-405",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install (Bataan)",
+   "date": "2026-08-30",
+   "alt": "A dentist standing with two DentaSource installers holding a DentaSource and ROSON sign beside his new dental chair",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7679641464241982741"
+   },
+   "src": "/images/clients/at-their-clinic-982741-405.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "pda-convention-2026-564517-150",
+   "kind": "photo",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-13",
+   "alt": "A dentist carrying a DentaSource tote bag looks at a phone with a DentaSource staff member while another visitor listens",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/858742606564517/"
+   },
+   "src": "/images/clients/pda-convention-2026-564517-150.jpg",
+   "w": 576,
+   "h": 1280
+  },
+  {
+   "id": "at-their-clinic-593492-540",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install",
+   "date": "2026-04-17",
+   "alt": "A masked dentist stands with two DentaSource installers beside his newly installed blue dental chair",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7629670520547593492"
+   },
+   "src": "/images/clients/at-their-clinic-593492-540.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "pda-convention-2026-447946-73",
+   "kind": "photo",
+   "brands": [
+    "roson",
+    "dsd"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "Two laughing visitors seated at the booth hold a DentaSource and ROSON sign beside a smiling staff member",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-73.jpg",
+   "w": 720,
+   "h": 832
+  },
+  {
+   "id": "at-their-clinic-593492-500",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install",
+   "date": "2026-04-17",
+   "alt": "A dentist holds the handover papers while a DentaSource technician walks him through the new dental chair",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7629670520547593492"
+   },
+   "src": "/images/clients/at-their-clinic-593492-500.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "pda-convention-2026-447946-190",
+   "kind": "photo",
+   "brands": [
+    "roson",
+    "dsd"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "A visitor with a DentaSource tote holds a DentaSource and ROSON sign while two women wave",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-190.jpg",
+   "w": 720,
+   "h": 794
+  },
+  {
+   "id": "at-their-clinic-210453-480",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install",
+   "date": "2026-06-12",
+   "alt": "A dentist and a DentaSource staff member check the accessories of the newly installed dental unit together",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7650419178876210453"
+   },
+   "src": "/images/clients/at-their-clinic-210453-480.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "pda-convention-2026-447946-370",
+   "kind": "photo",
+   "brands": [
+    "roson",
+    "kclamp"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "A smiling visitor seated in a new ROSON chair browses ROSON and K-Clamp brochures while a staff member looks on",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-370.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "at-their-clinic-441940-450",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install",
+   "date": "2026-09-30",
+   "alt": "A dentist tries the controls of his newly installed dental chair during the handover",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7691217153315441940"
+   },
+   "src": "/images/clients/at-their-clinic-441940-450.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "at-their-clinic-196053-355",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install",
+   "date": "2026-03-12",
+   "alt": "A client signs installation paperwork in the clinic as a technician looks on",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7616222377877196053"
+   },
+   "src": "/images/clients/at-their-clinic-196053-355.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "at-their-clinic-601429-530",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install",
+   "date": "2026-04-29",
+   "alt": "The client stands with two DSD technicians, one holding a DentaSource sign, beside her new dental unit",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7634110796871601429"
+   },
+   "src": "/images/clients/at-their-clinic-601429-530.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "at-their-clinic-601429-570",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install",
+   "date": "2026-04-29",
+   "alt": "The client leans on her newly installed dental unit while a technician holds a DentaSource sign behind",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7634110796871601429"
+   },
+   "src": "/images/clients/at-their-clinic-601429-570.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "endo-seminar-2025-802753-135",
+   "kind": "photo",
+   "brands": [
+    "kclamp"
+   ],
+   "tag": "Endo seminar 2025",
+   "event": "Bioceramics in Endodontics Seminar 2025",
+   "date": "2025-08-02",
+   "alt": "An attendee points at the rubber dam clamp display while a DentaSource staff member explains",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/4158026097802753/"
+   },
+   "src": "/images/clients/endo-seminar-2025-802753-135.jpg",
+   "w": 720,
+   "h": 1280
+  }
+ ],
+ "excluded": [
+  {
+   "source": "https://www.facebook.com/reel/1443460116989456/",
+   "t": 39,
+   "reason": "the crop that removes the neighbour's banner also cuts off the faces"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1633561794664812/",
+   "t": 28,
+   "reason": "neutral, product interest only"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1932366960885180/",
+   "t": 21,
+   "reason": "faces turned down"
+  },
+  {
+   "source": "https://www.facebook.com/reel/27139759952285816/",
+   "t": 51,
+   "reason": "posed under a competitor's (CMZ) ring sign"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4424672977810350/",
+   "t": 44.5,
+   "reason": "neutral, a staff member's back fills the frame, a tablet shows other clinics"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4424672977810350/",
+   "t": 24,
+   "reason": "the crop that removes the Golden Peak fascia also cuts off the face"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4424672977810350/",
+   "t": 57,
+   "reason": "aisle of other exhibitors' fascias and QR codes behind"
+  },
+  {
+   "source": "https://www.facebook.com/reel/665517763265837/",
+   "t": 84.5,
+   "reason": "pillarboxed low-resolution source"
+  },
+  {
+   "source": "https://www.facebook.com/reel/665517763265837/",
+   "t": 99,
+   "reason": "pillarboxed low-resolution source"
+  },
+  {
+   "source": "https://www.facebook.com/reel/665517763265837/",
+   "t": 96,
+   "reason": "pillarboxed low-resolution source"
+  },
+  {
+   "source": "https://www.facebook.com/reel/665517763265837/",
+   "t": 89.5,
+   "reason": "pillarboxed low-resolution source"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7634814658745994517",
+   "t": 29,
+   "reason": "FFC Dental Clinic is DSD's own sister clinic, not a client (held for Jarich's call)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1079344027095374/",
+   "t": 25,
+   "reason": "Best smile of the video (two officers at the booth), but a readable 'Cleanstar' floss banner sits directly behind the man's head and cannot be cropped out. Reconsider if Cleanstar is a DSD-carried bra"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1079344027095374/",
+   "t": 28,
+   "reason": "Induction ceremony group photos (0:28-0:54): not a DSD moment"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1079344027095374/",
+   "t": 44,
+   "reason": "Ceremony slide shows a named person (PAGD president's name)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1079344027095374/",
+   "t": 56,
+   "reason": "DSD end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1118092760255064/",
+   "t": 2,
+   "reason": "Intro collage with the chapter logo and DSD logo (branded card)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1118092760255064/",
+   "t": 18.4,
+   "reason": "Close-up of the chapter centennial emblem and DSD logo (branded card, no people)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1443460116989456/",
+   "t": 6,
+   "reason": "Chapter ribbon cutting: event officers, not a DSD moment"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1443460116989456/",
+   "t": 42,
+   "reason": "Certificate of appreciation with names/text"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1443460116989456/",
+   "t": 46,
+   "reason": "DSD end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1633561794664812/",
+   "t": 19,
+   "reason": "DSD flyer in the foreground with a red price-like figure and a QR code; 'MMR DENTAL' competitor fascia readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1633561794664812/",
+   "t": 21,
+   "reason": "'MMR' readable on the neighbouring booth's tablecloth behind the client"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1633561794664812/",
+   "t": 27,
+   "reason": "'MMR DENTAL SUPPLIES' competitor fascia readable at the top"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1633561794664812/",
+   "t": 30,
+   "reason": "Event banner shot (MINCON 2026 signage), text-heavy, no client"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1633561794664812/",
+   "t": 36,
+   "reason": "DSD end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1932366960885180/",
+   "t": 0,
+   "reason": "Event title slide (text-heavy)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1932366960885180/",
+   "t": 10,
+   "reason": "Framed 'Rubber Dam Isolation Workshop' poster between the two posing women shows 'Php 6,500' and a speaker photo; it cannot be cropped without losing the subjects. MECCO and COXO boxes also prominent."
+  },
+  {
+   "source": "https://www.facebook.com/reel/1932366960885180/",
+   "t": 34,
+   "reason": "DSD end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/27139759952285816/",
+   "t": 26,
+   "reason": "Association officials holding bags at another exhibitor's booth; red competitor banner partly readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/27139759952285816/",
+   "t": 29,
+   "reason": "A man counting banknotes over a chair: cash on camera, not a clean marquee frame"
+  },
+  {
+   "source": "https://www.facebook.com/reel/27139759952285816/",
+   "t": 40,
+   "reason": "'CREST DIGITAL COURSE' banner (other brand) clearly readable behind the client"
+  },
+  {
+   "source": "https://www.facebook.com/reel/27139759952285816/",
+   "t": 52,
+   "reason": "DSD logo end card (branded card)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4424672977810350/",
+   "t": 9,
+   "reason": "'PRICE LIST' card on the cabinet"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4424672977810350/",
+   "t": 13.8,
+   "reason": "Blurred transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4424672977810350/",
+   "t": 28,
+   "reason": "'BioGaia' banner (other brand) clearly readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4424672977810350/",
+   "t": 54.2,
+   "reason": "Flash transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4424672977810350/",
+   "t": 60.5,
+   "reason": "DSD end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/665517763265837/",
+   "t": 0,
+   "reason": "NADTI / DSD logo title card"
+  },
+  {
+   "source": "https://www.facebook.com/reel/665517763265837/",
+   "t": 57,
+   "reason": "'Valuedent' and 'COXO' banners clearly readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/665517763265837/",
+   "t": 105,
+   "reason": "NADTI 25 / DSD / ROSON-Mecco-K-Clamp logo end card (branded card)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/769116215668843/",
+   "t": null,
+   "reason": "whole video: Travel-to-Davao teaser: airport, plane and arrival shots only. No clients, no booth."
+  },
+  {
+   "source": "https://www.facebook.com/reel/769116215668843/",
+   "t": 2,
+   "reason": "'Bound to Davao' title overlay card"
+  },
+  {
+   "source": "https://www.facebook.com/reel/769116215668843/",
+   "t": 32,
+   "reason": "DSD end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/829857039801456/",
+   "t": null,
+   "reason": "whole video: Booth walk-through of products only (ROSON chairs, Mecco boxes, K-Clamp kit). No clients appear; one staff member at a desk."
+  },
+  {
+   "source": "https://www.facebook.com/reel/858742606564517/",
+   "t": 2,
+   "reason": "Price LED ('₱18,659') visible bottom-left; staff-only shot"
+  },
+  {
+   "source": "https://www.facebook.com/reel/858742606564517/",
+   "t": 29,
+   "reason": "Price LED displays ('₱14,844', '₱13,4..') above the visitors"
+  },
+  {
+   "source": "https://www.facebook.com/reel/858742606564517/",
+   "t": 30,
+   "reason": "'CREST DIGITAL COURSE' banner readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/858742606564517/",
+   "t": 34.7,
+   "reason": "DSD staff (not clients) holding tote bags; price LED ('₱18,669') in the background"
+  },
+  {
+   "source": "https://www.facebook.com/reel/858742606564517/",
+   "t": 38,
+   "reason": "DSD logo end card (branded card)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/946975077912062/",
+   "t": 2,
+   "reason": "'Today Story' title overlay"
+  },
+  {
+   "source": "https://www.facebook.com/reel/946975077912062/",
+   "t": 25,
+   "reason": "DSD flyer with a red price-like figure and a QR code in the foreground; 'MMR DENTAL' competitor fascia readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/946975077912062/",
+   "t": 34.5,
+   "reason": "Glitch/transition frame"
+  },
+  {
+   "source": "https://www.facebook.com/reel/946975077912062/",
+   "t": 40,
+   "reason": "'BRIGHTCORE DENTAL SUPPLIES' competitor fascia readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/946975077912062/",
+   "t": 48,
+   "reason": "DSD end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7576481162957196551",
+   "t": null,
+   "reason": "whole video: Static promo poster for the whole video (booth 38 invite) with a QR code, phone number and address. No people."
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7576481162957196551",
+   "t": 0,
+   "reason": "Text-heavy promo slide with QR code, phone number and address (entire video)"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7619288803592703253",
+   "t": 84,
+   "reason": "DSD end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7634814658745994517",
+   "t": 0.5,
+   "reason": "Seated person at the reception desk; unclear whether a patient"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7634814658745994517",
+   "t": 30.5,
+   "reason": "DSD end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7679641464241982741",
+   "t": 2,
+   "reason": "AI-generated sci-fi effect shots (armour suit, glowing eyes, UFOs, 0:02-0:12): off-brand"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7679641464241982741",
+   "t": 42,
+   "reason": "DSD end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4516217948704476/",
+   "t": 16,
+   "reason": "the crop that removes the competitor roll-up also cuts off the dentist's head"
+  },
+  {
+   "source": "https://www.facebook.com/reel/845243108557084/",
+   "t": 6,
+   "reason": "may be staff or a partner behind the table, not clearly a client"
+  },
+  {
+   "source": "https://www.facebook.com/reel/950138841014702/",
+   "t": 10.5,
+   "reason": "collage panel, a third of the frame at low resolution"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1089983923204877/",
+   "t": null,
+   "reason": "whole video: Only candid browsing at the booth counter (visitors looking at products, faces mostly turned away), with no buying, posing or thank-you moment. The source is also tiny (360x432), too soft for a marquee. The closest fallback is 0:32 (a visit"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1089983923204877/",
+   "t": 2,
+   "reason": "orange colour-wash transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1089983923204877/",
+   "t": 6,
+   "reason": "sponsor slide on the projector screen (text-heavy)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1089983923204877/",
+   "t": 8,
+   "reason": "sponsor slide on the projector screen (text-heavy)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1089983923204877/",
+   "t": 34,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1202690954514209/",
+   "t": null,
+   "reason": "whole video: No clients at all: product close-ups (K-Clamp rubber dam kit, Ultra Dancer, obturation system), DSD staff seated behind the table, and a walk through the empty hall."
+  },
+  {
+   "source": "https://www.facebook.com/reel/1202690954514209/",
+   "t": 0,
+   "reason": "'0% DOWN PAYMENT' promo banner (financing promo text) fills the frame"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1202690954514209/",
+   "t": 2,
+   "reason": "'0% DOWN PAYMENT' promo banner (financing promo text) fills the frame"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1202690954514209/",
+   "t": 24,
+   "reason": "end card with QR code, phone number and address"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1464261549053843/",
+   "t": 0,
+   "reason": "blurry transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1464261549053843/",
+   "t": 4,
+   "reason": "tilted photo-frame transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1464261549053843/",
+   "t": 28,
+   "reason": "transition overlay, and it shows the certificate shot"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1464261549053843/",
+   "t": 30,
+   "reason": "certificate with a printed name ('DENTASOURCE DIRECT DENTAL SUPPLY') held up by the group"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1464261549053843/",
+   "t": 32,
+   "reason": "end card with QR code, phone number and address"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1838737903502386/",
+   "t": null,
+   "reason": "whole video: This is ROSON's own manufacturer booth in China, not a DSD client moment. Most frames are dark, letterboxed chair close-ups. The visitors posing at 0:50 to 0:52 hold Chinese 'champion dental chair' promo signs and cannot be identified as DS"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1838737903502386/",
+   "t": 0,
+   "reason": "dark fade-in"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1838737903502386/",
+   "t": 20,
+   "reason": "dark/blurred transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1838737903502386/",
+   "t": 46,
+   "reason": "competitor chair brand 'CINGOL' sign readable at top right"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1838737903502386/",
+   "t": 48,
+   "reason": "competitor chair brand 'CINGOL' sign readable at top right"
+  },
+  {
+   "source": "https://www.facebook.com/reel/2074080823290283/",
+   "t": 34,
+   "reason": "competitor 'CMZ' booth banner readable at top; raffle-prize card held by a non-client"
+  },
+  {
+   "source": "https://www.facebook.com/reel/2074080823290283/",
+   "t": 44,
+   "reason": "brochure close-up (text-heavy promo)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/2074080823290283/",
+   "t": 50,
+   "reason": "'LISTERINE' sign readable at top left (this sign is behind every talking-head shot); staff only"
+  },
+  {
+   "source": "https://www.facebook.com/reel/2074080823290283/",
+   "t": 64,
+   "reason": "logo end card"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4158026097802753/",
+   "t": 0,
+   "reason": "event-title text overlay"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4158026097802753/",
+   "t": 2,
+   "reason": "event-title text overlay"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4158026097802753/",
+   "t": 12,
+   "reason": "bokeh/blur transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4158026097802753/",
+   "t": 16,
+   "reason": "blurry transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4158026097802753/",
+   "t": 26,
+   "reason": "dissolve into QR end card"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4158026097802753/",
+   "t": 28,
+   "reason": "end card with QR code, phone number and address"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4516217948704476/",
+   "t": 8,
+   "reason": "motion blur"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4516217948704476/",
+   "t": 10,
+   "reason": "competitor 'OraCare Mouthrinse' roll-up readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4516217948704476/",
+   "t": 14,
+   "reason": "competitor 'OraCare Mouthrinse' roll-up readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4516217948704476/",
+   "t": 18,
+   "reason": "competitor 'OraCare Mouthrinse' roll-up readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4516217948704476/",
+   "t": 24,
+   "reason": "competitor 'OraCare Mouthrinse' roll-up readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4516217948704476/",
+   "t": 28,
+   "reason": "competitor 'OraCare Mouthrinse' roll-up readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4516217948704476/",
+   "t": 32,
+   "reason": "end card with QR code, phone number and address"
+  },
+  {
+   "source": "https://www.facebook.com/reel/746691007799985/",
+   "t": null,
+   "reason": "whole video: Only candid browsing: faces are down or turned away, with no buying, posing or thank-you moment. The rest is plenary-hall crowd shots. The closest fallback is 0:10 (an attendee trying forceps on the K-Clamp clamp tray), but the face is hidd"
+  },
+  {
+   "source": "https://www.facebook.com/reel/746691007799985/",
+   "t": 32,
+   "reason": "end card with QR code, phone number, email and address"
+  },
+  {
+   "source": "https://www.facebook.com/reel/746691007799985/",
+   "t": 34,
+   "reason": "end card with QR code, phone number, email and address"
+  },
+  {
+   "source": "https://www.facebook.com/reel/802121262954212/",
+   "t": 18,
+   "reason": "competitor 'BioGaia' banner readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/802121262954212/",
+   "t": 20,
+   "reason": "competitor 'BioGaia' banner readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/802121262954212/",
+   "t": 24,
+   "reason": "competitor 'PROSEL Creates bright smiles with dmp' banner readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/802121262954212/",
+   "t": 28,
+   "reason": "BioGaia-branded backdrop with Swedish flag readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/802121262954212/",
+   "t": 32,
+   "reason": "large third-party ad poster featuring a child"
+  },
+  {
+   "source": "https://www.facebook.com/reel/802121262954212/",
+   "t": 36,
+   "reason": "competitor 'PROSEL Creates bright smiles with dmp' banner readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/802121262954212/",
+   "t": 52,
+   "reason": "end card with QR code, phone number and address"
+  },
+  {
+   "source": "https://www.facebook.com/reel/845243108557084/",
+   "t": 0,
+   "reason": "polaroid-collage transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/845243108557084/",
+   "t": 4,
+   "reason": "black-panel transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/845243108557084/",
+   "t": 30,
+   "reason": "end card with QR code, phone number and address"
+  },
+  {
+   "source": "https://www.facebook.com/reel/882722704614114/",
+   "t": 28,
+   "reason": "end card with QR code, phone number and address"
+  },
+  {
+   "source": "https://www.facebook.com/reel/882722704614114/",
+   "t": 30,
+   "reason": "end card with QR code, phone number and address"
+  },
+  {
+   "source": "https://www.facebook.com/reel/950138841014702/",
+   "t": 0,
+   "reason": "B&W photo-frame transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/950138841014702/",
+   "t": 4,
+   "reason": "dark vignette transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/950138841014702/",
+   "t": 6,
+   "reason": "competitor distributor sign '...dental warehouse ph' readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/950138841014702/",
+   "t": 20,
+   "reason": "desaturated transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/950138841014702/",
+   "t": 24,
+   "reason": "halftone torn-paper transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/950138841014702/",
+   "t": 40,
+   "reason": "end card with QR code, phone number and address"
+  },
+  {
+   "source": "https://www.facebook.com/reel/950138841014702/",
+   "t": 42,
+   "reason": "black frame"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7578336592805235975",
+   "t": null,
+   "reason": "whole video: All 25 frames (0:00 to 1:12) are the same static PROOF OF DELIVERY card (ROSON DX-A3L) with phone, email, address and a QR code. The doctor-with-chair photo inside the card could only be used from the original photo file, never from this vi"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7578336592805235975",
+   "t": 0,
+   "reason": "proof-of-delivery card with phone number, email, address and QR code (identical through 1:12)"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7629670520547593492",
+   "t": 22,
+   "reason": "red flash transition"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7629670520547593492",
+   "t": 56,
+   "reason": "end card with QR code, phone number and address"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7650419178876210453",
+   "t": 12,
+   "reason": "torn-paper split transition"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7650419178876210453",
+   "t": 34,
+   "reason": "motion blur"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7650419178876210453",
+   "t": 44,
+   "reason": "split-frame transition"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7650419178876210453",
+   "t": 46,
+   "reason": "motion-blur transition"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7650419178876210453",
+   "t": 52,
+   "reason": "flash transition"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7650419178876210453",
+   "t": 56,
+   "reason": "flash transition"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7650419178876210453",
+   "t": 58,
+   "reason": "end card with QR code, phone number and address"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7650419178876210453",
+   "t": 60,
+   "reason": "end card with QR code, phone number and address"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7691217153315441940",
+   "t": 50,
+   "reason": "procedure on a patient (about 50.3 to 55.3 s on the mp4; the sheet shows it at 0:50 to 0:54)"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7691217153315441940",
+   "t": 52,
+   "reason": "procedure on a patient"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7691217153315441940",
+   "t": 54,
+   "reason": "procedure on a patient"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7691217153315441940",
+   "t": 58,
+   "reason": "end card with QR code, phone number and address"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7691217153315441940",
+   "t": 60,
+   "reason": "end card with QR code, phone number and address"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1633186301286255/",
+   "t": 39.0,
+   "reason": "a demo, not a client moment; delegate name badge legible"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1886246649026407/",
+   "t": 31.0,
+   "reason": "the flyer in hand may carry a price"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4261374460809316/",
+   "t": 19.0,
+   "reason": "browsing, neutral expressions"
+  },
+  {
+   "source": "https://www.facebook.com/reel/757436470293072/",
+   "t": 19.0,
+   "reason": "neutral, another exhibitor's units behind"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7634110796871601429",
+   "t": 41.0,
+   "reason": "a technician demo with clinic staff, no client moment"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7660792494854130964",
+   "t": 51.6,
+   "reason": "FFC Dental Clinic is DSD's own sister clinic, not a client (held for Jarich's call)"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7660792494854130964",
+   "t": 49.0,
+   "reason": "FFC Dental Clinic is DSD's own sister clinic, not a client (held for Jarich's call)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1117800690585185/",
+   "t": null,
+   "reason": "whole video: Showroom product demo of the ROSON DX-A1 Pro presented by a DSD staff member (DSD polo) plus close-ups of the touch panel and light. No client appears in any frame."
+  },
+  {
+   "source": "https://www.facebook.com/reel/1117800690585185/",
+   "t": 6,
+   "reason": "white flash transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1117800690585185/",
+   "t": 51,
+   "reason": "white flash transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1420993635935467/",
+   "t": null,
+   "reason": "whole video: Crowded booth and demo shots with no buying or thank-you moment. Most frames have readable neighbouring brands (BioGaia, Co-Amoxiclav/Inovox, DMP/Heltke, COTS). Closest near-miss: 0:42 (src ~43s), a visitor standing at the DentaSource Direc"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1420993635935467/",
+   "t": 0,
+   "reason": "event poster with speaker names (lineup poster)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1420993635935467/",
+   "t": 2,
+   "reason": "event poster with speaker names (lineup poster)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1420993635935467/",
+   "t": 30,
+   "reason": "BioGaia banner clearly readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1420993635935467/",
+   "t": 32,
+   "reason": "sheet headed PRICE readable on the table"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1420993635935467/",
+   "t": 50,
+   "reason": "peso price tag top-left plus readable DMP/Heltke Corp and Co-Amoxiclav/Inovox banners"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1420993635935467/",
+   "t": 56,
+   "reason": "child in the foreground"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1420993635935467/",
+   "t": 60,
+   "reason": "blank flash transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1420993635935467/",
+   "t": 62,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1633186301286255/",
+   "t": 26,
+   "reason": "LISTERINE banner readable at a neighbouring booth"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1886246649026407/",
+   "t": 8,
+   "reason": "QR code on a display screen behind the visitor (src ~9s)"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1886246649026407/",
+   "t": 10,
+   "reason": "orange flash transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1886246649026407/",
+   "t": 20,
+   "reason": "strong happy group (src ~21s) but the DentaSource tote bag in the centre shows a legible phone number and QR; usable only if that block is blurred"
+  },
+  {
+   "source": "https://www.facebook.com/reel/1886246649026407/",
+   "t": 42,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/2616497452133361/",
+   "t": 22,
+   "reason": "blurry flash transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/2616497452133361/",
+   "t": 58,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4261374460809316/",
+   "t": 22,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/4261374460809316/",
+   "t": 24,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/5553747924849593/",
+   "t": null,
+   "reason": "whole video: 14-s 'we're live' clip: convention hall, the product table, and two DSD staff waving. No clients."
+  },
+  {
+   "source": "https://www.facebook.com/reel/5553747924849593/",
+   "t": 10,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/5553747924849593/",
+   "t": 12,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/757436470293072/",
+   "t": 0,
+   "reason": "blurry transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/757436470293072/",
+   "t": 2,
+   "reason": "blurry transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/757436470293072/",
+   "t": 6,
+   "reason": "motion blur"
+  },
+  {
+   "source": "https://www.facebook.com/reel/757436470293072/",
+   "t": 10,
+   "reason": "MMR (competitor) table cover readable behind"
+  },
+  {
+   "source": "https://www.facebook.com/reel/757436470293072/",
+   "t": 14,
+   "reason": "MMR Dental Supplies fascia readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/757436470293072/",
+   "t": 16,
+   "reason": "MMR (competitor) table cover readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/757436470293072/",
+   "t": 20,
+   "reason": "framed certificate held in centre; competitor fascia '...Dental Chairs Supply' readable top-left; group looks like organisers/staff"
+  },
+  {
+   "source": "https://www.facebook.com/reel/757436470293072/",
+   "t": 22,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/757436470293072/",
+   "t": 24,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/816849004201340/",
+   "t": null,
+   "reason": "whole video: This is ROSON's own corporate footage from FDI Shanghai (landscape): product close-ups, ROSON reps meeting international visitors, and a ROSON staff group photo. These are not DSD clients. Meeting shots (0:10-0:12) show readable neighbourin"
+  },
+  {
+   "source": "https://www.facebook.com/reel/816849004201340/",
+   "t": 2,
+   "reason": "text-heavy event entrance signage"
+  },
+  {
+   "source": "https://www.facebook.com/reel/816849004201340/",
+   "t": 12,
+   "reason": "neighbouring exhibitor company fascia readable behind the meeting table"
+  },
+  {
+   "source": "https://www.facebook.com/reel/816849004201340/",
+   "t": 44,
+   "reason": "ROSON staff group photo, no clients"
+  },
+  {
+   "source": "https://www.facebook.com/reel/857584583986288/",
+   "t": 0,
+   "reason": "transition collage"
+  },
+  {
+   "source": "https://www.facebook.com/reel/857584583986288/",
+   "t": 12,
+   "reason": "tilted transition"
+  },
+  {
+   "source": "https://www.facebook.com/reel/857584583986288/",
+   "t": 26,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.facebook.com/reel/883855677447946/",
+   "t": 0,
+   "reason": "Dental Depot (competitor) banner and digital price display behind the group; no DSD product in frame"
+  },
+  {
+   "source": "https://www.facebook.com/reel/883855677447946/",
+   "t": 2,
+   "reason": "Dental Depot banner and price display behind the group"
+  },
+  {
+   "source": "https://www.facebook.com/reel/883855677447946/",
+   "t": 4,
+   "reason": "Dental Depot banner and price display behind the group"
+  },
+  {
+   "source": "https://www.facebook.com/reel/883855677447946/",
+   "t": 24,
+   "reason": "Denpres / Dental Depot banners readable behind the group"
+  },
+  {
+   "source": "https://www.facebook.com/reel/883855677447946/",
+   "t": 26,
+   "reason": "CMZ Dental Supply signage and bag readable"
+  },
+  {
+   "source": "https://www.facebook.com/reel/883855677447946/",
+   "t": 34,
+   "reason": "digital price display (peso 13,693) readable above the visitor"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7573525862989958407",
+   "t": null,
+   "reason": "whole video: The entire 75-s video is one static 'Proof of Delivery' card (ROSON DX-A3, Bacolod City) carrying the DSD phone, email, address and QR code. The inner photo (client and DSD tech at the new chair) is a strong moment but is only ~450x250 px i"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7573525862989958407",
+   "t": 0,
+   "reason": "proof-of-delivery card with phone number, email, address and QR code (same card for the whole video)"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7616222377877196053",
+   "t": 2,
+   "reason": "clinic storefront with its own promo banner (40% offer) and signage"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7616222377877196053",
+   "t": 16,
+   "reason": "blurry"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7616222377877196053",
+   "t": 40,
+   "reason": "white transition"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7616222377877196053",
+   "t": 42,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7634110796871601429",
+   "t": 60,
+   "reason": "orange flash transition"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7634110796871601429",
+   "t": 62,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7660792494854130964",
+   "t": 0,
+   "reason": "storefront signage shows a dentist's full name; window posters have a QR code and peso prices"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7660792494854130964",
+   "t": 2,
+   "reason": "storefront signage shows a dentist's full name; window posters have a QR code and peso prices"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7660792494854130964",
+   "t": 52,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7660792494854130964",
+   "t": 54,
+   "reason": "end card with QR code and phone number"
+  },
+  {
+   "source": "https://www.tiktok.com/@dentasourcedirect/video/7692261460755467540",
+   "t": null,
+   "reason": "whole video: DSD technicians assembling dental-technician lab tables; the closing shot (0:16) is two technicians posing. No client appears."
+  }
+ ]
+}

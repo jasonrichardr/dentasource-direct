@@ -9,7 +9,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Anton, DM_Mono, DM_Sans } from 'next/font/google';
 import HeroArc from './HeroArc';
-import { Spotlight, InstrumentsRail, ChapterWall, DnaFaq } from './DnaSections';
+import { Spotlight, InstrumentsRail, ChapterWall, DnaClients, DnaFaq } from './DnaSections';
+import { clientsFor } from '@/lib/clients/boothClients';
+
+const CLIENTS = clientsFor('denjoy');
 import DnaFooter from './DnaFooter';
 import styles from './v2.module.css';
 
@@ -93,6 +96,7 @@ export default function DnaLanding() {
           <Spotlight />
           <InstrumentsRail />
           <ChapterWall />
+          <DnaClients clients={CLIENTS} />
           <DnaFaq />
         </div>
         <DnaFooter />

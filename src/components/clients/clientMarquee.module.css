@@ -1,0 +1,162 @@
+/* ClientMarquee. Theme independent on purpose: it sits on the chairs page (light and dark),
+   the Denjoy DNA page and the K-Clamps lab, so borders come from currentColor and the only
+   fixed colours are the ones laid over a photograph. */
+
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  padding-block: 4px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.row { overflow: hidden; }
+
+@keyframes clientScroll { to { transform: translateX(-50%); } }
+
+.track {
+  display: flex;
+  width: max-content;
+  gap: 12px;
+  /* fallback only: MarqueeSpeed writes the real duration from the track's width */
+  animation: clientScroll 90s linear infinite;
+}
+.reverse { animation-direction: reverse; }
+.root[data-live='0'] .track,
+.row:hover .track { animation-play-state: paused; }
+
+.cell { flex: none; }
+
+.tile {
+  position: relative;
+  display: block;
+  width: 150px;
+  aspect-ratio: 9 / 16;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+  border-radius: 16px;
+  overflow: hidden;
+  background: color-mix(in srgb, currentColor 8%, transparent);
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+.tile:hover { transform: translateY(-3px); border-color: color-mix(in srgb, currentColor 34%, transparent); }
+.tile:focus-visible { outline: 2px solid #10b981; outline-offset: 2px; }
+
+.media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chip {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  max-width: calc(100% - 16px);
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(8, 12, 10, 0.62);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.play {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(8, 12, 10, 0.55);
+  color: #fff;
+  font-size: 10px;
+}
+
+@media (min-width: 701px) {
+  .tile { width: 190px; border-radius: 18px; }
+}
+
+/* ── the viewer ───────────────────────────────────────────────────────── */
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 10050; /* above the music dock (10000) */
+  display: grid;
+  place-items: center;
+  padding: 56px 16px 24px;
+  background: rgba(4, 7, 6, 0.9);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: #fff;
+}
+.viewerFig {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: min(480px, 100%);
+}
+.viewerMedia {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100dvh - 190px);
+  border-radius: 18px;
+  background: #000;
+}
+.viewerCap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.86);
+}
+.viewerTag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6ee7b7;
+}
+.viewerLink { color: #fff; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
+
+.nav, .close {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  cursor: pointer;
+}
+.nav { top: 50%; width: 44px; height: 44px; margin-top: -22px; border-radius: 50%; font-size: 24px; line-height: 1; }
+.prev { left: 12px; }
+.next { right: 12px; }
+.close { top: 12px; right: 12px; width: 40px; height: 40px; border-radius: 50%; font-size: 16px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .root { overflow-x: auto; }
+  .track { animation: none; }
+  .tile, .tile:hover { transition: none; transform: none; }
+}

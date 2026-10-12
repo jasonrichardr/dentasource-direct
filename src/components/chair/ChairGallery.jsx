@@ -61,7 +61,7 @@ function ChairCard({ chair, index }) {
   );
 }
 
-export default function ChairGallery({ chairs, copy }) {
+export default function ChairGallery({ chairs, copy, clients = null }) {
   const rootId = 'chairs-index';
   const h = copy.hero;
   return (
@@ -86,6 +86,9 @@ export default function ChairGallery({ chairs, copy }) {
           {chairs.map((c, i) => <ChairCard key={c.slug} chair={c} index={i} />)}
         </div>
       </section>
+
+      {/* doctors at our booth and in their clinics (ClientMarquee, Jarich 2026-10-12) */}
+      {clients}
 
       <ShowroomDoor door={copy.door} />
       <ScrollFx rootId={rootId} />
