@@ -11,26 +11,63 @@ export default function LoungeRoom() {
   // remount (Next.js re-renders the page on every popstate, including the sheets' own history entries) used to
   // recreate the markup from dangerouslySetInnerHTML and leave room.js's listeners on dead nodes: the dock looked
   // fine but nothing happened on tap. Now the nodes are created once and never touched by React again.
+  //
+  // ☠️ ONE PLAYER AT A TIME: THE ROOM IS PARKED WHEN ITS PAGE GOES (2026-10-12, Jarich: "when i press
+  // the training center button the mp3 playing is nadoble ... only one player will play"). Created once
+  // still holds, but it used to be never taken down either: after /growth-partner the next page mounted
+  // SiteShell's cinema Room beside it, two docks, and one tap started the same song twice (measured on
+  // the live site: lounge at 6:36 and the cinema room at 35:43, both audible). Leaving now pauses the
+  // music through room.js's own hush bridge, hides the markup, switches its stylesheet off and stamps
+  // html[data-lounge-away], which room.js's tap listeners read so a tap on another page can never start
+  // it. Coming back to /growth-partner or /spin un-parks it, and the music resumes only if it was
+  // playing when the visitor left.
   useEffect(() => {
-    if (typeof window === 'undefined' || window.__dsdLounge) return;
-    window.__dsdLounge = true;
+    if (typeof window === 'undefined') return undefined;
     const html = document.documentElement;
-    if (!html.getAttribute('data-theme')) {
-      let saved = null;
-      try { saved = localStorage.getItem('dsd:lounge-theme'); } catch { /* ignore */ }
-      html.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+    if (!window.__dsdLounge) {
+      window.__dsdLounge = true;
+      if (!html.getAttribute('data-theme')) {
+        let saved = null;
+        try { saved = localStorage.getItem('dsd:lounge-theme'); } catch { /* ignore */ }
+        html.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+      }
+      if (!document.getElementById('dsd-lounge')) {
+        const host = document.createElement('div');
+        host.id = 'dsd-lounge';
+        host.innerHTML = MARKUP;
+        document.body.appendChild(host);
+      }
+      const link = document.createElement('link');
+      link.id = 'dsd-lounge-css';
+      link.rel = 'stylesheet'; link.href = '/lounge/room.css';
+      document.head.appendChild(link);
+      const load = (src) => new Promise((res) => { const s = document.createElement('script'); s.src = src; s.async = false; s.onload = res; s.onerror = res; document.body.appendChild(s); });
+      load('/lounge/sky.js').then(() => load('/lounge/room.js'));
+    } else {
+      // back on a lounge page: un-park
+      html.removeAttribute('data-lounge-away');
+      const host = document.getElementById('dsd-lounge');
+      if (host) host.hidden = false;
+      const css = document.getElementById('dsd-lounge-css');
+      if (css) css.disabled = false;
+      if (window.__dsdLoungeResume) {
+        window.__dsdLoungeResume = false;
+        if (typeof window.__txEnsurePlay === 'function') window.__txEnsurePlay();
+      }
     }
-    if (!document.getElementById('dsd-lounge')) {
-      const host = document.createElement('div');
-      host.id = 'dsd-lounge';
-      host.innerHTML = MARKUP;
-      document.body.appendChild(host);
-    }
-    const link = document.createElement('link');
-    link.rel = 'stylesheet'; link.href = '/lounge/room.css';
-    document.head.appendChild(link);
-    const load = (src) => new Promise((res) => { const s = document.createElement('script'); s.src = src; s.async = false; s.onload = res; s.onerror = res; document.body.appendChild(s); });
-    load('/lounge/sky.js').then(() => load('/lounge/room.js'));
+    return () => {
+      // ☠️ SCOPED LOOKUPS. By the time this runs the next page's cinema Room may already be in the DOM
+      // carrying the same ids (#tx-room, #tx-x), so document.getElementById could hand back ITS nodes.
+      const host = document.getElementById('dsd-lounge');
+      // an open room closes through its own ✕, which also gives the page its scroll back
+      const x = host && host.querySelector('#tx-room.on') ? host.querySelector('#tx-x') : null;
+      if (x) x.click();
+      window.__dsdLoungeResume = typeof window.__txHush === 'function' ? !!window.__txHush() : false;
+      html.setAttribute('data-lounge-away', '');
+      if (host) host.hidden = true;
+      const css = document.getElementById('dsd-lounge-css');
+      if (css) css.disabled = true;
+    };
   }, []);
 
   // ☠️ THE DOCK MUST NEVER SIT ON THE CONVERSION PATH. It is position:fixed in the
