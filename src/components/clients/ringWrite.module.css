@@ -1,0 +1,55 @@
+/* RingWrite: letters written in fire, then cooled into the heading's own ink.
+   The letters animate with fill-mode BACKWARDS only, so once a letter has burned it drops
+   back to the heading's normal colour: a theme switch afterwards re-inks it like any text. */
+
+.word { display: inline-block; white-space: nowrap; }
+.ch { display: inline-block; }
+
+.ring[data-ring='idle'] .ch { opacity: 0; }
+
+.ring[data-ring='writing'] .ch,
+.ring[data-ring='done'] .ch {
+  animation: ringInk 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  animation-delay: calc(var(--i) * 55ms);
+}
+
+@keyframes ringInk {
+  0% {
+    opacity: 0;
+    color: #fff6d5;
+    filter: blur(8px);
+    transform: translateY(0.16em) scale(1.14);
+    text-shadow: 0 0 6px #fff1b8, 0 0 18px #ffb347, 0 0 38px #ff6a00;
+  }
+  16% {
+    opacity: 1;
+    color: #ffeab0;
+    filter: blur(0);
+    transform: none;
+    text-shadow: 0 0 4px #fff3c4, 0 0 14px #ffae3c, 0 0 32px #ff6200;
+  }
+  55% {
+    color: #f3a93b;
+    text-shadow: 0 0 3px #ffd27a, 0 0 10px #ff9a2e, 0 0 22px rgba(255, 98, 0, 0.55);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 0 rgba(255, 140, 40, 0);
+  }
+}
+
+/* the cooled line keeps its embers: two slow pulses, then a faint rest glow */
+.ring[data-ring='done'] {
+  animation: ringEmbers 2.4s ease-in-out 2;
+  text-shadow: 0 0 14px rgba(255, 166, 64, 0.22);
+}
+
+@keyframes ringEmbers {
+  0%, 100% { text-shadow: 0 0 14px rgba(255, 166, 64, 0.22); }
+  50% { text-shadow: 0 0 10px rgba(255, 196, 96, 0.55), 0 0 26px rgba(255, 110, 20, 0.35); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring[data-ring] .ch { opacity: 1; animation: none; }
+  .ring[data-ring] { animation: none; text-shadow: 0 0 14px rgba(255, 166, 64, 0.22); }
+}

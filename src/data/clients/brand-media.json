@@ -1,0 +1,3644 @@
+{
+ "version": 1,
+ "generated": "2026-10-12",
+ "notes": "Brand strips: 3 photos then a clip, repeating. Built by builds/dsd-client-marquee/r2/build_brand_media.py from media already on the site (news desk photos, Chairs in service, reel library) plus round 1 booth moments. Every photo and clip was looked at; a clip with an end card carries endAt and loops before it. Videos reference reel-library ids, so a reel hidden in the studio drops out here too.",
+ "roson": [
+  {
+   "id": "at-their-clinic-703253-800",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install (Occidental Mindoro)",
+   "date": "2026-03-20",
+   "alt": "A dentist smiling beside her newly installed dental chair holding a DentaSource and ROSON sign",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7619288803592703253"
+   },
+   "src": "/images/clients/at-their-clinic-703253-800.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "n-clinic-upgrade-cavite-roson-dx-a3s-og",
+   "kind": "photo",
+   "src": "/images/news/clinic-upgrade-cavite-roson-dx-a3s/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3S · Cavite",
+   "alt": "DX-A3S · Cavite",
+   "source": {
+    "platform": "news",
+    "url": "/news/clinic-upgrade-cavite-roson-dx-a3s"
+   }
+  },
+  {
+   "id": "n-custom-color-roson-dx-a3-cabatuan-isabel-og",
+   "kind": "photo",
+   "src": "/images/news/custom-color-roson-dx-a3-cabatuan-isabela/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3 · Cabatuan, Isabela",
+   "alt": "DX-A3 · Cabatuan, Isabela",
+   "source": {
+    "platform": "news",
+    "url": "/news/custom-color-roson-dx-a3-cabatuan-isabela"
+   }
+  },
+  {
+   "id": "v-1743007670459651",
+   "kind": "video",
+   "reel": "1743007670459651",
+   "src": "/cinema/reels/1743007670459651.mp4",
+   "hd": "/cinema/reels/hd/1743007670459651.mp4",
+   "poster": "/cinema/reels/1743007670459651.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 56.9,
+   "tag": "DX-A3S · Delivered",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-dental-chair-delivery-occidental-mindoro-og",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-delivery-occidental-mindoro/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Delivery · Occidental Mindoro",
+   "alt": "Delivery · Occidental Mindoro",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-delivery-occidental-mindoro"
+   }
+  },
+  {
+   "id": "n-dental-chair-installation-cabuyao-laguna-og",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-installation-cabuyao-laguna/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install · Cabuyao, Laguna",
+   "alt": "Install · Cabuyao, Laguna",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-installation-cabuyao-laguna"
+   }
+  },
+  {
+   "id": "n-dental-chair-installation-mandaluyong-v020-2",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-installation-mandaluyong/v020-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install · Mandaluyong",
+   "alt": "Install · Mandaluyong",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-installation-mandaluyong"
+   }
+  },
+  {
+   "id": "v-975185138892513",
+   "kind": "video",
+   "reel": "975185138892513",
+   "src": "/cinema/reels/975185138892513.mp4",
+   "hd": "/cinema/reels/hd/975185138892513.mp4",
+   "poster": "/cinema/reels/975185138892513.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 41.5,
+   "tag": "DX-A3 · Cabatuan, Isabela",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-install-2026-hero-install",
+   "kind": "photo",
+   "src": "/images/news/install-2026/hero-install.jpg",
+   "w": 1280,
+   "h": 720,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install day",
+   "alt": "Install day",
+   "source": {
+    "platform": "news",
+    "url": "/news/install-2026"
+   }
+  },
+  {
+   "id": "n-old-chair-out-roson-dx-a3-in-og",
+   "kind": "photo",
+   "src": "/images/news/old-chair-out-roson-dx-a3-in/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Old chair out, DX-A3 in",
+   "alt": "Old chair out, DX-A3 in",
+   "source": {
+    "platform": "news",
+    "url": "/news/old-chair-out-roson-dx-a3-in"
+   }
+  },
+  {
+   "id": "n-roson-a3l-delivery-pangasinan-og",
+   "kind": "photo",
+   "src": "/images/news/roson-a3l-delivery-pangasinan/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3L · Pangasinan",
+   "alt": "DX-A3L · Pangasinan",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-a3l-delivery-pangasinan"
+   }
+  },
+  {
+   "id": "v-2264046751080325",
+   "kind": "video",
+   "reel": "2264046751080325",
+   "src": "/cinema/reels/2264046751080325.mp4",
+   "hd": "/cinema/reels/hd/2264046751080325.mp4",
+   "poster": "/cinema/reels/2264046751080325.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 24.9,
+   "tag": "DX-A3 · Delivered",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-roson-dental-chair-delivery-sta-maria-bu-v301-2",
+   "kind": "photo",
+   "src": "/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-2.jpg",
+   "w": 360,
+   "h": 640,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Delivery · Sta. Maria, Bulacan",
+   "alt": "Delivery · Sta. Maria, Bulacan",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dental-chair-delivery-sta-maria-bulacan-2025"
+   }
+  },
+  {
+   "id": "n-roson-dx-a3-dobles-teylan-dental-care-og",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3-dobles-teylan-dental-care/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3 · Dobles-Teylan Dental Care",
+   "alt": "DX-A3 · Dobles-Teylan Dental Care",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3-dobles-teylan-dental-care"
+   }
+  },
+  {
+   "id": "n-roson-dx-a3s-delivery-taguig-v103-1",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3s-delivery-taguig/v103-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3S · Taguig",
+   "alt": "DX-A3S · Taguig",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3s-delivery-taguig"
+   }
+  },
+  {
+   "id": "v-1327978675477044",
+   "kind": "video",
+   "reel": "1327978675477044",
+   "src": "/cinema/reels/1327978675477044.mp4",
+   "hd": "/cinema/reels/hd/1327978675477044.mp4",
+   "poster": "/cinema/reels/1327978675477044.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 28.77,
+   "tag": "DX-S3 · Delivered",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-roson-dx-a3s-installation-pampanga-v017-2",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3s-installation-pampanga/v017-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3S · Pampanga",
+   "alt": "DX-A3S · Pampanga",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3s-installation-pampanga"
+   }
+  },
+  {
+   "id": "n-roson-dx-n1-installed-general-trias-cavi-og",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n1-installed-general-trias-cavite-2025/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N1 · General Trias, Cavite",
+   "alt": "DX-N1 · General Trias, Cavite",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n1-installed-general-trias-cavite-2025"
+   }
+  },
+  {
+   "id": "n-roson-dx-n1-installed-quezon-city-june-2-og",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n1-installed-quezon-city-june-2025/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N1 · Quezon City",
+   "alt": "DX-N1 · Quezon City",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n1-installed-quezon-city-june-2025"
+   }
+  },
+  {
+   "id": "v-4528383437405302",
+   "kind": "video",
+   "reel": "4528383437405302",
+   "src": "/cinema/reels/4528383437405302.mp4",
+   "hd": "/cinema/reels/hd/4528383437405302.mp4",
+   "poster": "/cinema/reels/4528383437405302.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 57.54,
+   "tag": "Install · Cabuyao, Laguna",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-roson-dx-n2-pro-installation-doc-jake-og",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n2-pro-installation-doc-jake/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N2 Pro · Doc Jake",
+   "alt": "DX-N2 Pro · Doc Jake",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n2-pro-installation-doc-jake"
+   }
+  },
+  {
+   "id": "n-roson-dx-s3-installation-balanga-bataan-og",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-s3-installation-balanga-bataan/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-S3 · Balanga, Bataan",
+   "alt": "DX-S3 · Balanga, Bataan",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-s3-installation-balanga-bataan"
+   }
+  },
+  {
+   "id": "n-roson-dx-s3-premium-package-installation-v015-2",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-s3-premium-package-installation/v015-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-S3 premium package",
+   "alt": "DX-S3 premium package",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-s3-premium-package-installation"
+   }
+  },
+  {
+   "id": "v-3913817348922519",
+   "kind": "video",
+   "reel": "3913817348922519",
+   "src": "/cinema/reels/3913817348922519.mp4",
+   "hd": "/cinema/reels/hd/3913817348922519.mp4",
+   "poster": "/cinema/reels/3913817348922519.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 29.9,
+   "tag": "DX-S3 · Delivered",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-three-deliveries-one-week-dx-s3-dx-n2-pr-og",
+   "kind": "photo",
+   "src": "/images/news/three-deliveries-one-week-dx-s3-dx-n2-pro/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Three deliveries, one week",
+   "alt": "Three deliveries, one week",
+   "source": {
+    "platform": "news",
+    "url": "/news/three-deliveries-one-week-dx-s3-dx-n2-pro"
+   }
+  },
+  {
+   "id": "n-two-roson-dental-chairs-delivered-march--og",
+   "kind": "photo",
+   "src": "/images/news/two-roson-dental-chairs-delivered-march-2025/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Two chairs delivered",
+   "alt": "Two chairs delivered",
+   "source": {
+    "platform": "news",
+    "url": "/news/two-roson-dental-chairs-delivered-march-2025"
+   }
+  },
+  {
+   "id": "n-two-roson-dx-a3-caloocan-contract-to-chr-og",
+   "kind": "photo",
+   "src": "/images/news/two-roson-dx-a3-caloocan-contract-to-christmas-delivery/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Two DX-A3 · Caloocan",
+   "alt": "Two DX-A3 · Caloocan",
+   "source": {
+    "platform": "news",
+    "url": "/news/two-roson-dx-a3-caloocan-contract-to-christmas-delivery"
+   }
+  },
+  {
+   "id": "v-816383304860590",
+   "kind": "video",
+   "reel": "816383304860590",
+   "src": "/cinema/reels/816383304860590.mp4",
+   "hd": "/cinema/reels/hd/816383304860590.mp4",
+   "poster": "/cinema/reels/816383304860590.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 30.57,
+   "tag": "DX-N2 Pro · Package B",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-two-roson-dx-s3-ignacio-dental-clinic-og",
+   "kind": "photo",
+   "src": "/images/news/two-roson-dx-s3-ignacio-dental-clinic/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Two DX-S3 · Ignacio Dental Clinic",
+   "alt": "Two DX-S3 · Ignacio Dental Clinic",
+   "source": {
+    "platform": "news",
+    "url": "/news/two-roson-dx-s3-ignacio-dental-clinic"
+   }
+  },
+  {
+   "id": "h-amba-1",
+   "kind": "photo",
+   "src": "/images/heart/amba-dental-clinic-alabang-1.webp",
+   "w": 350,
+   "h": 386,
+   "brands": [
+    "roson"
+   ],
+   "tag": "ROSON DX-A3 · Amba Dental Clinic, Alabang",
+   "alt": "Dr. Renoir Amba beside his ROSON DX-A3 at Amba Dental Clinic, Alabang",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/dentasource/posts/122180417342480133"
+   }
+  },
+  {
+   "id": "n-clinic-upgrade-cavite-roson-dx-a3s-v019-1",
+   "kind": "photo",
+   "src": "/images/news/clinic-upgrade-cavite-roson-dx-a3s/v019-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3S · Cavite",
+   "alt": "DX-A3S · Cavite",
+   "source": {
+    "platform": "news",
+    "url": "/news/clinic-upgrade-cavite-roson-dx-a3s"
+   }
+  },
+  {
+   "id": "v-1701745900994914",
+   "kind": "video",
+   "reel": "1701745900994914",
+   "src": "/cinema/reels/1701745900994914.mp4",
+   "hd": "/cinema/reels/hd/1701745900994914.mp4",
+   "poster": "/cinema/reels/1701745900994914.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 60.72,
+   "tag": "DX-S3 · Delivered",
+   "alt": "A delivery going out",
+   "source": null
+  },
+  {
+   "id": "n-custom-color-roson-dx-a3-cabatuan-isabel-v100-1",
+   "kind": "photo",
+   "src": "/images/news/custom-color-roson-dx-a3-cabatuan-isabela/v100-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3 · Cabatuan, Isabela",
+   "alt": "DX-A3 · Cabatuan, Isabela",
+   "source": {
+    "platform": "news",
+    "url": "/news/custom-color-roson-dx-a3-cabatuan-isabela"
+   }
+  },
+  {
+   "id": "n-dental-chair-delivery-occidental-mindoro-v023-1",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-delivery-occidental-mindoro/v023-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Delivery · Occidental Mindoro",
+   "alt": "Delivery · Occidental Mindoro",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-delivery-occidental-mindoro"
+   }
+  },
+  {
+   "id": "n-dental-chair-installation-cabuyao-laguna-v081-1",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-installation-cabuyao-laguna/v081-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install · Cabuyao, Laguna",
+   "alt": "Install · Cabuyao, Laguna",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-installation-cabuyao-laguna"
+   }
+  },
+  {
+   "id": "v-924087053827979",
+   "kind": "video",
+   "reel": "924087053827979",
+   "src": "/cinema/reels/924087053827979.mp4",
+   "hd": "/cinema/reels/hd/924087053827979.mp4",
+   "poster": "/cinema/reels/924087053827979.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 54.7,
+   "tag": "DX-N2 Pro · Doc Jake",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-dental-chair-installation-mandaluyong-v020-3",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-installation-mandaluyong/v020-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install · Mandaluyong",
+   "alt": "Install · Mandaluyong",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-installation-mandaluyong"
+   }
+  },
+  {
+   "id": "n-install-2026-og-install",
+   "kind": "photo",
+   "src": "/images/news/install-2026/og-install.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install day",
+   "alt": "Install day",
+   "source": {
+    "platform": "news",
+    "url": "/news/install-2026"
+   }
+  },
+  {
+   "id": "n-old-chair-out-roson-dx-a3-in-v098-1",
+   "kind": "photo",
+   "src": "/images/news/old-chair-out-roson-dx-a3-in/v098-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Old chair out, DX-A3 in",
+   "alt": "Old chair out, DX-A3 in",
+   "source": {
+    "platform": "news",
+    "url": "/news/old-chair-out-roson-dx-a3-in"
+   }
+  },
+  {
+   "id": "v-3312264415609418",
+   "kind": "video",
+   "reel": "3312264415609418",
+   "src": "/cinema/reels/3312264415609418.mp4",
+   "hd": "/cinema/reels/hd/3312264415609418.mp4",
+   "poster": "/cinema/reels/3312264415609418.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 81.89,
+   "tag": "Delivery · Occidental Mindoro",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-roson-a3l-delivery-pangasinan-v003-1",
+   "kind": "photo",
+   "src": "/images/news/roson-a3l-delivery-pangasinan/v003-1.jpg",
+   "w": 1076,
+   "h": 1914,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3L · Pangasinan",
+   "alt": "DX-A3L · Pangasinan",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-a3l-delivery-pangasinan"
+   }
+  },
+  {
+   "id": "n-roson-dental-chair-delivery-sta-maria-bu-v301-4",
+   "kind": "photo",
+   "src": "/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-4.jpg",
+   "w": 360,
+   "h": 640,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Delivery · Sta. Maria, Bulacan",
+   "alt": "Delivery · Sta. Maria, Bulacan",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dental-chair-delivery-sta-maria-bulacan-2025"
+   }
+  },
+  {
+   "id": "n-roson-dx-a3-dobles-teylan-dental-care-v091-1",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3-dobles-teylan-dental-care/v091-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3 · Dobles-Teylan Dental Care",
+   "alt": "DX-A3 · Dobles-Teylan Dental Care",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3-dobles-teylan-dental-care"
+   }
+  },
+  {
+   "id": "v-1249814683272078",
+   "kind": "video",
+   "reel": "1249814683272078",
+   "src": "/cinema/reels/1249814683272078.mp4",
+   "hd": "/cinema/reels/hd/1249814683272078.mp4",
+   "poster": "/cinema/reels/1249814683272078.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 39.06,
+   "tag": "Clinic upgrade · Cavite",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-roson-dx-a3s-delivery-taguig-v103-2",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3s-delivery-taguig/v103-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3S · Taguig",
+   "alt": "DX-A3S · Taguig",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3s-delivery-taguig"
+   }
+  },
+  {
+   "id": "n-roson-dx-a3s-installation-pampanga-v017-3",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3s-installation-pampanga/v017-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3S · Pampanga",
+   "alt": "DX-A3S · Pampanga",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3s-installation-pampanga"
+   }
+  },
+  {
+   "id": "n-roson-dx-n1-installed-general-trias-cavi-v308-1",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n1-installed-general-trias-cavite-2025/v308-1.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N1 · General Trias, Cavite",
+   "alt": "DX-N1 · General Trias, Cavite",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n1-installed-general-trias-cavite-2025"
+   }
+  },
+  {
+   "id": "v-3248225922025033",
+   "kind": "video",
+   "reel": "3248225922025033",
+   "src": "/cinema/reels/3248225922025033.mp4",
+   "hd": "/cinema/reels/hd/3248225922025033.mp4",
+   "poster": "/cinema/reels/3248225922025033.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 56.39,
+   "tag": "DX-A3S · Pampanga",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-roson-dx-n1-installed-quezon-city-june-2-v311-1",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N1 · Quezon City",
+   "alt": "DX-N1 · Quezon City",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n1-installed-quezon-city-june-2025"
+   }
+  },
+  {
+   "id": "n-roson-dx-n2-pro-installation-doc-jake-v042-1",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n2-pro-installation-doc-jake/v042-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N2 Pro · Doc Jake",
+   "alt": "DX-N2 Pro · Doc Jake",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n2-pro-installation-doc-jake"
+   }
+  },
+  {
+   "id": "n-roson-dx-s3-installation-balanga-bataan-v201-1",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-s3-installation-balanga-bataan/v201-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-S3 · Balanga, Bataan",
+   "alt": "DX-S3 · Balanga, Bataan",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-s3-installation-balanga-bataan"
+   }
+  },
+  {
+   "id": "v-25872895762382044",
+   "kind": "video",
+   "reel": "25872895762382044",
+   "src": "/cinema/reels/25872895762382044.mp4",
+   "hd": "/cinema/reels/hd/25872895762382044.mp4",
+   "poster": "/cinema/reels/25872895762382044.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 47.5,
+   "tag": "DX-S3 · Delivered",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-roson-dx-s3-premium-package-installation-v015-3",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-s3-premium-package-installation/v015-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-S3 premium package",
+   "alt": "DX-S3 premium package",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-s3-premium-package-installation"
+   }
+  },
+  {
+   "id": "n-three-deliveries-one-week-dx-s3-dx-n2-pr-v046-1",
+   "kind": "photo",
+   "src": "/images/news/three-deliveries-one-week-dx-s3-dx-n2-pro/v046-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Three deliveries, one week",
+   "alt": "Three deliveries, one week",
+   "source": {
+    "platform": "news",
+    "url": "/news/three-deliveries-one-week-dx-s3-dx-n2-pro"
+   }
+  },
+  {
+   "id": "n-two-roson-dental-chairs-delivered-march--v306-1",
+   "kind": "photo",
+   "src": "/images/news/two-roson-dental-chairs-delivered-march-2025/v306-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Two chairs delivered",
+   "alt": "Two chairs delivered",
+   "source": {
+    "platform": "news",
+    "url": "/news/two-roson-dental-chairs-delivered-march-2025"
+   }
+  },
+  {
+   "id": "v-903299792221071",
+   "kind": "video",
+   "reel": "903299792221071",
+   "src": "/cinema/reels/903299792221071.mp4",
+   "hd": "/cinema/reels/hd/903299792221071.mp4",
+   "poster": "/cinema/reels/903299792221071.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 26.25,
+   "tag": "DX-A3L · Pangasinan",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-two-roson-dx-a3-caloocan-contract-to-chr-v212-1",
+   "kind": "photo",
+   "src": "/images/news/two-roson-dx-a3-caloocan-contract-to-christmas-delivery/v212-1.jpg",
+   "w": 1080,
+   "h": 1440,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Two DX-A3 · Caloocan",
+   "alt": "Two DX-A3 · Caloocan",
+   "source": {
+    "platform": "news",
+    "url": "/news/two-roson-dx-a3-caloocan-contract-to-christmas-delivery"
+   }
+  },
+  {
+   "id": "n-two-roson-dx-s3-ignacio-dental-clinic-v089-1",
+   "kind": "photo",
+   "src": "/images/news/two-roson-dx-s3-ignacio-dental-clinic/v089-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Two DX-S3 · Ignacio Dental Clinic",
+   "alt": "Two DX-S3 · Ignacio Dental Clinic",
+   "source": {
+    "platform": "news",
+    "url": "/news/two-roson-dx-s3-ignacio-dental-clinic"
+   }
+  },
+  {
+   "id": "at-their-clinic-703253-815",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "At their clinic",
+   "event": "Clinic install (Occidental Mindoro)",
+   "date": "2026-03-20",
+   "alt": "A dentist holding a DentaSource and ROSON sign with two installers, one giving a thumbs-up, beside the new chair",
+   "source": {
+    "platform": "tiktok",
+    "url": "https://www.tiktok.com/@dentasourcedirect/video/7619288803592703253"
+   },
+   "src": "/images/clients/at-their-clinic-703253-815.jpg",
+   "w": 576,
+   "h": 1024
+  },
+  {
+   "id": "v-1873040906635560",
+   "kind": "video",
+   "reel": "1873040906635560",
+   "src": "/cinema/reels/1873040906635560.mp4",
+   "hd": "/cinema/reels/hd/1873040906635560.mp4",
+   "poster": "/cinema/reels/1873040906635560.jpg",
+   "w": 720,
+   "h": 960,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 27.27,
+   "tag": "Two DX-A3 before Christmas",
+   "alt": "A delivery going out",
+   "source": null
+  },
+  {
+   "id": "n-clinic-upgrade-cavite-roson-dx-a3s-v019-2",
+   "kind": "photo",
+   "src": "/images/news/clinic-upgrade-cavite-roson-dx-a3s/v019-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3S · Cavite",
+   "alt": "DX-A3S · Cavite",
+   "source": {
+    "platform": "news",
+    "url": "/news/clinic-upgrade-cavite-roson-dx-a3s"
+   }
+  },
+  {
+   "id": "n-custom-color-roson-dx-a3-cabatuan-isabel-v100-2",
+   "kind": "photo",
+   "src": "/images/news/custom-color-roson-dx-a3-cabatuan-isabela/v100-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3 · Cabatuan, Isabela",
+   "alt": "DX-A3 · Cabatuan, Isabela",
+   "source": {
+    "platform": "news",
+    "url": "/news/custom-color-roson-dx-a3-cabatuan-isabela"
+   }
+  },
+  {
+   "id": "n-dental-chair-delivery-occidental-mindoro-v023-2",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-delivery-occidental-mindoro/v023-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Delivery · Occidental Mindoro",
+   "alt": "Delivery · Occidental Mindoro",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-delivery-occidental-mindoro"
+   }
+  },
+  {
+   "id": "v-2101453593669620",
+   "kind": "video",
+   "reel": "2101453593669620",
+   "src": "/cinema/reels/2101453593669620.mp4",
+   "hd": "/cinema/reels/hd/2101453593669620.mp4",
+   "poster": "/cinema/reels/2101453593669620.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 50.3,
+   "tag": "DX-N1 · Quezon City",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-dental-chair-installation-cabuyao-laguna-v081-2",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-installation-cabuyao-laguna/v081-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install · Cabuyao, Laguna",
+   "alt": "Install · Cabuyao, Laguna",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-installation-cabuyao-laguna"
+   }
+  },
+  {
+   "id": "n-dental-chair-installation-mandaluyong-v020-4",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-installation-mandaluyong/v020-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install · Mandaluyong",
+   "alt": "Install · Mandaluyong",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-installation-mandaluyong"
+   }
+  },
+  {
+   "id": "n-install-2026-step-01",
+   "kind": "photo",
+   "src": "/images/news/install-2026/step-01.jpg",
+   "w": 1280,
+   "h": 720,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install day",
+   "alt": "Install day",
+   "source": {
+    "platform": "news",
+    "url": "/news/install-2026"
+   }
+  },
+  {
+   "id": "v-1340525937239978",
+   "kind": "video",
+   "reel": "1340525937239978",
+   "src": "/cinema/reels/1340525937239978.mp4",
+   "hd": "/cinema/reels/hd/1340525937239978.mp4",
+   "poster": "/cinema/reels/1340525937239978.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 55.68,
+   "tag": "S900 Pro · Catanauan, Quezon",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-old-chair-out-roson-dx-a3-in-v098-2",
+   "kind": "photo",
+   "src": "/images/news/old-chair-out-roson-dx-a3-in/v098-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Old chair out, DX-A3 in",
+   "alt": "Old chair out, DX-A3 in",
+   "source": {
+    "platform": "news",
+    "url": "/news/old-chair-out-roson-dx-a3-in"
+   }
+  },
+  {
+   "id": "n-roson-a3l-delivery-pangasinan-v003-4",
+   "kind": "photo",
+   "src": "/images/news/roson-a3l-delivery-pangasinan/v003-4.jpg",
+   "w": 1076,
+   "h": 1914,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3L · Pangasinan",
+   "alt": "DX-A3L · Pangasinan",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-a3l-delivery-pangasinan"
+   }
+  },
+  {
+   "id": "n-roson-dental-chair-delivery-sta-maria-bu-v301-5",
+   "kind": "photo",
+   "src": "/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-5.jpg",
+   "w": 360,
+   "h": 640,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Delivery · Sta. Maria, Bulacan",
+   "alt": "Delivery · Sta. Maria, Bulacan",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dental-chair-delivery-sta-maria-bulacan-2025"
+   }
+  },
+  {
+   "id": "v-1360163231895400",
+   "kind": "video",
+   "reel": "1360163231895400",
+   "src": "/cinema/reels/1360163231895400.mp4",
+   "hd": "/cinema/reels/hd/1360163231895400.mp4",
+   "poster": "/cinema/reels/1360163231895400.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 57.2,
+   "tag": "DX-N1 · General Trias, Cavite",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-roson-dx-a3-dobles-teylan-dental-care-v091-2",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3-dobles-teylan-dental-care/v091-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3 · Dobles-Teylan Dental Care",
+   "alt": "DX-A3 · Dobles-Teylan Dental Care",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3-dobles-teylan-dental-care"
+   }
+  },
+  {
+   "id": "n-roson-dx-a3s-delivery-taguig-v103-4",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3s-delivery-taguig/v103-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3S · Taguig",
+   "alt": "DX-A3S · Taguig",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3s-delivery-taguig"
+   }
+  },
+  {
+   "id": "n-roson-dx-a3s-installation-pampanga-v017-4",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3s-installation-pampanga/v017-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3S · Pampanga",
+   "alt": "DX-A3S · Pampanga",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3s-installation-pampanga"
+   }
+  },
+  {
+   "id": "v-682494724272698",
+   "kind": "video",
+   "reel": "682494724272698",
+   "src": "/cinema/reels/682494724272698.mp4",
+   "hd": "/cinema/reels/hd/682494724272698.mp4",
+   "poster": "/cinema/reels/682494724272698.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 64.25,
+   "tag": "Install day",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-roson-dx-n1-installed-general-trias-cavi-v308-2",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n1-installed-general-trias-cavite-2025/v308-2.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N1 · General Trias, Cavite",
+   "alt": "DX-N1 · General Trias, Cavite",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n1-installed-general-trias-cavite-2025"
+   }
+  },
+  {
+   "id": "n-roson-dx-n1-installed-quezon-city-june-2-v311-2",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N1 · Quezon City",
+   "alt": "DX-N1 · Quezon City",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n1-installed-quezon-city-june-2025"
+   }
+  },
+  {
+   "id": "n-roson-dx-n2-pro-installation-doc-jake-v042-2",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n2-pro-installation-doc-jake/v042-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N2 Pro · Doc Jake",
+   "alt": "DX-N2 Pro · Doc Jake",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n2-pro-installation-doc-jake"
+   }
+  },
+  {
+   "id": "v-1862434721226777",
+   "kind": "video",
+   "reel": "1862434721226777",
+   "src": "/cinema/reels/1862434721226777.mp4",
+   "hd": "/cinema/reels/hd/1862434721226777.mp4",
+   "poster": "/cinema/reels/1862434721226777.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 51.9,
+   "tag": "Delivery day",
+   "alt": "A delivery going out",
+   "source": null
+  },
+  {
+   "id": "n-roson-dx-s3-installation-balanga-bataan-v201-2",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-s3-installation-balanga-bataan/v201-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-S3 · Balanga, Bataan",
+   "alt": "DX-S3 · Balanga, Bataan",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-s3-installation-balanga-bataan"
+   }
+  },
+  {
+   "id": "n-roson-dx-s3-premium-package-installation-v015-4",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-s3-premium-package-installation/v015-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-S3 premium package",
+   "alt": "DX-S3 premium package",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-s3-premium-package-installation"
+   }
+  },
+  {
+   "id": "n-three-deliveries-one-week-dx-s3-dx-n2-pr-v046-2",
+   "kind": "photo",
+   "src": "/images/news/three-deliveries-one-week-dx-s3-dx-n2-pro/v046-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Three deliveries, one week",
+   "alt": "Three deliveries, one week",
+   "source": {
+    "platform": "news",
+    "url": "/news/three-deliveries-one-week-dx-s3-dx-n2-pro"
+   }
+  },
+  {
+   "id": "v-1585400655485928",
+   "kind": "video",
+   "reel": "1585400655485928",
+   "src": "/cinema/reels/1585400655485928.mp4",
+   "hd": "/cinema/reels/hd/1585400655485928.mp4",
+   "poster": "/cinema/reels/1585400655485928.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 48.76,
+   "tag": "Install day",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-two-roson-dental-chairs-delivered-march--v306-2",
+   "kind": "photo",
+   "src": "/images/news/two-roson-dental-chairs-delivered-march-2025/v306-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Two chairs delivered",
+   "alt": "Two chairs delivered",
+   "source": {
+    "platform": "news",
+    "url": "/news/two-roson-dental-chairs-delivered-march-2025"
+   }
+  },
+  {
+   "id": "n-two-roson-dx-s3-ignacio-dental-clinic-v089-2",
+   "kind": "photo",
+   "src": "/images/news/two-roson-dx-s3-ignacio-dental-clinic/v089-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Two DX-S3 · Ignacio Dental Clinic",
+   "alt": "Two DX-S3 · Ignacio Dental Clinic",
+   "source": {
+    "platform": "news",
+    "url": "/news/two-roson-dx-s3-ignacio-dental-clinic"
+   }
+  },
+  {
+   "id": "h-amba-2",
+   "kind": "photo",
+   "src": "/images/heart/amba-dental-clinic-alabang-2.webp",
+   "w": 350,
+   "h": 386,
+   "brands": [
+    "roson"
+   ],
+   "tag": "ROSON DX-A3 · Amba Dental Clinic, Alabang",
+   "alt": "The new ROSON DX-A3 dental chair in the Amba Dental Clinic operatory, Alabang",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/dentasource/posts/122180417342480133"
+   }
+  },
+  {
+   "id": "v-1278774399878877",
+   "kind": "video",
+   "reel": "1278774399878877",
+   "src": "/cinema/reels/1278774399878877.mp4",
+   "hd": "/cinema/reels/hd/1278774399878877.mp4",
+   "poster": "/cinema/reels/1278774399878877.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 26.55,
+   "tag": "Install day",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-custom-color-roson-dx-a3-cabatuan-isabel-v100-3",
+   "kind": "photo",
+   "src": "/images/news/custom-color-roson-dx-a3-cabatuan-isabela/v100-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3 · Cabatuan, Isabela",
+   "alt": "DX-A3 · Cabatuan, Isabela",
+   "source": {
+    "platform": "news",
+    "url": "/news/custom-color-roson-dx-a3-cabatuan-isabela"
+   }
+  },
+  {
+   "id": "n-dental-chair-delivery-occidental-mindoro-v023-3",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-delivery-occidental-mindoro/v023-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Delivery · Occidental Mindoro",
+   "alt": "Delivery · Occidental Mindoro",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-delivery-occidental-mindoro"
+   }
+  },
+  {
+   "id": "n-dental-chair-installation-cabuyao-laguna-v081-3",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-installation-cabuyao-laguna/v081-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install · Cabuyao, Laguna",
+   "alt": "Install · Cabuyao, Laguna",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-installation-cabuyao-laguna"
+   }
+  },
+  {
+   "id": "v-1600633247921603",
+   "kind": "video",
+   "reel": "1600633247921603",
+   "src": "/cinema/reels/1600633247921603.mp4",
+   "hd": "/cinema/reels/hd/1600633247921603.mp4",
+   "poster": "/cinema/reels/1600633247921603.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 37.8,
+   "tag": "Pre-delivery inspection",
+   "alt": "A delivery going out",
+   "source": null
+  },
+  {
+   "id": "n-dental-chair-installation-mandaluyong-v020-5",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-installation-mandaluyong/v020-5.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install · Mandaluyong",
+   "alt": "Install · Mandaluyong",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-installation-mandaluyong"
+   }
+  },
+  {
+   "id": "n-install-2026-step-02",
+   "kind": "photo",
+   "src": "/images/news/install-2026/step-02.jpg",
+   "w": 1280,
+   "h": 720,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install day",
+   "alt": "Install day",
+   "source": {
+    "platform": "news",
+    "url": "/news/install-2026"
+   }
+  },
+  {
+   "id": "n-old-chair-out-roson-dx-a3-in-v098-3",
+   "kind": "photo",
+   "src": "/images/news/old-chair-out-roson-dx-a3-in/v098-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Old chair out, DX-A3 in",
+   "alt": "Old chair out, DX-A3 in",
+   "source": {
+    "platform": "news",
+    "url": "/news/old-chair-out-roson-dx-a3-in"
+   }
+  },
+  {
+   "id": "v-34809738205339742",
+   "kind": "video",
+   "reel": "34809738205339742",
+   "src": "/cinema/reels/34809738205339742.mp4",
+   "hd": "/cinema/reels/hd/34809738205339742.mp4",
+   "poster": "/cinema/reels/34809738205339742.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 49.6,
+   "tag": "Pre-delivery inspection",
+   "alt": "Pre delivery inspection before a unit leaves the stockroom",
+   "source": null
+  },
+  {
+   "id": "n-roson-a3l-delivery-pangasinan-v003-5",
+   "kind": "photo",
+   "src": "/images/news/roson-a3l-delivery-pangasinan/v003-5.jpg",
+   "w": 1076,
+   "h": 1914,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3L · Pangasinan",
+   "alt": "DX-A3L · Pangasinan",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-a3l-delivery-pangasinan"
+   }
+  },
+  {
+   "id": "n-roson-dental-chair-delivery-sta-maria-bu-v301-6",
+   "kind": "photo",
+   "src": "/images/news/roson-dental-chair-delivery-sta-maria-bulacan-2025/v301-6.jpg",
+   "w": 360,
+   "h": 640,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Delivery · Sta. Maria, Bulacan",
+   "alt": "Delivery · Sta. Maria, Bulacan",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dental-chair-delivery-sta-maria-bulacan-2025"
+   }
+  },
+  {
+   "id": "n-roson-dx-a3-dobles-teylan-dental-care-v091-3",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3-dobles-teylan-dental-care/v091-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3 · Dobles-Teylan Dental Care",
+   "alt": "DX-A3 · Dobles-Teylan Dental Care",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3-dobles-teylan-dental-care"
+   }
+  },
+  {
+   "id": "v-1298016768942445",
+   "kind": "video",
+   "reel": "1298016768942445",
+   "src": "/cinema/reels/1298016768942445.mp4",
+   "hd": "/cinema/reels/hd/1298016768942445.mp4",
+   "poster": "/cinema/reels/1298016768942445.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 88.93,
+   "tag": "In our showroom",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-roson-dx-a3s-delivery-taguig-v103-5",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3s-delivery-taguig/v103-5.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3S · Taguig",
+   "alt": "DX-A3S · Taguig",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3s-delivery-taguig"
+   }
+  },
+  {
+   "id": "n-roson-dx-a3s-installation-pampanga-v017-5",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3s-installation-pampanga/v017-5.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3S · Pampanga",
+   "alt": "DX-A3S · Pampanga",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3s-installation-pampanga"
+   }
+  },
+  {
+   "id": "n-roson-dx-n1-installed-general-trias-cavi-v308-3",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n1-installed-general-trias-cavite-2025/v308-3.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N1 · General Trias, Cavite",
+   "alt": "DX-N1 · General Trias, Cavite",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n1-installed-general-trias-cavite-2025"
+   }
+  },
+  {
+   "id": "v-3939554666259608",
+   "kind": "video",
+   "reel": "3939554666259608",
+   "src": "/cinema/reels/3939554666259608.mp4",
+   "hd": "/cinema/reels/hd/3939554666259608.mp4",
+   "poster": "/cinema/reels/3939554666259608.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 39.17,
+   "tag": "DX-A3L",
+   "alt": "On the showroom floor",
+   "source": null
+  },
+  {
+   "id": "n-roson-dx-n1-installed-quezon-city-june-2-v311-3",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N1 · Quezon City",
+   "alt": "DX-N1 · Quezon City",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n1-installed-quezon-city-june-2025"
+   }
+  },
+  {
+   "id": "n-roson-dx-n2-pro-installation-doc-jake-v042-3",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n2-pro-installation-doc-jake/v042-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N2 Pro · Doc Jake",
+   "alt": "DX-N2 Pro · Doc Jake",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n2-pro-installation-doc-jake"
+   }
+  },
+  {
+   "id": "n-roson-dx-s3-installation-balanga-bataan-v201-3",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-s3-installation-balanga-bataan/v201-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-S3 · Balanga, Bataan",
+   "alt": "DX-S3 · Balanga, Bataan",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-s3-installation-balanga-bataan"
+   }
+  },
+  {
+   "id": "v-873165588930729",
+   "kind": "video",
+   "reel": "873165588930729",
+   "src": "/cinema/reels/873165588930729.mp4",
+   "hd": "/cinema/reels/hd/873165588930729.mp4",
+   "poster": "/cinema/reels/873165588930729.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 31.12,
+   "tag": "Try it in our showroom",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-roson-dx-s3-premium-package-installation-v015-5",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-s3-premium-package-installation/v015-5.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-S3 premium package",
+   "alt": "DX-S3 premium package",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-s3-premium-package-installation"
+   }
+  },
+  {
+   "id": "n-three-deliveries-one-week-dx-s3-dx-n2-pr-v046-3",
+   "kind": "photo",
+   "src": "/images/news/three-deliveries-one-week-dx-s3-dx-n2-pro/v046-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Three deliveries, one week",
+   "alt": "Three deliveries, one week",
+   "source": {
+    "platform": "news",
+    "url": "/news/three-deliveries-one-week-dx-s3-dx-n2-pro"
+   }
+  },
+  {
+   "id": "n-two-roson-dental-chairs-delivered-march--v306-3",
+   "kind": "photo",
+   "src": "/images/news/two-roson-dental-chairs-delivered-march-2025/v306-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Two chairs delivered",
+   "alt": "Two chairs delivered",
+   "source": {
+    "platform": "news",
+    "url": "/news/two-roson-dental-chairs-delivered-march-2025"
+   }
+  },
+  {
+   "id": "v-734728242834618",
+   "kind": "video",
+   "reel": "734728242834618",
+   "src": "/cinema/reels/734728242834618.mp4",
+   "hd": "/cinema/reels/hd/734728242834618.mp4",
+   "poster": "/cinema/reels/734728242834618.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 32.44,
+   "tag": "Your colour, your chair",
+   "alt": "On an installation",
+   "source": null
+  },
+  {
+   "id": "n-two-roson-dx-s3-ignacio-dental-clinic-v089-3",
+   "kind": "photo",
+   "src": "/images/news/two-roson-dx-s3-ignacio-dental-clinic/v089-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Two DX-S3 · Ignacio Dental Clinic",
+   "alt": "Two DX-S3 · Ignacio Dental Clinic",
+   "source": {
+    "platform": "news",
+    "url": "/news/two-roson-dx-s3-ignacio-dental-clinic"
+   }
+  },
+  {
+   "id": "digicon-2026-557084-160",
+   "kind": "photo",
+   "brands": [
+    "roson"
+   ],
+   "tag": "DIGICON 2026",
+   "event": "DIGICON 2026",
+   "date": "2026-08-13",
+   "alt": "A dentist in a beige blazer examines a small instrument handed over by a DentaSource staff member at a ROSON-branded table",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/845243108557084/"
+   },
+   "src": "/images/clients/digicon-2026-557084-160.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "n-custom-color-roson-dx-a3-cabatuan-isabel-v100-4",
+   "kind": "photo",
+   "src": "/images/news/custom-color-roson-dx-a3-cabatuan-isabela/v100-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3 · Cabatuan, Isabela",
+   "alt": "DX-A3 · Cabatuan, Isabela",
+   "source": {
+    "platform": "news",
+    "url": "/news/custom-color-roson-dx-a3-cabatuan-isabela"
+   }
+  },
+  {
+   "id": "v-field-04",
+   "kind": "video",
+   "reel": "field-04",
+   "src": "/reels/field-04.mp4",
+   "hd": "/cinema/reels/hd/field-04.mp4",
+   "poster": "/reels/field-04.jpg",
+   "w": 480,
+   "h": 854,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 32.22,
+   "tag": "On the road",
+   "alt": "Unloading the van",
+   "source": null
+  },
+  {
+   "id": "n-dental-chair-delivery-occidental-mindoro-v023-4",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-delivery-occidental-mindoro/v023-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Delivery · Occidental Mindoro",
+   "alt": "Delivery · Occidental Mindoro",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-delivery-occidental-mindoro"
+   }
+  },
+  {
+   "id": "n-dental-chair-installation-cabuyao-laguna-v081-4",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-installation-cabuyao-laguna/v081-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install · Cabuyao, Laguna",
+   "alt": "Install · Cabuyao, Laguna",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-installation-cabuyao-laguna"
+   }
+  },
+  {
+   "id": "n-dental-chair-installation-mandaluyong-v020-6",
+   "kind": "photo",
+   "src": "/images/news/dental-chair-installation-mandaluyong/v020-6.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install · Mandaluyong",
+   "alt": "Install · Mandaluyong",
+   "source": {
+    "platform": "news",
+    "url": "/news/dental-chair-installation-mandaluyong"
+   }
+  },
+  {
+   "id": "v-field-08",
+   "kind": "video",
+   "reel": "field-08",
+   "src": "/reels/field-08.mp4",
+   "hd": null,
+   "poster": "/reels/field-08.jpg",
+   "w": 480,
+   "h": 854,
+   "brands": [
+    "roson"
+   ],
+   "endAt": null,
+   "tag": "On the road",
+   "alt": "A delivery run arriving at a clinic, the van unloaded and the unit carried in",
+   "source": null
+  },
+  {
+   "id": "n-install-2026-step-03",
+   "kind": "photo",
+   "src": "/images/news/install-2026/step-03.jpg",
+   "w": 1280,
+   "h": 720,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Install day",
+   "alt": "Install day",
+   "source": {
+    "platform": "news",
+    "url": "/news/install-2026"
+   }
+  },
+  {
+   "id": "n-old-chair-out-roson-dx-a3-in-v098-4",
+   "kind": "photo",
+   "src": "/images/news/old-chair-out-roson-dx-a3-in/v098-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "Old chair out, DX-A3 in",
+   "alt": "Old chair out, DX-A3 in",
+   "source": {
+    "platform": "news",
+    "url": "/news/old-chair-out-roson-dx-a3-in"
+   }
+  },
+  {
+   "id": "n-roson-a3l-delivery-pangasinan-v003-6",
+   "kind": "photo",
+   "src": "/images/news/roson-a3l-delivery-pangasinan/v003-6.jpg",
+   "w": 1076,
+   "h": 1914,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3L · Pangasinan",
+   "alt": "DX-A3L · Pangasinan",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-a3l-delivery-pangasinan"
+   }
+  },
+  {
+   "id": "v-field-13",
+   "kind": "video",
+   "reel": "field-13",
+   "src": "/reels/field-13.mp4",
+   "hd": null,
+   "poster": "/reels/field-13.jpg",
+   "w": 480,
+   "h": 854,
+   "brands": [
+    "roson"
+   ],
+   "endAt": null,
+   "tag": "In our showroom",
+   "alt": "An evening sweep across the showroom floor",
+   "source": null
+  },
+  {
+   "id": "n-roson-dx-a3-dobles-teylan-dental-care-v091-4",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3-dobles-teylan-dental-care/v091-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3 · Dobles-Teylan Dental Care",
+   "alt": "DX-A3 · Dobles-Teylan Dental Care",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3-dobles-teylan-dental-care"
+   }
+  },
+  {
+   "id": "n-roson-dx-a3s-delivery-taguig-v103-6",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3s-delivery-taguig/v103-6.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3S · Taguig",
+   "alt": "DX-A3S · Taguig",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3s-delivery-taguig"
+   }
+  },
+  {
+   "id": "n-roson-dx-a3s-installation-pampanga-v017-6",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-a3s-installation-pampanga/v017-6.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-A3S · Pampanga",
+   "alt": "DX-A3S · Pampanga",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-a3s-installation-pampanga"
+   }
+  },
+  {
+   "id": "v-field-15",
+   "kind": "video",
+   "reel": "field-15",
+   "src": "/reels/field-15.mp4",
+   "hd": null,
+   "poster": "/reels/field-15.jpg",
+   "w": 480,
+   "h": 854,
+   "brands": [
+    "roson"
+   ],
+   "endAt": null,
+   "tag": "On the road",
+   "alt": "Travelling to a job by air",
+   "source": null
+  },
+  {
+   "id": "n-roson-dx-n1-installed-general-trias-cavi-v308-4",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n1-installed-general-trias-cavite-2025/v308-4.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N1 · General Trias, Cavite",
+   "alt": "DX-N1 · General Trias, Cavite",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n1-installed-general-trias-cavite-2025"
+   }
+  },
+  {
+   "id": "n-roson-dx-n1-installed-quezon-city-june-2-v311-4",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n1-installed-quezon-city-june-2025/v311-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N1 · Quezon City",
+   "alt": "DX-N1 · Quezon City",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n1-installed-quezon-city-june-2025"
+   }
+  },
+  {
+   "id": "n-roson-dx-n2-pro-installation-doc-jake-v042-4",
+   "kind": "photo",
+   "src": "/images/news/roson-dx-n2-pro-installation-doc-jake/v042-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "roson"
+   ],
+   "tag": "DX-N2 Pro · Doc Jake",
+   "alt": "DX-N2 Pro · Doc Jake",
+   "source": {
+    "platform": "news",
+    "url": "/news/roson-dx-n2-pro-installation-doc-jake"
+   }
+  },
+  {
+   "id": "v-field-17",
+   "kind": "video",
+   "reel": "field-17",
+   "src": "/reels/field-17.mp4",
+   "hd": "/cinema/reels/hd/field-17.mp4",
+   "poster": "/reels/field-17.jpg",
+   "w": 480,
+   "h": 854,
+   "brands": [
+    "roson"
+   ],
+   "endAt": 29.68,
+   "tag": "On the road",
+   "alt": "Setting up at the clinic",
+   "source": null
+  }
+ ],
+ "denjoy": [
+  {
+   "id": "pda-convention-2026-447946-110",
+   "kind": "photo",
+   "brands": [
+    "denjoy",
+    "dsd"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "A smiling visitor with a DentaSource tote waves beside a staff member under the Denjoy sign",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-110.jpg",
+   "w": 720,
+   "h": 1049
+  },
+  {
+   "id": "n-dentist-testimonial-denjoy-worth-it-v130-1",
+   "kind": "photo",
+   "src": "/images/news/dentist-testimonial-denjoy-worth-it/v130-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "A dentist on Denjoy",
+   "alt": "A dentist on Denjoy",
+   "source": {
+    "platform": "news",
+    "url": "/news/dentist-testimonial-denjoy-worth-it"
+   }
+  },
+  {
+   "id": "n-partner-clinic-switches-to-denjoy-v109-1",
+   "kind": "photo",
+   "src": "/images/news/partner-clinic-switches-to-denjoy/v109-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "A partner clinic switches",
+   "alt": "A partner clinic switches",
+   "source": {
+    "platform": "news",
+    "url": "/news/partner-clinic-switches-to-denjoy"
+   }
+  },
+  {
+   "id": "v-1968490167144330",
+   "kind": "video",
+   "reel": "1968490167144330",
+   "src": "/cinema/reels/1968490167144330.mp4",
+   "hd": "/cinema/reels/hd/1968490167144330.mp4",
+   "poster": "/cinema/reels/1968490167144330.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 23.25,
+   "tag": "A partner clinic switches",
+   "alt": "On the showroom floor",
+   "source": null
+  },
+  {
+   "id": "n-denjoy-first-arrivals-unboxing-og",
+   "kind": "photo",
+   "src": "/images/news/denjoy-first-arrivals-unboxing/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "First arrivals",
+   "alt": "First arrivals",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-first-arrivals-unboxing"
+   }
+  },
+  {
+   "id": "n-inside-the-box-genuine-denjoy-og",
+   "kind": "photo",
+   "src": "/images/news/inside-the-box-genuine-denjoy/og.jpg",
+   "w": 1200,
+   "h": 630,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Inside the box",
+   "alt": "Inside the box",
+   "source": {
+    "platform": "news",
+    "url": "/news/inside-the-box-genuine-denjoy"
+   }
+  },
+  {
+   "id": "n-denjoy-coming-to-dentasource-may-2026-p040-1",
+   "kind": "photo",
+   "src": "/images/news/denjoy-coming-to-dentasource-may-2026/p040-1.jpg",
+   "w": 900,
+   "h": 1200,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Coming to DentaSource",
+   "alt": "Coming to DentaSource",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-coming-to-dentasource-may-2026"
+   }
+  },
+  {
+   "id": "v-2794952264198672",
+   "kind": "video",
+   "reel": "2794952264198672",
+   "src": "/cinema/reels/2794952264198672.mp4",
+   "hd": "/cinema/reels/hd/2794952264198672.mp4",
+   "poster": "/cinema/reels/2794952264198672.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 28.93,
+   "tag": "Denjoy in action",
+   "alt": "On the showroom floor",
+   "source": null
+  },
+  {
+   "id": "n-denjoy-meta-endo-pro-workstation-v120-1",
+   "kind": "photo",
+   "src": "/images/news/denjoy-meta-endo-pro-workstation/v120-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Meta Endo Pro",
+   "alt": "Meta Endo Pro",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-meta-endo-pro-workstation"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v077-1",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v077-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-dentist-testimonial-denjoy-worth-it-v130-3",
+   "kind": "photo",
+   "src": "/images/news/dentist-testimonial-denjoy-worth-it/v130-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "A dentist on Denjoy",
+   "alt": "A dentist on Denjoy",
+   "source": {
+    "platform": "news",
+    "url": "/news/dentist-testimonial-denjoy-worth-it"
+   }
+  },
+  {
+   "id": "v-1009011925184152",
+   "kind": "video",
+   "reel": "1009011925184152",
+   "src": "/cinema/reels/1009011925184152.mp4",
+   "hd": "/cinema/reels/hd/1009011925184152.mp4",
+   "poster": "/cinema/reels/1009011925184152.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 18.0,
+   "tag": "Now in the Philippines",
+   "alt": "A delivery going out",
+   "source": null
+  },
+  {
+   "id": "n-partner-clinic-switches-to-denjoy-v109-2",
+   "kind": "photo",
+   "src": "/images/news/partner-clinic-switches-to-denjoy/v109-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy",
+    "kclamp"
+   ],
+   "tag": "A partner clinic switches",
+   "alt": "A partner clinic switches",
+   "source": {
+    "platform": "news",
+    "url": "/news/partner-clinic-switches-to-denjoy"
+   }
+  },
+  {
+   "id": "n-denjoy-first-arrivals-unboxing-v043-1",
+   "kind": "photo",
+   "src": "/images/news/denjoy-first-arrivals-unboxing/v043-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "First arrivals",
+   "alt": "First arrivals",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-first-arrivals-unboxing"
+   }
+  },
+  {
+   "id": "n-inside-the-box-genuine-denjoy-v099-1",
+   "kind": "photo",
+   "src": "/images/news/inside-the-box-genuine-denjoy/v099-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Inside the box",
+   "alt": "Inside the box",
+   "source": {
+    "platform": "news",
+    "url": "/news/inside-the-box-genuine-denjoy"
+   }
+  },
+  {
+   "id": "v-2138686030401963",
+   "kind": "video",
+   "reel": "2138686030401963",
+   "src": "/cinema/reels/2138686030401963.mp4",
+   "hd": "/cinema/reels/hd/2138686030401963.mp4",
+   "poster": "/cinema/reels/2138686030401963.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 44.62,
+   "tag": "Denjoy precision",
+   "alt": "A delivery going out",
+   "source": null
+  },
+  {
+   "id": "n-denjoy-coming-to-dentasource-may-2026-p040-2",
+   "kind": "photo",
+   "src": "/images/news/denjoy-coming-to-dentasource-may-2026/p040-2.jpg",
+   "w": 900,
+   "h": 1200,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Coming to DentaSource",
+   "alt": "Coming to DentaSource",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-coming-to-dentasource-may-2026"
+   }
+  },
+  {
+   "id": "n-denjoy-meta-endo-pro-workstation-v120-2",
+   "kind": "photo",
+   "src": "/images/news/denjoy-meta-endo-pro-workstation/v120-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Meta Endo Pro",
+   "alt": "Meta Endo Pro",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-meta-endo-pro-workstation"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v077-2",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v077-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "v-1376969710960728",
+   "kind": "video",
+   "reel": "1376969710960728",
+   "src": "/cinema/reels/1376969710960728.mp4",
+   "hd": "/cinema/reels/hd/1376969710960728.mp4",
+   "poster": "/cinema/reels/1376969710960728.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 68.05,
+   "tag": "Inside the box",
+   "alt": "On the showroom floor",
+   "source": null
+  },
+  {
+   "id": "n-dentist-testimonial-denjoy-worth-it-v130-5",
+   "kind": "photo",
+   "src": "/images/news/dentist-testimonial-denjoy-worth-it/v130-5.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "A dentist on Denjoy",
+   "alt": "A dentist on Denjoy",
+   "source": {
+    "platform": "news",
+    "url": "/news/dentist-testimonial-denjoy-worth-it"
+   }
+  },
+  {
+   "id": "n-partner-clinic-switches-to-denjoy-v109-3",
+   "kind": "photo",
+   "src": "/images/news/partner-clinic-switches-to-denjoy/v109-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "A partner clinic switches",
+   "alt": "A partner clinic switches",
+   "source": {
+    "platform": "news",
+    "url": "/news/partner-clinic-switches-to-denjoy"
+   }
+  },
+  {
+   "id": "n-denjoy-first-arrivals-unboxing-v043-2",
+   "kind": "photo",
+   "src": "/images/news/denjoy-first-arrivals-unboxing/v043-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "First arrivals",
+   "alt": "First arrivals",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-first-arrivals-unboxing"
+   }
+  },
+  {
+   "id": "v-1632766758415119",
+   "kind": "video",
+   "reel": "1632766758415119",
+   "src": "/cinema/reels/1632766758415119.mp4",
+   "hd": "/cinema/reels/hd/1632766758415119.mp4",
+   "poster": "/cinema/reels/1632766758415119.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 12.75,
+   "tag": "Denjoy endodontics",
+   "alt": "On the showroom floor",
+   "source": null
+  },
+  {
+   "id": "n-inside-the-box-genuine-denjoy-v099-2",
+   "kind": "photo",
+   "src": "/images/news/inside-the-box-genuine-denjoy/v099-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Inside the box",
+   "alt": "Inside the box",
+   "source": {
+    "platform": "news",
+    "url": "/news/inside-the-box-genuine-denjoy"
+   }
+  },
+  {
+   "id": "n-denjoy-coming-to-dentasource-may-2026-p040-3",
+   "kind": "photo",
+   "src": "/images/news/denjoy-coming-to-dentasource-may-2026/p040-3.jpg",
+   "w": 900,
+   "h": 1200,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Coming to DentaSource",
+   "alt": "Coming to DentaSource",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-coming-to-dentasource-may-2026"
+   }
+  },
+  {
+   "id": "n-denjoy-meta-endo-pro-workstation-v120-3",
+   "kind": "photo",
+   "src": "/images/news/denjoy-meta-endo-pro-workstation/v120-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Meta Endo Pro",
+   "alt": "Meta Endo Pro",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-meta-endo-pro-workstation"
+   }
+  },
+  {
+   "id": "v-1968490167144330",
+   "kind": "video",
+   "reel": "1968490167144330",
+   "src": "/cinema/reels/1968490167144330.mp4",
+   "hd": "/cinema/reels/hd/1968490167144330.mp4",
+   "poster": "/cinema/reels/1968490167144330.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 23.25,
+   "tag": "A partner clinic switches",
+   "alt": "On the showroom floor",
+   "source": null
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v077-3",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v077-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-dentist-testimonial-denjoy-worth-it-v130-6",
+   "kind": "photo",
+   "src": "/images/news/dentist-testimonial-denjoy-worth-it/v130-6.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "A dentist on Denjoy",
+   "alt": "A dentist on Denjoy",
+   "source": {
+    "platform": "news",
+    "url": "/news/dentist-testimonial-denjoy-worth-it"
+   }
+  },
+  {
+   "id": "n-partner-clinic-switches-to-denjoy-v109-4",
+   "kind": "photo",
+   "src": "/images/news/partner-clinic-switches-to-denjoy/v109-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy",
+    "kclamp"
+   ],
+   "tag": "A partner clinic switches",
+   "alt": "A partner clinic switches",
+   "source": {
+    "platform": "news",
+    "url": "/news/partner-clinic-switches-to-denjoy"
+   }
+  },
+  {
+   "id": "v-2794952264198672",
+   "kind": "video",
+   "reel": "2794952264198672",
+   "src": "/cinema/reels/2794952264198672.mp4",
+   "hd": "/cinema/reels/hd/2794952264198672.mp4",
+   "poster": "/cinema/reels/2794952264198672.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 28.93,
+   "tag": "Denjoy in action",
+   "alt": "On the showroom floor",
+   "source": null
+  },
+  {
+   "id": "n-inside-the-box-genuine-denjoy-v099-3",
+   "kind": "photo",
+   "src": "/images/news/inside-the-box-genuine-denjoy/v099-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Inside the box",
+   "alt": "Inside the box",
+   "source": {
+    "platform": "news",
+    "url": "/news/inside-the-box-genuine-denjoy"
+   }
+  },
+  {
+   "id": "n-denjoy-coming-to-dentasource-may-2026-p040-4",
+   "kind": "photo",
+   "src": "/images/news/denjoy-coming-to-dentasource-may-2026/p040-4.jpg",
+   "w": 900,
+   "h": 1200,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Coming to DentaSource",
+   "alt": "Coming to DentaSource",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-coming-to-dentasource-may-2026"
+   }
+  },
+  {
+   "id": "n-denjoy-meta-endo-pro-workstation-v120-5",
+   "kind": "photo",
+   "src": "/images/news/denjoy-meta-endo-pro-workstation/v120-5.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Meta Endo Pro",
+   "alt": "Meta Endo Pro",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-meta-endo-pro-workstation"
+   }
+  },
+  {
+   "id": "v-1009011925184152",
+   "kind": "video",
+   "reel": "1009011925184152",
+   "src": "/cinema/reels/1009011925184152.mp4",
+   "hd": "/cinema/reels/hd/1009011925184152.mp4",
+   "poster": "/cinema/reels/1009011925184152.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 18.0,
+   "tag": "Now in the Philippines",
+   "alt": "A delivery going out",
+   "source": null
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v077-4",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v077-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-dentist-testimonial-denjoy-worth-it-v130-7",
+   "kind": "photo",
+   "src": "/images/news/dentist-testimonial-denjoy-worth-it/v130-7.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "A dentist on Denjoy",
+   "alt": "A dentist on Denjoy",
+   "source": {
+    "platform": "news",
+    "url": "/news/dentist-testimonial-denjoy-worth-it"
+   }
+  },
+  {
+   "id": "n-partner-clinic-switches-to-denjoy-v109-5",
+   "kind": "photo",
+   "src": "/images/news/partner-clinic-switches-to-denjoy/v109-5.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "A partner clinic switches",
+   "alt": "A partner clinic switches",
+   "source": {
+    "platform": "news",
+    "url": "/news/partner-clinic-switches-to-denjoy"
+   }
+  },
+  {
+   "id": "v-2138686030401963",
+   "kind": "video",
+   "reel": "2138686030401963",
+   "src": "/cinema/reels/2138686030401963.mp4",
+   "hd": "/cinema/reels/hd/2138686030401963.mp4",
+   "poster": "/cinema/reels/2138686030401963.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 44.62,
+   "tag": "Denjoy precision",
+   "alt": "A delivery going out",
+   "source": null
+  },
+  {
+   "id": "n-inside-the-box-genuine-denjoy-v099-4",
+   "kind": "photo",
+   "src": "/images/news/inside-the-box-genuine-denjoy/v099-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Inside the box",
+   "alt": "Inside the box",
+   "source": {
+    "platform": "news",
+    "url": "/news/inside-the-box-genuine-denjoy"
+   }
+  },
+  {
+   "id": "n-denjoy-meta-endo-pro-workstation-v120-6",
+   "kind": "photo",
+   "src": "/images/news/denjoy-meta-endo-pro-workstation/v120-6.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Meta Endo Pro",
+   "alt": "Meta Endo Pro",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-meta-endo-pro-workstation"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v077-5",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v077-5.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "v-1376969710960728",
+   "kind": "video",
+   "reel": "1376969710960728",
+   "src": "/cinema/reels/1376969710960728.mp4",
+   "hd": "/cinema/reels/hd/1376969710960728.mp4",
+   "poster": "/cinema/reels/1376969710960728.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 68.05,
+   "tag": "Inside the box",
+   "alt": "On the showroom floor",
+   "source": null
+  },
+  {
+   "id": "n-dentist-testimonial-denjoy-worth-it-v130-8",
+   "kind": "photo",
+   "src": "/images/news/dentist-testimonial-denjoy-worth-it/v130-8.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "A dentist on Denjoy",
+   "alt": "A dentist on Denjoy",
+   "source": {
+    "platform": "news",
+    "url": "/news/dentist-testimonial-denjoy-worth-it"
+   }
+  },
+  {
+   "id": "n-partner-clinic-switches-to-denjoy-v109-6",
+   "kind": "photo",
+   "src": "/images/news/partner-clinic-switches-to-denjoy/v109-6.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "A partner clinic switches",
+   "alt": "A partner clinic switches",
+   "source": {
+    "platform": "news",
+    "url": "/news/partner-clinic-switches-to-denjoy"
+   }
+  },
+  {
+   "id": "n-inside-the-box-genuine-denjoy-v099-5",
+   "kind": "photo",
+   "src": "/images/news/inside-the-box-genuine-denjoy/v099-5.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Inside the box",
+   "alt": "Inside the box",
+   "source": {
+    "platform": "news",
+    "url": "/news/inside-the-box-genuine-denjoy"
+   }
+  },
+  {
+   "id": "v-1632766758415119",
+   "kind": "video",
+   "reel": "1632766758415119",
+   "src": "/cinema/reels/1632766758415119.mp4",
+   "hd": "/cinema/reels/hd/1632766758415119.mp4",
+   "poster": "/cinema/reels/1632766758415119.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 12.75,
+   "tag": "Denjoy endodontics",
+   "alt": "On the showroom floor",
+   "source": null
+  },
+  {
+   "id": "n-denjoy-meta-endo-pro-workstation-v120-7",
+   "kind": "photo",
+   "src": "/images/news/denjoy-meta-endo-pro-workstation/v120-7.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Meta Endo Pro",
+   "alt": "Meta Endo Pro",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-meta-endo-pro-workstation"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v077-6",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v077-6.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-partner-clinic-switches-to-denjoy-v109-7",
+   "kind": "photo",
+   "src": "/images/news/partner-clinic-switches-to-denjoy/v109-7.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "A partner clinic switches",
+   "alt": "A partner clinic switches",
+   "source": {
+    "platform": "news",
+    "url": "/news/partner-clinic-switches-to-denjoy"
+   }
+  },
+  {
+   "id": "v-1968490167144330",
+   "kind": "video",
+   "reel": "1968490167144330",
+   "src": "/cinema/reels/1968490167144330.mp4",
+   "hd": "/cinema/reels/hd/1968490167144330.mp4",
+   "poster": "/cinema/reels/1968490167144330.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 23.25,
+   "tag": "A partner clinic switches",
+   "alt": "On the showroom floor",
+   "source": null
+  },
+  {
+   "id": "n-denjoy-meta-endo-pro-workstation-v125-7",
+   "kind": "photo",
+   "src": "/images/news/denjoy-meta-endo-pro-workstation/v125-7.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Meta Endo Pro",
+   "alt": "Meta Endo Pro",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-meta-endo-pro-workstation"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v077-7",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v077-7.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-denjoy-meta-endo-pro-workstation-v125-8",
+   "kind": "photo",
+   "src": "/images/news/denjoy-meta-endo-pro-workstation/v125-8.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Meta Endo Pro",
+   "alt": "Meta Endo Pro",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-meta-endo-pro-workstation"
+   }
+  },
+  {
+   "id": "v-2794952264198672",
+   "kind": "video",
+   "reel": "2794952264198672",
+   "src": "/cinema/reels/2794952264198672.mp4",
+   "hd": "/cinema/reels/hd/2794952264198672.mp4",
+   "poster": "/cinema/reels/2794952264198672.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 28.93,
+   "tag": "Denjoy in action",
+   "alt": "On the showroom floor",
+   "source": null
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v077-8",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v077-8.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v083-1",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v083-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v083-2",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v083-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "v-1009011925184152",
+   "kind": "video",
+   "reel": "1009011925184152",
+   "src": "/cinema/reels/1009011925184152.mp4",
+   "hd": "/cinema/reels/hd/1009011925184152.mp4",
+   "poster": "/cinema/reels/1009011925184152.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 18.0,
+   "tag": "Now in the Philippines",
+   "alt": "A delivery going out",
+   "source": null
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v083-3",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v083-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v083-4",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v083-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v083-5",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v083-5.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "v-2138686030401963",
+   "kind": "video",
+   "reel": "2138686030401963",
+   "src": "/cinema/reels/2138686030401963.mp4",
+   "hd": "/cinema/reels/hd/2138686030401963.mp4",
+   "poster": "/cinema/reels/2138686030401963.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 44.62,
+   "tag": "Denjoy precision",
+   "alt": "A delivery going out",
+   "source": null
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v083-6",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v083-6.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v090-1",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v090-1.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v090-2",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v090-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "v-1376969710960728",
+   "kind": "video",
+   "reel": "1376969710960728",
+   "src": "/cinema/reels/1376969710960728.mp4",
+   "hd": "/cinema/reels/hd/1376969710960728.mp4",
+   "poster": "/cinema/reels/1376969710960728.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 68.05,
+   "tag": "Inside the box",
+   "alt": "On the showroom floor",
+   "source": null
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v090-3",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v090-3.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v090-4",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v090-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v090-5",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v090-5.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "v-1632766758415119",
+   "kind": "video",
+   "reel": "1632766758415119",
+   "src": "/cinema/reels/1632766758415119.mp4",
+   "hd": "/cinema/reels/hd/1632766758415119.mp4",
+   "poster": "/cinema/reels/1632766758415119.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 12.75,
+   "tag": "Denjoy endodontics",
+   "alt": "On the showroom floor",
+   "source": null
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v090-6",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v090-6.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v090-7",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v090-7.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "n-denjoy-root-canal-precision-torque-apex--v090-8",
+   "kind": "photo",
+   "src": "/images/news/denjoy-root-canal-precision-torque-apex-niti/v090-8.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy"
+   ],
+   "tag": "Precision torque",
+   "alt": "Precision torque",
+   "source": {
+    "platform": "news",
+    "url": "/news/denjoy-root-canal-precision-torque-apex-niti"
+   }
+  },
+  {
+   "id": "v-1968490167144330",
+   "kind": "video",
+   "reel": "1968490167144330",
+   "src": "/cinema/reels/1968490167144330.mp4",
+   "hd": "/cinema/reels/hd/1968490167144330.mp4",
+   "poster": "/cinema/reels/1968490167144330.jpg",
+   "w": 720,
+   "h": 1280,
+   "brands": [
+    "denjoy"
+   ],
+   "endAt": 23.25,
+   "tag": "A partner clinic switches",
+   "alt": "On the showroom floor",
+   "source": null
+  }
+ ],
+ "kclamp": [
+  {
+   "id": "pda-cebu-2025-255064-91",
+   "kind": "photo",
+   "brands": [
+    "dsd",
+    "kclamp"
+   ],
+   "tag": "PDA Cebu 2025",
+   "event": "PDA Cebu & Mandaue Chapter Induction 2025",
+   "date": "2025-08-20",
+   "alt": "A dentist holding papers and a DentaSource item, posing with two DentaSource staff beside the booth table",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/1118092760255064/"
+   },
+   "src": "/images/clients/pda-cebu-2025-255064-91.jpg",
+   "w": 719,
+   "h": 1280
+  },
+  {
+   "id": "pagd-convention-2025-095374-90",
+   "kind": "photo",
+   "brands": [
+    "kclamp"
+   ],
+   "tag": "PAGD Convention 2025",
+   "event": "PAGD 37th Annual Convention 2025",
+   "date": "2025-07-20",
+   "alt": "A dentist in a purple sash examining a tray of rubber dam clamps at the DentaSource table",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/1079344027095374/"
+   },
+   "src": "/images/clients/pagd-convention-2025-095374-90.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "pda-convention-2026-447946-130",
+   "kind": "photo",
+   "brands": [
+    "kclamp"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "A smiling visitor seated in front of the K-Clamp rubber dam kit backdrop holds a typodont, with a staff member behind",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-130.jpg",
+   "w": 720,
+   "h": 960
+  },
+  {
+   "id": "mincon-2026-614114-220",
+   "kind": "video",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "MINCON 2026",
+   "event": "MINCON 2026",
+   "date": "2026-01-29",
+   "alt": "A DentaSource staff member hands out green DentaSource tote bags to smiling convention attendees in the lobby",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/882722704614114/"
+   },
+   "src": "/reels/clients/mincon-2026-614114-220.mp4",
+   "poster": "/images/clients/mincon-2026-614114-220-poster.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "pda-convention-2026-447946-170",
+   "kind": "photo",
+   "brands": [
+    "roson",
+    "kclamp",
+    "dsd"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "A group of visitors and staff wave with a DentaSource and ROSON sign in front of the K-Clamp wall",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-170.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "pda-convention-2026-447946-230",
+   "kind": "photo",
+   "brands": [
+    "roson",
+    "kclamp",
+    "dsd"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "Visitors pose with a DentaSource and ROSON sign at the K-Clamp wall, one holding a boxed obturation system",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-230.jpg",
+   "w": 633,
+   "h": 1280
+  },
+  {
+   "id": "pda-convention-2026-447946-290",
+   "kind": "photo",
+   "brands": [
+    "roson",
+    "kclamp"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "Two smiling visitors seated in a ROSON dental chair wave in front of the K-Clamp wall",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-290.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "nadti-2026-810350-120",
+   "kind": "video",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "NADTI 2026",
+   "event": "NADTI 2026",
+   "date": "2026-03-26",
+   "alt": "A dentist in an orange top pointing and giving a thumbs-up at a sterilizer cabinet while a DentaSource staff member smiles",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/4424672977810350/"
+   },
+   "src": "/reels/clients/nadti-2026-810350-120.mp4",
+   "poster": "/images/clients/nadti-2026-810350-120-poster.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "pda-convention-2026-447946-370",
+   "kind": "photo",
+   "brands": [
+    "roson",
+    "kclamp"
+   ],
+   "tag": "PDA Convention 2026",
+   "event": "PDA 117 Annual Convention 2026",
+   "date": "2026-05-14",
+   "alt": "A smiling visitor seated in a new ROSON chair browses ROSON and K-Clamp brochures while a staff member looks on",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/883855677447946/"
+   },
+   "src": "/images/clients/pda-convention-2026-447946-370.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "endo-seminar-2025-802753-135",
+   "kind": "photo",
+   "brands": [
+    "kclamp"
+   ],
+   "tag": "Endo seminar 2025",
+   "event": "Bioceramics in Endodontics Seminar 2025",
+   "date": "2025-08-02",
+   "alt": "An attendee points at the rubber dam clamp display while a DentaSource staff member explains",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/4158026097802753/"
+   },
+   "src": "/images/clients/endo-seminar-2025-802753-135.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "n-partner-clinic-switches-to-denjoy-v109-2",
+   "kind": "photo",
+   "src": "/images/news/partner-clinic-switches-to-denjoy/v109-2.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy",
+    "kclamp"
+   ],
+   "tag": "A partner clinic switches",
+   "alt": "A partner clinic switches",
+   "source": {
+    "platform": "news",
+    "url": "/news/partner-clinic-switches-to-denjoy"
+   }
+  },
+  {
+   "id": "mincon-2026-614114-220",
+   "kind": "video",
+   "brands": [
+    "dsd"
+   ],
+   "tag": "MINCON 2026",
+   "event": "MINCON 2026",
+   "date": "2026-01-29",
+   "alt": "A DentaSource staff member hands out green DentaSource tote bags to smiling convention attendees in the lobby",
+   "source": {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/reel/882722704614114/"
+   },
+   "src": "/reels/clients/mincon-2026-614114-220.mp4",
+   "poster": "/images/clients/mincon-2026-614114-220-poster.jpg",
+   "w": 720,
+   "h": 1280
+  },
+  {
+   "id": "n-partner-clinic-switches-to-denjoy-v109-4",
+   "kind": "photo",
+   "src": "/images/news/partner-clinic-switches-to-denjoy/v109-4.jpg",
+   "w": 1080,
+   "h": 1920,
+   "brands": [
+    "denjoy",
+    "kclamp"
+   ],
+   "tag": "A partner clinic switches",
+   "alt": "A partner clinic switches",
+   "source": {
+    "platform": "news",
+    "url": "/news/partner-clinic-switches-to-denjoy"
+   }
+  }
+ ]
+}

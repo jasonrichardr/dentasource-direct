@@ -12,11 +12,14 @@ import { m as motion, AnimatePresence, useMotionValue, useSpring, useTransform }
 import { clamps, GROUPS, GROUP_ORDER, kits, features, faqs, clampsForTooth, ADULT_TEETH, PRIMARY_TEETH } from '@/data/kclamps';
 import { trackContact } from '@/lib/analytics';
 import ClientMarquee from '@/components/clients/ClientMarquee';
-import { clientsFor, listEvents, OWN_FOR_HEADLINE } from '@/lib/clients/boothClients';
+import RingWrite from '@/components/clients/RingWrite';
+import { brandStrip, ownCount, showsIn } from '@/lib/clients/brandMedia';
 import styles from './kclamps.module.css';
 
-const CLIENTS = clientsFor('kclamp');
-const CLIENTS_OWN = CLIENTS.own >= OWN_FOR_HEADLINE;
+const STRIP = brandStrip('kclamp');
+// a K-Clamp headline needs six of the strip's moments to show K-Clamps; seven words either way
+const STRIP_OWN = ownCount(STRIP, 'kclamp') >= 6;
+const STRIP_SHOWS = showsIn(STRIP);
 
 const MESSENGER = 'dentasource';
 
@@ -529,17 +532,17 @@ function Story() {
     {/* ☠️ ONE VIDEO WAS THE WHOLE STORY; NOW IT LEADS A MARQUEE (Jarich 2026-10-12: "the k clamp
         has one already but lets improve it add marquee as well"). Dr. Castillo's clip stays
         first; the strip under it is the K-Clamp counter at our booths. */}
-    {CLIENTS.items.length ? (
-      <section className={styles.clients} data-scene-zone="story" aria-label={CLIENTS_OWN ? 'Doctors with K-Clamps at our booth' : 'Doctors at our booth'}>
+    {STRIP.length ? (
+      <section className={styles.clients} data-scene-zone="story" aria-label={STRIP_OWN ? 'Doctors with K-Clamps at our booth' : 'Doctors at our booth'}>
         <div className={styles.sectionHead}>
           <p className={styles.kicker}>From our booth</p>
-          <h2 className={styles.h2}>{CLIENTS_OWN ? 'More doctors, more sets.' : 'More doctors at our booth.'}</h2>
+          <RingWrite as="h2" className={styles.h2} text={STRIP_OWN ? 'Doctors at the K-Clamp counter, all smiles' : 'The doctors who stopped at our booth'} />
           <p className={styles.lead}>
-            {CLIENTS_OWN ? 'The K-Clamp counter' : 'Our booth'}
-            {CLIENTS.events.length ? ` at ${listEvents(CLIENTS.events)}` : ''}. Tap any photo.
+            {STRIP_OWN ? 'The K-Clamp counter' : 'Our booth'}
+            {STRIP_SHOWS ? ` at ${STRIP_SHOWS}` : ''}. Tap any photo.
           </p>
         </div>
-        <ClientMarquee items={CLIENTS.items} label={CLIENTS_OWN ? 'Doctors with K-Clamps at our booth' : 'Doctors at our booth'} />
+        <ClientMarquee items={STRIP} label={STRIP_OWN ? 'Doctors with K-Clamps at our booth' : 'Doctors at our booth'} />
       </section>
     ) : null}
     </>

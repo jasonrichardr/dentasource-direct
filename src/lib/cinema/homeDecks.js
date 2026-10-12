@@ -327,7 +327,8 @@ export function buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAININ
  * Beats whose BAKED list is already in play order, so the panel skips mixOrder for it the
  * way it does for a saved WWW deck. The heart is wired separately in HomeCinema.
  */
-export const PLAYS_IN_ORDER = ['delivery'];
+// roson and denjoy (2026-10-12) are built three photographs then a clip; mixOrder would undo that
+export const PLAYS_IN_ORDER = ['delivery', 'roson', 'denjoy'];
 
 /** The mixed-marquee decks, by the beat they drive. `crew` is the crew row inside the
  *  after-sales parts beat and is handed to PartsPanel instead. `heart` (Chairs in service,

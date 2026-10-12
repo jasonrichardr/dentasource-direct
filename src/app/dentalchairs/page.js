@@ -2,17 +2,17 @@ import ChairGallery from '@/components/chair/ChairGallery';
 import { CHAIRS, INDEX_COPY } from '@/data/chairs/catalog';
 import productsJson from '@/data/cinema/products.json';
 import { visible } from '@/lib/cinema/visible';
-import { SectionHead } from '@/components/chair/parts';
 import ClientMarquee from '@/components/clients/ClientMarquee';
-import { clientsFor, listEvents, OWN_FOR_HEADLINE } from '@/lib/clients/boothClients';
+import RingWrite from '@/components/clients/RingWrite';
+import { brandStrip } from '@/lib/clients/brandMedia';
 
 // ☠️ HIDDEN AT MODULE SCOPE, LIKE EVERY OTHER MANIFEST READ. The studio can hide a product in
 // products.json; a hidden chair leaves this gallery too, not only its own arc. The gallery's
 // words and photos live in src/data/chairs/catalog.js; products.json only decides who shows.
 const SHOWN = new Set(visible(productsJson.products).map((p) => p.slug));
 const CHAIRS_SHOWN = CHAIRS.filter((c) => SHOWN.has(c.slug));
-const CLIENTS = clientsFor('roson');
-const CLIENTS_OWN = CLIENTS.own >= OWN_FOR_HEADLINE;
+// three photographs, then a clip: installs, deliveries and booth days (lib/clients/brandMedia.js)
+const STRIP = brandStrip('roson');
 
 export const metadata = {
   title: 'ROSON Dental Chairs',
@@ -34,17 +34,17 @@ export default function DentalChairsPage() {
       <ChairGallery
         chairs={CHAIRS_SHOWN}
         copy={INDEX_COPY}
-        clients={CLIENTS.items.length ? (
-          <section className="ch-section" aria-label="Our clients">
+        clients={STRIP.length ? (
+          <section className="ch-section" aria-label="ROSON chairs in our clients' clinics">
             <div className="ch-wrap">
-              <SectionHead
-                center
-                kicker={CLIENTS_OWN ? 'Our clients' : 'From our booth'}
-                title={CLIENTS_OWN ? 'From the booth to the clinic' : 'Doctors at our booth'}
-                line={`${CLIENTS.events.length ? `At ${listEvents(CLIENTS.events)}` : 'At our booth'}${CLIENTS_OWN ? ', and at the clinics where the chair now works' : ''}. Tap any photo.`}
-              />
+              {/* ☠️ SEVEN WORDS, ALWAYS (Jarich, 2026-10-12), written in fire by RingWrite */}
+              <div className="ch-head ch-head-center" data-reveal>
+                <p className="ch-kicker">Our clients</p>
+                <RingWrite as="h2" className="ch-h2" text="Delivered, installed and smiling in clinics nationwide" />
+                <p className="ch-line">Booth days, deliveries and installs, from Pasig out to Mindoro and Bacolod. Tap any photo.</p>
+              </div>
             </div>
-            <ClientMarquee items={CLIENTS.items} label={CLIENTS_OWN ? 'Doctors with ROSON chairs at our booth and in their clinics' : 'Doctors at our booth'} />
+            <ClientMarquee items={STRIP} label="ROSON chairs delivered and installed in our clients' clinics" />
           </section>
         ) : null}
       />

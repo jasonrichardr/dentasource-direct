@@ -11,7 +11,7 @@ import { trackContact } from '@/lib/analytics';
 import { allInstruments, chapters, faqs, messengerUrl } from './dnaContent';
 import Pill from './Pill';
 import ClientMarquee from '@/components/clients/ClientMarquee';
-import { listEvents, OWN_FOR_HEADLINE } from '@/lib/clients/boothClients';
+import RingWrite from '@/components/clients/RingWrite';
 import styles from './v2.module.css';
 
 const EASE = [0.4, 0, 0.2, 1];
@@ -136,19 +136,16 @@ export function ChapterWall() {
 
 // Doctors at our booth with Denjoy (ClientMarquee, Jarich 2026-10-12). Items come from the
 // page so this module stays free of the manifest import.
-export function DnaClients({ clients }) {
-  if (!clients?.items.length) return null;
-  const own = clients.own >= OWN_FOR_HEADLINE;
-  const title = own ? 'Doctors who chose Denjoy' : 'Doctors at our booth';
+export function DnaClients({ items = [] }) {
+  if (!items.length) return null;
+  const title = 'Denjoy, from the box to your clinic'; // seven words, always (Jarich, 2026-10-12)
   return (
     <section className={styles.clientsSection} aria-label={title}>
       <motion.p {...reveal} className={styles.mono} style={{ color: '#4c6656', margin: '0 0 14px' }}>
-        {clients.events.length ? listEvents(clients.events) : 'From our booth'}
+        Denjoy in the field
       </motion.p>
-      <motion.h2 {...reveal} className={`${styles.display} ${styles.clientsHead}`}>
-        {title}
-      </motion.h2>
-      <ClientMarquee items={clients.items} label={title} />
+      <RingWrite as="h2" className={`${styles.display} ${styles.clientsHead}`} text={title} />
+      <ClientMarquee items={items} label="Denjoy in our clients' clinics, our showroom and at our booth" />
     </section>
   );
 }

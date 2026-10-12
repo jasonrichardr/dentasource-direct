@@ -301,6 +301,38 @@
       "note": "round 6: the two frames that were not shot here are gone. v018-4 was a ROSON stand at a trade show in China and p073-1 was a partnership share card laid over a factory building, so neither belonged on a beat about this floor. The videos are not listed here: HomeCinema takes every reel the visual pass placed in the showroom, so the beat cannot drift from reel-library.json."
     },
     {
+      "key": "roson",
+      "kind": "action",
+      "eyebrow": "ROSON dental chairs",
+      "headline": "Exclusive ROSON chairs, delivered and installed nationwide",
+      "body": "Inspected in our Pasig warehouse, then built on site by our own technicians, from Luzon to Mindanao.",
+      "cta": {
+        "label": "See the ROSON chairs",
+        "href": "/dentalchairs"
+      },
+      "note": "2026-10-12 (Jarich: add a ROSON part and a Denjoy part on the home page with their buttons). The strip is lib/clients/brandMedia.js brandTiles('roson'): three photographs, then a clip, from installs, deliveries and booth days already on the site, every one looked at. Plays in its built order (PLAYS_IN_ORDER) so the rhythm holds. Headline seven words."
+    },
+    {
+      "key": "denjoy",
+      "kind": "action",
+      "eyebrow": "Denjoy endodontics",
+      "headline": "The full Denjoy endo line, finally local",
+      "body": "Endo motors, apex locators, obturation and the Meta Endo workstation, with live demos at our Pasig showroom.",
+      "ctas": [
+        {
+          "label": "See the Denjoy line",
+          "href": "/denjoy",
+          "variant": "solid"
+        },
+        {
+          "label": "K-Clamp sizes",
+          "href": "/k-clamps",
+          "variant": "ghost"
+        }
+      ],
+      "note": "2026-10-12, with the ROSON beat: brandTiles('denjoy'), three photographs then a clip, the clips repeating because there are six. Headline seven words."
+    },
+    {
       "key": "k-clamps",
       "kind": "photo",
       "eyebrow": "Rubber dam",
