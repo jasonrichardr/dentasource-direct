@@ -16,6 +16,7 @@ import beatsData from '@/data/cinema/home-beats.json';
 import askScript from '@/data/cinema/ask-dsd.json';
 import actionReels from '@/data/cinema/action-reels.json';
 import partsData from '@/data/cinema/parts.json';
+import { brandTiles } from '@/lib/clients/brandMedia';
 import crewShots from '@/data/cinema/crew-shots.json';
 import installsData from '@/data/cinema/installs.json';
 import heartClients from '@/data/cinema/heart-clients.json';
@@ -109,6 +110,10 @@ const FORMATIONS = {
   // K-Clamps sits directly after the floor beat because it is the third line that only
   // comes through that door. Same sphere family as its neighbour, a touch tighter, so
   // the two brand beats read as a pair rather than as one held frame.
+  // the brand beats (2026-10-12): spheres like their neighbours, each its own radius so the
+  // camera does not sit still across three beats in a row
+  roson: { kind: 'sphere', radius: 3.65, ripple: 0.17, dim: true },
+  denjoy: { kind: 'sphere', radius: 3.8, ripple: 0.15, dim: true },
   'k-clamps': { kind: 'sphere', radius: 3.55, ripple: 0.2, dim: true },
   'training-center': { kind: 'sphere', radius: 3.85, ripple: 0.19, dim: true },
   delivery: { kind: 'sphere', radius: 3.6, ripple: 0.16, dim: true },
@@ -140,7 +145,12 @@ const FORMATIONS = {
 // below for its beat and is played in the order a person arranged, and anything else (no
 // deck, an empty one, the manifest unreachable) leaves this baked list standing.
 // ══════════════════════════════════════════════════════════════════════════
-const MIXED_ITEMS = buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAINING_ITEMS, GROWTH_ITEMS, INSTALL_TILES, HEART_CLIENTS });
+const MIXED_ITEMS = {
+  ...buildHomeDecks({ HOME_BEATS, REEL_LIBRARY, ACTION_ITEMS, TRAINING_ITEMS, GROWTH_ITEMS, INSTALL_TILES, HEART_CLIENTS }),
+  // the brand beats read the brand strips the product pages play, three photographs then a clip
+  roson: brandTiles('roson'),
+  denjoy: brandTiles('denjoy'),
+};
 
 function panelFor(beat, i, articles, live, speeds) {
   // the WWW deck this beat's strip is (null for a beat the console does not hold) and its timing

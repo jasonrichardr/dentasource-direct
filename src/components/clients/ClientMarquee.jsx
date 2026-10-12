@@ -1,21 +1,28 @@
 'use client';
 
-// ClientMarquee: doctors at our booth and at their own clinics, as a moving strip.
+// ClientMarquee: the brand strip on /dentalchairs, /denjoy and /k-clamps.
 //
 // Jarich, 2026-10-12: "add a part for Roson, Denjoy. the k clamp has one already but lets
-// improve it add marquee as well and get all the videos of our clients who bought from
-// conventions". One strip, three pages (/dentalchairs, /denjoy, /k-clamps). The strip is
-// ONLY the strip and its viewer: each page writes its own heading in its own type, because
-// the three pages speak three design languages and a shared heading would match none.
+// improve it add marquee as well", then the same day: "add videos and images ... so the
+// videos autoplay every 3 images". The strip is ONLY the strip and its viewer: each page
+// writes its own heading in its own type, because the three pages speak three design
+// languages and a shared heading would match none.
 //
-// The items come from src/data/clients/booth-clients.json through lib/clients/boothClients.js.
-// Every frame in that file was looked at before it went in; the manifest's `excluded` list
-// says what was left out and why (prices on screen, competitor banners, patients).
+// The items come from lib/clients/brandMedia.js (three photographs, then a clip). Every
+// photo and clip in that manifest was looked at before it went in.
 //
 // ☠️ THE TRACK CARRIES .dsd-strip-track SO THE SITE'S ONE MarqueeSpeed (SiteShell) TIMES IT.
 // Speed is derived from the track's own width there (lib/cinema/marquee.js), the same
 // measured px/s as every other photo strip on the site. A fixed duration here would drift
 // the moment a clip is added.
+//
+// ☠️ A CLIP TILE MOUNTS ITS <video> ONLY WHILE IT IS ON SCREEN. The ROSON strip carries 33
+// clips, 66 with the loop's echo; 66 live <video> elements (each one fetching its poster on
+// mount, since a poster is never lazy) would be a page nobody's phone can hold. Off screen a
+// clip tile is its poster as a lazy <Image>; on screen it becomes a muted looping clip.
+//
+// ☠️ endAt: MANY REELS CLOSE ON A WHITE DSD CARD WITH A QR CODE AND A PHONE NUMBER. A tile
+// loops back before it; the viewer stops there. The times were measured per clip.
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -26,10 +33,39 @@ import styles from './clientMarquee.module.css';
 /** A strip this short reads as one row; longer ones split into two that run opposite ways. */
 const TWO_ROWS_FROM = 14;
 
+const SOURCE_LABEL = { news: 'Read the story', facebook: 'See the Facebook post', tiktok: 'See the TikTok post' };
+
+/** True while the element is (nearly) on screen. Clipping by the strip's overflow counts. */
+function useOnScreen(ref, enabled) {
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!enabled || !el || typeof IntersectionObserver === 'undefined') return undefined;
+    const io = new IntersectionObserver(([e]) => setOn(e.isIntersecting), { rootMargin: '0px 160px', threshold: 0.05 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [ref, enabled]);
+  return on;
+}
+
 function Tile({ item, onOpen, live, copy }) {
+  const ref = useRef(null);
+  const isVideo = item.kind === 'video';
+  const onScreen = useOnScreen(ref, live && isVideo);
+  const loopBeforeCard = (e) => {
+    const v = e.currentTarget;
+    if (item.endAt && v.currentTime >= item.endAt) v.currentTime = 0;
+  };
   return (
-    <button type="button" className={styles.tile} onClick={onOpen} tabIndex={copy ? -1 : undefined} aria-label={`${item.alt}. ${item.tag}. Open`}>
-      {item.kind === 'video' && live ? (
+    <button
+      ref={ref}
+      type="button"
+      className={styles.tile}
+      onClick={onOpen}
+      tabIndex={copy ? -1 : undefined}
+      aria-label={`${item.tag}. Open`}
+    >
+      {isVideo && onScreen ? (
         <video
           className={styles.media}
           src={mediaUrl(item.src)}
@@ -38,13 +74,14 @@ function Tile({ item, onOpen, live, copy }) {
           loop
           playsInline
           autoPlay
-          preload="none"
+          preload="auto"
+          onTimeUpdate={item.endAt ? loopBeforeCard : undefined}
           aria-hidden="true"
         />
       ) : (
         <Image
           className={styles.media}
-          src={item.kind === 'video' ? item.poster : item.src}
+          src={isVideo ? item.poster : item.src}
           alt=""
           width={360}
           height={640}
@@ -53,7 +90,7 @@ function Tile({ item, onOpen, live, copy }) {
           loading="lazy"
         />
       )}
-      {item.kind === 'video' ? <span className={styles.play} aria-hidden="true">▶</span> : null}
+      {isVideo ? <span className={styles.play} aria-hidden="true">▶</span> : null}
       <span className={styles.chip}>{item.tag}</span>
     </button>
   );
@@ -88,25 +125,34 @@ function Viewer({ items, index, onClose, onStep }) {
     };
   }, [onClose, onStep]);
 
+  const stopBeforeCard = (e) => {
+    const v = e.currentTarget;
+    if (item.endAt && v.currentTime >= item.endAt) v.pause();
+  };
+
+  // ☠️ ONLY THE HEADER UNDER THE PICTURE (Jarich, 2026-10-12: "remove these brother its
+  // awkward but leave the header"). The describing sentence read like a caption written for a
+  // screen reader; it stays on the tile's aria-label path, never on screen.
   return (
-    <div className={styles.viewer} role="dialog" aria-modal="true" aria-label={item.alt} onClick={onClose}>
+    <div className={styles.viewer} role="dialog" aria-modal="true" aria-label={item.tag} onClick={onClose}>
       <figure className={styles.viewerFig} onClick={(e) => e.stopPropagation()}>
         {item.kind === 'video' ? (
           <video
             key={item.id}
             className={styles.viewerMedia}
-            src={mediaUrl(item.src)}
+            src={mediaUrl(item.hd || item.src)}
             poster={item.poster}
             controls
             autoPlay
             playsInline
+            onTimeUpdate={item.endAt ? stopBeforeCard : undefined}
           />
         ) : (
           <Image
             key={item.id}
             className={styles.viewerMedia}
             src={item.src}
-            alt={item.alt}
+            alt={item.alt || item.tag}
             width={item.w || 720}
             height={item.h || 1280}
             sizes="(max-width: 700px) 92vw, 480px"
@@ -115,10 +161,14 @@ function Viewer({ items, index, onClose, onStep }) {
         )}
         <figcaption className={styles.viewerCap}>
           <span className={styles.viewerTag}>{item.tag}</span>
-          <span>{item.alt}</span>
           {item.source?.url ? (
-            <a href={item.source.url} target="_blank" rel="noopener noreferrer" className={styles.viewerLink}>
-              See the {item.source.platform === 'tiktok' ? 'TikTok' : 'Facebook'} post
+            <a
+              href={item.source.url}
+              target={item.source.platform === 'news' ? undefined : '_blank'}
+              rel={item.source.platform === 'news' ? undefined : 'noopener noreferrer'}
+              className={styles.viewerLink}
+            >
+              {SOURCE_LABEL[item.source.platform] || 'See the post'}
             </a>
           ) : null}
         </figcaption>
@@ -132,8 +182,8 @@ function Viewer({ items, index, onClose, onStep }) {
 
 export default function ClientMarquee({ items = [], label = 'Doctors at our booth and in their clinics' }) {
   const rootRef = useRef(null);
-  // near: mount the full doubled tracks and their media once the strip is close.
-  // inView: run the animation and the muted clips only while it is on screen.
+  // near: mount the full doubled tracks once the strip is close.
+  // inView: run the animation only while it is on screen.
   const [near, setNear] = useState(false);
   const [inView, setInView] = useState(false);
   const [open, setOpen] = useState(null);
@@ -147,16 +197,6 @@ export default function ClientMarquee({ items = [], label = 'Doctors at our boot
     viewIo.observe(el);
     return () => { nearIo.disconnect(); viewIo.disconnect(); };
   }, []);
-
-  // pause the muted tile clips while the strip is off screen
-  useEffect(() => {
-    const el = rootRef.current;
-    if (!el) return;
-    for (const v of el.querySelectorAll('video')) {
-      if (inView) v.play().catch(() => {});
-      else v.pause();
-    }
-  }, [inView, near]);
 
   const close = useCallback(() => setOpen(null), []);
   const step = useCallback((d) => setOpen((i) => (i === null ? i : (i + d + items.length) % items.length)), [items.length]);
@@ -175,7 +215,7 @@ export default function ClientMarquee({ items = [], label = 'Doctors at our boot
           <div className={`${styles.track} dsd-strip-track${r === 1 ? ` ${styles.reverse}` : ''}`} data-marquee={`clients-${r + 1}`}>
             {(near ? [...row, ...row] : row.slice(0, 4)).map(([item, idx], i) => (
               <div key={`${r}-${i}-${item.id}`} className={styles.cell} aria-hidden={i >= row.length ? 'true' : undefined}>
-                <Tile item={item} live={near} copy={i >= row.length} onOpen={() => setOpen(idx)} />
+                <Tile item={item} live={near && inView} copy={i >= row.length} onOpen={() => setOpen(idx)} />
               </div>
             ))}
           </div>
