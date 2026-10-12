@@ -42,7 +42,9 @@ export default function LoungeRoom() {
       link.rel = 'stylesheet'; link.href = '/lounge/room.css';
       document.head.appendChild(link);
       const load = (src) => new Promise((res) => { const s = document.createElement('script'); s.src = src; s.async = false; s.onload = res; s.onerror = res; document.body.appendChild(s); });
-      load('/lounge/sky.js').then(() => load('/lounge/room.js'));
+      // ?v= because /lounge/* is served with max-age=14400: a phone holding the old room.js would
+      // keep the unguarded tap listeners for up to four hours. Bump it whenever room.js changes.
+      load('/lounge/sky.js').then(() => load('/lounge/room.js?v=20261012'));
     } else {
       // back on a lounge page: un-park
       html.removeAttribute('data-lounge-away');
