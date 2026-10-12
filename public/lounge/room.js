@@ -314,6 +314,11 @@
       // when the audio genuinely plays — see onPlaying.
       var touched = false;
       function kick() {
+        // 🚪 PARKED (2026-10-12): off /growth-partner and /spin, LoungeRoom stamps
+        // html[data-lounge-away] and the cinema Room owns the music. These listeners
+        // are on the DOCUMENT and outlive the page, so without this line a tap on the
+        // next page started this stream beside the cinema's: the same song, twice.
+        if (D.documentElement.hasAttribute('data-lounge-away')) return;
         touched = true;
         graph();
         if (a.muted) {

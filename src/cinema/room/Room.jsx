@@ -371,6 +371,9 @@ export default function Room() {
       started = true;
       disarm();
       clearTimeout(warmCap);
+      // ONE VOICE: the lounge (public/lounge/room.js, /growth-partner and /spin) is parked off its
+      // pages, but if it is ever still sounding when this room commits, its own hush bridge stops it.
+      try { if (typeof window.__txHush === 'function') window.__txHush(); } catch (e) { /* lounge gone */ }
       dock.classList.remove('idle');
       dock.setAttribute('aria-label', 'Open the music room');
       if (everCommitted) return;
