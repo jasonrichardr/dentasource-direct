@@ -624,7 +624,7 @@
     },
     {
       "slug": "frame-leather",
-      "name": "Frame Leather",
+      "name": "Frame leather",
       "labelled": true,
       "src": "/cinema/parts/frame-leather.png",
       "width": 374,
@@ -696,7 +696,7 @@
     },
     {
       "slug": "motor-motor",
-      "name": "Motor Motor",
+      "name": "Motor",
       "labelled": true,
       "src": "/cinema/parts/motor-motor.png",
       "width": 325,
@@ -1392,7 +1392,7 @@
     },
     {
       "slug": "back-cover-side",
-      "name": "Back cover Side",
+      "name": "Back cover, side",
       "labelled": true,
       "src": "/cinema/parts/back-cover-side.png",
       "width": 299,
@@ -1800,7 +1800,7 @@
     },
     {
       "slug": "filter-strainer-water",
-      "name": "Filter strainer Water",
+      "name": "Water filter strainer",
       "labelled": true,
       "src": "/cinema/parts/filter-strainer-water.png",
       "width": 267,

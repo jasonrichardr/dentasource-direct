@@ -16,7 +16,7 @@ import ReachMap from './ReachMap';
 import AboutDoor from './AboutDoor';
 import { mediaUrl } from '@/lib/cinema/media';
 import { mixOrder } from '@/lib/cinema/mixOrder';
-import { pickParts } from '@/lib/cinema/partsPick';
+import { spreadAllParts } from '@/lib/cinema/partsPick';
 // the hidden marquee editor's seam: null for every visitor, see the file
 import { useMoonEditor } from '@/lib/cinema/moonEdit';
 
@@ -288,7 +288,7 @@ export function InstallsPanel({ beat, beatIndex, tiles = [] }) {
 
 /* ── the parts marquee: two rows, the news desk's grammar ──────────────────────────── */
 
-// How many parts the two rows carry: PARTS_SHOWN, in lib/cinema/partsPick.js.
+// The two rows carry EVERY part (spreadAllParts, lib/cinema/partsPick.js); the reach map keeps 28.
 // ☠️ THE CREW ROW IS SHORTER THAN THE PARTS ROWS ON PURPOSE. Its tiles are photographs at
 // 126px wide against parts cards at up to 250px, so matching the parts count would make
 // the bottom row visibly shorter than the two above it and its loop seam would come round
@@ -304,9 +304,9 @@ export function PartsPanel({ beat, beatIndex, parts = [], crew = [], crewSpeed }
   // so this is a slice and not a shuffle: re-ordering here would undo that.
   const crewRow = useMemo(() => crew.slice(0, CREW_SHOWN), [crew]);
   const rows = useMemo(() => {
-    // the spread across categories and the dedupe by name live in lib/cinema/partsPick.js,
-    // shared with the reach map's parts column so both show the same shelf
-    const picked = pickParts(parts);
+    // all 244, spread evenly by category (lib/cinema/partsPick.js). Jarich 2026-10-12: the
+    // rows used to carry pickParts' 28, the same shelf as the reach map's column.
+    const picked = spreadAllParts(parts);
     const half = Math.ceil(picked.length / 2) || 1;
     return [picked.slice(0, half), picked.slice(half)];
   }, [parts]);
