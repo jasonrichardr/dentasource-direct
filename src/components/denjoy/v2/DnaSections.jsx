@@ -10,6 +10,8 @@ import { m as motion } from 'framer-motion';
 import { trackContact } from '@/lib/analytics';
 import { allInstruments, chapters, faqs, messengerUrl } from './dnaContent';
 import Pill from './Pill';
+import ClientMarquee from '@/components/clients/ClientMarquee';
+import { listEvents, OWN_FOR_HEADLINE } from '@/lib/clients/boothClients';
 import styles from './v2.module.css';
 
 const EASE = [0.4, 0, 0.2, 1];
@@ -128,6 +130,25 @@ export function ChapterWall() {
       <motion.a {...reveal} href="#instruments" className={styles.monoLink} style={{ marginTop: 30 }}>
         Browse all 12 <span aria-hidden="true">▶</span>
       </motion.a>
+    </section>
+  );
+}
+
+// Doctors at our booth with Denjoy (ClientMarquee, Jarich 2026-10-12). Items come from the
+// page so this module stays free of the manifest import.
+export function DnaClients({ clients }) {
+  if (!clients?.items.length) return null;
+  const own = clients.own >= OWN_FOR_HEADLINE;
+  const title = own ? 'Doctors who chose Denjoy' : 'Doctors at our booth';
+  return (
+    <section className={styles.clientsSection} aria-label={title}>
+      <motion.p {...reveal} className={styles.mono} style={{ color: '#4c6656', margin: '0 0 14px' }}>
+        {clients.events.length ? listEvents(clients.events) : 'From our booth'}
+      </motion.p>
+      <motion.h2 {...reveal} className={`${styles.display} ${styles.clientsHead}`}>
+        {title}
+      </motion.h2>
+      <ClientMarquee items={clients.items} label={title} />
     </section>
   );
 }
