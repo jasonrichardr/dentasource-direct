@@ -84,8 +84,8 @@ export default function SpecGate({ children }) {
             See the full specifications
           </h3>
           <p className="mt-1.5 text-[13.5px] leading-relaxed text-[#86868B]">
-            Create a free account to unlock complete specs, dimensions, and configuration details — plus
-            warranty tracking and direct messaging with our team.
+            Create a free account to see the complete specifications and dimensions. It also gives you
+            warranty tracking and a direct line to our team.
           </p>
           <button
             onClick={signInWithGoogle}

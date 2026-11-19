@@ -1,44 +1,30 @@
 import ChairSchemas from "@/components/ChairSchemas";
-import S6HeroVisual from "@/components/s6/S6HeroVisual";
-import S6FeatureGrid from "@/components/s6/S6FeatureGrid";
-import S6AccessibilitySection from "@/components/s6/S6AccessibilitySection";
-import S6ErgonomicsSection from "@/components/s6/S6ErgonomicsSection";
-import S6TechSpecs from "@/components/s6/S6TechSpecs";
-import SpecGate from "@/components/SpecGate";
-import S6ProductConfigurator from "@/components/s6/S6ProductConfigurator";
-import S6VisualTour from "@/components/s6/S6VisualTour";
-import S6WhatsInTheBox from "@/components/s6/S6WhatsInTheBox";
-import S6WarrantyTable from "@/components/s6/S6WarrantyTable";
-import ProductCinema from "@/cinema/product/ProductCinema";
-import { productCinemaConfig } from "@/cinema/product/productConfig";
+import ChairPage from "@/components/chair/ChairPage";
+import s6 from "@/data/chairs/s6";
+
+// The S6 runs on the shared chair template: every word and photo on this page comes from
+// src/data/chairs/s6.js, and the sections come from src/components/chair/. The spec table is
+// still behind SpecGate (inside the template), and the JSON-LD is unchanged.
 
 export const metadata = {
-    title: "Roson S6 Professional Dental Chair",
-    description: "The Roson S6 Professional — 380mm lowest position, casting steel frame, Philips LED lighting, and Whisper-Silent Motor.",
+  title: "ROSON Professional Model S6 Dental Chair",
+  description:
+    "Lowers to 380 mm, the lowest in the ROSON range, on a casting steel frame. See the S6 at our Pasig showroom.",
   openGraph: {
-    title: "Roson S6 Professional Dental Chair",
-    description: "The Roson S6 Professional — 380mm lowest position, casting steel frame, Philips LED lighting, and Whisper-Silent Motor.",
-    url: 'https://dentasourcedirect.com/s6',
-    type: 'website',
-    images: ['/images/hero/dxa3-hero-original.jpg'],
+    title: "ROSON Professional Model S6 Dental Chair",
+    description:
+      "Lowers to 380 mm, the lowest in the ROSON range, on a casting steel frame. See the S6 at our Pasig showroom.",
+    url: "https://dentasourcedirect.com/s6",
+    type: "website",
+    images: ["/images/hero/dxa3-hero-original.jpg"],
   },
 };
 
 export default function S6Page() {
-    return (
-        <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
-            <ChairSchemas route="/s6" />
-            <ProductCinema config={productCinemaConfig("s6")}>
-                <S6HeroVisual />
-                <S6FeatureGrid />
-                <S6AccessibilitySection />
-                <S6ErgonomicsSection />
-                <SpecGate><S6TechSpecs /></SpecGate>
-                <S6ProductConfigurator />
-                <S6VisualTour />
-                <S6WhatsInTheBox />
-                <S6WarrantyTable />
-            </ProductCinema>
-        </main>
-    );
+  return (
+    <main className="min-h-screen">
+      <ChairSchemas route="/s6" />
+      <ChairPage chair={s6} />
+    </main>
+  );
 }

@@ -1,44 +1,30 @@
 import ChairSchemas from "@/components/ChairSchemas";
-import S3HeroVisual from "@/components/s3/S3HeroVisual";
-import S3FeatureGrid from "@/components/s3/S3FeatureGrid";
-import S3LightSection from "@/components/s3/S3LightSection";
-import S3ErgonomicsSection from "@/components/s3/S3ErgonomicsSection";
-import S3TechSpecs from "@/components/s3/S3TechSpecs";
-import SpecGate from "@/components/SpecGate";
-import S3ProductConfigurator from "@/components/s3/S3ProductConfigurator";
-import S3VisualTour from "@/components/s3/S3VisualTour";
-import S3WhatsInTheBox from "@/components/s3/S3WhatsInTheBox";
-import S3WarrantyTable from "@/components/s3/S3WarrantyTable";
-import ProductCinema from "@/cinema/product/ProductCinema";
-import { productCinemaConfig } from "@/cinema/product/productConfig";
+import ChairPage from "@/components/chair/ChairPage";
+import s3 from "@/data/chairs/s3";
+
+// The S3 on the shared chair template: every word and photo on this page comes from
+// src/data/chairs/s3.js, and the sections come from src/components/chair/. The spec table is
+// still behind SpecGate (inside the template), and the JSON-LD is unchanged.
 
 export const metadata = {
-    title: "Roson S3 Best-Selling Dental Chair",
-    description: "The Roson S3 Best Seller — brightest light at 35,000+ lux, autoclavable handle, detachable spittoon, and Whisper-Silent Motor.",
+  title: "ROSON Hot-Selling Model S3 Dental Chair",
+  description:
+    "An autoclavable light handle, a spittoon and suction filter that come off without tools, and a 6-way stool included. See the S3 at our Pasig showroom.",
   openGraph: {
-    title: "Roson S3 Best-Selling Dental Chair",
-    description: "The Roson S3 Best Seller — brightest light at 35,000+ lux, autoclavable handle, detachable spittoon, and Whisper-Silent Motor.",
-    url: 'https://dentasourcedirect.com/s3',
-    type: 'website',
-    images: ['/images/hero/dxa3-hero-original.jpg'],
+    title: "ROSON Hot-Selling Model S3 Dental Chair",
+    description:
+      "An autoclavable light handle, a spittoon and suction filter that come off without tools, and a 6-way stool included. See the S3 at our Pasig showroom.",
+    url: "https://dentasourcedirect.com/s3",
+    type: "website",
+    images: ["/images/hero/dxa3-hero-original.jpg"],
   },
 };
 
 export default function S3Page() {
-    return (
-        <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
-            <ChairSchemas route="/s3" />
-            <ProductCinema config={productCinemaConfig("s3")}>
-                <S3HeroVisual />
-                <S3FeatureGrid />
-                <S3LightSection />
-                <S3ErgonomicsSection />
-                <SpecGate><S3TechSpecs /></SpecGate>
-                <S3ProductConfigurator />
-                <S3VisualTour />
-                <S3WhatsInTheBox />
-                <S3WarrantyTable />
-            </ProductCinema>
-        </main>
-    );
+  return (
+    <main className="min-h-screen">
+      <ChairSchemas route="/s3" />
+      <ChairPage chair={s3} />
+    </main>
+  );
 }

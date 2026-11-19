@@ -23,6 +23,27 @@ export function resolveTheme() {
   return storedTheme() || DEFAULT_THEME;
 }
 
+// ☠️ THE CHAIR PAGES ARE LIGHT ONLY (Jarich, 2026-11-19: "make it light themed here not dark
+// all of them dental chairs as well"). A product page is a showroom: white ground, the chair,
+// the facts. These routes ignore the remembered theme and the default, never mount the sky,
+// and hide the switch. The list is spelled out a second time inside THEME_SCRIPT below, for
+// the first paint; scripts/check-theme-script.mjs fails the build if the two ever disagree.
+export const LIGHT_ONLY_ROUTES = [
+  "/dentalchairs", "/a3", "/a3s", "/a3l", "/a1-pro", "/n2-pro", "/n2-plus", "/n1", "/s9", "/s6", "/s3",
+];
+
+export function isLightOnly(pathname) {
+  if (!pathname) return false;
+  const path = pathname.replace(/[/]+$/, "");
+  return LIGHT_ONLY_ROUTES.includes(path);
+}
+
+// What a route should show: light on the light-only routes, otherwise the remembered tap or
+// the default.
+export function themeFor(pathname) {
+  return isLightOnly(pathname) ? "light" : resolveTheme();
+}
+
 export function applyTheme(mode) {
   document.documentElement.setAttribute("data-theme", mode);
 }
@@ -47,4 +68,4 @@ export function rememberTheme(mode) {
 // scripts/check-theme-script.mjs fails the build if this literal drifts from them or if
 // what reaches the built HTML is not this exact script.
 export const THEME_SCRIPT =
-  "(function(){var v='dark';try{if(localStorage.getItem('dsd:theme')==='light')v='light';}catch(e){}document.documentElement.setAttribute('data-theme',v);})();";
+  "(function(){var v='dark';try{if(localStorage.getItem('dsd:theme')==='light')v='light';}catch(e){}if('|/dentalchairs|/a3|/a3s|/a3l|/a1-pro|/n2-pro|/n2-plus|/n1|/s9|/s6|/s3|'.indexOf('|'+location.pathname.replace(/[/]+$/,'')+'|')!==-1)v='light';document.documentElement.setAttribute('data-theme',v);})();";

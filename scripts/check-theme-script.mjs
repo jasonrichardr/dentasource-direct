@@ -51,6 +51,18 @@ if (!script.includes("setAttribute('data-theme'")) {
   die('the literal must stamp data-theme; it does not.');
 }
 
+// the light-only routes are spelled twice (the JS list and the literal); they must agree
+const lightList = source.match(/export const LIGHT_ONLY_ROUTES\s*=\s*\[([^\]]*)\]/)?.[1];
+const lightRoutes = lightList ? [...lightList.matchAll(/["']([^"']+)["']/g)].map((m) => m[1]) : [];
+const lightLiteral = script.match(/'\|([^']*)\|'\.indexOf/)?.[1]?.split('|') ?? [];
+if (!lightRoutes.length || lightRoutes.join('|') !== lightLiteral.join('|')) {
+  die(
+    `LIGHT_ONLY_ROUTES and the route list inside THEME_SCRIPT disagree.\n` +
+    `  list:    ${lightRoutes.join(' ') || '<none found>'}\n` +
+    `  literal: ${lightLiteral.join(' ') || '<none found>'}`
+  );
+}
+
 if (!existsSync(BUILT)) {
   // Nothing to inspect. Say so rather than passing silently, but do not block a build
   // over a directory layout this guard does not recognise.

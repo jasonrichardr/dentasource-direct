@@ -1,91 +1,124 @@
-// /dentalchairs: every chair as a real photograph on the studio mat, its name, one line,
-// three ✦ facts and a glass door to its page. Server component; the motion comes from
-// ScrollFx (reveal, parallax, tilt) and the featured card's CycleMat.
+// /dentalchairs: the ROSON range, grouped by family. Each chair is a real photograph on the
+// studio mat, its name, one line, three facts and a link to its page. Server component; the
+// only motion is ScrollFx's reveal and the lead card's CycleMat.
+//
+// ☠️ LIGHT ONLY, AND NO SKY (Jarich, 2026-11-19). See ChairPage.jsx.
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 import ScrollFx from './ScrollFx';
 import CycleMat from './CycleMat';
-import { Stars, Actions, GlassLink } from './parts';
+import { Stars, Actions, IconItem } from './parts';
 import { ShowroomDoor } from './sections';
 import './chair.css';
-import IdleSky from '@/cinema/IdleSky';
 
-function CardPhoto({ chair }) {
+function CardPhoto({ chair, wide }) {
   const p = chair.photo;
   const cover = p.fit === 'cover';
-  const sizes = chair.featured
-    ? '(max-width: 760px) calc(100vw - 52px), (max-width: 1000px) 92vw, 680px'
-    : '(max-width: 760px) calc(100vw - 52px), 560px';
-  // An existing white-ground photo is multiplied onto the mat; a baked one already carries it.
-  const matClass = `ch-mat${!cover && !p.baked ? ' ch-multiply' : ''}`;
+  const sizes = wide
+    ? '(max-width: 760px) calc(100vw - 48px), (max-width: 1000px) 92vw, 660px'
+    : '(max-width: 760px) calc(100vw - 48px), (max-width: 1000px) 46vw, 380px';
+  // A white-ground photo is multiplied onto the mat; a baked one already carries it.
   return (
-    <Link
-      href={chair.route}
-      prefetch={false}
-      className="ch-card-media ch-tilt"
-      data-tilt
-      tabIndex={-1}
-      aria-hidden="true"
-    >
-      <div className={matClass}>
-        {chair.cycle?.length ? (
-          <CycleMat frames={chair.cycle} alt={`ROSON ${chair.lineName} ${chair.model}`} sizes={sizes} />
-        ) : (
-          <div className={`ch-plx${cover ? ' ch-plx-cover' : ''}`} data-parallax="0.04">
-            <Image src={p.src} alt={p.alt} fill sizes={sizes} quality={85} />
-          </div>
-        )}
-      </div>
-    </Link>
+    <div className={`ch-card-media ch-mat${p.blend ? ' ch-multiply' : ''}`}>
+      {chair.cycle?.length ? (
+        <CycleMat frames={chair.cycle} alt={`ROSON ${chair.lineName} ${chair.model}`} sizes={sizes} />
+      ) : (
+        <div className={`ch-plx${cover ? ' ch-plx-cover' : ''}`}>
+          <Image src={p.src} alt={p.alt} fill sizes={sizes} quality={85} />
+        </div>
+      )}
+    </div>
   );
 }
 
-function ChairCard({ chair, index }) {
+// The whole card is one link: the model name carries it, and its ::after covers the card.
+function ChairCard({ chair, index, wide }) {
   return (
-    <article className={`ch-card${chair.featured ? ' ch-card-featured' : ''}`} data-reveal style={{ '--i': index % 2 }}>
-      <CardPhoto chair={chair} />
+    <article className={`ch-card${wide ? ' ch-card-wide' : ''}`} data-reveal style={{ '--i': index % 3 }}>
+      <CardPhoto chair={chair} wide={wide} />
       <div className="ch-card-body">
-        <p className="ch-card-family">{chair.family}</p>
-        <h2 className="ch-card-title">
-          {chair.model}
-          <span className="ch-card-sub">{chair.lineName}</span>
-        </h2>
+        <p className="ch-card-kind">{chair.lineName}</p>
+        <h3 className="ch-card-title">
+          <Link href={chair.route} prefetch={false} className="ch-card-link">{chair.model}</Link>
+        </h3>
         <p className="ch-line ch-card-line">{chair.line}</p>
-        <Stars items={chair.stars} />
-        <div className="ch-card-cta">
-          <GlassLink cta={{ label: `See the ${chair.model}`, href: chair.route, primary: chair.featured }} small={!chair.featured} arrow />
-        </div>
+        <Stars items={chair.stars} className="ch-stars-sm" />
+        <p className="ch-card-go" aria-hidden="true">
+          Explore the {chair.model} <ArrowRight size={16} />
+        </p>
       </div>
     </article>
+  );
+}
+
+function Family({ family, chairs }) {
+  // The lead chair of a family, or a family of one, takes the full width.
+  const wideOnes = chairs.filter((c) => c.featured || chairs.length === 1);
+  const rest = chairs.filter((c) => !wideOnes.includes(c));
+  return (
+    <section className="ch-family" id={family.id} aria-labelledby={`${family.id}-title`}>
+      <div className="ch-wrap">
+        <div className="ch-family-head" data-reveal>
+          <div>
+            <h2 id={`${family.id}-title`} className="ch-h2">{family.title}</h2>
+            <p className="ch-line">{family.line}</p>
+          </div>
+          <p className="ch-family-count">{chairs.length === 1 ? '1 chair' : `${chairs.length} chairs`}</p>
+        </div>
+        {wideOnes.map((c, i) => <ChairCard key={c.slug} chair={c} index={i} wide />)}
+        {rest.length ? (
+          <div className="ch-gallery" style={{ '--cols': Math.min(rest.length, 3) }}>
+            {rest.map((c, i) => <ChairCard key={c.slug} chair={c} index={i} />)}
+          </div>
+        ) : null}
+      </div>
+    </section>
   );
 }
 
 export default function ChairGallery({ chairs, copy, clients = null }) {
   const rootId = 'chairs-index';
   const h = copy.hero;
+  // Only the families that still have a visible chair (a chair can be hidden in the studio).
+  const families = copy.families
+    .map((f) => ({ family: f, chairs: chairs.filter((c) => c.family === f.key) }))
+    .filter((g) => g.chairs.length);
+
   return (
-    <>
-    {/* the home page's night sky behind the page, dark mode only (Jarich 2026-10-06) */}
-    <IdleSky />
-    <div id={rootId} className="ch">
+    <div id={rootId} className="ch ch-index">
       <section className="ch-index-hero" aria-labelledby="ch-index-title">
-        <div className="ch-wrap ch-head ch-head-center">
-          <p className="ch-kicker ch-rise" style={{ '--d': 0 }}>{h.kicker}</p>
-          <h1 id="ch-index-title" className="ch-h1 ch-rise" style={{ '--d': 1 }}>{h.title}</h1>
-          <p className="ch-line ch-rise" style={{ '--d': 2 }}>{h.line}</p>
-          <div className="ch-rise" style={{ '--d': 3 }}>
-            <Actions ctas={h.ctas} className="ch-actions-center" />
-            <Stars items={h.stars} />
+        <div className="ch-wrap ch-index-grid">
+          <div className="ch-index-copy">
+            <p className="ch-kicker ch-rise" style={{ '--d': 0 }}>{h.kicker}</p>
+            <h1 id="ch-index-title" className="ch-h1 ch-h1-xl ch-rise" style={{ '--d': 1 }}>{h.title}</h1>
+            <p className="ch-line ch-lead ch-rise" style={{ '--d': 2 }}>{h.line}</p>
+            <div className="ch-rise" style={{ '--d': 3 }}>
+              <Actions ctas={h.ctas} />
+            </div>
           </div>
+          <aside className="ch-assure ch-rise" style={{ '--d': 3 }} aria-labelledby="ch-assure-title">
+            <h2 id="ch-assure-title" className="ch-extras-title">{copy.assurance.title}</h2>
+            <ul className="ch-assure-list">
+              {copy.assurance.items.map((it) => <IconItem key={it.title} item={it} />)}
+            </ul>
+          </aside>
         </div>
+
+        <nav className="ch-wrap ch-jump ch-rise" style={{ '--d': 4 }} aria-label="Chair families">
+          <span className="ch-jump-label">{copy.jumpLabel}</span>
+          <ul>
+            {families.map(({ family, chairs: list }) => (
+              <li key={family.id}>
+                <a href={`#${family.id}`}>{family.short}<span>{list.length}</span></a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </section>
 
-      <section className="ch-section" style={{ paddingTop: 0 }} aria-label="The ROSON chairs">
-        <div className="ch-wrap ch-gallery">
-          {chairs.map((c, i) => <ChairCard key={c.slug} chair={c} index={i} />)}
-        </div>
-      </section>
+      {families.map(({ family, chairs: list }) => <Family key={family.id} family={family} chairs={list} />)}
 
       {/* doctors at our booth and in their clinics (ClientMarquee, Jarich 2026-10-12) */}
       {clients}
@@ -93,7 +126,5 @@ export default function ChairGallery({ chairs, copy, clients = null }) {
       <ShowroomDoor door={copy.door} />
       <ScrollFx rootId={rootId} />
     </div>
-    </>
   );
 }
-
