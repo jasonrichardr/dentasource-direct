@@ -20,6 +20,7 @@ import RoomChrome from './RoomChrome';
 import ThemeToggle from '@/cinema/ThemeToggle';
 import MarqueeSpeed from './MarqueeSpeed';
 import LiquidGlass from './LiquidGlass';
+import { isLightOnly } from '@/cinema/theme/theme';
 
 /**
  * ☠️ THE WORKING ROUTES GET NO ROOM.
@@ -59,7 +60,9 @@ export default function SiteShell({ children }) {
           control is the only way to change register, so it mounts on every route; the
           room's 🌗 button proxies whatever carries id="theme-switch", and CSS in
           trust-marquee.css hides it while the room holds the screen. */}
-      <ThemeToggle id="theme-switch" />
+      {/* the chair pages are light only (theme.js LIGHT_ONLY_ROUTES): a switch that cannot
+          switch is a dead control, so it stands down there */}
+      {!isLightOnly(pathname) && <ThemeToggle id="theme-switch" />}
       {/* Every marquee, site wide, held at the speed measured on ffcdentalclinic.com.
           See src/lib/cinema/marquee.js for the numbers and how they were taken. */}
       <MarqueeSpeed />

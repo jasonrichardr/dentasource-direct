@@ -1,44 +1,30 @@
 import ChairSchemas from "@/components/ChairSchemas";
-import A3SHeroVisual from "@/components/a3s/A3SHeroVisual";
-import A3SFeatureGrid from "@/components/a3s/A3SFeatureGrid";
-import A3SColorSection from "@/components/a3s/A3SColorSection";
-import A3SErgonomicsSection from "@/components/a3s/A3SErgonomicsSection";
-import A3STechSpecs from "@/components/a3s/A3STechSpecs";
-import SpecGate from "@/components/SpecGate";
-import A3SProductConfigurator from "@/components/a3s/A3SProductConfigurator";
-import A3SVisualTour from "@/components/a3s/A3SVisualTour";
-import A3SWhatsInTheBox from "@/components/a3s/A3SWhatsInTheBox";
-import A3SWarrantyTable from "@/components/a3s/A3SWarrantyTable";
-import ProductCinema from "@/cinema/product/ProductCinema";
-import { productCinemaConfig } from "@/cinema/product/productConfig";
+import ChairPage from "@/components/chair/ChairPage";
+import a3s from "@/data/chairs/a3s";
+
+// The A3S on the shared chair template: every word and photo on this page comes from
+// src/data/chairs/a3s.js, and the sections come from src/components/chair/. The spec table is
+// still behind SpecGate (inside the template), and the JSON-LD is unchanged.
 
 export const metadata = {
-    title: "Roson A3S Smart Dental Chair",
-    description: "The Roson A3S Smart Series — 7 colors, seamless microfiber leather as standard, Rolight S with breathing lamp, and whisper-quiet motor system.",
+  title: "ROSON Smart Model A3S Dental Chair",
+  description:
+    "The A3 platform with seamless microfiber leather as standard, seven unit colors and the Rolight S light. See the A3S at our Pasig showroom.",
   openGraph: {
-    title: "Roson A3S Smart Dental Chair",
-    description: "The Roson A3S Smart Series — 7 colors, seamless microfiber leather as standard, Rolight S with breathing lamp, and whisper-quiet motor system.",
-    url: 'https://dentasourcedirect.com/a3s',
-    type: 'website',
-    images: ['/images/hero/dxa3-hero-original.jpg'],
+    title: "ROSON Smart Model A3S Dental Chair",
+    description:
+      "The A3 platform with seamless microfiber leather as standard, seven unit colors and the Rolight S light. See the A3S at our Pasig showroom.",
+    url: "https://dentasourcedirect.com/a3s",
+    type: "website",
+    images: ["/images/hero/dxa3-hero-original.jpg"],
   },
 };
 
 export default function A3SPage() {
-    return (
-        <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
-            <ChairSchemas route="/a3s" />
-            <ProductCinema config={productCinemaConfig("a3s")}>
-                <A3SHeroVisual />
-                <A3SFeatureGrid />
-                <A3SColorSection />
-                <A3SErgonomicsSection />
-                <SpecGate><A3STechSpecs /></SpecGate>
-                <A3SProductConfigurator />
-                <A3SVisualTour />
-                <A3SWhatsInTheBox />
-                <A3SWarrantyTable />
-            </ProductCinema>
-        </main>
-    );
+  return (
+    <main className="min-h-screen">
+      <ChairSchemas route="/a3s" />
+      <ChairPage chair={a3s} />
+    </main>
+  );
 }

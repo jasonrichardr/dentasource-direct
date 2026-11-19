@@ -11,7 +11,7 @@
 // those, it does not belong in this file.
 //
 // House rules for the words: a headline is 7 words or fewer, the line under it 20 or fewer,
-// proof goes in ✦ stars rather than paragraphs, no em or en dashes, no prices, no "#1",
+// proof goes in short check-marked facts (`stars`) rather than paragraphs, no em or en dashes, no prices, no "#1",
 // no competitor names, Pasig showroom (never Manila).
 //
 // Photos: fsroson.com studio renders and detail shots, downloaded 2026-10-06, looked at one by
@@ -33,9 +33,9 @@ export const a3 = {
   family: 'A3 family',
 
   hero: {
-    kicker: 'ROSON dental chair',
+    kicker: 'The flagship of the ROSON range',
     title: 'ROSON Flagship Model A3',
-    line: 'Waterline disinfection, a color touchscreen and hands-free cup filling, all built in as standard.',
+    line: 'The chair most new clinics ask us about by name. Waterline disinfection, a color touchscreen and hands-free cup filling come standard, not as options.',
     stars: [
       'EOW disinfection eliminates 99.9999% of waterline bacteria',
       'Medical-grade color touchscreen with three memory positions',
@@ -60,6 +60,14 @@ export const a3 = {
     },
   },
 
+  // The four figures a buyer asks for first. All from the spec sheet and the warranty below.
+  glance: [
+    { value: '3', label: 'memory positions on the touchscreen' },
+    { value: '400 to 750 mm', label: 'seat height range' },
+    { value: '150 kg', label: 'maximum patient load' },
+    { value: '2 years', label: 'warranty on the whole unit' },
+  ],
+
   // The one number worth a whole band.
   proof: {
     kicker: 'EOW-TECH disinfection',
@@ -74,9 +82,21 @@ export const a3 = {
     ],
   },
 
+  // products.json a3, the whoItIsFor beat.
+  fit: {
+    kicker: 'Who it suits',
+    title: 'The room that does everything',
+    line: 'For practices that want infection control and memory positions built in, and a chair that holds up to a full day, every day.',
+    segments: [
+      'Established practices upgrading their main operatory',
+      'Clinics that treat infection control as a specification',
+      'New clinics fitting out their lead room',
+    ],
+  },
+
   features: {
-    kicker: 'Why it works',
-    title: 'Built around a working day',
+    kicker: 'Features',
+    title: 'Built around your working day',
     line: 'The parts you reach for all day, and what each one does for you.',
     items: [
       {
@@ -275,12 +295,13 @@ export const a3 = {
 
   // How the A3 appears on /dentalchairs.
   card: {
-    line: 'Waterline disinfection, a color touchscreen and hands-free cup filling, built in.',
+    line: 'The flagship. Waterline disinfection, a color touchscreen and hands-free cup filling come standard.',
     stars: [
       'EOW waterline disinfection',
       '8-bead Philips LED light',
       'Anti-collision assistant arm',
     ],
+    photo: { src: `${A3}/a3-color-turquoise.webp`, w: 940, h: 751, alt: 'ROSON Flagship Model A3 in Turquoise' },
   },
 };
 

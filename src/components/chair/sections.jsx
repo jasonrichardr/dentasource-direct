@@ -1,15 +1,21 @@
 // The sections of the shared chair page, in page order. Server components: the only client
-// pieces are PhotoSwitcher (the colorway and delivery choosers), ScrollFx (reveal, parallax,
-// tilt) and SpecGate (the sign-in wall that already guarded the spec table).
+// pieces are PhotoSwitcher (the colorway and delivery choosers), ScrollFx (the reveal) and
+// SpecGate (the sign-in wall that already guarded the spec table).
 //
-// Nothing in this file writes copy. Every visible word arrives in the `chair` object from
-// src/data/chairs/<model>.js.
+// Nothing in this file writes copy about a chair. Every word about the product arrives in the
+// `chair` object from src/data/chairs/<model>.js; the words about our own service (the
+// inspection, the stories heading) come from src/data/chairs/shared.js.
 
+import Link from 'next/link';
 import Image from 'next/image';
-import { MapPin, Clock } from 'lucide-react';
+import { MapPin, Clock, ArrowRight, ArrowUpRight } from 'lucide-react';
 import SpecGate from '@/components/SpecGate';
 import PhotoSwitcher from './PhotoSwitcher';
-import { Stars, SectionHead, Actions, IconItem } from './parts';
+import { Stars, SectionHead, Actions, IconItem, GlassLink } from './parts';
+import { INSPECTION, STORIES, CTA } from '@/data/chairs/shared';
+
+const matClass = (photo, extra = '') => `ch-mat${photo?.blend ? ' ch-multiply' : ''}${extra ? ` ${extra}` : ''}`;
+const plxClass = (photo) => `ch-plx${photo?.fit === 'cover' ? ' ch-plx-cover' : ''}`;
 
 /* ── 1. hero: the chair, its name, one line, the colorways, the doors ─────────────── */
 export function ChairHero({ chair }) {
@@ -18,9 +24,14 @@ export function ChairHero({ chair }) {
     <section className="ch-hero" aria-labelledby="ch-title">
       <div className="ch-wrap ch-hero-grid">
         <div className="ch-hero-copy">
+          <p className="ch-crumb ch-rise" style={{ '--d': 0 }}>
+            <Link href="/dentalchairs" prefetch={false}>Dental chairs</Link>
+            <span aria-hidden="true">/</span>
+            <span>{chair.family}</span>
+          </p>
           <p className="ch-kicker ch-rise" style={{ '--d': 0 }}>{h.kicker}</p>
           <h1 id="ch-title" className="ch-h1 ch-rise" style={{ '--d': 1 }}>{h.title}</h1>
-          <p className="ch-line ch-rise" style={{ '--d': 2 }}>{h.line}</p>
+          <p className="ch-line ch-lead ch-rise" style={{ '--d': 2 }}>{h.line}</p>
         </div>
         <div className="ch-hero-stage ch-settle">
           <PhotoSwitcher
@@ -31,27 +42,59 @@ export function ChairHero({ chair }) {
             note={h.colorways.note}
             altPrefix={`${chair.name} in`}
             sizes="(max-width: 960px) calc(100vw - 32px), 680px"
+            blend={Boolean(h.colorways.blend)}
             preload
             float
-            sweep
           />
         </div>
         <div className="ch-hero-actions ch-rise" style={{ '--d': 3 }}>
-          <Actions ctas={h.ctas} />
           <Stars items={h.stars} />
+          <Actions ctas={h.ctas} />
         </div>
       </div>
     </section>
   );
 }
 
-/* ── 2. proof: the one number that earns a band of its own ─────────────────────────── */
+/* ── the local bar: where you are on the page, and the one door that matters ───────── */
+export function LocalNav({ chair, links }) {
+  return (
+    <nav className="ch-localnav" aria-label={`${chair.model} page sections`}>
+      <div className="ch-wrap ch-localnav-row">
+        <p className="ch-localnav-name">{chair.model}<span>{chair.lineName}</span></p>
+        <ul className="ch-localnav-links">
+          {links.map((l) => <li key={l.href}><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+        <GlassLink cta={{ ...CTA.inquire, primary: true }} small />
+      </div>
+    </nav>
+  );
+}
+
+/* ── 2. at a glance: the four figures a buyer asks for first ───────────────────────── */
+export function Glance({ glance }) {
+  if (!glance?.length) return null;
+  return (
+    <section className="ch-glance-band" aria-label="At a glance">
+      <dl className="ch-wrap ch-glance" data-reveal>
+        {glance.map((g) => (
+          <div key={g.label} className="ch-glance-item">
+            <dd>{g.value}</dd>
+            <dt>{g.label}</dt>
+          </div>
+        ))}
+      </dl>
+    </section>
+  );
+}
+
+/* ── 3. proof: the one number that earns a band of its own ─────────────────────────── */
 export function ProofBand({ proof }) {
   if (!proof) return null;
   return (
     <section className="ch-section" aria-label={proof.kicker}>
       <div className="ch-wrap">
-        <div className="ch-proof lg-on-dark" data-reveal>
+        <div className="ch-proof" data-reveal>
           <div className="ch-proof-grid">
             <div>
               <p className="ch-kicker">{proof.kicker}</p>
@@ -76,23 +119,46 @@ export function ProofBand({ proof }) {
   );
 }
 
-/* ── 3. why it works: a bento of the real detail photographs ───────────────────────── */
+/* ── 4. who it suits: the rooms and practices this chair was specified for ─────────── */
+export function Fit({ fit }) {
+  if (!fit) return null;
+  return (
+    <section className="ch-section" id="who-it-suits">
+      <div className="ch-wrap ch-fit">
+        <SectionHead kicker={fit.kicker} title={fit.title} line={fit.line} />
+        {fit.segments?.length ? (
+          <ul className="ch-fit-list" data-reveal style={{ '--i': 1 }}>
+            {fit.segments.map((s, i) => (
+              <li key={s}>
+                <span className="ch-fit-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                {s}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
+/* ── 5. why it works: a bento of the real detail photographs ───────────────────────── */
 function FeatureTile({ item, index }) {
   const p = item.photo;
-  const cover = p.fit === 'cover';
   return (
-    <article className="ch-tile" data-reveal style={{ '--i': index % 3 }}>
-      <div className="ch-mat">
-        <div className={`ch-plx${cover ? ' ch-plx-cover' : ''}`} data-parallax="0.05">
-          <Image
-            src={p.src}
-            alt={p.alt}
-            fill
-            sizes="(max-width: 720px) calc(100vw - 52px), (max-width: 1200px) 58vw, 680px"
-            quality={85}
-          />
+    <article className={`ch-tile${p ? '' : ' ch-tile-text'}`} data-reveal style={{ '--i': index % 3 }}>
+      {p ? (
+        <div className={matClass(p)}>
+          <div className={plxClass(p)}>
+            <Image
+              src={p.src}
+              alt={p.alt}
+              fill
+              sizes="(max-width: 720px) calc(100vw - 52px), (max-width: 1200px) 58vw, 680px"
+              quality={85}
+            />
+          </div>
         </div>
-      </div>
+      ) : null}
       <div className="ch-tile-copy">
         <span className="ch-tile-num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
         <h3 className="ch-h3">{item.title}</h3>
@@ -107,7 +173,7 @@ export function FeatureStory({ chair }) {
   if (!f) return null;
   const d = f.delivery;
   return (
-    <section className="ch-section" id="why-it-works">
+    <section className="ch-section" id="features">
       <div className="ch-wrap">
         <SectionHead kicker={f.kicker} title={f.title} line={f.line} />
         <div className="ch-bento">
@@ -129,6 +195,7 @@ export function FeatureStory({ chair }) {
                 label={d.title}
                 altPrefix={`${chair.name},`}
                 sizes="(max-width: 900px) calc(100vw - 32px), 680px"
+                blend={Boolean(d.blend)}
               />
             </div>
           </div>
@@ -147,26 +214,42 @@ export function FeatureStory({ chair }) {
   );
 }
 
-/* ── 4. comfort: the three upholsteries, and the stool that comes with it ──────────── */
+/* ── 6. comfort: the upholsteries, and the stool that comes with it ────────────────── */
 export function Comfort({ comfort }) {
   if (!comfort) return null;
+  const swatches = comfort.upholstery || [];
   return (
-    <section className="ch-section" id="comfort">
+    <section className="ch-section ch-band" id="comfort">
       <div className="ch-wrap">
         <SectionHead kicker={comfort.kicker} title={comfort.title} line={comfort.line} />
-        <div className="ch-comfort">
-          <div className="ch-swatchrow">
-            {comfort.upholstery.map((u, i) => (
-              <figure key={u.name} className="ch-leather" data-reveal style={{ '--i': i }}>
-                <div className="ch-mat">
-                  <div className="ch-plx ch-plx-cover" data-parallax="0.04">
-                    <Image src={u.src} alt={u.alt} fill sizes="(max-width: 960px) 31vw, 280px" quality={75} />
+        <div className={`ch-comfort${swatches.length ? '' : ' ch-comfort-solo'}`}>
+          {swatches.length ? (
+            <div className="ch-swatchrow" style={{ '--n': Math.min(swatches.length, 3) }}>
+              {swatches.map((u, i) => (
+                <figure key={u.name} className="ch-leather" data-reveal style={{ '--i': i }}>
+                  <div className="ch-mat">
+                    <div className="ch-plx ch-plx-cover">
+                      <Image src={u.src} alt={u.alt} fill sizes="(max-width: 960px) 31vw, 280px" quality={75} />
+                    </div>
                   </div>
-                </div>
-                <figcaption>{u.name}</figcaption>
-              </figure>
-            ))}
-          </div>
+                  <figcaption>{u.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+          ) : null}
+          {comfort.colors?.items?.length ? (
+            <div className="ch-colors" data-reveal style={{ '--i': 1 }}>
+              <h3 className="ch-extras-title">{comfort.colors.title}</h3>
+              <ul className="ch-colorlist">
+                {comfort.colors.items.map((c) => (
+                  <li key={c.name}>
+                    {c.swatch ? <span className="ch-colordot" style={{ '--c': c.swatch }} aria-hidden="true" /> : null}
+                    {c.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
           {comfort.stool ? (
             <div className="ch-stool" data-reveal style={{ '--i': 2 }}>
               <h3 className="ch-h3">{comfort.stool.title}</h3>
@@ -179,7 +262,7 @@ export function Comfort({ comfort }) {
   );
 }
 
-/* ── 5. specs: still behind SpecGate, now readable in grouped cards ────────────────── */
+/* ── 7. specs: still behind SpecGate, readable in grouped cards ────────────────────── */
 function SpecSheet({ specs }) {
   return (
     <div>
@@ -216,12 +299,12 @@ export function Specs({ specs }) {
   );
 }
 
-/* ── 6. in the box, and the warranty, side by side ─────────────────────────────────── */
+/* ── 8. in the box, and the warranty, side by side ─────────────────────────────────── */
 export function BoxAndWarranty({ box, warranty }) {
   if (!box && !warranty) return null;
   return (
-    <section className="ch-section" id="in-the-box">
-      <div className="ch-wrap ch-boxgrid">
+    <section className="ch-section ch-band" id="in-the-box">
+      <div className={`ch-wrap ch-boxgrid${box && warranty ? '' : ' ch-boxgrid-solo'}`}>
         {box ? (
           <div>
             <SectionHead kicker={box.kicker} title={box.title} line={box.line} />
@@ -251,7 +334,84 @@ export function BoxAndWarranty({ box, warranty }) {
   );
 }
 
-/* ── 7. the door: the showroom, in glass ───────────────────────────────────────────── */
+/* ── 9. in real clinics: our own install photographs, each linked to its story ─────── */
+const DATE_FMT = new Intl.DateTimeFormat('en-PH', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Manila' });
+function storyDate(value) {
+  const d = new Date(value);
+  return Number.isNaN(d.getTime()) ? null : DATE_FMT.format(d);
+}
+
+export function Stories({ stories }) {
+  const items = stories?.items || [];
+  if (!items.length) return null;
+  const head = STORIES[stories.kind] || STORIES.news;
+  return (
+    <section className="ch-section" id="in-clinics">
+      <div className="ch-wrap">
+        <SectionHead kicker={head.kicker} title={head.title} line={head.line} />
+        <ul className="ch-stories" style={{ '--n': Math.min(items.length, 3) }}>
+          {items.slice(0, 3).map((it, i) => (
+            <li key={it.slug} data-reveal style={{ '--i': i }}>
+              <Link className="ch-story" href={`/news/${it.slug}`} prefetch={false}>
+                <span className="ch-story-photo">
+                  <Image src={it.image} alt={it.alt} fill sizes="(max-width: 760px) calc(100vw - 32px), 380px" quality={75} />
+                </span>
+                <span className="ch-story-copy">
+                  {storyDate(it.date) ? <span className="ch-story-date">{storyDate(it.date)}</span> : null}
+                  <span className="ch-story-title">{it.title}</span>
+                  <span className="ch-story-go">Read the story <ArrowUpRight size={15} aria-hidden="true" /></span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+/* ── 10. before it reaches you: the eight point check, then the install ────────────── */
+export function Inspection({ inspection }) {
+  const list = inspection?.checklist || [];
+  if (!list.length) return null;
+  const photos = inspection.photos || [];
+  return (
+    <section className="ch-section ch-band" id="inspection">
+      <div className="ch-wrap ch-inspect">
+        <div>
+          <SectionHead kicker={INSPECTION.kicker} title={INSPECTION.title} line={INSPECTION.line} />
+          <p className="ch-inspect-link" data-reveal>
+            <Link href={INSPECTION.article.href} prefetch={false}>
+              {INSPECTION.article.label} <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </p>
+          {photos.length ? (
+            <div className="ch-inspect-photos" data-reveal>
+              {photos.map((src) => (
+                <span key={src} className="ch-inspect-photo">
+                  <Image src={src} alt="A ROSON chair on our bench during its pre-delivery inspection" fill sizes="(max-width: 900px) 46vw, 260px" quality={75} />
+                </span>
+              ))}
+            </div>
+          ) : null}
+        </div>
+        <div className="ch-checklist" data-reveal style={{ '--i': 1 }}>
+          <h3 className="ch-extras-title">{INSPECTION.checklistTitle}</h3>
+          <ol>
+            {list.map((line, i) => (
+              <li key={line}>
+                <span className="ch-fit-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                {line}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── 11. the door: the showroom ────────────────────────────────────────────────────── */
 export function ShowroomDoor({ door }) {
   if (!door) return null;
   const photo = door.photo;
@@ -260,8 +420,8 @@ export function ShowroomDoor({ door }) {
       <div className="ch-wrap">
         <div className={`ch-door ${photo ? 'ch-door-photo' : 'ch-door-solo'}`} data-reveal>
           {photo ? (
-            <div className="ch-mat">
-              <div className="ch-plx" data-parallax="0.04">
+            <div className={matClass(photo)}>
+              <div className={plxClass(photo)}>
                 <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 900px) calc(100vw - 72px), 620px" quality={85} />
               </div>
             </div>

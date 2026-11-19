@@ -1,14 +1,16 @@
-// Small shared pieces of the chair template: the section head, the ✦ stars, the glass
+// Small shared pieces of the chair template: the section head, the check list, the glass
 // buttons, the icon map. Server components; nothing here holds state.
 
 import Link from 'next/link';
 import {
   ShieldCheck, Gauge, Waves, Footprints, Armchair, Lightbulb, CircleDot, User, Sofa, Star,
-  Pipette, Cable, BookOpen, ArrowRight,
+  Pipette, Cable, BookOpen, ArrowRight, Ruler, ClipboardCheck, Wrench, Droplets, Palette,
+  Monitor, Hand, Layers, Thermometer, Sparkles, Package, Zap, Wind, Move, Lock,
 } from 'lucide-react';
 
 // Data files name an icon; this is the only place a name becomes a drawing. Every icon is a
-// lucide-react glyph (no emoji in production UI).
+// lucide-react glyph (no emoji in production UI). An unknown name falls back to a plain dot,
+// so a typo in a data file never breaks a page.
 export const ICONS = {
   shield: ShieldCheck,
   motor: Gauge,
@@ -23,8 +25,25 @@ export const ICONS = {
   syringe: Pipette,
   tube: Cable,
   docs: BookOpen,
+  ruler: Ruler,
+  check: ClipboardCheck,
+  wrench: Wrench,
+  water: Droplets,
+  color: Palette,
+  screen: Monitor,
+  hand: Hand,
+  layers: Layers,
+  warm: Thermometer,
+  clean: Sparkles,
+  box: Package,
+  power: Zap,
+  air: Wind,
+  move: Move,
+  lock: Lock,
 };
 
+// A short list of facts, each behind a small green check. (Named Stars because every chair
+// data file calls its facts `stars`; the gold star glyph itself retired with the night sky.)
 export function Stars({ items, className = '' }) {
   if (!items?.length) return null;
   return (

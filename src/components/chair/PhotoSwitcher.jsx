@@ -25,7 +25,7 @@ export default function PhotoSwitcher({
   sizes = '(max-width: 960px) 92vw, 640px',
   preload = false,
   float = false,
-  sweep = false,
+  blend = false,
   className = '',
 }) {
   const first = initial || options[0].key;
@@ -40,7 +40,7 @@ export default function PhotoSwitcher({
   const layers = options.map((o) => {
     const on = o.key === active;
     return (
-      <div key={o.key} className={`ch-layer${on ? ' is-on' : ''}`} aria-hidden={on ? undefined : 'true'}>
+      <div key={o.key} className={`ch-layer${on ? ' is-on' : ''}${o.fit === 'cover' ? ' ch-layer-cover' : ''}`} aria-hidden={on ? undefined : 'true'}>
         <Image
           src={o.src}
           alt={on ? `${altPrefix} ${o.name}`.trim() : ''}
@@ -55,10 +55,15 @@ export default function PhotoSwitcher({
 
   return (
     <div className={className}>
-      <div className="ch-mat ch-switch-mat">
-        {float ? <div className="ch-float">{layers}</div> : layers}
-        {sweep ? <span className="ch-sweep" aria-hidden="true" /> : null}
+      {/* `blend` is for white-ground photographs: each layer is multiplied onto the mat so the
+          white of the photo and the mat read as one surface. The float wrapper is its own
+          stacking context and would give the layers nothing to blend against, so a blended
+          set stays still. */}
+      <div className={`ch-mat ch-switch-mat${blend ? ' ch-multiply' : ''}`}>
+        {float && !blend ? <div className="ch-float">{layers}</div> : layers}
       </div>
+      {/* one photograph is just a photograph: nothing to choose, so no controls */}
+      {options.length > 1 ? (
       <div className="ch-controls">
         {mode === 'swatch' ? (
           <div className="ch-controls-meta">
@@ -96,6 +101,7 @@ export default function PhotoSwitcher({
           })}
         </div>
       </div>
+      ) : null}
     </div>
   );
 }

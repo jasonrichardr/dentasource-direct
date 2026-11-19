@@ -38,7 +38,7 @@ export default function CycleMat({ frames, alt, sizes }) {
   }, [frames.length]);
 
   return (
-    <div ref={ref} className="ch-plx" data-parallax="0.04">
+    <div ref={ref} className="ch-plx">
       {frames.map((f, k) => (
         <div key={f.key} className={`ch-layer${k === i ? ' is-on' : ''}`} aria-hidden={k === i ? undefined : 'true'}>
           <Image src={f.src} alt={k === i ? `${alt} in ${f.name}` : ''} fill sizes={sizes} quality={85} />

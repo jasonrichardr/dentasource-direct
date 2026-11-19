@@ -1,23 +1,19 @@
 import ChairSchemas from "@/components/ChairSchemas";
-import N1HeroVisual from "@/components/n1/N1HeroVisual";
-import N1FeatureGrid from "@/components/n1/N1FeatureGrid";
-import N1SimplicitySection from "@/components/n1/N1SimplicitySection";
-import N1ErgonomicsSection from "@/components/n1/N1ErgonomicsSection";
-import N1TechSpecs from "@/components/n1/N1TechSpecs";
-import SpecGate from "@/components/SpecGate";
-import N1ProductConfigurator from "@/components/n1/N1ProductConfigurator";
-import N1VisualTour from "@/components/n1/N1VisualTour";
-import N1WhatsInTheBox from "@/components/n1/N1WhatsInTheBox";
-import N1WarrantyTable from "@/components/n1/N1WarrantyTable";
-import ProductCinema from "@/cinema/product/ProductCinema";
-import { productCinemaConfig } from "@/cinema/product/productConfig";
+import ChairPage from "@/components/chair/ChairPage";
+import n1 from "@/data/chairs/n1";
+
+// The N1 on the shared chair template: every word and photo on this page comes from
+// src/data/chairs/n1.js, and the sections come from src/components/chair/. The spec table is
+// still behind SpecGate (inside the template), and the JSON-LD is unchanged.
 
 export const metadata = {
-    title: "Roson Classic Model N1",
-    description: "The Roson Classic Model N1 — the simplest setup in the lineup. Proven N-series platform, one starter system, zero complexity.",
+  title: "ROSON Classic Model N1 Dental Chair",
+  description:
+    "One starter for air, water and electricity, and a right arm that swings clear for patients. See the N1 at our Pasig showroom.",
   openGraph: {
-    title: "Roson Classic Model N1",
-    description: "The Roson Classic Model N1 — the simplest setup in the lineup. Proven N-series platform, one starter system, zero complexity.",
+    title: "ROSON Classic Model N1 Dental Chair",
+    description:
+      "One starter for air, water and electricity, and a right arm that swings clear for patients. See the N1 at our Pasig showroom.",
     url: 'https://dentasourcedirect.com/n1',
     type: 'website',
     images: ['/images/hero/dxa3-hero-original.jpg'],
@@ -25,20 +21,10 @@ export const metadata = {
 };
 
 export default function N1Page() {
-    return (
-        <main className="min-h-screen font-[family-name:var(--font-geist-sans)]">
-            <ChairSchemas route="/n1" />
-            <ProductCinema config={productCinemaConfig("n1")}>
-                <N1HeroVisual />
-                <N1FeatureGrid />
-                <N1SimplicitySection />
-                <N1ErgonomicsSection />
-                <SpecGate><N1TechSpecs /></SpecGate>
-                <N1ProductConfigurator />
-                <N1VisualTour />
-                <N1WhatsInTheBox />
-                <N1WarrantyTable />
-            </ProductCinema>
-        </main>
-    );
+  return (
+    <main className="min-h-screen">
+      <ChairSchemas route="/n1" />
+      <ChairPage chair={n1} />
+    </main>
+  );
 }

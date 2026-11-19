@@ -17,11 +17,11 @@ const STRIP = brandStrip('roson');
 export const metadata = {
   title: 'ROSON Dental Chairs',
   description:
-    'Every ROSON dental chair we carry, from the A3 flagship to the S series, photographed side by side. See them at our Pasig showroom.',
+    'The full ROSON dental chair range from the exclusive Philippine distributor. Compare the A3, A1, N and S series, then sit in them at our Pasig showroom.',
   openGraph: {
     title: 'ROSON Dental Chairs',
     description:
-      'Every ROSON dental chair we carry, from the A3 flagship to the S series, photographed side by side. See them at our Pasig showroom.',
+      'The full ROSON dental chair range from the exclusive Philippine distributor. Compare the A3, A1, N and S series, then sit in them at our Pasig showroom.',
     url: 'https://dentasourcedirect.com/dentalchairs',
     type: 'website',
     images: ['/images/hero/dxa3-hero-original.jpg'],
@@ -41,7 +41,7 @@ export default function DentalChairsPage() {
               <div className="ch-head ch-head-center" data-reveal>
                 <p className="ch-kicker">Our clients</p>
                 <RingWrite as="h2" className="ch-h2" text="Delivered, installed and smiling in clinics nationwide" />
-                <p className="ch-line">Booth days, deliveries and installs, from Pasig out to Mindoro and Bacolod. Tap any photo.</p>
+                <p className="ch-line">Booth days, deliveries and installs, from Pasig out to Mindoro and Bacolod. Open any photo for a closer look.</p>
               </div>
             </div>
             <ClientMarquee items={STRIP} label="ROSON chairs delivered and installed in our clients' clinics" />
