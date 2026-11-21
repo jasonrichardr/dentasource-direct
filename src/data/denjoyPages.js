@@ -4,7 +4,9 @@
 // src/data/denjoy.js stays the catalog (slugs, names, chapters, videos, Messenger text, and
 // the sitemap and JSON-LD read it). This file is the page copy, written on top of it.
 //
-// SOURCES. Every fact below already stood in the repo before this file existed:
+// SOURCES. Every fact below already stood in the repo before this file existed. The old
+// Denjoy components named here were removed once these pages replaced them; read them in git
+// history (git show d8844bb:<path>).
 //   - src/data/denjoy.js (keyFeatures, modules, videos)
 //   - src/components/denjoy/FreePexLanding.jsx and freePexContent.js (FREE PEX specs, kit,
 //     who it suits, warranty, questions)
