@@ -33,6 +33,8 @@ export const LIGHT_ONLY_ROUTES = [
   // The Denjoy pages joined them on 2026-11-21: the hub and all twelve instruments.
   "/denjoy", "/denjoy/meta-endo-pro-i", "/denjoy/meet-endo", "/denjoy/meta-endo", "/denjoy/free-pex", "/denjoy/i-pexo", "/denjoy/ix7",
   "/denjoy/ix6", "/denjoy/i-moto", "/denjoy/iue1", "/denjoy/icure", "/denjoy/ipack", "/denjoy/meta-pack",
+  // And the K-Clamp finder, 2026-11-22.
+  "/k-clamps",
 ];
 
 export function isLightOnly(pathname) {
@@ -71,4 +73,4 @@ export function rememberTheme(mode) {
 // scripts/check-theme-script.mjs fails the build if this literal drifts from them or if
 // what reaches the built HTML is not this exact script.
 export const THEME_SCRIPT =
-  "(function(){var v='dark';try{if(localStorage.getItem('dsd:theme')==='light')v='light';}catch(e){}if('|/dentalchairs|/a3|/a3s|/a3l|/a1-pro|/n2-pro|/n2-plus|/n1|/s9|/s6|/s3|/denjoy|/denjoy/meta-endo-pro-i|/denjoy/meet-endo|/denjoy/meta-endo|/denjoy/free-pex|/denjoy/i-pexo|/denjoy/ix7|/denjoy/ix6|/denjoy/i-moto|/denjoy/iue1|/denjoy/icure|/denjoy/ipack|/denjoy/meta-pack|'.indexOf('|'+location.pathname.replace(/[/]+$/,'')+'|')!==-1)v='light';document.documentElement.setAttribute('data-theme',v);})();";
+  "(function(){var v='dark';try{if(localStorage.getItem('dsd:theme')==='light')v='light';}catch(e){}if('|/dentalchairs|/a3|/a3s|/a3l|/a1-pro|/n2-pro|/n2-plus|/n1|/s9|/s6|/s3|/denjoy|/denjoy/meta-endo-pro-i|/denjoy/meet-endo|/denjoy/meta-endo|/denjoy/free-pex|/denjoy/i-pexo|/denjoy/ix7|/denjoy/ix6|/denjoy/i-moto|/denjoy/iue1|/denjoy/icure|/denjoy/ipack|/denjoy/meta-pack|/k-clamps|'.indexOf('|'+location.pathname.replace(/[/]+$/,'')+'|')!==-1)v='light';document.documentElement.setAttribute('data-theme',v);})();";

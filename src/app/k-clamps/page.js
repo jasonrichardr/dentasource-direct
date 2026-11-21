@@ -1,12 +1,17 @@
 import JsonLd from '@/components/JsonLd';
+import ScrollFx from '@/components/chair/ScrollFx';
+import { ShowroomDoor } from '@/components/chair/sections';
+import DenjoyTrack from '@/components/denjoy/light/DenjoyTrack';
+import { SHOWROOM } from '@/data/chairs/shared';
 import KclampsExperience from './KclampsExperience';
+import '@/components/chair/chair.css';
 import { clamps, faqs } from '@/data/kclamps';
 import { faqGraph } from '@/lib/schemas/faq';
 
 export const metadata = {
-  title: 'K-Clamp Rubber Dam Clamps Philippines — 46 Sizes, Exclusive by DentaSource Direct',
+  title: 'K-Clamp Rubber Dam Clamps in the Philippines, 46 Sizes',
   description:
-    'Every K-Clamp rubber dam clamp by Shinhung (Korea), exclusively distributed in the Philippines by DentaSource Direct: molar, premolar, anterior, partially erupted and pediatric sizes, matte or glossy. Tap any clamp to see which teeth it fits.',
+    'All 46 K-Clamp rubber dam clamps by Shinhung of Korea: molar, premolar, anterior and pediatric sizes. Tap a tooth to see which clamps fit. Pasig showroom.',
   keywords: [
     'K-Clamp Philippines',
     'rubber dam clamp Philippines',
@@ -19,7 +24,7 @@ export const metadata = {
   ],
   alternates: { canonical: 'https://dentasourcedirect.com/k-clamps' },
   openGraph: {
-    title: 'K-Clamp in the Philippines — every size, and the tooth it fits',
+    title: 'K-Clamp in the Philippines: every size, and the tooth it fits',
     description:
       '46 K-Clamp rubber dam clamp sizes by Shinhung, exclusive in the Philippines through DentaSource Direct. Tap a clamp, see the tooth.',
     url: 'https://dentasourcedirect.com/k-clamps',
@@ -46,7 +51,7 @@ export const metadata = {
 const itemList = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  name: 'K-Clamp Rubber Dam Clamps — Philippines',
+  name: 'K-Clamp Rubber Dam Clamps, Philippines',
   description: 'The K-Clamp rubber dam clamp line by Shinhung, distributed exclusively in the Philippines by DentaSource Direct.',
   url: 'https://dentasourcedirect.com/k-clamps',
   numberOfItems: clamps.length,
@@ -77,14 +82,35 @@ const brand = {
   ],
 };
 
+const ROOT_ID = 'kclamps-page';
+
+const DOOR = {
+  kicker: 'Pasig showroom',
+  title: 'Handle every size before you choose',
+  line: 'Kits and single clamps ship from our Pasig showroom, where you can compare the sizes side by side.',
+  ...SHOWROOM,
+  ctas: [
+    { label: 'Visit the showroom', href: '/contact#showroom', primary: true },
+    { label: 'Message us', href: `https://m.me/dentasource?ref=${encodeURIComponent("Hi DSD, I'd like to ask about K-Clamp.")}`, external: true },
+    { label: 'See all equipment', href: '/products' },
+  ],
+};
+
 export default function KClampsPage() {
   return (
     <>
       <JsonLd id="kclamps-itemlist" data={itemList} />
       <JsonLd id="kclamps-product" data={brand} />
       <JsonLd id="kclamps-faq" data={faqGraph(faqs)} />
-      <main>
-        <KclampsExperience />
+      <main className="min-h-screen">
+        {/* `.ch` supplies the chair design system's tokens and type; the finder is the only
+            client part, and the showroom door closes the page as it does for the chairs. */}
+        <div id={ROOT_ID} className="ch">
+          <KclampsExperience />
+          <ShowroomDoor door={DOOR} />
+          <ScrollFx rootId={ROOT_ID} />
+          <DenjoyTrack rootId={ROOT_ID} name="kclamp-footer" />
+        </div>
       </main>
     </>
   );

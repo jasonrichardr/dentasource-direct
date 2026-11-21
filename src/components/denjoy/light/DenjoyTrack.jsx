@@ -12,7 +12,8 @@ export default function DenjoyTrack({ rootId, name = 'denjoy' }) {
     if (!root) return undefined;
     const onClick = (e) => {
       const a = e.target.closest?.('a[href^="https://m.me/"]');
-      if (a) trackContact({ channel: 'messenger', content_name: name });
+      // a link that reports its own click carries data-tracked, so it is not counted twice
+      if (a && !a.dataset.tracked) trackContact({ channel: 'messenger', content_name: name });
     };
     root.addEventListener('click', onClick);
     return () => root.removeEventListener('click', onClick);
