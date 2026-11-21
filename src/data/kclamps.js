@@ -12,6 +12,7 @@
 // group membership (MOLAR / MT / PM / ANT / KIDS), and FDI primary-tooth numbering for the
 // deciduous series (D54 = upper right first primary molar, E55 = upper right second, and so on).
 // No prices on this page (DSD law: pricing on reply).
+// The family colors are deep tones chosen to read on a white page (the page went light on 2026-11-22).
 
 const U_MOLARS_R = [16, 17, 18];
 const U_MOLARS_L = [26, 27, 28];
@@ -30,11 +31,11 @@ const ANTERIORS = [...U_ANTERIORS, ...L_ANTERIORS];
 const PRIMARY_MOLARS = [54, 55, 64, 65, 74, 75, 84, 85];
 
 export const GROUPS = {
-  molar: { label: 'Molar', short: 'Molar', color: '#6ee7ff', blurb: 'Upper and lower molars, from small round uppers to the big lower seconds.' },
-  tiger: { label: 'Partially erupted', short: 'Erupting', color: '#a78bfa', blurb: 'Third molars and half-erupted teeth: deep four-point jaws, and the serrated Tiger jaws that bite below the bulge.' },
-  premolar: { label: 'Premolar', short: 'Premolar', color: '#34d399', blurb: 'Flat-jawed clamps for bicuspids, with wide-neck and wingless options.' },
-  anterior: { label: 'Anterior', short: 'Anterior', color: '#fbbf24', blurb: 'Incisors and canines, including the double-bow labial clamps for cervical work.' },
-  kids: { label: 'Kids', short: 'Kids', color: '#fb7185', blurb: 'Primary molars, numbered the way the tooth is: D54 fits tooth 54.' },
+  molar: { label: 'Molar', short: 'Molar', color: '#0e7490', blurb: 'Upper and lower molars, from small round uppers to the big lower seconds.' },
+  tiger: { label: 'Partially erupted', short: 'Erupting', color: '#6d28d9', blurb: 'Third molars and half-erupted teeth: deep four-point jaws, and the serrated Tiger jaws that bite below the bulge.' },
+  premolar: { label: 'Premolar', short: 'Premolar', color: '#0e7c5a', blurb: 'Flat-jawed clamps for bicuspids, with wide-neck and wingless options.' },
+  anterior: { label: 'Anterior', short: 'Anterior', color: '#b45309', blurb: 'Incisors and canines, including the double-bow labial clamps for cervical work.' },
+  kids: { label: 'Kids', short: 'Kids', color: '#be123c', blurb: 'Primary molars, numbered the way the tooth is: D54 fits tooth 54.' },
 };
 
 export const GROUP_ORDER = ['molar', 'tiger', 'premolar', 'anterior', 'kids'];
@@ -68,7 +69,7 @@ export const clamps = [
   { id: '201', label: '201', group: 'molar', winged: true, arch: 'upper', jaws: 'Offset', teeth: U_MOLARS,
     use: 'Upper molars with buccal caries. The offset jaws leave the buccal cervical area clear for the restoration. Also made in a wingless version, to order.', ...img('201') },
   { id: '202', label: '202', group: 'molar', winged: true, arch: 'both', jaws: 'Winged molar', teeth: MOLARS,
-    use: 'General molar clamp from the 200 series, the standard size. Winged for the clamp-and-dam-together technique; a wingless version is made to order.', ...img('202') },
+    use: 'General molar clamp from the 200 series, the standard size. Winged for the clamp-and-dam-together technique. A wingless version is made to order.', ...img('202') },
   { id: '203', label: '203', group: 'molar', winged: true, arch: 'both', jaws: 'Winged molar, wide', teeth: MOLARS,
     use: 'The wide molar clamp of the 200 series, a size up from the 202 for large first and second molars. A wingless version is made to order.', ...img('203') },
   { id: '204', label: '204', group: 'molar', winged: true, arch: 'both', jaws: 'Winged molar', teeth: MOLARS,
@@ -178,8 +179,8 @@ export const kits = [
 
 export const features = [
   { title: 'Outstanding elasticity', body: 'The steel springs back. A K-Clamp survives the forceps, the tooth and the autoclave without opening up, so the fit you had on day one is the fit you have a year later.' },
-  { title: 'Soft-processed edges', body: 'Every jaw edge is soft-processed before it leaves Shinhung. Their own words for it: superior comfort for the patient, no unwanted trauma. In the mouth it is the difference between a clamp that seats and one that scars the gingiva.' },
-  { title: 'Matte or glossy', body: 'The matte finish kills the glare under the operatory light; the glossy finish is the classic mirror steel. Both are the same clamp underneath.' },
+  { title: 'Soft-processed edges', body: 'Every jaw edge is soft-processed before it leaves Shinhung. Their own words for it: superior comfort for the patient, no unwanted trauma.' },
+  { title: 'Matte or glossy', body: 'The matte finish cuts the glare under the operatory light. The glossy finish is the classic mirror steel. Both are the same clamp underneath.' },
   { title: 'Autoclavable to 121°C', body: 'Stainless steel made to resist corrosion in the mouth and in the autoclave. Fully autoclavable at 121°C, with no coating to flake. Sterilize it the way you sterilize everything else.' },
 ];
 
@@ -187,7 +188,7 @@ export const faqs = [
   { q: 'Which K-Clamp do I use for a lower molar root canal?', a: 'Start with the 56 for a large lower molar, the 7 for a general lower molar, or the 14 if the tooth is partially erupted or short. If a smooth clamp keeps slipping off a broken-down crown, the serrated 14T or 56T Tiger holds where the others will not.' },
   { q: 'What is the difference between winged and wingless?', a: 'Winged clamps, which is most of the line including the 200 series, carry the dam with them: you stretch the sheet over the wings, place the clamp, and tooth and dam go on together. Wingless clamps, the W2A and W8A in stock and the wingless 201, 202 and 203 made to order, go on the tooth first and the dam is stretched over them after, which gives you a clear view of the seat. Most dentists keep both.' },
   { q: 'Are the deciduous clamps really one per tooth?', a: 'Yes. The K-Clamp deciduous kit is eight clamps numbered after the FDI primary molars: D54 for tooth 54, E55 for tooth 55, and so on around the mouth. The P1 and P2 are the two general pediatric sizes if you would rather carry two than eight.' },
-  { q: 'Matte or glossy?', a: 'Matte is the one most of our clinics choose now: no reflection under the light or in photographs. Glossy is the traditional finish. Both are the same stainless steel and the same jaw geometry, and both are stocked in Pasig.' },
+  { q: 'Matte or glossy?', a: 'Matte is the one most of our clinics choose now, because it does not reflect under the light or in photographs. Glossy is the traditional finish. Both are the same stainless steel and the same jaw geometry, and both are stocked in Pasig.' },
   { q: 'Is DentaSource Direct the official K-Clamp distributor in the Philippines?', a: 'Yes. DSD is the exclusive Philippine distributor for the K-Clamp line by Shinhung of Korea, the same way it is for ROSON chairs and Denjoy endodontics. Kits and single clamps ship from the Pasig showroom, and a clinic can handle and compare every size there before buying.' },
 ];
 
